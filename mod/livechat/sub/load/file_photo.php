@@ -1,0 +1,1 @@
+ <input type="file" class="form-control" value="ยังไม่มีภาพถ่าย" readonly  style="padding-left:5px; padding-right:5px; width:125px;display:none"  name="load_chat_album"   id="load_chat_album"   accept="image/*"  >

@@ -1,0 +1,403 @@
+
+ 
+<div  style="padding-top:0px; padding:5px; ">
+ <? //  include "mod/load/update/all_today.php" ;?>
+ 
+ 
+						
+<table width="100%"  border="0" cellspacing="2" cellpadding="2" style="background-color:#999999; padding:5px; display:none ">
+  <tr align="center">
+    <td width="40%" class="font_20" style="color:#FFFFFF; padding:2px; "><b>วันที่</b></td>
+    <td width="20%" class="font_20" style="color:#FFFFFF; padding:2px; "><b>งาน</td>
+    <td width="40%" class="font_20" style="color:#FFFFFF; padding:2px; "><b>รายรับ </td>
+  </tr>
+</table>
+						
+						
+						 
+ 
+ <?
+$_GET[day] = date('Y-m-d');
+ 
+ $_GET[day] = '2016-08-16';
+ 
+  $date_finish = date('Y-m-d',strtotime("+0 day")); 
+    $date_finish_plus = date('Y-m-d',strtotime("+1 day")); 
+  
+ 
+ $date_start ='2016-09-01';
+
+//$db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+//$db->del(TB_transfer_report_all," transfer_date < '".$_GET[day]."' "); 
+
+
+///echo $user_id;
+ 
+///// update report <--- order
+ /*
+$select_order="id,code,invoice,program,orderid,agent,transfer_date,pickup_place,to_place,carno,drivername,air,airin_time,airout_time,driver_remark,total";
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$res[update] = $db->select_query("SELECT $select_order  FROM ".TB_order."  where drivername='".$user_id."' and  transfer_date >= '".$_GET[day]."'  order by transfer_date  limit 30");
+//$arr[update][orderid]=309054;
+
+
+while($arr[update] = $db->fetch($res[update])){
+ 
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[book2] = $db->select_query("SELECT  id,guest,phone FROM ".TB_book_agent." WHERE id='".$arr[update][orderid]."' ");
+	$arr[book2] = $db->fetch($res[book2]);
+ 
+echo $arr[book2] [guest];
+//echo " &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;";
+//echo $arr[update] [invoice];
+echo "<br>";
+//echo $arr[update] [orderid] ;
+//echo "<br>";
+ 
+$db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$db->update_db(TB_transfer_report_all,array(
+ 
+ 		"guest_name"=>$arr[book2] [guest] ,
+		"guest_phone"=>$arr[book2] [phone] ,
+		
+		"agent"=>$arr[update] [agent] ,
+		"vc_id"=>$arr[update] [id] ,
+		"vc_code"=>$arr[update] [code] ,
+		
+		"total"=>$arr[update] [total] ,
+ 
+ 		"remark"=>$arr[update] [remark] ,
+ 		"pickup_place"=>$arr[update] [pickup_place] ,
+		"to_place"=>$arr[update] [to_place] ,
+		
+		
+		"airin_time"=>$arr[update] [airin_time] ,
+		"airout_time"=>$arr[update] [airout_time] ,
+		
+		"orderid"=>$arr[update] [orderid] 
+		
+		)," invoice='".$arr[update] [invoice]."' ");
+
+ 
+}
+ */
+/// map th
+/*
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$res[gg_map] = $db->select_query("SELECT id,map,transferplace_type,star FROM ".TB_transferplace_new."  ");
+	while($arr[gg_map] = $db->fetch($res[gg_map])){
+		$arr_map[$arr[gg_map][id]] = $arr[gg_map][map];
+		$arr_type[$arr[gg_map][id]] = $arr[gg_map][transferplace_type];
+		$arr_star[$arr[gg_map][id]] = $arr[gg_map][star];
+	}
+ 
+$res[gg_map] = $db->select_query("SELECT id,topic,province,amphur FROM ".TB_transferplace."  ");
+	while($arr[gg_map] = $db->fetch($res[gg_map])){
+		$arr_t_topic[$arr[gg_map][id]] = $arr[gg_map][topic];
+		$arr_t_province[$arr[gg_map][id]] = $arr[gg_map][province];
+		$arr_t_amphur[$arr[gg_map][id]] = $arr[gg_map][amphur];
+	}
+	
+/// map cn
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$res[gg_map_cn] = $db->select_query("SELECT id,map,transferplace_type,star FROM ".TB_transferplace_cn_new."  ");
+	while($arr[gg_map_cn] = $db->fetch($res[gg_map_cn])){
+		$arr_map[$arr[gg_map_cn][id]] = $arr[gg_map_cn][map];
+		$arr_type[$arr[gg_map_cn][id]] = $arr[gg_map_cn][transferplace_type];
+		$arr_star[$arr[gg_map_cn][id]] = $arr[gg_map_cn][star];
+	}
+ 
+$res[gg_map_cn] = $db->select_query("SELECT id,topic,province,amphur FROM ".TB_transferplace_cn."  ");
+	while($arr[gg_map_cn] = $db->fetch($res[gg_map_cn])){
+		$arr_t_topic[$arr[gg_map_cn][id]] = $arr[gg_map_cn][topic];
+		$arr_t_province[$arr[gg_map_cn][id]] = $arr[gg_map_cn][province];
+		$arr_t_amphur[$arr[gg_map_cn][id]] = $arr[gg_map_cn][amphur];
+	}
+	 
+*/
+
+       $no    = "$_GET[year]-$_GET[month]";
+ $data_sale = "where dayall like '%" . $no . "%'   $saleuser";
+       $allpage   = "dayall like '%" . $no . "%'   $saleuser";
+	   
+	   
+	   
+$data_sale_park = "where transfer_date like '%" . $no . "%'   $saleuser";
+	   
+
+$db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(car_price) FROM transfer_report_all  where transfer_date like '%" . $no . "%'  and status = 'CONFIRM' and driver_pickup > '0' and number_of_report >0 and car_price > 0 and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay_all= $row['SUM(car_price)'];
+}
+
+
+
+$db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+///$query = "SELECT SUM(park_price) FROM transfer_report_all  where transfer_date like '%" . $no . "%'  and status = 'CONFIRM' and driver_pickup > '0' and number_of_report >0 and car_price > 0 and drivername='".$user_id."' "; 
+
+
+
+$query = "SELECT SUM(park_price) FROM transfer_report_all  where transfer_date like '%" . $no . "%'  and status = 'CONFIRM' and driver_pickup > '0'   and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay_park= $row['SUM(park_price)'];
+}
+
+
+
+  
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(cost) FROM history_transfer_ot where transfer_date  like '%" . $no . "%'  and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$payot_all= $row['SUM(cost)'];
+}
+
+
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(use_car_overtime_cost_driver_total) FROM  transfer_report_all where transfer_date  like '%" . $no . "%'  and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay_advance_driver= $row['SUM(use_car_overtime_cost_driver_total)'];
+}
+
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(use_car_overtime_cost_total) FROM  transfer_report_all where transfer_date  like '%" . $no . "%'  and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay_advance_system= $row['SUM(use_car_overtime_cost_total)'];
+}
+
+///// ฝากเก็บ
+
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(cost) FROM  history_transfer_deposit  where transfer_date  like '%" . $no . "%'  and drivername='".$user_id."' "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay_deposit= $row['SUM(cost)'];
+}
+
+
+$pay_advance=$pay_advance_system-$pay_advance_driver;
+
+
+
+ 
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$res[timeline] = $db->select_query("SELECT * FROM date_loop  $data_sale and  dayall   < '".$date_finish_plus."' order by  id  asc  limit 0");
+while($arr[timeline] = $db->fetch($res[timeline])){
+///echo $arr[timeline][dayall];
+
+$bgcolor = ($i++ & 1) ? '#FFFFFF' : '#FFFDE9'; 
+
+
+
+$daywork=$arr[timeline][dayall];
+
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[drivername] = $db->select_query("SELECT id,nickname,post_date FROM ".TB_driver." WHERE id='".$arr[project][drivername]."' ");
+	$arr[drivername] = $db->fetch($res[drivername]);
+ 
+	///echo $arr[project][id];
+	
+	if($arr[drivername][company]==1133) {
+	$find_date="and out_date='". $daywork."'";
+	} 
+	
+		else {
+  $find_date="and transfer_date='". $daywork."'";
+	} 
+
+$db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+
+/*
+$row_no = $db->num_rows(TB_transfer_report_all,"id","drivername='".$user_id."' and transfer_date='".$daywork."' and status = 'CONFIRM' and driver_pickup  < '1' group by driver_complete,invoice, order by driver_complete desc   ");
+$row_yes = $db->num_rows(TB_transfer_report_all,"id","drivername='".$user_id."' and transfer_date='".$daywork."' and status = 'CONFIRM' and driver_pickup > '0' group by driver_complete,invoice order by driver_complete desc ");
+*/
+
+//$row_no = $db->num_rows(TB_transfer_report_all,"id","drivername='".$user_id."' and transfer_date='".$daywork."' and status = 'CONFIRM' and driver_pickup  < '1' group by driver_complete,invoice, order by driver_complete desc   ");
+$row_yes = $db->num_rows(TB_transfer_report_all,"id","drivername='".$user_id."' $find_date and status = 'CONFIRM' and driver_pickup > '0' and number_of_report >0 and car_price > 0 group by driver_complete,invoice   ");
+
+$row_all = $db->num_rows(TB_transfer_report_all,"id","drivername='".$user_id."' $find_date and status = 'CONFIRM' ");
+
+
+$data_sale="where drivername='".$user_id."'  $find_date and status = 'CONFIRM' and driver_pickup > '0'";
+
+$data_ot="where drivername='".$user_id."' $find_date ";
+ 
+///  $data_sale="where drivername='".$user_id."'  and status = 'CONFIRM'";
+ 
+ //$row_complete = $db->num_rows(TB_order,"id","drivername='".$user_id."' and transfer_date='".$_GET[day]."' and status = 'CONFIRM' group by carno  ");
+
+//
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(car_price) FROM transfer_report_all $data_sale "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay= $row['SUM(car_price)'];
+}
+
+
+
+
+
+
+
+ $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(cost) FROM history_transfer_ot $data_ot "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$payot= $row['SUM(cost)'];
+}
+ 
+  $db->connectdb(DB_NAME_DATA,DB_USERNAME,DB_PASSWORD);
+$query = "SELECT SUM(car_price) FROM transfer_report_all $data_sale "; 
+$result = mysql_query($query) or die(mysql_error());
+// Print out result
+while($row = mysql_fetch_array($result)){
+$pay= $row['SUM(car_price)'];
+}
+
+ ?>
+ 
+ 
+ <div style="background-color:<?=$bgcolor ?> ">
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr align="center">
+    <td width="40%" style="height:35px; "  class="font_18"><?=$arr[timeline][dayall]?></td>
+    <td width="20%"  class="font_18"><?=$row_yes?></td>
+    <td width="40%" align="right"  class="font_18" style="padding-right:10px; "><? if($payot>0){?>
+	
+	(<font color="#FF0000">โอที </font>) 
+	<? } ?> 
+	<? if($row_all>0){?>
+	<?= number_format( $pay , 0 );?>
+		<? } ?>
+ 
+			<? if($row_all==0){?>
+	<font color="#FF0000">วันหยุด</font>
+		<? } ?>
+		
+		 
+	
+	
+	
+	</td>
+  </tr>
+</table>
+
+ </div>
+ <? }  ?>
+ </div>
+ 
+ <table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">เงินเดือน</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
+	
+	<?= number_format( $arr[web_user][salary], 0 );?>
+		 
+	
+	
+	
+	</td>
+  </tr>
+</table>
+
+<? if($arr[web_user][salary_other]>100000){ ?>
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">เงินประจำตำแหน่ง</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
+	
+	<?= number_format( $arr[web_user][salary_other], 0 );?>
+		  
+	
+	
+	</td>
+  </tr>
+</table>
+<? } ?>
+
+
+
+
+<? if($pay_park>0){ ?>
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">ค่าจอดรถ</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
+	
+	<?= number_format( $pay_park, 0 );?>
+		  
+	
+	
+	</td>
+  </tr>
+</table>
+<? } ?>
+
+
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">ค่าโอที</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
+	
+	<?= number_format( $payot_all , 0 );?>
+		 
+	
+	
+	
+	</td>
+  </tr>
+</table>
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">ค่าประกันสังคม</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#FF0000 "> 
+	
+	<?= number_format( $arr[web_user][social_money], 0 );?>
+		 
+	
+	
+	
+	</td>
+  </tr>
+</table>
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+  <tr  >
+    <td  class="font_18" style="height:30px; padding-left:5px; ">เบิกล่วงหน้า</td>
+    <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#FF0000 "> 
+	
+	<?= number_format( $pay_advance+$pay_deposit, 0 );?>
+		 
+	
+	
+	
+	</td>
+  </tr>
+</table>
+
+ 
+  
+
+ 
+ <table width="100%"  border="0" cellpadding="2" cellspacing="2"  style="background-color:#F6F6F6;border:  dotted 1px #999999;  ">
+   <tr  >
+     <td  class="font_18" style="height:30px; padding-left:5px; ">รายได้สุทธิ</td>
+     <td width="40%" align="right"  class="font_24" style="padding-right:10px; color: #006699 "><?= number_format( $arr[web_user][salary]+$payot_all+$pay_park-$arr[web_user][social_money] -$pay_advance-$pay_deposit, 0 );?>
+     </td>
+   </tr>
+ </table>

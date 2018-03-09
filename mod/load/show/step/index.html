@@ -1,0 +1,150 @@
+
+<!-- saved from url=(0028)https://webqr.com/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="QR Code scanner">
+  <meta name="keywords" content="qrcode,qr code,scanner,barcode,javascript">
+  <meta name="language" content="English">
+  <meta name="copyright" content="Lazar Laszlo (c) 2011">
+  <meta name="Revisit-After" content="1 Days">
+  <meta name="robots" content="index, follow">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web QR</title>
+
+<style type="text/css">
+body{
+    width:100%; margin:0; 
+    text-align:center;
+}
+img{
+    border:0;
+}
+#main{
+ 
+    background:white; margin:0; top:0;
+    overflow: auto;
+	width: 100%;
+}
+#header{
+    background:white;
+ 
+}
+#mainbody{
+    background: white;
+    width:100%;
+	display:none;
+}
+#footer{
+    background:white;
+}
+#v{
+    width:100%;
+    height:100%;
+}
+#qr-canvas{
+    display:none;
+}
+#qrfile{
+    width:100%;
+    height:100%;
+}
+#mp1{
+    text-align:center;
+    font-size:35px;
+}
+#imghelp{
+    
+}
+.selector{
+    margin:0;
+    padding:0;
+    cursor:pointer;
+   
+}
+#outdiv
+{
+    width:100%;
+    height:100%;
+ 
+ 
+}
+#result{
+    border: solid;
+ 
+ 
+	width:320px;
+}
+
+ul{
+    margin-bottom:0;
+ 
+}
+li{
+   
+}
+li a{
+    text-decoration: none;
+    color: black;
+}
+
+#footer a{
+	color: black;
+}
+.tsel{
+    padding:0;
+}
+
+</style>
+
+ 
+</script><script src="./Web QR_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" src="./Web QR_files/llqrcode.js"></script>
+<script type="text/javascript" src="./Web QR_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript" src="./Web QR_files/webqr.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24451557-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<div id="main" style="margin-top:-100px;">
+  <div id="mainbody" style="display: inline ; top:0 ">
+<table class="tsel" border="0" width="100%">
+<tbody><tr>
+<td valign="top" align="center" width="100%">
+<table width="100%" border="0" class="tsel">
+<tbody><tr style="display:none">
+<td><img class="selector" id="webcamimg" src="./Web QR_files/vid.png" onClick="setwebcam()" align="left" style="opacity: 0.2;"></td>
+<td><img class="selector" id="qrimg" src="./Web QR_files/cam.png" onClick="setimg()" align="right" style="opacity: 1;"></td></tr>
+<tr><td colspan="2" align="center">
+<div id="outdiv" style="width:100%"><div id="qrfile" style="width:100%"><canvas id="out-canvas"  style="width:100%"></canvas>
+</div>
+</div></td></tr>
+</tbody></table>
+</td>
+</tr>
+<tr><td colspan="3" align="center">&nbsp;</td>
+</tr>
+<tr><td colspan="3" align="center"><textarea cols="" rows="" id="result"></textarea>
+
+
+
+
+</td></tr>
+</tbody></table>
+ 
+ 
+<canvas id="qr-canvas"  ></canvas>
+<script type="text/javascript">load();</script>
+ </body></html>

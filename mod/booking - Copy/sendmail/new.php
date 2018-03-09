@@ -1,0 +1,102 @@
+﻿<?
+
+//error_reporting(E_ALL);
+
+//error_reporting(E_STRICT);
+ 
+require_once('phpmail/class.phpmailer.php');
+
+$mail   = new PHPMailer();
+ 
+//////////////// ส่งเมล์
+ // $_POST[name]="โชคดี";
+ 
+ 
+$body = "มีงานใหม่เข้ามา กรุณาตรวจสอบ";
+
+//<img src=$emailurl/data/img/vc/$vc.jpg  />
+/////
+/*
+$mail->CharSet = "utf-8";
+$mail->IsSMTP(); // telling the class to use SMTP
+$mail->Host       = "mail.yourdomain.com"; // SMTP server
+$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+
+
+                                           // 1 = errors and messages
+                                           // 2 = messages only
+										   
+$mail->SMTPAuth   = true;                  // enable SMTP authentication
+$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+$mail->Username   = "tourbookingsystem@gmail.com";  // GMAIL username
+$mail->Password   = "3440300965!@#$";            // GMAIL password 
+*/
+$mail->CharSet = "utf-8";
+$mail->IsSMTP();                           // 启用SMTP
+$mail->SMTPAuth    = true;                  // 启用SMTP认证
+$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+$mail->Host        = "mail.welovetaxi.com"; // SMTP server
+$mail->Port        = 465;                 // set the SMTP port for the GMAIL server
+$mail->Username    = "system@welovetaxi.com";     // SMTP server username
+$mail->Password    = "system2017" ;            // SMTP server password 
+ 
+$mail->SetFrom("system@welovetaxi.com", 'We Love Taxi : เพื่อบ้านเรา');
+ 
+$mail->AddReplyTo("system@welovetaxi.com", 'We Love Taxi : เพื่อบ้านเรา');
+
+
+$mail->Subject    = "มีงานใหม่เข้ามา กรุณาตรวจสอบ";
+ 
+$mail->AltBody    = "มีงานใหม่เข้ามา กรุณาตรวจสอบ"; // optional, comment out and test
+
+//copy ("".$emailurl."/empty_style.php?name=admin/voucheremail/send&file=file_send_vc&no=".$_POST[vcno]."&order=".$_POST[order]."&code=".$_POST[code]."&invoice=".$_POST[invoice]."&type=".$_POST[type]."&airport=".$_POST[airport]."&detail=".$_POST[detail]."" ,"data/html/vc/".$_POST[refno]."_new.html" );
+
+$mail->MsgHTML($body);
+ 
+// $mail->MsgHTML(file_get_contents("data/html/vc/".$_POST[refno]."_new.html"));
+
+
+
+ 
+
+$address2 = "chokdee.welovetaxi@gmail.com";
+
+  //$address2 = "tudtoojung@gmail.com";
+ 
+$address = "chokdee@welovetaxi.com";
+
+$mail->AddAddress($address, "welovetaxi.com");
+$mail->AddAddress($address2, "welovetaxi.com");
+ 
+              
+if(!$mail->Send()) {
+
+  echo "Mailer Error: " . $mail->ErrorInfo;
+
+} else {
+	
+
+echo " <center><center>" ;	
+
+// echo "<meta http-equiv=refresh content=2;URL=.?name=admin&amp;file=booking&amp;op=bookagent_edit&amp;view=view&amp;id=".$_POST[order].">";
+ 
+
+}
+
+ 
+
+
+ 
+///////////////////
+
+
+
+ 
+
+
+
+
+?>
+
