@@ -17,6 +17,12 @@ if($_GET[type]=='driver_topoint'){
  $icon = 'icon-new-uniF159-5';	
   $action = 'check_guest_receive';
    $txt_photo = 'ภาพถ่ายแขก';
+    mysql_query("SET NAMES utf8"); 
+  mysql_query("SET character_set_results=utf-8");
+    $db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
+  $res[order] = $db->select_query("SELECT * FROM ap_order where invoice = '".$_GET[id]."' ");
+  $arr[order] = $db->fetch($res[order]);
+  $db->closedb();
  } 
  else if($_GET[type]=='guest_register'){		
  $type=' งานสำเร็จ  | เช็ครถ';	
@@ -102,7 +108,7 @@ if($_GET[type]=='driver_topoint'){
   
 
 <br>
-<table width="300" border="0" align="center" cellpadding="5" cellspacing="5">
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="5">
   <tbody>
     <tr>
       <td align="center" class="font-30"><i class="<?=$icon;?>" style=" font-size:80px; color:<?=$main_color?>"  ></i></td>
@@ -111,8 +117,17 @@ if($_GET[type]=='driver_topoint'){
       <td align="center" class="font-30"><b>คุณแน่ใจหรือไม่ว่า</td>
     </tr>
     <tr>
-      <td align="center" class="font-26"><?=$type?>แล้ว</td>
+      <td align="center" class="font-26"><div><?=$type?>แล้ว<div>
+        <div  style="color: #E91E63;
+    text-align: center;
+    padding: 8px;
+    text-transform: capitalize;" <?php if ($_GET[type]=='guest_receive' ) {
+            ?> style= "display:block"<?php  } 
+            else if ($_GET[type]!='guest_receive'){?>
+          style= "display:none;"<?php
+        }?>><?=$arr[order][guest_english]?></div>
     </tr>
+    
     <tr id="check_pickup_no_guest" <?php if ($_GET[type]=='check_pickup_no_guest' ) {
             ?> style= "display:block"<?php  } 
             else if ($_GET[type]!='check_pickup_no_guest'){?>
