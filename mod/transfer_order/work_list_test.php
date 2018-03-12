@@ -484,7 +484,18 @@ function getJob(x,y){
             dataType: 'json',
             success: function(data) {
                 console.log(data)
-                $('#pop_con').hide(500)
+                 
+                 $('#pop_con').hide(500)
+                 
+                $.each( countdownTimer, function( key, value ) { 
+					clearInterval(countdownTimer[key]);
+				});
+                 var url_load= "load_page_mod.php?name=transfer_order&file=work_list_work&transfer_work=true&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+
+    			 console.log(url_load);
+   				 $('#load_mod_popup').html(load_main_mod);
+   
+    			 $('#load_mod_popup').load(url_load); 
             }
         });
 // 	$.post( "mod/transfer_order/action_getjob.php",{ 'driver':y,'pro':x },function( data ) {
