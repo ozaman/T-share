@@ -15,7 +15,11 @@
 	$lng = $_GET[lng];
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8");
-
+	$date = date("H:i:s");
+	$time = strtotime($date);
+	$time = $time - (15 * 60);
+	$date_result = date("H:i:s", $time);
+	
 			$res = $db->select_query("SELECT a.*, c.topic_en AS topic_en,
 		       c.topic_cn AS topic_cn,
 		       c.topic_th AS topic_th,
@@ -50,7 +54,7 @@
 				FROM ap_order as a 				
             	left join web_transferproduct_utf as b ON b.id = a.product
            		left join web_car as c ON c.id = b.cartype 
-				where a.id>0 ".$filter_date." and a.driver = ''  and a.type = 'Transfer' and CAST(a.arrival_time as time) > '".date('H:m:s')."' ".$filter_fashion." order by CAST(a.arrival_time as time) asc");
+				where a.id>0 ".$filter_date." and a.driver = ''  and a.type = 'Transfer' and CAST(a.arrival_time as time) > '".$date_result."' ".$filter_fashion." order by CAST(a.arrival_time as time) asc");
 			while($arr = $db->fetch($res)){ 
 			
 			$data[] = $arr;

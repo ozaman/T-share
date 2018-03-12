@@ -1,19 +1,26 @@
 <?php 
 //	$address_form = findAddress($_POST[lat_from],$_POST[lng_from]);
 //	$address_to = findAddress($_POST[lat_to],$_POST[lng_to]);
+
 	
-$date_today = date('Y-m-d')." ".$_POST[arrival_time].":00";
+$date_today = $_POST[arrival_time].":00";
 
 $time_finish =strtotime( $date_today);
 
+$time_finish = $time_finish + (21 * 60);
+
 $h = date('H');
 date_default_timezone_set('UTC'); 
-$time_start=time() + 300;
+$time_start= time() + 300;
 $time_complete =$time_finish-$time_start;
 $today_h= date('H');
 $time_open_h= date('H',$time_complete);
 $time_open_m= date('m',$time_complete);
-	 
+
+/*$date = date("Y-m-d H:i:s");
+$time = strtotime($date);
+$time = $time - (15 * 60);
+$date = date("Y-m-d H:i:s", $time);*/
 	 
 	 if($address_form=="" or $address_form==null){
 	 	$address_form = $_POST[address_en_from];
@@ -167,6 +174,7 @@ $time_open_m= date('m',$time_complete);
 	<input type="hidden" value="<?=$_POST[lng_to];?>" id="to_lng_<?=$_POST[id];?>"/>
 
 	<input type="hidden" value="<?=$time_complete;?>" id="time_<?=$_POST[id];?>"/>
+	
 	</div>
 </div>
 

@@ -327,18 +327,19 @@ function location_place(lat_f,lng_f,lat_t,lng_t){
   //   document.getElementById("demo").innerHTML = x;
 	// https://www.google.com/maps/embed/v1/directions?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&destination="+i.TB_transferplace_topic+"&origin="+$scope.latituderel+","+$scope.longituderel+"&center="+$scope.latituderel+","+$scope.longituderel+"&avoid=tolls|highways&zoom=12?hl="+$scope.checklang
 // $("#main_load_mod_popup_1" ).toggle();
-  $("#main_load_mod_popup_1" ).toggle();
+  $("#main_load_mod_popup_map" ).toggle();
   // $(".text-topic-action-mod-1" ).html("รับส่ง <?=$arr[order][invoice];?>");
 	
 
 	  
-	 var url_load= "load_page_mod_1.php?name=transfer_order&file=iframe_location&lat_f="+lat_f+"&lng_f="+lng_f+"&lat_t="+lat_t+"&lng_t="+lng_t;	
+	 var url_load= "load_page_map.php?name=transfer_order&file=iframe_location&lat_f="+lat_f+"&lng_f="+lng_f+"&lat_t="+lat_t+"&lng_t="+lng_t;	
 	  	  // &lat="+lat_f+"&lng="+lng_f+"&lng_t="+lat_t+"&lng_t="+lng_t;
 	  console.log(url_load);
 	  
-	  $('#load_mod_popup_1').html(load_main_mod);
+	  $('#load_mod_popup_map').html(load_main_mod);
 	  
-	  $('#load_mod_popup_1').load(url_load);
+	  $('#load_mod_popup_map').load(url_load);
+	  $('.bottom_popup').hide();
 
 
 

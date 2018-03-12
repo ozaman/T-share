@@ -33,7 +33,7 @@ font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=
     <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="40"   ><div class="button-close-popup-mod-4" ><?=$popup_icon_left_arow;?></div></td>
-  <td   ><span class="font-28"><div  id="text_mod_topic_action_4" class="text-topic-action-mod-4 text-resize" ></div></span></td>
+  <td   ><span class="font-28"><div  id="text_mod_topic_action_4" class="text-topic-action-mod-4 text-resize" style="color: #fff;" ></div></span></td>
  <td width="40" align="right"   >
     <div onclick="GohomePage();">
     <i class="fa fa-home" style="font-size:30px; color:#ffff; "></i>
