@@ -154,7 +154,7 @@ function timer(id,seconds) {
         clearInterval(countdownTimer[id]);
         document.getElementById('countdown_'+id).innerHTML = "Completed";
         
-        $('#box_work_'+id).hide();
+        //$('#box_work_'+id).hide();
     } else {
         sec_array[id]--;
     }
