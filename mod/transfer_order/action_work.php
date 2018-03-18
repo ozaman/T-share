@@ -6,10 +6,10 @@
 	if($_GET[action]=='query_work'){
 	
 	if($_POST[type]!=""){
-		$filter_fashion = 'and fashion = "'.$_POST[type].'" ';
+		$filter_fashion = 'and a.fashion = "'.$_POST[type].'" ';
 	}
 	if($_POST[date]!=""){
-		$filter_date = 'and arrival_date = "'.$_POST[date].'" ';
+		$filter_date = 'and a.arrival_date = "'.$_POST[date].'" ';
 	}
 	$lat = $_GET[lat];
 	$lng = $_GET[lng];

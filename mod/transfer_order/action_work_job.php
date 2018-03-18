@@ -6,10 +6,10 @@
 	if($_GET[action]=='query_work'){
 	
 	if($_POST[type]!=""){
-		$filter_fashion = 'and fashion = "'.$_POST[type].'" ';
+		$filter_fashion = 'and a.fashion = "'.$_POST[type].'" ';
 	}
 	if($_POST[date]!=""){
-		$filter_date = 'and arrival_date = "'.$_POST[date].'" ';
+		$filter_date = 'and a.arrival_date = "'.$_POST[date].'" ';
 	}
 	// $driver = $_POST[driver];
 	// $lng = $_GET[lng];
@@ -53,7 +53,7 @@
 				FROM ap_order as a 				
             	left join web_transferproduct_utf as b ON b.id = a.product
            		left join web_car as c ON c.id = b.cartype 
-				where a.id>0 ".$filter_date." and a.driver = '".$_GET[driver]."'  and a.type = 'Transfer' and CAST(a.arrival_time as time) > '".$date_result."' ".$filter_fashion." order by CAST(a.arrival_time as time) asc");
+				where a.id>0 ".$filter_date." and a.driver = '".$_GET[driver]."' and a.guest_topoint = '0'  and a.type = 'Transfer' and CAST(a.arrival_time as time) > '".$date_result."' '".$filter_fashion."' order by CAST(a.arrival_time as time) asc");
 			while($arr = $db->fetch($res)){ 
 			
 			$data[] = $arr;
