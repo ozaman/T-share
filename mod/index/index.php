@@ -252,7 +252,7 @@ $( "#main_load_mod_popup" ).toggle();
     </tr>
     <tr>
       <td align="center" class="tool-td-chat"><center>
-        <button type="button" class="btn btn-default "   id="index_menu_income"   style="width:100%">
+       <button type="button" class="btn btn-default "   onclick="revenue()"  id="index_menu_income"   style="width:100%">
           <center>
             <div  class="circle-menu"  style="background-color:#34A0E7"  > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
             <span style="padding-bottom:20px;" class="font-20">รายรับ</span>
@@ -374,6 +374,18 @@ function warkingall(){
   // $( "#main_load_mod_popup" ).toggle();
    $('#main_load_mod_popup').show(500);
    var url_load= "load_page_mod.php?name=transfer_order&file=work_list_work&transfer_work=true&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+//    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+    
+    console.log(url_load);
+    $('#load_mod_popup').html(load_main_mod);
+   
+    $('#load_mod_popup').load(url_load); 
+}
+function revenue(){
+  //alert('asasas')
+  // $( "#main_load_mod_popup" ).toggle();
+   $('#main_load_mod_popup').show(500);
+   var url_load= "load_page_mod.php?name=pay&file=pay_job"
 //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
     
     console.log(url_load);

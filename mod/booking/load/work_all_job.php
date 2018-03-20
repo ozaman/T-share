@@ -124,7 +124,7 @@
 <div style="">
   <div style="padding:15px 0px; margin: auto;" id="body_to_append">
 <span style="font-size: 16px;"><? ?></span>
-   <div id="assas_<?=$_GET[order_id];?>" style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;border: 1px solid #3b5998;border-radius: 15px;">
+   <div class="assas_<?=$_GET[order_id];?>" style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;border: 1px solid #3b5998;border-radius: 15px;">
    <table width="100%" border="0" cellspacing="2" cellpadding="2">
       <tbody>
          <tr>

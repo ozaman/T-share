@@ -1,5 +1,127 @@
+  <?php 
+  mysql_query("SET NAMES utf8"); 
+  mysql_query("SET character_set_results=utf-8");
+  $db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
+  $res[order] = $db->select_query("SELECT * FROM ap_order where id = '".$_GET[order_id]."' ");
+  $arr[order] = $db->fetch($res[order]);
+  $db->closedb();
+//  $address_form = findAddress($arr[order][lat_from],$arr[order][lng_from]);
+//  $address_to = findAddress($arr[order][lat_to],$arr[order][lng_to]);
+  
+   
+   if($arr[order][adult]>0){
+    $adult_txt = 'ผู้ใหญ่ : '.$arr[order][adult];
+   }
+   if($arr[order][child]>0){
+    $child_txt = 'เด็ก : '.$arr[order][child];
+   }
+   $url_map_form = 'https://www.google.co.th/maps?q='.$arr[order][lat_from].",".$arr[order][lng_from];
+   $url_map_to = 'https://www.google.co.th/maps?q='.$arr[order][lat_to].",".$arr[order][lng_to];
+   
+   if($arr[order][fashion]=="Realtime"){
+    $tr_flight_none = 'display:none;';
+   }
+   
+   if($arr[order][phone]=='0'){
+    $phone_none = 'display:none;';
+   }
+   if($arr[order][arrival_flight]=='0'){
+    $flight_none = 'display:none;';
+   }
+   
+/*  $res[place] = $db->select_query("SELECT topic FROM web_transferplace_new where id = '".$arr[order][place]."' ");
+  $arr[place] = $db->fetch($res[place]);
+  
+  $res[to_place] = $db->select_query("SELECT topic FROM web_transferplace_new where id = '".$arr[order][to_place]."' ");
+  $arr[to_place] = $db->fetch($res[to_place]);*/
+  
+  
+  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+  $res[driver] = $db->select_query("SELECT * FROM web_driver where username = '".$_COOKIE[app_remember_user]."' ");
+  $arr[driver] = $db->fetch($res[driver]);
+  $db->closedb();
+  
+  $curl_post_data = '{"product_id" : "'.$arr[order][product].'"}';
+      $curl_response = '';
+      $headers = array();
+//      $url = "http://services.t-booking.com/Product_dashboard/normal";                               
+      $url = "http://services.t-booking.com/Product_dashboard/normal";                               
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+      curl_setopt($curl, CURLOPT_HTTPHEADER , array(
+           'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
+      ));
+      curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl, CURLOPT_REFERER, $url);
+      curl_setopt($curl, CURLOPT_URL, $url);  
+      curl_setopt($curl, CURLOPT_POST, 1);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+      $curl_response = curl_exec($curl);
+      curl_close($curl);
+      $json_product = json_decode($curl_response);
+  
+  if($json_product[0]->area=='In'){
+    $area = 'รับเข้า';
+    $font_icon_area = '<i class="fa fa-plane " style="-webkit-transform:rotateX(180deg);
+                           -moz-transform:rotateX(180deg);
+                           -o-transform:rotateX(180deg);
+                           -ms-transform:rotateX(180deg);"></i>';
+                           
+  }else if ($json_product[0]->area=='Out'){
+    $area = 'ส่งออก';
+    $font_icon_area = '<i class="fa fa-plane "></i>';
+  }else if ($json_product[0]->area=='Point'){
+    $area = 'Point to Point';
+    $font_icon_area = '<i class="fa fa-map-marker"></i>';
+  }else if ($json_product[0]->area=='Service'){
+    $area = 'บริการ';
+    $font_icon_area = '<i class="fa fa-car "></i>';
+  }
+?>
+<script>
+  var objpd = JSON.parse('<?=json_encode($json_product);?>');
+  console.log(objpd);
+  $(".text-topic-action-mod-1" ).html("รับส่ง <?=$arr[order][invoice];?>");
+</script>
+<style>
+  .topictransfer1 {
+    padding-top: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 0x;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444444;
+    text-align: left;
+}
+.font_16 {
+    font-size: 16px !important;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+
+.checkinstep_pass{
+  border-radius: 50%;
+    background-color: #CCCCCC;
+    padding: 5px;
+    width: 45px;
+    height: 45px;
+    text-align: justify;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: -5px;
+  border:solid 2px #03b34f
+}
+</style>
   <script>
-  $(".text-topic-action-mod").html('งานส่งแขกทั้งหมด');
+  $(".text-topic-action-mod").html('งานวันที่'+" "+$('#date_report').val());
   
   </script>
   <style>
@@ -143,47 +265,23 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
   
   
   ?>
-  <div style="padding: 8px 0">
-  		<table width="100%">
-		  	<tr>
-		  		<td width="50%" align="center"><div style=" background: #3b5998;
-		    font-size: 18px;
-		    border-radius: 25px;
-		    color: #fff;
-		    padding: 5px 30px;
-		    border: 2px solid #3b5998;" onclick="shop_status()"><span>แขกช็อปปิ้ง</span></div></td>
-		  		<td width="50%" align="center"><div style="
-		    background: #fff;
-		    font-size: 18px;
-		    border-radius: 25px;
-		    color: #3b5998;
-		    padding: 5px 30px;
-		    border: 2px solid #3b5998;" onclick="transfer_status()"><span>แขกรับส่ง</span></div></td>
-		  	</tr>
-		 </table>
-  </div>
+  
   
   	
   	
   
   
-  <ul class="nav nav-tabs" style="width:100%; margin-top:10px;">
-    <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1"><a ><span class="font-26">วันนี้ </span><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a></li>
-    <li style="width:50%; text-align:center" id="btn_load_clock_day_2"><a><span class="font-26">เมื่อวาน</span><span data-toggle="tooltip" class="badge "   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; text-align:center; padding-top:5px; " id="number_bottom_chat" ><span  class="font-20"><?=$numday_2?></span></span></a></li>
-    
-    
-    <li style="width:33%; text-align:center; display:none" id="btn_load_clock_day_3"><a >วันก่อน<span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; padding-top:5px; " id="number_bottom_chat"><span  class="font-20"><?=$numday_3?></span></a></li>
- 
-  </ul>
+  
  
 
  
 <div class="form-group">
  
                  <div class="input-group date" style="padding:0px;">
-  <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
+  <input type="hidden" class="form-control pull-right" value="<?=$_GET[date];?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
+  <!-- <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
                      <i class="fa fa-calendar" style="font-size:26px; " id="icon_calendar"></i> 
-                  </div>
+                  </div> -->
                 </div>
                 <!-- /.input group -->
               </div>
@@ -216,15 +314,22 @@ $("#btn_calendar").click(function(){
 function transfer_status(){  
 
 // $( "#main_load_mod_popup" ).toggle();
- var url_load= "load_page_mod.php?name=booking&file=all_job";	  
-	  console.log(url_load);
+ // $("#main_load_mod_popup_1" ).toggle();
 	  
-	  $('#load_mod_popup').html(load_main_mod);
+	//   var url_load= "load_page_mod.php?name=booking&file=all&order_id=368";	  
+	//   console.log(url_load);
 	  
-	  $('#load_mod_popup').load(url_load);
-	  //$.post( url_load, function( data ) {
-  $('#load_mod_popup').html(data);
-//}); 
+	//   $('#load_mod_popup').html(load_main_mod);
+	  
+	//   $('#load_mod_popup').load(url_load); 
+	  
+	 
+//		alert($('.button-close-popup-mod-1').attr('class'));
+	   // console.log(id);
+
+
+
+
 //   var url_load = "load_page_mod.php?name=booking&file=all_job";
 //  $('#load_mod_popup').html(load_main_mod);
 //  $.post( url_load, function( data ) {
@@ -246,34 +351,52 @@ function transfer_status(){
 
 <script>
 
-setTimeout(function(){ 
+
 var date=$('#date_report').val();
+console.log(date)
 
-    $('#date_report').pickadate({
-        format: 'yyyy-mm-dd',
-        formatSubmit: 'yyyy/mm/dd',
-        closeOnSelect: true,
-        closeOnClear: false,
-        "showButtonPanel": false,
-        onStart: function() {
-            this.set('select', date); // Set to current date on load
-   			console.log('open');
-        },
-		  onSet: function(context) {
-		     $('#load_booking_data').html(load_main_icon_big);	
-		     var date=$('#date_report').val();
-			 var url = "go.php?name=booking/load&file=work_all&find=day&day="+date;
-			 
-			 console.log('close');
-			 
-			 console.log(url);
-			 $('#load_booking_data').load(url);
-		  }
-        });
- }, 500);
-
- 
+    
+       
+       
 		
+			$('#load_booking_data').html(' ');
+			var type = $('#type_transfer').val();
+	 		
+			var driver = '<?=$_COOKIE["app_remember_user"];?>';
+			  	$.ajax({
+		            type: 'POST',
+		            url: 'mod/booking/load/get_job_history.php',
+		            data: {'driver':driver,'date':date },
+		            //contentType: "application/json",
+		           	dataType: 'json',
+		            success: function(data) {
+		                console.log(data)
+		                if (data != null) {
+                      console.log(data.length)
+		                	$('#number_bottom_chat span').text(data.length);
+		               		$.each( data, function( key, value ) {
+                      $(".assas_"+value.id).html('')		        
+				                $.post( "go.php?name=booking/load&file=work_all_job&find=day&day="+date+"&order_id="+value.id, value, function( component ) {
+								  	console.log('========================')
+								  	// console.log(value)
+								  	$('#load_booking_data').append(component);
+								  	console.log('asadsas')
+
+								  	console.log('========================')
+							  	});
+				    		});
+               			}
+		               	else{
+		               		$('#number_bottom_chat span').text('0')               		
+							$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+							return;
+					
+		               	}
+           			 }
+        		});	
+		 	
+       
+ 	
 </script>
 
 <style>
@@ -338,16 +461,16 @@ $('#submit_new_booking').click(function(){
  <? if($_GET[auto]=='new'){ ?>
  
   <script> 
-  $( document ).ready(function() {
+ //  $( document ).ready(function() {
 
- $( "#load_mod_popup" ).toggle();
+ // $( "#load_mod_popup" ).toggle();
 	
- var url_load = "load_page_mod.php?name=booking&file=new&driver=<?=$user_id?>&place=<?=$_GET[place]?>";
+ // var url_load = "load_page_mod.php?name=booking&file=new&driver=<?=$user_id?>&place=<?=$_GET[place]?>";
  
- $('#load_mod_popup').html(load_main_mod);
-  $('#load_mod_popup').load(url_load); 
+ // $('#load_mod_popup').html(load_main_mod);
+ //  $('#load_mod_popup').load(url_load); 
  
-  });
+ //  });
  
   </script> 
    
@@ -389,12 +512,23 @@ $('#submit_new_booking').click(function(){
 
 
   <script>
-    $('#load_booking_data').html(load_main_icon_big);
+    //$('#load_booking_data').html(load_main_icon_big);
 	
 	//var url_place_th = "go.php?name=load/all&file=all&server=th&day="+$("#date_report").val()+"";
-	var url = "go.php?name=booking/load&file=work_all&find=day&day=<?=date('Y-m-d')?>";
+	//var url = "go.php?name=booking/load&file=work_all_job&find=day&day=<?=date('Y-m-d')?>&order_id=368";
 	
 //	 $('#load_booking_data').load(url);
+ // var date=$('#date_report').val();
+	// 		 var url = "load_page_mod.php?name=booking&file=work_all_job&find=day&day="+date+">&order_id=<?=$_GET[order_id]?>";
+			 
+	// 		 console.log('close');
+			 
+	// 		 console.log(url);
+	// 		  // $('#load_booking_data').html(load_main_mod);
+
+	// 		  $('#load_booking_data').load(url);
+
+	  // $('#load_mod_popup').load(url_load); 
   
   </script>    
 
@@ -478,7 +612,8 @@ $("#btn_load_clock_day_2").removeClass('active');
 
   
 <!--แสดงผล-->
-<div id="load_booking_data"  style="padding:0px; margin:0; margin-top:-25px;"> <?  //include "mod/booking/load/work_driver.php" ;?></div>
+<div id="load_booking_data"  style="padding:0px; margin:0; margin-top:-25px;">
+ <?  //include "mod/booking/load/work_driver.php" ;?></div>
  
 	
 	
