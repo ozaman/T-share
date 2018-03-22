@@ -262,7 +262,7 @@ $( "#main_load_mod_popup" ).toggle();
       
  
  
-        <button type="button" class="btn btn-default "  id="index_menu_payment"   style="width:100%">
+        <button type="button" class="btn btn-default "  id="index_menu_payment" onclick="expenses()"  style="width:100%">
         <center>
           <div  class="circle-menu" style=" background-color:#FF0000"><i class="demo-icon icon-money-payment" style="margin-left:-5px; font-size:28px;"></i> </div>
           <span style="padding-bottom:20px;" class="font-20">รายจ่าย</span>
@@ -340,22 +340,22 @@ $( "#main_load_mod_popup" ).toggle();
       </td>
       <td width="50%" align="center" class="tool-td-chat">
       
-     <!--  <button type="button" class="btn btn-default "  id="index_menu_setting"   style="width:100%">
+      <button type="button" class="btn btn-default "  id="index_menu_money" onclick="money_transfer()" style="width:100%">
  
 
 
   <center>
   
-  <div  class="circle-menu" ><i class="fa fa-cog"  ></i></div>
+  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd"  style="margin-left:-3px;"></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">เครื่องมือช่วยเหลือ</span>
+ <span style="padding-bottom:20px;" class="font-20">โอนเงิน-แจ้งโอน</span>
    
 
 </center>
 
 
 
- </button> -->
+ </button>
 </td>
     </tr>
     
@@ -389,6 +389,30 @@ function revenue(){
 //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
     
     console.log(url_load);
+    $('#load_mod_popup').html(load_main_mod);
+   
+    $('#load_mod_popup').load(url_load); 
+}
+function expenses(){
+  //alert('asasas')
+  // $( "#main_load_mod_popup" ).toggle();
+   $('#main_load_mod_popup').show(500);
+   var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
+//    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+    
+    console.log(url_load);
+    $('#load_mod_popup').html(load_main_mod);
+   
+    $('#load_mod_popup').load(url_load); 
+}
+function money_transfer(){
+  //alert('asasas')
+  // $( "#main_load_mod_popup" ).toggle();
+   $('#main_load_mod_popup').show(500);
+   var url_load= "load_page_mod.php?name=pay&file=money_transfer"
+//    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+    
+    
     $('#load_mod_popup').html(load_main_mod);
    
     $('#load_mod_popup').load(url_load); 
@@ -718,11 +742,11 @@ $("#load_mod_popup_select_pv" ).toggle();
  
  });
  
-   $('#index_menu_payment').click(function(){  
+  //  $('#index_menu_payment').click(function(){  
  
-  alert('กำลังจะเปิดให้บริการ');
- 
- });
+  // alert('กำลังจะเปิดให้บริการ');
+ // 
+ // });
  
  
   $('#index_menu_account').click(function(){  
