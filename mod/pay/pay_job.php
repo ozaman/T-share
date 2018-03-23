@@ -94,6 +94,7 @@
 </script>
 
 <script>
+  $('.text-topic-action-mod').html('บัญชีรายรับ')
 // setTimeout(function(){ 
 var date=$('#date_transfer_work2').val();
 //console.log(date)

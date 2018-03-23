@@ -32,7 +32,24 @@
 ">
 
 
+ <?php 
+ include('../../../includes/class.mysql.php');
+
+  
+  $db = New DB();
+  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  
+  mysql_query("SET NAMES utf8"); 
+  mysql_query("SET character_set_results=utf-8");
+//   // $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+//   $res[project] = $db->select_query("SELECT id FROM  web_driver  where  username ='".$_POST[driver]."'");
+// $arr[project] = $db->fetch($res[project]);
+ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[price] = $db->select_query("SELECT * FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
+                      
+ $arr[price] = $db->fetch($res[price]) ;
  
+ ?>
 						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr >
@@ -43,7 +60,8 @@
           <td width="80" class="font_18" style="height:30px;  padding-left:5px;">ชื่อธนาคาร</td>
           <td width=""   class="font_16" style="padding-right:10px; color:#FF0000;font-size: 16px;">
            <!--  <img src="https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-1/p50x50/10897014_10152997534378545_3525821504956963563_n.jpg?oh=70839c63656c22249e06f3e5e4b812c3&oe=5B40AF5A"> -->
-             ไทยภานิชย์(SCB)          </td>
+             ไทยภานิชย์(SCB)         
+              </td>
           
         </tr>
         <tr>
@@ -64,6 +82,18 @@
 </table>
 						
  	</div>
+  <div>
+     <table>
+        <tr>
+          <td width="" class="font_18" style="height:30px;  padding-left:5px;">ยอดเงินคงเหลือของคุณ</td>
+          <td width=""   class="font_16" style="padding-left: 20px; color:#FF0000;font-size: 16px;"><div style="font-size: 16px;">
+           <!--  <img src="https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-1/p50x50/10897014_10152997534378545_3525821504956963563_n.jpg?oh=70839c63656c22249e06f3e5e4b812c3&oe=5B40AF5A"> -->
+          <span> <?= number_format( $arr[price][deposit] , 0 );?> </span></div>
+            </td>
+          
+        </tr>
+        
+  </div>
   <script>
 $('.text-topic-action-mod').html('โอนเงิน');
   </script>
