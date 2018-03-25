@@ -44,8 +44,12 @@ $arr[project][id]=$_GET[id];
     <script>
     	
   $('#btn_close_checkin_popup').click(function(){   
-  $( "#main_load_mod_popup_3" ).toggle();
- $( "#load_mod_popup_3" ).html('');
+  // $( "#main_load_mod_popup_3" ).toggle();
+ $('#load_money').html('');
+    
+    var load_money = "go.php?name=load/pay&file=index_transfer";
+    
+      $('#load_money').load(load_money);
 	
   	});
 	  </script>
@@ -165,8 +169,8 @@ $arr[project][id]=$_GET[id];
       <td align="center"><table width="100%" border="0" cellspacing="2" cellpadding="2">
         <tbody>
           <tr>
-            <td width="50%"><button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-30"><center>ไม่ใช่</button></td>
-            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-30"><center>ใช่</button></td>
+            <td width="50%"><button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-30"><center>ยกเลิก</button></td>
+            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-30"><center>ส่ง</button></td>
           </tr>
         </tbody>
       </table></td>
