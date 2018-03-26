@@ -2,7 +2,18 @@
 //	$address_form = findAddress($_POST[lat_from],$_POST[lng_from]);
 //	$address_to = findAddress($_POST[lat_to],$_POST[lng_to]);
 
-	
+	include('../../includes/class.mysql.php');
+ // $db = New DB();
+ //  $db->connectdb('admin_booking','admin_MANbooking','252631MANbooking');
+ // mysql_query("SET NAMES utf8"); 
+ //  mysql_query("SET character_set_results=utf-8");
+  $db = New DB();
+  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+ //$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[deposit] = $db->select_query("SELECT * FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
+                      
+ $arr[deposit] = $db->fetch($res[deposit]) ;
+// echo $arr[deposit][deposit];
 $date_today = $_POST[arrival_time].":00";
 
 $time_finish =strtotime( $date_today);
@@ -32,7 +43,7 @@ $date = date("Y-m-d H:i:s", $time);*/
 
 
 ?>
-
+<input type="hidden" name="" id="credit_money" value="<?=$arr[deposit][deposit]?>">
 <div style="border: 1px solid #ddd;border-top: 4px solid #3b5998;margin-bottom:35px;box-shadow: 4px 4px 8px #ddd;margin-top: 20px;" id="box_work_<?=$_POST[id];?>"> 
 	<div id="box_work2_<?=$_POST[id];?> " style="
     border: 1px solid #ddd;
@@ -159,6 +170,8 @@ $date = date("Y-m-d H:i:s", $time);*/
    
 </table> </div>
 </div>
+<input type="hidden" name="" id="cost_sell_<?=$_POST[id];?>">
+<input type="hidden" name="" id="cost_net_<?=$_POST[id];?>">
 					
 					<div style="margin: 15px 20px;">
 						<button style="background-color: #fff;border: 1px solid #f39c12;width: 100%;border-radius: 25px;padding:8px;color: #f39c12;" onclick="ViewDetail('<?=$_POST[id];?>');" ><span class="font-22"><strong>รายละเอียด</strong></span> </button>

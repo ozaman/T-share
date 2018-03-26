@@ -92,6 +92,17 @@
 		</div>
 	</div>
 <style>
+#pop_money{
+                z-index: 19;
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                left: 0;
+                top: 0;
+                background: rgba(0, 0, 0, 0.59);
+                display: none;
+                /* pointer-events: none; */
+            }
 	#pop_con{
                 z-index: 19;
                 position: fixed;
@@ -184,6 +195,42 @@
             
             </div>
         </div>
+        <div id="pop_money" style="">
+            <div class="pop_con_in">               
+                <div class="pop_con_ln">
+                    <div class="lng_position" style="text-align: center; font-size: 16px;">กรุณาจ่ายเงินมัดจำ</div>
+                    <!-- <div>ยอดงเินคงเหลือในระบบ<span style="margin-left: 15px"><?=$arr[deposit][deposit]?></span></div> -->
+                    <!-- <input type="text" class="textInput" placeholder="New name" id="newname" name="newname" onchange="newname(newname)" > -->
+                    
+                    <div style="text-align: center;
+                    margin-top: 25px;">
+                    <div class="lng_find_again btn-close" style="background-color: #f44336;
+                    width: 120px;
+                    padding: 10px 0px;
+                    font-size: 15px;
+                    color: #FFF;
+                    text-align: center;
+                    display: inline-block;
+                    border-radius: 25px;
+                    margin-right: 15px;
+                   " onclick="close_pop()">ตกลง</div>
+                    <!-- <div class="lng-yes2" style="    width: 120px;
+                    padding: 10px 0px;
+                    font-size: 15px;
+                    background-color: #4caf50;
+                    color: #FFF;
+                    text-align: center;
+                    display: inline-block;
+                    border-radius: 25px;
+                   
+                    bottom: 14px;
+                    right: 125px;" onclick="getJob('<?=$_POST[id];?>','<?=$_COOKIE["app_remember_user"];?>')">เลือก</div> -->
+                    </div>
+                    
+                </div>
+            
+            </div>
+        </div>
         <div id="pop_location" style="">
             <div class="pop_location_in">               
                 <div class="pop_location_ln">
@@ -239,7 +286,7 @@
 <input type="hidden" value="all" id="type_transfer"/>
 
 <script>
-
+var cost_sell,cost_net;
 var time_complete = new Array();
 var countdownTimer = new Array();
 var sec_array = new Array();
@@ -466,9 +513,30 @@ function no_job(){
 	$('#pop_con').hide(500)
 }
 function selectjob(id){
-	id_product = id;
-	console.log(id_product)
-	$('#pop_con').show(500)
+    id_product = id;
+    console.log($('#cost_sell_'+id).val()-$('#cost_net_'+id).val())
+    // $('#cost_sell_'+id).val()
+    // $('#cost_net_'+id).val()
+    //console.log()
+   //alert($('#credit_money').val())
+    if ($('#credit_money').val() > $('#cost_sell_'+id).val()-$('#cost_net_'+id).val()) {
+        console.log(id_product)
+        $('#pop_con').show(500)
+    }
+    else{
+        $('#pop_money').show(500)
+
+    }
+	
+	
+}
+function close_pop(){
+   
+    
+        $('#pop_money').hide(500)
+
+    
+    
 }
 function getJob(x,y){
 	console.log(x)
@@ -618,8 +686,11 @@ function QueryData(){
 			  		$('#car_'+value.id).html(value.car_topic_th)
 			  		$('#pax_'+value.id).html(value.pax_th)
                     $('#vocher_'+value.id).html(value.invoice)
+                    $('#cost_sell_'+value.id).val(value.cost_a_agent_all)
+                    $('#cost_net_'+value.id).val(value.cost_a_nett)
                     
-
+                    console.log(value.cost_a_agent_all)
+                    console.log(value.cost_a_nett)
 
 
 					time_complete[value.id] = $('#time_'+value.id).val();
