@@ -1,5 +1,8 @@
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script >
+    alert('workk')
+</script> -->
 
 <style>
 
@@ -47,8 +50,16 @@
 
 </style>
 <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css" /> 
+<script src="voice/js/jquery.js"></script>
 <script src="js/jquery-main.js"></script> 
 <script   src="calendar/js/th.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<!--  <script>
+    $(document).ready(function(){
+     // alert($.cookie("lng"))
+    });
+language_load();
+</script> -->
 
 <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" /> 
 <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" /> 
@@ -59,9 +70,10 @@
 	<div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
 		<table width="100%">
 			<tr>
-				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-20">ทั้งหมด</span></div></td>
-				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-20">ตอนนี้</span></div></td>
-				<td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-20">ล่วงหน้า</span></div></td>
+
+				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-20"><? echo t_all_jobs?></span></div></td>
+				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-20"><? echo t_now?></span></div></td>
+				<td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-20"><? echo t_in_advance?></span></div></td>
 			</tr>
 			<!-- <tr>
 				
@@ -163,7 +175,7 @@
 	<div id="pop_con" style="">
             <div class="pop_con_in">               
                 <div class="pop_con_ln">
-                    <div class="lng_position" style="text-align: center; font-size: 16px;">โปรดยืนยันการเลือกงานของคุณ</div>
+                    <div class="lng_position" style="text-align: center; font-size: 16px;"><? echo t_please_confirm_selection?></div>
                     <!-- <input type="text" class="textInput" placeholder="New name" id="newname" name="newname" onchange="newname(newname)" > -->
                     
                     <div style="text-align: center;
@@ -177,7 +189,7 @@
                     display: inline-block;
                     border-radius: 25px;
                     margin-right: 15px;
-                   " onclick="no_job()">ไม่เเลือก</div>
+                   " onclick="no_job()"><? echo t__not?></div>
                     <div class="lng-yes2" style="    width: 120px;
                     padding: 10px 0px;
                     font-size: 15px;
@@ -188,7 +200,7 @@
                     border-radius: 25px;
                    
                     bottom: 14px;
-                    right: 125px;" onclick="getJob('<?=$_POST[id];?>','<?=$_COOKIE["app_remember_user"];?>')">เลือก</div>
+                    right: 125px;" onclick="getJob('<?=$_POST[id];?>','<?=$_COOKIE["app_remember_user"];?>')"><? echo t_select?></div>
                     </div>
                     
                 </div>
@@ -198,7 +210,7 @@
         <div id="pop_money" style="">
             <div class="pop_con_in">               
                 <div class="pop_con_ln">
-                    <div class="lng_position" style="text-align: center; font-size: 16px;">กรุณาจ่ายเงินมัดจำ</div>
+                    <div class="lng_position" style="text-align: center; font-size: 16px;"><? echo t_pay_deposit?></div>
                     <!-- <div>ยอดงเินคงเหลือในระบบ<span style="margin-left: 15px"><?=$arr[deposit][deposit]?></span></div> -->
                     <!-- <input type="text" class="textInput" placeholder="New name" id="newname" name="newname" onchange="newname(newname)" > -->
                     
@@ -213,7 +225,7 @@
                     display: inline-block;
                     border-radius: 25px;
                     margin-right: 15px;
-                   " onclick="close_pop()">ตกลง</div>
+                   " onclick="close_pop()"><? echo t_ok?></div>
                     <!-- <div class="lng-yes2" style="    width: 120px;
                     padding: 10px 0px;
                     font-size: 15px;
@@ -234,7 +246,7 @@
         <div id="pop_location" style="">
             <div class="pop_location_in">               
                 <div class="pop_location_ln">
-                    <div class="lng_position" style="text-align: center; font-size: 16px;">ตำแหน่งที่ตั้ง</div>
+                    <div class="lng_position" style="text-align: center; font-size: 16px;"><? echo t_location?></div>
                     <!-- <input type="text" class="textInput" placeholder="New name" id="newname" name="newname" onchange="newname(newname)" > -->
                     
                     <div style="text-align: center;
@@ -263,7 +275,7 @@
         <!-- <i class="material-icons" style="color: rgb(22, 179, 177); font-size: 35px;">keyboard_arrow_down</i> -->
     </div>
                 <!-- <i class="material-icons " onclick="closepopup('poptouritem')" style="position: absolute; right: 15px;top: 15px">close</i> -->
-               <h4 class="headertour lng_region">ต่ำแหน่งใกล้สุด</h4>               
+               <h4 class="headertour lng_region"><? //echo t_location?>ต่ำแหน่งใกล้สุด</h4>               
            </div>
           
             <div style="height: 90vh;
@@ -432,7 +444,7 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration,value;
 // 			var obj = JSON.parse(data);
 // 			console.log(obj);
 // 			if(obj==null){
-// 				$('#box_app_location').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+// 				$('#box_app_location').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 // 				return;
 // 			}
 // 	  		$('#box_app_location').html('');
@@ -611,7 +623,18 @@ function QueryData(){
 			var obj = JSON.parse(data);
 			console.log(obj);
 			if(obj==null){
-				$('#body_to_append').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+            //     var check_lang = '<?=$_COOKIE["lng"];?>';
+            // if (check_lang == 'th') {
+            //     $('#text_mod_topic_action').text('งานรับ-ส่ง');
+            //   }
+            //   else if (check_lang == 'cn') {
+            //     $('#text_mod_topic_action').text('  接送工作');
+            //   }
+            //    else if (check_lang == 'en' || check_lang == undefined) {
+            //     $('#text_mod_topic_action').text('Transfer job');
+            //   }
+
+				$('#body_to_append').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 				return;
 			}
 	  		$('#body_to_append').html('');
@@ -721,7 +744,17 @@ function QueryData(){
 </script>
 
 <script>
-	$('#text_mod_topic_action').text('งานรับส่ง');
+
+    var check_lang = '<?=$_COOKIE["lng"];?>';
+	if (check_lang == 'th') {
+        $('#text_mod_topic_action').text('งานรับ-ส่ง');
+      }
+      else if (check_lang == 'cn') {
+        $('#text_mod_topic_action').text('  接送工作');
+      }
+       else if (check_lang == 'en' || check_lang == undefined) {
+        $('#text_mod_topic_action').text('Transfer job');
+      }
 	
 //	QueryData();
 	/*$.post( "mod/transfer_order/action_work.php?action=query_work", function( data ) {
@@ -779,3 +812,5 @@ var date=$('#date_transfer_work').val();
         });
 }, 500);
 </script>
+
+

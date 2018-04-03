@@ -5,10 +5,10 @@
 						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr align="center">
-    <td width="20%" bgcolor="#999999"  style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>วันที่</b></td>
-    <td width="10%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>งาน</td>
-    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>รายรับ </td>
-    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><span class="font_16" style="color:#FFFFFF; padding:2px; "><b>รวม </span></td>
+    <td width="20%" bgcolor="#999999"  style="color:#FFFFFF; padding:8px; font-size: 16px; "><b><? echo t_today?></b></td>
+    <td width="10%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b><? echo t_jobs?></td>
+    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b><? echo t_receipts?> </td>
+    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><span class="font_16" style="color:#FFFFFF; padding:2px; "><b><? echo t_total?> </span></td>
   </tr>
 </table>
 						

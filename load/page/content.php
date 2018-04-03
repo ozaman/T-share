@@ -48,13 +48,13 @@ $('#menu_<?=$_GET[name]?>').addClass("");
 		
 		
 <?  if(!$_GET[name]){
-$topic="หน้าแรก";
+$topic=t_home;
 $topicicon="fa  fa-home";
  ?> <script>$('#menu_home').addClass("active"); </script><? }?>
  
  
 <?  if($_GET[name] == 'today' or $_GET[name] == 'lab'){
-$topic="งานวันนี้";
+$topic=t_today_job;
 $topicicon="fa  fa-clock-o";
 ?> <script>$('#menu_<?=$_GET[name]?>').addClass("treeview active"); </script><? }?>
 
@@ -62,29 +62,29 @@ $topicicon="fa  fa-clock-o";
 
 
 <?  if($_GET[name] == 'all'){
-$topic="งานทั้งหมด";
+$topic=t_all_jobs;
 $topicicon="fa fa-calendar-o";
  ?> <script>$('#menu_<?=$_GET[name]?>').addClass("active"); </script><? }?>
  
  <?  if($_GET[name] == 'checkcar'){
-$topic="จัดการรถ";
+$topic=t_manage_car;
 $topicicon="fa fa-cogs";
  ?> <script>$('#menu_<?=$_GET[name]?>').addClass("active"); </script><? }?>
  
  
 <?  if($_GET[name] == 'view'){
-$topic="การจัดการงาน";
-$topicicon="fa  fa-automobile";
+$topic=t_job_management;
+$topicicon="fa fa-automobile";
 }
 ?>
 <?  if($_GET[name] == 'timeline'){
-$topic="ลำดับเวลาการเดินรถ";
+$topic=t_car_scheduling_time;
 $topicicon="fa fa-dashboard";
 }
 ?>
 
 <?  if($_GET[name] == 'booking'){
-$topic="ประวัติส่งแขก";
+$topic=t_customer_history;
 $topicicon="fa fa-user";
 }
 ?>
@@ -92,7 +92,7 @@ $topicicon="fa fa-user";
 
 
 <?  if($_GET[name] == 'booking/account'){
-$topic="ค่าจอด ค่าหัว";
+$topic=t_parking_fee;
 $topicicon="fa fa-user";
 }
 ?>
@@ -107,7 +107,7 @@ $topicicon="fa fa-car";
  
 
 <?  if($_GET[name] == 'user'){
-$topic="ข้อมูลผู้ใช้งาน";
+$topic=t_user_information;
 $topicicon="fa fa-user";
  
 

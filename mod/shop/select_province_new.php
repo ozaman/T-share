@@ -10,6 +10,26 @@
         <script type="text/javascript" src="js/craftpip/demo/demo.min.js?v=<?=time();?>"></script> 
         <!--END BOOTSTRAP-FULLSCREEN-SELECT files-->
 <style>
+<?php
+switch ($_COOKIE['lng']){
+    case "th":
+        //echo "PAGE th";
+        include("includes/lang/th/t_share.php");//include check session DE
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("includes/lang/cn/t_share.php");
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("includes/lang/en/t_share.php");
+        break;        
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("includes/lang/th/t_share.php");//include EN in all other cases of different lang detection
+        break;
+} 
+?>
 	
 	.my-padding{
     /* margin-top: 55px; */
@@ -151,19 +171,19 @@ font-size: 20px !important;
 		<div class="div-padding10" id="fade_in1">
 		<div class="main-box-col" style="border-left: 7px solid #019ad2;" id="open_map">
 		   <div class="main-box-icon font-28" style="background-color: #059bd229;"><i class="fa icon-app-uniF134-1 " aria-hidden="true"></i></div>
-		   <div class="font-26 sub-box-txt"><span class="font-24">แผนที่</span></div>
+		   <div class="font-26 sub-box-txt"><span class="font-24"><? echo t_maps?></span></div>
 		</div>
 		</div>
 		<div class="div-padding10" id="fade_in2">
 		<div class="main-box-col" style="border-left: 7px solid #3b5998;" id="submit_this_pv">
 		   <div class="main-box-icon font-28" style="background-color: #3e5b9930;" id="spec_marker"><i class="fa fa-map-marker " aria-hidden="true"></i></div>
-		   <div class="font-26 sub-box-txt" id="text_province_now"><span class="font-24">ล็อกอินจังหวัดที่คุณอยู่ (<span class="text-change-province"></span>)</span></div>
+		   <div class="font-26 sub-box-txt" id="text_province_now"><span class="font-24"><? echo t_login_phuket?> (<span class="text-change-province"></span>)</span></div>
 		</div>
 		</div>
 		<div class="div-padding10" id="fade_in3">
 		<div class="main-box-col" style="border-left: 7px solid #3f9684;" id="show_section" class="btn_select">
 		   <div class="main-box-icon font-26" style="background-color: #42978540;"><i class="fa fa-map-o" aria-hidden="true"></i></div>
-		   <div class="font-26 sub-box-txt"><span class="font-24">ล็อกอินจังหวัดอื่น</span></div>
+		   <div class="font-26 sub-box-txt"><span class="font-24"><? echo t_login_another_province?></span></div>
 		</div>
 		</div>
 	</div>
@@ -173,7 +193,7 @@ font-size: 20px !important;
 		<table width="100%" >
 			<tr>
 				<td>
-					<span style="color: <?=$main_color?>" class="font-26" ><strong>เลือกภูมิภาค</strong></span>
+					<span style="color: <?=$main_color?>" class="font-26" ><strong><? echo t_maps?>เลือกภูมิภาค</strong></span>
 				</td>
 			</tr>
 			<tr>
@@ -246,7 +266,7 @@ font-size: 20px !important;
 	</div>
 
 	<div style="width: 100%;margin-top: 20px;padding-left: 10px;padding-right: 10px;" align="center">
-		<button id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF;border-radius: 25px;border:1px solid #ddd;"><strong  class="font-26">ตกลง</strong> </button>
+		<button id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF;border-radius: 25px;border:1px solid #ddd;"><strong  class="font-26"><? echo t_ok?></strong> </button>
 	</div>	
 	</div>
 	<input type="hidden" value="" id="area_id"/>	

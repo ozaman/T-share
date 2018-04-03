@@ -63,7 +63,7 @@ $(window).load(function() {
 <span  class="navloadmain">
  <i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:100px;  margin-top:10px; " ></i> 
  </center></span>
- <div style="font-size:14px; color:#333333; font-weight:normal; margin-top:10px "><center> โหลดข้อมูล</center></div>
+ <div style="font-size:14px; color:#333333; font-weight:normal; margin-top:10px "><center> <?echo t_load_data?></center></div>
  
      </div>
    </div>

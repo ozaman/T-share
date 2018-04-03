@@ -186,10 +186,10 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where transfer_
                   
                     <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:18px"><i class="fa fa-check-square"></i>ยืนยัน</a></li>
                     
-                       <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:18px"><i class="fa fa-trash"></i>ยกเลิก</a></li>
+                       <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:18px"><i class="fa fa-trash"></i><? echo t_cancel ?></a></li>
                        
                        
- <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:18px"><i class="fa fa-trash"></i>ยกเลิก</a></li> 
+ <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:18px"><i class="fa fa-trash"></i><? echo t_cancel ?></a></li> 
                  
       
       
@@ -244,7 +244,7 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where transfer_
       <table width="100%" border="0" cellspacing="1" cellpadding="1">
         <tbody>
           <tr>
-            <td width="110"  class="font_16"><font color="#999999"><i class="fa  fa-clock-o"></i></font>&nbsp;<b>วันที่/เวลาส่ง</td>
+            <td width="110"  class="font_16"><font color="#999999"><i class="fa  fa-clock-o"></i></font>&nbsp;<b><? echo t_today?>/เวลาส่ง</td>
             <td class="font_16"><?=$arr[project][outdate];?>&nbsp;&nbsp;<?=$arr[project][airout_time];?></td>
           </tr>
           <tr>
@@ -268,7 +268,7 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where transfer_
             </span></td>
           </tr>
           <tr>
-            <td class="font_16"><font color="#999999" ><i class="fa  fa-flag"></i></font>&nbsp;&nbsp;<b>สัญชาติ</td>
+            <td class="font_16"><font color="#999999" ><i class="fa  fa-flag"></i></font>&nbsp;&nbsp;<b><? echo t_nationality ?></td>
             <td><span style="height:35px;"><img src="images/flag/China Flag.png" width="20" alt="" style="margin-top:-5px;"/> จีน</span></td>
           </tr>
         </tbody>

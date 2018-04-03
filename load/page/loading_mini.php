@@ -3,6 +3,6 @@
   <tr>
     <td style="width:24px; "><i class="fa fa-refresh fa-spin 2x" style="font-size:22px; color:#367FA9; " ></i> </td>
     <td><font style="font-size:14px; color:#367FA9 " > 
-   โหลดข้อมูล</center></font></td>
+   <?echo t_load_data?></center></font></td>
   </tr>
 </table></div> 

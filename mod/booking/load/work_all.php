@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <?
   
   if($_GET[type]=='auto'){
@@ -12,13 +13,13 @@
   ?>
   
   <script>
-  $(".text-topic-action-mod").html('งานส่งแขกทั้งหมด');
+  	
+        $(".text-topic-action-mod").html('<?echo t_all_transfer_job?>');
+        $(".text-topic-action-mod-2").html('<?echo t_all_transfer_job?>  <?=$_GET[day]?>');
+      
   
   </script>
-  <script>
-  $(".text-topic-action-mod-2").html('งานวันที่  <?=$_GET[day]?>');
-  
-  </script>
+ 
   
   
   <div style="margin-top:<?=$divtop?>px;">
@@ -154,7 +155,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  
  
  
- ไม่มีรายการส่งแขก</center></div>
+ <?echo t_no_guest_list?></center></div>
  
  
  <? } 
@@ -192,7 +193,9 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where transfer_
  
  if($arr[project][payment_type]=='money'){
 	 
-	 $payment="เงินสด";
+       $payment= t_pay_cash;
+      
+	 
 	 
  }
  
@@ -269,7 +272,7 @@ $arr[plan] = $db->fetch($res[plan]);
       ?>
       <div  id="action_status_<?=$arr[project][id]?>"  class="font-24" style="<?=$cancel_btn;?>">
       <input type="hidden" id="check_cause_<?=$arr[project][id]?>" value="0"/>
-<button  id="btn_driver_no_show_<?=$arr[project][id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:ff0000;  border-radius:  20px; border:none "><span class="font-26"><i class="icon-new-uniF11D-7" style="width:10px;"  ></i>ยกเลิกส่งแขก<span></button>
+<button  id="btn_driver_no_show_<?=$arr[project][id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:ff0000;  border-radius:  20px; border:none "><span class="font-26"><i class="icon-new-uniF11D-7" style="width:10px;"  ></i><? echo t_unsubscribe?><span></button>
 
 	</div >
        
@@ -404,14 +407,14 @@ $arr[plan] = $db->fetch($res[plan]);
  console.log(123);
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่</b></font>",
-		text: "<font style='font-size:22px'>ว่าต้องการยกเลิกการส่งแขก</font>"+"<table width='100%'><tr><td width='40'><input id='remark1' onclick='check(<?=$arr[project][id]?>,1);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check(<?=$arr[project][id]?>,2);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check(<?=$arr[project][id]?>,3);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
+		title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
+		text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+"<table width='100%'><tr><td width='40'><input id='remark1' onclick='check(<?=$arr[project][id]?>,1);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check(<?=$arr[project][id]?>,2);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check(<?=$arr[project][id]?>,3);' class='cause_<?=$arr[project][id]?>'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
 	type: "error",
 	
 		showCancelButton: true,
 		confirmButtonColor: '#FF0000',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -473,8 +476,8 @@ $arr[plan] = $db->fetch($res[plan]);
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: '#5CB85C',
-				confirmButtonText: 'ใช่',
-				cancelButtonText: "ไม่ใช่",
+				confirmButtonText: '<?echo t_yes?>',
+				cancelButtonText: "<?echo t_no?>",
 				closeOnConfirm: false,
 				closeOnCancel: true,
 				html: true
@@ -530,12 +533,12 @@ $arr[plan] = $db->fetch($res[plan]);
   
 	   swal({
 		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่ามาร กขึ้นรถแล้ว",
+		text: "<font style='font-size:22px'>ว่ามารถขึ้นรถแล้ว",
 	type: "success",
 		showCancelButton: true,
 		confirmButtonColor: '#5CB85C',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -606,13 +609,13 @@ $arr[plan] = $db->fetch($res[plan]);
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่ามาถึงสถานที่ส่งแขกแล้ว",
+		title: "<font style='font-size:28px'><b><?echo t_are_you_sure?> ",
+		text: "<font style='font-size:22px'><?echo //t_are_you_sure?>ว่ามาถึงสถานที่ส่งแขกแล้ว",
 	type: "info",
 		showCancelButton: true,
 		confirmButtonColor: '#5BC0DE',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -699,7 +702,7 @@ $arr[plan] = $db->fetch($res[plan]);
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
+		title: "<font style='font-size:28px'><b> <?echo t_are_you_sure?>",
 		text: "<font style='font-size:22px'>ว่าได้รับเงินแล้ว",
 		
 		
@@ -711,8 +714,8 @@ $arr[plan] = $db->fetch($res[plan]);
 	
 		showCancelButton: true,
 		confirmButtonColor: '#39B54A',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -824,7 +827,7 @@ $arr[plan] = $db->fetch($res[plan]);
 	                <? 	}
 	                
                 }else{ ?>
-					<li style="border-bottom: 1px solid #ddd;padding: 15px 0px;"><p style="color: #ff0000;">ไม่มีงาน</p></li>
+					<li style="border-bottom: 1px solid #ddd;padding: 15px 0px;"><p style="color: #ff0000;"><?echo t_no_job?></p></li>
 				<? }
     		?>
             </ul>

@@ -5,10 +5,10 @@
 						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr align="center">
-    <td width="20%" bgcolor="#999999"  style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>วันที่</b></td>
-    <td width="10%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>งาน</td>
-    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b>ราบจ่าย </td>
-    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><span style="font-size: 16px;color:#FFFFFF; padding:2px; "><b>รวม </span></td>
+    <td width="20%" bgcolor="#999999"  style="color:#FFFFFF; padding:8px; font-size: 16px; "><b><? echo t_today?></b></td>
+    <td width="10%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b><? echo t_jobs?></td>
+    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><b> <? echo t_expenses?></td>
+    <td width="30%" bgcolor="#999999" style="color:#FFFFFF; padding:8px; font-size: 16px; "><span style="font-size: 16px;color:#FFFFFF; padding:2px; "><b><? echo t_total?> </span></td>
   </tr>
 </table>
 						
@@ -233,14 +233,14 @@ while($row = mysql_fetch_array($result)){
  <? }  ?>	
 <table width="100%"  border="0" cellpadding="2" cellspacing="2"  style="background-color:#F6F6F6;border:  dotted 1px #999999;  ">
    <tr  >
-     <td  class="font_18" style="height:30px; padding-left:5px; ">รายจ่ายรวม</td>
+     <td  class="font_18" style="height:30px; padding-left:5px; "><? echo t_total_expenses?></td>
      <td width="40%" align="right"  class="font_24" style="padding-right:10px; color: #006699 "><?= number_format($pay_total , 0 );?>
      </td>
    </tr>
  </table>
  <table width="100%"  border="0" cellspacing="2" cellpadding="2">
    <tr  >
-     <td  class="font_18" style="height:30px;  padding-left:5px;">ยอดคงเหลือ</td>
+     <td  class="font_18" style="height:30px;  padding-left:5px;"><? echo t_balances?></td>
      <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#FF0000 "><?= number_format(  $deposit-$pay_total , 0 );?>
      </td>
    </tr>

@@ -1,3 +1,4 @@
+
 <style>
 .sidebar-menu .treeview-menu > li > a{
 	padding-left: 50px;
@@ -30,9 +31,9 @@
    </span>
    </a>
    <ul class="treeview-menu"    >
-      <li ><a     id="slide_menu_add_new_shopping"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">ส่งแขก</span></a></li>
-      <li ><a id="slide_menu_all_shopping" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">ประวัติส่งแขก</span></a></li>
-      <li style="display:none" ><a href="?name=today" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">งานรับ-ส่ง</span></a></li>
+      <li ><a     id="slide_menu_add_new_shopping"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_send_customer?></span></a></li>
+      <li ><a id="slide_menu_all_shopping" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_customer_history?></span></a></li>
+      <li style="display:none" ><a href="?name=today" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_job_received?></span></a></li>
    </ul>
 </li>
 <script>
@@ -86,14 +87,14 @@
 </script> 
 <li  id="menu_user" class="treeview">
    <a href="#" >
-   <i class="icon-new-uniF10A-9 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;ข้อมูลรถ</span>
+   <i class="icon-new-uniF10A-9 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_car_information?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a>
    <ul class="treeview-menu"  >
-      <li ><a  id="slide_menu_add_new_car"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">เพิ่มรถใหม่</span></a></li>
-      <li ><a  id="slide_menu_all_car"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">รถทั้งหมด</span></a></li>
+      <li ><a  id="slide_menu_add_new_car"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_add_new_car?></span></a></li>
+      <li ><a  id="slide_menu_all_car"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_all_car?></span></a></li>
    </ul>
 </li>
 <script>
@@ -176,15 +177,15 @@
 <? if(1==1){ ?>
 <li  id="menu_pay" lass="treeview">
    <a  >
-   <i class="icon-new-uniF121-10 l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;บัญชีรายรับ</span>
+   <i class="icon-new-uniF121-10 l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_income_details?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a> 
    <ul class="treeview-menu">
-      <li><a id="slide_menu_account_income"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">รายรับ ค่าจอด ค่าหัว</span></a></li>
-      <li style="display:none"><a href="?name=booking/account&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">ประวัติการถอนเงิน</span></a></li>
-      <li><a id="slide_menu_account_bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">บัญชีธนาคาร</span></a></li>
+      <li><a id="slide_menu_account_income"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_receipt_of_parking_fee?></span></a></li>
+      <li style="display:none"><a href="?name=booking/account&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_withdrawal_record?></span></a></li>
+      <li><a id="slide_menu_account_bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_bank_account?></span></a></li>
    </ul>
 </li>
 <? } ?>
@@ -228,17 +229,17 @@
    </span>
    </a>
    <ul class="treeview-menu"  >
-      <li ><a id="slide_menu_user_profile" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">ข้อมูลส่วนตัว</span></a></li>
-      <li ><a id="slide_menu_user_job" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">ข้อมูลและเอกสารสำคัญ</span></a></li>
+      <li ><a id="slide_menu_user_profile" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_personal_information?></span></a></li>
+      <li ><a id="slide_menu_user_job" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_important_data_file?></span></a></li>
       <!--mod/user/croppic_master/test.php href="mod/user/croppic_master/test.php"-->
      <!-- <li><a id="slide_menu_upload_users" href="mod/user/croppic_master/test.php?user=<?=$arr[web_user][username];?>"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">เปลี่ยนภาพประจำตัว</span></a></li>--> 
-      <li><a id="slide_menu_upload_user_profile"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;">เปลี่ยนภาพประจำตัว</span></a></li>
+      <li><a id="slide_menu_upload_user_profile"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_change_profile_picture ?></span></a></li>
       <? if(1==0){ ?>	
-      <li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">ข้อมูลการติดต่อสื่อสาร</span></a></li>
-      <li><a href="?name=user&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">เบอร์โทรศัพท์ส่วนตัว</span></a></li>
-      <li><a href="?name=user&file=password"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">เปลี่ยนรหัสผ่าน</span></a></li>
-      <li><a href="?name=user&file=document"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">ไฟล์เอกสาร</span></a></li>
-      <li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;">ข้อมูลการทำงาน</span></a></li>
+      <li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_contact_information ?></span></a></li>
+      <li><a href="?name=user&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_phone_number ?></span></a></li>
+      <li><a href="?name=user&file=password"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_change_password ?></span></a></li>
+      <li><a href="?name=user&file=document"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_documents ?></span></a></li>
+      <li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_work_information ?></span></a></li>
       <? } ?>
    </ul>
 </li>
@@ -349,34 +350,34 @@
    </span>
    </a> 
    <ul class="treeview-menu">
-      <li><a href="?name=pay&file=bank"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu">บัญชีธนาคาร</span></a></li>
-      <li><a href="?name=pay&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu">ค่าเที่ยว เบี้ยเลี้ยง</span></a></li>
-      <li><a href="?name=pay&file=all"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu">เงินเดือน ค่าโอที</span></a></li>
+      <li><a href="?name=pay&file=bank"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu"><? echo t_bank_account?></span></a></li>
+      <li><a href="?name=pay&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu"><? echo t_missed_meal_fee?></span></a></li>
+      <li><a href="?name=pay&file=all"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu"><? echo t_overtime_pay?></span></a></li>
    </ul>
 </li>
 <li  id="menu_phone" lass="treeview">
    <a  >
-   <i class="fa fa-phone l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;เบอร์โทรศัพท์</span>
+   <i class="fa fa-phone l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_phone_number?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a> 
    <ul class="treeview-menu">
-      <li><a href="?name=phone&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu">เบอร์โทรศัพท์ส่วนตัว</span></a></li>
-      <li><a href="?name=phone&file=driver"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu">เบอร์โทรศัพท์คนขับรถ</span></a></li>
+      <li><a href="?name=phone&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu"><? echo t_phone_number_the?></span></a></li>
+      <li><a href="?name=phone&file=driver"><i class="fa fa-circle-o"></i><span  class="textsub_left_menu"><? echo t_driver_phone_no?></span></a></li>
    </ul>
 </li>
 <? } ?>
 <!------>
 <? if(1==0){ ?>
 <li  id="menu_pay" lass="treeview">
-   <i class="fa fa-desktop l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;โปรแกรมช่วยเหลือ</span>
+   <i class="fa fa-desktop l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_helpdesk?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    <ul class="treeview-menu">
-      <li><a href="https://www.flightradar24.com/data/flights" target="_blank"><i class="fa fa-bank " style="font-size:16px"></i><span  class="textsub_left_menu">ค้นหาโรงแรม</span></a></li>
-      <li><a href="https://www.flightradar24.com/data/flights" target="_blank"><i class="fa fa-plane "></i><span  class="textsub_left_menu">เช็คเที่ยวบิน</span></a></li>
+      <li><a href="https://www.flightradar24.com/data/flights" target="_blank"><i class="fa fa-bank " style="font-size:16px"></i><span  class="textsub_left_menu"><? echo t_find_hotel?></span></a></li>
+      <li><a href="https://www.flightradar24.com/data/flights" target="_blank"><i class="fa fa-plane "></i><span  class="textsub_left_menu"><? echo t_check_flight?></span></a></li>
    </ul>
 </li>
 <? } ?>
@@ -384,13 +385,13 @@
 <!---- Language ---->
 <li id="menu_lnguage" class="treeview" style="display: nones;" >
    <a href="#">
-   <i class="icon-new-uniF161-3 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;ภาษา</span>
+   <i class="icon-new-uniF161-3 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_language?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a>
    <ul class="treeview-menu">
-      <li><a>
+      <li><a  onclick="language('th')">
       <table>
       	<tr>
       		<td><i class="fa fa-circle-o" style="width: 20px;color:#999999;font-size:20px;"></i></td>
@@ -399,7 +400,7 @@
       	</tr>
       </table>
 		</a></li>
-		<li><a>
+		<li><a  onclick="language('en')">
       <table>
       	<tr>
       		<td><i class="fa fa-circle-o" style="width: 20px;color:#999999;font-size:20px;"></i></td>
@@ -408,7 +409,7 @@
       	</tr>
       </table>
 		</a></li>
-		<li><a>
+		<li ><a onclick="language('cn')">
       <table>
       	<tr>
       		<td><i class="fa fa-circle-o" style="width: 20px;color:#999999;font-size:20px;"></i></td>
@@ -431,6 +432,7 @@
 </section>
 
 <script>
+ 
    $("#l-logout").click(function(){ 
    
    

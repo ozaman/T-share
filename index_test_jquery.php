@@ -85,27 +85,7 @@ body {
 		<script src="voice/js/app.js"></script>
 <script src="js/jquery-main.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
- <script>
-    // $(document).ready(function(){
-//     	var cookie_lng = $.cookie("lng");
-//      alert(cookie_lng+'index')
-//     // });
-// function language_load(){
-//  	var csd = $('#test111').val();
-
-//  		alert(csd)
-//  		alert(cookie_lng)
-//   		if (cookie_lng == 'th') {
-//         $('#text_mod_topic_action').text('งานรับ-ส่ง');
-//       }
-//       else if (cookie_lng == 'cn') {
-//         $('#text_mod_topic_action').text('  接送工作');
-//       }
-//        else if (cookie_lng == 'en' || cookie_lng == undefined) {
-//         $('#text_mod_topic_action').text('Transfer job');
-//       }
-// 	}
-</script>
+ 
 <!-- <script src="js/jquery.cookie.js"></script> -->
 
 <?  include "load/loading/page_main.php" ; ?>
@@ -118,11 +98,10 @@ body {
 <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><? //include ("".$MODPATHFILE."");?>
-	<? include "js/control.php" ;	
+	<? //include "js/control.php" ;	
 	
-	
+	 
 	?> 
- 
 <script> 
 
  window.scrollTo(0,1);
@@ -677,15 +656,11 @@ $lng_map = 'th';
   <!-- <script src="https://www.welovetaxi.com/app/booking2/files/js/jquery.cookie.js"></script> -->
   <script src="dist/js/app.js"></script>
   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
-  <input type="text" name="" id='test111' value="aaaa">
   <script >
   	function language(lng) {
     console.log(lng);
     $.cookie("lng", lng, { path: '/' });
     window.location.reload();
 
-
-	}
-	console.log('asasasas')
- 	
-</script>
+}
+  </script>

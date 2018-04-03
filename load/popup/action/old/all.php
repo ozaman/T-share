@@ -50,3 +50,5 @@ font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=
 </div>
 
 </div>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>

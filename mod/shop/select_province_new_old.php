@@ -10,6 +10,26 @@
         <script type="text/javascript" src="js/craftpip/demo/demo.min.js?v=<?=time();?>"></script> 
         <!--END BOOTSTRAP-FULLSCREEN-SELECT files-->
 <style>
+<?php
+switch ($_COOKIE['lng']){
+    case "th":
+        //echo "PAGE th";
+        include("includes/lang/th/t_share.php");//include check session DE
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("includes/lang/cn/t_share.php");
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("includes/lang/en/t_share.php");
+        break;        
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("includes/lang/th/t_share.php");//include EN in all other cases of different lang detection
+        break;
+} 
+?>
 	
 	.my-padding{
     /* margin-top: 55px; */

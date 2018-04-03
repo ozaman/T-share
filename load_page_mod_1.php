@@ -1,3 +1,4 @@
+
 <?php @header ('Content-type: text/html; charset=utf-8'); 
 @session_start();
 require_once("mainfile.php");
@@ -37,7 +38,7 @@ GETMODULE($_GET[name],$_GET[file]);
     <link href="docs/css/highlight.css" rel="stylesheet">
     <link href="dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
  
- 
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   
   
   

@@ -56,7 +56,7 @@
 <span  class="navload">
  <i class="fa fa-refresh fa-spin 4x" style="font-size:40px; color:#999999; margin-top:10px; " ></i> 
  </center></span>
- <div style="font-size:14px; color:#333333; font-weight:normal; margin-top:10px "><center> โหลดข้อมูล</center></div>
+ <div style="font-size:14px; color:#333333; font-weight:normal; margin-top:10px "><center> <?echo t_load_data?></center></div>
  
      </div>
    </div>

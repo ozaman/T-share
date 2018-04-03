@@ -35,7 +35,7 @@ while($arr[project] = $db->fetch($res[project])){
     </tr>
     <tr>
 <td class="font-22"><strong>ตำแหน่งที่ตั้ง</strong></td>
-      <td><span id="shop_alert_menu_index_map_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-map-marker" style="font-size:20px; color:<?=$arr[project][text_color]?>; width:20px;"></i>แผนที่</b></span></td>
+      <td><span id="shop_alert_menu_index_map_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-map-marker" style="font-size:20px; color:<?=$arr[project][text_color]?>; width:20px;"></i><? echo t_maps?></b></span></td>
     </tr>
     <tr>
 <td class="font-22"><strong>สอบถาม</strong></td>

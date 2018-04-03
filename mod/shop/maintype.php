@@ -67,7 +67,7 @@
 		<td width="50%" align="center">
 		<div class="box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-26"><?=$name?></span></strong></div></td>
 		<td width="50%" align="center">
-		<div class="box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-26">จังหวัดอื่น</span></strong></div></td>
+		<div class="box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-26"><? echo t_provinces?></span></strong></div></td>
 	</tr>
 </table>
 <style>

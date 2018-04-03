@@ -1,4 +1,22 @@
 <?php 
+switch ($_COOKIE['lng']){
+    case "th":
+        //echo "PAGE th";
+        include("../../includes/lang/th/t_share.php");//include check session DE
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("../../includes/lang/cn/t_share.php");
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("../../includes/lang/en/t_share.php");
+        break;        
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("../../includes/lang/th/t_share.php");//include EN in all other cases of different lang detection
+        break;
+}
 //	$address_form = findAddress($_POST[lat_from],$_POST[lng_from]);
 //	$address_to = findAddress($_POST[lat_to],$_POST[lng_to]);
 	
@@ -48,7 +66,7 @@ $time_open_m= date('m',$time_complete);
 
 					<div style="margin: 10px; margin-left: 35px;">
 					<div style="padding: 5px;margin-bottom:5px;">
-					<p class="font-22"><strong>สถานที่รับ</strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;">
+					<p class="font-22"><strong><?echo t_pick_up_place?></strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;">
 					<span class="font-22" id="countdown_<?=$_POST[id];?>" class="timer" style="color: #fff;display: nones;position:  absolute;right: 19px;margin-top: -13px;border: 1px solid #f7941d;padding: 0px 10px;background-color: #3f9684;border-radius: 8px;">Loading...</span></p>
 					<span class="font-22" id="address_form_<?=$_POST[id];?>"><?=$address_form;?></span>
 					</div>
@@ -59,9 +77,9 @@ $time_open_m= date('m',$time_complete);
 					</div>
 					
 					<div style="margin: 15px 20px;">
-					<button style="background-color: #fff;border: 1px solid #f39c12;width: 100%;border-radius: 25px;padding: 5px;color: #f39c12;" onclick="ViewDetail('<?=$_POST[id];?>');" ><span class="font-22"><strong>รายละเอียด</strong></span> </button>
+					<button style="background-color: #fff;border: 1px solid #f39c12;width: 100%;border-radius: 25px;padding: 5px;color: #f39c12;" onclick="ViewDetail('<?=$_POST[id];?>');" ><span class="font-22"><strong><?echo t_details?></strong></span> </button>
 					
-					<button onclick="selectjob(<?=$_POST[id];?>)" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 5px;color: #3b5998; "><span class="font-22"><strong>รับงาน</strong></span> </button>
+					<button onclick="selectjob(<?=$_POST[id];?>)" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 5px;color: #3b5998; "><span class="font-22"><strong><?echo t_details?>รับงาน</strong></span> </button>
 					
 					</div>
 	<div>		
@@ -83,7 +101,7 @@ $time_open_m= date('m',$time_complete);
  //        console.log(b)
 	console.log('++++++++++++++++++++++++')
 
-	var url_form = "https://maps.googleapis.com/maps/api/geocode/json?latlng=<?=$_POST[lat_from];?>,<?=$_POST[lng_from];?>&sensor=true&language=th";  
+	var url_form = "https://maps.googleapis.com/maps/api/geocode/json?latlng=<?=$_POST[lat_from];?>,<?=$_POST[lng_from];?>&sensor=true&language=<?=$_COOKIE["lng"];?>";  
 	$.post( url_form, function( data ) { 
 		console.log(data);
 		
@@ -94,7 +112,7 @@ $time_open_m= date('m',$time_complete);
 		$('#address_form_<?=$_POST[id];?>').text(data.results[0].formatted_address);
 	});
 	
-	var url_to = "https://maps.googleapis.com/maps/api/geocode/json?latlng=<?=$_POST[lat_to];?>,<?=$_POST[lng_to];?>&sensor=true&language=th";  
+	var url_to = "https://maps.googleapis.com/maps/api/geocode/json?latlng=<?=$_POST[lat_to];?>,<?=$_POST[lng_to];?>&sensor=true&language=<?=$_COOKIE["lng"];?>";  
 	$.post( url_to, function( data ) { 
 		console.log(data);
 		
@@ -173,7 +191,7 @@ $time_open_m= date('m',$time_complete);
 /// fucntion php
 function findAddress($lat,$lng) {
     
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$lat.",".$lng."&sensor=true&language=th";  
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$lat.",".$lng."&sensor=true&language=".$_COOKIE["lng"];  
 	
 	$headers = array();
 	$headers[] = 'Content-Type: application/json';

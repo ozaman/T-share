@@ -1,7 +1,24 @@
 <?php 
 //	$address_form = findAddress($_POST[lat_from],$_POST[lng_from]);
 //	$address_to = findAddress($_POST[lat_to],$_POST[lng_to]);
-
+switch ($_COOKIE['lng']){
+    case "th":
+        //echo "PAGE th";
+        include("../../includes/lang/th/t_share.php");//include check session DE
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("../../includes/lang/cn/t_share.php");
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("../../includes/lang/en/t_share.php");
+        break;        
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("../../includes/lang/th/t_share.php");//include EN in all other cases of different lang detection
+        break;
+}
 	include('../../includes/class.mysql.php');
  // $db = New DB();
  //  $db->connectdb('admin_booking','admin_MANbooking','252631MANbooking');
@@ -66,13 +83,13 @@ $date = date("Y-m-d H:i:s", $time);*/
 
 					<div style="margin: 10px; margin-left: 35px;">
 					<div style="padding: 5px;margin-bottom:5px;">
-					<p class="font-22"><strong>สถานที่รับ</strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;">
+					<p class="font-22"><strong><? echo t_pick_up_place?></strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;">
 						<span style="color: #fff;display: nones;position:  absolute;right: 19px;margin-top: -13px;border: 1px solid #f7941d;padding: 0px 10px;background-color: #3f9684;border-radius: 8px;min-width:135px"><i class="icon-new-uniF13C" style="font-size: 20px; color:#fff"></i>
 					<span class="font-22" id="countdown_<?=$_POST[id];?>" class="timer" >Loading...</span></span></p>
 					<span class="font-22" id="address_form_<?=$_POST[id];?>"><?=$address_form;?></span>
 					</div>
 					<div style="padding: 5px;margin-bottom:5px;">
-					<p class="font-22"><strong>สถานที่ส่ง</strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;"></p>
+					<p class="font-22"><strong><? echo t_drop_place?></strong><img src="images/icon/top/map.png" width="30" height="30" alt="" style="margin-left:10px;display: none;"></p>
 					<span class="font-22"  id="address_to_<?=$_POST[id];?>" ><?=$address_to;?></span>
 					</div>
 					</div>
@@ -90,7 +107,7 @@ $date = date("Y-m-d H:i:s", $time);*/
     padding: 8px;
     margin-bottom: 10px !important;
     margin: 0 8px;
-    border-radius: 25px;" >นำทาง</div>
+    border-radius: 25px;" ><? echo t_navigation?></div>
     <div style="border-radius: 25px">
 					<div style="
 
@@ -104,7 +121,7 @@ $date = date("Y-m-d H:i:s", $time);*/
     /* margin-top: 55PX; */"><table width="100%" border="0" cellspacing="2" cellpadding="4">
     	<tr>
       <td valign="top"><i class="fa fa-car" style="color:#666666; font-size:18px"></i></td>
-      <td valign="top" class="td-text"><b>ประเภทรถ</b></td>
+      <td valign="top" class="td-text"><b><? echo t_type_of_vehicle?></b></td>
       <td valign="top" class="td-text"><span id="car_<?=$_POST[id];?>"></span><span id="pax_<?=$_POST[id];?>"></span>&nbsp;<br>
 		
 			
@@ -136,8 +153,8 @@ $date = date("Y-m-d H:i:s", $time);*/
    
     <tr>
       <td valign="top"><i class="icon-new-uniF12B-3" style="color:#666666; font-size:18px"></i></td>
-      <td valign="top" class="td-text"><b>จำนวน</b></td>
-      <td valign="top" class="td-text">	ผู้ใหญ่ : 
+      <td valign="top" class="td-text"><b><? echo t_number_customers?></b></td>
+      <td valign="top" class="td-text">	<? echo t_adult?> : 
 	<span id="person_<?=$_POST[id];?>"></span> &nbsp;<br>
 		
 			
@@ -147,14 +164,14 @@ $date = date("Y-m-d H:i:s", $time);*/
     
    
   <tr><td valign="top"><i class="icon-new-uniF152-4" style="color:#666666; font-size:18px"></i></td>
-      <td valign="top" class="td-text"><b>โทรศัพท์</b></td>
+      <td valign="top" class="td-text"><b><? echo t_phone?></b></td>
       <td valign="top" class="td-text"><b id="phone_<?=$_POST[id];?>"></b></td>
     </tr>
     		    
     
     <tr>
       <td valign="top"><i class="icon-new-uniF109-14" style="color:#666666; font-size:18px"></i></td>
-      <td valign="top" class="td-text"><b>ชื่อแขก</b></td>
+      <td valign="top" class="td-text"><b><? echo t_customer_name?></b></td>
       <td valign="top" class="td-text"><span id="name_<?=$_POST[id];?>"></span></td>
   </tr>
   <tr>
@@ -164,7 +181,7 @@ $date = date("Y-m-d H:i:s", $time);*/
   </tr>
   <tr>
       <td valign="top"><i class="icon-new-uniF109-14" style="color:#666666; font-size:18px"></i></td>
-      <td valign="top" class="td-text"><b>วอเชอร์</b></td>
+      <td valign="top" class="td-text"><b><? echo t_voucher_number?></b></td>
       <td valign="top" class="td-text"><span id="vocher_<?=$_POST[id];?>"></span></td>
     </tr>
    
@@ -174,7 +191,7 @@ $date = date("Y-m-d H:i:s", $time);*/
 <input type="hidden" name="" id="cost_net_<?=$_POST[id];?>">
 					
 					<div style="margin: 15px 20px;">
-						<button style="background-color: #fff;border: 1px solid #f39c12;width: 100%;border-radius: 25px;padding:8px;color: #f39c12;" onclick="ViewDetail('<?=$_POST[id];?>');" ><span class="font-22"><strong>รายละเอียด</strong></span> </button>
+						<button style="background-color: #fff;border: 1px solid #f39c12;width: 100%;border-radius: 25px;padding:8px;color: #f39c12;" onclick="ViewDetail('<?=$_POST[id];?>');" ><span class="font-22"><strong><? echo t_details?></strong></span> </button>
 						
 						<button onclick="selectjob(<?=$_POST[id];?>)" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-22"><strong>รับงาน</strong></span> </button>
 					
@@ -303,9 +320,10 @@ $date = date("Y-m-d H:i:s", $time);*/
 </script> -->
 <?php 
 /// fucntion php
+
 function findAddress($lat,$lng) {
     
-	$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$lat.",".$lng."&sensor=true&language=th";  
+	$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".$lat.",".$lng."&sensor=true&language=".$_COOKIE["lng"];  
 	
 	$headers = array();
 	$headers[] = 'Content-Type: application/json';

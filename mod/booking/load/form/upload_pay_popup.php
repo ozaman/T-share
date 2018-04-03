@@ -50,10 +50,10 @@ $arr[project][id]=$_GET[id];
     <tr>
       <td width="10" class="font_20"></td>
       <td width="100">
-        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_upload_pay"> <i class="fa  fa-camera"></i>&nbsp;ถ่ายภาพ
+        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_upload_pay"> <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
         </span></label></td>
       <td><span class="input-group" style="margin-top:5px;">
-        <input type="text"  value="ไม่มีภาพถ่าย" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
+        <input type="text"  value="<?echo t_no_photo_available?>" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
       </span></td>
       <td width="30">        
       <button type="button" class="btn btn-default " data-toggle="modal"   style="padding-left:5px; padding-right:5px; width:30px" id="del_photo"><i class="fa  fa-trash" style="font-size:20px; "></i></button>
@@ -137,7 +137,7 @@ $arr[project][id]=$_GET[id];
 			  		$('#icon_camera_upload_pay').addClass('btn-primary');
 			  		$('#del_photo').removeClass('btn-danger');
 			  		$('#del_photo').addClass('btn-default');
-			  		$('#url_photo').val('ไม่มีภาพถ่าย');
+			  		$('#url_photo').val('<? echo t_no_photo_available?>');
 			  		$('#photo_<?=$_GET[type]?>_<?=$_GET[id]?>').css('color','#3b59987a');
 					$('#photo_<?=$_GET[type]?>_<?=$_GET[id]?>').css('border','1px solid #3b59987a');
 					$('#btn_<?=$_GET[type]?>_doc_<?=$_GET[id]?>').css('border','none');

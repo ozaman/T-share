@@ -1,7 +1,7 @@
   <script>
  var url_guest_receive_<?=$arr[order][invoice]?>= "popup.php?name=booking/load/form&file=checkin_status_job&id=<? echo $arr[order][invoice];?>&type=check_guest_receive&time=<?=$arr[order][driver_pickup_date]?>&status=<?=$arr[order][driver_pickup]?>";
  
- $('#status_guest_receive_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+ $('#status_guest_receive_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
  $('#status_guest_receive_<?=$arr[order][invoice]?>').load(url_guest_receive_<? echo $arr[order][invoice];?>);
 </script>
       <? 

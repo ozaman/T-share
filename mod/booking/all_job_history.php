@@ -388,7 +388,7 @@ console.log(date)
                			}
 		               	else{
 		               		$('#number_bottom_chat span').text('0')               		
-							$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+							$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 							return;
 					
 		               	}

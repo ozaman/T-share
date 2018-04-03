@@ -23,14 +23,14 @@
 
 
 
-    ">โอนเงิน</div></td>
+    "><?echo t_transfers?></div></td>
         <td width="2%"></td>
     <td width="49%" ><div id="requet_money" onclick="request_money()" style="background: #3b5998;
         font-size: 18px;
         border-radius: 25px;
         color: #fff;
         padding: 5px 30px;
-        border: 2px solid #3b5998; ">แจ้งโอน</div></td>
+        border: 2px solid #3b5998; "><? echo t_transfer_notice?></div></td>
    
   </tr>
 </table>
@@ -39,7 +39,7 @@
 <div style="font-size: 18px;
     font-weight: 600;
     padding: 0px 10px;
-    margin-top: 15px;">รายละเอียดบัญชีรับโอน</div>
+    margin-top: 15px;"><? echo t_transferred_account_details?></div>
 <div  style="margin-top: 15px;
     padding: 8px;
     border-radius: 15px;
@@ -56,7 +56,7 @@
       <div >
         <table>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;">ธนาคารที่โอน</td>
+          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_transfer_banks?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
             <select class="form-control" name="bank" id="bank" style="border-radius: 25px;padding: 0 15px;">             
                 <option > ไทยภานิชย์(SCB) </option>
@@ -66,7 +66,7 @@
           
         </tr>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;">วันที่</td>
+          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_today?></td>
           <td>
     
        <div class="input-group date" style="padding:0px;width: 100%">
@@ -84,13 +84,13 @@
  </td>
         </tr>
         <tr>
-          <td width="80" class="font_18" style="height:30px;  padding-left:5px;">เวลา</td>
+          <td width="80" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_minutes?></td>
           <td width=""   class="font_16" style="color:#FF0000;font-size: 16px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time" style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
           </td>
           
         </tr>
         <tr>
-            <td width="80" class="font_18" style="height:30px;  padding-left:5px;">จำนานเงิน</td>
+            <td width="80" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_amount?></td>
             <td width=""   class="font_16" style=" color:#FF0000;font-size: 16px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
             </td>
         </tr>
@@ -99,7 +99,7 @@
     text-align: center;
     font-size: 19px;
     font-weight: 600;
-    margin-top: 20px;">อับโหลดสลีปโอนเงิน</div></td>
+    margin-top: 20px;"><? echo t_money_transfer_slip?></div></td>
         </tr>
         <tr>
           <td colspan="2">
@@ -174,6 +174,6 @@
           //QueryData();
       }
         });
-$('.text-topic-action-mod').html('แจ้งโอน');
+$('.text-topic-action-mod').html('<?echo t_transfer_notice?>');
 
   </script>

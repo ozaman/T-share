@@ -118,7 +118,7 @@ $arr[deposit] = $db->fetch($res[deposit]);
 </script>
 
 <script>
-  $('.text-topic-action-mod').html('บัญชีรายจ่าย')
+  $('.text-topic-action-mod').html('<?echo t_payment_account?>')
   console.log('<?=$arr[deposit][driver];?>')
   console.log('<?=$_COOKIE[app_remember_user];?>')
 // setTimeout(function(){ 

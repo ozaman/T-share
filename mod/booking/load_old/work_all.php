@@ -12,14 +12,14 @@
   ?>
   
   <script>
-  $(".text-topic-action-mod").html('งานส่งแขกทั้งหมด');
+  $(".text-topic-action-mod").html('<?php echo t_all_transfer_job?>');
   
   </script>
   
   
   
     <script>
-  $(".text-topic-action-mod-2").html('งานวันที่  <?=$_GET[day]?>');
+  $(".text-topic-action-mod-2").html('<? echo t_job_date?>  <?=$_GET[day]?>');
   
   </script>
   
@@ -570,23 +570,23 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
                  
  
       
-                  <button type="button" class="btn btn-warning font-22" style="height:40; padding-left:10px; padding-right:5px; font-size:20px " data-toggle="dropdown"><i class="fa fa-gear"></i>&nbsp;จัดการ</button>
+                  <button type="button" class="btn btn-warning font-22" style="height:40; padding-left:10px; padding-right:5px; font-size:20px " data-toggle="dropdown"><i class="fa fa-gear"></i>&nbsp;<?echo t_process?></button>
    
                   <ul class="dropdown-menu" role="menu"  style="background-color:<?=$main_color?>">
                 
-                 <li><a  id="booking_edit_<?=$arr[project][id]?>"     style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i>แก้ไขข้อมูล</a></li>
+                 <li><a  id="booking_edit_<?=$arr[project][id]?>"     style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i><?echo t_edit_data?></a></li>
   
  
                   
- <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i>ยืนยันการลงทะเบียน</a></li>
+ <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i><?echo t_confirm_registration?></a></li>
                     
- <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i>ลงทะเบียนไม่ได้</a></li>
+ <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i><?echo t_registration_failed?></a></li>
  
   
-  <li><a id="booking_history_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-calendar"></i>ประวัติการจัดการงาน</a></li>
+  <li><a id="booking_history_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-calendar"></i><?echo t_work_history?></a></li>
  
                   
-<li><a id="booking_payment_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i>ชำระเงิน</a></li> 
+<li><a id="booking_payment_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i><?echo t_payment?></a></li> 
    
  
  
@@ -603,23 +603,23 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
                  
  
       
-                  <button type="button" class="btn btn-warning font-22" style="height:40; padding-left:5px; padding-right:5px; font-size:20px; background-color:<?=$main_color?>; border:none " data-toggle="dropdownห"><i class="fa fa-gear fa-spin 4x"></i>&nbsp;สถานะ</button>
+                  <button type="button" class="btn btn-warning font-22" style="height:40; padding-left:5px; padding-right:5px; font-size:20px; background-color:<?=$main_color?>; border:none " data-toggle="dropdownห"><i class="fa fa-gear fa-spin 4x"></i>&nbsp;<?echo t_status?></button>
    
                   <ul class="dropdown-menu" role="menu"  style="background-color:<?=$main_color?>">
                 
-                 <li><a  id="booking_edit_<?=$arr[project][id]?>"     style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i>แก้ไขข้อมูล</a></li>
+                 <li><a  id="booking_edit_<?=$arr[project][id]?>"     style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i><?echo t_edit_data?></a></li>
   
  
                   
- <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i>ยืนยันการลงทะเบียน</a></li>
+ <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i><?echo t_confirm_registration?></a></li>
                     
- <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i>ลงทะเบียนไม่ได้</a></li>
+ <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i><?echo t_registration_failed?></a></li>
  
   
  
  
                   
-<li><a id="booking_payment_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i>ชำระเงิน</a></li> 
+<li><a id="booking_payment_<?=$arr[project][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i><?echo t_payment?></a></li> 
    
  
  
@@ -783,17 +783,12 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
   
 	   swal({
 		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่ามาร           <? if($data_user_class<>'Staxi'){ ?>
-     
-          
-              <? } ?>
-          
-กขึ้นรถแล้ว",
+		text: "<font style='font-size:22px'>ว่ามาร           <? if($data_user_class<>'Staxi'){ ?> <? } ?>กขึ้นรถแล้ว",
 	type: "success",
 		showCancelButton: true,
 		confirmButtonColor: '#5CB85C',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -878,13 +873,13 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่ามาถึงสถานที่ส่งแขกแล้ว",
+		title: "<font style='font-size:28px'><b><?echo t_are_you_sure?> ",
+		text: "<font style='font-size:22px'><?echo //t_are_you_sure?>ว่ามาถึงสถานที่ส่งแขกแล้ว",
 	type: "info",
 		showCancelButton: true,
 		confirmButtonColor: '#5BC0DE',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -982,8 +977,8 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่าได้รับเงินแล้ว",
+		title: "<font style='font-size:28px'><b><?echo t_are_you_sure?> ",
+		text: "<font style='font-size:22px'><?echo //t_are_you_sure?>ว่าได้รับเงินแล้ว",
 		
 		
 	type: "info",
@@ -994,8 +989,8 @@ $('#booking_history_<?=$arr[project][id]?>').click(function(){
 	
 		showCancelButton: true,
 		confirmButtonColor: '#39B54A',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true

@@ -142,12 +142,12 @@ $("#table_show_hide_data_<?=$arr[project][invoice];?>" ).show();
  
      <? if($arr[project][passport_pic]==0){ ?>
         <tr style="display:none<?=$status_show?>">
-      <td  class="font-22"><font color="#333333" ><b>พาสปอร์ต</td>
+      <td  class="font-22"><font color="#333333" ><b><?echo //t_no_photo_available?>พาสปอร์ต</td>
       <td class="font-22">
  
       
       <font color="#FF0000" >
-      ไม่มีภาพถ่าย
+      <?echo t_no_photo_available?>
       
  
       </td>

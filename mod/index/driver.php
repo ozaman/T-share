@@ -200,11 +200,11 @@ return false ;
   <tr>
     <td width="33%"> <a class="btn btn-app " style="background-color:#FFFFFF; width:auto"  >
                 <span class="badge bg-yellow"><font class="font_14"><?=$allwork?></font></span>
-                <i class="fa fa-clock-o "></i> <font class="font_14">งานวันนี้
+                <i class="fa fa-clock-o "></i> <font class="font_14"><?echo t_today_job?>
               </a></td>
     <td width="33%">              <a class="btn btn-app" style="background-color:#FFFFFF ">
                 <span class="badge bg-teal"><font class="font_14"><?= $profileall?>%</font></span>
-                <i class="fa fa-user"></i> <font class="font_14">โปรไฟล์
+                <i class="fa fa-user"></i> <font class="font_14"><?echo //t_today_job?>โปรไฟล์
               </a></td>
     <td width="33%">              <a class="btn btn-app" style="background-color:#FFFFFF ">
                 <span class="badge bg-red"><font class="font_14">0</font></span>

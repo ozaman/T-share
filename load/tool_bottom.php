@@ -43,12 +43,12 @@ color: <?=$main_color?>;
 
 
  <script>
- var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div></div></div>';
+ var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div></div></div>';
 </script>
 
 
  <script>
- var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div';
+ var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div';
 </script>
  
  
@@ -152,7 +152,7 @@ $PNG_WEB_DIR = '../data/qrcode/user/';
  
 	<div style="height:25px;" ><i class="fa fa-home  " ></i></div>
 	
-	<font color="#333333" style="font-size:13px">หน้าแรก </font>
+	<font color="#333333" style="font-size:13px"><? echo t_home ?> </font>
     
 </span>
     
@@ -170,7 +170,7 @@ $PNG_WEB_DIR = '../data/qrcode/user/';
 	<div style="height:25px;" ><i class="fa fa-history" ></i></div>
  
 	
-	<font color="#333333" style="font-size:13px">งานทั้งหมด</font>
+	<font color="#333333" style="font-size:13px"><? echo t_all_jobs ?></font>
     
     </span>
   
@@ -182,7 +182,7 @@ $PNG_WEB_DIR = '../data/qrcode/user/';
     <div style="height:25px;"  ><i class="icon-new-uniF142"  ></i></div>
 	
 	
-	<font color="#333333" style="font-size:13px">ส่งแขก
+	<font color="#333333" style="font-size:13px"><? echo t_send_to_customer ?>
     
     </font></span>
     
@@ -201,7 +201,7 @@ $PNG_WEB_DIR = '../data/qrcode/user/';
     <div style="height:25px;" ><i class="fa fa-qrcode"  ></i></div>
 	
 	
-	<font color="#333333" style="font-size:13px">แนะนำเพื่อน</font></span>
+	<font color="#333333" style="font-size:13px"><? echo t_friends ?></font></span>
     
     
     

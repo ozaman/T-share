@@ -59,7 +59,7 @@
 <table width="100%">
 	<tr>
 		<td width="50%" align="center"><div class="btn" style="width: 100%;border: 1px solid #ddd" onclick="ChangeProvince('stay');"><strong><span style="font-size: 20px;"><?=$name?></span></strong></div></td>
-		<td width="50%" align="center"><div class="btn btn-default" style="width: 100%" onclick="ChangeProvince('other');"><strong><span style="font-size: 20px;">จังหวัดอื่น</span></strong></div></td>
+		<td width="50%" align="center"><div class="btn btn-default" style="width: 100%" onclick="ChangeProvince('other');"><strong><span style="font-size: 20px;"> <? echo t_provinces?></span></strong></div></td>
 	</tr>
 </table>
 <style>

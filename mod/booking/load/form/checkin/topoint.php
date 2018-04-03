@@ -2,7 +2,7 @@
  
   <script>
  var url_driver_topoint_<? echo $arr[project][id];?>= "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_driver_topoint&status=<?=$arr[project][check_driver_topoint]?>&time=<?=$arr[project][driver_topoint_date];?>";
- $('#status_driver_topoint_<?=$arr[project][id]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+ $('#status_driver_topoint_<?=$arr[project][id]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
  $('#status_driver_topoint_<?=$arr[project][id]?>').load(url_driver_topoint_<? echo $arr[project][id];?>);
 </script>
       <? 

@@ -21,7 +21,7 @@
 <div id="file_photo_loads">
 
 
-				 <input type="file" class="form-control" value="ยังไม่มีภาพถ่าย" readonly  style="opacity: 0;position: absolute;" name="load_chat_camera" id="load_chat_camera"   accept="image/*">
+				 <input type="file" class="form-control" value="<?echo t_no_photo_available?>" readonly  style="opacity: 0;position: absolute;" name="load_chat_camera" id="load_chat_camera"   accept="image/*">
 			
 			
 <div>

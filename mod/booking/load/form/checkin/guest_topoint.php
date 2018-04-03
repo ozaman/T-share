@@ -5,7 +5,7 @@
   <script>
  var url_guest_register_<? echo $arr[order][invoice];?>= "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[order][invoice];?>&type=check_guest_register&time=<?=$arr[order][guest_topoint_date]?>&status=<?=$arr[order][guest_topoint]?>";
  
- $('#status_guest_register_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+ $('#status_guest_register_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
  $('#status_guest_register_<?=$arr[order][invoice]?>').load(url_guest_register_<? echo $arr[order][invoice];?>);
 </script>
       <? 

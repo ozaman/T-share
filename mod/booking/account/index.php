@@ -23,7 +23,7 @@
   
   
    <script>
- $('.text-topic-action-mod').html('รายรับ');
+ $('.text-topic-action-mod').html('<? echo t_income_details?>');
  
  </script>
  

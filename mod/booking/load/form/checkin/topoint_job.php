@@ -2,7 +2,7 @@
  
   <script>
  var url_driver_topoint_<? echo $arr[order][invoice];?>= "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[order][invoice];?>&type=check_driver_topoint&status=<?=$arr[order][driver_topoint]?>&time=<?=$arr[order][driver_topoint_date];?>";
- $('#status_driver_topoint_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+ $('#status_driver_topoint_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
  $('#status_driver_topoint_<?=$arr[order][invoice]?>').load(url_driver_topoint_<? echo $arr[order][invoice];?>);
 </script>
       <? 

@@ -1,3 +1,13 @@
+
+
+
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
+<!-- <script>
+    // $(document).ready(function(){
+     alert($.cookie("lng"))
+    // });
+
+</script> -->
 <div style="background-color:<?=$main_color;?>; height:120px; width:110%; margin-left:-10px; margin-left:-10px; margin-top:-10px;   ">
   <br>
   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
@@ -6,11 +16,11 @@
         <td align="center" class="font-24"><font color="#FFFFFF">ยินดีต้อนรับเข้าสู่  <font color="#FFFFF"><B>T Share </B></font></font> </td>
       </tr>
       <tr  style="display:nones">
-     <td align="center" class="font-24"><font color="#FFFFFF">วันที่&nbsp;<?=date("Y-m-d");?>&nbsp;เวลา  <span id="load_data_time"></span>  </font> </td>
+     <td align="center" class="font-24"><font color="#FFFFFF"><? echo t_today ?>&nbsp;<?=date("Y-m-d");?>&nbsp;<? echo t_time?> <span id="load_data_time"></span>  </font> </td>
       </tr>
       <tr>
       	<td align="center" class="font-24">
-      	<font color="#FFFFFF"><span>คุณอยู่จังหวัด </span> <span id="province_text"></span></font>
+      	<font color="#FFFFFF"><span><? echo t_login_phuket ?> </span> <span id="province_text"></span></font>
       <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
       	</td>
       </tr>
@@ -149,7 +159,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
             
           <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D"  ></i></div>
             
-          <span style="padding-bottom:20px;" class="font-20">ส่งแขก</span>
+          <span style="padding-bottom:20px;" class="font-20"><? echo t_send_to_customer?></span>
             
             
   </center>
@@ -165,12 +175,12 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
         <button type="button" class="btn btn-default "  id="index_menu_shopping_history" style="width:100%;">
           <center>
             <div  class="circle-menu" style="background-color:#F7941D"><i class="fa fa-history"  ></i></div>
-            <span style="padding-bottom:20px;" class="font-20"> ประวัติส่งแขก</span>
+            <span style="padding-bottom:20px;" class="font-20"><? echo t_customer_history ?></span>
           </center>
         </button>
 <script>    
 
- 
+  
  $('#index_menu_shopping_history').click(function(){  
 
 $( "#main_load_mod_popup" ).toggle();
@@ -229,7 +239,7 @@ $( "#main_load_mod_popup" ).toggle();
   
   <div  class="circle-menu" ><center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">งานรับ-ส่ง </span>
+ <span style="padding-bottom:20px;" class="font-20"><? echo t_job_received?> </span>
     </center>
 
 
@@ -245,7 +255,7 @@ $( "#main_load_mod_popup" ).toggle();
         <button type="button" class="btn btn-default "   id="index_menu_tour"   style="width:100%">
           <center>
             <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase"  ></i></div>
-            <span style="padding-bottom:20px;" class="font-20">จองทัวร์ </span>
+            <span style="padding-bottom:20px;" class="font-20"><? echo t_tour_booking?> </span>
           </center>
         </button></td>
     
@@ -255,7 +265,7 @@ $( "#main_load_mod_popup" ).toggle();
        <button type="button" class="btn btn-default "   onclick="revenue()"  id="index_menu_income"   style="width:100%">
           <center>
             <div  class="circle-menu"  style="background-color:#34A0E7"  > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
-            <span style="padding-bottom:20px;" class="font-20">รายรับ</span>
+            <span style="padding-bottom:20px;" class="font-20"><? echo t_receipts?></span>
           </center>
       </button></td>
       <td align="center" class="tool-td-chat">
@@ -265,7 +275,7 @@ $( "#main_load_mod_popup" ).toggle();
         <button type="button" class="btn btn-default "  id="index_menu_payment" onclick="expenses()"  style="width:100%">
         <center>
           <div  class="circle-menu" style=" background-color:#FF0000"><i class="demo-icon icon-money-payment" style="margin-left:-5px; font-size:28px;"></i> </div>
-          <span style="padding-bottom:20px;" class="font-20">รายจ่าย</span>
+          <span style="padding-bottom:20px;" class="font-20"><? echo t_expenses ?></span>
           </center>
         </button>
         
@@ -282,7 +292,7 @@ $( "#main_load_mod_popup" ).toggle();
   
   <div  class="circle-menu" style=" background-color:#00AEEF"><i class="fa fa-user"   ></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">บัญชีของฉัน</span>
+ <span style="padding-bottom:20px;" class="font-20"><? echo t_my_account ?></span>
       </center>
 
   
@@ -306,7 +316,7 @@ $( "#main_load_mod_popup" ).toggle();
   
   <div  class="circle-menu" ><i class="fa fa-cog"  ></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">เครื่องมือช่วยเหลือ</span>
+ <span style="padding-bottom:20px;" class="font-20"><? echo t_help_tools ?></span>
    
 
 </center>
@@ -324,7 +334,7 @@ $( "#main_load_mod_popup" ).toggle();
   
   <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">งานทั้งหมด</span>
+ <span style="padding-bottom:20px;" class="font-20"><? echo t_all_jobs ?></span>
       </center>
 
   
@@ -348,7 +358,7 @@ $( "#main_load_mod_popup" ).toggle();
   
   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd"  style="margin-left:-3px;"></i></div>
   
- <span style="padding-bottom:20px;" class="font-20">โอนเงิน-แจ้งโอน</span>
+ <span style="padding-bottom:20px;" class="font-20"><? echo t_transfer_record ?></span>
    
 
 </center>
@@ -561,7 +571,7 @@ function money_transfer(){
   <tbody><tr>
     <td width="40"><div class="close-small-popup"><i class="fa fa-close" style="font-size:22px; color:#FFFFFF "></i></div></td>
   <td>
-  <div style="font-size:22px; color:#FFFFFF " id="text_small_popup" class="text-topic-action-mod-small-popup">คุณอยู่จังหวัด <span class="text-change-province"></span></div></td>
+  <div style="font-size:22px; color:#FFFFFF " id="text_small_popup" class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div></td>
     <td width="40" align="right"><div style="font-size:22px; color:#FFFFFF " onclick="GohomePage();"><i class="fa fa-home" style="font-size:30px; color:#ffff; "></i></div></td>
   </tr>
 </tbody></table>
@@ -899,9 +909,17 @@ function showPosition(position) {
     		console.log(data.results.length-2);
 			console.log(data.results[data.results.length-2].address_components[0].long_name);
 			var province = data.results[data.results.length-2].address_components[0].long_name;
-		 
+		  if ($.cookie("lng") == 'th') {
+        $('#province_text').text(province);
+      }
+      else if ($.cookie("lng") == 'cn') {
+        $('#province_text').text(province);
+      }
+       else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        $('#province_text').text(province);
+      }
 			
-			$('#province_text').text(province);
+			
 			
 			
 			$('#now_province').val(province);

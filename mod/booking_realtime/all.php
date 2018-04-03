@@ -160,7 +160,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
   
   
   <ul class="nav nav-tabs" style="width:100%; margin-top:10px;">
-    <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1"><a >วันนี้ <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a></li>
+    <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1"><a ><?echo t_today_job?> <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a></li>
     <li style="width:50%; text-align:center" id="btn_load_clock_day_2"><a>เมื่อวาน<span data-toggle="tooltip" class="badge "   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; text-align:center; padding-top:5px; " id="number_bottom_chat" ><span  class="font-20"><?=$numday_2?></span></span></a></li>
     
     

@@ -148,7 +148,7 @@
                   <tbody>
                      <tr>
                         <td style="font-size:24px ; color:#009999; color:#444444;"><i class="fa fa-user"></i></td>
-                        <td style="font-size:14px ; font-weight:bold">ไพรเวท</td>
+                        <td style="font-size:14px ; font-weight:bold"><? echo t_private ?></td>
                      </tr>
                   </tbody>
                </table>
@@ -183,7 +183,7 @@
                            <tbody>
                               <tr>
                                  <td valign="top">
-                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16">สถานที่รับ</span></div>
+                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16"><? echo t_pick_up_place ?></span></div>
                                  </td>
                                  <td width="40">
                                     <a class="test" data-toggle="tooltip" title="แสดงแผนที่นำทาง" 
@@ -220,7 +220,7 @@
                         <tbody>
                            <tr>
                               <td width="20" valign="top"><i class="icon-new-uniF10E-5" style="color:#666666; font-size:18px;"></i></td>
-                              <td width="100" valign="top" class="td-text"><b>รับแขก</b></td>
+                              <td width="100" valign="top" class="td-text"><b><? echo t_pick_up_customer ?></b></td>
                               <td valign="top" class="td-text"><?=$arr[order][arrival_time];?></td>
                            </tr>
                            <tr style="<?=$tr_flight_none;?>">
@@ -230,7 +230,7 @@
                            </tr>
                            <tr>
                               <td valign="top"><i class="icon-new-uniF137" style="color:#666666; font-size:18px;"></i></td>
-                              <td width="100" valign="top" class="td-text"><b>เอเย่นต์</b></td>
+                              <td width="100" valign="top" class="td-text"><b><? echo t_agents ?></b></td>
                               <td valign="top" class="td-text">Agent Test Program.</td>
                            </tr>
                            <tr>
@@ -241,17 +241,17 @@
                            </tr>
                            <tr>
                               <td valign="top"><i class="icon-new-uniF109-14" style="color:#666666; font-size:18px"></i></td>
-                              <td valign="top" class="td-text"><b>ชื่อแขก</b></td>
+                              <td valign="top" class="td-text"><b><? echo t_customer_name ?></b></td>
                               <td valign="top" class="td-text"><?=$arr[order][guest_english];?></td>
                            </tr>
                            <tr style="<?=$phone_none;?>">
                               <td valign="top"><i class="icon-new-uniF152-4" style="color:#666666; font-size:18px"></i></td>
-                              <td valign="top" class="td-text"><b>โทรศัพท์</b></td>
+                              <td valign="top" class="td-text"><b><? echo t_phone ?></b></td>
                               <td valign="top" class="td-text"><b><?=$arr[order][phone];?></b></td>
                            </tr>
                            <tr>
                               <td valign="top"><i class="icon-app-uniF111" style="color:#666666; font-size:18px"></i></td>
-                              <td valign="top" class="td-text"><b>วอเชอร์</b></td>
+                              <td valign="top" class="td-text"><b><? echo t_voucher_number ?></b></td>
                               <td valign="top" class="td-text"><a href="<?=$arr[order][voucher_url];?>" target="_blank"><span class="span-detail1"> <font color="#00808B" style="font-size:18px; font-weight:bold ">
                                  <?=$arr[order][invoice];?></font></span></a>
                               </td>
@@ -267,7 +267,7 @@
                         <tbody>
                            <tr>
                               <td width="20" valign="top"><i class="fa fa-car" style="color:#666666; font-size:18px;"></i></td>
-                              <td width="100" valign="top" class="td-text"><b>ประเภทรถ</b></td>
+                              <td width="100" valign="top" class="td-text"><b><? echo t_type_of_vehicle ?></b></td>
                               <td valign="top" class="td-text"><?=$json_product[0]->car_topic_th." ".$json_product[0]->pax_th;?></td>
                            </tr>
                         </tbody>
@@ -285,7 +285,7 @@
                            <tbody>
                               <tr>
                                  <td valign="top">
-                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16">สถานที่ส่ง</span></div>
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16"><? echo t_drop_place ?></span></div>
                                  </td>
                                  <td width="40">
                                     <div>

@@ -103,7 +103,14 @@ define("hotel_all_agent","ทั้งหมดตัวแทนรายงา
 define("hotel_addcom","บริษัทผู้ดูแลระบบ : ");
 define("hotel_pro","จังหวัด:");
 define("hotel_type","ประเภท:");
-define("hotel_bookdate","จองวันที่ ：");
+define("hotel_bookdate","จองวันที่");
+
+
+
+
+
+
+
 
 
 ?>

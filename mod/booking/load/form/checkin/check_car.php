@@ -3,7 +3,7 @@
   <script>
  var url_driver_pay_report_<?=$arr[order][invoice]?>= "popup.php?name=booking/load/form&file=checkin_status&id=<?=$arr[order][invoice]?>&type=check_driver_pay_report&time=<?=$arr[order][driver_check_car_date]?>&status=<?=$arr[order][driver_check_car]?>";
  
- $('#status_driver_pay_report_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+ $('#status_driver_pay_report_<?=$arr[order][invoice]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
  $('#status_driver_pay_report_<?=$arr[order][invoice]?>').load(url_driver_pay_report_<?=$arr[order][invoice]?>);
 </script>
       <? 

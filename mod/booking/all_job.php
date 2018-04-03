@@ -121,7 +121,7 @@
 }
 </style>
   <script>
-  $(".text-topic-action-mod").html('งานส่งแขกทั้งหมด');
+  $(".text-topic-action-mod").html('<?php echo t_all_transfer_job?>');
   
   </script>
   <style>
@@ -273,7 +273,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 		    border-radius: 25px;
 		    color: #3b5998;
 		    padding: 5px 30px;
-		    border: 2px solid #3b5998;" onclick="shop_status()"><span>แขกช็อปปิ้ง</span></div></td>
+		    border: 2px solid #3b5998;" onclick="shop_status()"><span><? echo t_guest_shopping?></span></div></td>
 		  		<td width="50%" align="center"><div style="
 		  		 background: #3b5998;
 		    font-size: 18px;
@@ -281,7 +281,7 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 		    color: #fff;
 		    padding: 5px 30px;
 		    border: 2px solid #3b5998;
-		    " onclick="transfer_status()"><span>แขกรับส่ง</span></div></td>
+		    " onclick="transfer_status()"><span><? echo t_customer?></span></div></td>
 		  	</tr>
 		 </table>
   </div>
@@ -291,11 +291,11 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
   
   
   <ul class="nav nav-tabs" style="width:100%; margin-top:10px;">
-    <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1"><a ><span class="font-26">วันนี้ </span><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a></li>
-    <li style="width:50%; text-align:center" id="btn_load_clock_day_2"><a><span class="font-26">เมื่อวาน</span><span data-toggle="tooltip" class="badge "   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; text-align:center; padding-top:5px; " id="number_bottom_chat2" ><span  class="font-20"><?=$numday_2?></span></span></a></li>
+    <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1"><a ><span class="font-26"><?echo t_today_job?> </span><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a></li>
+    <li style="width:50%; text-align:center" id="btn_load_clock_day_2"><a><span class="font-26"><? echo t_yesterday?></span><span data-toggle="tooltip" class="badge "   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; text-align:center; padding-top:5px; " id="number_bottom_chat2" ><span  class="font-20"><?=$numday_2?></span></span></a></li>
     
     
-    <li style="width:33%; text-align:center; display:none" id="btn_load_clock_day_3"><a >วันก่อน<span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; padding-top:5px; " id="number_bottom_chat"><span  class="font-20"><?=$numday_3?></span></a></li>
+    <li style="width:33%; text-align:center; display:none" id="btn_load_clock_day_3"><a ><? echo t_previous_day?><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; padding-top:5px; " id="number_bottom_chat"><span  class="font-20"><?=$numday_3?></span></a></li>
  
   </ul>
  
@@ -416,7 +416,7 @@ var date=$('#date_report').val();
                			}
 		               	else{
 		               		$('#number_bottom_chat span').text('0')               		
-							$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+							$('#load_booking_data').html('<div class="font-26" style="color: #ff0000;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 							return;
 					
 		               	}
@@ -449,7 +449,7 @@ var date=$('#date_report').val();
       
       
       <a href="?name=booking&file=all" >
-      <button id="submit_all_booking" type="button" class="btn btn-block btn-default " style="width:100%; text-align:left " ><i class="fa fa-car"></i> งานทั้งหมด</button>
+      <button id="submit_all_booking" type="button" class="btn btn-block btn-default " style="width:100%; text-align:left " ><i class="fa fa-car"></i><? echo t_all_jobs?> </button>
       
       </a>
       
@@ -463,7 +463,7 @@ var date=$('#date_report').val();
       <td width="50%">  
       
             <a  id="submit_new_booking">
-      <button type="button"  class="btn btn-block btn-default"  style="width:100%;text-align:left  "><i class="fa fa-plus-square"></i> เพิ่มงานใหม่</button>
+      <button type="button"  class="btn btn-block btn-default"  style="width:100%;text-align:left  "><i class="fa fa-plus-square"></i><? echo t_add_new_job?> </button>
       
       </a>
       

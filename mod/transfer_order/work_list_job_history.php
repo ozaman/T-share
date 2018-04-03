@@ -241,7 +241,7 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration;
 // 			var obj = JSON.parse(data);
 // 			console.log(obj);
 // 			if(obj==null){
-// 				$('#box_app_location').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+// 				$('#box_app_location').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 // 				return;
 // 			}
 // 	  		$('#box_app_location').html('');
@@ -373,7 +373,7 @@ function QueryData(){
 			var obj = JSON.parse(data);
 			console.log(obj);
 			if(obj==null){
-				$('#body_to_append').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong>ไม่มีงาน</strong></div>');
+				$('#body_to_append').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 				return;
 			}
 	  		$('#body_to_append').html('');
@@ -426,8 +426,16 @@ function QueryData(){
 </script>
 
 <script>
-	$('#text_mod_topic_action').text('งานรับส่ง');
 	
+	if ($.cookie("lng") == 'th') {
+        $('#text_mod_topic_action').text('งานรับ-ส่ง');
+      }
+      else if ($.cookie("lng") == 'cn') {
+        $('#text_mod_topic_action').text('	接送工作');
+      }
+       else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+        $('#text_mod_topic_action').text('Transfer job');
+      }
 //	QueryData();
 	/*$.post( "mod/transfer_order/action_work.php?action=query_work", function( data ) {
 			var obj = JSON.parse(data);

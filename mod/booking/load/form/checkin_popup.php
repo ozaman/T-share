@@ -106,11 +106,11 @@ $arr[project][id]=$_GET[id];
     <tr>
       <td width="10" class="font_20"></td>
       <td width="100">
-        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_checkin"> <i class="fa  fa-camera"></i>&nbsp;ถ่ายภาพ
+        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_checkin"> <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
           <!--<input type="text" class="form-control" name="icon_camera_<?=$i?>" id="icon_camera_<?=$i?>"   style="display: none;"/>-->
         </span></label></td>
       <td><span class="input-group" style="margin-top:5px;">
-        <input type="text"  value="ไม่มีภาพถ่าย" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
+        <input type="text"  value="<?echo t_no_photo_available?>" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
       </span></td>
       <td width="30">        
       
@@ -148,8 +148,8 @@ $arr[project][id]=$_GET[id];
       <td align="center"><table width="100%" border="0" cellspacing="2" cellpadding="2">
         <tbody>
           <tr>
-            <td width="50%"><button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-30"><center>ไม่ใช่</button></td>
-            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-30"><center>ใช่</button></td>
+            <td width="50%"><button  id="btn_close_checkin_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-30"><center><?echo t_yes?></button></td>
+            <td width="50%"><button  id="btn_checkin_popup_<?=$_GET[id]?>"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:8px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-30"><center><?echo t_no?></button></td>
           </tr>
         </tbody>
       </table></td>
@@ -188,7 +188,7 @@ $arr[project][id]=$_GET[id];
 	  		$('#del_photo').removeClass('btn-danger');
 	  		$('#del_photo').addClass('btn-default');
 	  		
-	  		$('#url_photo').val('ไม่มีภาพถ่าย');
+	  		$('#url_photo').val('<?echo t_no_photo_available?>');
 	  		
 	  		$('#photo_<?=$_GET[type]?>_<?=$_GET[id]?>').css('color','#3b59987a');
 			$('#photo_<?=$_GET[type]?>_<?=$_GET[id]?>').css('border','1px solid #3b59987a');

@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <?php @header ('Content-type: text/html; charset=utf-8'); 
 @session_start();
 require_once("mainfile.php");
@@ -39,10 +40,10 @@ GETMODULE($_GET[name],$_GET[file]);
   
   <?php 
   if($_GET[type]=="driver_topoint"){
-  		$txt = 'ถึงสถานที่ส่งแขก';
+  		$txt = t_arrive_drop_place;
   }
   else if($_GET[type]=="guest_receive"){
-  		$txt = 'พนักงานรับแขก';
+  		$txt = t_reception;
   }
   else if($_GET[type]=="guest_register"){
   		$txt = 'แขกลงทะเบียน';

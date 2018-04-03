@@ -9,9 +9,9 @@ $(document).ready(function(){
 						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2" style="padding:5px; ">
   <tr align="center">
-    <td width="40%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b>วันที่</b></td>
-    <td width="20%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b>งาน</td>
-    <td width="40%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b>รายรับ </td>
+    <td width="40%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b><?echo t_today ?></b></td>
+    <td width="20%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b><?echo t_jobs ?></td>
+    <td width="40%" bgcolor="#999999" class="font_20" style="color:#FFFFFF; padding:2px; "><b><?echo t_receipts ?> </td>
   </tr>
 </table>
 						
@@ -307,7 +307,7 @@ $arr[projectnew] = $db->fetch($res[projectnew]);
         <h4 class="modal-title"><?=$arr[projectnew][product_name_th];?></h4>
       </div>
       <div class="modal-body">
-        <p>งานใช้รถเพิ่ม <?=$arr[projectnew][use_car_overtime];?> ชั่วโมง</p>
+        <p><?//echo t_receipts ?>งานใช้รถเพิ่ม <?=$arr[projectnew][use_car_overtime];?> ชั่วโมง</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>

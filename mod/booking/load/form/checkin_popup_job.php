@@ -206,11 +206,11 @@ while($arr[remark_noguest] = $db->fetch($res[remark_noguest])){
     <tr>
       <td width="10" class="font_20"></td>
       <td width="100">
-        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_checkin"> <i class="fa  fa-camera"></i>&nbsp;ถ่ายภาพ
+        <label class="input-group-btn" > <span class="btn btn-primary" style="width:100px; z-index:0" id="icon_camera_checkin"> <i class="fa  fa-camera"></i>&nbsp;<?echo t_take_photos?>
           <!--<input type="text" class="form-control" name="icon_camera_<?=$i?>" id="icon_camera_<?=$i?>"   style="display: none;"/>-->
         </span></label></td>
       <td><span class="input-group" style="margin-top:5px;">
-        <input type="text"  value="ไม่มีภาพถ่าย" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
+        <input type="text"  value="<?echo t_no_photo_available?>" class="photo-no-active" readonly  style="padding-left:5px; margin-top:-5px; padding-right:0px; width:100%; height:35px;" id="url_photo">
       </span></td>
       <td width="30">        
       
