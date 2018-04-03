@@ -38,7 +38,7 @@ GETMODULE($_GET[name],$_GET[file]);
   
   
   <?php 
- $txt = 'แผนที่';
+ $txt = t_maps;
   ?>
   
   

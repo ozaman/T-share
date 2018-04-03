@@ -167,7 +167,7 @@
       }
     </style>
  	<script>
-	$('.text-topic-action-photo').html('แผนที่');
+	$('.text-topic-action-photo').html('<?echo t_maps?>');
 </script>
   </head>
   <body >

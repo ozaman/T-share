@@ -27,18 +27,18 @@ while($arr[project] = $db->fetch($res[project])){
       </tr>
     <tr>
       <td width="100" class="font-22"><strong>เปิดบริการ</strong></td>
-      <td><span class="font-22">ทุกวัน <b>(<? echo $arr[project][start_time];?> - <? echo $arr[project][finish_time];?>)</span></td>
+      <td><span class="font-22"><?echo t_everyday?> <b>(<? echo $arr[project][start_time];?> - <? echo $arr[project][finish_time];?>)</span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>ค่าตอบแทน</strong></td>
-      <td><span id="shop_alert_menu_index_price_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-calculator" style="font-size:16px; color:<?=$arr[project][text_color]?>; width:20px;"></i>  ดูค่าตอบแทน</b></span></td>
+<td class="font-22"><strong><?echo t_work_remuneration?></strong></td>
+      <td><span id="shop_alert_menu_index_price_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-calculator" style="font-size:16px; color:<?=$arr[project][text_color]?>; width:20px;"></i>  <?echo t_look_work_remuneration?></b></span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>ตำแหน่งที่ตั้ง</strong></td>
+<td class="font-22"><strong><?echo t_location?></strong></td>
       <td><span id="shop_alert_menu_index_map_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-map-marker" style="font-size:20px; color:<?=$arr[project][text_color]?>; width:20px;"></i><? echo t_maps?></b></span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>สอบถาม</strong></td>
+<td class="font-22"><strong><?echo t_query?></strong></td>
       <td>
  
  
@@ -82,7 +82,7 @@ while($arr[project] = $db->fetch($res[project])){
       
        <a href="tel:<?=$arr[sale][phone]?>"  id="booking_edit_<?=$arr[project][id]?>"  style="color:#333333"  >
       
-<span id="shop_alert_menu_index_call_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-phone-square" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i>การตลาด (<?=$arr[sale][name]?>)</b></span></a>
+<span id="shop_alert_menu_index_call_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-phone-square" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i><?echo t_marketing?> (<?=$arr[sale][name]?>)</b></span></a>
 
 
 <? } ?>
@@ -95,19 +95,19 @@ while($arr[project] = $db->fetch($res[project])){
       </td>
     </tr>
     <tr>
-      <td class="font-22"><strong>ดาวน์โหลด</strong></td>
+      <td class="font-22"><strong><?echo t_download?></strong></td>
       <td>
 	  
 	              
-        <a    style="color:#333333; text-decoration:none"   id="shop_alert_menu_index_load_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-download" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i> โบร์ชัวร์</span></a> 
+        <a    style="color:#333333; text-decoration:none"   id="shop_alert_menu_index_load_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-download" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i><?echo t_bouchure?> </span></a> 
      </td>
     </tr>
     <tr>
       <td colspan="2" class="tab_alert ">
       
-      <button id="index_menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info  tab_alert"  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?> "  ><span class="font-30"><i class="fa  fa-cart-plus" style="width:20px;"  ></i><b>&nbsp; ไปช็อปปิ้ง</button>
+      <button id="index_menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info  tab_alert"  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?> "  ><span class="font-30"><i class="fa  fa-cart-plus" style="width:20px;"  ></i><b>&nbsp; <?echo t_go_shopping?></button>
       
- <button id="index_menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:none "><span class="font-30"><i class="fa  fa-warning" style="width:20px; color:#ECE365"  ></i><b>&nbsp; ปิดให้บริการ</button>
+ <button id="index_menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:none "><span class="font-30"><i class="fa  fa-warning" style="width:20px; color:#ECE365"  ></i><b>&nbsp; <?echo t_out_of_service?></button>
  
       
       </td>

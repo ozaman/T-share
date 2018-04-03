@@ -91,7 +91,7 @@ font-size: 20px !important;
 		border: 1px solid #ddd;
 		padding: 5px;
 		border-radius : 10px;
-		box-shadow: 1px 1px 5px #ddd;margin-bottom: 10px;" align="center" ><strong><span class="font-26">แผนที่</span></strong>&nbsp;
+		box-shadow: 1px 1px 5px #ddd;margin-bottom: 10px;" align="center" ><strong><span class="font-26"><?echo t_maps?></span></strong>&nbsp;
 		<i class="fa fa-map-marker" aria-hidden="true" style="font-size:20px;"></i></div></td>
 			</tr>
 			<tr>

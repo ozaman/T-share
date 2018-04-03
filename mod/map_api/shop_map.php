@@ -36,7 +36,7 @@ $count_days = $db->rows($res[opentime]);
 
      ?>
     <tr >
-      <td width="100" class="font-22">เปิดบริการ</td>
+      <td width="100" class="font-22"><?echo t_out_of_service?></td>
       <td>
       <span class="font-22">
       <?php

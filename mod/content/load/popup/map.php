@@ -52,7 +52,7 @@ $('#dv_map').addClass("load_preview_map");
  
  <script>
 
- $(".text-topic-action-mod-4" ).html("<?=$arr[shop][topic_th]?> (แผนที่)");
+ $(".text-topic-action-mod-4" ).html("<?=$arr[shop][topic_th]?> (<?echo t_maps?>)");
 
   </script> 
 

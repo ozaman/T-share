@@ -77,18 +77,18 @@ while($arr[project] = $db->fetch($res[project])){
       </tr>
     <tr>
       <td width="100" class="font-22"><strong>เปิดบริการ</strong></td>
-      <td><span class="font-22">ทุกวัน <b>(<? echo $arr[project][start_time];?> - <? echo $arr[project][finish_time];?>)</span></td>
+      <td><span class="font-22"><?echo t_everyday?> <b>(<? echo $arr[project][start_time];?> - <? echo $arr[project][finish_time];?>)</span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>ค่าตอบแทน</strong></td>
-      <td><span id="shop_alert_menu_price_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-calculator" style="font-size:16px; color:<?=$arr[project][text_color]?>; width:20px;"></i>  ดูค่าตอบแทน</b></span></td>
+<td class="font-22"><strong><?echo t_work_remuneration?></strong></td>
+      <td><span id="shop_alert_menu_price_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-calculator" style="font-size:16px; color:<?=$arr[project][text_color]?>; width:20px;"></i>  <?echo t_look_work_remuneration?></b></span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>ตำแหน่งที่ตั้ง</strong></td>
-      <td><span id="shop_alert_menu_map_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-map-marker" style="font-size:20px; color:<?=$arr[project][text_color]?>; width:20px;"></i>แผนที่</b></span></td>
+<td class="font-22"><strong><?echo t_location?></strong></td>
+      <td><span id="shop_alert_menu_map_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-map-marker" style="font-size:20px; color:<?=$arr[project][text_color]?>; width:20px;"></i><? echo t_maps?></b></span></td>
     </tr>
     <tr>
-<td class="font-22"><strong>สอบถาม</strong></td>
+<td class="font-22"><strong><?echo t_query?></strong></td>
       <td>
  
  
@@ -132,7 +132,7 @@ while($arr[project] = $db->fetch($res[project])){
       
        <a href="tel:<?=$arr[sale][phone]?>"  id="booking_edit_<?=$arr[project][id]?>"  style="color:#333333"  >
       
-<span id="shop_alert_menu_call_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-phone-square" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i>การตลาด (<?=$arr[sale][name]?>)</b></span></a>
+<span id="shop_alert_menu_call_<?=$arr[project][id]?>" class="font-22"> <i class="fa fa-phone-square" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i><?echo t_marketing?> (<?=$arr[sale][name]?>)</b></span></a>
 
 
 <? } ?>
@@ -145,19 +145,19 @@ while($arr[project] = $db->fetch($res[project])){
       </td>
     </tr>
     <tr>
-      <td class="font-22"><strong>ดาวน์โหลด</strong></td>
+      <td class="font-22"><strong><?echo t_download?></strong></td>
       <td>
 	  
 	              
-        <a href="../data/fileupload/doc_place/<? echo $arr[project][logo_code];?>.jpg"   download="<? echo $arr[project][name];?>"  style="color:#333333"  > <span id="shop_alert_menu_call_<?=$arr[project][id]?>2" class="font-22"> <i class="fa fa-download" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i> โบร์ชัวร์</span></a>
+        <a href="../data/fileupload/doc_place/<? echo $arr[project][logo_code];?>.jpg"   download="<? echo $arr[project][name];?>"  style="color:#333333"  > <span id="shop_alert_menu_call_<?=$arr[project][id]?>2" class="font-22"> <i class="fa fa-download" style="font-size:18px; color:<?=$arr[project][text_color]?>; width:20px;"></i> <?echo t_bouchure?></span></a>
      </td>
     </tr>
     <tr>
-      <td class="font-22"><strong>สถานะ</strong></td>
-      <td id="status_open_<? echo $arr[project][id];?>" class="font-26">เปิดให้บริการ</td>
+      <td class="font-22"><strong><?echo t_status?></strong></td>
+      <td id="status_open_<? echo $arr[project][id];?>" class="font-26"><?echo t_status?><?echo t_out_of_service?></td>
     </tr>
     <tr >
-      <td class="font-22"><strong>เหลือเวลา</strong></td>
+      <td class="font-22"><strong><?echo t_remaining_time?></strong></td>
       <td id="time_open_<? echo $arr[project][id];?>" class="font-26">&nbsp;</td>
     </tr>
     <tr>
@@ -179,7 +179,7 @@ while($arr[project] = $db->fetch($res[project])){
       
       <div id="btn_open_<? echo $arr[project][id];?>">
       
-      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?> "   ><span class="font-30"><i class="fa  fa-shopping-cart" style="width:20px;"  ></i><b>&nbsp; ไปช็อปปิ้ง</b></button>
+      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?> "   ><span class="font-30"><i class="fa  fa-shopping-cart" style="width:20px;"  ></i><b>&nbsp; <?echo t_go_shopping?></b></button>
       
       </div>
       
@@ -187,7 +187,7 @@ while($arr[project] = $db->fetch($res[project])){
       
        <div id="btn_close_<? echo $arr[project][id];?>" style=" display:nones">
       
-            <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones "><span class="font-30"><i class="fa  fa-warning" style="width:20px; color:#ECE365"  ></i><b>&nbsp; ปิดให้บริการ</button>
+            <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones "><span class="font-30"><i class="fa  fa-warning" style="width:20px; color:#ECE365"  ></i><b>&nbsp; <?echo t_out_of_service?></button>
         </div>
       
       

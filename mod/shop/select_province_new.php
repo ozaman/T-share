@@ -193,7 +193,7 @@ font-size: 20px !important;
 		<table width="100%" >
 			<tr>
 				<td>
-					<span style="color: <?=$main_color?>" class="font-26" ><strong><? echo t_maps?>เลือกภูมิภาค</strong></span>
+					<span style="color: <?=$main_color?>" class="font-26" ><strong><? echo t_maps?><?echo t_select_region?></strong></span>
 				</td>
 			</tr>
 			<tr>

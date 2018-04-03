@@ -158,7 +158,7 @@ $count_days = $db->rows($res[opentime]);
       <?php
       if($count_days == 7){
 				?>
-				ทุกวัน
+				<?echo t_everyday?>
 				<?php
 			}else{
 				?>
