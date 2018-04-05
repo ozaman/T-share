@@ -172,28 +172,7 @@
                           setTimeout(function () {
                         }, 500); //w
                         });
-                        $("#login_logo" ).click(function() {
-                        $("#load_form_main").hide();
-                          setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo_action.png");
-                        }, 500); //w
-                           setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo.png");
-                        }, 1000); //w
-                            setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo_action.png");
-                        }, 1500); //w
-                            setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo.png");
-                        }, 2000); //w
-                            setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo_action.png");
-                        }, 2500); //w
-                        setTimeout(function () {
-                        $("#login_logo").attr("src", "images/applogo.png");
-                        window.location.href = "index.php?newlogin=1"; //will redirect to your blog page (an ex: blog.html)
-                        }, 3000); //w
-                        });
+                  
                      </script>
                   </div>
                   <!-- /.login-logo -->
@@ -219,27 +198,7 @@
       <? include "js/control.php" ;	?>
    </body>
 </html>
-<style type="text/css">
-   <!--
-      body  {
-      	/*
-      	font-family: Arial; font-size:16px; background-color:#0DA1A0;
-      	*/
-      	font-family: Arial; font-size:16px; background-color:#ffffff;
-      }
-      -->
-</style>
-<script>
-   /*
-     $(function () {
-       $('input').iCheck({
-         checkboxClass: 'icheckbox_square-green',
-         radioClass: 'iradio_square-green',
-         increaseArea: '20%' // optional
-       });
-     });
-     */
-</script>
+
 <div id="signin_load_popup"></div>
 </head>
 <body>
