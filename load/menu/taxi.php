@@ -25,13 +25,13 @@
 <? } ?>
 <li   class="treeview">
    <a  >
-   <i class="icon-new-uniF142 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;จัดการงาน</span>
+   <i class="icon-new-uniF142 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<?=t_job_management;?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a>
    <ul class="treeview-menu"    >
-      <li ><a     id="slide_menu_add_new_shopping"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_send_customer?></span></a></li>
+      <li ><a     id="slide_menu_add_new_shopping"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_send_to_customer?></span></a></li>
       <li ><a id="slide_menu_all_shopping" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_customer_history?></span></a></li>
       <li style="display:none" ><a href="?name=today" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_job_received?></span></a></li>
    </ul>
@@ -223,7 +223,7 @@
 </script> 
 <li  id="menu_user" class="treeview">
    <a href="#" >
-   <i class="icon-new-uniF133-2 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;ข้อมูลผู้ใช้งาน</span>
+   <i class="icon-new-uniF133-2 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<?=t_user_information;?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
@@ -425,7 +425,7 @@
 <!------>
 <li  id="menu_logout">
    <a  id="l-logout" >
-   <i class="icon-new-uniF186 l-menu-li-icon-main" ></i> <span class="textmain-left-menu" >&nbsp;ออกจากระบบ</span>
+   <i class="icon-new-uniF186 l-menu-li-icon-main" ></i> <span class="textmain-left-menu" >&nbsp;<?=t_sign_out;?></span>
    </a>
 </li>
 </ul>
@@ -437,15 +437,14 @@
    
    
      swal({
-   title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-   text: "ว่าต้องการออกจากระบบ",
-   type: "error",
+   title: "<font style='font-size:28px'><b> <?=t_sign_out;?>",
+   text: "<?=t_confirm_signout;?>",
+   type: "warning",
    showCancelButton: true,
    animation:  false ,
-   
    confirmButtonColor: '#DD6B55',
-   confirmButtonText: 'ใช่',
-   cancelButtonText: "ไม่ใช่",
+   confirmButtonText: '<?=t_yes;?>',
+   cancelButtonText: "<?=t_no;?>",
    closeOnConfirm: true,
    closeOnCancel: true,
    html: true
@@ -453,13 +452,10 @@
    function(isConfirm){
      if (isConfirm){
    
-   
-   swal("ออกจากระบบสำเร็จ", "success");
-   
-   window.location = "signin.php";;
-   
-   
-   //  alert('dd');
+		   $.post('signout.php?type=logout',function(){
+		   		 swal("<?=t_sign_out_successfully;?>", "success");
+		   });
+  
      } else {
        swal("Cancelled", "", "error");
      }

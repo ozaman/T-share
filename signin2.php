@@ -6,7 +6,7 @@
       <title>ระบบจัดการงานรถรับ-ส่ง</title>
       <? include "css/color/taxi.php" ;	?>
       <? include "css/maincss.php" ;	
-      $_COOKIE['lng'] = "en";
+      $_COOKIE['lng'] = "cn";
       switch ($_COOKIE['lng']){
     case "th":
         //echo "PAGE th";

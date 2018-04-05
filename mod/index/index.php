@@ -571,7 +571,7 @@ function money_transfer(){
   <tbody><tr>
     <td width="40"><div class="close-small-popup"><i class="fa fa-close" style="font-size:22px; color:#FFFFFF "></i></div></td>
   <td>
-  <div style="font-size:22px; color:#FFFFFF " id="text_small_popup" class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div></td>
+  <div class="font-26" id="text_small_popup" style="color: #fff;" class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div></td>
     <td width="40" align="right"><div style="font-size:22px; color:#FFFFFF " onclick="GohomePage();"><i class="fa fa-home" style="font-size:30px; color:#ffff; "></i></div></td>
   </tr>
 </tbody></table>
@@ -847,7 +847,9 @@ $.getJSON(url, function (data) {
 	
 
 function geolocatCall(){
+	
 	if (navigator.geolocation) {
+		
 	        navigator.geolocation.getCurrentPosition(showPosition);
 	    } else { 
 	       	console.log('ปิดตำแหน่ง');
@@ -889,16 +891,27 @@ function geolocatCallFrist(){
 	     
 function showPosition(position) {
 	
-	// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM
-	
-	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language=th&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
+	var lng = "zh-CN";
+	var cook_lng = getCookie("lng");
+	if (cook_lng == 'th') {
+       lng = "th";
+      }
+      else if (cook_lng == 'cn') {
+        lng = "zh-CN";
+      }
+       else if (cook_lng == 'en') {
+        lng = "en";
+      }
+      
+      console.log(lng);
+	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
 //	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
     
     $('#lat').val(position.coords.latitude);
     $('#lng').val(position.coords.longitude);
     console.log(position.coords.latitude+" : "+position.coords.longitude);
     $.post( url, function( data ) {
- 
+ 		console.log(data);
 		
 		if(data.status=="OVER_QUERY_LIMIT"){
 			console.log('OVER_QUERY_LIMIT');
@@ -909,16 +922,9 @@ function showPosition(position) {
     		console.log(data.results.length-2);
 			console.log(data.results[data.results.length-2].address_components[0].long_name);
 			var province = data.results[data.results.length-2].address_components[0].long_name;
-		  if ($.cookie("lng") == 'th') {
-        $('#province_text').text(province);
-      }
-      else if ($.cookie("lng") == 'cn') {
-        $('#province_text').text(province);
-      }
-       else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
-        $('#province_text').text(province);
-      }
 			
+	  
+			 $('#province_text').text(province);
 			
 			
 			

@@ -1,6 +1,6 @@
 <?
  $day_now =  date('D');
- 	  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
   $res[shop] = $db->select_query("SELECT * FROM  shopping_open_time where product_id=".$_GET[id]." and product_day = '$day_now'     ");
  $arr[shop] = $db->fetch($res[shop]) ;
 if($arr[shop][open_always] == 1){
@@ -50,22 +50,22 @@ $start_m_reduce = date("i", $test_timestamp);
    <? if($time_complete > 0)
    { 
 		if($time_open_h>0){ 
-			 	echo $time_open_h." ชั่วโมง ";
+			 	echo $time_open_h." ".t_hour." ";
 			 } 
 		 	if($time_open_m>0){ 
-				echo $time_open_m." นาที";
+				echo $time_open_m." ".t_minutes;
 		 	 } 
  	?>
    <script>
    $('#btn_open_<?=$_GET[id]?>').show();
    $('#btn_close_<?=$_GET[id]?>').hide();
-   $('#status_open_<?=$_GET[id]?>').html('เปิดให้บริการ ');
+   $('#status_open_<?=$_GET[id]?>').html('<?=t_open_now;?>');
    $('#tr_time_open_<?=$_GET[id]?>').show();
    </script>
  <? 
  	if($h_now==$start_h_reduce and $i_now>=$start_m_reduce){ ?>
 		<script>
-     		 $('#status_open_<?=$_GET[id]?>').html('เปิดให้บริการล่วงหน้า 30 นาที');
+     		 $('#status_open_<?=$_GET[id]?>').html('<?=t_open.t_advance_service." 30 ".t_minutes;?>');
 		</script>	
 		<? 
 		}	
@@ -76,7 +76,7 @@ $start_m_reduce = date("i", $test_timestamp);
    $('#btn_open_<?=$_GET[id]?>').hide();
    $('#btn_close_<?=$_GET[id]?>').show();
   $('#tr_time_open_<?=$_GET[id]?>').hide();
-   $('#status_open_<?=$_GET[id]?>').html('<font style="color:#ff6666">'+'หมดเวลาให้บริการ'+'</font>');
+   $('#status_open_<?=$_GET[id]?>').html('<font style="color:#ff6666">'+'<?=t_timeout_service;?>'+'</font>');
    </script>
  <? }
 

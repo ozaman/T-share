@@ -4,19 +4,23 @@
 switch ($_COOKIE['lng']){
     case "th":
         //echo "PAGE th";
-        include("includes/lang/th/t_share.php");//include check session DE
+        include("includes/lang/th/t_share_2.php");//include check session DE
+        $google_map_api_lng = "th";
         break;
     case "cn":
         //echo "PAGE cn";
-        include("includes/lang/cn/t_share.php");
+        include("includes/lang/cn/t_share_2.php");
+        $google_map_api_lng = 'zh-CN';
         break;
     case "en":
         //echo "PAGE EN";
-        include("includes/lang/en/t_share.php");
+        include("includes/lang/en/t_share_2.php");
+        $google_map_api_lng = "en";
         break;        
     default:
         //echo "PAGE EN - Setting Default";
-        include("includes/lang/cn/t_share.php");//include EN in all other cases of different lang detection
+        include("includes/lang/cn/t_share_2.php");//include EN in all other cases of different lang detection
+        $google_map_api_lng = 'zh-CN';
         break;
 } 
 

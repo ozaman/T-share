@@ -27,32 +27,34 @@ if ($input['action'] === 'edit') {
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8"); 
   // $mysqli->query("UPDATE ap_language  SET s_eng ='" . $input['English'] . "', s_cn='" . $input['China'] . "', s_th='" . $input['Thai'] . "' WHERE i_id='" . $input['Id'] . "'");
- 	$edit[en] = $input['English'];
-   	$edit[cn] = $input['China'];
-   	$edit[th] = $input['Thai'];
-   	$edit[last_update] = $current_date;
-    $db->update_db($table,$edit,"id = '".$input['Id']."' "); 
+ 	$data[en] = $input['English'];
+   	$data[cn] = $input['China'];
+   	$data[th] = $input['Thai'];
+   	$data[keyword] = $input['Keyword'];
+   	$data[link] = $input['Link'];
+   	$data[last_update] = $current_date;
+    $data[result] = $db->update_db($table,$data,"id = '".$input['Id']."' "); 
 } 
 
 else if ($input['action'] === 'delete') {
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8"); 
 //    $mysqli->query("UPDATE ap_language  SET i_deleted=1 WHERE i_id='" . $input['Id'] . "'");
-   	$delete[deleted] = 1;
-   	$delete[last_update] = $current_date;
-    $db->update_db($table,$delete,"id = '".$input['Id']."' "); 
+   	$data[deleted] = 1;
+   	$data[last_update] = $current_date;
+    $data[result] = $db->update_db($table,$data,"id = '".$input['Id']."' "); 
 } 
 
 else if ($input['action'] === 'restore') {
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8"); 
 //    $mysqli->query("UPDATE ap_language  SET i_deleted=0 WHERE i_id='" . $input['Id'] . "'");
-	$restore[deleted] = 0;
-   	$restore[last_update] = $current_date;
-    $db->update_db($table,$restore,"id = '".$input['Id']."' "); 
+	$data[deleted] = 0;
+   	$data[last_update] = $current_date;
+    $data[result] = $db->update_db($table,$data,"id = '".$input['Id']."' "); 
 }
 
 //mysqli_close($mysqli);
 
-echo json_encode($input);
+echo json_encode($data);
 //echo $input['Thai'];

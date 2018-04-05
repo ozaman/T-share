@@ -40,14 +40,16 @@ $db_name = 'admin_app';
                     </div>
                 </form>
             </div>
-        <div class='col-sm-10 col-sm-offset-1'>
+        <div class=''>
          <table class="table table-striped table-bordered" id="example1">
 		    <thead>
 		      <tr>
 		        <th width="5%">Id</th>
-		        <th>English</th>
-		        <th>China</th>
-		        <th>Thai</th>
+		        <th width="20%">English</th>
+		        <th width="20%">China</th>
+		        <th width="20%">Thai</th>
+		        <th width="20%">Key</th>
+		        <th width="20%" style="display: none;">Link</th>
 		        <!--<th align="center" width="9%">ACTION</th>-->
 		      </tr>
 		    </thead>
@@ -64,6 +66,8 @@ $db_name = 'admin_app';
 			        <td class="tabledit-data" ></td>
 			        <td class="tabledit-data" ></td>
 			        <td class="tabledit-data" ></td>
+			        <td class="tabledit-data" ></td>
+			        <td class="tabledit-data" style="display: none;" ></td>
 		        </tr>
 		<? } else{
 	mysql_query("SET NAMES utf8"); 
@@ -77,6 +81,8 @@ $db_name = 'admin_app';
 		        <td class="tabledit-data" ><?=$arr[other][en];?></td>
 		        <td class="tabledit-data" ><?=$arr[other][cn];?></td>
 		        <td class="tabledit-data" ><?=$arr[other][th];?></td>
+		        <td class="tabledit-data" ><?=$arr[other][keyword];?></td>
+		        <td class="tabledit-data link" style="display: none;" ><a target="_blank" href="<?=$arr[other][link];?>"><?=$arr[other][link];?></a></td>
 		       
 		      </tr>
 		    <? }  
@@ -94,7 +100,7 @@ $('#example1').Tabledit({
     url: 'update.php',
     columns: {
         identifier: [0, 'Id'],
-        editable: [[1, 'English'], [2, 'China'], [3, 'Thai']]
+        editable: [[1, 'English'], [2, 'China'], [3, 'Thai'], [4, 'Keyword'], [5, 'Link']]
     },
 	  onSuccess: function(data, textStatus, jqXHR) {
 	      console.log(data);
@@ -108,6 +114,10 @@ $('#example1').Tabledit({
   }
 });
 
+var url_write = "write_define.php";
+$.post(url_write, function(data) {
+		console.log(data);
+});
 /*$('#example3').Tabledit({
     url: 'example.php',
     editButton: false,
@@ -133,6 +143,11 @@ $('#example1').Tabledit({
 						alert('error');
 					}
 		});
+	});
+	$('.link').find('span').each (function() {
+	  	var link = $(this).text();
+	  	console.log(link);
+	  	$(this).html('<span class="tabledit-span"><a target="_blank" href="'+link+'" >'+link+'</a></span>');
 	});
 </script>
 
@@ -173,6 +188,8 @@ $('#example1').Tabledit({
 	
 	   	$('#tbody_table_type tr[data-id="0"]').remove();
 	}
+	
+	
 	
 </script>
 

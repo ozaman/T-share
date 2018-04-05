@@ -10,26 +10,7 @@
         <script type="text/javascript" src="js/craftpip/demo/demo.min.js?v=<?=time();?>"></script> 
         <!--END BOOTSTRAP-FULLSCREEN-SELECT files-->
 <style>
-<?php
-switch ($_COOKIE['lng']){
-    case "th":
-        //echo "PAGE th";
-        include("includes/lang/th/t_share.php");//include check session DE
-        break;
-    case "cn":
-        //echo "PAGE cn";
-        include("includes/lang/cn/t_share.php");
-        break;
-    case "en":
-        //echo "PAGE EN";
-        include("includes/lang/en/t_share.php");
-        break;        
-    default:
-        //echo "PAGE EN - Setting Default";
-        include("includes/lang/th/t_share.php");//include EN in all other cases of different lang detection
-        break;
-} 
-?>
+
 	
 	.my-padding{
     /* margin-top: 55px; */
@@ -145,29 +126,7 @@ font-size: 20px !important;
 <div class="my-padding" style="margin-top:  0px;">  
 	<div id="tag_your_area" style="margin-top: 15px;">
     
-		<!--<table width="100%">
-				<tr>
-				<td><div id="open_map" style="width: 150px;width: 100%;
-		border: 1px solid #ddd;
-		padding: 5px;
-		border-radius : 10px;
-		box-shadow: 1px 1px 5px #ddd;margin-bottom: 10px;" align="center" ><strong><span class="font-26">แผนที่</span></strong>&nbsp;
-		<i class="fa fa-map-marker" aria-hidden="true" style="font-size:20px;"></i></div></td>
-			</tr>
-			<tr>
-				<td>      
-				<div style="padding-left:0px;padding-right:0px;">
-				<button id="submit_this_pv"   class="btn_select"  style=" border-radius: 30px; "><strong class="font-26"  >ล็อกอินจังหวัด <span class="text-change-province"></span></strong></button></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<div style="padding-left:0px;padding-right:0px;margin-top: 10px;">
-				<button id="show_section" class="btn_select" style=" border-radius: 30px; "><strong class="font-26"  >ล็อกอินจังหวัดอื่น</strong></button></div>
-				</td>
-			</tr>
-			
-		</table>-->
+		
 		<div class="div-padding10" id="fade_in1">
 		<div class="main-box-col" style="border-left: 7px solid #019ad2;" id="open_map">
 		   <div class="main-box-icon font-28" style="background-color: #059bd229;"><i class="fa icon-app-uniF134-1 " aria-hidden="true"></i></div>
