@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-<input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE['lng'];?>">  
-=======
->>>>>>> 99aa219ad386704b9d778ef1eb2b498acc79e2b8
+<input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE['lng'];?>"> 
  <? 
  $get_lng = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		    $get_lng = $get_lng[0];
