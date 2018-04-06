@@ -136,13 +136,13 @@ font-size: 20px !important;
 		<div class="div-padding10" id="fade_in2">
 		<div class="main-box-col" style="border-left: 7px solid #3b5998;" id="submit_this_pv">
 		   <div class="main-box-icon font-28" style="background-color: #3e5b9930;" id="spec_marker"><i class="fa fa-map-marker " aria-hidden="true"></i></div>
-		   <div class="font-26 sub-box-txt" id="text_province_now"><span class="font-24"><? echo t_login_phuket?> (<span class="text-change-province"></span>)</span></div>
+		   <div class="font-26 sub-box-txt" id="text_province_now"><span class="font-24"><? echo t_login_province?> (<span class="text-change-province"></span>)</span></div>
 		</div>
 		</div>
 		<div class="div-padding10" id="fade_in3">
 		<div class="main-box-col" style="border-left: 7px solid #3f9684;" id="show_section" class="btn_select">
 		   <div class="main-box-icon font-26" style="background-color: #42978540;"><i class="fa fa-map-o" aria-hidden="true"></i></div>
-		   <div class="font-26 sub-box-txt"><span class="font-24"><? echo t_login_another_province?></span></div>
+		   <div class="font-26 sub-box-txt"><span class="font-24"><?=t_login_another_province;?></span></div>
 		</div>
 		</div>
 	</div>

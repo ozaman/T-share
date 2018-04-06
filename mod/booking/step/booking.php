@@ -161,7 +161,7 @@ $('#step_1').css('width','0%');
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr>
-					<td><div class="font-28" style="color:<?=$main_color?>"><b>เวลาถึงโดยประมาณ</div></td>
+					<td><div class="font-28" style="color:<?=$main_color?>"><b><?=t_time_to_place;?></b></div></td>
 					<td width="50" style="display: none;" id="row_accept">
 				
 
@@ -175,7 +175,7 @@ $('#step_1').css('width','0%');
 				<tbody>
 					<tr>
 						<td width="60%">
-							<div class="topicname" style="margin-left:-5px;">วันที่    &nbsp; <span class="font-26">     <?=date('Y-m-d');?></span> <span style="font-size: 22px;"> / </span> <span class="font-26" id="time_book_page"></span></div>
+							<div class="topicname" style="margin-left:-5px;"><?=t_date;?>    &nbsp; <span class="font-26">     <?=date('Y-m-d');?></span> <span style="font-size: 22px;"> / </span> <span class="font-26" id="time_book_page"></span></div>
 							<div class="input-group date" style="z-index:0">
 								<input type="text" class="form-control" value="<?=date('Y-m-d');?>"  name="transfer_date_new" id="transfer_date_new"    style="background-color:#FFFFFF; height:40px; font-size:16px; display:none " readonly>
 							</div>
@@ -199,11 +199,11 @@ $('#step_1').css('width','0%');
 																<tbody>
 																	<tr>
 																		<td width="50%" align="center">
-																			<div class="topicname"><center>ชั่วโมง</div>
+																			<div class="topicname"><center><?=t_hour;?></center></div>
 																			<div name="time_h_number" id="time_h_number" style="width:100%; font-size:22px;padding-top:5px;  height:40px; font-weight:bold" class="border-alert" ><strong>เลือก</strong></div>
 																		</td>
 																		<td width="50%" align="center">
-																			<div class="topicname"><center>นาที</div>
+																			<div class="topicname"><center><?=t_minutes;?></center></div>
 																			<div name="time_m_number" id="time_m_number" style="width:100%; font-size:22px; padding-top:5px; height:40px; font-weight:bold" class="border-alert-no" ><strong>เลือก</strong></div>
 																		</td>
 																	</tr>
@@ -219,7 +219,7 @@ $('#step_1').css('width','0%');
 																	<table width="100%" border="0" cellspacing="0" cellpadding="2">
 																		<tbody>
 																			<tr>
-																				<td width="180"> <div class="topicname">เวลาถึงโดยประมาณ</div></td>
+																				<td width="180"> <div class="topicname"><?=t_time_to_place;?></div></td>
 																				<td><div class="font-24" id="text_to_time" style="color:<?=$main_color?>"></div></td>
 																			</tr>
 																		</tbody>
@@ -247,7 +247,7 @@ $('#step_1').css('width','0%');
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 			<tbody>
 				<tr>
-					<td><div class="font-28" style="color:<?=$main_color?>"><b>จำนวนแขก</div></td>
+					<td><div class="font-28" style="color:<?=$main_color?>"><b><?=t_number_customers;?></b></div></td>
 					<td width="50" style="display: none;" id="row_accept_guest">
 				<img src="images/checked.png" width="35px"/>
 					</td>
@@ -259,21 +259,21 @@ $('#step_1').css('width','0%');
 				<tbody>
 					<tr>
 						<td width="50%" align="center">
-							<div class="topicname"><center>ผู้ใหญ่</div>
+							<div class="topicname"><center><?=t_adult;?></center></div>
 							<div name="adult_number" id="adult_number" style="width:100%; font-size:22px;padding-top:5px;  height:40px; font-weight:bold" class="border-alert-no" ><strong>เลือก</strong></div>
 							<input  name="adult"  type="hidden" class="form-control"  id="adult" value="0"   >
 							<input  name="child"  type="hidden" class="form-control"  id="child" value="0"   >
 							<input  name="pax"  type="hidden" class="form-control"  id="pax" value="0"   >
 						</td>
 						<td width="50%" align="center">
-							<div class="topicname"><center>เด็ก</div>
+							<div class="topicname"><center><?=t_child;?></center></div>
 							<div name="child_number" id="child_number" style="width:100%; font-size:22px; padding-top:5px; height:40px; font-weight:bold" class="border-alert-no" ><strong>เลือก</strong></div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div style="padding-top:5px; padding-bottom:5px; color:#FF0000; text-align:left" class="font-22"><center>
-				ผู้ลงทะเบียนต้องอายุ 18 ปี ขึ้นไป
+				<?=t_register_18y_full_txt;?>
 			</div>
 		</div>
 	</div>

@@ -41,7 +41,7 @@
    <table width="100%">
       <tr>
          <td>
-            <input class="search-box-shop font-22" id="search_shop" value="" onkeyup="searchPlace();" placeholder="ค้นหาจากชื่อ"  style=" border-radius: 20px; width:100%"/>
+            <input class="search-box-shop font-22" id="search_shop" value="" onkeyup="searchPlace();" placeholder="<?=t_search_by_name;?>"  style=" border-radius: 20px; width:100%"/>
          </td>
       </tr>
    </table>

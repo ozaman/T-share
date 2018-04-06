@@ -445,7 +445,7 @@
    confirmButtonColor: '#DD6B55',
    confirmButtonText: '<?=t_yes;?>',
    cancelButtonText: "<?=t_no;?>",
-   closeOnConfirm: true,
+   closeOnConfirm: false,
    closeOnCancel: true,
    html: true
    },
@@ -453,7 +453,9 @@
      if (isConfirm){
    
 		   $.post('signout.php?type=logout',function(){
-		   		 swal("<?=t_sign_out_successfully;?>", "success");
+		   		 swal("<?=t_sign_out_successfully;?>","", "success");
+		   		 setTimeout(function(){ 
+		   		 	window.location.href = "https://www.welovetaxi.com/app/demo/index.php";		}, 1000);
 		   });
   
      } else {

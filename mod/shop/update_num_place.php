@@ -59,5 +59,8 @@ $res[main] = $db->select_query("select id,status from shopping_product_main wher
 				echo json_encode($data);	
 			}
 		}
+		$recheck[pv] = $province; 
+		$recheck[area] = $area; 
+		echo json_encode($recheck);
 	}	
 ?>

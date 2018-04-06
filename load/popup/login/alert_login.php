@@ -111,7 +111,7 @@
                         <div class="button-close-popup-mod" ><?=$popup_icon_left_arow;?></div>
                      </td>
                      <td   >
-                        <div style="font-size:22px; color:#FFFFFF " id="text_mod_topic_action" class="text-topic-action-mod"><?=t_log_in;?></div>
+                        <div style=" color:#FFFFFF " id="text_mod_topic_action" class="text-topic-action-mod font-28"><?=t_log_in;?></div>
                      </td>
                      <td width="50" align="right"   >
                         <div style="font-size:22px; color:#FFFFFF " id="head_full_popup_icon"><i class="fa fa-sign-in" style=" font-size:26px;"  ></i></div>
@@ -151,7 +151,7 @@
                   			 $pass = $_COOKIE['app_remember_pass'];	
                   			 } ?>
                   		<input name="loginpassword"  id="loginpassword"  type="password" class="form-control"  style="font-size:18px ; height:40px;border-radius:20px"   value="<?=$pass;?>" placeholder="<?=t_password;?>" autocomplete="off">         	     
-                        <span class="glyphicon glyphicon-eye-open form-control-feedback" style="padding-right: 25px;font-size: 18px;top: 3px;" onclick="viewPassword();" ></span>
+                        <div id="check_view_pass" class="glyphicon glyphicon-eye-open form-control-feedback" style="padding-right: 25px;font-size: 18px;top: 3px;pointer-events: unset;" onclick="viewPassword();" role="0" ></div>
                      </div>
                      <div class="form-group has-feedback">
                         <div style="width:100%; background-color:#FFFFFF; margin-top:-10px; ">
@@ -182,12 +182,12 @@
                               </tr>
                               <tr>
                                  <td style="background-color:#FFFFFF "> 
-                                    <button type="button" id="submit_login" class="btn btn-repair waves-effect" style=" width: 100%; font-size: 22px; background-color: #3b5998; border-radius:  25px;margin-top:15px;text-transform: capitalize;" ><?=t_log_in;?></button>
+                                    <button type="button" id="submit_login" class="btn btn-repair waves-effect font-28" style=" width: 100%; background-color: #3b5998; border-radius:  25px;margin-top:15px;text-transform: capitalize;" ><?=t_log_in;?></button>
                                  </td>
                               </tr>
                               <tr>
-                                 <td style="background-color:#FFFFFF "><button type="button" id="forget_inform_login" class="btn btn-repair waves-effect" 
-                                    style=" width: 100%; font-size: 22px; background-color: #666666; border-radius:  25px;margin-top:15px;text-transform: capitalize;"><?=t_forgot_password;?></button></td>
+                                 <td style="background-color:#FFFFFF "><button type="button" id="forget_inform_login" class="btn btn-repair waves-effect font-28" 
+                                    style=" width: 100%; background-color: #666666; border-radius:  25px;margin-top:15px;text-transform: capitalize;"><?=t_forgot_password;?></button></td>
                               </tr>
                            </table>
                         </div>
@@ -248,6 +248,21 @@
 </script>
 <script>
 	function viewPassword(){
-		$('#loginpassword').attr('type','text');
+		
+		var check = $('#check_view_pass').attr('role');
+		console.log('view '+check);
+		if(check==0){
+			$('#loginpassword').attr('type','text');
+			$('#check_view_pass').attr('role','1');
+			$('#check_view_pass').removeClass('glyphicon-eye-open');
+			$('#check_view_pass').addClass('glyphicon-eye-close');
+		}else{
+			$('#loginpassword').attr('type','password');
+			$('#check_view_pass').attr('role','0');
+			$('#check_view_pass').removeClass('glyphicon-eye-close');
+			$('#check_view_pass').addClass('glyphicon-eye-open');
+		}
+	
+		
 	}
 </script>
