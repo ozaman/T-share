@@ -1,4 +1,4 @@
-  
+<input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE['lng'];?>">  
  <? 
 
 switch ($_COOKIE['lng']){
