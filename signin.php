@@ -4,31 +4,45 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>ระบบจัดการงานรถรับ-ส่ง</title>
-      <? include "css/color/taxi.php" ;	?>
-      <? include "css/maincss.php" ;	
-      $_COOKIE['lng'] = "en";
-      switch ($_COOKIE['lng']){
-    case "th":
-        //echo "PAGE th";
-        include("includes/lang/th/t_share_2.php");//include check session DE
-        $google_map_api_lng = "th";
-        break;
-    case "cn":
-        //echo "PAGE cn";
-        include("includes/lang/cn/t_share_2.php");
-        $google_map_api_lng = 'zh-CN';
-        break;
-    case "en":
-        //echo "PAGE EN";
-        include("includes/lang/en/t_share_2.php");
-        $google_map_api_lng = "en";
-        break;        
-    default:
-        //echo "PAGE EN - Setting Default";
-        include("includes/lang/cn/t_share_2.php");//include EN in all other cases of different lang detection
-        $google_map_api_lng = 'zh-CN';
-        break;
-} 
+	  <?php 
+	  		include "css/color/taxi.php" ;	
+	       	include "css/maincss.php" ;	
+	       
+	        $get_lng = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		    $get_lng = $get_lng[0];
+			$check_lng_browser = explode('-', $get_lng);
+			$check_lng_browser = $check_lng_browser[0];
+
+				if($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_browser == 'sh'){
+				 	$keep = 'cn';
+				}else if($check_lng_browser == 'th'){
+				 	$keep = 'th';
+				}else{
+				 	$keep = 'en';
+				}
+			
+		      switch ($_COOKIE['lng']){
+		    case "th":
+		        //echo "PAGE th";
+		        include("includes/lang/th/t_share_2.php");//include check session DE
+		        $google_map_api_lng = "th";
+		        break;
+		    case "cn":
+		        //echo "PAGE cn";
+		        include("includes/lang/cn/t_share_2.php");
+		        $google_map_api_lng = 'zh-CN';
+		        break;
+		    case "en":
+		        //echo "PAGE EN";
+		        include("includes/lang/en/t_share_2.php");
+		        $google_map_api_lng = "en";
+		        break;        
+		    default:
+		        //echo "PAGE EN - Setting Default";
+		        include("includes/lang/".$keep."/t_share_2.php");//include EN in all other cases of different lang detection
+		        $google_map_api_lng = $keep;
+		        break;
+		} 
       ?>
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -42,19 +56,44 @@
       <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
       <link rel="stylesheet" href="plugins/iCheck/square/green.css">
       <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
+
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <script type="text/javascript" src="js/dialog/main.js"></script>
       <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-      <!--background-color: #ffffff;
-         color: #F7941D !important;
-         border: 1px solid #F7941D;-->
+      
+	  <script>
+	  $(document).ready(function(){
+	  		console.log('check_browser : <?=$check_lng_browser;?> : <?=$keep;?>');
+	  		var check_cook = '<?=$_COOKIE["lng"];?>';
+	  		/*console.log("cookie_lng : "+check_cook);
+	  		if(check_cook=='th'){
+				setCookie('lng', 'th', 1, 0);
+			}else if(check_cook=='en'){
+				setCookie('lng', 'en', 1, 0);
+			}else if(check_cook=='cn'){
+				setCookie('lng', 'cn', 1, 0);
+			}else{
+				setCookie('lng', 'en', 1, 0);
+			}*/
+		});	
+	  </script>
+	  
       <style>
+      .btn-lng{
+	  	width: 35px !important;
+	  	margin-right: 18px;
+	  }
+	  @media screen and (max-width: 320px) {
+		  	.btn-lng{
+		  	width: 30px !important;
+		  	margin-right: 15px;
+		  }
+	  }
+      .Absolute-Center {
+		  margin: auto;
+		  position: absolute;
+		  top: 0; left: 0; bottom: 0; right: 0;
+		}
          .btn-repair{
          /*	padding: .84rem 2.14rem;*/
          font-size: .81rem;
@@ -106,6 +145,55 @@
          width: auto;
          }
          @media screen and (max-width: 320px) {
+         .font-18{
+         font-size : 10px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-20{
+         font-size : 12px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-22{
+         font-size : 14px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-24{
+         font-size : 16px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-26{
+         font-size : 18px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-28{
+         font-size : 20px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-30{
+         font-size : 22px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-32{
+         font-size : 24px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-34{
+         font-size : 26px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-36{
+         font-size : 28px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-38{
+         font-size : 30px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .text-resize{
+         color : #fff;
+         }
+         }
+         @media screen and (max-width: 320px) {
          /* styles for browsers larger than 960px; */
          .div-all-btn{
          padding:5px;   
@@ -131,17 +219,66 @@
          text-align: left;
          }
          }
+		 .font-18{
+         font-size : 12px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-20{
+         font-size : 14px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-22{
+         font-size : 16px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-24{
+         font-size : 18px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-26{
+         font-size : 20px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-28{
+         font-size : 22px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-30{
+         font-size : 24px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-32{
+         font-size : 26px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-34{
+         font-size : 28px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-36{
+         font-size : 30px !important;
+         font-family: 'Arial', sans-serif;
+         }
+         .font-38{
+         font-size : 32px !important;
+         font-family: 'Arial', sans-serif;
+         }
       </style>
    </head>
    <body >
-      <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; ">
+   	  <div align="right" style="margin-top: 5px; padding: 3px;"> 
+   	  		<img src="images/icon_county/usa.ico" class="btn-lng" onclick="setCookie('lng', 'en', 1, 1);" >
+   	  		<img src="images/icon_county/thai.ico" class="btn-lng" onclick="setCookie('lng', 'th', 1, 1);">
+   	  		<img src="images/icon_county/china.ico" class="btn-lng" onclick="setCookie('lng', 'cn', 1, 1);">
+   	  </div>	
+      <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
             <td align="center">
                <div class="login-box">
-                  <div class="login-logo"  style="padding:0px; color:#FFFFCC; font-size:22px; text-transform:uppercase " >
-                     <br>
-                     <b> <img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:10px;"      />   
-                     <div style="margin-top: 15px; z-index:1;">
+                  <div class="login-logo"  style="padding:0px; color:#FFFFCC;" >
+                    
+                     <img src="images/logo.png?v=6" class="img_logo"    style="padding-bottom:0px;margin-top:0px;"      />   
+                     <div style="margin-top: 1px; z-index:1;">
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#F7941D; color:#FFFFFF;text-transform: capitalize;"   id="btn_login_register"><i class="fa  fa-user-plus" style="padding-right: 5px;"  ></i><span >&nbsp;<?=t_register_member;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#5a78b5; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_login">
                         <i class="fa fa-sign-in" style="padding-right:10px;" ></i><span >&nbsp;<?=t_log_in;?></span></button>
@@ -172,7 +309,28 @@
                           setTimeout(function () {
                         }, 500); //w
                         });
-                  
+                        $("#login_logo" ).click(function() {
+                        $("#load_form_main").hide();
+                          setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo_action.png");
+                        }, 500); //w
+                           setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo.png");
+                        }, 1000); //w
+                            setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo_action.png");
+                        }, 1500); //w
+                            setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo.png");
+                        }, 2000); //w
+                            setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo_action.png");
+                        }, 2500); //w
+                        setTimeout(function () {
+                        $("#login_logo").attr("src", "images/applogo.png");
+                        window.location.href = "index.php?newlogin=1"; //will redirect to your blog page (an ex: blog.html)
+                        }, 3000); //w
+                        });
                      </script>
                   </div>
                   <!-- /.login-logo -->
@@ -196,6 +354,7 @@
          </tr>
       </table>
       <? include "js/control.php" ;	?>
+
    </body>
 </html>
 
@@ -203,6 +362,7 @@
 </head>
 <body>
    <div class="containers">
+
    <style>
       .modal {
       text-align: center; 
@@ -254,3 +414,37 @@
          </tr>
       </tbody>
    </table>
+
+<script >
+//console.log("<?=$_COOKIE['lng'];?>");
+
+
+function setCookie(cname,cvalue,exdays,refresh) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    if(refresh==1){
+		window.location.href = "https://www.welovetaxi.com/app/demo/signin.php";
+	}
+    
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+</script>

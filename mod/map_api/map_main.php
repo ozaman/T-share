@@ -720,7 +720,7 @@
 			<table width="100%">
   				<tr>
   					<td>
-  				<input class="search-box-shop" id="search_shop" onkeyup="SearchPlace();" value="" placeholder="ค้นหาจากชื่อสถานที่" style=" border-radius: 15px; width:100%;padding:10px;height:35px;">
+  				<input class="search-box-shop" id="search_shop" onkeyup="SearchPlace();" value="" placeholder="<?=t_search_by_place;?>" style=" border-radius: 15px; width:100%;padding:10px;height:35px;">
   				<i class="fa fa-search" aria-hidden="true" style="position:  absolute;right: 30px;top: 15px;font-size: 20px;" ></i>
   					</td>
   				</tr>

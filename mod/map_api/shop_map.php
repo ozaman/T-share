@@ -2,7 +2,20 @@
 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 $res[project] = $db->select_query("SELECT * FROM shopping_product where id=".$_GET[id]."  ");
 $arr[project] = $db->fetch($res[project]);
+
+ $query_topic = "topic_cn"; 
+   	if($_COOKIE['lng']=="th"){
+   		$query_topic = "topic_th"; 
+   	}else if($_COOKIE['lng']=="en"){
+   		$query_topic = "topic_en"; 
+   	}else if($_COOKIE['lng']=="cn"){
+   		$query_topic = "topic_cn"; 
+   	}
+ $res[projecttype] = $db->select_query("SELECT ".$query_topic." as name,id FROM shopping_product_sub where   id=".$arr[project][main]."  ");
+ $arr[projecttype] = $db->fetch($res[projecttype]);
+ 
 $day_now =  date('D');
+
 ?>
 
 	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="row_place_<?=$arr[project][id];?>" >
@@ -18,8 +31,8 @@ $day_now =  date('D');
        			</td>
        			<td >
        				<div class="element_to_find">
-       				<span class="font-22" style="color:<?=$main_color?>" ><? echo $arr[project][topic_th];?> </span><br>  
-       				<span class="font-22" style="color:#333333"><b><? echo $arr[project][topic_en];?></span>
+       				<span class="font-22" style="color:<?=$main_color?>" ><? echo $arr[projecttype][name];?> </span><br>  
+       				<span class="font-22" style="color:#333333"><b><? echo $arr[project][$query_topic];?></span>
        				</div>
        				</div>
        			</td>	
@@ -41,16 +54,14 @@ $count_days = $db->rows($res[opentime]);
       <span class="font-22">
       <?php
       if($count_days == 7){
-				?>
-				ทุกวัน
-				<?php
+				echo t_everyday;
 			}else{
 				?>
 				<table width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; ">วัน</td>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;">เวลาเปิด</td>
-						<td style="border-bottom: 1px dotted #abaab0; ">เวลาปิด</td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; "><?=t_day;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;"><?=t_open_time;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; "><?=t_close_time;?></td>
 					</tr>
 				
 				<?php
@@ -65,7 +76,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #ff6464;border-right:1px dotted #ff6464; border-top:1px dotted #ff6464;" >
-								เปิดตลอด 24 ชั่วโมง
+								<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -87,7 +98,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #abaab0;" >
-								เปิดตลอด 24 ชั่วโมง
+								<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -122,7 +133,7 @@ $count_days = $db->rows($res[opentime]);
     if($count_days == 7){
     ?>
     <tr >
-      <td   class="font-22">เวลาทำการ</td>
+      <td   class="font-22"><?=t_office_hours;?></td>
       <td>
       <span class="font-22">
     	<?php
@@ -141,9 +152,9 @@ $count_days = $db->rows($res[opentime]);
 					?>
 					<table width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; ">วัน</td>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;">เวลาเปิด</td>
-						<td style="border-bottom: 1px dotted #abaab0; ">เวลาปิด</td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; "><?=t_day;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;"><?=t_open_time;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; "><?=t_close_time;?></td>
 					</tr>
 				
 				<?php
@@ -158,7 +169,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #ff6464;border-right:1px dotted #ff6464; border-top:1px dotted #ff6464;" >
-								เปิดตลาด 24 ชั่วโมง
+								<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -180,7 +191,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #abaab0;" >
-								เปิดตลอด 24 ชั่วโมง
+								<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -206,9 +217,7 @@ $count_days = $db->rows($res[opentime]);
 					<?php
  
 				}else{
-					?>
-					เปิดตลอด 24 ชั่วโมง
-					<?php
+					echo t_open_over;
 				}
 				?>
 				
@@ -236,9 +245,9 @@ $count_days = $db->rows($res[opentime]);
 					?>
 				<table width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; ">วัน</td>
-						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;">เวลาเปิด</td>
-						<td style="border-bottom: 1px dotted #abaab0; ">เวลาปิด</td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0; "><?=t_day;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; border-right:1px dotted #abaab0;"><?=t_open_time;?></td>
+						<td style="border-bottom: 1px dotted #abaab0; "><?=t_close_time;?></td>
 					</tr>
 				
 				<?php
@@ -253,7 +262,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #ff6464;border-right:1px dotted #ff6464; border-top:1px dotted #ff6464;" >
-								เปิดตลอด 24 ชั่วโมง
+								<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -275,7 +284,7 @@ $count_days = $db->rows($res[opentime]);
 						if($arr[opentime][open_always] == 1){
 							?>
 							<td colspan="2" style="border-bottom: 1px dotted #abaab0;" >
-								เปิดตลอด 24 ชั่วโมง
+							<?=t_open_over;?>
 							</td>
 							
 							<?php
@@ -308,18 +317,18 @@ $count_days = $db->rows($res[opentime]);
       </tr>
     <?php } ?>
     <tr >
-<td class="font-22">ค่าตอบแทน</td>
+<td class="font-22"><?=t_work_remuneration;?></td>
       <td id="shop_alert_menu_price_<?=$arr[project][id]?>" >
       <table>
       	<tr>
-      		<td width="125"><span class="font-22">ดูค่าตอบแทน</span></td>
+      		<td width="125"><span class="font-22"><?=t_look_work_remuneration;?></span></td>
       		<td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
       	</tr>
       </table>
      </td>
     </tr>
     <tr id="contact_<?=$arr[project][id]?>" >
-<td class="font-22">สอบถาม</td>
+<td class="font-22"><?=t_contact;?></td>
       <td>
  
  
@@ -370,7 +379,7 @@ $count_days = $db->rows($res[opentime]);
   <a href="tel:<?=$arr[sale][phone]?>"  id="booking_edit_<?=$arr[project][id]?>"  style="color:#333333"  >                
     <table id="shop_alert_menu_call_<?=$arr[project][id]?>" >
       	<tr >
-      		<td width="125"><span class="font-22"> การตลาด (<?=$arr[sale][name]?>)</span></td>
+      		<td width="125"><span class="font-22"> <?=t_marketing;?> (<?=$arr[sale][name]?>)</span></td>
       		<td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
       	</tr>
       </table>  
@@ -396,22 +405,22 @@ $count_days = $db->rows($res[opentime]);
       </td>
     </tr>
     <tr <?=$display_none;?>>
-      <td class="font-22">ดาวน์โหลด</td>
+      <td class="font-22"><?=t_download;?></td>
       <td id="shop_alert_menu_index_load_<?=$arr[project][id]?>" onclick="openPopUpBrochure('<?=$arr[project][id]?>','<?=$arr[project][pic_book]?>','<?=$arr[project][pic_book_2]?>','<?=$arr[project][pic_book_3]?>')">
 	  <table>
       	<tr>
-      		<td width="125"><span class="font-22">โบร์ชัวร์</span></td>
+      		<td width="125"><span class="font-22"><?=t_bouchure;?></span></td>
       		<td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
       	</tr>
       </table>         
      </td>
     </tr>
     <tr >
-      <td class="font-22">สถานะ</td>
-      <td id="status_open_<? echo $arr[project][id];?>" class="font-22"><strong>เปิดให้บริการ</strong></td>
+      <td class="font-22"><?=t_status;?></td>
+      <td id="status_open_<? echo $arr[project][id];?>" class="font-22"><strong><?=t_open_now;?></strong></td>
     </tr>
     <tr   id="tr_time_open_<? echo $arr[project][id];?>" >
-      <td class="font-22">เหลือเวลา</td>
+      <td class="font-22"><?=t_remaining_time;?></td>
       <td>
 		<table width="100%" border="0" cellspacing="0" cellpadding="1">
   <tbody>
@@ -448,7 +457,7 @@ $count_days = $db->rows($res[opentime]);
 
       <div id="btn_open_<? echo $arr[project][id];?>" onclick="SelectPlace('<?=$arr[project][id];?>');">
       
-      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; "   ><span class="font-20"><i class="fa  fa-shopping-cart" style="width:20px;"   ></i><b>&nbsp; ส่งแขกช็อปปิ้ง</b></span></button>
+      <button id="menu_add_new_booking_text_<? echo $arr[project][id];?>" type="button tab_alert" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; "   ><span class="font-20"><i class="fa  fa-shopping-cart" style="width:20px;"   ></i><b>&nbsp; <?=t_send_to_shopping;?></b></span></button>
       
       </div>
 
@@ -468,8 +477,8 @@ $finish_m =  $arr[shop][finish_m];
 $time_of_open = "".$arr[shop][start_h].".".$arr[shop][start_m]." - ".$arr[shop][finish_h].".".$arr[shop][finish_m]."";
 }
 ?>      
-            <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones "><span class="font-20"> <b>  เปิดให้บริการ<br>
-เวลา  <? echo $time_of_open; ?></button>
+            <button id="menu_close_new_booking_text_<? echo $arr[project][id];?>" type="button" class="btn  btn-info "  style="width:100%;text-align:center;padding:5px; background-color:#666666; border:none; display:nones "><span class="font-20"> <b> <?=t_open_now;?></b></span><br>
+<?=t_time;?>  <? echo $time_of_open; ?></button>
         </div>
 
       </td>

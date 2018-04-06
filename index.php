@@ -505,13 +505,54 @@
    $lng_map = $google_map_api_lng;
    ?>
 <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places<?=$callback?>&language=<?=$lng_map;?>&v=<?=time();?>"></script>
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?=$lng_map;?>&v=<?=time();?>"></script>
 <?  include ("bootstrap/css/css.php");?> 
 <!-- <script src="https://www.welovetaxi.com/app/booking2/files/js/jquery.cookie.js"></script> -->
 <script src="dist/js/app.js"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
-<input type="text" name="" id='test111' value="aaaa">
+<input type="text" name="" id='test111' value="aaaa"/>
+
+
+
+<?php
+/*echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+echo "<br />";
+// RFC 2616 compatible Accept Language Parser
+// http://www.ietf.org/rfc/rfc2616.txt, 14.4 Accept-Language, Page 104
+// Hypertext Transfer Protocol -- HTTP/1.1
+
+foreach (explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']) as $lang) {
+    $pattern = '/^(?P<primarytag>[a-zA-Z]{2,8})'.
+    '(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)'.
+    '(?P<quantifier>\d\.\d))?$/';
+
+    $splits = array();
+
+    printf("Lang:,,%s''\n", $lang);
+    if (preg_match($pattern, $lang, $splits)) {
+        print_r($splits);
+    } else {
+        echo "\nno match\n";
+    }
+}
+$tt = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$tt = $tt[0];
+
+$final_tt = explode('-', $tt);
+$final_tt = $final_tt[0];*/
+//     @setcookie ("test2", '321', time() + (86400 * 30), "/"); // 86400 = 1 day
+
+
+
+?>
+
+
+
+
 <script >
+
+//alert("<?=$final_tt;?>");
+
    function language(lng) {
     console.log(lng);
     $.cookie("lng", lng, { path: '/' });

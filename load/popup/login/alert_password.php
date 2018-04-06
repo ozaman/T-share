@@ -42,7 +42,7 @@
                         <div class="button-close-popup-password" ><?=$popup_icon_left_arow;?></div>
                      </td>
                      <td   >
-                        <div style="font-size:22px; color:#FFFFFF " id="text_mod_topic_action" class="text-topic-action-mod">ลืมข้อมูลเข้าสู่ระบบ</div>
+                        <div style="font-size:22px; color:#FFFFFF " id="text_mod_topic_action" class="text-topic-action-mod"><?=t_forgot_password;?></div>
                      </td>
                      <td width="50" align="right"   >
                         <div style="font-size:22px; color:#FFFFFF " id="head_full_popup_icon"><i class="fa fa-unlock-alt" style=" font-size:26px;"  ></i></div>
@@ -51,7 +51,7 @@
                </table>
             </div>
             <div id="load_form_data_send_password" style=" margin-top:80px;display:none">sssssssssss</div>
-            <div id="load_form_main_password" class="password-box-body" style="padding:15px; margin-bottom:10px ; background-color:#FFFFFF;border: solid 0px #999999;box-shadow: 0 0 0px 0px #666666;border-radius: 15px; width:100%; display:nones; margin-top:50px; ">
+            <div id="load_form_main_password" class="password-box-body" style="padding:15px; margin-bottom:10px ; background-color:#FFFFFF;border: solid 0px #999999;box-shadow: 0 0 0px 0px #666666;border-radius: 15px; width:100%; display:nones; margin-top:40px; ">
                <div id="load_form">
                   <form method="post" id="password_form"  enctype="multipart/form-data" >
                      <div class="form-group has-feedback" style="display:none" >
@@ -75,8 +75,8 @@
                         .radio-password:hover { width:25px; height:25px; box-shadow:none; margin-top:10xp; background:none;}
                      </style>
                      <ul class="nav nav-tabs" style="width:100%; margin-top:10px;">
-                        <li class="active" style="width:50%; text-align:center" id="btn_load_select_password"><a style="font-size:18px;" >กู้รหัสผ่าน</a></li>
-                        <li   style="width:50%; text-align:center" id="btn_load_select_username"><a style="font-size:18px;" >กู้ชื่อผู้ใช้งาน</a></li>
+                        <li class="active" style="width:50%; text-align:center" id="btn_load_select_password"><a style="font-size:18px;" ><?=t_recovery_password;?></a></li>
+                        <li style="width:50%; text-align:center" id="btn_load_select_username"><a style="font-size:18px;" ><?=t_recovery_username;?></a></li>
                      </ul>
                      <script>
                         $("#btn_load_select_password").click(function(){ 
@@ -95,13 +95,13 @@
                      <div style="text-align:left; font-size:20px; font-weight:bold; margin-top:-30px;">
                         <table width="100%" border="0" cellspacing="5" cellpadding="5" style="margin-left:-10px; ">
                            <tbody>
-                              <tr  id="load_chk_password_username">
+                              <tr  id="load_chk_password_username" >
                                  <td>
                                     <table width="100%" border="0" cellspacing="0" cellpadding="1" >
                                        <tbody>
                                           <tr>
                                              <td width="30"><input class="radio-password"  type="radio" name="chk_remem" id="chk_password_username"  <?=$chk_remem;?>    ></td>
-                                             <td><font style="font-size: 18px ">ใช้ชื่อผู้ใช้งาน</font></td>
+                                             <td><font style="font-size: 18px "><?=t_user_name;?></font></td>
                                           </tr>
                                        </tbody>
                                     </table>
@@ -113,7 +113,7 @@
                                        <tbody>
                                           <tr>
                                              <td width="30"><input class="radio-password"  type="radio" name="chk_remem" id="chk_password_phone"      ></td>
-                                             <td><font style="font-size: 18px ">ทางเบอร์มือถือ</font></td>
+                                             <td><font style="font-size: 18px "><?=t_use_phone_number;?></font></td>
                                           </tr>
                                        </tbody>
                                     </table>
@@ -125,7 +125,7 @@
                                        <tbody>
                                           <tr>
                                              <td width="30"><input class="radio-password"  type="radio" name="chk_remem" id="chk_password_email"     ></td>
-                                             <td><font style="font-size: 18px ">ทางอีเมล์</font></td>
+                                             <td><font style="font-size: 18px "><?=t_email;?></font></td>
                                           </tr>
                                        </tbody>
                                     </table>
@@ -136,13 +136,16 @@
                         </table>
                      </div>
                      <div id="load_check_input_username" class="load_check_input">
-                        <input name="password_username"  class="form-control"   id="password_username" maxlength="7" style="font-size:18px ; height:40px;  text-transform:uppercase; background-color:#fff" value="" placeholder="กรุณากรอกชื่อผู้ใช้งาน" autocomplete="off">    
+                        <input name="password_username"  class="form-control font-24"   id="password_username" maxlength="7" style="font-size:18px ; height:40px;  text-transform: capitalize
+                         ; background-color:#fff" value="" placeholder="<?=t_please_enter_username;?>" autocomplete="off">    
                      </div>
                      <div id="load_check_input_phone" class="load_check_input">
-                        <input name="password_phone"  type="number" class="form-control"   id="password_phone" maxlength="10" style="font-size:18px ; height:40px;  text-transform:uppercase; background-color:#fff" value="" placeholder="กรุณากรอกเบอร์มือถือ" autocomplete="off">    
+                        <input name="password_phone"  type="number" class="form-control font-24"   id="password_phone" maxlength="10" style="font-size:18px ; height:40px;  
+                        text-transform: capitalize; background-color:#fff" value="" placeholder="<?=t_please_enter_phone_number;?>" autocomplete="off">    
                      </div>
                      <div id="load_check_input_email"  class="load_check_input">
-                        <input name="password_email"  class="form-control"   id="password_email" maxlength="1000" style="font-size:18px ; height:40px;   background-color:#fff" value="" placeholder="กรุณากรอกอีเมล์" autocomplete="off">    
+                        <input name="password_email"  class="form-control font-24"   id="password_email" maxlength="1000" style="font-size:18px ; height:40px;   background-color:#fff;
+                        text-transform: capitalize;" value="" placeholder="<?=t_please_enter_email;?>" autocomplete="off">    
                      </div>
                      <div id="send_password_data"> </div>
                      <div id="send_email_data"></div>
@@ -151,12 +154,16 @@
                <div class="form-group has-feedback"> 
                </div>
                <div class="form-group has-feedback">
-               <div style="width:100%; background-color:#FFFFFF; margin-top:-10px; "><table  border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color:#FFFFFF ">
+               <div style="width:100%; background-color:#FFFFFF; margin-top:-10px; ">
+               <table  border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color:#FFFFFF ">
                <tr>
                <td style="background-color:#FFFFFF "  > </td>
                </tr>
                <tr>
-               <td style="background-color:#FFFFFF ">  <button type="button" id="submit_password" class="btn btn-block btn-main-color" style="background-color:#17B3B2; color:#FFFFFF;font-size: 26px">ส่งรหัสผ่าน</button></td>
+               <td style="background-color:#FFFFFF "> 
+               
+        <button type="button" id="submit_password" class="btn btn-repair waves-effect" style="background-color:#3b5998; color:#FFFFFF;text-transform: capitalize !important;border-radius: 25px; margin-top: 25px;width: 100%;margin-left: 0px;">
+                <span class="font-24"><?=t_send_password;?></span></button></td>
                </tr>
                </table>
                </div>
@@ -168,8 +175,7 @@
       </div>
    </div>
 </div>
-</div>
-</div>
+
 <script>
    $(".load_check_input" ).hide(); 
        $("#load_check_input_username" ).show(); 
@@ -188,7 +194,7 @@
     $(".load_check_input" ).hide(); 
     $('#send_password_data').hide(); 
      $("#load_check_input_phone" ).show(); 
-   $("#send_password_type" ).val('phone'); 
+   	 $("#send_password_type" ).val('phone'); 
    	 $("#password_phone" ).val(''); 
    });
    $('#chk_password_email').click(function() {
@@ -205,7 +211,8 @@
     if(document.getElementById('send_password_type').value=="username") {
     /// เวลากลับ
     if(document.getElementById('password_username').value=="") {	  
-   alert('กรุณากรอกชื่อผู้ใช้งาน');  
+//   alert('<?=t_please_enter_username;?>');  
+    swal("<?=t_please_enter_username;?>","", "error");
     document.getElementById('password_username').focus() ; 
     return false ;
    }
@@ -213,7 +220,7 @@
     if(document.getElementById('send_password_type').value=="phone") {
     /// เวลากลับ
     if(document.getElementById('password_phone').value=="") {	  
-   alert('กรุณากรอกเบอร์โทรศัพท์');  
+   	swal("<?=t_please_enter_phone_number;?>","", "error");
     document.getElementById('password_phone').focus() ; 
     return false ;
    }
@@ -221,14 +228,40 @@
     if(document.getElementById('send_password_type').value=="email") {
     /// เวลากลับ
     if(document.getElementById('password_email').value=="") {	  
-   alert('กรุณากรอกอีเมล์');  
+
+   swal("<?=t_please_enter_email;?>","", "error");
     document.getElementById('password_email').focus() ; 
     return false ;
    }
    }
-    $('#send_password_data').show(); 
-    $.post('password_check.php',$('#password_form').serialize(),function(response){
-      $('#send_password_data').html(response);
-     });
+    	$('#send_password_data').show(); 
+	    $.post('password_check.php',$('#password_form').serialize(),function(response){
+	      	$('#send_password_data').html(response);
+	     });
     });
+</script>
+<script>
+
+	$( "#password_username" ).keyup(function() {
+		if($(this).val().length>1){
+			
+	  	$(this).css('text-transform','uppercase');
+	  	
+		}else{
+				$(this).css('text-transform','capitalize');
+		}
+	});
+	
+	$( "#password_phone" ).keyup(function() {
+		if($(this).val().length>1){
+			
+	  	$(this).css('text-transform','uppercase');
+	  	
+		}else{
+				$(this).css('text-transform','capitalize');
+		}
+	});
+	
+	
+	
 </script>
