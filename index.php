@@ -561,5 +561,5 @@ $final_tt = $final_tt[0];*/
     $.cookie("lng", lng, { path: '/' });
     window.location.reload();
    }
-   console.log('asasasas')
+   // console.log('asasasas')
 </script>
