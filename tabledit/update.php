@@ -10,7 +10,7 @@ $username = 'admin_MANbooking';
 $pass = '252631MANbooking';
 $db_name = 'admin_app';
 $input = filter_input_array(INPUT_POST);
-
+//echo $input;
 //$mysqli = new mysqli('localhost', 'root', '123', 'admin_dddtrip');
 $db = New DB();
 $db->connectdb($db_name,$username,$pass);
@@ -27,12 +27,13 @@ if ($input['action'] === 'edit') {
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8"); 
   // $mysqli->query("UPDATE ap_language  SET s_eng ='" . $input['English'] . "', s_cn='" . $input['China'] . "', s_th='" . $input['Thai'] . "' WHERE i_id='" . $input['Id'] . "'");
- 	$data[en] = $input['English'];
-   	$data[cn] = $input['China'];
-   	$data[th] = $input['Thai'];
-   	$data[keyword] = $input['Keyword'];
-   	$data[link] = $input['Link'];
+ 	  $data[en] = mysql_real_escape_string($input["English"]);
+   	$data[cn] = $input["China"];
+   	$data[th] = $input["Thai"];
+   	$data[keyword] = $input["Keyword"];
+   	$data[link] = $input["Link"];
    	$data[last_update] = $current_date;
+
     $data[result] = $db->update_db($table,$data,"id = '".$input['Id']."' "); 
 } 
 

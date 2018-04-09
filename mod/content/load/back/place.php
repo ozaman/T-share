@@ -48,9 +48,9 @@ if($_GET[op] == ""){
       <td valign="top"><table width="100%" cellspacing="2" cellpadding="1" >
     <tr bgcolor="#990000" height=25>
      <td width="50" align="center" bgcolor="#999999"><CENTER>
-            <font color="#FFFFFF">แก้ไข</font>     
+            <font color="#FFFFFF"><? echo t_amend?></font>     
      </CENTER></td>
-     <td width="50" align="center" bgcolor="#999999"><font color="#FFFFFF">ลบ</font></td>
+     <td width="50" align="center" bgcolor="#999999"><font color="#FFFFFF"><? echo t_delete?></font></td>
       
      <td width="300" height="30" align="center" bgcolor="#999999"><font color="#FFFFFF">EN</font></td>
      
@@ -59,7 +59,7 @@ if($_GET[op] == ""){
      <td width="300" align="center" bgcolor="#999999"><font color="#FFFFFF">CN</font></td>
      <td align="center" bgcolor="#999999"><font color="#FFFFFF">Type</font></td>
     
-    <td width="60" align="center" bgcolor="#999999"><font color="#FFFFFF">สถานะ</font></td>
+    <td width="60" align="center" bgcolor="#999999"><font color="#FFFFFF"><? echo t_status?></font></td>
     </tr>  
   <?
  
@@ -110,7 +110,7 @@ while($arr[place] = $db->fetch($res[place])){
  $("#btn_menu_edit_place_<? echo $arr[place][id];?>").click(function(){
  
 			 
- $('#topic_edit').html('แก้ไข <? echo $arr[place][topic_en];?>:<? echo $arr[project][topic_th];?>');
+ $('#topic_edit').html('<? echo t_amend?> <? echo $arr[place][topic_en];?>:<? echo $arr[project][topic_th];?>');
 			 
   var url_page_type_<? echo $arr[place][id];?>= "go.php?name=content/load&file=place&op=sub_edit&id=<? echo $arr[place][id];?>&main=<? echo $arr[place][main];?>&sub=<? echo $arr[place][sub];?>";
  
@@ -147,15 +147,15 @@ while($arr[place] = $db->fetch($res[place])){
   
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
+		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
 		text: "<font style='font-size:22px'>ว่าต้องการลบ <? echo $arr[place][topic_th];?>",
 		type: "error",
 		showCancelButton: true,
 		animation:  false ,
 		
 		confirmButtonColor: '#DD6B55',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<? echo t_yes?>',
+		cancelButtonText: "<? echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -226,7 +226,7 @@ while($arr[place] = $db->fetch($res[place])){
            <font color="#FF0000">เปิด</font>
            <? } ?>
            <? if( $arr[place][status] <>1){ ?>
-           ปิด
+           <? echo t_close?>
   <? } ?>
   &nbsp; </td>
      </tr>
@@ -246,7 +246,7 @@ while($arr[place] = $db->fetch($res[place])){
    <br>
   <button type="button" class="btn btn-primary"   id="submit_data_sort" >
           <span id="txt_btn_save">
-           บันทึกข้อมูล
+           <? echo t_save_data?>
           </span>
         </button>
   
@@ -344,28 +344,28 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                       </td>
 		            </tr>
 		          <tr>
-		            <td><strong>ชื่อ EN : </strong></td>
+		            <td><strong><? echo t_first_name?> EN : </strong></td>
 		            <td><input name="topic_en" type="text" class="inputform" id="topic_en4" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_en];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>ชื่อ TH :</strong></td>
+		            <td><strong><? echo t_first_name?> TH :</strong></td>
 		            <td><input name="topic_th" type="text" class="inputform" id="topic_th" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_th];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>ชื่อ CN :</strong></td>
+		            <td><strong><? echo t_first_name?> CN :</strong></td>
 		            <td><input name="topic_cn" type="text" class="inputform" id="topic_cn" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_cn];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>เวลาทำการ :</strong></td>
+		            <td><strong><? echo t_office_hours?> :</strong></td>
 		            <td>เปิด&nbsp;
 		              <input name="start_time" type="text" class="inputform" id="start_time" style="width:70px; background:#FFFFFF" value="<? echo $arr[project][start_time];?>" />
-		              &nbsp; ปิด&nbsp;
+		              &nbsp; <? echo t_close?>&nbsp;
 		              <input name="finish_time" type="text" class="inputform" id="finish_time" style="width:70px; background:#FFFFFF" value="<? echo $arr[project][finish_time];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>จังหวัด :</strong></td>
+		            <td><strong><? echo t_province?> :</strong></td>
 		            <td><select name="province" id="province" style="width:500px;; font-size:16px; padding:5px; height:40px" >
-		              <option value="">- เลือกจังหวัด -</option>
+		              <option value="">- <?echo t_select_province ?> -</option>
 		              <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                          
@@ -390,27 +390,27 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </textarea></td>
 		            </tr>
 		          <tr>
-		            <td><strong>Link แผนที่ :</strong></td>
+		            <td><strong>Link <? echo t_maps?> :</strong></td>
 		            <td><input name="map" type="text" class="inputform" id="map" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][map];?>" /></td>
 		            </tr>
 		          <tr style="display:none">
-		            <td><strong>แผนที่ :</strong></td>
+		            <td><strong><? echo t_maps?> :</strong></td>
 		            <td>ละติดจูด&nbsp;
 		              <input name="lat" type="text" class="inputform" id="lat" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][start_time];?>" />
 		              &nbsp; ลองติจูด&nbsp;
 		              <input name="lng" type="text" class="inputform" id="lng" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][finish_time];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>เบอร์โทรศัพท์ :</strong></td>
+		            <td><strong><? echo t_phone_number?> :</strong></td>
 		            <td><input name="phone" type="text" class="inputform" id="phone3" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][phone];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>อีเมล์ :</strong></td>
+		            <td><strong><? echo t_email?> :</strong></td>
 		            <td><input name="topic_en" type="text" class="inputform" id="topic_en" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][email];?>" /> 
 		              %</td>
 		            </tr>
 		          <tr>
-		            <td><strong>ค่าคอมมิชชั่น :</strong></td>
+		            <td><strong><?echo t_com_fee?> :</strong></td>
 		            <td><input name="commission" type="text" class="inputform" id="commission" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][commission];?>" /></td>
 		            </tr>
           <tr>
@@ -418,7 +418,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
             <td>       
               <button type="button" class="btn btn-primary"   id="submit_data" >
                 <span id="txt_btn_save">
-                  บันทึกข้อมูล
+                  <? echo t_save_data?>
                   </span>
                 </button>
               <script>
@@ -516,30 +516,30 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
               </td>
           </tr>
 		          <tr>
-		            <td><strong>ชื่อ EN : </strong></td>
+		            <td><strong><? echo t_first_name?> EN : </strong></td>
 		            <td><input name="topic_en" type="text" class="inputform" id="topic_en" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_en];?>" />
 		              </td>
 		            </tr>
 		          <tr>
-                    <td><strong>ชื่อ TH :</strong></td>
+                    <td><strong><? echo t_first_name?> TH :</strong></td>
                     <td><input name="topic_th" type="text" class="inputform" id="topic_th" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_th];?>" /></td>
 		            </tr>
 		          <tr>
-                    <td><strong>ชื่อ CN :</strong></td>
+                    <td><strong><? echo t_first_name?> CN :</strong></td>
                     <td><input name="topic_cn" type="text" class="inputform" id="topic_cn" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_cn];?>" />
                     </td>
 		            </tr>
 		          <tr>
-		            <td><strong>เวลาทำการ :</strong></td>
+		            <td><strong><? echo t_office_hours?> :</strong></td>
 		            <td>เปิด&nbsp;
 		              <input name="start_time" type="text"   id="start_time" style="width:70px; background:#FFFFFF" value="<? echo $arr[project][start_time];?>" /> 
-		              &nbsp; ปิด&nbsp;
+		              &nbsp; <? echo t_close ?>&nbsp;
  <input name="finish_time" type="text" class="inputform" id="finish_time" style="width:70px; background:#FFFFFF" value="<? echo $arr[project][finish_time];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>จังหวัด :</strong></td>
+		            <td><strong><? echo t_province?> :</strong></td>
 		            <td><select name="province" id="province" style="width:500px;; font-size:16px; padding:5px; height:40px"  >
- 				  <option value="">- เลือกจังหวัด -</option>
+ 				  <option value="">- <? echo t_select_province?> -</option>
           
   <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
@@ -573,29 +573,29 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
 		            <td><input name="map" type="text" class="inputform" id="map" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][map];?>" /></td>
 		            </tr>
 		          <tr style="display:none">
-		            <td><strong>แผนที่ :</strong></td>
+		            <td><strong><? echo t_maps?> :</strong></td>
 		            <td>ละติดจูด&nbsp;
                       <input name="lat" type="text" class="inputform" id="lat" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][lat];?>" />
 &nbsp; ลองติจูด&nbsp;
 <input name="lng" type="text" class="inputform" id="lng" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][lng];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>เบอร์โทรศัพท์ :</strong></td>
+		            <td><strong><? echo t_phone_number?> :</strong></td>
 		            <td><input name="phone" type="text" class="inputform" id="phone" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][phone];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>อีเมล์ :</strong></td>
+		            <td><strong><? echo t_email?> :</strong></td>
 		            <td><input name="email" type="text" class="inputform" id="topic_en3" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][email];?>" /></td>
 		            </tr>
 		          <tr>
-		            <td><strong>ค่าคอมมิชชั่น :</strong></td>
+		            <td><strong><? echo t_com_fee?> :</strong></td>
 		            <td><input name="commission" type="text" class="inputform" id="commission" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][commission];?>" />
 %</td>
 		            </tr>
   
         <tr>
           <td width="150">&nbsp;</td>
-          <td><button type="button" class="btn btn-primary"   id="submit_data" > <span id="txt_btn_save"> บันทึกข้อมูล </span> </button>
+          <td><button type="button" class="btn btn-primary"   id="submit_data" > <span id="txt_btn_save"> <? echo t_save_data?> </span> </button>
             <script>
   $("#submit_data").click(function(){
 				 

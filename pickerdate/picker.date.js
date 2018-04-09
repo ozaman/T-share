@@ -653,8 +653,8 @@ DatePicker.prototype.parse = function( type, value, options ) {
  * Various formats to display the object in.
  */
 DatePicker.prototype.formats = (function() {
-console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-console.log(this.settings);
+// console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+// console.log(this.settings);
     // Return the length of the first word in a collection.
     function getWordLengthFromCollection( string, collection, dateObject ) {
 
@@ -699,7 +699,7 @@ console.log(this.settings);
             return string ? getFirstWordLength( string ) : this.settings.weekdaysShort[ dateObject.day ]
         },
         dddd: function( string, dateObject ) {
-            console.log(this.settings.weekdaysFull+"333333333333333333333333333")
+            // console.log(this.settings.weekdaysFull+"333333333333333333333333333")
             // If there's a string, then get the length of the first word.
             // Otherwise return the full selected weekday.
             return string ? getFirstWordLength( string ) : this.settings.weekdaysFull[ dateObject.day ]

@@ -4,7 +4,7 @@
 
  
 
- $(".text-topic-action-mod-3" ).html("QR Code แนะนำเพื่อน");
+ $(".text-topic-action-mod-3" ).html("<? echo t_recommend_friend?>");
  
  
   </script> 
@@ -17,7 +17,7 @@
     
   </tr>
   <tr>
-    <td align="center" style="padding-right:5px;font-size:20px; ">แนะนำคนขับรถ</td>
+    <td align="center" style="padding-right:5px;font-size:20px; "><? echo t_recommended_driver?></td>
   </tr>
   <tr>
     <td align="center" style="padding-right:5px; ">&nbsp;</td>

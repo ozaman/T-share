@@ -28,7 +28,7 @@
  
  
    <div class="box-header with-border">
-          <h2 class="box-title" style="padding-left: 0px; "><font class="font-30"><b>QR CODE แนะนำเพื่อน</b></h2>
+        <h2 class="box-title" style="padding-left: 0px; "><font class="font-30"><b><? echo t_recommend_friend?></b></h2>
    </div>
  
  

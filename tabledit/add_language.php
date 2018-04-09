@@ -100,7 +100,7 @@ $('#example1').Tabledit({
     url: 'update.php',
     columns: {
         identifier: [0, 'Id'],
-        editable: [[1, 'English'], [2, 'China'], [3, 'Thai'], [4, 'Keyword'], [5, 'Link']]
+        editable: [[1, "English"], [2, "China"], [3, "Thai"], [4, "Keyword"], [5, "Link"]]
     },
 	  onSuccess: function(data, textStatus, jqXHR) {
 	      console.log(data);

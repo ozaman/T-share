@@ -138,7 +138,7 @@
  
   
  <div class="<?= $coldata?>">
-  <h2 class="box-title" style="display:none"><span class="font-28"><b>เพิ่มรถใหม่</b></span></h2>
+  <h2 class="box-title" style="display:none"><span class="font-28"><b><? echo t_add_new_car?></b></span></h2>
                   
                      
                      
@@ -148,8 +148,8 @@
     <tr>
       <td width="50%">   
       <div class="topicname">
-      			<span class="font-24">ประเภทรถ</span></div>
-      				<select class="form-control mobileSelect" id="car_type2" name="car_type" data-animation="zoom" data-title="เลือกประเภทรถ" data-theme="white" >
+      			<span class="font-24"><? echo t_type_of_vehicle?></span></div>
+      				<select class="form-control mobileSelect" id="car_type2" name="car_type" data-animation="zoom" data-title="<? echo t_type_of_vehicle?>" data-theme="white" >
                   
                        <?
 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -173,8 +173,8 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<? echo t_ok?>',
+									     buttonCancel: '<? echo t_cancel?>'
 									});
 									
                                 })
@@ -182,10 +182,10 @@ $db->closedb ();
        </td>
       <td width="50%"> 
        <div class="topicname">
-       	<span class="font-24">ยี่ห้อรถ</span></div>
- 					 <select class="form-control mobileSelect" id="car_brand" name="car_brand" data-animation="zoom" data-theme="white" data-title="<table><tr><td width='110'><span style='font-size:20px;'>เลือกยี่ห้อรถ</span></td><td><input type='text' class='form-control filter_brand' style='height:35px;margin-top:-7px;' onkeyup='filterBrand()' /></td></tr></table>">
+       	<span class="font-24"><? echo t_car_brand?></span></div>
+ 					 <select class="form-control mobileSelect" id="car_brand" name="car_brand" data-animation="zoom" data-theme="white" data-title="<table><tr><td width='110'><span style='font-size:20px;'><? echo t_select_car_brand?></span></td><td><input type='text' class='form-control filter_brand' style='height:35px;margin-top:-7px;' onkeyup='filterBrand()' /></td></tr></table>">
                   
-                     <option value="">- เลือก -</option>
+                     <option value="">- <? echo t_select?> -</option>
                      	<? 
                      		foreach($cars as $value){ 
                      			if($arr[web_car][car_brand]==$value){ 
@@ -208,15 +208,15 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- เลือก -'){
+									 			if($(this).text()=='- <? echo t_select?> -'){
 													$(this).hide();
 												}else{
 													$(this).show();
 												}
 											});
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<? echo t_ok?>',
+									     buttonCancel: '<? echo t_cancel?>'
 									});
 									
                                 })
@@ -249,24 +249,24 @@ $db->closedb ();
   <tbody>
     <tr>
       <td width="50%">
-      <div class="topicname"><span class="font-24">รุ่น / ปีที่ผลิ</span></div>
+      <div class="topicname"><span class="font-24"><? echo t_model_year_manufacture?></span></div>
                     <input class="form-control" type="text" name="car_model" id="car_model"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_car][car_sub_brand]?>"   ></td>
               
       <td width="50%">
       <div class="topicname"><span class="font-24">สีรถ</span></div>
-                      <select class="form-control mobileSelect" id="car_color2" name="car_color" data-animation="zoom" data-title="เลือกสีรถ" data-theme="white" >
+                      <select class="form-control mobileSelect" id="car_color2" name="car_color" data-animation="zoom" data-title="<?echo t_choose_color?>" data-theme="white" >
                      
                 
  
                      
           <option value="White"  <? if($arr[web_car][car_color]=='White'){ echo 'selected=selected';} ?>  >ขาว</option>
-                       <option value="Black" <? if($arr[web_car][car_color]=='Black'){ echo 'selected=selected';} ?>>ดำ</option>
-                       <option value="Yellow" <? if($arr[web_car][car_color]=='Yellow'){ echo 'selected=selected';} ?>>เหลือง</option>
-                       <option value="Green" <? if($arr[web_car][car_color]=='Green'){ echo 'selected=selected';} ?>>เขียว</option>
-                        <option value="Red" <? if($arr[web_car][car_color]=='Red'){ echo 'selected=selected';} ?>>แดง</option>
-                        <option value="Gray" <? if($arr[web_car][car_color]=='Gray'){ echo 'selected=selected';} ?>>เทา</option>
-                       <option value="Golden Bronze" <? if($arr[web_car][car_color]=='Golden Bronze'){ echo 'selected=selected';} ?>>บรอนด์ทอง</option>
-                       <option value="Silver Bronze" <? if($arr[web_car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>>บรอนด์เงิน</option>
+                       <option value="Black" <? if($arr[web_car][car_color]=='Black'){ echo 'selected=selected';} ?>><?echo t_black?></option>
+                       <option value="Yellow" <? if($arr[web_car][car_color]=='Yellow'){ echo 'selected=selected';} ?>><?echo t_yellow ?></option>
+                       <option value="Green" <? if($arr[web_car][car_color]=='Green'){ echo 'selected=selected';} ?>><?echo t_green?></option>
+                        <option value="Red" <? if($arr[web_car][car_color]=='Red'){ echo 'selected=selected';} ?>><?echo t_red?></option>
+                        <option value="Gray" <? if($arr[web_car][car_color]=='Gray'){ echo 'selected=selected';} ?>><?echo t_gray?></option>
+                       <option value="Golden Bronze" <? if($arr[web_car][car_color]=='Golden Bronze'){ echo 'selected=selected';} ?>><?echo t_bronce_gold?></option>
+                       <option value="Silver Bronze" <? if($arr[web_car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>><?echo t_silver?></option>
                      </select>
                        <script type="text/javascript">
                                 $(function(){
@@ -278,15 +278,15 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- เลือก -'){
+									 			if($(this).text()=='- <? echo t_select?> -'){
 													$(this).hide();
 												}else{
 													$(this).show();
 												}
 											});
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<?echo t_ok?>',
+									     buttonCancel: '<?echo t_cancel?>'
 									});
 									
                                 })
@@ -305,18 +305,18 @@ $db->closedb ();
   <tbody>
     <tr>
       <td width="50%">            
-                     <div class="topicname"><span class="font-24">ทะเบียนรถ</span></div>
+                     <div class="topicname"><span class="font-24"><? echo t_car_registration_number?></span></div>
                     <input class="form-control" type="text" name="plate_num" id="plate_num"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_car][plate_num];?>" ></td>
       <td width="50%">   
-      <div class="topicname"><span class="font-24">สีป้ายทะเบียน</span></div>
+      <div class="topicname"><span class="font-24"><? echo t_license_plate_color?></span></div>
                      
-                    <select class="form-control mobileSelect" id="plate_color" name="plate_color" data-animation="zoom" data-title="เลือกสีป้ายทะเบียน" data-theme="white" >
+                    <select class="form-control mobileSelect" id="plate_color" name="plate_color" data-animation="zoom" data-title="<? echo t_choose_license_plate_color?>" data-theme="white" >
    
-                       <option value="" >- เลือก -</option>
-                       <option value="Green"  <? if($arr[web_car][plate_color]=='Green'){ echo 'selected=selected';} ?> >เขียว</option>
-                       <option value="Yellow"  <? if($arr[web_car][plate_color]=='Yellow'){ echo 'selected=selected';} ?>>เหลือง</option>
-                       <option value="Red"  <? if($arr[web_car][plate_color]=='Red'){ echo 'selected=selected';} ?>>แดง</option>
-                       <option value="Black" <? if($arr[web_car][plate_color]=='Black'){ echo 'selected=selected';} ?> >ดำ</option>
+                       <option value="" >- <? echo t_select?> -</option>
+                       <option value="Green"  <? if($arr[web_car][plate_color]=='Green'){ echo 'selected=selected';} ?> ><? echo t_green?></option>
+                       <option value="Yellow"  <? if($arr[web_car][plate_color]=='Yellow'){ echo 'selected=selected';} ?>><?echo t_yellow?></option>
+                       <option value="Red"  <? if($arr[web_car][plate_color]=='Red'){ echo 'selected=selected';} ?>><? echo t_red?></option>
+                       <option value="Black" <? if($arr[web_car][plate_color]=='Black'){ echo 'selected=selected';} ?> ><? echo t_black?></option>
                        
                      </select>
                      <script type="text/javascript">
@@ -329,15 +329,15 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- เลือก -'){
+									 			if($(this).text()=='- <? echo t_select?> -'){
 													$(this).hide();
 												}else{
 													$(this).show();
 												}
 											});
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<?echo t_ok?>',
+									     buttonCancel: '<?echo t_cancel?>'
 									});
 									
                                 })
@@ -365,8 +365,8 @@ $db->closedb ();
       			?>   
                      <div class="topicname"><span class="font-24">ภูมิภาค</span></div>
                      
-                    <select class="form-control mobileSelect" id="region" name="region" data-animation="zoom" data-title="เลือกภูมิภาค" data-theme="white" >
-                      	<option value="">- เลือก -</option>
+                    <select class="form-control mobileSelect" id="region" name="region" data-animation="zoom" data-title="<?echo t_select_region?>" data-theme="white" >
+                      	<option value="">- <? echo t_select?> -</option>
                       	<?php 
                       	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area  ORDER BY topic_th asc ");
@@ -397,15 +397,15 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- เลือก -'){
+									 			if($(this).text()=='- <? echo t_select?> -'){
 													$(this).hide();
 												}else{
 													$(this).show();
 												}
 											});
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<? echo t_ok?>',
+									     buttonCancel: '<? echo t_cancel?>'
 									});
 									
                                 })
@@ -414,11 +414,11 @@ $db->closedb ();
                     
                     </td>
       <td width="50%">   
-      <div class="topicname"><span class="font-24">จังหวัด</span></div>
+      <div class="topicname"><span class="font-24"><?echo t_province?></span></div>
                     
                       <div id="load_province">
-                      	<select class="form-control mobileSelect" id="province" name="province" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'>เลือกจังหวัด</span></td><td><input type='text' class='form-control filter_province' style='height:35px;margin-top:-7px;' onkeyup='filterProvince()' /></td></tr></table>" data-theme="white" >
-                      	<option value="">- เลือก -</option>
+                      	<select class="form-control mobileSelect" id="province" name="province" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'><? echo t_select_province?></span></td><td><input type='text' class='form-control filter_province' style='height:35px;margin-top:-7px;' onkeyup='filterProvince()' /></td></tr></table>" data-theme="white" >
+                      	<option value="">- <? echo t_select?> -</option>
                       
                       	<?php 
                       	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
@@ -444,15 +444,15 @@ $db->closedb ();
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- เลือก -'){
+									 			if($(this).text()=='- <? echo t_select?> -'){
 													$(this).hide();
 												}else{
 													$(this).show();
 												}
 											});
 									    },
-									     buttonSave: 'ตกลง',
-									     buttonCancel: 'ยกเลิก'
+									     buttonSave: '<?echo t_ok?>',
+									     buttonCancel: '<?echo t_cancel?>'
 									});
 									
                                 })
@@ -672,7 +672,7 @@ document.getElementById('plate_color_name').value=data_color;
     
 <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_car_3"></i><br>
 
-<span class="font-24">ถ่ายภาพด้านในรถ</span>
+<span class="font-24"><?echo t_take_picture_inside_car?></span>
 
 <div style="padding:5px;">
 
@@ -732,9 +732,9 @@ document.getElementById('plate_color_name').value=data_color;
   <table width="100%"  border="0" cellspacing="0" cellpadding="0" style="padding-top:0px;">
   <tr>
   	<td width="50%"  class="pad-l-5"><button type="reset" id="reset_form_editcar" class="btn btn-block btn-default"  style="width:width:100%;padding:10px;">
-  	รีเซ็ต</button></td>
+  	<?echo t_reset?></button></td>
     <td width="50%" class="pad-r-5"><button id="submit_step_3" type="button" class="btn btn-block btn-primary" style="width:100%;padding:10px;background-color:#3b5998; ">
-    บันทึกข้อมูล</button></td>
+    <?echo t_save_data?></button></td>
     
   </tr>
 </table><br>
@@ -964,8 +964,8 @@ return false ;
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: '<?=$main_color?>',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<? echo t_yes?>',
+		cancelButtonText: "<? echo t_no?>",
 		closeOnConfirm: false,
 		closeOnCancel: true,
 		html: true
@@ -981,7 +981,7 @@ return false ;
  $.post(url,$('#myform_data').serialize(),function(response){
 //   $('#send_form_data').html(response);
 //   alert(response);
-	swal("บันทึกสำเร็จ", "กดปุ่มเพื่อปิด!", "success");
+	swal("<? echo t_save_succeed?>", "<?echo t_press_button_close?>", "<? echo t_success?>");
 	setTimeout(function(){ 
 			$('.button-close-popup-mod-1').click();
 			autoclickAllcar();
