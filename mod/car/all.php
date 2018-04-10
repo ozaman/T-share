@@ -159,7 +159,7 @@ $res[project] = $db->select_query("SELECT * FROM   web_carall  where drivername=
             <button type="button" class="btn btn-default "    id="active_car_<?=$arr[project][id];?>"   style="width:100%">
               <center>
                 <div  class="font-30"><i class="fa fa-taxi "   style="color:<?=$main_color?>" ></i></div>
-              <span style="padding-bottom:20px;" class="font-22">  เปิดใช้งาน </span>
+              <span style="padding-bottom:20px;" class="font-22">  <? echo t_enable?> </span>
               </center>
               </button>
               
@@ -311,7 +311,7 @@ if($_GET[status] != ''){
         
         		<? if($arr[project][status]==1){ ?>
         
-       <font color="<?=$main_color?>"><strong>ใช้งาน</strong></font>
+       <font color="<?=$main_color?>"><strong><? echo t_using?></strong></font>
         
         
         <? } ?>
@@ -399,7 +399,7 @@ if($_GET[status] != ''){
  
 	   swal({
 		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
-		text: "<font style='font-size:22px'>ว่าต้องการเปิดใช้งาน",
+		text: "<font style='font-size:22px'><? echo t_need_to_enable?>",
 		type: "success",
 		showCancelButton: true,
 		confirmButtonColor: '<?=$main_color?>',

@@ -206,15 +206,15 @@ $("#td_extra_percent").hide();
         <select  class="form-control" name="price_plan_pay" id="price_plan_pay" style="width:150px;; font-size:20px; padding:5px; height:40px" >
           
  <? if($arr[open][open_driver]==1){ ?>
-          <option value="driver" <?  if($arr[price][pay_type]== 'driver'){ echo "selected=selected";} ?>>คนขับ</option>
+          <option value="driver" <?  if($arr[price][pay_type]== 'driver'){ echo "selected=selected";} ?>><? echo t_driver?></option>
           
           <? } ?>
  <? if($arr[open][open_counter]==1){ ?>
-          <option value="counter" <?  if($arr[price][pay_type]== 'counter'){ echo "selected=selected";} ?>>เคาน์เตอร์</option>
+          <option value="counter" <?  if($arr[price][pay_type]== 'counter'){ echo "selected=selected";} ?>><? echo t_counter?></option>
           <? } ?>
           
  <? if($arr[open][open_all]==1){ ?>
-          <option value="all" <?  if($arr[price][pay_type]== 'all'){ echo "selected=selected";} ?>>สมาชิก</option>
+          <option value="all" <?  if($arr[price][pay_type]== 'all'){ echo "selected=selected";} ?>><? echo t_member?></option>
           <? } ?>
           </select>
           
@@ -229,7 +229,7 @@ $("#td_extra_percent").hide();
     
         <select  class="form-control" name="price_plan_pay" id="price_plan_pay" style="width:150px;; font-size:20px; padding:5px; height:40px" >
  
-          <option value="company" >บริษัท</option>
+          <option value="company" ><? echo t_company?></option>
           
   
                 </select>
@@ -350,16 +350,16 @@ $("#td_extra_percent").hide();
         
         </td>
       <td width="20" class="font-28" id="td_extra_percent" style="display:none"><b>%</b></td>
-      <td width="120"><button type="button" class="btn btn-success btn-lg"   id="submit_data_update_extra"  style=" width:150px; margin-top:10px;"> <span id="txt_btn_save">อัพเดท <? if($_GET[control]=='user'){?>รายจ่าย
+      <td width="120"><button type="button" class="btn btn-success btn-lg"   id="submit_data_update_extra"  style=" width:150px; margin-top:10px;"> <span id="txt_btn_save">อัพเดท <? if($_GET[control]=='user'){?><? echo t_expenses?>
    
 <? } ?>
 
 
-  <? if($_GET[control]=='company'){?>รายรับ
+  <? if($_GET[control]=='company'){?><? echo t_receipts?>
    
 <? } ?>
              </span> </button></td>
-      <td> <button type="reset" class="btn btn-default btn-lg"   id="submit_data_set"   style=" width:150px; margin-top:10px;"> <span id="txt_btn_save2"> รีเซ็ต</span></button></td>
+      <td> <button type="reset" class="btn btn-default btn-lg"   id="submit_data_set"   style=" width:150px; margin-top:10px;"> <span id="txt_btn_save2"> <?echo t_reset?></span></button></td>
     </tr>
   </tbody>
 </table>

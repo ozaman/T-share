@@ -8,7 +8,7 @@
 <script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script>
 
  <script>
- $('.text-topic-action-mod').html('ข้อมูลและเอกสารสำคัญ');
+ $('.text-topic-action-mod').html('<? echo t_important_data_file?>');
  
  </script>
 
@@ -50,7 +50,7 @@
 			      
 				 
 		      <div> 
-                     <div class="topicname"><i class="fa  fa-credit-card"></i>&nbsp;บัตรประจำตัวประชาชน </div>
+                     <div class="topicname"><i class="fa  fa-credit-card"></i>&nbsp;<? echo t_identity_card?> </div>
 
 				  <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -79,7 +79,7 @@
 			  
 			           <div><br>
 
-                     <div class="topicname"><i class="fa fa-credit-card"></i>&nbsp;ใบอนุญาตขับขี่</div>
+                     <div class="topicname"><i class="fa fa-credit-card"></i>&nbsp;<? echo t_driver_license?></div>
 					 
 					   <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -133,8 +133,8 @@
  <table width="100%"  border="0" cellspacing="2" cellpadding="2" >
   <tr>
     
-    <td style="padding:5px;"><button type="reset" class="btn btn-block btn-default"  style="width:100%;padding:10px; ">รีเซ็ต</button></td>
-    <td width="150" style="padding:5 px;"><button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding:10px;background-color:#3b5998; ">บันทึกข้อมูล</button></td>
+    <td style="padding:5px;"><button type="reset" class="btn btn-block btn-default"  style="width:100%;padding:10px; "><? echo t_reset?></button></td>
+    <td width="150" style="padding:5 px;"><button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding:10px;background-color:#3b5998; "><? echo t_save_data?></button></td>
   </tr>
 </table>
  
@@ -205,14 +205,14 @@ return false ;
 										   	 setTimeout(function(){ 
 											 $('#save').fadeOut(3000);
 											 }, 1000);*/
-											 	swal("บันทึกสำเร็จ", "กดปุ่มเพื่อปิด!", "success");
+											 	swal("<? echo t_save_succeed?>", "<? echo t_press_button_close?>", "<? echo t_success?>");
 										   }
 										  else{
 											/* $('#error').show();
 										   	 setTimeout(function(){ 
 											 $('#error').fadeOut(3000);
 											 }, 1000);*/
-											 	swal("เกิดข้อผิดพลาด", "กดปุ่มเพื่อปิด!", "error");
+											 	swal("เกิดข้อผิดพลาด", "<? echo t_press_button_close?>", "<? echo t_error?>");
 										   }
 					                }
 					     });

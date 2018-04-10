@@ -1,6 +1,6 @@
 
  <script>
- $('.text-topic-action-mod').html('ข้อมูลส่วนตัวผู้ใช้งาน');
+ $('.text-topic-action-mod').html('<? echo t_user_info?>');
  
  </script>
 <style type="text/css">
@@ -86,7 +86,7 @@
             
             
 			 
-                    <div class="topicname-user">ชื่อผู้ใช้งาน</div>
+                    <div class="topicname-user"><? echo t_username?></div>
                     <input class="form-control" type="text" name="username" id="username" maxlength="50" required="true" style="width:100%" onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][username];?>"  readonly="readonly">
            		 
 					 </div> 
@@ -95,7 +95,7 @@
 					
 					<div class="<?= $coldata?>">
 			 
-                     <div class="topicname-user">รหัสผ่าน</div>
+                     <div class="topicname-user"><? echo t_password?></div>
                     <input class="form-control" type="text" name="password" id="password"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][password];?>" >
             
 					 </div> 
@@ -105,7 +105,7 @@
 					 
 					<div class="<?= $coldata?>">
 			 
-                     <div class="topicname-user">ชื่อ - นามสกุล (ไทย)</div>
+                     <div class="topicname-user"><? echo t_name_last_name_thai?></div>
                     <input class="form-control" type="text" name="name" id="name"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][name];?>" >
                      </div> 
 				 
@@ -113,7 +113,7 @@
 					
                     <div class="<?= $coldata?>">
 				 
-                     <div class="topicname-user">ชื่อ - นามสกุล (อังกฤษ)</div>
+                     <div class="topicname-user"><? echo t_name_last_name_english?></div>
                     <input class="form-control" type="text" name="name_en" id="name_en"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][name_en];?>" >
            
 					 </div> 
@@ -122,7 +122,7 @@
 					 
   <div class="<?= $coldata?>">
  
-                     <div class="topicname-user">ชื่อเล่น</div>
+                     <div class="topicname-user"><? echo t_nick_name?></div>
                     <input class="form-control" type="text" name="nickname" id="nickname"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][nickname];?>" >
 					 </div> 
 					 
@@ -130,7 +130,7 @@
                      
                     <div class="<?= $coldata?>">
  
-                     <div class="topicname-user">เลขบัตรประจำตัวประชาชน</div>
+                     <div class="topicname-user"><? echo t_identity_card_number?></div>
                     <input class="form-control" type="text" name="idcard" id="idcard"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][idcard];?>" >
                      </div> 
 		 
@@ -141,7 +141,7 @@
              
 					 <div class="<?= $coldata?>">
 			 
-                     <div class="topicname-user">หมายเลขใบขับขี่</div>
+                     <div class="topicname-user"><? echo t_driver_license_number?></div>
                     <input class="form-control" type="text" name="iddriving" id="iddriving"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][iddriving];?>" >
                     
           
@@ -153,7 +153,7 @@
 	 
                     <div class="<?= $coldata?>">
 		 
-                     <div class="topicname-user">ที่อยู่</div>
+                     <div class="topicname-user"><? echo t_address?></div>
                     <input class="form-control" type="text" name="address" id="address"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][address];?>" >
                      </div> 
 			 
@@ -162,7 +162,7 @@
                  		
                     <div class="<?= $coldata?>">
 			 
-                     <div class="topicname-user">เบอร์โทรศัพท์</div>
+                     <div class="topicname-user"><? echo t_phone_number?></div>
                     <input class="form-control" type="number" name="phone" id="phone"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][phone];?>" >
                      </div> 
 				 
@@ -170,7 +170,7 @@
  		
                     <div class="<?= $coldata?>">
 			 
-                     <div class="topicname-user">เบอร์โทรฉุกเฉิน</div>
+                     <div class="topicname-user"><? echo t_emergency_telephone_numbers?></div>
                     <input class="form-control" type="number" name="contact" id="contact"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][contact];?>"  >
 					<?  if($arr[web_user][contact]==""){ ?> <script type="text/javascript"> $('#contact').addClass("tab_alert2");</script> <? } ;?> 
  
@@ -198,8 +198,8 @@
      <div class="topicname-user"> 
       <table width="100%"  border="0" cellspacing="2" cellpadding="2">
   <tr>
-    <td width="50%"><button id="submit_user_data" type="button" class="btn btn-block btn-primary" style="width:100% ">บันทึกข้อมูล</button></td>
-    <td width="50%"><button type="reset" class="btn btn-block btn-default"  style="width:100% ">รีเซ็ต</button></td>
+    <td width="50%"><button id="submit_user_data" type="button" class="btn btn-block btn-primary" style="width:100% "><? echo t_save_data?></button></td>
+    <td width="50%"><button type="reset" class="btn btn-block btn-default"  style="width:100% "><? echo t_reset?></button></td>
   </tr>
 </table> 
  

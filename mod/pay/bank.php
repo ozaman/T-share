@@ -37,7 +37,7 @@
 </style>  
 
  <script>
- $('.text-topic-action-mod').html('ข้อมูลบัญชีธนาคาร');
+ $('.text-topic-action-mod').html('<? echo t_bank_account_information?>');
  
  </script>
 
@@ -59,7 +59,7 @@
 		            <div class="col-md-6">
 			      
  
-                    <div class="topicname"><i class="fa  fa-user"></i>&nbsp;ชื่อบัญชี</div>
+                    <div class="topicname"><i class="fa  fa-user"></i>&nbsp;<? echo t_account_name?></div>
                     <input class="form-control" type="text" name="pay_bank_name" id="pay_bank_name"   required="true"  onkeypress="UserEnter(this,event)" value="<?=$arr[web_user][pay_bank_name];?>"    >
               </div>
               
@@ -68,7 +68,7 @@
                 
  	 
 		       <div class="col-md-6">
-                     <div class="topicname"><i class="fa  fa-bank "></i>&nbsp;ธนาคาร </div>
+                     <div class="topicname"><i class="fa  fa-bank "></i>&nbsp;<? echo t_bank?> </div>
                      <select name="pay_bank" size="0"    id="pay_bank"  class="form-control"  >
 					 <? if($arr[web_user][pay_bank]<>""){ ?>
 					  <option selected="selected" value="<?=$arr[web_user][pay_bank]?>" ><?=$arr[web_user][pay_bank]?></option>
@@ -109,14 +109,14 @@
 		  <div class="col-md-6">
 			      
         
-                     <div class="topicname"><i class="fa fa-bank "></i>&nbsp;สาขาธนาคาร</div>
+                     <div class="topicname"><i class="fa fa-bank "></i>&nbsp;<? echo t_bank_branch?></div>
                     <input class="form-control" type="text" name="pay_bank_sub" id="pay_bank_sub"  required="true" onkeypress="PasswordEnter(this,event)"   value="<?=$arr[web_user][pay_bank_sub];?>" >
             </div>
 					
 					
 					
   <div class="col-md-6">
-<div class="topicname"><i class="fa fa-building-o"></i>&nbsp;เลขที่บัญชี</div>
+<div class="topicname"><i class="fa fa-building-o"></i>&nbsp;<? echo t_account_number?></div>
 <input type="number" name="pay_bank_number" id="pay_bank_number"  required="true"   value="<?=$arr[web_user][pay_bank_number];?>" class="form-control"  >
     </div>
  
@@ -140,7 +140,7 @@
     <div class="col-md-6"  >
 
 
-<button id="submit_user_bank" type="button" class="btn btn-block btn-primary" >บันทึกข้อมูล</button>
+<button id="submit_user_bank" type="button" class="btn btn-block btn-primary" ><? echo t_save_data?></button>
  
     </div>
 		 

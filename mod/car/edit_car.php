@@ -9,7 +9,7 @@
         <script type="text/javascript" src="js/craftpip/demo/demo.min.js?v=<?=time();?>"></script> 
         
         <script>
-        	$('.text-topic-action-mod-1').html('แก้ไขรถ');
+        	$('.text-topic-action-mod-1').html('<? echo t_edit_car?>');
         </script>
         <style>
     .btn-mobileSelect-gen{

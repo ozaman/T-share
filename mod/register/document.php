@@ -270,7 +270,7 @@ $("#btn_iddriver_finish").click(function(){
 
  
 <div class="topicname_main"><br>
-<i class="fa fa-folder-open" style="font-size:24px; height:20px; color:<?=$left_icon_menu_color?>"></i> ข้อมูลและเอกสารสำคัญ</div>
+<i class="fa fa-folder-open" style="font-size:24px; height:20px; color:<?=$left_icon_menu_color?>"></i> <? echo t_important_data_file?></div>
 
  <div class="box box-default">
  
@@ -284,13 +284,13 @@ $("#btn_iddriver_finish").click(function(){
  
 				 
 		      <div> 
-                <div class="topicname"><i class="fa  fa-credit-card"></i>&nbsp;บัตรประจำตัวประชาชน </div>
+                <div class="topicname"><i class="fa  fa-credit-card"></i>&nbsp;<? echo t_identity_card?> </div>
 
 				  <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="100%" style="padding-right:5px; ">
     
-   <div class="topicname_sub">หมายเลขบัตรประชาชน</div>
+   <div class="topicname_sub"><? echo t_identity_card_number?></div>
     
     
     <input name="idcard" type="text" class="form-control" id="idcard" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][idcard];?>" maxlength="13"     ></td>
@@ -299,7 +299,7 @@ $("#btn_iddriver_finish").click(function(){
     <tr>
     <td colspan="2" style="padding-right:5px; padding-top:10px; ">
     
-       <div class="topicname_sub">วันหมดอายุ</div>
+       <div class="topicname_sub"><? echo t_have_document_expire_date?></div>
     
     <div class="input-group date">
     
@@ -412,13 +412,13 @@ $check_photo=0;
 			  
 			           <div><br>
 
-                     <div class="topicname"><i class="fa fa-credit-card"></i>&nbsp;ใบอนุญาตขับขี่</div>
+                     <div class="topicname"><i class="fa fa-credit-card"></i>&nbsp;<? echo t_driver_license?></div>
 					 
 					   <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="100%" style="padding-right:5px; ">
     
-    <div class="topicname_sub">หมายเลขใบขับขี่</div>
+    <div class="topicname_sub"><? echo t_driver_license_number?></div>
     
     
     <input class="form-control" type="text" name="iddriving_new" id="iddriving_new"  required="true" onkeypress="PasswordEnter(this,event)"   value="<?=$arr[web_driver_edit][iddriving];?>" ></td>
@@ -428,7 +428,7 @@ $check_photo=0;
     <td colspan="2" style="padding-right:5px; padding-top:10px; ">
     
     
-    <div class="topicname_sub">วันหมดอายุ</div>
+    <div class="topicname_sub"><? echo t_have_document_expire_date?></div>
     
     <div class="input-group date">
    
@@ -521,7 +521,7 @@ $check_photo=0;
     <td colspan="2" style="padding-right:5px; padding-top:10px; ">
     
     
-    <div class="topicname_sub">วันหมดอายุ</div>
+    <div class="topicname_sub"><? echo t_have_document_expire_date?></div>
     <div class="input-group date">
    
                   <input type="text" class="form-control pull-right" value="<?=$arr[web_driver_edit][iddriver_finish];?>"  name="iddriver_finish" id="iddriver_finish"  readonly="true" style="background-color:#FFFFFF; height:35px; font-size:24px; ">               
@@ -601,7 +601,7 @@ $("#btn_insure_finish").click(function(){
   <tr>
     <td colspan="2" style="padding-right:5px; padding-top:10px; ">
     
-    <div class="topicname_sub">วันหมดอายุ</div>
+    <div class="topicname_sub"><? echo t_have_document_expire_date?></div>
     
     <div class="input-group date">
    
@@ -709,8 +709,8 @@ $("#btn_insure_finish").click(function(){
    <div  class="bottom_popup_form">
  <table width="100%"  border="0" cellspacing="0" cellpadding="0" style="padding-top:0px;">
   <tr>
-    <td width="50%" style="padding:0 px;" class="pad-r-5"><button id="submit_step_2" type="button" class="btn btn-block btn-primary" style="width:100%">บันทึกข้อมูล</button></td>
-    <td width="50%" style="padding:0px;" class="pad-l-5"><button type="reset" class="btn btn-block btn-default"  style="width:100% ">รีเซ็ต</button></td>
+    <td width="50%" style="padding:0 px;" class="pad-r-5"><button id="submit_step_2" type="button" class="btn btn-block btn-primary" style="width:100%"><? echo t_save_data?></button></td>
+    <td width="50%" style="padding:0px;" class="pad-l-5"><button type="reset" class="btn btn-block btn-default"  style="width:100% "><? echo t_reset?></button></td>
   </tr>
 </table>
  
