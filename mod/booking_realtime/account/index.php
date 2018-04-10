@@ -31,7 +31,7 @@
  
  
    <div class="box-header with-border">
-          <h2 class="box-title" style="padding-left: 0px; "><font class="font-30"><b>รายรับ</b></h2>
+          <h2 class="box-title" style="padding-left: 0px; "><font class="font-30"><b><? echo t_receipts?></b></h2>
    </div>
  
  
@@ -40,7 +40,7 @@
   <tr>
     <td><table width="100%"  border="0" cellspacing="2" cellpadding="2">
       <tr>
-        <td width="74" class="font-22" ><strong>เดือน </strong>
+        <td width="74" class="font-22" ><strong><? echo t_month?> </strong>
           <select name="data_m" id="data_m" style="height:40px;width:100%; font-size:20px ">
             <?
 				   for($ii=1;$ii<13;$ii++){
@@ -52,7 +52,7 @@
             <?  } ?>
             </select>
         </td>
-        <td width="120"  class="font-22"><strong>พ.ศ. </strong><br>
+        <td width="120"  class="font-22"><strong><? echo t_buddhist_calendar?> </strong><br>
           <select name="data_y" id="data_y"  style="height:40px;width:100%; font-size:20px ">
             <?
 				   for($ii=date('Y');$ii< date('Y')+2;$ii++){
@@ -63,17 +63,17 @@
               </option>
             <?  } ?>
           </select></td>
-        <td valign="bottom"  ><button type="button" id="btn_form" class="btn btn-block btn-primary btn-fx"  style="margin-left:5px;width:80px; height:40px; width:100% ">ค้นหา</button></td>
+        <td valign="bottom"  ><button type="button" id="btn_form" class="btn btn-block btn-primary btn-fx"  style="margin-left:5px;width:80px; height:40px; width:100% "><? echo t_searh?></button></td>
       </tr>
     </table>
       <br>
       
  
        <ul class="nav nav-tabs" style="width:100%; margin-top:0px;">
-    <li class="active" style="width:50%; text-align:center" id="btn_load_shop"><a  ><span class="font-24">งานช็อปปิ้ง</span></a></li>
+    <li class="active" style="width:50%; text-align:center" id="btn_load_shop"><a  ><span class="font-24"><? echo t_shopping?></span></a></li>
     
     
-    <li   style="width:50%; text-align:center" id="btn_load_all"><a ><span class="font-24">งานรับ-ส่ง</span></a></li>
+    <li   style="width:50%; text-align:center" id="btn_load_all"><a ><span class="font-24"><? echo t_job_received?></span></a></li>
  
  
   </ul>

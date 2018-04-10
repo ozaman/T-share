@@ -64,13 +64,13 @@ $arr[car] = $db->fetch($res[car]);
 			<tbody>
 				<tr>
 					<td width="40%" align="center">
-						<div class="topicname">ประเภท</div>
+						<div class="topicname">	<? echo t_type?></div>
 						<select class="form-control" name="car_type" id="car_type">
-							<option value=""  >-เลือก-</option>
+							<option value=""  >-<? echo t_select?>-</option>
 							<option value="เก๋ง"  <?
- if($arr[car][car_color]=='car'){ echo 'selected=selected';} ?>  >เก๋ง</option>
+ if($arr[car][car_color]=='car'){ echo 'selected=selected';} ?>  ><? echot_saloon?></option>
 							<option value="ตู้" <?
- if($arr[car][car_color]=='van'){ echo 'selected=selected';} ?>>ตู้</option>
+ if($arr[car][car_color]=='van'){ echo 'selected=selected';} ?>><? echo t_van?></option>
 							<option value="suv" <?
  if($arr[car][car_color]=='suv'){ echo 'selected=selected';} ?>>suv</option>
 							<option value="ตุ๊กๆ" <?
@@ -80,28 +80,28 @@ $arr[car] = $db->fetch($res[car]);
 							<option value="อื่นๆ" <?
  if($arr[car][car_color]=='other'){ echo 'selected=selected';} ?>>อื่นๆ</option>
 						</select></td>
-					<td width="30%" align="center"><div class="topicname">สีรถ</div>
+					<td width="30%" align="center"><div class="topicname"><? echo t_car_coloring?></div>
 						<select class="form-control" name="car_color" id="car_color">
-							<option value=""  >-เลือก-</option>
+							<option value=""  >-<? echo t_select?>-</option>
 							<option value="ขาว"  <?
- if($arr[car][car_color]=='White'){ echo 'selected=selected';} ?>  >ขาว</option>
+ if($arr[car][car_color]=='White'){ echo 'selected=selected';} ?>  ><? echo t_white?></option>
 							<option value="ดำ" <?
- if($arr[car][car_color]=='Black'){ echo 'selected=selected';} ?>>ดำ</option>
+ if($arr[car][car_color]=='Black'){ echo 'selected=selected';} ?>><? echo t_black?></option>
 							<option value="เหลือง" <?
- if($arr[car][car_color]=='Yellow'){ echo 'selected=selected';} ?>>เหลือง</option>
+ if($arr[car][car_color]=='Yellow'){ echo 'selected=selected';} ?>><? echo t_yellow?></option>
 							<option value="เขียว" <?
- if($arr[car][car_color]=='Green'){ echo 'selected=selected';} ?>>เขียว</option>
+ if($arr[car][car_color]=='Green'){ echo 'selected=selected';} ?>><? echo t_green?></option>
 							<option value="แดง" <?
- if($arr[car][car_color]=='Red'){ echo 'selected=selected';} ?>>แดง</option>
+ if($arr[car][car_color]=='Red'){ echo 'selected=selected';} ?>><? echo t_red?></option>
 							<option value="เทา" <?
- if($arr[car][car_color]=='Gray'){ echo 'selected=selected';} ?>>เทา</option>
+ if($arr[car][car_color]=='Gray'){ echo 'selected=selected';} ?>><? echo t_gray?></option>
 							<option value="บรอนด์ทอง" <?
- if($arr[car][car_color]=='Golden Bronze'){ echo 'selected=selected';} ?>>บรอนด์ทอง</option>
+ if($arr[car][car_color]=='Golden Bronze'){ echo 'selected=selected';} ?>><? echo t_bronce_gold?></option>
 							<option value="บรอนด์เงิน" <?
- if($arr[car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>>บรอนด์เงิน</option>
+ if($arr[car][car_color]=='Silver Bronze'){ echo 'selected=selected';} ?>><? echo t_silver?></option>
 						</select></td>
 					<td width="30%" align="center">
-						<div class="topicname">ทะเบียน</div>
+						<div class="topicname"><? echo t_car_registration_number?></div>
 						<input name="car_plate" type="text"   required="true" class="form-control" id="car_plate"  onkeypress="UserEnter(this,event)" value="<?=$arr[car][plate_num] ?>"    >
 					</td>
 				</tr>
@@ -143,13 +143,13 @@ $arr[car] = $db->fetch($res[car]);
 				$("#use_car_<?=$arr[projectcar][id]?>").click(function(){
 						///
 						swal({
-								title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-								text: "<font style='font-size:22px'>ว่าต้องการใช้ประจำ",
+								title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+								text: "<font style='font-size:22px'><? echo t_want_to_use_regularly?>",
 								type: "success",
 								showCancelButton: true,
 								confirmButtonColor: '<?=$main_color?>',
-								confirmButtonText: 'ใช่',
-								cancelButtonText: "ไม่ใช่",
+								confirmButtonText: '<? echo t_yes?>',
+								cancelButtonText: "<? echo t_no?>",
 								closeOnConfirm: true,
 								closeOnCancel: true,
 								html: true
@@ -171,14 +171,14 @@ $arr[car] = $db->fetch($res[car]);
 				$("#cancel_car_<?=$arr[projectcar][id]?>").click(function(){
 						///
 						swal({
-								title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-								text: "<font style='font-size:22px'>ว่าต้องการเลิกใช้งาน",
+								title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+								text: "<font style='font-size:22px'><? echo t_cancel_use?>",
 								type: "warning",
 								showCancelButton: true,
 								confirmButtonColor: '#FF0000',
 								///	confirmButtonClass: "btn-danger",
-								confirmButtonText: 'ใช่',
-								cancelButtonText: "ไม่ใช่",
+								confirmButtonText: '<? echo t_yes?>',
+								cancelButtonText: "<? echo t_no?>",
 								closeOnConfirm: true,
 								closeOnCancel: true,
 								html: true
@@ -206,7 +206,7 @@ $arr[car] = $db->fetch($res[car]);
 								<div class="dropdown" style="margin-left:-10px;">
 									<a style="height:40; padding-left:10px; padding-right:5px; font-size:20px;text-decoration: inherit;  " data-toggle="dropdown"><i class="fa fa-gear"></i>&nbsp;ตั้งค่าการใช้งานรถ</a>
 									<ul class="dropdown-menu" role="menu"  style="background-color:<?=$main_color?>; width:100%">
-										<li><a class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i>แก้ไขข้อมูลรถ</a></li>
+										<li><a class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i><? echo t_edit_car_info?></a></li>
 										<li><a  id="use_car_<?=$arr[projectcar][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i>ใช้รถประจำ</a></li>
 										<li><a id="cancel_car_<?=$arr[projectcar][id]?>" class="font-22" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i>ยกเลิกใช้รถ</a></li>
 									</ul>
@@ -353,7 +353,7 @@ $arr[car] = $db->fetch($res[car]);
 		<input name="check_use_car_id" type="hidden"  required="true" class="form-control" id="check_use_car_id" style="padding:4px 2px;width:100%;"   value="<?=$arr[project][wait_status]?>"   >
 		<input name="check_all_car" type="hidden"  required="true" class="form-control" id="check_all_car" style="padding:4px 2px;width:100%;"   value="<?=$all_car?>"   >
 		<a id="menu_add_new_car_booking">
-			<i class="fa fa-plus-circle"  style="color:<?=$main_color?>" ></i>  เพิ่มรถใหม่
+			<i class="fa fa-plus-circle"  style="color:<?=$main_color?>" ></i>  <? echo t_add_new_car?>
 		</a>
 		<span style="color:#FF0000" class="font-22">
 			<?

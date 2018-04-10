@@ -153,7 +153,17 @@ while ($arr[programtour] = $db->fetch($res[programtour])){
 	   echo "<option value=\"".$arr[programtour][id]."\"";
 	   if($arr[programtour][id] == $arr[web_car][car_type]){echo " Selected";}
 	  // echo ">".$arr[programtour][company]."</option>";
-echo ">".$arr[programtour][topic_th]." </option>";
+if ($_COOKIE["lng"] == 'th') {
+        echo ">".$arr[programtour][topic_th]." </option>";
+      }
+      else if ($_COOKIE["lng"] == 'cn') {
+       echo ">".$arr[programtour][topic_cn]." </option>";
+        
+      }
+       else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+        echo ">".$arr[programtour][topic_en]." </option>";
+        
+      }
 }
 $db->closedb ();
 ?>
@@ -363,14 +373,24 @@ $db->closedb ();
   <tbody>
     <tr>
       <td width="50%">            
-                     <div class="topicname"><span class="font-24">ภูมิภาค</span></div>
+                     <div class="topicname"><span class="font-24"><? echo t_region?></span></div>
                     <select class="form-control mobileSelect" id="region" name="region" data-animation="zoom" data-title="<? echo t_select_region?>" data-theme="white" >
                       	<option value="">- <? echo t_select?> -</option>
                       	<?php 
                       	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area  ORDER BY topic_th asc ");
                                    while($arr[region] = $db->fetch($res[region])) { ?>
-                             <option value="<?=$arr[region][id];?>"><?=$arr[region][topic_th];?></option> 
+                             <option value="<?=$arr[region][id];?>"><? if ($_COOKIE["lng"] == 'th') {
+        echo $arr[region][topic_th];
+      }
+      else if ($_COOKIE["lng"] == 'cn') {
+        echo $arr[region][topic_cn];
+        
+      }
+       else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+        echo $arr[region][topic_en];
+        
+      }?></option> 
                       	 <? } ?>
                      </select>
                      <script type="text/javascript">
@@ -415,7 +435,17 @@ $db->closedb ();
                       	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[pv] = $db->select_query("SELECT * FROM web_province  ORDER BY name_th asc ");
                                    while($arr[pv] = $db->fetch($res[pv])) { 
-                                   $txt = explode("/",$arr[pv][name_th]);
+                                   if ($_COOKIE["lng"] == 'th') {
+                                      $txt = explode("/",$arr[pv][name_th]);
+                                    }
+                                    else if ($_COOKIE["lng"] == 'cn') {
+                                       $txt = explode("/",$arr[pv][name_cn]);
+                                      
+                                    }
+                                     else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+                                       $txt = explode("/",$arr[pv][name_en]);
+                                      
+                                    } 
                                    ?>
                              <option value="<?=$txt[0];?>" class="<?=$arr[pv][area];?>"><?=$txt[0];?></option> 
                       	 <? } ?>

@@ -157,8 +157,19 @@ $res[programtour] = $db->select_query("SELECT * from  ".TB_carall_type."  ");
 while ($arr[programtour] = $db->fetch($res[programtour])){
 	   echo "<option value=\"".$arr[programtour][id]."\"";
 	   if($arr[programtour][id] == $arr[web_car][car_type]){echo " Selected";}
+     if ($_COOKIE["lng"] == 'th') {
+        echo ">".$arr[programtour][topic_th]." </option>";
+      }
+      else if ($_COOKIE["lng"] == 'cn') {
+       echo ">".$arr[programtour][topic_cn]." </option>";
+        
+      }
+       else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+        echo ">".$arr[programtour][topic_en]." </option>";
+        
+      }
 	  // echo ">".$arr[programtour][company]."</option>";
-echo ">".$arr[programtour][topic_th]." </option>";
+
 }
 $db->closedb ();
 ?>
@@ -259,7 +270,7 @@ $db->closedb ();
                 
  
                      
-          <option value="White"  <? if($arr[web_car][car_color]=='White'){ echo 'selected=selected';} ?>  >ขาว</option>
+          <option value="White"  <? if($arr[web_car][car_color]=='White'){ echo 'selected=selected';} ?>  ><? echo  t_white?></option>
                        <option value="Black" <? if($arr[web_car][car_color]=='Black'){ echo 'selected=selected';} ?>><?echo t_black?></option>
                        <option value="Yellow" <? if($arr[web_car][car_color]=='Yellow'){ echo 'selected=selected';} ?>><?echo t_yellow ?></option>
                        <option value="Green" <? if($arr[web_car][car_color]=='Green'){ echo 'selected=selected';} ?>><?echo t_green?></option>
@@ -363,7 +374,7 @@ $db->closedb ();
 				$arr[pro] = $db->fetch($res[pro]);
 		        
       			?>   
-                     <div class="topicname"><span class="font-24">ภูมิภาค</span></div>
+                     <div class="topicname"><span class="font-24"><?echo t_region?></span></div>
                      
                     <select class="form-control mobileSelect" id="region" name="region" data-animation="zoom" data-title="<?echo t_select_region?>" data-theme="white" >
                       	<option value="">- <? echo t_select?> -</option>
@@ -377,7 +388,22 @@ $db->closedb ();
 								   		$selected_area = '';
 								   }
                                    ?>
-                             <option value="<?=$arr[region][id];?>" <?=$selected_area;?> ><?=$arr[region][topic_th];?></option> 
+                             <option value="<?=$arr[region][id];?>" <?=$selected_area;?> ><?
+                              if ($_COOKIE["lng"] == 'th') {
+        echo $arr[region][topic_th];
+      }
+      else if ($_COOKIE["lng"] == 'cn') {
+        echo $arr[region][topic_cn];
+        
+      }
+       else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+        echo $arr[region][topic_en];
+        
+      }
+
+
+
+                             ?></option> 
                       	 <? } ?>
                      </select>
                      <script type="text/javascript">
@@ -423,8 +449,19 @@ $db->closedb ();
                       	<?php 
                       	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[pv] = $db->select_query("SELECT * FROM web_province where area = '".$arr[pro][area]."'  ORDER BY name_th asc ");
-                                   while($arr[pv] = $db->fetch($res[pv])) { 
-                                   $txt = explode("/",$arr[pv][name_th]);
+                                   while($arr[pv] = $db->fetch($res[pv])) {
+                                   if ($_COOKIE["lng"] == 'th') {
+                                      $txt = explode("/",$arr[pv][name_th]);
+                                    }
+                                    else if ($_COOKIE["lng"] == 'cn') {
+                                       $txt = explode("/",$arr[pv][name_cn]);
+                                      
+                                    }
+                                     else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
+                                       $txt = explode("/",$arr[pv][name_en]);
+                                      
+                                    } 
+                                  
                                    if($arr[web_car][province]==$txt[0]){
 								   		$selected_pv = 'selected';
 								   }else{
@@ -600,7 +637,7 @@ document.getElementById('plate_color_name').value=data_color;
 
 <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_car_1"></i><br>
 
-<span class="font-24">ถ่ายภาพด้านหน้ารถ</span>
+<span class="font-24"><? echo t_please_take_pictures_front_car?></span>
 
 <div style="padding:5px;">
 
@@ -635,7 +672,7 @@ document.getElementById('plate_color_name').value=data_color;
     
 <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_car_2"></i><br>
 
-<span class="font-24">ถ่ายภาพด้านข้างรถ</span>
+<span class="font-24"><? echo t_please_take_pictures_car_side?></span>
 
 <div style="padding:5px;">
 
@@ -959,8 +996,8 @@ return false ;
 */
  
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่าข้อมูลถูกต้อง",
+		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+		text: "<font style='font-size:22px'><? echo t_correct_information?>",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: '<?=$main_color?>',

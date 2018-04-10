@@ -103,7 +103,7 @@ font-size: 20px !important;
 			<tr>
 				<td>
 				<div style="padding-left:0px;padding-right:0px;margin-top: 10px;">
-				<button id="show_section" class="btn_select" style=" border-radius: 30px; "><strong class="font-26"  >ล็อกอินจังหวัดอื่น</strong></button></div>
+				<button id="show_section" class="btn_select" style=" border-radius: 30px; "><strong class="font-26"  ><? echo t_login_another_province?></strong></button></div>
 				</td>
 			</tr>
 			
@@ -116,7 +116,7 @@ font-size: 20px !important;
 		<table width="100%" >
 			<tr>
 				<td>
-					<span style="color: <?=$main_color?>" class="font-26" ><strong>เลือกภูมิภาค</strong></span>
+					<span style="color: <?=$main_color?>" class="font-26" ><strong><?echo t_select_region?></strong></span>
 				</td>
 			</tr>
 			<tr>
@@ -125,13 +125,13 @@ font-size: 20px !important;
 							<div class="btn-select"  align="center" id="btn_area">
 								<table width="100%">
 									<tr>
-										<td align="center"><span  id="txt_show_area" class="font-26">- เลือก -</span></td>
+										<td align="center"><span  id="txt_show_area" class="font-26">- <? echo t_select?> -</span></td>
 										<td width="20"><i class="fa fa-caret-down" aria-hidden="true"></i></td>
 									</tr>
 								</table>
 							</div>
-						<select class="mobileSelect" id="select_regoin" data-animation="zoom" data-title="เลือกภูมิภาค" data-theme="white" >
-                             <option value="" >- เลือก -</option>              
+						<select class="mobileSelect" id="select_regoin" data-animation="zoom" data-title="<? echo t_select_region?>" data-theme="white" >
+                             <option value="" >- <? echo t_select?> -</option>              
                        <?
                           $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area  ORDER BY topic_th asc ");
@@ -151,7 +151,7 @@ font-size: 20px !important;
 					$num_place_show = $num_place[num_all] ;
 					$none_area = '';
 					?> 
-					 <option value="<?=$arr[region][id];?>"><?=$arr[region][topic_th]." : ".$num_place_show." สถานที่";?></option> <?
+					 <option value="<?=$arr[region][id];?>"><?=$arr[region][topic_th]." : ".$num_place_show." <? echo t_place?>";?></option> <?
 				}                  ?>
                    
                    
@@ -167,7 +167,7 @@ font-size: 20px !important;
 		<table width="100%">
 			<tr>
 				<td>
-					<span style="color: <?=$main_color?>" class="font-26"><strong>เลือกจังหวัด</strong></span>
+					<span style="color: <?=$main_color?>" class="font-26"><strong><? echo t_select_province?></strong></span>
 				</td>
 			</tr>
 			<tr>
@@ -176,7 +176,7 @@ font-size: 20px !important;
 						<div class="btn-select" align="center" id="btn_province">
 						<table width="100%">
 									<tr>
-										<td align="center"><span  id="txt_show_province" class="font-26">- เลือก -</span></td>
+										<td align="center"><span  id="txt_show_province" class="font-26">- <? echo t_select?> -</span></td>
 										<td width="20"><i class="fa fa-caret-down" aria-hidden="true"></i></td>
 									</tr>
 								</table>
@@ -189,7 +189,7 @@ font-size: 20px !important;
 	</div>
 
 	<div style="width: 100%;margin-top: 20px;padding-left: 10px;padding-right: 10px;" align="center">
-		<button id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF;border-radius: 25px;border:1px solid #ddd;"><strong  class="font-26">ตกลง</strong> </button>
+		<button id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF;border-radius: 25px;border:1px solid #ddd;"><strong  class="font-26"><? echo t_ok?></strong> </button>
 	</div>	
 	</div>
 	<input type="hidden" value="" id="area_id"/>	
@@ -221,8 +221,8 @@ font-size: 20px !important;
 				    onOpen: function(){
 				        console.log('onOpen: '+this.val());
 				    },
-				     buttonSave: 'ตกลง',
-				     buttonCancel: 'ยกเลิก'
+				     buttonSave: '<? echo t_ok?>',
+				     buttonCancel: '<? echo t_cancel?>'
 				});
 				
             });
@@ -230,8 +230,8 @@ font-size: 20px !important;
 		<script>
 			function OpenProvince(){
 						$('#select_province').mobileSelect({
-									 buttonSave: 'ตกลง',
-					     			 buttonCancel: 'ยกเลิก',
+									 buttonSave: '<? echo t_ok?>',
+					     			 buttonCancel: '<? echo t_cancel?>',
 					     			 onClose: function(){
 					     			 	  var txt = $('#select_province option[value="'+$(this).val()+'"]').text();
 								       	  var value = $(this).val();
@@ -325,7 +325,7 @@ font-size: 20px !important;
 				    if(txt_area!=""){
 						$('#txt_show_area').text(txt_area);
 					}else{
-						$('#txt_show_area').text('- เลือก -');
+						$('#txt_show_area').text('- <? echo t_select?> -');
 					}
 				     
 				     	     
@@ -341,7 +341,7 @@ font-size: 20px !important;
 								  	  $('#txt_show_province').text(txt_pv);
 				     			  	  $('#province_id').val(province);
 								  }else{
-								  		 $('#txt_show_province').text('- เลือก -');
+								  		 $('#txt_show_province').text('- <? echo t_select?> -');
 								  }
 				     	$('#tag_your_area').fadeIn( "slow" );		
 						});
@@ -364,7 +364,7 @@ font-size: 20px !important;
 				 var province = $('#province_id').val();
 				 var province_name = $('#txt_pv_fr').val();			 
 				 if(province==""){
-				 	 alert('ไม่มีสินค้าในจังหวัดที่คุณอยู่');
+				 	 alert('<? echo t_no_products_your_province?>');
 //					 swal("ไม่มีสินค้าในจังหวัดที่คุณอยู่!")
 //				 	 $('#show_section').click();
 				 	 return;
@@ -421,7 +421,7 @@ $db = New DB();
 $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 	 ?>
 				<select class="mobileSelect" id="select_province" data-animation="zoom" data-title="เลือกจังหวัด" data-theme="white">
-                             <option value="" >- เลือก -</option>              
+                             <option value="" >- <? echo t_select?> -</option>              
 			 <?
 //                    $productand = 'and shopping_product>0';
                     $res[pv] = $db->select_query("SELECT id,name_th FROM web_province where area = '".$_GET[area]."' ".$productand."   ORDER BY name_th asc  ");
