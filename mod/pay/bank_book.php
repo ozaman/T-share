@@ -78,7 +78,7 @@ font-size: 20px !important;
 	<div class="col-md-6">
                      <div class="topicname"><i class="fa  fa-bank "></i>&nbsp;<? echo t_bank?> </div>
                     
-                     <select name="pay_bank" id="pay_bank"  class="form-control mobileSelect" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'>เลือกธนาคาร</span></td><td><input type='text' class='form-control filter_bank' style='height:35px;margin-top:-7px;' onkeyup='filterBank()' /></td></tr></table>" data-theme="white"  >
+                     <select name="pay_bank" id="pay_bank"  class="form-control mobileSelect" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'><?echo t_please_select_bank?></span></td><td><input type='text' class='form-control filter_bank' style='height:35px;margin-top:-7px;' onkeyup='filterBank()' /></td></tr></table>" data-theme="white"  >
                      <?php 
                      foreach($bank_list as $name){ 
                      	if($arr[web_user][pay_bank]==$name){
@@ -137,8 +137,8 @@ font-size: 20px !important;
 				    onOpen: function(){
 				        console.log('onOpen: '+this.val());
 				    },
-				     buttonSave: 'ตกลง',
-				     buttonCancel: 'ยกเลิก'
+				     buttonSave: '<? echo t_ok?>',
+				     buttonCancel: '<? echo t_cancel?>'
 				});
 				
             });

@@ -74,7 +74,7 @@
 					  <option selected="selected" value="<?=$arr[web_user][pay_bank]?>" ><?=$arr[web_user][pay_bank]?></option>
 					 <? } ?>
 					 
- <option value="" >-- กรุณาเลือกธนาคาร --</option>
+ <option value="" >-- <? echo t_please_select_bank?> --</option>
  	   
                        <option value="กรุงไทย" >กรุงไทย</option>
                        <option value="กสิกรไทย" >กสิกรไทย</option>

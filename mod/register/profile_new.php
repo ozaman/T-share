@@ -175,7 +175,7 @@
       }
       */
       if(document.getElementById('name').value=="") {
-      alert('กรุณากรอกชื่อ - นามสกุล (ภาษาไทย)'); 
+      alert('<? echo t_name_last_name_thai?>'); 
       document.getElementById('name').focus() ; 
       return false ;
       }
@@ -187,7 +187,7 @@
       }
       */
       if(document.getElementById('nickname').value=="") {
-      alert('กรุณากรอกชื่อเล่น'); 
+      alert('<? echo t_please_fill_in_nickname?>'); 
       document.getElementById('nickname').focus() ; 
       return false ;
       }
@@ -204,12 +204,12 @@
       }
       */
       if(document.getElementById('address').value=="") {
-      alert('กรุณากรอกที่อยู่'); 
+      alert('<? echo t_please_fill_in_address?>'); 
       document.getElementById('address').focus() ; 
       return false ;
       }
       if(document.getElementById('phone').value=="") {
-      alert('กรุณากรอกเบอร์โทรศัพท์'); 
+      alert('<? echo t_please_fill_in_phont_no?>'); 
       document.getElementById('phone').focus() ; 
       return false ;
       }
@@ -260,13 +260,13 @@
        });
        */
         swal({
-      	title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-      	text: "<font style='font-size:22px'>ว่าข้อมูลถูกต้อง",
+      	title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+      	text: "<font style='font-size:22px'><? echo t_correct_information?>",
       	type: "success",
       	showCancelButton: true,
       	confirmButtonColor: '#1BB4B4',
-      	confirmButtonText: 'แน่ใจ',
-      	cancelButtonText: "ไม่แน่ใจ",
+      	confirmButtonText: '<? echo t_yes?>',
+      	cancelButtonText: "<? echo t_no?>",
       	closeOnConfirm: true,
       	closeOnCancel: true,
       	html: true
