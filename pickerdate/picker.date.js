@@ -1325,6 +1325,34 @@ DatePicker.prototype.nodes = function( isOpen ) {
  * The date picker defaults.
  */
 DatePicker.defaults = (function( prefix ) {
+console.log('in csae date =================================')
+// console.log($('#set_lng_cookies').val())
+// var armonth = [];
+   
+//      var url_write = "https://www.welovetaxi.com/app/demo/tabledit/query_lng.php?type=t_calende_&lng="+$('#set_lng_cookies').val();
+//      console.log(url_write)
+// $.post(url_write,{lng:$('#set_lng_cookies').val(),key: 't_calende_'}, function(data) {
+//         console.log(data);
+//         console.log(data.result)
+//         datalng = data.result;
+        
+//             datalng.forEach(function(element,key  ) {
+//               if ($('#set_lng_cookies').val() == 'en') {
+//                     console.log(element);
+//                     console.log(key)
+//                     armonth.push(element.en);
+//               }
+//             });
+        
+// console.log(datalng+"-------------------------------------------------------------")
+// console.log(armonth)
+// }); 
+// alert($('#set_lng_cookies').val())
+    if ($('#set_lng_cookies').val() == 'en' || $('#set_lng_cookies').val() == '' || $('#set_lng_cookies').val() == undefined) {
+        var day_old = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
+        var month_old = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+        var today_old = 'today';
+        var close_old = 'Close';
 
     return {
 
