@@ -22,6 +22,7 @@
 /**
  * Globals and constants
  */
+
 var DAYS_IN_WEEK = 7,
     WEEKS_IN_CALENDAR = 6,
     _ = Picker._
@@ -34,6 +35,7 @@ var DAYS_IN_WEEK = 7,
 function DatePicker( picker, settings ) {
     console.log(picker)
     console.log(settings)
+     
 
     var calendar = this,
         element = picker.$node[ 0 ],
@@ -651,7 +653,8 @@ DatePicker.prototype.parse = function( type, value, options ) {
  * Various formats to display the object in.
  */
 DatePicker.prototype.formats = (function() {
-
+// console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+// console.log(this.settings);
     // Return the length of the first word in a collection.
     function getWordLengthFromCollection( string, collection, dateObject ) {
 
@@ -670,6 +673,8 @@ DatePicker.prototype.formats = (function() {
 
     // Get the length of the first word in a string.
     function getFirstWordLength( string ) {
+        
+        // console.log(string)
         return string.match( /\w+/ )[ 0 ].length
     }
 
@@ -694,7 +699,7 @@ DatePicker.prototype.formats = (function() {
             return string ? getFirstWordLength( string ) : this.settings.weekdaysShort[ dateObject.day ]
         },
         dddd: function( string, dateObject ) {
-
+            // console.log(this.settings.weekdaysFull+"333333333333333333333333333")
             // If there's a string, then get the length of the first word.
             // Otherwise return the full selected weekday.
             return string ? getFirstWordLength( string ) : this.settings.weekdaysFull[ dateObject.day ]
@@ -1324,6 +1329,7 @@ DatePicker.prototype.nodes = function( isOpen ) {
 /**
  * The date picker defaults.
  */
+
 DatePicker.defaults = (function( prefix ) {
 console.log('in csae date =================================')
 // console.log($('#set_lng_cookies').val())
@@ -1354,7 +1360,25 @@ console.log('in csae date =================================')
         var today_old = 'today';
         var close_old = 'Close';
 
+    }
+    else if ($('#set_lng_cookies').val() == 'cn') {
+        var day_old = [ '星期日', '星期一', '星期二', '星期三', ' 星期四', '星期五', '星期六' ];
+        var month_old = [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月' ];
+        var today_old = '今天';
+        var close_old = '关闭';
+
+    }
+    else if ($('#set_lng_cookies').val() == 'th') {
+        var day_old = [ 'อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส' ];
+        var month_old = [ 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม' ];
+        var today_old = 'วันนี้';
+        var close_old = 'ปิด';
+
+    } 
+    
+   
     return {
+
 
         // The title label to use for the month nav buttons
         labelMonthNext: 'Next month',
@@ -1365,15 +1389,15 @@ console.log('in csae date =================================')
         labelYearSelect: 'Select a year',
 
         // Months and weekdays
-        monthsFull: [ 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม' ],
+        monthsFull: month_old,
         monthsShort: [ 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.' ],
         weekdaysFull: [ 'อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์' ],
-        weekdaysShort: [ 'อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส' ],
+        weekdaysShort: day_old,//[ 'อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส' ],
 
         // Today and clear
-        today: 'วันนี้',
+        today: today_old,
         clear: 'ลบ',
-        close: 'ปิด',
+        close: close_old,
 
         // Picker close behavior
         closeOnSelect: true,

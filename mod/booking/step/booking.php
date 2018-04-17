@@ -141,6 +141,7 @@
    $('#step_1').css('width','0%');
    	$('#stepbar_book').appendTo('#main_load_mod_popup_3 #step_tab_booking');
 </script>
+<div style="padding-bottom:30px;" >
 <form method="post"  id="edit_form" name="edit_form">
    <link rel="stylesheet" href="plugins/iCheck/square/green.css?v=<?=time();?>">
    <script src="plugins/iCheck/icheck.min.js?v=<?=time();?>"></script>
@@ -752,9 +753,7 @@ return $name_type;
             </tr>
          </tbody>
       </table>
-      <p>&nbsp;</p>
-      <p>
-      </p>
+      
    </div>
 </form>
 <input type="hidden" value="0" id="check_t_h" />						
@@ -940,8 +939,7 @@ return $name_type;
    		});
 </script>
 <div  id="send_booking_data"></div>
-<br/>
-<br/>
+
 <script>
    function ClickPay(type){
    	if(type=='1'){
@@ -1120,3 +1118,4 @@ return $name_type;
    $('.button-close-popup-mod-3').click(function(){
    });
 </script>
+</div>
