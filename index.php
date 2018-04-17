@@ -52,6 +52,7 @@
          </style>-->
    </head>
    <body >
+      <input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE['lng'];?>">
       <script src="voice/src/recorder.js"></script>
       <script src="voice/src/Fr.voice.js"></script>
       <script src="voice/js/jquery.js"></script>
