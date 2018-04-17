@@ -52,16 +52,12 @@
          </style>-->
    </head>
    <body >
-      <input type="hidden" name="" id="set_lng_cookies" value="<?=$_COOKIE['lng'];?>">
       <script src="voice/src/recorder.js"></script>
       <script src="voice/src/Fr.voice.js"></script>
       <script src="voice/js/jquery.js"></script>
       <script src="voice/js/app.js"></script>
       <script src="js/jquery-main.js"></script>
-       <!-- <script src="https://raw.github.com/headjs/headjs/v0.96/dist/head.load.min.js"></script> -->
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
-
       <script>
          // $(document).ready(function(){
          //     	var cookie_lng = $.cookie("lng");
@@ -562,5 +558,5 @@ $final_tt = $final_tt[0];*/
     $.cookie("lng", lng, { path: '/' });
     window.location.reload();
    }
-   // console.log('asasasas')
+   console.log('asasasas')
 </script>

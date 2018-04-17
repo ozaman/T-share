@@ -1,4 +1,4 @@
-  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#showmap<?=$_GET[type] ?>" style="padding-left:5px; padding-right:5px;width:70% "  ><? echo t_upload_file?></button>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#showmap<?=$_GET[type] ?>" style="padding-left:5px; padding-right:5px;width:70% "  >อัพไฟล์</button>
   
   
   <? 

@@ -16,7 +16,7 @@
 		<tr style="display: nones;" id="row_select_region" class="area_select">
 			<td>
 				<select class="form-control" id="select_region" name="select_region" style="margin-top: 0px;border-radius:10px;" >
-					<option value="0">- <? echo t_select_region?> -</option>	
+					<option value="0">- เลือกภูมิภาค -</option>	
 					<?
                           $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area where shopping_product>0 ORDER BY topic_th asc ");
@@ -30,7 +30,7 @@
 				$num_place = $db->select_query("SELECT sum(num_place) as num_all FROM shopping_place_num where area = '".$arr[region][id]."' and status = 1 group by area ");
 				$num_place = $db->fetch($num_place)		  
                                   ?>
-                    <option value="<?=$arr[region][id];?>" <?=$selected_region;?>><?=$arr[region][topic_th]." : ".$num_place[num_all]." <? echo t_place?>";?></option>
+                    <option value="<?=$arr[region][id];?>" <?=$selected_region;?>><?=$arr[region][topic_th]." : ".$num_place[num_all]." สถานที่";?></option>
                  	<? }  $db->closedb ();?>
 				</select>
 			</td>
@@ -43,7 +43,7 @@
 		
 		<tr id="row_last_btn" style="display: nones;">
 			<td>
-				<button class="btn btn-block btn-primary"     id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF"><strong><?echo t_ok?></strong> </button>
+				<button class="btn btn-block btn-primary"     id="submit_select_pv" style="width:100%;margin-top: 10px; height:50px; background-color:<?=$main_color?>; color:#FFFFFF"><strong>ตกลง</strong> </button>
 			</td>
 		</tr>
 	</table>
@@ -146,7 +146,7 @@ $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 				$num_place = $db->select_query("SELECT sum(num_place) as num_all FROM shopping_place_num where province = '".$arr[pv][id]."' and status = 1 group by province ");
 				$num_place = $db->fetch($num_place)
                 	?>
-                    <option value="<?=$arr[pv][id];?>" class="<?=$arr[pv][area];?>" <?=$selected;?> ><?=$arr[pv][name_th]." : ".$num_place[num_all]." <? echo t_place?>";?></option>
+                    <option value="<?=$arr[pv][id];?>" class="<?=$arr[pv][area];?>" <?=$selected;?> ><?=$arr[pv][name_th]." : ".$num_place[num_all]." สถานที่";?></option>
                    <?  }
 					?>
 				</select>	

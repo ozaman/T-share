@@ -83,7 +83,7 @@ $text_w='100';
 
 if($_GET[control]=='company'){
 	
-	$company=t_company;
+	$company='บริษัท';
 	
 } else {
 	

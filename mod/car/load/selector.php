@@ -1,7 +1,7 @@
 <?php
 if($_GET[query]=='province'){ ?>
-	<select class="form-control mobileSelect" id="province" name="province" data-animation="zoom" data-theme="white" data-title="<table><tr><td width='110'><span style='font-size:20px;'><? echo t_select_province?></span></td><td><input type='text' value='' class='form-control filter_province' style='height:35px;margin-top:-7px;' onkeyup='filterProvince()' /></td></tr></table>" >
-                      	<option value="">- <? echo t_select?> -</option>
+	<select class="form-control mobileSelect" id="province" name="province" data-animation="zoom" data-theme="white" data-title="<table><tr><td width='110'><span style='font-size:20px;'>เลือกจังหวัด</span></td><td><input type='text' value='' class='form-control filter_province' style='height:35px;margin-top:-7px;' onkeyup='filterProvince()' /></td></tr></table>" >
+                      	<option value="">- เลือก -</option>
                       	
                       	<?php 
                       
@@ -28,7 +28,7 @@ if($_GET[query]=='province'){ ?>
 									    onOpen: function(){
 									        console.log('onOpen: '+this.val());
 									         $('.mobileSelect-container:visible').find('.mobileSelect-control').each (function() {
-									 			if($(this).text()=='- <? echo t_select?> -'){
+									 			if($(this).text()=='- เลือก -'){
 													$(this).hide();
 												}else{
 													$(this).show();
@@ -36,8 +36,8 @@ if($_GET[query]=='province'){ ?>
 												}
 											});
 									    },
-									     buttonSave: '<? echo t_ok?>',
-									     buttonCancel: '<? echo t_cancel?>'
+									     buttonSave: 'ตกลง',
+									     buttonCancel: 'ยกเลิก'
 									});
 									
                                 })

@@ -111,13 +111,13 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where  id='".$_
   ///
  
 	   swal({
-		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
 		text: "<font style='font-size:22px'>ว่าต้องการยืนยันการลงทะเบียน",
 		type: "success",
 		showCancelButton: true,
 		confirmButtonColor: '<?=$main_color?>',
-		confirmButtonText: '<? echo t_yes?>',
-		cancelButtonText: "<? echo t_no?>",
+		confirmButtonText: 'ใช่',
+		cancelButtonText: "ไม่ใช่",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -135,7 +135,7 @@ $res[project] = $db->select_query("SELECT * FROM  order_booking  where  id='".$_
  
  $('#booking_action').load(url_<?=$arr[project][id]?>); 
  
-  $('#status_<?=$arr[project][id]?>').html('<font style="font-size:22; color:#339900"><b><? echo t_register?></font>'); 
+  $('#status_<?=$arr[project][id]?>').html('<font style="font-size:22; color:#339900"><b>ลงทะเบียน</font>'); 
  
  
  
@@ -191,13 +191,13 @@ $('#booking_payment_<?=$arr[project][id]?>').show();
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
 		text: "<font style='font-size:22px'>ว่าต้องการยกเลิก",
 		type: "error",
 		showCancelButton: true,
 		confirmButtonColor: '#FF0000',
-		confirmButtonText: '<? echo t_yes?>',
-		cancelButtonText: "<? echo t_no?>",
+		confirmButtonText: 'ใช่',
+		cancelButtonText: "ไม่ใช่",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -213,7 +213,7 @@ $('#booking_payment_<?=$arr[project][id]?>').show();
  
  $('#booking_action').load(url_<?=$arr[project][id]?>); 
  
-  $('#status_<?=$arr[project][id]?>').html('<font style="font-size:22; color:#FF0000"><b><? echo t_cancel?></font>'); 
+  $('#status_<?=$arr[project][id]?>').html('<font style="font-size:22; color:#FF0000"><b>ยกเลิก</font>'); 
  
 
 
@@ -271,7 +271,7 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
       
       
       <a href="?name=booking&file=all" >
-      <button id="submit_load_booking" type="button" class="btn btn-block btn-default" style="width:100%; text-align:left " ><i class="fa fa-car"></i> <? echo t_all_jobs?></button>
+      <button id="submit_load_booking" type="button" class="btn btn-block btn-default" style="width:100%; text-align:left " ><i class="fa fa-car"></i> งานทั้งหมด</button>
       
       </a>
       
@@ -280,7 +280,7 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
       <td width="50%">  
       
             <a href="?name=booking&file=new" >
-      <button type="button" id="submit_new_booking" class="btn btn-block btn-default"  style="width:100%;text-align:left  "><i class="fa fa-plus-square"></i> <? echo t_add_new_job?></button>
+      <button type="button" id="submit_new_booking" class="btn btn-block btn-default"  style="width:100%;text-align:left  "><i class="fa fa-plus-square"></i> เพิ่มงานใหม่</button>
       
       </a>
       
@@ -359,26 +359,26 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
                  
  
       
-                  <button type="button" class="btn btn-warning font_22" style="height:40; padding-left:5px; padding-right:5px; font-size:20px " data-toggle="dropdown"><i class="fa fa-gear"></i>&nbsp;<? echo t_process?></button>
+                  <button type="button" class="btn btn-warning font_22" style="height:40; padding-left:5px; padding-right:5px; font-size:20px " data-toggle="dropdown"><i class="fa fa-gear"></i>&nbsp;จัดการ</button>
    
                   <ul class="dropdown-menu" role="menu"  style="background-color:<?=$main_color?>">
           
           
           
                   
-                 <li><a  href="?name=booking&file=edit&action=confirm&id=<?=$arr[project][id];?>"  style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i><? echo t_amend?></a></li>
+                 <li><a  href="?name=booking&file=edit&action=confirm&id=<?=$arr[project][id];?>"  style="color:#FFFFFF; font-size:22px"><i class="fa fa-edit"></i>แก้ไข</a></li>
   
  
                   
- <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i><? echo t_confirm_registration?></a></li>
+ <li><a  id="booking_confirm_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-check-square"></i>ยืนยันการลงทะเบียน</a></li>
                     
- <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i><? echo t_cancelled?></a></li>
+ <li><a id="booking_cancel_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-trash"></i>ยกเลิก</a></li>
  
   
  
  
                   
-<li><a id="booking_payment_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i><? echo t_payment?></a></li> 
+<li><a id="booking_payment_<?=$arr[project][id]?>" class="font_20" style="color:#FFFFFF; font-size:22px"><i class="fa fa-thumbs-up"></i>ชำระเงิน</a></li> 
    
  
  
@@ -393,7 +393,7 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
 	                   if($arr[project][status] == "CANCEL" ) { 
                           echo "#ff0000" ;
 						  
-						  $status=t_cancelled;
+						  $status="ยกเลิก";
 						  
                         }
 	 
@@ -406,7 +406,7 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
                         if($arr[project][status] == "CONFIRM" ) {
                           echo "#339900" ;
 						  
-						   $status=t_register;
+						   $status="ลงทะเบียน";
                         }?>">
      
      <b> <?=$status;?>
@@ -460,7 +460,7 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
         </tr>
         <tbody>
           <tr>
-            <td  class="font_16"><font color="#999999"><i class="fa  fa-calendar"></i></font>&nbsp;<b><? echo t_date?> </td>
+            <td  class="font_16"><font color="#999999"><i class="fa  fa-calendar"></i></font>&nbsp;<b>วันที่ </td>
             <td class="font_18"><?=$arr[project][transfer_date];?>&nbsp;&nbsp;</td>
           </tr>
           <tr>
@@ -469,13 +469,13 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
             
             <? if($arr[project][airout_h]>0){ ?>
 			
-			<?=$arr[project][airout_h];?> <? echo t_hour?>
+			<?=$arr[project][airout_h];?> ชั่วโมง
             
             <? } ?>
             
                         <? if($arr[project][airout_m]>0){ ?>
 			
-			<?=$arr[project][airout_m];?> <? echo t_minutes?>
+			<?=$arr[project][airout_m];?> นาที
             
             <? } ?>
             
@@ -483,24 +483,24 @@ $('#booking_payment_<?=$arr[project][id]?>').hide();
             </td>
           </tr>
           <tr>
-            <td  class="font_16"><font color="#999999" ><i class="fa  fa-user"></i></font>&nbsp;&nbsp;<b><? echo t_number_customers?></td>
+            <td  class="font_16"><font color="#999999" ><i class="fa  fa-user"></i></font>&nbsp;&nbsp;<b>จำนวนแขก</td>
             <td class="font_18"> 
               <?
  
 	
 	 if($arr[project][adult]>0){ ?>
-<? echo t_adult?> :
+ผู้ใหญ่ :
 <?=$arr[project][adult];?>&nbsp;
 <? } ?>
 <? if($arr[project][child]>0){ ?>
-<? echo t_child?> :
+เด็ก :
 <?=$arr[project][child];?>
 <? } ?>
  
             </span></td>
           </tr>
           <tr>
-            <td class="font-16"><font color="#999999" ><i class="fa  fa-flag"></i></font>&nbsp;&nbsp;<b><? echo t_nationality?></td>
+            <td class="font-16"><font color="#999999" ><i class="fa  fa-flag"></i></font>&nbsp;&nbsp;<b>สัญชาติ</td>
             <td class="font-16"><span style="height:35px;"><img src="images/flag/China.png" width="30" height="30" alt="" style="margin-top:-5px;"/>  
             
      <?
@@ -591,10 +591,10 @@ $arr[dv] = $db->fetch($res[dv]);
  
 			
 			if($arr[aum][topic_en]=='Car'){
-			$arr[aum][topic_en]='<? echo t_saloon?>';
+			$arr[aum][topic_en]='รถเก๋ง';
 			}
 			if($arr[aum][topic_en]=='Van'){
-			$arr[aum][topic_en]='<? echo t_van?>';
+			$arr[aum][topic_en]='รถตู้';
 			}
 			
 			
@@ -710,15 +710,15 @@ if($_GET[status] != ''){
      </table>
 	  <table width="100%"  border="0" cellspacing="2" cellpadding="2"  class="tdtable" >
       <tr>
-        <td width="80"  class="font_14"><strong><? echo t_type?></strong></td>
+        <td width="80"  class="font_14"><strong>ประเภท</strong></td>
         <td  class="font_14"><? echo "" . $arr[aum][topic_en] . " "; ?></td>
       </tr>
       <tr>
-        <td class="font_14"><strong><? echo t_brand?></strong></td>
+        <td class="font_14"><strong>ยี่ห้อ</strong></td>
         <td class="font_14"><?echo $arr[other][car_brand];?></td>
       </tr>
       <tr>
-        <td class="font_14"><strong><? echo t_model?></strong></td>
+        <td class="font_14"><strong>รุ่น</strong></td>
         <td class="font_14"><?echo $arr[other][car_sub_brand];?></td>
       </tr>
     </table></td>
@@ -748,18 +748,18 @@ p {
      </tr>
      
      <tr>
-       <td width="100" class="font-16"><? echo t_first_name?>-<?echo t_last_name?></td>
+       <td width="100" class="font-16">ชื่อ-นามสกุล</td>
        <td class="font-20"><?=$arr[dv][name]?> (<?=$arr[dv][nickname]?>)</td>
      </tr>
      
      
      <tr style="display:none">
-       <td width="100" class="font-16"><? echo t_nick_name?></td>
+       <td width="100" class="font-16">ชื่อเล่น</td>
        <td class="font-20">&nbsp;</td>
      </tr>
      
           <tr>
-       <td width="100" class="font-16"><? echo t_drop_place?></td>
+       <td width="100" class="font-16">โทรศัพท์</td>
        <td class="font-20">
 	   
 	   <a href="tel:<?=$arr[dv][phone]?>">

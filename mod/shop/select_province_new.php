@@ -161,13 +161,13 @@ font-size: 20px !important;
 							<div class="btn-select"  align="center" id="btn_area">
 								<table width="100%">
 									<tr>
-										<td align="center"><span  id="txt_show_area" class="font-26">- <? echo t_select?> -</span></td>
+										<td align="center"><span  id="txt_show_area" class="font-26">- เลือก -</span></td>
 										<td width="20"><i class="fa fa-caret-down" aria-hidden="true"></i></td>
 									</tr>
 								</table>
 							</div>
-						<select class="mobileSelect" id="select_regoin" data-animation="zoom" data-title="<? echo t_select_region?>" data-theme="white" >
-                             <option value="" >- <? echo t_select?> -</option>              
+						<select class="mobileSelect" id="select_regoin" data-animation="zoom" data-title="เลือกภูมิภาค" data-theme="white" >
+                             <option value="" >- เลือก -</option>              
                        <?
                           $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area  ORDER BY topic_th asc ");
@@ -187,7 +187,7 @@ font-size: 20px !important;
 					$num_place_show = $num_place[num_all] ;
 					$none_area = '';
 					?> 
-					 <option value="<?=$arr[region][id];?>"><?=$arr[region][topic_th]." : ".$num_place_show." <? echo t_place?>";?></option> <?
+					 <option value="<?=$arr[region][id];?>"><?=$arr[region][topic_th]." : ".$num_place_show." สถานที่";?></option> <?
 				}                  ?>
                    
                    
@@ -203,7 +203,7 @@ font-size: 20px !important;
 		<table width="100%">
 			<tr>
 				<td>
-					<span style="color: <?=$main_color?>" class="font-26"><strong><? echo t_select_province?></strong></span>
+					<span style="color: <?=$main_color?>" class="font-26"><strong>เลือกจังหวัด</strong></span>
 				</td>
 			</tr>
 			<tr>
@@ -212,7 +212,7 @@ font-size: 20px !important;
 						<div class="btn-select" align="center" id="btn_province">
 						<table width="100%">
 									<tr>
-										<td align="center"><span  id="txt_show_province" class="font-26">- <? echo t_select?> -</span></td>
+										<td align="center"><span  id="txt_show_province" class="font-26">- เลือก -</span></td>
 										<td width="20"><i class="fa fa-caret-down" aria-hidden="true"></i></td>
 									</tr>
 								</table>
@@ -249,7 +249,7 @@ font-size: 20px !important;
 								
 									$('#change_province').html(data);
 									OpenProvince();
-//									$('#txt_show_province').text('-  -');
+//									$('#txt_show_province').text('- เลือก -');
 							});
 
 				       
@@ -257,8 +257,8 @@ font-size: 20px !important;
 				    onOpen: function(){
 				        console.log('onOpen: '+this.val());
 				    },
-				     buttonSave: '<? echo t_ok?>',
-				     buttonCancel: '<? echo t_cancel?>'
+				     buttonSave: 'ตกลง',
+				     buttonCancel: 'ยกเลิก'
 				});
 				
             });
@@ -266,8 +266,8 @@ font-size: 20px !important;
 		<script>
 			function OpenProvince(){
 						$('#select_province').mobileSelect({
-									 buttonSave: '<? echo t_ok?>',
-					     			 buttonCancel: '<? echo t_cancel?>',
+									 buttonSave: 'ตกลง',
+					     			 buttonCancel: 'ยกเลิก',
 					     			 onClose: function(){
 					     			 	  var txt = $('#select_province option[value="'+$(this).val()+'"]').text();
 								       	  var value = $(this).val();
@@ -282,7 +282,7 @@ font-size: 20px !important;
 			});
 			$('#btn_province').click(function(){
 				if($('#area_id').val()==""){
-					alert('<? echo 	t_select_region?>');
+					alert('กรุณาเลือกภูมิภาค');
 					return;
 				}
 				$('#select_province').mobileSelect('show');
@@ -328,7 +328,7 @@ font-size: 20px !important;
 			 var province = $('#province_id').val();
 			 var province_name = $('#txt_pv_fr').val();
 			 if(province==0 || province==""){
-			 	alert('<?echo t_select_province?>');
+			 	alert('กรุณาเลือกจังหวัด');
 			 	return;
 			 }
 			 $('.bottom_popup').show();
@@ -362,7 +362,7 @@ font-size: 20px !important;
 				    if(txt_area!=""){
 						$('#txt_show_area').text(txt_area);
 					}else{
-						$('#txt_show_area').text('- <? echo t_select?> -');
+						$('#txt_show_area').text('- เลือก -');
 					}
 				     
 				     	     
@@ -378,7 +378,7 @@ font-size: 20px !important;
 								  	  $('#txt_show_province').text(txt_pv);
 				     			  	  $('#province_id').val(province);
 								  }else{
-								  		 $('#txt_show_province').text('- <? echo t_select?> -');
+								  		 $('#txt_show_province').text('- เลือก -');
 								  }
 				     	$('#tag_your_area').fadeIn( "slow" );		
 						});
@@ -466,8 +466,8 @@ include('../../includes/class.mysql.php');
 $db = New DB();
 $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 	 ?>
-				<select class="mobileSelect" id="select_province" data-animation="zoom" data-title="<? echo t_select_province?>" data-theme="white">
-                             <option value="" >- <? echo t_select?> -</option>              
+				<select class="mobileSelect" id="select_province" data-animation="zoom" data-title="เลือกจังหวัด" data-theme="white">
+                             <option value="" >- เลือก -</option>              
 			 <?
 //                    $productand = 'and shopping_product>0';
                     $res[pv] = $db->select_query("SELECT id,name_th FROM web_province where area = '".$_GET[area]."' ".$productand."   ORDER BY name_th asc  ");
@@ -482,7 +482,7 @@ $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 				} else{
 					$num_place_show = $num_place[num_all] ;
 					$none_province = ''; ?>
-					 <option value="<?=$arr[pv][id];?>"  ><?=$arr[pv][name_th]." : ".$num_place_show." <? echo t_place?>";?></option> <?
+					 <option value="<?=$arr[pv][id];?>"  ><?=$arr[pv][name_th]." : ".$num_place_show." สถานที่";?></option> <?
 				}
                                   ?>
                     

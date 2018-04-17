@@ -1,4 +1,38 @@
 <style>
+ .btn-repair{
+         /*	padding: .84rem 2.14rem;*/
+         font-size: .81rem;
+         -webkit-transition: all .2s ease-in-out;
+         transition: all .2s ease-in-out;
+         margin: .375rem;
+         border: 0;
+         border-radius: .125rem;
+         cursor: pointer;
+         text-transform: uppercase;
+         white-space: normal;
+         word-wrap: break-word;
+         color: #fff !important;
+         box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+         padding: 7px;
+         }
+         .waves-effect {
+         position: relative;
+         cursor: pointer;
+         overflow: hidden;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         -webkit-tap-highlight-color: transparent;
+         z-index: 1;
+         }
+         .btn-other{
+         /*width: 280px;*/
+         border-radius : 25px;
+         font-size: 24px;
+         /*padding-left: 35px;*/
+         text-align: center;
+         }
    .step-booking
    {
    border-radius: 50%;
@@ -520,7 +554,7 @@ return $name_type;
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
-                                                   <td width="80"> 
+                                                   <td width="75"> 
                                                    <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_china;?>  
                                                    </td>
                                                    <td>
@@ -624,7 +658,7 @@ return $name_type;
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
-                                                   <td width="80"> <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
+                                                   <td width="75"> <img src="images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
                                                    <span class="font-20">&nbsp;<?=t_china;?> </span></td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
@@ -704,12 +738,17 @@ return $name_type;
          </table>
       </div>
       <!-- BTN  -->	
-      <table width="100%" border="0" cellspacing="2" cellpadding="2" id="show_submit" style="display: none;">
-         <tbody>
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" id="show_submit" style="margin-top: 15px;display: none;">
+         <!--<tbody>
             <tr>
                <td width="50%"><button type="reset" class="btn btn-default btn-lg"   id="submit_data_set"   style=" width:100%; margin-top:10px;"> <span id="txt_btn_reset"> รีเซ็ต</span> </button>
                </td>
                <td width="50%"><button type="button" class="btn btn-success btn-lg border-alert"   id="submit_data_update"  style=" width:100%; margin-top:10px;background-color: #3b5998;"> <span id="txt_btn_save">ส่งข้อมูล</span> </button></td>
+            </tr>
+         </tbody>-->
+         <tbody>
+            <tr>
+               <td><button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="submit_data_update" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
             </tr>
          </tbody>
       </table>

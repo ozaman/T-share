@@ -3,7 +3,7 @@
  
  
  <script>
- $('.text-topic-action-mod').html('<? echo t_all_car?>');
+ $('.text-topic-action-mod').html('รถทั้งหมด');
  
  </script>
   
@@ -51,7 +51,7 @@
 
 
  <div align="center" style="margin: 15px;border: 1px solid #3b5998;padding: 5px;margin-top: 20px;border-radius:20px;box-shadow: 1px 1px 2px #ddd;color: #3b5998;" id="add_car" >
- 	<span class="font-30"><strong><? echo t_add_car?> <i class="fa fa-plus-circle" aria-hidden="true"></i></strong></span>
+ 	<span class="font-30"><strong>เพิ่มรถ <i class="fa fa-plus-circle" aria-hidden="true"></i></strong></span>
  </div>
  <script>
  	$('#add_car').click(function(){
@@ -108,7 +108,7 @@ $res[project] = $db->select_query("SELECT * FROM   web_carall  where drivername=
               <button type="button" class="btn btn-default "   id="edit_car_<?=$arr[project][id];?>" onclick="editCar('<?=$arr[project][id];?>');"  style="width:100%">
                 <center>
                   <div   class="font-30"><i class="fa fa-edit" style="color:<?=$main_color?>"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-22"> <? echo t_edit_car_info?> </span>
+                  <span style="padding-bottom:20px;" class="font-22"> แก้ไขข้อมูลรถ </span>
                 </center>
                 </button>
           </td>
@@ -117,12 +117,12 @@ $res[project] = $db->select_query("SELECT * FROM   web_carall  where drivername=
           <td width="50%" height="50%" align="center" class="tool-td-chat"> 
              <? if($arr[project][status_usecar]==1){ 
 						$type = "close";
-						$text_type = t_ancel_commonly_used;
+						$text_type = "เลิกใช้ประจำ";
 						$icon = "fa fa-times-circle";
 						$color_often = "color: #FF0000";
 				}else if($arr[project][status_usecar]==0){
 					$type = "open";
-					$text_type = t_use_regularly;
+					$text_type = "ใช้ประจำ";
 					$icon = "fa fa-check-circle";
 					$color_often = "color: #0072BC";
 				}
@@ -148,7 +148,7 @@ $res[project] = $db->select_query("SELECT * FROM   web_carall  where drivername=
             <button type="button" class="btn btn-default "  id="cancel_car_<?=$arr[project][id];?>"   style="width:100%">
               <center>
                 <div  class="font-30"><i class="fa fa-trash "   style="color:#FF0000" ></i></div>
-              <span style="padding-bottom:20px;" class="font-22">  <?echo t_deactivate?> </span>
+              <span style="padding-bottom:20px;" class="font-22">  เลิกใช้งาน </span>
               </center>
               </button>
               
@@ -159,7 +159,7 @@ $res[project] = $db->select_query("SELECT * FROM   web_carall  where drivername=
             <button type="button" class="btn btn-default "    id="active_car_<?=$arr[project][id];?>"   style="width:100%">
               <center>
                 <div  class="font-30"><i class="fa fa-taxi "   style="color:<?=$main_color?>" ></i></div>
-              <span style="padding-bottom:20px;" class="font-22">  <? echo t_enable?> </span>
+              <span style="padding-bottom:20px;" class="font-22">  เปิดใช้งาน </span>
               </center>
               </button>
               
@@ -261,48 +261,37 @@ if($_GET[status] != ''){
      </table>
 	  <table width="100%"  border="0" cellspacing="2" cellpadding="2"    >
       <tr>
-        <td width="50" class="font-22"><strong><? echo t_type?></strong></td>
-        <td  class="font-22"><? 
-	if ($_COOKIE["lng"] == 'th') {
-        echo $arr[car_type][topic_th];
-      }
-      else if ($_COOKIE["lng"] == 'cn') {
-        echo $arr[car_type][topic_cn];
-        
-      }
-       else if ($_COOKIE["lng"] == 'en' || $_COOKIE["lng"] == undefined) {
-        echo $arr[car_type][topic_en];
-        
-      }  ?></td>
+        <td width="50" class="font-22"><strong>ประเภท</strong></td>
+        <td  class="font-22"><? echo "" . $arr[car_type][topic_th] . " "; ?></td>
       </tr>
       <tr>
-        <td class="font-22"><strong><? echo t_brand?></strong></td>
+        <td class="font-22"><strong>ยี่ห้อ</strong></td>
         <td class="font-22"><?echo $arr[project][car_brand];?></td>
       </tr>
       <tr>
-        <td class="font-22"><strong><? echo t_model?></strong></td>
+        <td class="font-22"><strong>รุ่น</strong></td>
         <td class="font-22"><?echo $arr[project][car_sub_brand];?></td>
       </tr>
       
             <tr>
-        <td class="font-22"><strong><?echo t_car_coloring?></strong></td>
+        <td class="font-22"><strong>สีรถ</strong></td>
         <td class="font-22"><? //echo $arr[project][car_color];?>
         
-        <? echo t_white?>
+        ขาว
         
         </td>
       </tr>
       
       
                   <tr>
-        <td class="font-24"><strong><? echo t_status?></strong></td>
+        <td class="font-24"><strong>สถานะ</strong></td>
         <td class="font-24">
 		<? if($arr[project][status_usecar]==1){
-			$use_often = '('.t_use_regularly.')';
+			$use_often = "(ใช้ประจำ)";
 		} ?>
 		<? if($arr[project][status]==0){ ?>
         
-       <font color="#FF0000"><strong> <? echo t_deactivate?></strong></font>
+       <font color="#FF0000"><strong> เลิกใช้งาน</strong></font>
         
         
         <? } ?>
@@ -311,7 +300,7 @@ if($_GET[status] != ''){
         
         		<? if($arr[project][status]==1){ ?>
         
-       <font color="<?=$main_color?>"><strong><? echo t_using?></strong></font>
+       <font color="<?=$main_color?>"><strong>ใช้งาน</strong></font>
         
         
         <? } ?>
@@ -350,15 +339,15 @@ if($_GET[status] != ''){
   ///
  
 	   swal({
-		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
-		text: "<font style='font-size:22px'><? echo t_cancel_use?>",
+		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
+		text: "<font style='font-size:22px'>ว่าต้องการเลิกใช้งาน",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonColor: '#FF0000',
 		
 	///	confirmButtonClass: "btn-danger",
-		confirmButtonText: '<?echo t_yes?>',
-		cancelButtonText: "<? echo t_no?>",
+		confirmButtonText: 'ใช่',
+		cancelButtonText: "ไม่ใช่",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -398,15 +387,15 @@ if($_GET[status] != ''){
   ///
  
 	   swal({
-		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
-		text: "<font style='font-size:22px'><? echo t_need_to_enable?>",
+		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
+		text: "<font style='font-size:22px'>ว่าต้องการเปิดใช้งาน",
 		type: "success",
 		showCancelButton: true,
 		confirmButtonColor: '<?=$main_color?>',
 		
 	///	confirmButtonClass: "btn-danger",
-		confirmButtonText: '<?echo t_yes?>',
-		cancelButtonText: "<?echo t_no?>",
+		confirmButtonText: 'ใช่',
+		cancelButtonText: "ไม่ใช่",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -449,22 +438,22 @@ if($_GET[status] != ''){
 <script>
 	function use_often(id,type,driver){
 		if(type=="open"){
-			var text_use = "<font style='font-size:22px'><? echo t_want_to_use_regularly?>";
+			var text_use = "<font style='font-size:22px'>ว่าต้องการใช้ประจำ";
 			var type_alert = "success";
 		}else if(type=="close"){
-			var text_use = "<font style='font-size:22px'><? echo t_cancel_often_used?>";
+			var text_use = "<font style='font-size:22px'>ว่าต้องการเลิกใช้ประจำ";
 			var type_alert = "warning";
 		}
 		 swal({
-				title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+				title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
 				text: text_use,
 				type: type_alert,
 				showCancelButton: true,
 				confirmButtonColor: '<?=$main_color?>',
 				
 			///	confirmButtonClass: "btn-danger",
-				confirmButtonText: '<? echo t_yes?>',
-				cancelButtonText: "<? echo t_no?>",
+				confirmButtonText: 'ใช่',
+				cancelButtonText: "ไม่ใช่",
 				closeOnConfirm: true,
 				closeOnCancel: true,
 				html: true

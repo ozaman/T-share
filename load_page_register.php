@@ -130,7 +130,7 @@ GETMODULE($_GET[name],$_GET[file]);
      <div id="number_register_step_2" class="stepnumber <? if($_GET[file]=='document'){ echo 'stepnumber-active'; } ?>"><center>2</div> 
       
       </td>
-      <td class="font_18" style="color:#FFFFFF"><b><? echo t_important_data_file?></td>
+      <td class="font_18" style="color:#FFFFFF"><b>ข้อมูลและเอกสารสำคัญ</td>
       <td width="25" class="font_18" style="color:#FFFFFF" id="check_icon_step_2"><i class="fa fa-ban" style="font-size:20px; height:20px; color: #FFFFFF"></i></td>
     </tr>
     

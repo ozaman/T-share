@@ -14,7 +14,7 @@
 <? if( $allplan_all>0){ ?>
 
 
-<div class="font_24"><B><font color="#00A99D">เปิดใช้งานจำนวน &nbsp; <?=$allplan_all ?>&nbsp;<? echo t_nationality?></div>
+<div class="font_24"><B><font color="#00A99D">เปิดใช้งานจำนวน &nbsp; <?=$allplan_all ?>&nbsp;สัญชาติ</div>
 
 
 <? } ?>
