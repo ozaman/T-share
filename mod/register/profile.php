@@ -210,7 +210,7 @@
                          <?=$arr[driver][pay_bank_name]?>
                        </option>
                        <? } ?>
-                       <option value="" >-- กรุณาเลือกธนาคาร --</option>
+                       <option value="" >-- <? echo t_please_select_bank?> --</option>
                        <option value="กรุงไทย" >กรุงไทย</option>
                        <option value="กสิกรไทย" >กสิกรไทย</option>
                        <option value="ไทยพาณิชย์" >ไทยพาณิชย์</option>
@@ -248,7 +248,7 @@
  
   <div class="<?= $coldata?>">
 					<div> <!-- start box -->
-                     <div class="topicname">เลขที่บัญชี</div>
+                     <div class="topicname"><? echo t_account_number?></div>
                     <input class="form-control" type="number" name="pay_bank_number" id="pay_bank_number"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][contact];?>"  >
  
                      </div> <!-- end box -->
@@ -271,7 +271,7 @@
                     
                       <div class="<?= $coldata?>">
 					<div> <!-- start box -->
-                     <div class="topicname">ชื่อบัญชีธนาคาร</div>
+                     <div class="topicname"><? echo t_account_name?></div>
                     <input class="form-control" type="text" name="pay_bank_user" id="pay_bank_user"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][contact];?>"  >
  
                      </div> <!-- end box -->
@@ -285,7 +285,7 @@
       <div class="col-md-6">
 			      
 <div>
-                    <div class="topicname"><i class="fa  fa-envelope-square"></i>&nbsp;อีเมล์</div>
+                    <div class="topicname"><i class="fa  fa-envelope-square"></i>&nbsp;<? echo t_email?></div>
                     <input class="form-control" type="text" name="email" id="email"   required="true"  onkeypress="UserEnter(this,event)" value="<?=$arr[web_driver_edit][email];?>"    >
               </div>
                 
@@ -386,7 +386,7 @@
 
 <i class="fa  fa-camera take-photo-icon"  id="icon_camera_id_driver"></i><br>
 
-ถ่ายภาพคุณ
+<? echo t_take_photo?>
 
 <div style="padding:5px;">
 
@@ -440,8 +440,8 @@
  
  <table width="100%"  border="0" cellspacing="0" cellpadding="0" style="padding-top:0px;">
   <tr>
-    <td width="50%"  class="pad-r-5"><button id="submit_step_1" type="button" class="btn btn-block btn-primary" style="width:100% " ><span class="font-20">บันทึกข้อมูล</span></button> </td>
-    <td width="50%" class="pad-l-5"><button type="reset" class="btn btn-block btn-default"  style="width:width:100%"><span class="font-20">รีเซ็ต</button></td>
+    <td width="50%"  class="pad-r-5"><button id="submit_step_1" type="button" class="btn btn-block btn-primary" style="width:100% " ><span class="font-20"><? echo t_save_data?></span></button> </td>
+    <td width="50%" class="pad-l-5"><button type="reset" class="btn btn-block btn-default"  style="width:width:100%"><span class="font-20"><? echo t_reset?></button></td>
   </tr>
 </table>
 
@@ -498,7 +498,7 @@ return false ;
 */
 
 if(document.getElementById('nickname').value=="") {
-alert('กรุณากรอกชื่อเล่น'); 
+alert('<? echo t_please_fill_in_nickname?>'); 
 document.getElementById('nickname').focus() ; 
 return false ;
 }
@@ -520,12 +520,12 @@ return false ;
 */
 
 if(document.getElementById('address').value=="") {
-alert('กรุณากรอกที่อยู่'); 
+alert('<? echo t_please_fill_in_address?>'); 
 document.getElementById('address').focus() ; 
 return false ;
 }
 if(document.getElementById('phone').value=="") {
-alert('กรุณากรอกเบอร์โทรศัพท์'); 
+alert('<? echo t_please_fill_in_phont_no?>'); 
 document.getElementById('phone').focus() ; 
 return false ;
 }

@@ -20,11 +20,11 @@
  
  <table width="100%"  border="0" cellspacing="1">
    <tr align="center">
-    <td width="100" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px "><font color="#FFFFFF">วันที่</strong></td>
-    <td width="60" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px ; display:none "><font color="#FFFFFF">ค่าจอด</strong></td>
-    <td width="60" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px "><font color="#FFFFFF">งาน</strong></td>
+    <td width="100" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px "><font color="#FFFFFF"><? echo t_date?></strong></td>
+    <td width="60" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px ; display:none "><font color="#FFFFFF"><? echo t_parking_fee?></strong></td>
+    <td width="60" align="center" bgcolor="#999999"  class="font-16" style="height:30px; font-size:16px "><font color="#FFFFFF"><?echo t_jobs?></strong></td>
     <td align="center" bgcolor="#999999"  class="font-16" style="padding-right:0px; font-size:16px  "><font color="#FFFFFF"> 
-  รวม
+  <? echo t_total?>
 	
 	</strong></td>
   </tr>
@@ -278,7 +278,8 @@ if($pay>-1){
  
  <table width="100%"  border="0" cellspacing="2" cellpadding="2" style="border-top:  solid 1px #999999; margin-top:10px; display:none  ">
   <tr  >
-    <td  class="font-16" style="height:30px; padding-left:5px; display:none  ">ค่าจอดรถ</td>
+    <td  class="font-16" style="height:30px; padding-left:5px; display:none  "><? echo t_parking_fee	
+?></td>
     <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
 	
 	<?= number_format($pay_park, 0 );?>
@@ -299,7 +300,7 @@ if($pay>-1){
 
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  style="display:none" >
   <tr  >
-    <td  class="font-16" style="height:30px; padding-left:5px; ">ค่าหัว</td>
+    <td  class="font-16" style="height:30px; padding-left:5px; "><? echo t_person_fee?></td>
     <td width="40%" align="right"  class="font_24" style="padding-right:10px; color:#000000 "> 
 	
 	<?= number_format( $pay_all-$pay_park , 0 );?>
@@ -312,7 +313,7 @@ if($pay>-1){
 </table>
 <table width="100%"  border="0" cellpadding="2" cellspacing="2"  style="background-color:#F6F6F6;border:  solid 1px #999999;  ">
   <tr  >
-     <td  class="font-16" style="height:30px; padding-left:5px; ">รายได้รวม</td>
+     <td  class="font-16" style="height:30px; padding-left:5px; "><? echo t_total_revenue?></td>
      <td width="40%" align="right"  class="font_24" style="padding-right:10px; color: #006699 "><?= number_format( $pay_all, 0 );?>
      </td>
   </tr>

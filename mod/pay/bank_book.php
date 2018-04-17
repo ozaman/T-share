@@ -1,7 +1,7 @@
  <? if($_GET[op]==""){
  	if($_GET[open]=="menu"){ ?>
 		<script>
-			$('.text-topic-action-mod').html('ข้อมูลบัญชีธนาคาร');
+			$('.text-topic-action-mod').html('<? echo t_bank_account_information?>');
 		</script>
 	<? } 
  $bank_list = array("กรุงไทย"
@@ -71,14 +71,14 @@ font-size: 20px !important;
          <div class="row" style="padding-right:0px; ">  
             
 	<div class="col-md-6">
-                    <div class="topicname"><i class="fa  fa-user"></i>&nbsp;ชื่อบัญชี</div>
+                    <div class="topicname"><i class="fa  fa-user"></i>&nbsp;<? echo t_account_name?></div>
 <input class="form-control" type="text" name="pay_bank_name" id="pay_bank_name"  required="true"  value="<?=$arr[web_user][pay_bank_name];?>"  style="padding: 10px;"   >
               </div>
 
 	<div class="col-md-6">
-                     <div class="topicname"><i class="fa  fa-bank "></i>&nbsp;ธนาคาร </div>
+                     <div class="topicname"><i class="fa  fa-bank "></i>&nbsp;<? echo t_bank?> </div>
                     
-                     <select name="pay_bank" id="pay_bank"  class="form-control mobileSelect" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'>เลือกธนาคาร</span></td><td><input type='text' class='form-control filter_bank' style='height:35px;margin-top:-7px;' onkeyup='filterBank()' /></td></tr></table>" data-theme="white"  >
+                     <select name="pay_bank" id="pay_bank"  class="form-control mobileSelect" data-animation="zoom" data-title="<table><tr><td width='110'><span style='font-size:20px;'><?echo t_please_select_bank?></span></td><td><input type='text' class='form-control filter_bank' style='height:35px;margin-top:-7px;' onkeyup='filterBank()' /></td></tr></table>" data-theme="white"  >
                      <?php 
                      foreach($bank_list as $name){ 
                      	if($arr[web_user][pay_bank]==$name){
@@ -99,12 +99,12 @@ font-size: 20px !important;
 	<div class="col-md-6">
 			      
         
-                     <div class="topicname"><i class="fa fa-bank "></i>&nbsp;สาขาธนาคาร</div>
+                     <div class="topicname"><i class="fa fa-bank "></i>&nbsp;<? echo t_bank_branch?></div>
                     <input class="form-control" type="text" name="pay_bank_sub" id="pay_bank_sub"  required="true" onkeypress="PasswordEnter(this,event)"   value="<?=$arr[web_user][pay_bank_sub];?>"  style="padding: 10px;"  >
             </div>
 									
     <div class="col-md-6">
-<div class="topicname"><i class="fa fa-building-o"></i>&nbsp;เลขที่บัญชี</div>
+<div class="topicname"><i class="fa fa-building-o"></i>&nbsp;<? echo t_account_number?></div>
 <input type="number" name="pay_bank_number" id="pay_bank_number"  required="true"   value="<?=$arr[web_user][pay_bank_number];?>" class="form-control"  style="padding: 10px;"   >
     </div>
  
@@ -120,7 +120,7 @@ font-size: 20px !important;
     <div class="col-md-6" >
 
 
-<button id="submit_user_bank" type="button" class="btn btn-block btn-primary" style="height: 45px;background-color:#3b5998 ;font-size:22px;" >บันทึกข้อมูล</button>
+<button id="submit_user_bank" type="button" class="btn btn-block btn-primary" style="height: 45px;background-color:#3b5998 ;font-size:22px;" ><? echo t_save_data?></button>
  
     </div>
 		 
@@ -137,8 +137,8 @@ font-size: 20px !important;
 				    onOpen: function(){
 				        console.log('onOpen: '+this.val());
 				    },
-				     buttonSave: 'ตกลง',
-				     buttonCancel: 'ยกเลิก'
+				     buttonSave: '<? echo t_ok?>',
+				     buttonCancel: '<? echo t_cancel?>'
 				});
 				
             });
@@ -178,7 +178,7 @@ font-size: 20px !important;
 			$('#load_mod_popup_4').html(load_main_mod);
 			$('#load_mod_popup_4').load(url_load_finish);	
 			}else{
-				swal("บันทึกสำเร็จ", "กดปุ่มเพื่อปิด!", "success");
+				swal("<? echo t_save_succeed?>", "<? echo t_press_button_close?>", "<? echo t_success?>");
 			}
 		  	
 		});

@@ -52,17 +52,17 @@
  
 		  
 		  </td>
-      <td width="80" class="font-22"><strong> ธนาคาร </strong></td>
+      <td width="80" class="font-22"><strong> <? echo t_bank?> </strong></td>
       <td class="font-20"><?=$bank;?></td>
     </tr>
     <tr>
-      <td class="font-22"><strong>สาขา</strong></td>
+      <td class="font-22"><strong><? echo t_bank_branch?></strong></td>
       <td><span class="font-20">
         <?=$bank_sub;?>
       </span></td>
     </tr>
     <tr>
-      <td class="font-20"><strong>เลขที่บัญชี</strong></td>
+      <td class="font-20"><strong><? echo t_account_number?></strong></td>
       <td><?=$bank_number?></td>
     </tr>
   </tbody>

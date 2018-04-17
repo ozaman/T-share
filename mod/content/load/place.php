@@ -59,9 +59,9 @@ if($_GET[op] == ""){
       <td valign="top"><table width="100%" cellspacing="2" cellpadding="1" >
     <tr bgcolor="#990000" height=25>
      <td width="50" align="center" bgcolor="#999999"><CENTER>
-            <font color="#FFFFFF">แก้ไข</font>     
+            <font color="#FFFFFF"><? echo t_amend?></font>     
      </CENTER></td>
-     <td width="50" align="center" bgcolor="#999999"><font color="#FFFFFF">ลบ</font></td>
+     <td width="50" align="center" bgcolor="#999999"><font color="#FFFFFF"><? echo t_delete?></font></td>
       
      
      <td width="200" height="30" align="center" bgcolor="#999999"><font color="#FFFFFF">EN</font></td>
@@ -70,8 +70,8 @@ if($_GET[op] == ""){
      <td width="200" height="30" align="center" bgcolor="#999999"><font color="#FFFFFF">TH</font></td>
      <td width="200" align="center" bgcolor="#999999"><font color="#FFFFFF">CN</font></td>
      <td width="250" align="center" bgcolor="#999999"><font color="#FFFFFF">ประเภทรายรับ</font></td>
-     <td align="center" bgcolor="#999999"><font color="#FFFFFF">ติดต่อ</font></td>
-     <td width="60" align="center" bgcolor="#999999"><font color="#FFFFFF">สถานะ</font></td>
+     <td align="center" bgcolor="#999999"><font color="#FFFFFF"><? echo t_contact?></font></td>
+     <td width="60" align="center" bgcolor="#999999"><font color="#FFFFFF"><? echo t_status?></font></td>
     </tr>  
   <?
  
@@ -224,15 +224,15 @@ $string_after_replace  = array ("");
   
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "<font style='font-size:22px'>ว่าต้องการลบ <? echo $arr[place][topic_th];?>",
+		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+		text: "<font style='font-size:22px'><? echo t_deletess?> <? echo $arr[place][topic_th];?>",
 		type: "error",
 		showCancelButton: true,
 		animation:  false ,
 		
 		confirmButtonColor: '#DD6B55',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<?echo t_yes?>',
+		cancelButtonText: "<?echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -322,7 +322,7 @@ $string_after_replace  = array ("");
  
  $("#btn_menu_pay_plan_1_<? echo $arr[place][id];?>").click(function(){
  	 
- $('#topic_edit').html('ค่าตอบแทน> <? echo $arr[place][topic_th];?>');
+ $('#topic_edit').html('<? echo t_work_remuneration?>> <? echo $arr[place][topic_th];?>');
 			 
   var url_page_type= "go.php?name=content/load&file=price&op=sub_add&id=<? echo $arr[place][id];?>&sub=<? echo $arr[place][sub];?>&main=<? echo $arr[place][main];?>&plan_id=<? echo $arr[place][price_plan];?>&plan_number=1";
  
@@ -340,7 +340,7 @@ $string_after_replace  = array ("");
  $("#btn_menu_pay_plan_2_<? echo $arr[place][id];?>").click(function(){
  
 			 
- $('#topic_edit').html('ค่าตอบแทน> <? echo $arr[place][topic_th];?>');
+ $('#topic_edit').html('<? echo t_work_remuneration?>> <? echo $arr[place][topic_th];?>');
 			 
   var url_page_type= "go.php?name=content/load&file=price&op=sub_add&id=<? echo $arr[place][id];?>&sub=<? echo $arr[place][sub];?>&main=<? echo $arr[place][main];?>&plan_id=<? echo $arr[place][price_plan_2];?>&plan_number=2";
  
@@ -356,7 +356,7 @@ $string_after_replace  = array ("");
  $("#btn_menu_pay_plan_3_<? echo $arr[place][id];?>").click(function(){
  
 			 
- $('#topic_edit').html('ค่าตอบแทน> <? echo $arr[place][topic_th];?>');
+ $('#topic_edit').html('<? echo t_work_remuneration?>> <? echo $arr[place][topic_th];?>');
 			 
   var url_page_type= "go.php?name=content/load&file=price&op=sub_add&id=<? echo $arr[place][id];?>&sub=<? echo $arr[place][sub];?>&main=<? echo $arr[place][main];?>&plan_id=<? echo $arr[place][price_plan_3];?>&plan_number=3";
  
@@ -518,11 +518,11 @@ $string_after_replace  = array ("");
   <tbody>
     <tr>
       <td><input setid="<?=$arr[open_1][id]?>"  plan="1"  mainplan="<? echo $arr[place][price_plan];?>"    opentype="open_driver"  name="open_driver_1_<? echo $arr[place][id];?>"  id="open_driver_1_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-1"  value="1"  <?=$chk_1_driver?> /></td>
-      <td>คนขับ</td>
+      <td><? echo t_driver?></td>
       <td><input  setid="<?=$arr[open_1][id]?>" plan="1"  mainplan="<? echo $arr[place][price_plan];?>" opentype="open_counter"  name="open_counter_1_<? echo $arr[place][id];?>"  id="open_counter_1_<? echo $arr[place][id];?>"  type="checkbox" class="checkbox-plan-1"    <?=$chk_1_counter?>/></td>
-      <td>เคาน์เตอร์</td>
+      <td><? echo t_counter?></td>
       <td><input   setid="<?=$arr[open_1][id]?>" plan="1"   mainplan="<? echo $arr[place][price_plan];?>" opentype="open_all" name="open_all_1_<? echo $arr[place][id];?>"  id="open_all_1_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-1"  value="1" <?=$chk_1_all?> /> </td>
-      <td>สมาชิก<?=$arr[open_1][id]?></td>
+      <td><? echo t_member?><?=$arr[open_1][id]?></td>
     </tr>
   </tbody>
 </table>
@@ -747,11 +747,11 @@ $('#save_data_open').load(url_page_type_<? echo $arr[place][id];?>);
   <tbody>
     <tr>
       <td><input  setid="<?=$arr[open_2][id]?>" plan="2"  mainplan="<? echo $arr[place][price_plan_2];?>"    opentype="open_driver"  name="open_driver_2_<? echo $arr[place][id];?>"  id="open_driver_2_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-2"  value="1" <?=$chk_2_driver?> /></td>
-      <td>คนขับ</td>
+      <td><? echo t_driver?></td>
       <td><input  setid="<?=$arr[open_2][id]?>" plan="2"  mainplan="<? echo $arr[place][price_plan_2];?>" opentype="open_counter"  name="open_counter_2_<? echo $arr[place][id];?>"  id="open_counter_2_<? echo $arr[place][id];?>"  type="checkbox" class="checkbox-plan-2"  <?=$chk_2_counter?> /></td>
-      <td>เคาน์เตอร์</td>
+      <td><? echo t_counter?></td>
       <td><input   setid="<?=$arr[open_2][id]?>" plan="2"   mainplan="<? echo $arr[place][price_plan_2];?>" opentype="open_all" name="open_all_2_<? echo $arr[place][id];?>"  id="open_all_2_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-2"  value="1" <?=$chk_2_all?>/></td>
-      <td>สมาชิก</td>
+      <td><? echo t_member?></td>
     </tr>
   </tbody>
 </table>
@@ -943,11 +943,11 @@ $('#save_data_open').load(url_page_type_<? echo $arr[place][id];?>);
   <tbody>
     <tr>
       <td><input setid="<?=$arr[open_3][id]?>" plan="3"  mainplan="<? echo $arr[place][price_plan_3];?>"    opentype="open_driver"  name="open_driver_3_<? echo $arr[place][id];?>"  id="open_driver_3_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-3"  value="1" <?=$chk_3_driver?>/></td>
-      <td>คนขับ</td>
+      <td><? echo t_driver?></td>
       <td><input  setid="<?=$arr[open_3][id]?>" plan="3"  mainplan="<? echo $arr[place][price_plan_3];?>" opentype="open_counter"  name="open_counter_3_<? echo $arr[place][id];?>"  id="open_counter_3_<? echo $arr[place][id];?>"  type="checkbox" class="checkbox-plan-3"  <?=$chk_3_counter?> /></td>
-      <td>เคาน์เตอร์</td>
+      <td><? echo t_counter?></td>
       <td><input   setid="<?=$arr[open_3][id]?>" plan="3"   mainplan="<? echo $arr[place][price_plan_3];?>" opentype="open_all" name="open_all_3_<? echo $arr[place][id];?>"  id="open_all_3_<? echo $arr[place][id];?>"   type="checkbox" class="checkbox-plan-3"  value="1"  <?=$chk_3_all?> /></td>
-      <td>สมาชิก</td>
+      <td><? echo t_member?></td>
     </tr>
   </tbody>
 </table>
@@ -1049,7 +1049,7 @@ $('#save_data_open').load(url_page_type_<? echo $arr[place][id];?>);
  $("#btn_menu_contact_<? echo $arr[place][id];?>").click(function(){
  
 			 
- $('#topic_edit').html('แก้ไข <? echo $arr[place][topic_en];?>:<? echo $arr[project][topic_th];?>');
+ $('#topic_edit').html('<? echo t_amend?> <? echo $arr[place][topic_en];?>:<? echo $arr[project][topic_th];?>');
 			 
   var url_page_type_<? echo $arr[place][id];?>= "go.php?name=content/load&file=contact&contact=<? echo $arr[place][id];?>&main=<? echo $arr[place][main];?>&sub=<? echo $arr[place][sub];?>";
  
@@ -1149,15 +1149,15 @@ $('#save_data_open').load(url_page_type_<? echo $arr[place][id];?>);
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
+		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
 		text: "<font style='font-size:22px'>ว่าต้องการเปิด  <? echo $arr[place][topic_th];?>",
 		type: 'info',
 		showCancelButton: true,
 		animation:  false ,
 		
 		confirmButtonColor: '#DD6B55',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<? echo t_yes?>',
+		cancelButtonText: "<? echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -1279,7 +1279,7 @@ $('#save_data_open').load(url_page_type_<? echo $arr[place][id];?>);
    <br>
   <button type="button" class="btn btn-primary"   id="submit_data_sort" >
           <span id="txt_btn_save">
-           บันทึกข้อมูล
+           <? echo t_save_data?>
           </span>
         </button>
   
@@ -1363,11 +1363,11 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
             <tr>
               <td width="700" valign="top"><table width="100%" border="0" cellspacing="3" cellpadding="3">
                 <tr>
-                  <td width="150"><strong>หมวดหมู่ : </strong></td>
+                  <td width="150"><strong><? echo t_category?> : </strong></td>
                   <td style="font-size:18px;"><?=$arr[projectmain][topic_th]?></td>
                 </tr>
                 <tr>
-                  <td><strong>ประเภท : </strong></td>
+                  <td><strong><? echo t_type?> : </strong></td>
                   <td style="font-size:18px;"><? echo $arr[projectsub][topic_en];?>
                     <input class="form-control" name="sub" type="hidden"  id="sub" style="width:500px; background:#FFFFFF" value="<?=$_GET[sub]?>" />
                     <input class="form-control"  name="main" type="hidden"  id="main" style="width:500px; background:#FFFFFF" value="<?=$_GET[main]?>" /></td>
@@ -1385,9 +1385,9 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   <td><input class="form-control"  name="topic_cn" type="text"  id="topic_cn" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_cn];?>" /></td>
                 </tr>
 				<tr>
-                  <td><strong>ภูมิภาค :</strong></td>
+                  <td><strong><? echo t_region;?> :</strong></td>
                   <td><select  class="form-control" name="region" id="region" style="width:500px;; font-size:16px; padding:5px; height:40px"  >
-                  <option value="">- เลือกภูมิภาค -</option>
+                  <option value="">- <? echo t_select_region?> -</option>
                      <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area ORDER BY topic_th asc ");
@@ -1426,9 +1426,9 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                 	});
                 </script>
                 <tr>
-                  <td><strong>จังหวัด :</strong></td>
+                  <td><strong><? echo t_province?> :</strong></td>
                   <td><select  class="form-control" name="province" id="province" style="width:500px;; font-size:16px; padding:5px; height:40px" >
-                    <option value="">- เลือกจังหวัด -</option>
+                    <option value="">- <? echo t_select_province?> -</option>
                     <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                          
@@ -1492,11 +1492,11 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                     </select></td>
                 </tr>
                 <tr>
-                  <td><strong>ที่อยู่ :</strong></td>
+                  <td><strong><?echo t_address?> :</strong></td>
                   <td><textarea class="form-control" name="address" rows="3"  id="address" style="width:500px; background:#FFFFFF"></textarea></td>
                 </tr>
                  <tr>
-                  <td><strong>Link แผนที่ :</strong></td>
+                  <td><strong><? echo t_link_maps?> :</strong></td>
                   <td>
                   <table>
                   	<tr><td>
@@ -1562,17 +1562,17 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </td>
                 </tr>
                 <tr>
-                  <td><strong>เบอร์โทรศัพท์ :</strong></td>
+                  <td><strong><?echo t_phone_number?> :</strong></td>
                   <td><input class="form-control" name="phone" type="text"  id="phone" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][phone];?>" /></td>
                 </tr>
                 <tr>
-                  <td><strong>อีเมล์ :</strong></td>
+                  <td><strong><? echo t_email?> :</strong></td>
                   <td><input class="form-control" name="email" type="text"  id="email" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][email];?>" />
                     </td>
                 </tr>
 				
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 1 : </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 1 : </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;">
                   
                   
@@ -1596,7 +1596,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </select></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 2 : </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 2 : </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;"><select  class="form-control" name="price_plan_2" id="price_plan_2" style="width:500px;; font-size:16px; padding:5px; height:40px" >
                     <option value="">- เลือกประเภทค่าตอบแทน -</option>
                     <?
@@ -1617,7 +1617,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </select></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 3 : </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 3 : </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;"><select  class="form-control" name="price_plan_3" id="price_plan3" style="width:500px;; font-size:16px; padding:5px; height:40px" >
                     <option value="">- เลือกประเภทค่าตอบแทน -</option>
                     <?
@@ -1697,7 +1697,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                       <tr>
-                        <td width="60">เปิด</td>
+                        <td width="60"><? echo t_open?></td>
                         <td width="140">
                          <select style="height: 30px; border: 1px solid #ccc;  border-radius: 2px;" name="hour_open_default" id="hour_open_default">
                   			<? foreach($hour as $value){ 
@@ -1721,7 +1721,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   				<option <?=$selected;?> value="<?=$value?>"><?=$value?></option>
                   		<?	 } ?>	
                   		</select> น.</td>
-                        <td width="50">ปิด&nbsp;</td>
+                        <td width="50"><? echo t_close?>&nbsp;</td>
                         <td> <select style="height: 30px; border: 1px solid #ccc;  border-radius: 2px;" name="hour_close_default" id="hour_close_default">
                   			<? foreach($hour as $value){ 
                   			if($query_day_dtMon[finish_h]==$value){
@@ -1756,12 +1756,12 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
 				</tr>				
 				    
 				<tr id="row_time_other" style="<?=$display_none_other_all;?>"   >
-                  <td><strong>เวลาทำการ B :</strong></td>
+                  <td><strong><? echo t_office_hours?> B :</strong></td>
                  
                   <td style="display: nones;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                       <tr>
-                        <td width="60">เปิด</td>
+                        <td width="60"><? echo t_open?></td>
                         <td width="140">
                          <select style="height: 30px; border: 1px solid #ccc;  border-radius: 2px;" name="hour_open_default_other" id="hour_open_default_other">
                   			<? foreach($hour as $value){ 
@@ -1885,7 +1885,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   <td colspan="2"> 
                   	<table width="100%" >
                   		<tr>
-                  		<td width="14%"><label style="margin-bottom: -3px;" for="open_time_all">24 ชม. ทุกวัน</label> </td>
+                  		<td width="14%"><label style="margin-bottom: -3px;" for="open_time_all"><? echo t_open_over?></label> </td>
                   		<td width="5%" ><input type="checkbox" name="open_time_all" id="open_time_all" style="width: 20px;" /></td>
                   		
                   		<td width="14%"><label style="margin-bottom: -3px;" for="open_all">เปิดทุกวัน</label> </td>
@@ -2008,7 +2008,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   			<td></td>
                   			<td></td>
                   			<td align="center" bgcolor="#FDFAD5"><strong>B</strong></td>
-                  			<td bgcolor="#FDFAD5">เปิด</td>
+                  			<td bgcolor="#FDFAD5"><? echo t_open?></td>
                   			<td bgcolor="#FDFAD5">
                   			
                   		 <select style="height: 30px; border: 1px solid #ccc;  border-radius: 2px;" name="hour_open_<?=$value_d;?>_2" id="hour_open_<?=$value_d;?>_2">
@@ -2034,7 +2034,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   		<?	 } ?>	
                   		</select> น.
                   		</td>
-                  			<td bgcolor="#FDFAD5">ปิด</td>
+                  			<td bgcolor="#FDFAD5"><? echo t_open?></td>
                   			<td bgcolor="#FDFAD5">
                   		 <select  style="height: 30px; border: 1px solid #ccc;  border-radius: 2px;" name="hour_close_<?=$value_d;?>_2" id="hour_close_<?=$value_d;?>_2">
                   			<? foreach($hour as $value){ 
@@ -2093,7 +2093,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                 </tr>
                 <tr>
                   <td>&nbsp;</td>
-                  <td><button type="button" class="btn btn-primary btn-lg"   id="submit_data" > <span id="txt_btn_save2"> บันทึกข้อมูล </span> </button>
+                  <td><button type="button" class="btn btn-primary btn-lg"   id="submit_data" > <span id="txt_btn_save2"> <? echo t_save_data?> </span> </button>
                     <script>
    	$('#open_all').click(function(){
    		var day = '<?=json_encode($day);?>';
@@ -2349,7 +2349,7 @@ return false ;
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>โบรชัวร์ : </strong></td>
+                    <td><strong><? echo t_bouchure?> : </strong></td>
                     <td><div class="<?= $coldata?>">
  
  <div class="take_photo" ><center>
@@ -2659,7 +2659,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
             <tr>
               <td width="700" valign="top"><table width="100%" border="0" cellspacing="3" cellpadding="3">
                 <tr>
-                  <td><strong>หมวดหมู่ : </strong></td>
+                  <td><strong><? echo t_category?> : </strong></td>
                   <td style="font-size:18px;">
                  
                   <select  id="select_category" class="form-control" style="width:500px;; font-size:16px; padding:5px; height:40px">
@@ -2736,9 +2736,9 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   <td><input class="form-control"name="topic_cn" type="text"  id="topic_cn" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][topic_cn];?>" /></td>
                 </tr>
 				<tr>
-                  <td><strong>ภูมิภาค :</strong></td>
+                  <td><strong><? echo t_region?> :</strong></td>
                   <td><select  class="form-control" name="region" id="region" style="width:500px;; font-size:16px; padding:5px; height:40px"  >
-                  <option value="">- เลือกภูมิภาค -</option>
+                  <option value="">- <? echo t_select_region?> -</option>
                      <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                   $res[region] = $db->select_query("SELECT * FROM web_area ORDER BY topic_th asc ");
@@ -2783,9 +2783,9 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                 	});
                 </script>
                 <tr>
-                  <td><strong>จังหวัด :</strong></td>
+                  <td><strong><? echo t_province?> :</strong></td>
                   <td><select  class="form-control" name="province" id="province" style="width:500px;font-size:16px; padding:5px; height:40px"  >
-                    <option value="">- เลือกจังหวัด -</option>
+                    <option value="">- <? echo t_select_province?> -</option>
                     <?
                                   $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
                                     $res[category] = $db->select_query("SELECT * FROM web_province where area = '".$arr[project][region]."' ORDER BY name_th asc  ");
@@ -2861,12 +2861,12 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                     </select></td>
                 </tr>
                 <tr>
-                  <td><strong>ที่อยู่ :</strong></td>
+                  <td><strong><? echo t_address?> :</strong></td>
                   <td><textarea name="address" rows="3" class="form-control" id="address" style="width:500px; background:#FFFFFF"><?=$arr[project][address];?>
               </textarea></td>
                 </tr>
                 <tr>
-                  <td><strong>Link แผนที่ :</strong></td>
+                  <td><strong><? echo t_link_maps?> :</strong></td>
                   <td>
                   <table>
                   	<tr><td>
@@ -2935,22 +2935,22 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </td>
                 </tr>
                 <tr style="display:none">
-                  <td><strong>แผนที่ :</strong></td>
-                  <td>ละติดจูด&nbsp;
+                  <td><strong><? echo t_maps?> :</strong></td>
+                  <td><? echo t_latitude?>&nbsp;
                     <input  class="form-control" name="lat" type="text"  id="lat" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][lat];?>" />
-                    &nbsp; ลองติจูด&nbsp;
+                    &nbsp; <? echo t_longitude?>&nbsp;
                     <input  class="form-control" name="lng" type="text"  id="lng" style="width:120px; background:#FFFFFF" value="<? echo $arr[project][lng];?>" /></td>
                 </tr>
                 <tr>
-                  <td><strong>เบอร์โทรศัพท์ :</strong></td>
+                  <td><strong><? echo t_phone_number?> :</strong></td>
                   <td><input  class="form-control" name="phone" type="text"  id="phone" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][phone];?>" /></td>
                 </tr>
                 <tr>
-                  <td><strong>อีเมล์ :</strong></td>
+                  <td><strong><? echo t_email?> :</strong></td>
                   <td><input  class="form-control" name="email" type="text"  id="email" style="width:500px; background:#FFFFFF" value="<? echo $arr[project][email];?>" /></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 1: </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 1: </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;"><select  class="form-control" name="price_plan" id="price_plan" style="width:500px;; font-size:16px; padding:5px; height:40px" >
                     <option value="">- เลือกประเภทค่าตอบแทน -</option>
                     <?
@@ -2971,7 +2971,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </select></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 2: </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 2: </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;"><select  class="form-control" name="price_plan_2" id="price_plan4" style="width:500px;; font-size:16px; padding:5px; height:40px" >
                     <option value="">- เลือกประเภทค่าตอบแทน -</option>
                     <?
@@ -2992,7 +2992,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                   </select></td>
                 </tr>
                 <tr>
-                  <td bgcolor="#FFFDE9"><strong>ค่าตอบแทน 3: </strong></td>
+                  <td bgcolor="#FFFDE9"><strong><? echo t_work_remuneration?> 3: </strong></td>
                   <td bgcolor="#FFFDE9" style="font-size:16px;"><select  class="form-control" name="price_plan_3" id="price_plan5" style="width:500px;; font-size:16px; padding:5px; height:40px" >
                     <option value="">- เลือกประเภทค่าตอบแทน -</option>
                     <?
@@ -3486,7 +3486,7 @@ $arr[projectsub] = $db->fetch($res[projectsub]);
                 </tr>
                 <tr>
                   <td width="150">&nbsp;</td>
-                  <td><button type="button" class="btn btn-primary btn-lg"   id="submit_data" > <span id="txt_btn_save3"> บันทึกข้อมูล </span></button>
+                  <td><button type="button" class="btn btn-primary btn-lg"   id="submit_data" > <span id="txt_btn_save3"><? echo t_save_data?> </span></button>
  <script>
                  
     function closeDay(day){
@@ -3699,7 +3699,7 @@ return false ;
 	  
 
  if(document.getElementById('province').value=="") {
-alert('กรุณาเลือกจังหวัด'); 
+alert('<? echo t_please_select_province?>'); 
 document.getElementById('province').focus() ; 
 return false ;
 }
@@ -3801,7 +3801,7 @@ $('#all_place').click();
                     </td>
                   </tr>
                   <tr>
-                    <td><strong>โบรชัวร์ : </strong></td>
+                    <td><strong><? echo t_bouchure?> : </strong></td>
                     <td><div class="<?= $coldata?>">
  
  <div class="take_photo" ><center>
@@ -4080,7 +4080,7 @@ $('#all_place').click();
 				  	<form id="form_upload_file" enctype="multipart/form-data"  >
 				  		<table>
 				  			<tr>
-				  				<td>ประเภท</td>
+				  				<td><? echo t_type?></td>
 				  				<td>
 				  				<select name="type_doc" id="type_doc" class="form-control">
 				  				<option value="0">- เลือกประเภทเอกสาร -</option>

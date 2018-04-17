@@ -11,15 +11,15 @@
 <? if(1==0){ ?>
 <li  id="menu_register" class="treeview">
    <a href="#" >
-   <i class="fa  fa-user-plus l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;เพื่อนร่วมงาน</span>
+   <i class="fa  fa-user-plus l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_colleague?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
    </a>
    <ul class="treeview-menu"    >
-      <li ><a   id="menu_add_new_registers"   href="new_driver.php" target="_blank" ><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide">เพิ่มเพื่อนร่วมงาน</span></a></li>
-      <li ><a href="?name=register&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">รายชื่อสมัครใหม่</span></a></li>
-      <li ><a href="?name=register&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">เพื่อนร่วมงานทั้งหมด</span></a></li>
+      <li ><a   id="menu_add_new_registers"   href="new_driver.php" target="_blank" ><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide"><? echo t_add_colleague?></span></a></li>
+      <li ><a href="?name=register&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_colleague?></span></a></li>
+      <li ><a href="?name=register&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_all_colleagues?></span></a></li>
    </ul>
 </li>
 <? } ?>
@@ -337,14 +337,14 @@
 <? if(0==1){ ?>
 <li  id="menu_chat">
    <a >
-   <i class="fa fa-comments l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;แชท
+   <i class="fa fa-comments l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_chat?>
    <? ///=$user_name_en?>
    </span>
    </a>
 </li>
 <li  id="menu_pay" lass="treeview">
    <a  >
-   <i class="fa fa-recycle l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;บัญชี การเงิน</span>
+   <i class="fa fa-recycle l-menu-li-icon-main"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_financial_accounting?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>

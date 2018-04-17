@@ -42,7 +42,7 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
          
 		       <li  id="menu_home" >
           <a href="index.php" >
-            <i class="fa fa-home l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;หน้าแรก</span>
+            <i class="fa fa-home l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;<? echo t_home_page?></span>
       </a>
         </li>
 		 
@@ -51,7 +51,7 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
 	 
         	 <li  id="menu_register" class="treeview">
 		         <a href="#" >
-               <i class="fa  fa-user-plus l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;เพื่อนร่วมงาน</span>
+               <i class="fa  fa-user-plus l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;<? echo t_colleague?></span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -59,8 +59,8 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
           
           
           <ul class="treeview-menu"    >
-		   <li ><a   id="menu_add_new_register" ><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide">เพิ่มเพื่อนร่วมงาน</span></a></li>
-			<li ><a href="?name=register&file=member" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">เพื่อนร่วมงาน</span></a></li>
+		   <li ><a   id="menu_add_new_register" ><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide"><? echo t_add_colleague?></span></a></li>
+			<li ><a href="?name=register&file=member" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_colleague?></span></a></li>
  
  
  
@@ -75,7 +75,7 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
         
    <li   class="treeview">
 		         <a  >
-               <i class="fa  fa-taxi l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;งานวันนี้</span>
+               <i class="fa  fa-taxi l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;<? echo t_today_job?></span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -83,8 +83,8 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
           
           
                  <ul class="treeview-menu"    >
-		   <li ><a   id="menu_add_new_booking"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide">เพิ่มงานใหม่</span></a></li>
-            <li ><a href="?name=booking&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">งานทั้งหมด</span></a></li>
+		   <li ><a   id="menu_add_new_booking"><i class="fa fa-plus-circle" ></i><span  class="textsub-left-menu-slide"><? echo t_add_new_job?></span></a></li>
+            <li ><a href="?name=booking&file=all" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_all_jobs?></span></a></li>
  
           </ul>
         </li>
@@ -190,7 +190,7 @@ $('#menu_chat_user').click(function(){
 		
 		 <li  id="menu_user" class="treeview">
 		         <a href="#" >
-             <i class="fa fa-cogs l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;จัดการรถ</span>
+             <i class="fa fa-cogs l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;<span class="textmain-left-menu">&nbsp;<? echo t_manage_car?></span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -198,10 +198,10 @@ $('#menu_chat_user').click(function(){
           
           
           <ul class="treeview-menu"    >
-		   <li ><a href="?name=checkcar&file=data" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">ข้อมูลรถ</span></a></li>
-            <li ><a href="?name=checkcar" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">ตรวจเช็คสภาพรถ</span></a></li>
-			<li><a href="?name=checkcar&file=repair"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">แจ้งซ่อมรถ</span></a></li>
-			<li><a href="?name=checkcar&file=service"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">ศูนย์บริการและประกันภัย</span></a></li>
+		   <li ><a href="?name=checkcar&file=data" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_car_information?></span></a></li>
+            <li ><a href="?name=checkcar" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_check_condition_car?></span></a></li>
+			<li><a href="?name=checkcar&file=repair"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_inform_car_repair?></span></a></li>
+			<li><a href="?name=checkcar&file=service"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_service_and_insurance?></span></a></li>
  
  
           </ul>
@@ -214,27 +214,27 @@ $('#menu_chat_user').click(function(){
 		
 		 <li  id="menu_user" class="treeview">
 		         <a href="#" >
-              <i class="fa fa-user l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;ข้อมูลผู้ใช้งาน</span>
+              <i class="fa fa-user l-menu-li-icon"></i> <span class="textmain-left-menu">&nbsp;<span class="textmain-left-menu">&nbsp;<? echo t_user_information?></span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu"  >
-            <li ><a href="?name=user" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">ข้อมูลส่วนตัว</span></a></li>
+            <li ><a href="?name=user" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_personal_information?></span></a></li>
 			
-			<li ><a href="?name=user&file=job" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">ข้อมูลการทำงาน</span></a></li>
+			<li ><a href="?name=user&file=job" ><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_work_information?></span></a></li>
 			
-			<li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">ข้อมูลการติดต่อสื่อสาร</span></a></li>
-			<li><a href="?name=user&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">เบอร์โทรศัพท์ส่วนตัว</span></a></li>
+			<li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_contact_information?></span></a></li>
+			<li><a href="?name=user&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_phone_number_the?></span></a></li>
 			<? if(1==0){ ?>
-			<li><a href="?name=user&file=pic"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide">เปลี่ยนภาพประจำตัว</span></a></li>
+			<li><a href="?name=user&file=pic"><i class="fa fa-circle-o" ></i><span  class="textsub-left-menu-slide"><? echo t_change_profile_picture?></span></a></li>
 			<? } ?>
-			<li><a href="?name=user&file=password"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">เปลี่ยนรหัสผ่าน</span></a></li>
+			<li><a href="?name=user&file=password"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_change_password?></span></a></li>
 			
 			<? if(1==0){ ?>
-			 <li><a href="?name=user&file=document"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">ไฟล์เอกสาร</span></a></li>
+			 <li><a href="?name=user&file=document"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_documents?></span></a></li>
             
-			<li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">ข้อมูลการทำงาน</span></a></li>
+			<li><a href="?name=user&file=network"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_work_information?></span></a></li>
 			
 			<? } ?>
           </ul>
@@ -252,7 +252,7 @@ $('#menu_chat_user').click(function(){
  
           <a  >
 		  
-		  <i class="fa fa-recycle l-menu-li-icon"></i> <span  class="textmain-left-menu">&nbsp;บัญชี การเงิน</span>
+		  <i class="fa fa-recycle l-menu-li-icon"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_financial_accounting?></span>
 		     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -260,9 +260,9 @@ $('#menu_chat_user').click(function(){
 		   </a> 
 		  
 		   <ul class="treeview-menu">
-            <li><a href="?name=pay&file=bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">บัญชีธนาคาร</span></a></li>
-			<li><a href="?name=pay&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">ค่าเที่ยว เบี้ยเลี้ยง</span></a></li>
-			<li><a href="?name=pay&file=all"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">เงินเดือน ค่าโอที</span></a></li>
+            <li><a href="?name=pay&file=bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_bank_account?></span></a></li>
+			<li><a href="?name=pay&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_missed_meal_fee?></span></a></li>
+			<li><a href="?name=pay&file=all"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_overtime_pay?></span></a></li>
 			 
 		         </ul>
         </li>
@@ -281,7 +281,7 @@ $('#menu_chat_user').click(function(){
  
           <a  >
 		  
-		  <i class="fa fa-phone l-menu-li-icon"></i> <span  class="textmain-left-menu">&nbsp;เบอร์โทรศัพท์</span>
+		  <i class="fa fa-phone l-menu-li-icon"></i> <span  class="textmain-left-menu">&nbsp;<? echo t_phone_number?></span>
 		     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -289,8 +289,8 @@ $('#menu_chat_user').click(function(){
 		   </a> 
 		  
 		   <ul class="treeview-menu">
-            <li><a href="?name=phone&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">เบอร์โทรศัพท์ส่วนตัว</span></a></li>
-			<li><a href="?name=phone&file=driver"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide">เบอร์โทรศัพท์คนขับรถ</span></a></li>
+            <li><a href="?name=phone&file=phone"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_phone_number_the?></span></a></li>
+			<li><a href="?name=phone&file=driver"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide"><? echo t_driver_phone_no?></span></a></li>
  
 			 
 		         </ul>
@@ -302,7 +302,7 @@ $('#menu_chat_user').click(function(){
  <li  id="menu_logout">
           <a  id="l-logout" >
 		  
-            <i class="fa fa-share-square l-menu-li-icon" ></i> <span class="textmain-left-menu" >&nbsp;ออกจากระบบ</span>
+            <i class="fa fa-share-square l-menu-li-icon" ></i> <span class="textmain-left-menu" >&nbsp;<? echo t_sign_out?></span>
       </a>
         </li>
 		<br>
@@ -320,13 +320,13 @@ $('#menu_chat_user').click(function(){
  
   
 	   swal({
-		title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-		text: "ว่าต้องการออกจากระบบ",
+		title: "<font style='font-size:28px'><b> <? echo t_are_you_sure?>",
+		text: "<? echo t_confirm_signout?>",
 		type: "error",
 		showCancelButton: true,
 		confirmButtonColor: '#DD6B55',
-		confirmButtonText: 'ใช่',
-		cancelButtonText: "ไม่ใช่",
+		confirmButtonText: '<? echo t_yes?>',
+		cancelButtonText: "<? echo t_no?>",
 		closeOnConfirm: true,
 		closeOnCancel: true,
 		html: true
@@ -335,7 +335,8 @@ $('#menu_chat_user').click(function(){
     if (isConfirm){
 	 
 	
-swal("ออกจากระบบสำเร็จ", "success");
+swal("<? echo t_sign_out_successfully?>", "<? echo t_success?>");
+
 
 window.location = "signin.php";;
  
@@ -343,7 +344,7 @@ window.location = "signin.php";;
    
 	//  alert('dd');
     } else {
-      swal("Cancelled", "", "error");
+      swal("<? echo t_cancelled?>", "", "<? echo t_error?>");
     }
 	});
 	   
