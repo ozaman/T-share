@@ -1353,8 +1353,8 @@ console.log('in csae date =================================')
 // console.log(datalng+"-------------------------------------------------------------")
 // console.log(armonth)
 // }); 
-alert($('#set_lng_cookies').val())
-    if ($('#set_lng_cookies').val() == 'en' || $('#set_lng_cookies').val() == '') {
+// alert($('#set_lng_cookies').val())
+    if ($('#set_lng_cookies').val() == 'en' || $('#set_lng_cookies').val() == '' || $('#set_lng_cookies').val() == undefined) {
         var day_old = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
         var month_old = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
         var today_old = 'today';
