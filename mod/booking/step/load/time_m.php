@@ -39,7 +39,7 @@
 	}
 </style>
 <script>
-	$(".text-topic-action-mod-4" ).html("นาที");
+	$(".text-topic-action-mod-4" ).html("<?=t_minutes;?>");
 	$(".mynumber").removeClass("mynumber-active");
 	$("#number_<?=$_GET[id]?>").addClass("mynumber-active");
 </script>
@@ -71,7 +71,9 @@ if($time_h_now == $time_select){
 if($time_select == $finish_h){
 	$end_m = $finish_m*1;
 }
-
+if($_COOKIE[lng]=="th"){
+	$m = " น.";
+}
 ?>
 <TABLE cellSpacing=0 cellPadding=5 width=100% border=0  >
 	<TBODY>
@@ -84,7 +86,7 @@ if($time_select == $finish_h){
 					</table>
 				</div>
 				<div style="margin-top:40px;padding: 15px;font-size: 24px;width: 100%;color: #ff0000;" align="center">
-					<strong>สิ้นสุดให้บริการ <?=$arr[shop][finish_h].".".$arr[shop][finish_m]." น.";?></strong>
+					<strong><?=t_end_of_service;?> <?=$arr[shop][finish_h].".".$arr[shop][finish_m].$m;?></strong>
 				</div>
 				<TABLE width="100%" align=center cellSpacing=0 cellPadding=0 border=0 >
 					<?

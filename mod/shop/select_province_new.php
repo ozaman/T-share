@@ -326,7 +326,7 @@ font-size: 20px !important;
 	$('#submit_select_pv').click(function(){
 			 console.log('select province');
 			 var province = $('#province_id').val();
-			 var province_name = $('#txt_pv_fr').val();;
+			 var province_name = $('#txt_pv_fr').val();
 			 if(province==0 || province==""){
 			 	alert('กรุณาเลือกจังหวัด');
 			 	return;
@@ -399,11 +399,20 @@ font-size: 20px !important;
 			});
 			$('#submit_this_pv').click(function(){
 				 var province = $('#province_id').val();
-				 var province_name = $('#txt_pv_fr').val();			 
+				 var province_name = $('#txt_pv_fr').val();		
+				 console.log(province);	 
 				 if(province==""){
-				 	 alert('ไม่มีสินค้าในจังหวัดที่คุณอยู่');
-//					 swal("ไม่มีสินค้าในจังหวัดที่คุณอยู่!")
+//				 	 alert('ไม่มีสินค้าในจังหวัดที่คุณอยู่');
+				 	 
+					 swal("ไม่มีสินค้าในจังหวัดที่คุณอยู่!")
 //				 	 $('#show_section').click();
+				 	 return;
+				 }
+				 
+				 if($('#province_text').text()==""){
+				 	
+				 	swal("ไม่สามารถตรวจสอบจังหวัดของคุณได้!")
+//				 	$('#fade_in3').click();
 				 	 return;
 				 }
 				 openMainShop(province,province_name);

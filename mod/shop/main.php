@@ -1,6 +1,6 @@
 <?php
 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-$province_name = $db->select_query("SELECT id,name,name_th,name_cn FROM web_province where id='".$_GET[province]."' ");
+$province_name = $db->select_query("SELECT id,".$province." FROM web_province where id='".$_GET[province]."' ");
 $province_name = $db->fetch($province_name);
  ?> 
   
@@ -41,7 +41,7 @@ $province_name = $db->fetch($province_name);
   
 <div style="margin-top:45px;"> 
 
-  <div align="center" class="font-28 box-show-pv"><strong><span><?=$province_name[name_th];?></span></strong></div>
+  <div align="center" class="font-28 box-show-pv"><strong><span><?=$province_name[$province];?></span></strong></div>
        <?
 	   
  

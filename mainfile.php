@@ -16,18 +16,21 @@ switch ($_COOKIE['lng']){
         //echo "PAGE th";
         include("includes/lang/th/t_share_2.php");//include check session DE
         $province = "name_th";
+        $place_shopping = "topic_th";
         $google_map_api_lng = "th";
         break;
     case "cn":
         //echo "PAGE cn";
         include("includes/lang/cn/t_share_2.php");
         $province = "name_cn";
+        $place_shopping = "topic_cn";
         $google_map_api_lng = 'zh-CN';
         break;
     case "en":
         //echo "PAGE EN";
         include("includes/lang/en/t_share_2.php");
         $google_map_api_lng = "en";
+        $place_shopping = "topic_en";
         $province = "name";
         break;        
     default:
@@ -35,6 +38,7 @@ switch ($_COOKIE['lng']){
         include("includes/lang/".$keep."/t_share_2.php");//include EN in all other cases of different lang detection
         $google_map_api_lng = $keep;
         $province = "name_".$keep;
+        $place_shopping = "topic_".$keep;
         $google_map_api_lng = $keep;
         break;
 } 

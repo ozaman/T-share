@@ -36,13 +36,13 @@
       		$name_type = t_parking_fee."+".t_person_fee;
       }
       else if($id==2){
-      		$name_type = t_parking_fee."+".t_com_free;
+      		$name_type = t_parking_fee."+".t_com_fee;
       }
       else if($id==3){
-      		$name_type = t_person_fee."+".t_com_free;
+      		$name_type = t_person_fee."+".t_com_fee;
       } 
       else if($id==4){
-      		$name_type = t_parking_fee."+".t_person_fee."+".t_com_free;
+      		$name_type = t_parking_fee."+".t_person_fee."+".t_com_fee;
       }
       else if($id==5){
       		$name_type = t_parking_fee;
@@ -51,7 +51,7 @@
       		$name_type = t_person_fee;
       }
       else if($id==7){
-      		$name_type = t_com_free;
+      		$name_type = t_com_fee;
       }
       return $name_type;
    }

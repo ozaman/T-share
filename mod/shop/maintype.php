@@ -2,7 +2,8 @@
    //  $(".text-topic-action-mod" ).html("ส่งแขก > หมวดหมู่ทั้งหมด");
      $(".text-topic-action-mod" ).html("<?=t_send_to_customer;?>");
    //  $("#head_full_popup_icon" ).html('<i class="fa <?=$arr[project][logo_code]?>" style="font-size:30px; color:<?=$arr[project][text_color]?>; "></i>');
-     $('.pv_name_btn').text( $('#province_text').text());
+//   	alert($('#province_text').text());
+//     $('.pv_name_btn').text( $('#province_text').text());
      
 </script> 
 <style>
@@ -33,6 +34,18 @@
    box-shadow: 1px 1px 5px #ddd;
    }
 </style>
+<?php 
+$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+$province_name = $db->select_query("SELECT id,".$province." FROM web_province where id='".$_GET[province]."' ");
+$province_name = $db->fetch($province_name);
+/*if($_COOKIE[lng]=="en"){
+	$privince_name_fin = $province_name[name];
+}else if($_COOKIE[lng]=="th"){
+	$privince_name_fin = $province_name[name_th];
+}else if($_COOKIE[lng]=="cn"){
+	$privince_name_fin = $province_name[name_cn];
+}*/
+?>
 <div style="margin-top:45px;">
    <!--<div style="border: 1px solid rgba(153, 153, 153, 0.39);border-radius: 15px;padding: 5px; box-shadow: 0px 0px 0px #999999; margin-bottom:20px;" align="center" >-->
    <table width="100%">
@@ -41,7 +54,7 @@
          </tr>-->
       <tr>
          <td width="50%" align="center">
-            <div class="box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-26 pv_name_btn"></span></strong></div>
+            <div class="box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-26 pv_name_btn"><?=$province_name[$province];?></span></strong></div>
          </td>
          <td width="50%" align="center">
             <div class="box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-26"><? echo t_provinces;?></span></strong></div>
