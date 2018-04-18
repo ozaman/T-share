@@ -32,22 +32,18 @@
 </style>
 <script>
    var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div></div></div>';
-</script>
-<script>
    var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div';
 </script>
-<?
+<?php 
    if($data_user_class=='taxi'){
    	 $filter="drivername=".$user_id." ";
-    } else { 
+    } 
+   else { 
    	 $filter=""; 
     }
    /// $_GET[day]='2017-07-20';
-   $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   	 $all_work = $db->num_rows('order_booking',"id","$filter");
-   ?>
-<div  class="bottom_popup"   id="show_main_tool_bottom" style="display:nones;     ">
-   <?php    
+   /*  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+   	 $all_work = $db->num_rows('order_booking',"id","$filter");*/
       $PNG_TEMP_DIR = '../data/qrcode/user/';
       $PNG_WEB_DIR = '../data/qrcode/user/';
       include "php_qrcode/qrlib.php";    
@@ -77,6 +73,67 @@
       //display generated file
       //   echo '<img src="'.$filename.'" /><hr/>';  
       ?>
+<style>
+   .column {
+   float: left;
+   width: 25%;
+   padding: 5px;
+   height: auto;
+   }
+   .font-19{
+   		font-size: 13px !important;
+   		font-family : 'Arial', sans-serif;
+   }
+   .max-min-height{
+   			max-height: 55px; 
+		   	min-height: 55px;
+   }
+    @media screen and (max-width: 320px) {
+         .max-min-height{
+		   	max-height: 50px; 
+   			min-height: 50px;
+		   }
+		   .font-19{
+		   		font-size: 11px !important;
+		   		font-family : 'Arial', sans-serif;
+		   }
+	}
+   .txt-col{
+   background-color: #fff;
+   text-align: center;
+   text-transform: capitalize;
+   }
+   .txt-color{
+   color: #333333;
+   }
+</style>
+<div  class="bottom_popup max-min-height"   id="show_main_tool_bottom" >
+   <div class="column txt-col">
+      <span  id="btn_home_bottom_menu"  class="bottom-popup-icon-new-active">
+         <div style="height:25px;" class="font-32"><i class="fa fa-home" ></i></div>
+         <div class="txt-color font-19"><?=t_home_page;?></div>
+      </span>
+   </div>
+   <div class="column txt-col">
+      <span  id="btn_todaywork_bottom_menu"  class="bottom-popup-icon-new-active">
+         <div style="height:25px;" class="font-32"><i class="fa fa-history" ></i></div>
+         <div class="txt-color font-19"><?=t_all_jobs;?></div>
+      </span>
+   </div>
+   <div class="column txt-col">
+      <span  id="btn_newwork_bottom_menu"  class="bottom-popup-icon-new-active">
+         <div style="height:25px;" class="font-30"><i class="fa icon-new-uniF142" ></i></div>
+         <div class="txt-color font-19"><?=t_send_to_customer;?></div>
+      </span>
+   </div>
+   <div class="column txt-col">
+      <span  id="btn_qrcode_bottom_menu"  class="bottom-popup-icon-new-active">
+         <div style="height:25px;" class="font-32"><i class="fa fa-qrcode" ></i></div>
+         <div class="txt-color font-19"><?=t_friends;?></div>
+      </span>
+   </div>
+</div>
+<!--<div  class="bottom_popup"   id="show_main_tool_bottom" style="display:none;     ">
    <table width="100%"  border="0" cellspacing="2" cellpadding="2" style="display: nones;">
       <tr align="center">
          <td width="25%">
@@ -86,7 +143,8 @@
             </span>
          </td>
          <td width="25%">
-            <div style="display:none"> <span data-toggle="tooltip" title="3 ข้อความใหม่" class="badge"   style="position:absolute; margin-left:20px; border-radius: 20px; height:20px; width:20px; background-color:#FF0000; " id="number_bottom_chat"><?=$all_work?></span> </div>
+            <div style="display:none"> <span data-toggle="tooltip" title="3 ข้อความใหม่" class="badge"   style="position:absolute; margin-left:20px; border-radius: 20px; height:20px; width:20px; background-color:#FF0000; " id="number_bottom_chat"><?=$all_work?></span>
+            </div>
             <span id="btn_todaywork_bottom_menu" class="bottom-popup-icon-new">
                <div style="height:25px;" ><i class="fa fa-history" ></i></div>
                <font color="#333333" style="font-size:13px"><? echo t_all_jobs ?></font>
@@ -111,7 +169,7 @@
          </td>
       </tr>
    </table>
-</div>
+</div>-->
 <style>
    .bottom_popup
    { 
@@ -126,7 +184,9 @@
    font-size:26px; color:#999999; margin-bottom:1px;
    }
    .bottom-popup-icon-new-active {
-   font-size:26px; color:<?=$main_color?>;    margin-bottom:1px;
+   /*   font-size:26px; */
+   color:<?=$main_color?>;    
+   /*   margin-bottom:1px;*/
    }
 </style>
 <style>
@@ -195,7 +255,6 @@
    //	location.reload();
    window.location = "https://www.welovetaxi.com/app/demo/index.php";
        	});
-   			
 </script>      
 <script>
    $('#btn_allwork_bottom_menu').click(function(){  
@@ -204,7 +263,6 @@
      $('#navload_topic').html('ไปที่งานทั้งหมด');
      $('#load_mod_data').load('popup.php?name=booking&file=all');
          	});
-   					
 </script>      
 <script>
    $('#btn_todaywork_bottom_menu').click(function(){  
@@ -218,7 +276,6 @@
       $('#load_mod_popup_3').load(url_load);
      */
          	});
-   					
 </script>      
 <script>
    $('#btn_user_bottom_menu').click(function(){  
@@ -226,7 +283,6 @@
     $('#load_mod_data').html(load_main_mod);
     $('#load_mod_data').load('go.php?name=user&file=index');
          	});
-   					
 </script>      
 <script>
    $('#btn_newwork_bottom_menu').click(function(){  
@@ -235,7 +291,6 @@
    $("#btn_newwork_bottom_menu").addClass("bottom-popup-icon-new-active");
     $( "#alert_show_shopping_place" ).toggle();
     });
-    		
 </script>   
 <script>
    $('#btn_home_head_menu').click(function(){  
@@ -254,7 +309,6 @@
      var url_load= "load_page_mod_3.php?name=user&file=qrcode";
       $('#load_mod_popup_3').load(url_load);
     	});
-   					
 </script>      
 <script>
    $('#logo_app').click(function(){  

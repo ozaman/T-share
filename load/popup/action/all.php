@@ -45,7 +45,7 @@ font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=
 <?  /// include "load/loading/page_main.php" ; ?>
  
 
-<div class="css-full-popup" id="load_mod_popup" style="position: fixed; overflow-y: scroll;-webkit-overflow-scrolling: touch;">
+<div class="css-full-popup " id="load_mod_popup" style="position: fixed; overflow-y: scroll;-webkit-overflow-scrolling: touch;">
 	
 </div>
 

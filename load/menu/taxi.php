@@ -124,10 +124,6 @@
     
     	});
     
-
-   ////  
-   		 
-   
    $('#menu_add_new_booking').click(function(){  
    
    
@@ -147,9 +143,7 @@
    
    	});
    
-   				
-</script> 
-<script>
+
    //// alert_show_shopping_place		 
    		 
    
@@ -185,7 +179,7 @@
    <ul class="treeview-menu">
       <li><a id="slide_menu_account_income"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_receipt_of_parking_fee?></span></a></li>
       <li style="display:none"><a href="?name=booking/account&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_withdrawal_record?></span></a></li>
-      <li><a id="slide_menu_account_bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_bank_account?></span></a></li>
+      <li><a id="slide_menu_account_bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_bank_account;?></span></a></li>
    </ul>
 </li>
 <? } ?>

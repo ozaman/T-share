@@ -555,7 +555,8 @@ $final_tt = $final_tt[0];*/
 
    function language(lng) {
     console.log(lng);
-    $.cookie("lng", lng, { path: '/' });
+//    $.cookie("lng", lng, { path: '/' });
+	setCookie("lng", lng, 1);
     window.location.reload();
    }
    console.log('asasasas')

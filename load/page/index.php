@@ -48,7 +48,7 @@
   <![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-<body class="hold-transition skin-blue sidebar-mini"  style="background-color:#F5F5F5;overflow-x: hidden;" >
+<body class="hold-transition skin-blue sidebar-mini"  style="background-color:#F5F5F5;overflow-x: hidden !important" >
 
 
 <div class="wrapper" style="background-color:#F5F5F5" >

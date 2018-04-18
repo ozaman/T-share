@@ -1,7 +1,7 @@
 <?
    //echo $_GET[type];
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-    $query_topic = "topic_cn"; 
+    $query_topic = "topic_th"; 
    	if($_COOKIE['lng']=="th"){
    		$query_topic = "topic_th"; 
    	}else if($_COOKIE['lng']=="en"){
