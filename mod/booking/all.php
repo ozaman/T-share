@@ -204,13 +204,16 @@ $("#btn_calendar").click(function(){
 //$( "#main_load_mod_popup" ).toggle();
  
   var url_load = "load_page_mod.php?name=booking&file=all";
- $('#load_mod_popup').html(load_main_mod);
- $.post( url_load, function( data ) {
-  $('#load_mod_popup').html(data);
-});
+ // $('#load_mod_popup').html(load_main_mod);
+//  $.post( url_load, function( data ) {
+//   $('#load_mod_popup').html(data);
+// });
 
-/* $('#load_mod_popup').html(load_main_mod);
-  $('#load_mod_popup').load(url_load); */
+ $('#load_mod_popup').html(load_main_mod);
+	  
+	  $('#load_mod_popup').load(url_load);
+	  //$.post( url_load, function( data ) {
+  $('#load_mod_popup').html(data);
  
 }
 function transfer_status(){  

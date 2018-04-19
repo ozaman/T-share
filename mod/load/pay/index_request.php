@@ -59,7 +59,7 @@
           <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_transfer_banks?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
             <select class="form-control" name="bank" id="bank" style="border-radius: 25px;padding: 0 15px;">             
-                <option > ไทยภานิชย์(SCB) </option>
+                <option > ไทยพานิชย์(SCB) </option>
             </select>
                  
         </td>

@@ -60,7 +60,7 @@
           <td width="80" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_bank_name?></td>
           <td width=""   class="font_16" style="padding-right:10px; color:#FF0000;font-size: 16px;">
            <!--  <img src="https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-1/p50x50/10897014_10152997534378545_3525821504956963563_n.jpg?oh=70839c63656c22249e06f3e5e4b812c3&oe=5B40AF5A"> -->
-             ไทยภานิชย์(SCB)         
+             ไทยพานิชย์(SCB)         
               </td>
           
         </tr>
