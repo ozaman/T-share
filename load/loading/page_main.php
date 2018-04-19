@@ -56,7 +56,7 @@ $(window).load(function() {
 
  
  
-<div class="outer-loading"   id="main_index_load_page_mod">
+<div class="outer-loading" id="main_index_load_page_mod">
    <div class="inner-loading">
  
  <center>

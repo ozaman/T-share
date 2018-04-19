@@ -304,7 +304,6 @@
    	}
    	$('#select_province').mobileSelect('show');
    });
-
    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -352,6 +351,7 @@
    $.post( url,{txt_pv:txt_pv}, function( data ) {
    		  	var obj = JSON.parse(data);
    		  	console.log(obj);
+
    		  	if(obj==false){
    				/*$( "#select_region").val(0);
    				 $('#select_region').change();*/
@@ -359,6 +359,7 @@
    				var province = obj.id;
    				var area = obj.area;
    			    $('#area_id').val(area);
+//   			    $('#province_id').val(province);
    			    $('#select_regoin').val(area);
    			    var txt_area = $('#select_regoin option[value="'+area+'"]').text();
    			    if(txt_area!=""){
@@ -369,12 +370,13 @@
 //   			     var url = "mod/shop/select_province_new.php?op=get_select_province&area="+area;
    			     var url = "empty_style.php?name=shop&file=select_province_new&op=get_select_province&area="+area;
    					$.post( url, function( data ) {
-   //							console.log(data);
+//   							console.log(data);
    							$('#change_province').html(data);
    							OpenProvince();
    							 $('#select_province').val(province);
    							  var txt_pv = $('#select_province [value="'+province+'"]').text();
    //								  console.log(txt_pv);
+//   alert(txt_pv)
    							  if(txt_pv!=""){
    							  	  $('#txt_show_province').text(txt_pv);
    			     			  	  $('#province_id').val(province);

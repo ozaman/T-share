@@ -385,14 +385,12 @@
     	});
     function openMainShop(province,province_name){
     	console.log(province+" : "+province_name);
-   	if($("#load_mod_popup_select_pv").hasClass('zindex-small-popup')==true){
-   		$('.close-small-popup').click();
-   	}else{
-   		$("#main_load_mod_popup" ).toggle();
-   	}
+
+	   	$("#main_load_mod_popup" ).toggle();
+
     	  var url_load= "load_page_mod.php?name=shop&file=maintype&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&province="+province+"&province_name="+province_name;
-   	  $('#load_mod_popup').html(load_main_mod);
-   	  $('#load_mod_popup').load(url_load);
+   	  	$('#load_mod_popup').html(load_main_mod);
+   	  	$('#load_mod_popup').load(url_load);
     }
      $('.close-small-popup').click(function(){
      		$('#load_mod_popup_select_pv').hide();

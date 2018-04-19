@@ -76,8 +76,8 @@ if($_COOKIE[lng]=="en"){
       		var name = '<?=$name;?>';
       		var province = '<?=$_GET[province];?>';
       		var url_load= "load_page_mod.php?name=shop&file=maintype&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&province="+province+"&province_name="+name;
-        $('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load);
+        	$('#load_mod_popup').html(load_main_mod);
+        	$('#load_mod_popup').load(url_load);
       	}
       }
    </script>

@@ -12,7 +12,7 @@
    		 //$db->del(TB_transfer_report_all,"transfer_date<'2016-09-01' and transfer_date>'2016-10-31'  "); 
    	///	$db->del('acc_2017_06',"transfer_date NOT LIKE '%2017-06%'  "); 
     ///$db->del('transfer_report_all',"transfer_date NOT LIKE '%2017-06%' and ondate NOT LIKE '%2017-06%'   "); 
-   $_GET[lang]='th';
+//   $_GET[lang]='th';
    require_once ("includes/lang/chat.php");
     // echo $_SESSION['data_user_id'];
    if($_SESSION['data_user_id'] == ''){
@@ -272,6 +272,25 @@
          }
          }
       </style>
+      <style>
+         .css-full-popup {
+         position: fixed;
+         left: 0px;
+         top: 0px; 
+         bottom:0;
+         width: 100%;
+         height: 100%;
+         z-index: 9999; 
+         overflow-y:hidden ; padding:0px; background-color:#FFFFFF;
+         }
+         .back-full-popup
+         { 
+         font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=$maincolor?>;      
+         border-top: 0px solid #000000; margin-bottom: 0px;  
+         top:  0; position:fixed;
+         z-index: 1; 
+         }
+      </style>
       <div  class="modal fade" id="popup_load_chat" role="dialog"   aria-labelledby="myModalLabel"  style="width:100%; "  >
          <? //  include ("load/page/back_popup.php");?>
          <center>
@@ -511,53 +530,45 @@
 <script src="dist/js/app.js"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
 <input type="text" name="" id='test111' value="aaaa"/>
-
-
-
 <?php
-/*echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-echo "<br />";
-// RFC 2616 compatible Accept Language Parser
-// http://www.ietf.org/rfc/rfc2616.txt, 14.4 Accept-Language, Page 104
-// Hypertext Transfer Protocol -- HTTP/1.1
-
-foreach (explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']) as $lang) {
-    $pattern = '/^(?P<primarytag>[a-zA-Z]{2,8})'.
-    '(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)'.
-    '(?P<quantifier>\d\.\d))?$/';
-
-    $splits = array();
-
-    printf("Lang:,,%s''\n", $lang);
-    if (preg_match($pattern, $lang, $splits)) {
-        print_r($splits);
-    } else {
-        echo "\nno match\n";
-    }
-}
-$tt = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-$tt = $tt[0];
-
-$final_tt = explode('-', $tt);
-$final_tt = $final_tt[0];*/
-//     @setcookie ("test2", '321', time() + (86400 * 30), "/"); // 86400 = 1 day
-
-
-
-?>
-
-
-
-
-<script >
-
-//alert("<?=$final_tt;?>");
-
-   function language(lng) {
-    console.log(lng);
-//    $.cookie("lng", lng, { path: '/' });
-	setCookie("lng", lng, 1);
-    window.location.reload();
+   /*echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+   echo "<br />";
+   // RFC 2616 compatible Accept Language Parser
+   // http://www.ietf.org/rfc/rfc2616.txt, 14.4 Accept-Language, Page 104
+   // Hypertext Transfer Protocol -- HTTP/1.1
+   
+   foreach (explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']) as $lang) {
+       $pattern = '/^(?P<primarytag>[a-zA-Z]{2,8})'.
+       '(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)'.
+       '(?P<quantifier>\d\.\d))?$/';
+   
+       $splits = array();
+   
+       printf("Lang:,,%s''\n", $lang);
+       if (preg_match($pattern, $lang, $splits)) {
+           print_r($splits);
+       } else {
+           echo "\nno match\n";
+       }
    }
-   console.log('asasasas')
+   $tt = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+   $tt = $tt[0];
+   
+   $final_tt = explode('-', $tt);
+   $final_tt = $final_tt[0];*/
+   //     @setcookie ("test2", '321', time() + (86400 * 30), "/"); // 86400 = 1 day
+   
+   
+   
+   ?>
+<script >
+   //alert("<?=$final_tt;?>");
+   
+      function language(lng) {
+       console.log(lng);
+   //    $.cookie("lng", lng, { path: '/' });
+   	setCookie("lng", lng, 1);
+       window.location.reload();
+      }
+      console.log('asasasas')
 </script>

@@ -86,12 +86,12 @@
    }
    .max-min-height{
    			max-height: 55px; 
-		   	min-height: 55px;
+/*		   	min-height: 55px;*/
    }
     @media screen and (max-width: 320px) {
          .max-min-height{
 		   	max-height: 50px; 
-   			min-height: 50px;
+/*   			min-height: 50px;*/
 		   }
 		   .font-19{
 		   		font-size: 11px !important;
