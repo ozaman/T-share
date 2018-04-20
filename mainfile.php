@@ -36,7 +36,7 @@ switch ($_COOKIE['lng']){
     default:
         //echo "PAGE EN - Setting Default";
         include("includes/lang/".$keep."/t_share_2.php");//include EN in all other cases of different lang detection
-        $google_map_api_lng = $keep;
+//        $google_map_api_lng = $keep;
         $province = "name";
         $place_shopping = "topic_".$keep;
         $google_map_api_lng = $keep;

@@ -388,7 +388,7 @@
          </td>
          </tr>
          <tr id="contact_<?=$arr[project][id]?>" <?=$display_none;?> <?=$class_tr;?>>
-         <td class="font-22"><strong><?=t_query;?></strong></td>
+         <td class="font-22"><strong><?=t_contact;?></strong></td>
          <td>
          <script> 
             $('#shop_alert_menu_map_<?=$arr[project][id]?>').click(function(){  
@@ -508,22 +508,46 @@
          right: 15px;
          font-size: 40px;
          z-index: 9000;
+         margin-top : 10px;
          " id="close_modal" onclick="closeModal();"></i>
-      <div class="modal-content" id="img01"> </div>
+         <style>
+         	.swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+         </style>
+      <div class="modal-content" id="img01"> 
+      <!--<img src="https://www.welovetaxi.com/app/data/pic/place/1_book.jpg" width="100%" />-->
+      </div>
    </div>
    <script>
-      // Get the modal
       var modal = document.getElementById('broModal');
-      // Get the image and insert it inside the modal - use its "alt" text as a caption
       var img = document.getElementById('shop_alert_menu_index_load_<?=$arr[project][id]?>');
-      //var modalImg = document.getElementById("img01");
       var captionText = document.getElementById("caption");
       function openPopUpBrochure(id,pic1,pic2,pic3){
           modal.style.display = "block";
-      //    modalImg.src = this.src;
-      ////	$('#img01').html('<div align="center" style="padding:40px;margin-left:10px;"><img src="images/loader.gif" /></div>');
-      	$('#img01').load('load/popup/pic_place.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3); 
-      //    captionText.innerHTML = this.alt;
+//      	$('#img01').load('load/popup/pic_place.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
+      	$('#img01').load('load/popup/pic_place_swiper.php?id='+id+'&pic1='+pic1+'&pic2='+pic2+'&pic3='+pic3);  
+
       	$('.back-full-popup').hide();
       	$('.bottom_popup').hide();
       }

@@ -111,25 +111,25 @@
    <div class="column txt-col">
       <span  id="btn_home_bottom_menu"  class="bottom-popup-icon-new-active">
          <div style="height:25px;" class="font-32"><i class="fa fa-home" ></i></div>
-         <div class="txt-color font-19"><?=t_home_page;?></div>
+         <div class="txt-color font-19 text-cap"><?=t_home_page;?></div>
       </span>
    </div>
    <div class="column txt-col">
-      <span  id="btn_todaywork_bottom_menu"  class="bottom-popup-icon-new-active">
+      <span  id="btn_todaywork_bottom_menu"  class="">
          <div style="height:25px;" class="font-32"><i class="fa fa-history" ></i></div>
-         <div class="txt-color font-19"><?=t_all_jobs;?></div>
+         <div class="txt-color font-19 text-cap"><?=t_all_jobs;?></div>
       </span>
    </div>
    <div class="column txt-col">
-      <span  id="btn_newwork_bottom_menu"  class="bottom-popup-icon-new-active">
+      <span  id="btn_newwork_bottom_menu"  class="">
          <div style="height:25px;" class="font-30"><i class="fa icon-new-uniF142" ></i></div>
-         <div class="txt-color font-19"><?=t_send_to_customer;?></div>
+         <div class="txt-color font-19 text-cap"><?=t_send_to_customer;?></div>
       </span>
    </div>
    <div class="column txt-col">
-      <span  id="btn_qrcode_bottom_menu"  class="bottom-popup-icon-new-active">
+      <span  id="btn_qrcode_bottom_menu"  class="">
          <div style="height:25px;" class="font-32"><i class="fa fa-qrcode" ></i></div>
-         <div class="txt-color font-19"><?=t_friends;?></div>
+         <div class="txt-color font-19 text-cap"><?=t_friends;?></div>
       </span>
    </div>
 </div>

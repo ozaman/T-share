@@ -45,22 +45,14 @@ $time_show_open = $arr[shop][start_time]." - ".$arr[shop][finish_time];
 
 <div  class="div-all-palce"  > 
 
-<img src="images/shop_logo/<? echo $arr[shop][logo_code];?>_pic.jpg" width="100%"  alt="" style=" border-radius: 10px; border: 1px solid #ddd; margin-bottom:5px; margin-top:5px;display: none;"/>
-
-
+<!--<img src="images/shop_logo/<? echo $arr[shop][logo_code];?>_pic.jpg" width="100%"  alt="" style=" border-radius: 10px; border: 1px solid #ddd; margin-bottom:5px; margin-top:5px;display: none;" />-->
 
  <table width="100%" border="0" cellspacing="1" cellpadding="1">
   <tbody>
     <tr>
        
-      <td class="font-2"><span class="font-28" style="color:<?=$arr[shop][text_color]?>"><b><? echo $arr[shop][topic_th];?></span>
-      
-      
-      <br>
-<span class="font-28" style="color:#333333"><b><? echo $arr[shop][topic_en];?></span>
-      
-      
-      
+      <td class="font-2">
+      <span class="font-28" style="color:<?=$arr[shop][text_color]?>"><b><? echo $arr[shop][$place_shopping];?></span>
       </td>
  
     </tr>
@@ -72,13 +64,6 @@ $time_show_open = $arr[shop][start_time]." - ".$arr[shop][finish_time];
 
  <?  include ("mod/booking/load/form/phone.php");?>
 
- 
- 
- 
- 
- 
- 
- 
 <!--<div style="background-color:#FFF; padding:3PX; margin-top:5px; border-top:1px  dotted #666666;">
 <table width="100%" border="0" cellspacing="1" cellpadding="1" bgcolor="#FFFFFF">
   <tbody>

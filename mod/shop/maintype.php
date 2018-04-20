@@ -26,10 +26,8 @@
    */
    .box-show-pv{
    width: 100%;
-   border: 1px solid #ddd;
-   padding: 5px;
+   padding: 7px;
    border-radius : 10px;
-   box-shadow: 1px 1px 5px #ddd;
    }
    .zindex-small-popup{
       z-index:10000;
@@ -57,21 +55,23 @@ if($_COOKIE[lng]=="en"){
          </tr>-->
       <tr>
          <td width="50%" align="center">
-            <div class="box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-26 pv_name_btn"><?=$province_name[$province];?></span></strong></div>
+            <div class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-24 pv_name_btn text-cap"><?=$province_name[$province];?></span></strong></div>
          </td>
          <td width="50%" align="center">
-            <div class="box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-26"><? echo t_provinces;?></span></strong></div>
+            <div class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-24 text-cap"><? echo t_provinces;?></span></strong></div>
          </td>
       </tr>
    </table>
 
    <script>
       function ChangeProvince(type){
-      //		$('.button-close-popup-mod').click();
+
       	if(type=="other"){
-      		$('.background-smal-popup').addClass('zindex-small-popup');
-      		$('#load_mod_popup_select_pv').show();
-      //			$('.bottom_popup').hide();
+
+      		$('#main_load_mod_popup').hide();
+      		$('#load_mod_popup').html('');
+      		$('#show_section').click();
+
       	}else if(type=="stay"){
       		var name = '<?=$name;?>';
       		var province = '<?=$_GET[province];?>';
@@ -82,10 +82,11 @@ if($_COOKIE[lng]=="en"){
       }
    </script>
    <!--</div>-->
+   	<div class="w3-animate-bottom" style="overflow-x: hidden;">
    <?
       // echo $GET[province]." +++";
-      	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-      $res[project] = $db->select_query("SELECT id,logo_code,topic_th,topic_en FROM shopping_product_main    ORDER BY  id  ASC  ");
+      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+      $res[project] = $db->select_query("SELECT id,logo_code,topic_th,topic_en,topic_cn FROM shopping_product_main    ORDER BY  id  ASC  ");
       while($arr[project] = $db->fetch($res[project])){
         $type = $db->num_rows('shopping_product_sub',"id","main=".$arr[project][id]."");
         $shop = $db->num_rows('shopping_product',"id","main=".$_GET[id]."  and status=1");
@@ -105,18 +106,20 @@ if($_COOKIE[lng]=="en"){
       		$type_name_qr = $arr[project][topic_th];
       		$query_topic = "topic_th"; 
       	}else if($_COOKIE['lng']=="en"){
+      		$query_topic = "topic_en"; 
       		$type_name_qr = $arr[project][topic_en];
       	}else if($_COOKIE['lng']=="cn"){
+      		$query_topic = "topic_cn"; 
       		$type_name_qr = $arr[project][topic_cn];
-      	}else{
-      		
-			$query_topic = "topic_th"; 
-			$type_name_qr = $arr[project][topic_th];
-		}
+      	}
        ?>
    <? if( $allproduct>0){ ?>
-   <div class="div-all-shop" style="margin-bottom:10px; padding-top:0px; border-bottom:0px solid #DADADA;border: solid 2px #dadada;margin-top:7px;	border-radius:15px;      <? if( $arr[project][id]==100001){?>  opacity:0.4;   pointer-events: none;  <? } ?>
-      ">
+   <? if( $arr[project][id]==100001){  
+   		$opc =	"opacity:0.4;";   
+   		$pointer = "pointer-events: none;";   
+   } ?>
+   <button class="div-all-shop" 
+   style="margin-bottom:10px; padding-top:0px; border-bottom:0px solid #DADADA;border: solid 2px #dadada;margin-top:7px;border-radius:15px;width:100%;background-color:#dadada; <?=$opc.$pointer;?>">
       <div id="main_menu_shopping_<? echo $arr[project][id];?>">
          <table width="100%" border="0" cellspacing="2" cellpadding="2">
             <tbody>
@@ -145,11 +148,12 @@ if($_COOKIE[lng]=="en"){
                                  <input value="<?=$allplace;?>" id="num_place_<? echo $arr[project][id];?>" type="hidden" />
                                  <input value="<?=$arr[sub][sub];?>" id="id_sub_<? echo $arr[project][id];?>" type="hidden" />
                               </td>
-                              <td width="40" align="center" class="font-26" style="padding-top:0px; padding-right:5px;"><i class="fa fa-search" style=" color:<?=$linkcolor?>; s"> </i></td>
+                              <td width="40" align="right" class="font-26" style="padding-top:0px; padding-right:5px;"><i class="fa fa-search" style=" color:<?=$linkcolor?>; s"> </i></td>
                            </tr>
                         </tbody>
                      </table>
                   </td>
+				  
                </tr>
                <tr>
                </tr>
@@ -184,9 +188,11 @@ if($_COOKIE[lng]=="en"){
           }
          });
       </script>
-   </div>
+   </button>
    <? } ?>      
-   <? } ?>
+   <? } 
+	?>
+	</div>
 </div>
 <script>
    $("#close_alert_show_shopping_place").click(function(){   

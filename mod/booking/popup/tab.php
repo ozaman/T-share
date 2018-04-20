@@ -44,13 +44,13 @@
 <div>
    <ul class="nav nav-tabs" style="width:100%; margin-top:10px; padding:0px;">
       <? if($arr[open][price_extra]==1){ ?>
-      <li class="active" style="width:50%;  " id="btn_load_china"><a ><img src="images/flag/China.png" width="40" height="40" alt="" style="margin-top:-5px;"/><span class="font-24">&nbsp;<?=t_china;?> </a></li>
+      <li class="active" style="width:50%;  " id="btn_load_china"><a style="padding: 9px 0px;text-align: center;"><img src="images/flag/China.png" width="25" height="" alt="" style="margin-top:-5px;"/><span class="font-24">&nbsp;<?=t_china;?> </a></li>
       <script>
          $("#btn_load_china").click();
       </script>   
       <? } ?> 
       <? if($arr[open][price_all]==1){ ?>
-      <li style="width:50%; " id="btn_load_other"><a><img src="images/flag/Other.png" width="40" height="40" alt="" style="margin-top:-5px;"/><span class="font-24">&nbsp;<?=t_foreign;?> </span></a></li>
+      <li style="width:50%; " id="btn_load_other"><a style="padding: 9px 0px;text-align: center;"><img src="images/flag/Other.png" width="25" height="" alt="" style="margin-top:-5px;"/><span class="font-24">&nbsp;<?=t_foreign;?> </span></a></li>
       <? if($arr[open][price_extra]==0){ ?>
       <script>
          $("#btn_load_other").click();

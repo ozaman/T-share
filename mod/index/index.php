@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
-<div style="background-color:<?=$main_color;?>; height:120px; width:110%; margin-left:-10px; margin-left:-10px; margin-top:-10px;   ">
+<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:-10px;   ">
    <br>
    <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
       <tbody>
@@ -61,6 +61,39 @@
    border-radius: 20px;
    box-shadow: 0px  0px 5px #DADADA;  border:none;
    }
+      .text-cap{
+   text-transform: capitalize !important;
+   }
+   .text-low{
+   text-transform: lowercase !important;
+   }
+   .btn-repair{
+   padding: .84rem 2.14rem;
+   font-size: .81rem;
+   -webkit-transition: all .2s ease-in-out;
+   transition: all .2s ease-in-out;
+   margin-top: .375rem;
+   border: 0;
+   border-radius: .125rem;
+   cursor: pointer;
+   text-transform: uppercase;
+   white-space: normal;
+   word-wrap: break-word;
+   color: #000000;
+   background-color: #ffffff;
+   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+   }
+   .waves-effect {
+   position: relative;
+   cursor: pointer;
+   overflow: hidden;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+   z-index: 1;
+   }
 </style>
 <?
    if($data_user_class=='taxi'){
@@ -72,7 +105,7 @@
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    	 $all_work = $db->num_rows('order_booking',"id","$filter");
    ?>
-<div  style="margin-top:-40px; width:100%; padding-right:0px;">
+<div  style="margin-top:-45px; width:100%; padding-right:0px;padding: 0px 5px;">
 <? //=$_SESSION['data_user_type']?>
 <? ///=$data_driver_name?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -83,19 +116,19 @@
             <button type="button" class="btn btn-default "  id="index_menu_shopping" style="width:100%;">
                <center>
                   <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_send_to_customer?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
                </center>
             </button>
          </td>
          <td align="center" class="tool-td-chat">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#FF0000; padding-top:3px;border: solid 2px #FFFFFF; display:none " id="number_bottom_chat3"  ><span  class="font-20" >
+            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#FF0000; padding-top:3px;border: solid 2px #FFFFFF; display:none " id="number_bottom_chat3"  ><span  class="font-20 text-cap" >
             <?=$all_work?>
             </span></span>
             <center>
             <button type="button" class="btn btn-default "  id="index_menu_shopping_history" style="width:100%;">
                <center>
                   <div  class="circle-menu" style="background-color:#F7941D"><i class="fa fa-history"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_customer_history ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_customer_history ?></span>
                </center>
             </button>
             <script>    
@@ -121,7 +154,7 @@
                <div  class="circle-menu" >
                   <center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
                </div>
-               <span style="padding-bottom:20px;" class="font-20"><? echo t_job_received?> </span>
+               <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
                </center>
             </button>
          </td>
@@ -131,7 +164,7 @@
             <button type="button" class="btn btn-default "   id="index_menu_tour"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_tour_booking?> </span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
                </center>
             </button>
          </td>
@@ -142,7 +175,7 @@
             <button type="button" class="btn btn-default "   onclick="revenue()"  id="index_menu_income"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#34A0E7"  > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_receipts?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
                </center>
             </button>
          </td>
@@ -150,7 +183,7 @@
             <button type="button" class="btn btn-default "  id="index_menu_payment" onclick="expenses()"  style="width:100%">
                <center>
                   <div  class="circle-menu" style=" background-color:#FF0000"><i class="demo-icon icon-money-payment" style="margin-left:-5px; font-size:28px;"></i> </div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_expenses ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_expenses ?></span>
                </center>
             </button>
          </td>
@@ -160,7 +193,7 @@
             <button type="button" class="btn btn-default "  id="index_menu_account"   style="width:100%">
                <center>
                   <div  class="circle-menu" style=" background-color:#00AEEF"><i class="fa fa-user"   ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_my_account ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_my_account ?></span>
                </center>
             </button>
          </td>
@@ -168,7 +201,7 @@
             <button type="button" class="btn btn-default "  id="index_menu_setting"   style="width:100%">
                <center>
                   <div  class="circle-menu" ><i class="fa fa-cog"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_help_tools ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_help_tools ?></span>
                </center>
             </button>
          </td>
@@ -178,7 +211,7 @@
             <button type="button" class="btn btn-default " onclick="warkingall()"       style="width:100%">
                <center>
                   <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_all_jobs ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_all_jobs ?></span>
                </center>
             </button>
          </td>
@@ -186,7 +219,7 @@
             <button type="button" class="btn btn-default "  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd"  style="margin-left:-3px;"></i></div>
-                  <span style="padding-bottom:20px;" class="font-20"><? echo t_transfer_record ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
                </center>
             </button>
          </td>
@@ -275,7 +308,7 @@
       </tr>
    </tbody>
 </table>
-<br>
+<br/>
 <? 
    ///// head
    ///include "load/popup/place.php" ;

@@ -44,7 +44,7 @@
   <tbody>
     <tr>
       <td width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none"></i></td>
-      <td  class="font-24"><b>โทร</td>
+      <td  class="font-24"><b><?=t_call;?></b></td>
     </tr>
   </tbody>
 </table> 
@@ -268,7 +268,7 @@
           <tbody>
             <tr>
               <td width="30"><img src="images/icon/top/map.png" width="30" height="30" alt=""/></td>
-              <td class="font-24"><b>นำทาง</td>
+              <td class="font-24"><b><?=t_maps;?></b></td>
             </tr>
           </tbody>
         </table>

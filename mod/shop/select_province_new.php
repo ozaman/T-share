@@ -100,39 +100,7 @@
    .card-5 {
    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
    }
-   .text-cap{
-   text-transform: capitalize !important;
-   }
-   .text-low{
-   text-transform: lowercase !important;
-   }
-   .btn-repair{
-   padding: .84rem 2.14rem;
-   font-size: .81rem;
-   -webkit-transition: all .2s ease-in-out;
-   transition: all .2s ease-in-out;
-   margin-top: .375rem;
-   border: 0;
-   border-radius: .125rem;
-   cursor: pointer;
-   text-transform: uppercase;
-   white-space: normal;
-   word-wrap: break-word;
-   color: #000000;
-   background-color: #ffffff;
-   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-   }
-   .waves-effect {
-   position: relative;
-   cursor: pointer;
-   overflow: hidden;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-   -webkit-tap-highlight-color: transparent;
-   z-index: 1;
-   }
+
 </style>
 <script>
    setTimeout(function(){ $('#fade_in1').fadeIn( "slow" ); }, 0);
@@ -172,7 +140,7 @@
       </table>
    </div>
 
-   <div style="display: none;margin-top: 0px;" id="tag_section" class="w3-animate-right">
+   <div style="display: none; margin-top: 0px;" id="tag_section" class="w3-animate-right">
    		<div style="padding: 5px 0px;"><a id="back_main"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
       <div style="padding: 10px; border: 2px solid #ddd;  border-radius: 10px; box-shadow: 1px 1px 2px #ddd;margin: 10px;">
          <table width="100%" >

@@ -204,16 +204,14 @@ $("#btn_calendar").click(function(){
 //$( "#main_load_mod_popup" ).toggle();
  
   var url_load = "load_page_mod.php?name=booking&file=all";
- // $('#load_mod_popup').html(load_main_mod);
-//  $.post( url_load, function( data ) {
-//   $('#load_mod_popup').html(data);
-// });
-
  $('#load_mod_popup').html(load_main_mod);
-	  
-	  $('#load_mod_popup').load(url_load);
-	  //$.post( url_load, function( data ) {
+ $.post( url_load, function( data ) {
+ 	console.log(data);
   $('#load_mod_popup').html(data);
+});
+
+/* $('#load_mod_popup').html(load_main_mod);
+  $('#load_mod_popup').load(url_load); */
  
 }
 function transfer_status(){  
@@ -416,7 +414,7 @@ $("#btn_load_clock_day_3").removeClass('active');
 	
 	
 	var url = "go.php?name=booking/load&file=work_all&find=day&day=<?= date('Y-m-d',strtotime("-0 day")); ?>";
-	
+	console.log(url);
   $('#load_booking_data').load(url);
 	 
 	 $('#date_report').val('<?= date('Y-m-d',strtotime("-0 day")); ?>');

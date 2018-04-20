@@ -163,7 +163,7 @@ $('#show_price_plan_1').click(function(){
     <tr>
        <td width="30" rowspan="2"><input type="radio" name="price_plan_edit" class="price_plan_select plan-edit" value="<?=$arr[open][plan_id];?>" id="price_plan_1_edit" /></td>
       
-      <td class="font-22" id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][topic_th];?> </b></td>
+      <td class="font-22" id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][$place_shopping];?> </b></td>
       <td width="30" rowspan="2" valign="middle"><a id="show_price_plan_1"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
      
     </tr>
@@ -377,7 +377,7 @@ $('#show_price_plan_2').click(function(){
   <tbody>
     <tr>
       <td width="30" rowspan="2"><input type="radio" name="price_plan_edit" class="price_plan_select plan-edit" value="<?=$arr[open][plan_id];?>" id="price_plan_2_edit" /></td>
-      <td class="font-22"  id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][topic_th];?> </td>
+      <td class="font-22"  id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][$place_shopping];?> </td>
        <td width="30" rowspan="2"><a id="show_price_plan_2"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
     </tr>
     <tr>
@@ -581,7 +581,7 @@ $('#show_price_plan_3').click(function(){
   <tbody>
     <tr>
      <td width="30" rowspan="2"><input type="radio" name="price_plan_edit" class="price_plan_select plan-edit" value="<?=$arr[open][plan_id];?>" id="price_plan_3_edit" /></td>
-      <td class="font-22"  id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][topic_th];?></b> </td>
+      <td class="font-22"  id="txt_payment_get_<?=$arr[open][plan_id];?>"><b> <?=$arr[category][$place_shopping];?></b> </td>
       <td width="30" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
     </tr>
     <tr>

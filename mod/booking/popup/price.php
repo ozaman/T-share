@@ -33,16 +33,16 @@
    7 : ค่าคอมมิชชั่น*/
    function checkTypePay($id){
       if($id==1){
-      		$name_type = t_parking_fee."+".t_person_fee;
+      		$name_type = t_parking_fee." + ".t_person_fee;
       }
       else if($id==2){
-      		$name_type = t_parking_fee."+".t_com_fee;
+      		$name_type = t_parking_fee." + ".t_com_fee;
       }
       else if($id==3){
-      		$name_type = t_person_fee."+".t_com_fee;
+      		$name_type = t_person_fee." + ".t_com_fee;
       } 
       else if($id==4){
-      		$name_type = t_parking_fee."+".t_person_fee."+".t_com_fee;
+      		$name_type = t_parking_fee." + ".t_person_fee." + ".t_com_fee;
       }
       else if($id==5){
       		$name_type = t_parking_fee;
@@ -126,7 +126,7 @@
                   </div>
                </td>
                <td>
-                  <span class="font-24"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
+                  <span class="font-24 txt-cap"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
                </td>
             </tr>
             <?		}
@@ -146,7 +146,7 @@
                   </div>
                </td>
                <td>
-                  <span class="font-24"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
+                  <span class="font-24 txt-cap"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
                </td>
             </tr>
             <? }
@@ -165,7 +165,7 @@
                   </div>
                </td>
                <td>
-                  <span class="font-24"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
+                  <span class="font-24 txt-cap"><strong><?=checkTypePay($arr[category][id]);?></strong></span>
                </td>
             </tr>
             <? }

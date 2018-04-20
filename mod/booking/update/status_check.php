@@ -5,7 +5,7 @@ if($_GET[type]=='1'){ ?>
 	<div style="border: 1px solid #ddd; padding: 5px;  box-shadow: 1px 1px 5px #ddd;border-radius:10px;background-color:#fff;">
 		<font class="font-24" style="color:#ff0000">
      
-     		<b> แขกลงทะเบียนไม่ได้</b></font>
+     		<b> <?=t_customer_no_register;?></b></font>
 	</div>
 	
 <? }
@@ -13,7 +13,7 @@ if($_GET[type]=='2'){ ?>
 	<div style="border: 1px solid #ddd; padding: 5px;  box-shadow: 1px 1px 5px #ddd;border-radius:10px;background-color:#fff;">
 		<font class="font-24" style="color:#ff0000">
      
-     		<b> แขกไม่ไป</b></font>
+     		<b><?=t_customer_not_go;?></b></font>
 	</div>
 	
 <? }
@@ -21,15 +21,15 @@ if($_GET[type]=='3'){ ?>
 <div style="border: 1px solid #ddd; padding: 5px;  box-shadow: 1px 1px 5px #ddd;border-radius:10px;background-color:#fff;">
 		<font class="font-24" style="color:#ff0000">
      
-     		<b> เลือกสถานที่ผิด</b></font>
+     		<b> <?=t_wrong_selected_place;?></b></font>
 	</div>
 <? }
 
 }
 else if($_GET[status]=='NEW'){ ?>
-	<font class="font-24" style="color:#0099CC;" > <b> ใหม่ </b></font>
+	<font class="font-24" style="color:#0099CC;" > <b> <?=t_new;?> </b></font>
 <? }
 else if($_GET[status]=='CONFIRM'){ ?>
-	<font class="font-24" style="color:#0099CC;" > <b> สำเร็จ </b></font>
+	<font class="font-24" style="color:#0099CC;" > <b> <?=t_success;?> </b></font>
 <? }
 ?>

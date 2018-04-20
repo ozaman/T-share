@@ -251,7 +251,7 @@
    <tr>
       <td width="30">
          <? if($park==1){?>
-         <div class="font-24">
+         <div class="font-22">
             <center>
             <b><?=t_person;?></b></center>
          </div>
@@ -299,7 +299,7 @@
                <tr>
                   <td bgcolor="#FFF" class="main_td_park" align="center">
                      <? if($park==1){?>
-                     <div class="font-24">
+                     <div class="font-22">
                         <center>
                         <b><?=t_parking_fee;?>
                      </div>
@@ -329,7 +329,7 @@
                   </td>
                   <td bgcolor="#FFF" class="main_td_person"  align="center">
                      <? if($park==1){?>
-                     <div class="font-24">
+                     <div class="font-22">
                         <center>
                         <b><?=t_person_fee;?>
                      </div>
@@ -373,7 +373,7 @@
                   </td>
                   <td width="25" bgcolor="#FFF" class="main_td_commision"  align="center">
                      <? if($park==1){?>
-                     <div class="font-24">
+                     <div class="font-22">
                         <center>
                         <b>ค่าคอม
                      </div>
@@ -418,7 +418,7 @@
                   <td bgcolor="#FFF"  align="center" >
                      <div class="main_td_all">
                         <? if($park==1){?>
-                        <div class="font-24">
+                        <div class="font-22">
                            <center>
                            <b><?=t_total;?>
                         </div>

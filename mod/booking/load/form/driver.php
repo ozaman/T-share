@@ -13,7 +13,7 @@ $arr[projectdriver] = $db->fetch($res[projectdriver]);
  
  
  
-$('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
+$('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-up" ></i><span style="margin-top:-20px;">&nbsp;<?=t_hiden;?></span>');
  
  
  
@@ -28,14 +28,14 @@ $('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-an
 	 
 $("#table_show_hide_driver_<?=$arr[project][invoice];?>" ).show(); 
 
- $('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
+ $('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-up" ></i><span style="margin-top:-20px;">&nbsp;<?=t_hiden;?></span>');
  
 	 
  } else {
 	 
 	$("#table_show_hide_driver_<?=$arr[project][invoice];?>" ).hide();  
 	
- $('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-down" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;แสดง</span>');
+ $('#btn_show_hide_driver_<?=$arr[project][invoice];?>').html('<i class="fa fa-angle-down" ></i><span style="margin-top:-20px;">&nbsp;<?=t_show;?></span>');
 	
 	 
  }
@@ -51,7 +51,7 @@ $("#table_show_hide_driver_<?=$arr[project][invoice];?>" ).show();
 ><table width="100%" border="0" cellspacing="1" cellpadding="1">
   <tbody>
     <tr>
-      <td height="30" class="font-28 "><font color="<?=$text_topic_color?>" ><b> ข้อมูลรถและคนขับ</font></td>
+      <td height="30" class="font-28 "><font color="<?=$text_topic_color?>" ><b> <?=t_car_driver_information;?></b></font></td>
       <td width="70" valign="top"><div id="btn_show_hide_driver_<?=$arr[project][invoice];?>" class="font-28"></div></td>
     </tr>
   </tbody>
@@ -64,7 +64,7 @@ $("#table_show_hide_driver_<?=$arr[project][invoice];?>" ).show();
 <table width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver_<?=$arr[project][invoice];?>">
  
   <tr>
-    <td width="80"  class="font-22"><font color="#333333"></font><b>ชื่อคนขับ</td>
+    <td width="80"  class="font-22"><font color="#333333"></font><b><?=t_dv_name;?></b></td>
     <td colspan="3" class="font-22">
 	<?=$arr[projectdriver][name];?>&nbsp;(<?=$arr[projectdriver][nickname];?>)&nbsp;</td>
   </tr>
