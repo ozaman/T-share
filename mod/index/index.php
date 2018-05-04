@@ -492,6 +492,7 @@
     });
       $('#index_menu_setting').click(function(){  
      alert('กำลังจะเปิดให้บริการ');
+     window.location = "https://www.welovetaxi.com/app/demo_new/";
     });
     
 </script>  
