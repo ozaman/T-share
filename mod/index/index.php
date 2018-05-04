@@ -410,11 +410,13 @@
    });
    $('#index_menu_transfer').click(function(){  
    	  $("#main_load_mod_popup" ).toggle();
+       // setInterval(function(){
    	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
    //	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
    	  console.log(url_load);
    	  $('#load_mod_popup').html(load_main_mod);
-   	  $('#load_mod_popup').load(url_load); 
+   	  $('#load_mod_popup').load(url_load);
+         //}, 1000); 
     	});
     function openMainShop(province,province_name){
     	console.log(province+" : "+province_name);
