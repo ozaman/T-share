@@ -1,5 +1,5 @@
 <script>
-	$('.text-topic-action-photo').html('เปลี่ยนภาพประจำตัว');
+	$('.text-topic-action-photo').html('<?=t_change_profile_picture;?>');
 </script>
 <div style="margin-top: 35px;">
 

@@ -103,9 +103,9 @@
 
 </style>
 <script>
-   setTimeout(function(){ $('#fade_in1').fadeIn( "slow" ); }, 0);
+   /*setTimeout(function(){ $('#fade_in1').fadeIn( "slow" ); }, 0);
    setTimeout(function(){ $('#fade_in2').fadeIn( "slow" ); }, 400);
-   setTimeout(function(){ $('#fade_in3').fadeIn( "slow" ); }, 800);
+   setTimeout(function(){ $('#fade_in3').fadeIn( "slow" ); }, 800);*/
 </script>
 <div class="my-padding" style="margin-top:  0px;overflow-x: hidden;">
    <div id="tag_your_area" style="margin-top: 15px;">
@@ -247,6 +247,7 @@
    });
    });
 </script>
+
 <script>
    function OpenProvince(){
    			$('#select_province').mobileSelect({
@@ -279,6 +280,7 @@
    ga('create', 'UA-53264350-2', 'auto');
    ga('send', 'pageview');
 </script>
+
 <script>
    $('#open_map').click(function(){	
    //		var province = '<?=$_GET[province];?>';
@@ -343,7 +345,7 @@
    							OpenProvince();
    							 $('#select_province').val(province);
    							  var txt_pv = $('#select_province [value="'+province+'"]').text();
-   //								  console.log(txt_pv);
+   								  console.log(txt_pv);
 //   alert(txt_pv)
    							  if(txt_pv!=""){
    							  	  $('#txt_show_province').text(txt_pv);
@@ -362,10 +364,12 @@
    	$('#tag_section').show();
    	$('#tag_your_area').hide();
    });
+   
    $('#submit_this_pv').click(function(){
    	 var province = $('#province_id').val();
-   	 var province_name = $('#txt_pv_fr').val();		
-   	 console.log(province);	 
+   	 var province_name = $('#txt_pv_fr').val();	
+   		
+   	 console.log(province+" : "+province_name);	 
    	 if(province==""){
    //				 	 alert('ไม่มีสินค้าในจังหวัดที่คุณอยู่');
    		 swal("<?=t_no_products_your_province;?>!")
@@ -423,11 +427,12 @@
    $data[num_place_province] =  $num_place[pv][num_all];
    echo json_encode($data);
    }
+
    if($_GET[op]=="get_select_province"){
 //   include('../../includes/class.mysql.php');
    
 //   $db = New DB();
-//   $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+   $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
    	 ?>
 <select class="mobileSelect" id="select_province" data-animation="zoom" data-title="<?=t_select_province;?>" data-theme="white">
    <option value="" >- <?=t_select;?> -</option>
@@ -450,6 +455,7 @@
    <? }  $db->closedb ();?>
 </select>
 <? }
+
    if($_GET[op]=="get_id_province_only"){
    include('../../includes/class.mysql.php');
    $db = New DB();

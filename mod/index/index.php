@@ -1,33 +1,65 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
-<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:-10px;   ">
-   <br>
-   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
-      <tbody>
-         <tr style="display: none;">
-            <td align="center" class="font-24"><font color="#FFFFFF">ยินดีต้อนรับเข้าสู่  <font color="#FFFFF"><B>T Share </B></font></font> </td>
-         </tr>
-         <tr  style="display:nones">
-            <td align="center" class="font-24"><font color="#FFFFFF"><? echo t_today ?>&nbsp;<?=date("Y-m-d");?>&nbsp;<? echo t_time?> <span id="load_data_time"></span>  </font> </td>
-         </tr>
-         <tr>
-            <td align="center" class="font-24">
-               <font color="#FFFFFF"><?=t_login_province;?> (<span id="province_text" style="text-transform: capitalize;"></span>)</font>
-               <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
-            </td>
-         </tr>
-         <tr>
-            <td align="center" class="font-22"><font color="#FFFFFF"> </font> </td>
-         </tr>
-      </tbody>
-   </table>
-</div>
-<script>
-   setInterval(function() {
-   var url_check_data_time = "load_blank.php?name=load/update&file=time&driver=<?=$driver_id?>";
-   $('#load_data_time').load(url_check_data_time);
-   }, 1000); // 60000 milliseconds = one minute
-</script>
 <style>
+	.popup-open {
+   overflow: hidden;
+   } 
+   .css-small-popup {
+   /* left: 0px; */
+   /* right: 0px; */
+   /* bottom: 0px; */
+   top: 50px;
+   /* margin-top: 95px;
+   margin-left: 30px;*/
+   /*    margin: 40px;*/
+   margin: 15% auto;
+   position : relative;
+   width: 85%;
+   height: auto%;
+   z-index: 9999;
+   /* padding: 30px; */
+   background-color: #fff;
+   border: 2px solid #cccccc;
+   border-radius: 10px;
+   }
+   .background-smal-popup{
+   width: 100%;
+   height: 100%;
+   z-index: 9990;
+   background-color: rgba(0, 0, 0, 0.45);
+   top: 0px;
+   left: 0px;
+   right: 0px;
+   bottom: 0px;
+   }
+   .close-small-popup{
+   /*	position : relative;*/
+   /*	right : 50px;
+   top : 95px;*/
+   z-index : 10000;
+   color : #000000;
+   width: 100%;
+   /*margin-left: -10px;
+   margin-top: 5px;*/
+   }
+   .css-full-popup2{
+   position: fixed;
+   width: 100%;
+   z-index: 9999;
+   background-color: #ffff;
+   height: 100%;
+   /*	margin-top: 48px;*/
+   }
+   .btn_select{
+   width: 100%; 
+   border: 1px solid #ddd; 
+   padding: 13px; 
+   margin-top: 0px; 
+   border-radius: 20px;
+   background-color: #fff;
+   box-shadow: 1px 1px 5px #ddd;
+   background-color: #3b5998;
+   color: #ffff;
+   }
    .icon { padding-top: 20px; } 
    p {
    font-family: Arial, Helvetica, sans-serif; font-size:18px;
@@ -95,6 +127,36 @@
    z-index: 1;
    }
 </style>
+
+<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:-10px;   ">
+   <br>
+   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
+      <tbody>
+         <tr style="display: none;">
+            <td align="center" class="font-24"><font color="#FFFFFF">ยินดีต้อนรับเข้าสู่  <font color="#FFFFF"><B>T Share </B></font></font> </td>
+         </tr>
+         <tr  style="display:nones">
+            <td align="center" class="font-24"><font color="#FFFFFF"><? echo t_today ?>&nbsp;<?=date("Y-m-d");?>&nbsp;<? echo t_time?> <span id="load_data_time"></span>  </font> </td>
+         </tr>
+         <tr>
+            <td align="center" class="font-24">
+               <font color="#FFFFFF"><?=t_login_province;?> (<span id="province_text" style="text-transform: capitalize;"></span>)</font>
+               <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
+            </td>
+         </tr>
+         <tr>
+            <td align="center" class="font-22"><font color="#FFFFFF"> </font> </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<script>
+   setInterval(function() {
+   var url_check_data_time = "load_blank.php?name=load/update&file=time&driver=<?=$driver_id?>";
+   $('#load_data_time').load(url_check_data_time);
+   }, 1000); // 60000 milliseconds = one minute
+</script>
+
 <?
    if($data_user_class=='taxi'){
    	 $filter="drivername=".$user_id." ";
@@ -224,6 +286,17 @@
             </button>
          </td>
       </tr>
+	   <tr>
+         <td  width="50%" align="center" class="tool-td-chat">
+            <button type="button" class="btn btn-default "  style="width:100%" onclick="workTbooking();" >
+            <input id="check_open_worktbooking" value="0" type="hidden"/>
+               <center>
+                  <div  class="circle-menu" style=" background-color:#ffc107;font-size: 26px;"><strong style="margin-left:-8px;margin-top: -3px;position: absolute;">T</strong></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "T-Booking" ?></span>
+               </center>
+            </button>
+         </td>
+      </tr>
    </tbody>
 </table>
 <div></div>
@@ -231,7 +304,7 @@
    function warkingall(){
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show(500);
+      $('#main_load_mod_popup').show();
       var url_load= "load_page_mod.php?name=transfer_order&file=work_list_work&transfer_work=true&lat="+$('#lat').val()+"&lng="+$('#lng').val();
    //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
        console.log(url_load);
@@ -241,7 +314,7 @@
    function revenue(){
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show(500);
+      $('#main_load_mod_popup').show();
       var url_load= "load_page_mod.php?name=pay&file=pay_job"
    //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
        console.log(url_load);
@@ -251,7 +324,7 @@
    function expenses(){
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show(500);
+      $('#main_load_mod_popup').show();
       var url_load= "load_page_mod.php?name=pay&file=pay_job_expenses"
    //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
        console.log(url_load);
@@ -261,11 +334,18 @@
    function money_transfer(){
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show(500);
+      $('#main_load_mod_popup').show();
       var url_load= "load_page_mod.php?name=pay&file=money_transfer"
    //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
        $('#load_mod_popup').html(load_main_mod);
        $('#load_mod_popup').load(url_load); 
+   }
+   function workTbooking(){
+   		$('#main_load_mod_popup').show();
+   		var url_load= "load_page_mod.php?name=tbooking&file=all";
+   		$('#load_mod_popup').html(load_main_mod);
+        $('#load_mod_popup').load(url_load); 
+        $('#check_open_worktbooking').val(1);
    }
    // function closepop(x){
    //   if (x == '7') {
@@ -314,68 +394,7 @@
    ///include "load/popup/place.php" ;
     ?>
  
-<style>
-   .popup-open {
-   overflow: hidden;
-   } 
-   .css-small-popup {
-   /* left: 0px; */
-   /* right: 0px; */
-   /* bottom: 0px; */
-   top: 50px;
-   /* margin-top: 95px;
-   margin-left: 30px;*/
-   /*    margin: 40px;*/
-   margin: 15% auto;
-   position : relative;
-   width: 85%;
-   height: auto%;
-   z-index: 9999;
-   /* padding: 30px; */
-   background-color: #fff;
-   border: 2px solid #cccccc;
-   border-radius: 10px;
-   }
-   .background-smal-popup{
-   width: 100%;
-   height: 100%;
-   z-index: 9990;
-   background-color: rgba(0, 0, 0, 0.45);
-   top: 0px;
-   left: 0px;
-   right: 0px;
-   bottom: 0px;
-   }
-   .close-small-popup{
-   /*	position : relative;*/
-   /*	right : 50px;
-   top : 95px;*/
-   z-index : 10000;
-   color : #000000;
-   width: 100%;
-   /*margin-left: -10px;
-   margin-top: 5px;*/
-   }
-   .css-full-popup2{
-   position: fixed;
-   width: 100%;
-   z-index: 9999;
-   background-color: #ffff;
-   height: 100%;
-   /*	margin-top: 48px;*/
-   }
-   .btn_select{
-   width: 100%; 
-   border: 1px solid #ddd; 
-   padding: 13px; 
-   margin-top: 0px; 
-   border-radius: 20px;
-   background-color: #fff;
-   box-shadow: 1px 1px 5px #ddd;
-   background-color: #3b5998;
-   color: #ffff;
-   }
-</style>
+
 <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
    <div class="css-full-popup2">
       <div class="back-full-popup" style="z-index: 1;">
@@ -492,7 +511,6 @@
     });
       $('#index_menu_setting').click(function(){  
      alert('กำลังจะเปิดให้บริการ');
-     window.location = "https://www.welovetaxi.com/app/demo_new/";
     });
     
 </script>  
@@ -503,9 +521,9 @@
       ?>
 </div>
 <style>
-   .sweet-alert{
+  /* .sweet-alert{
    margin-top: -210px !important;
-   }
+   }*/
 </style>
 <script>
    var locat = getCookie("geolocation");
@@ -627,3 +645,49 @@
 </script>
 <div></div>
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
+<script src="http://103.13.30.65:8080/socket.io/socket.io.js?v=<?=time();?>"></script>
+    <!-- <script src="socket.io/socket.io.js"></script> -->
+<script src="http://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script>
+<script>
+	var res_socket ;
+	var socket = io.connect('http://103.13.30.65:8080');
+        //on message received we print all the data inside the #container div
+        socket.on('notification', function (data) {
+        res_socket = data.transfer[0];
+        if($('#check_open_worktbooking').val()==1){
+//			readDataBooking();
+		}
+        
+//        $('.list-container').remove();	
+        console.log(data.transfer)
+       
+       /* $.each(data.transfer[0],function(index,res){
+		  var program = res.progream.topic_en;
+          
+          var component = 
+          '<div class="list-container">'
+	         +'<div class="w3-ul w3-card-4" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);">'
+	            +'<div class="w3-bar" onclick="">'
+	               +'<span class="ico-pos font-24"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
+	               		+'<div class="w3-bar-item">'
+	                  		+'<table width="100%">'
+			                     +'<tbody>'
+			                        +'<tr>'
+			                           +'<td width="90%"><span class="font-24">'+num+'. '+program+'</span></td>'
+			                           +'<td width="20%" align="center" rowspan="2"></td>'
+			                        +'</tr>'
+			                        +'<tr>'
+			                           +'<td><span class="font-20">S00106&nbsp;:&nbsp;2018-04-28 15:00 </span></td>'
+			                           +'<td></td>'
+			                        +'</tr>'
+			                     +'</tbody>'
+			                  +'</table>'
+	               		+'</div>'
+	            +'</div>'
+	         +'</div>'
+	      +'</div>';
+	      $('#load_booking_data').append(component);
+	      num++;
+        });*/
+	});
+</script>

@@ -1,8 +1,58 @@
 <link rel="shortcut icon" href="assets/img/favicon.png" />
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-<? $path = ''; ?> 
+<? 
+	$path = ''; 
+	$get_lng           = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$get_lng           = $get_lng[0];
+$check_lng_browser = explode('-', $get_lng);
+$check_lng_browser = $check_lng_browser[0];
+if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_browser == 'sh') {
+    $keep = 'cn';
+} else if ($check_lng_browser == 'th') {
+    $keep = 'th';
+} else {
+    $keep = 'en';
+}
+switch ($_COOKIE['lng']) {
+    case "th":
+        //echo "PAGE th";
+        include("../../../includes/lang/th/t_share_2.php"); //include check session DE
+        $province           = "name_th";
+        $place_shopping     = "topic_th";
+        $google_map_api_lng = "th";
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("../../../includes/lang/cn/t_share_2.php");
+        $province           = "name_cn";
+        $place_shopping     = "topic_cn";
+        $google_map_api_lng = 'zh-CN';
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("../../../includes/lang/en/t_share_2.php");
+        $google_map_api_lng = "en";
+        $place_shopping     = "topic_en";
+        $province           = "name";
+        break;
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("../../../includes/lang/" . $keep . "/t_share_2.php"); //include EN in all other cases of different lang detection
+        //        $google_map_api_lng = $keep;
+        if($keep=="en"){
+			$province           = "name";
+		}else{
+			$province           = "name_" . $keep;
+		}
+        
+        $place_shopping     = "topic_" . $keep;
+        $google_map_api_lng = $keep;
+        break;
+}
+
+?> 
 <style>
 	@media screen and (max-width: 380px) {
 	   .margin-m{
@@ -136,11 +186,11 @@
 		
 		<div class="margin-m" >
 	
-		<button class="btn btn-bg" id="upload_img" style="width: 100%;margin-bottom: 15px;height: 40px;font-size: 22px;background-color: rgb(255, 255, 255);color: #3b5998;border: 1px solid #3b5998;border-radius: 25px;display: none;"><span class="font-26">ยืนยัน</span></button>
+		<button class="btn btn-bg" id="upload_img" style="width: 100%;margin-bottom: 15px;height: 40px;font-size: 22px;background-color: rgb(255, 255, 255);color: #3b5998;border: 1px solid #3b5998;border-radius: 25px;display: none;"><span class="font-26"><?=t_confirm;?></span></button>
 		
 		<button class="btn btn-bg" id="upload_close" style="    width: 100%;display: none;
     height: 40px;border-radius: 25px;
-    font-size: 22px;background-color: #ffffff;margin-top:0px;color: #dd4b39;border: 1px solid #dd4b39;box-shadow: 1px 1px 2px #dd4b39;"><span class="font-26">ปิด</span></button>
+    font-size: 22px;background-color: #ffffff;margin-top:0px;color: #dd4b39;border: 1px solid #dd4b39;box-shadow: 1px 1px 2px #dd4b39;"><span class="font-26"><?=t_cancelled;?></span></button>
 		</div>
 		</div>
 	</div>
