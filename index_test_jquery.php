@@ -607,12 +607,7 @@ if (elem.requestFullscreen) {
 }
  
  
- 
- body  { font-size:36px
-	 
-	 
-	 
- }
+
  
  
  

@@ -108,11 +108,55 @@
   </style>
   <!-- SlidesJS Required: -->
 </head>
+<?php 
+$get_lng           = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+$get_lng           = $get_lng[0];
+$check_lng_browser = explode('-', $get_lng);
+$check_lng_browser = $check_lng_browser[0];
+if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_browser == 'sh') {
+    $keep = 'cn';
+} else if ($check_lng_browser == 'th') {
+    $keep = 'th';
+} else {
+    $keep = 'en';
+}
+switch ($_COOKIE['lng']) {
+    case "th":
+        //echo "PAGE th";
+        include("../../includes/lang/th/t_share_2.php"); //include check session DE
+        $province           = "name_th";
+        $place_shopping     = "topic_th";
+        $google_map_api_lng = "th";
+        break;
+    case "cn":
+        //echo "PAGE cn";
+        include("../../includes/lang/cn/t_share_2.php");
+        $province           = "name_cn";
+        $place_shopping     = "topic_cn";
+        $google_map_api_lng = 'zh-CN';
+        break;
+    case "en":
+        //echo "PAGE EN";
+        include("../../includes/lang/en/t_share_2.php");
+        $google_map_api_lng = "en";
+        $place_shopping     = "topic_en";
+        $province           = "name";
+        break;
+    default:
+        //echo "PAGE EN - Setting Default";
+        include("../../includes/lang/" . $keep . "/t_share_2.php"); //include EN in all other cases of different lang detection
+        //        $google_map_api_lng = $keep;
+        $province           = "name_" . $keep;
+        $place_shopping     = "topic_" . $keep;
+        $google_map_api_lng = $keep;
+        break;
+}
+?>
 <body>
 <!-- SlidesJS Required: Start Slides -->
   <!-- The container is used to define the width of the slideshow -->
   <div style="padding:5px; font-size:20px; color:#F7941D"> <center>
-    <strong> <? echo "ถ่ายเมื่อ ".date('Y-m-d H:i:s',$_GET[date])." น."; ?></strong>
+    <strong> <? echo t_time_taking_photo." ".date('Y-m-d H:i:s',$_GET[date]).t_n; ?></strong>
      </center>
      </div>   
   <div class="container">

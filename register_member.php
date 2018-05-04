@@ -499,15 +499,7 @@ if (elem.requestFullscreen) {
  #firstDropdown .dropdown-backdrop {
     display:none;
 }
- 
- 
- 
- body  { font-size:36px
-	 
-	 
-	 
- }
- 
+
  
  
  

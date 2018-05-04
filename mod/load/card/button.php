@@ -4,7 +4,7 @@
 </button>-->
 
  <input type="file" id="imageUpload_<?=$_GET[type] ?>" class="fileInput" />
- <button type="button" class="btn " onclick="onpenUpfile('<?=$_GET[type] ?>');" style="padding-left:5px; padding-right:5px;width:100%;border:1px solid #ddd;box-shadow:1px 1px 1px #ddd;background-color:#3b5998;color:#ffffff; "  >อัพไฟล์</button>
+ <button type="button" class="btn " onclick="onpenUpfile('<?=$_GET[type] ?>');" style="padding-left:5px; padding-right:5px;width:100%;border:1px solid #ddd;box-shadow:1px 1px 1px #ddd;background-color:#3b5998;color:#ffffff; "  ><?=t_upload_file;?></button>
  
   <? 
 if($_GET[type]=='idcard'){

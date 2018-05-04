@@ -40,6 +40,13 @@ $db_name = 'admin_app';
                     </div>
                 </form>
             </div>
+        <div style="margin: 5px;">
+        	<button onclick="window.location = '?sort_empty=en' ">Sort by En empty</button>
+        	<button onclick="window.location = '?sort_empty=th' ">Sort by Th empty</button>
+        	<button onclick="window.location = '?sort_empty=cn' ">Sort by Cn empty</button>
+        	
+        	<button onclick="window.location = '?sort_empty=' ">Sort normal</button>
+        </div>    
         <div class=''>
          <table class="table table-striped table-bordered" id="example1">
 		    <thead>
@@ -72,7 +79,19 @@ $db_name = 'admin_app';
 		<? } else{
 	mysql_query("SET NAMES utf8"); 
 	mysql_query("SET character_set_results=utf-8"); 
-		$res[other] = $db->select_query("select * from app_language where deleted = 0  ");
+		if($_GET[sort_empty]=="en"){
+			$sort_empty = "and en = '' ";
+		}
+		else if($_GET[sort_empty]=="cn"){
+			$sort_empty = "and cn = '' ";
+		}
+		else if($_GET[sort_empty]=="th"){
+			$sort_empty = "and th = '' ";
+		}else{
+			$sort_empty = "";
+		}
+		$select = "select * from app_language where deleted = 0 ".$sort_empty;
+		$res[other] = $db->select_query($select);
 		$num = 0;
 		  while($arr[other] = $db->fetch($res[other])) { ?>
 		  

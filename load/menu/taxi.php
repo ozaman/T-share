@@ -102,7 +102,7 @@
     
    $( "#main_load_mod_popup" ).toggle();
     
-     var url_load = "load_page_mod.php?name=car&file=new_car";
+     var url_load = "load_page_mod.php?name=car&file=new_car_new";
     
     $('#load_mod_popup').html(load_main_mod);
      $('#load_mod_popup').load(url_load); 
@@ -449,7 +449,7 @@
 		   $.post('signout.php?type=logout',function(){
 		   		 swal("<?=t_sign_out_successfully;?>","", "success");
 		   		 setTimeout(function(){ 
-		   		 	window.location.href = "https://www.welovetaxi.com/app/demo/index.php";		}, 1000);
+		   		 	window.location.href = "index.php";		}, 1000);
 		   });
   
      } else {

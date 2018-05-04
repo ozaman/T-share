@@ -55,6 +55,7 @@ if($_COOKIE[lng]=="en"){
          </tr>-->
       <tr>
          <td width="50%" align="center">
+  
             <div class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-24 pv_name_btn text-cap"><?=$province_name[$province];?></span></strong></div>
          </td>
          <td width="50%" align="center">
@@ -101,7 +102,7 @@ if($_COOKIE[lng]=="en"){
       		if($shop ==''){ 
       	 $shop ='ยังไม่มี';
       	}
-      	$type_name_qr = $arr[project][topic_cn];
+      /*	$type_name_qr = $arr[project][topic_cn];
       	if($_COOKIE['lng']=="th"){
       		$type_name_qr = $arr[project][topic_th];
       		$query_topic = "topic_th"; 
@@ -111,7 +112,7 @@ if($_COOKIE[lng]=="en"){
       	}else if($_COOKIE['lng']=="cn"){
       		$query_topic = "topic_cn"; 
       		$type_name_qr = $arr[project][topic_cn];
-      	}
+      	}*/
        ?>
    <? if( $allproduct>0){ ?>
    <? if( $arr[project][id]==100001){  
@@ -141,7 +142,7 @@ if($_COOKIE[lng]=="en"){
                            <tr>
                               <td>
                                  <!-- <span class="font-24" style="color:<?=$main_color?>"><b></b></span><br> -->
-                                 <span class="font-24" style="color:#333333"><b><?=$type_name_qr;?></b></span>
+                                 <span class="font-24" style="color:#333333"><b><?=$arr[project][$place_shopping];?></b></span>
                               </td>
                               <td width="60" align="center" class="font-26" style="padding-top:0px; padding-right:5px;">
                                  (<? echo $allplace = $db->num_rows('shopping_product',"id","main=".$arr[project][id]." and status = 1 and province = '".$_GET[province]."' ");?>)

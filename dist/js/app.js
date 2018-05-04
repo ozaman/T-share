@@ -183,9 +183,9 @@ $(function () {
 
   //Activate Bootstrap tooltip
   if (o.enableBSToppltip) {
-    $('body').tooltip({
+   /* $('body').tooltip({
       selector: o.BSTooltipSelector
-    });
+    });*/
   }
 
   //Activate box widget

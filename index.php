@@ -12,8 +12,8 @@
    		 //$db->del(TB_transfer_report_all,"transfer_date<'2016-09-01' and transfer_date>'2016-10-31'  "); 
    	///	$db->del('acc_2017_06',"transfer_date NOT LIKE '%2017-06%'  "); 
     ///$db->del('transfer_report_all',"transfer_date NOT LIKE '%2017-06%' and ondate NOT LIKE '%2017-06%'   "); 
-//   $_GET[lang]='th';
-   require_once ("includes/lang/chat.php");
+   //   $_GET[lang]='th';
+   //require_once ("includes/lang/chat.php");
     // echo $_SESSION['data_user_id'];
    if($_SESSION['data_user_id'] == ''){
    ?> 
@@ -29,7 +29,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <title>ระบบจัดการงานคนขับรถ</title>
+      <title>T-Share</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
       <meta name="format-detection" content="telephone=no">
       <meta name="theme-color" content="<?=$main_color?>" />
@@ -58,26 +58,6 @@
       <script src="voice/js/app.js"></script>
       <script src="js/jquery-main.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-      <script>
-         // $(document).ready(function(){
-         //     	var cookie_lng = $.cookie("lng");
-         //      alert(cookie_lng+'index')
-         //     // });
-         // function language_load(){
-         //  	var csd = $('#test111').val();
-         //  		alert(csd)
-         //  		alert(cookie_lng)
-         //   		if (cookie_lng == 'th') {
-         //         $('#text_mod_topic_action').text('งานรับ-ส่ง');
-         //       }
-         //       else if (cookie_lng == 'cn') {
-         //         $('#text_mod_topic_action').text('  接送工作');
-         //       }
-         //        else if (cookie_lng == 'en' || cookie_lng == undefined) {
-         //         $('#text_mod_topic_action').text('Transfer job');
-         //       }
-         // 	}
-      </script>
       <!-- <script src="js/jquery.cookie.js"></script> -->
       <?  include "load/loading/page_main.php" ; ?>
       <!-- <link rel="stylesheet" href="bootstrap/font_bank/css/thbanklogos.min.css" id="stylesheet">-->
@@ -161,6 +141,10 @@
          <?  include "load/popup/action/6.php" ;?>
          <?  include "load/popup/action/7.php" ;?>
          <?  include "load/popup/action/photo_popup.php" ;?>
+         <?  include "load/popup/action/clean_popup.php" ;?>
+        <!-- <div id="popup_extra" style="display: none;" >
+         <div class="css-full-popup w3-animate-right" id="load_popup_extra" style="position:fixed;overflow-y: scroll;-webkit-overflow-scrolling: touch;z-index: 99999;"></div>
+         </div>-->
       </div>
       <!-- End Content -->
       <style>
@@ -222,6 +206,7 @@
          }
       </style>
       <style>
+      	
          @media screen and (max-width: 320px) {
          .font-18{
          font-size : 10px !important;
@@ -291,6 +276,301 @@
          z-index: 1; 
          }
       </style>
+	  <style>
+         .modal.fade .modal-dialog {
+         opacity: 0;
+         -webkit-transform: scale(0.1);
+         -ms-transform: scale(0.1);
+         -o-transform: scale(0.1);
+         transform: scale(0.1);
+         -webkit-transition: all 0.3s ease;
+         -moz-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+         transition: all 0.3s ease;
+         }
+         .modal.fade.in .modal-dialog {
+         opacity: 1;
+         -webkit-transform: scale(1);
+         -ms-transform: scale(1);
+         -o-transform: scale(1);
+         transform: scale(1);
+         -webkit-transform: translate3d(0%, 0, 0);
+         -ms-transform: translate3d(0%, 0, 0);
+         -o-transform: translate3d(0%, 0, 0);
+         transform: translate3d(0%, 0, 0);
+         }
+         /* DIALOG CONTENT */
+         .modal-content {
+         border: none;
+         border-radius: 2px;
+         -webkit-box-shadow: 0 40px 77px rgba(0, 0, 0, 0.22), 0 27px 24px rgba(0, 0, 0, 0.2);
+         -moz-box-shadow: 0 40px 77px rgba(0, 0, 0, 0.22), 0 27px 24px rgba(0, 0, 0, 0.2);
+         box-shadow: 0 40px 77px rgba(0, 0, 0, 0.22), 0 27px 24px rgba(0, 0, 0, 0.2);
+         }
+         /* DIALOG HEADER */
+         .modal-header {
+         min-height: 16px;
+         padding: 24px;
+         border-bottom: none;
+         }
+         .modal-title {
+         font-weight: 500;
+         font-size: 21px;
+         }
+         /* DIALOG BODY */
+         .modal-body {
+         padding: 0 24px;
+         }
+         .modal-body p {
+         font-weight: 400;
+         font-size: 14px;
+         color: #212121;
+         }
+         .modal-body .lead {
+         font-weight: 300;
+         font-size: 16px;
+         color: #757575;
+         }
+         .modal-body p:last-child,
+         .modal-body .lead:last-child {
+         margin-bottom: 0;
+         }
+         /* DIALOG FOOTER */
+         .modal-footer {
+         margin-top: 24px;
+         padding: 8px 0;
+         border-top: none;
+         }
+         .modal-footer .btn {
+         height: 36px;
+         margin-right: 8px;
+         padding: 8px 10px;
+         border: none;
+         border-radius: 0;
+         text-transform: uppercase;
+         font-weight: 500;
+         color: #009688;
+         background-color: #fff;
+         }
+         .modal-footer .btn:focus {
+         outline: none;
+         box-shadow: none;
+         }
+         .modal-footer .btn:focus,
+         .modal-footer .btn:hover {
+         color: #00796B;
+         }
+         .modal-footer .btn + .btn {
+         margin-left: 0;
+         }
+         .modal-footer .btn + .btn:last-child {
+         margin-left: -4px;
+         }
+         /* ----- v CAN BE DELETED v ----- */
+         .demo {
+         padding-top: 60px;
+         padding-bottom: 110px;
+         }
+         .btn-demo {
+         margin: 15px;
+         padding: 10px 15px;
+         border-radius: 0;
+         font-size: 16px;
+         background-color: #FFFFFF;
+         }
+         .btn-demo:focus {
+         outline: none;
+         }
+         .demo-footer {
+         position: fixed;
+         bottom: 0;
+         width: 100%;
+         padding: 15px;
+         background-color: #212121;
+         text-align: center;
+         }
+         .demo-footer > a {
+         text-decoration: none;
+         font-weight: bold;
+         font-size: 16px;
+         color: #fff;
+         }
+         #load_modal_body{
+         overflow : auto;
+         max-height: 400px;
+         }
+      </style>
+      <style>
+         a:link {
+         text-decoration: none;
+         }
+         a:visited {
+         text-decoration: none;
+         }
+         a:hover {
+         text-decoration: none;
+         }
+         a:active {
+         text-decoration: none;
+         }
+         #floatingCirclesG{
+         position:relative; top:40%;
+         width:125px;
+         height:125px;
+         margin:auto;
+         transform:scale(0.8);
+         -o-transform:scale(0.8);
+         -ms-transform:scale(0.8);
+         -webkit-transform:scale(0.8);
+         -moz-transform:scale(0.8);
+         }
+         .f_circleG{
+         position:absolute;
+         background-color:rgb(255,255,255);
+         height:22px;
+         width:22px;
+         border-radius:12px;
+         -o-border-radius:12px;
+         -ms-border-radius:12px;
+         -webkit-border-radius:12px;
+         -moz-border-radius:12px;
+         animation-name:f_fadeG;
+         -o-animation-name:f_fadeG;
+         -ms-animation-name:f_fadeG;
+         -webkit-animation-name:f_fadeG;
+         -moz-animation-name:f_fadeG;
+         animation-duration:1.2s;
+         -o-animation-duration:1.2s;
+         -ms-animation-duration:1.2s;
+         -webkit-animation-duration:1.2s;
+         -moz-animation-duration:1.2s;
+         animation-iteration-count:infinite;
+         -o-animation-iteration-count:infinite;
+         -ms-animation-iteration-count:infinite;
+         -webkit-animation-iteration-count:infinite;
+         -moz-animation-iteration-count:infinite;
+         animation-direction:normal;
+         -o-animation-direction:normal;
+         -ms-animation-direction:normal;
+         -webkit-animation-direction:normal;
+         -moz-animation-direction:normal;
+         }
+         #frotateG_01{
+         left:0;
+         top:51px;
+         animation-delay:0.45s;
+         -o-animation-delay:0.45s;
+         -ms-animation-delay:0.45s;
+         -webkit-animation-delay:0.45s;
+         -moz-animation-delay:0.45s;
+         }
+         #frotateG_02{
+         left:15px;
+         top:15px;
+         animation-delay:0.6s;
+         -o-animation-delay:0.6s;
+         -ms-animation-delay:0.6s;
+         -webkit-animation-delay:0.6s;
+         -moz-animation-delay:0.6s;
+         }
+         #frotateG_03{
+         left:51px;
+         top:0;
+         animation-delay:0.75s;
+         -o-animation-delay:0.75s;
+         -ms-animation-delay:0.75s;
+         -webkit-animation-delay:0.75s;
+         -moz-animation-delay:0.75s;
+         }
+         #frotateG_04{
+         right:15px;
+         top:15px;
+         animation-delay:0.9s;
+         -o-animation-delay:0.9s;
+         -ms-animation-delay:0.9s;
+         -webkit-animation-delay:0.9s;
+         -moz-animation-delay:0.9s;
+         }
+         #frotateG_05{
+         right:0;
+         top:51px;
+         animation-delay:1.05s;
+         -o-animation-delay:1.05s;
+         -ms-animation-delay:1.05s;
+         -webkit-animation-delay:1.05s;
+         -moz-animation-delay:1.05s;
+         }
+         #frotateG_06{
+         right:15px;
+         bottom:15px;
+         animation-delay:1.2s;
+         -o-animation-delay:1.2s;
+         -ms-animation-delay:1.2s;
+         -webkit-animation-delay:1.2s;
+         -moz-animation-delay:1.2s;
+         }
+         #frotateG_07{
+         left:51px;
+         bottom:0;
+         animation-delay:1.35s;
+         -o-animation-delay:1.35s;
+         -ms-animation-delay:1.35s;
+         -webkit-animation-delay:1.35s;
+         -moz-animation-delay:1.35s;
+         }
+         #frotateG_08{
+         left:15px;
+         bottom:15px;
+         animation-delay:1.5s;
+         -o-animation-delay:1.5s;
+         -ms-animation-delay:1.5s;
+         -webkit-animation-delay:1.5s;
+         -moz-animation-delay:1.5s;
+         }
+         @keyframes f_fadeG{
+         0%{
+         background-color: #FF9900;
+         }
+         100%{
+         background-color:rgb(255,255,255);
+         }
+         }
+         @-o-keyframes f_fadeG{
+         0%{
+         background-color:rgb(47,148,173);
+         }
+         100%{
+         background-color:rgb(255,255,255);
+         }
+         }
+         @-ms-keyframes f_fadeG{
+         0%{
+         background-color:rgb(47,148,173);
+         }
+         100%{
+         background-color:rgb(255,255,255);
+         }
+         }
+         @-webkit-keyframes f_fadeG{
+         0%{
+         background-color:rgb(47,148,173);
+         }
+         100%{
+         background-color:rgb(255,255,255);
+         }
+         }
+         @-moz-keyframes f_fadeG{
+         0%{
+         background-color:rgb(47,148,173);
+         }
+         100%{
+         background-color:rgb(255,255,255);
+         }
+         }
+         #firstDropdown .dropdown-backdrop {
+         display:none;
+         }
+      </style>
       <div  class="modal fade" id="popup_load_chat" role="dialog"   aria-labelledby="myModalLabel"  style="width:100%; "  >
          <? //  include ("load/page/back_popup.php");?>
          <center>
@@ -298,6 +578,35 @@
             <!-- Modal  class="modal fade" content-->
             <div id="load_data_chat" style="width:100%px; padding:0px " >
             </div>
+         </div>
+      </div>
+      <div style="width: 100%;height: 100%;position: fixed;top: 0px; display: none; background-color: #0000008f;z-index: 99999;opacity: 1;padding: 15px 10px;overflow-y: auto;" id="dialog_custom">
+         <div class="w3-animate-bottom" style="background-color: #fff;margin-top: 10px;border-radius: 10px;box-shadow: 1px 1px 7px #3a3939;">
+            <i class="fa fa-times" aria-hidden="true" style="position: absolute;
+               color: #5a5858;
+               right: 10px;
+               font-size: 40px;
+               z-index: 9000;
+               margin-top : 5px;" id="close_dialog_custom" onclick="$('#dialog_custom').hide();"></i>
+            <div id="body_dialog_custom_load" >
+            </div>
+         </div>
+      </div>
+      
+      <div id="material_dialog" style="width: 100%;height: 100%;position:  fixed;z-index: 99999;background-color: #00000057;top: 0px;left: 0px;display: none;">
+         <div class="modal-dialog w3-animate-bottom" style="background-color: #fff; top:20px;" >
+            <div class="modal-content">
+               <div class="modal-header" style="padding: 10px;">
+                  <h4 class="modal-title font-26" id="dialoglLabel" >Add Department</h4>
+               </div>
+               <div class="modal-body" id="load_modal_body">
+               </div>
+               <div class="modal-footer" style="padding: 7px 5px;margin-top: 5px;">
+                  <button type="button" class="btn btn-dialog font-22 text-cap" onclick="$('#material_dialog').hide();" id="cancel_dialog"><?=t_close;?></button>
+                  <button type="button" class="btn btn-dialog font-22 text-cap" onclick="$('#material_dialog').hide();" id="ok_dialog" style="display: none;"><?=t_ok;?></button>
+               </div>
+            </div>
+            <!-- modal-content -->
          </div>
       </div>
    </body>
@@ -318,257 +627,22 @@
        ;
        rfs.call(el);
    });
-      
 </script>
-<?  //  include ("mod/load/show/popup/preview_map.php");?>
-<style>
-   .main-page-loader-index {
-   position: fixed;  
-   left: 0px;
-   top: 0px;
-   width: 100%;
-   height: 100%;
-   z-index: 999999999;  
-   background-color:#333333;
-   }
-</style>
-<div class="main-page-loader-index" id="load+page_index" style="display:none">
-   <div id="floatingCirclesG">
-      <div class="f_circleG" id="frotateG_01"></div>
-      <div class="f_circleG" id="frotateG_02"></div>
-      <div class="f_circleG" id="frotateG_03"></div>
-      <div class="f_circleG" id="frotateG_04"></div>
-      <div class="f_circleG" id="frotateG_05"></div>
-      <div class="f_circleG" id="frotateG_06"></div>
-      <div class="f_circleG" id="frotateG_07"></div>
-      <div class="f_circleG" id="frotateG_08"></div>
-   </div>
-</div>
-<style>
-   #floatingCirclesG{
-   position:relative; top:40%;
-   width:125px;
-   height:125px;
-   margin:auto;
-   transform:scale(0.8);
-   -o-transform:scale(0.8);
-   -ms-transform:scale(0.8);
-   -webkit-transform:scale(0.8);
-   -moz-transform:scale(0.8);
-   }
-   .f_circleG{
-   position:absolute;
-   background-color:rgb(255,255,255);
-   height:22px;
-   width:22px;
-   border-radius:12px;
-   -o-border-radius:12px;
-   -ms-border-radius:12px;
-   -webkit-border-radius:12px;
-   -moz-border-radius:12px;
-   animation-name:f_fadeG;
-   -o-animation-name:f_fadeG;
-   -ms-animation-name:f_fadeG;
-   -webkit-animation-name:f_fadeG;
-   -moz-animation-name:f_fadeG;
-   animation-duration:1.2s;
-   -o-animation-duration:1.2s;
-   -ms-animation-duration:1.2s;
-   -webkit-animation-duration:1.2s;
-   -moz-animation-duration:1.2s;
-   animation-iteration-count:infinite;
-   -o-animation-iteration-count:infinite;
-   -ms-animation-iteration-count:infinite;
-   -webkit-animation-iteration-count:infinite;
-   -moz-animation-iteration-count:infinite;
-   animation-direction:normal;
-   -o-animation-direction:normal;
-   -ms-animation-direction:normal;
-   -webkit-animation-direction:normal;
-   -moz-animation-direction:normal;
-   }
-   #frotateG_01{
-   left:0;
-   top:51px;
-   animation-delay:0.45s;
-   -o-animation-delay:0.45s;
-   -ms-animation-delay:0.45s;
-   -webkit-animation-delay:0.45s;
-   -moz-animation-delay:0.45s;
-   }
-   #frotateG_02{
-   left:15px;
-   top:15px;
-   animation-delay:0.6s;
-   -o-animation-delay:0.6s;
-   -ms-animation-delay:0.6s;
-   -webkit-animation-delay:0.6s;
-   -moz-animation-delay:0.6s;
-   }
-   #frotateG_03{
-   left:51px;
-   top:0;
-   animation-delay:0.75s;
-   -o-animation-delay:0.75s;
-   -ms-animation-delay:0.75s;
-   -webkit-animation-delay:0.75s;
-   -moz-animation-delay:0.75s;
-   }
-   #frotateG_04{
-   right:15px;
-   top:15px;
-   animation-delay:0.9s;
-   -o-animation-delay:0.9s;
-   -ms-animation-delay:0.9s;
-   -webkit-animation-delay:0.9s;
-   -moz-animation-delay:0.9s;
-   }
-   #frotateG_05{
-   right:0;
-   top:51px;
-   animation-delay:1.05s;
-   -o-animation-delay:1.05s;
-   -ms-animation-delay:1.05s;
-   -webkit-animation-delay:1.05s;
-   -moz-animation-delay:1.05s;
-   }
-   #frotateG_06{
-   right:15px;
-   bottom:15px;
-   animation-delay:1.2s;
-   -o-animation-delay:1.2s;
-   -ms-animation-delay:1.2s;
-   -webkit-animation-delay:1.2s;
-   -moz-animation-delay:1.2s;
-   }
-   #frotateG_07{
-   left:51px;
-   bottom:0;
-   animation-delay:1.35s;
-   -o-animation-delay:1.35s;
-   -ms-animation-delay:1.35s;
-   -webkit-animation-delay:1.35s;
-   -moz-animation-delay:1.35s;
-   }
-   #frotateG_08{
-   left:15px;
-   bottom:15px;
-   animation-delay:1.5s;
-   -o-animation-delay:1.5s;
-   -ms-animation-delay:1.5s;
-   -webkit-animation-delay:1.5s;
-   -moz-animation-delay:1.5s;
-   }
-   @keyframes f_fadeG{
-   0%{
-   background-color: #FF9900;
-   }
-   100%{
-   background-color:rgb(255,255,255);
-   }
-   }
-   @-o-keyframes f_fadeG{
-   0%{
-   background-color:rgb(47,148,173);
-   }
-   100%{
-   background-color:rgb(255,255,255);
-   }
-   }
-   @-ms-keyframes f_fadeG{
-   0%{
-   background-color:rgb(47,148,173);
-   }
-   100%{
-   background-color:rgb(255,255,255);
-   }
-   }
-   @-webkit-keyframes f_fadeG{
-   0%{
-   background-color:rgb(47,148,173);
-   }
-   100%{
-   background-color:rgb(255,255,255);
-   }
-   }
-   @-moz-keyframes f_fadeG{
-   0%{
-   background-color:rgb(47,148,173);
-   }
-   100%{
-   background-color:rgb(255,255,255);
-   }
-   }
-   #firstDropdown .dropdown-backdrop {
-   display:none;
-   }
-   body  { font-size:36px
-   }
-</style>
-<? ///  include "mod/livechat/auto_create_user.php" ;?>
-<style type="text/css">
-   a:link {
-   text-decoration: none;
-   }
-   a:visited {
-   text-decoration: none;
-   }
-   a:hover {
-   text-decoration: none;
-   }
-   a:active {
-   text-decoration: none;
-   }
-</style>
 <?php 
    $lng_map = $google_map_api_lng;
    ?>
 <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?=$lng_map;?>&v=<?=time();?>"></script>
 <?  include ("bootstrap/css/css.php");?> 
-<!-- <script src="https://www.welovetaxi.com/app/booking2/files/js/jquery.cookie.js"></script> -->
 <script src="dist/js/app.js"></script>
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
-<input type="text" name="" id='test111' value="aaaa"/>
-<?php
-   /*echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-   echo "<br />";
-   // RFC 2616 compatible Accept Language Parser
-   // http://www.ietf.org/rfc/rfc2616.txt, 14.4 Accept-Language, Page 104
-   // Hypertext Transfer Protocol -- HTTP/1.1
-   
-   foreach (explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']) as $lang) {
-       $pattern = '/^(?P<primarytag>[a-zA-Z]{2,8})'.
-       '(?:-(?P<subtag>[a-zA-Z]{2,8}))?(?:(?:;q=)'.
-       '(?P<quantifier>\d\.\d))?$/';
-   
-       $splits = array();
-   
-       printf("Lang:,,%s''\n", $lang);
-       if (preg_match($pattern, $lang, $splits)) {
-           print_r($splits);
-       } else {
-           echo "\nno match\n";
-       }
-   }
-   $tt = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-   $tt = $tt[0];
-   
-   $final_tt = explode('-', $tt);
-   $final_tt = $final_tt[0];*/
-   //     @setcookie ("test2", '321', time() + (86400 * 30), "/"); // 86400 = 1 day
-   
-   
-   
-   ?>
+
 <script >
    //alert("<?=$final_tt;?>");
-   
       function language(lng) {
        console.log(lng);
    //    $.cookie("lng", lng, { path: '/' });
-   	setCookie("lng", lng, 1);
+   		setCookie("lng", lng, 1);
        window.location.reload();
       }
-      console.log('asasasas')
+   //      console.log('asasasas')
 </script>

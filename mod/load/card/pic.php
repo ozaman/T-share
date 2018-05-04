@@ -9,7 +9,7 @@
             <!-- Modal content-->
             <div class="modal-content" style="padding:5px; " > 
  
-                    <h4 class="modal-title" style="font-size:26px; height:15px;   font-family:Arial, Helvetica, sans-serif; text-transform:uppercase"><center><b>ภาพ<?=$_GET[title] ?></b></center></h4>
+                    <h4 class="modal-title" style="font-size:26px; height:15px;   font-family:Arial, Helvetica, sans-serif; text-transform:uppercase"><center><b><?=t_photo;?><?=$_GET[title] ?></b></center></h4>
  
                 <div class="modal-body" > 
 <script language="javascript">
