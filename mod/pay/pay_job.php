@@ -108,11 +108,13 @@ var date=$('#date_transfer_work2').val();
         onStart: function() {
         	console.log(date)
             this.set('select', date); // Set to current date on load
+            // setInterval(function(){ 
+              console.log('in setInterval')
             var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["app_remember_user"];?>&date="+date;
 	 $('#load_th').show();
 	 //$('#load_th').load('load/page/loading.php');
  		$('#load_th').load(url_place_th); 
-   
+   // }, 1000);
         },
 		  onSet: function(context) {
 		  	     var date=$('#date_transfer_work2').val();
