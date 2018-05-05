@@ -100,8 +100,9 @@ td{
 	}else{
 		$display_none_air = 'display:none;';
 	}
+	
 ?>
-<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="$('#main_load_mod_popup_clean').hide(); $('#show_main_tool_bottom').fadeIn(500); $('#main_component').addClass('w3-animate-left');" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
 <span style="font-size: 16px;"></span>
    <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;">
@@ -115,7 +116,8 @@ td{
                         <tr>
                            <td height="35" class="boxnumber" style="font-size:18px; color:#FFFFFF; background-color: #006699 ; font-weight:bold ;border-radius: 0px;" id="">
                               <center>
-                                 <span id="place_number_190914">1</span> | 1    
+                                 <span id="place_number_190914">1</span> | 1 
+                                 
                               </center>
                            </td>
                         </tr>
@@ -279,22 +281,36 @@ td{
                </tr>
                <tr>
                   <td>
-                     <div align="left" style="font-size:16px;padding:5px; "> 
+                     <div align="left" style="font-size:16px;padding:5px;padding-bottom:15px; "> 
                      	<span id="address_to" style="padding: 15px;" class="font-24"><?=$_POST[to_place][topic];?></span>		   
                        
                      </div>
                     
                   </td>
                </tr>
+			   <tr>
+			   	<td>
+			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-car" style="color:#c1c1c1;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_select_your_car;?></b></span></div>
+                                 </td>
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+			   	</td>
+				</tr>
+			   	<tr>
+			   	<td>
+			   		<div style="padding: 0px 10px;">
 
-            </tbody>
-         </table>
-     
-   </div>
-</div>
-
-<div style="padding: 0px 10px;">
-<div style="padding: 5px;border: 1px solid #ddd;box-shadow: 1px 2px 7px #bbbaba;">
+<div style="padding: 5px;border: 1px solid #ddd;margin-top: 5px;">
 <?php 
 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 $select = "SELECT * FROM web_carall where drivername = '".$_SESSION['data_user_id']."'  ";
@@ -324,7 +340,8 @@ $plate_color="FFCC00"; }
                                  <font class="font-20"><?=$arr[car][province];?></font></b></font>
                               </td>
                            </tr>
-                        </tbody></table>
+                        </tbody>
+                        </table>
                         
                      </td>
                      <td width="50" align="center">
@@ -338,12 +355,22 @@ $plate_color="FFCC00"; }
             </table>
     </a>
 <? } ?>
+<input id="carid" value="" type="hidden" />
 <? //echo $select; ?>
 </div>
 </div>
+			   	</td>
+			   </tr>
+            </tbody>
+         </table>
+     
+   </div>
+</div>
 
-<div style="padding-bottom: 30px;padding-left: 20px;padding-right: 20px;">
-<button onclick="selectjob('<?=$_POST[orderid];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-22"><strong><?=t_accept_order?></strong></span> </button>
+
+
+<div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:5px;">
+<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 
 
@@ -359,5 +386,6 @@ function selectCar(id){
 //	
 	$('input[type="checkbox"]').prop('checked', false); // Unchecks it
 	$('#car_use_'+id).prop('checked', true); // Checks it
+	$('#carid').val(id);
 }
 </script>

@@ -221,12 +221,10 @@
             </button>
          </td>
          <td align="center" class="tool-td-chat">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
-            <center>
-            <button type="button" class="btn btn-default "   id="index_menu_tour"   style="width:100%">
+           <button type="button" class="btn btn-default " onclick="warkingall()"       style="width:100%">
                <center>
-                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
+                  <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_his_transfer ?></span>
                </center>
             </button>
          </td>
@@ -270,10 +268,12 @@
       </tr>
       <tr>
          <td  width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default " onclick="warkingall()"       style="width:100%">
+            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
+            <center>
+            <button type="button" class="btn btn-default "   id="index_menu_tour"   style="width:100%">
                <center>
-                  <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_all_jobs ?></span>
+                  <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase"  ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
                </center>
             </button>
          </td>
@@ -296,6 +296,7 @@
                </center>
             </button>
          </td>
+         
       </tr>
    </tbody>
 </table>
@@ -645,17 +646,18 @@
 </script>
 <div></div>
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
-<script src="http://103.13.30.65:8080/socket.io/socket.io.js?v=<?=time();?>"></script>
+<script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
     <!-- <script src="socket.io/socket.io.js"></script> -->
-<script src="http://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script>
 <script>
 	var res_socket ;
-	var socket = io.connect('http://103.13.30.65:8080');
+	var socket = io.connect('https://www.welovetaxi.com:3443');
         //on message received we print all the data inside the #container div
         socket.on('notification', function (data) {
         res_socket = data.transfer[0];
         if($('#check_open_worktbooking').val()==1){
-//			readDataBooking();
+        console.log('now open popup')	
+		readDataBooking();
 		}
         
 //        $('.list-container').remove();	

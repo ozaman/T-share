@@ -6,6 +6,40 @@
 </script>
 
 <style>
+@media screen and (max-width: 320px) {
+   .font-22{
+   		font-size : 14px;
+   		font-family: 'Arial', sans-serif;
+   }
+   .line-center{
+/*   		height: 59px;*/
+   		height: 50px;
+   }
+   #date_transfer_work{
+   		height: 35px !important;
+   		font-size: 20px !important;
+   }
+   .icon_calendar{
+   		font-size: 20px !important;
+   }
+}
+.btn_filter_active{
+	padding: 8px; 
+	border: 1px solid #3b5998;
+	border-radius: 25px;
+/*	width: 100px;*/
+	background-color: #3b5998;
+	color: #fff;
+	box-shadow: 1px 1px 1px #333;
+	cursor: pointer;
+}
+.btn_filter{
+	padding: 5px; 
+	border: 1px solid #3b5998; 
+	border-radius: 25px;
+/*	width: 100px;*/
+	cursor: pointer;
+}
    @media screen and (max-width: 320px) {
    .font-22{
    font-size : 14px !important;
@@ -186,7 +220,21 @@
       else { 
       $filter=""; 
       }
+     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	 $res[web_user] = $db->select_query("SELECT id FROM web_driver WHERE username='" . $_SESSION['data_user_name'] . "'    ");
+     $arr[web_user] = $db->fetch($res[web_user]);
       ?>
+<input id="driver" value="<?=$arr[web_user][id];?>" type="hidden" />
+   <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
+		<table width="100%">
+			<tbody>
+			<tr>
+				<td width="50%"><div id="btn_job_now" class="btn_filter_active tocheck" align="center" onclick="FilterType('job_now');" ><span class="font-22"><?=t_now;?></span></div></td>
+				<td width="50%"><div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div></td>
+			</tr>
+		</tbody>
+		</table>
+	</div>   
    <div class="form-group">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
@@ -223,11 +271,13 @@
               });
        }, 500);
    </script>
-   <!--แสดงผล-->
+   
    <div id="load_booking_data"  style="padding:0px; margin:0;">
      
    </div>
-
+   <div id="load_history_data"  style="padding:0px; margin:0;display: none;" class="w3-animate-bottom">
+     	
+   </div>
 </div>
 <div class="w3-animate-right " id="sub_component" style="display: none;margin-top: 0px;overflow-x: hidden; margin-bottom:20px;width:100%; ">
    <div class="font-22" style="padding: 5px 0px;margin-top: 0px;" onclick="backMain();" ><a id="back_main"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
@@ -235,6 +285,63 @@
    </div>
 </div>
 <script>
+   function FilterType(type){
+//	console.log(type);
+	$('.tocheck').removeClass('btn_filter_active');
+	$('.tocheck').addClass('btn_filter');
+	$('#btn_'+type).removeClass('btn_filter');
+	$('#btn_'+type).addClass('btn_filter_active');
+	
+	if(type=="job_now"){
+		readDataBooking();
+		$('#load_booking_data').show();
+		$('#load_history_data').hide();
+	}
+	else if(type=="history"){
+		
+		var driver = $('#driver').val();
+		
+//		var url = "mod/tbooking/curl_connect_api.php?type=history_booking";
+		
+	   	$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
+//	   		console.log(res_api_hit);
+	   		if(res_api_hit.status=="200"){
+				$.each(res_api_hit.result, function( index, value ) {
+				  console.log(value);
+				  var component = 
+          '<div class="list-container " id="id_list_" onclick="">'
+	         +'<div class="w3-ul w3-card-4" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);">'
+	            +'<div class="w3-bar" >'
+	               /*+'<span class="ico-pos font-24"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'*/
+	               		+'<div class="w3-bar-item">'
+	                  		+'<table width="100%">'
+			                     +'<tbody>'
+			                        +'<tr>'
+			                           +'<td width="100%"><span class="font-24">Phuket Airport - 88 Hotel</span></td>'
+			                           /*+'<td width="20%" align="center" rowspan="2"></td>'*/
+			                        +'</tr>'
+			                        +'<tr>'
+			                           +'<td><span class="font-20">2018-05-04&nbsp;&nbsp;19.30 </span></td>'
+			                           +'<td></td>'
+			                        +'</tr>'
+			                     +'</tbody>'
+			                  +'</table>'
+	               		+'</div>'
+	            +'</div>'
+	         +'</div>'
+	      +'</div>';
+	      $('#load_history_data').append(component);
+				});
+			}
+	   		
+	   	});
+		$('#load_booking_data').hide();
+		$('#load_history_data').show();
+		console.log(driver+" : ");
+	}
+
+}
+
    function openDetailBooking(index){
    
    /*	$('#main_component').hide();
@@ -264,17 +371,13 @@
      		$('#main_component').show();
    }
 
-</script>
-<script>
-	readDataBooking();
-
 	function readDataBooking(){
 	 	var num = 0;
-	 	$('.list-container').remove();
-	 	if(res_socket.length<=0){
+	 	$('#load_booking_data .list-container').remove();
+	 	/*if(res_socket.length<=0){
 			$('#load_booking_data').append('<div class="list-container "><h3><strong style="color:#ff0000">ไม่มีงาน</strong></h3></div>');
 			return;
-		}
+		}*/
 	 	$.each(res_socket,function(index,res){
 		  var program = res.program.topic_en;
 		  var pickup_place = res.pickup_place.topic;
@@ -319,10 +422,8 @@
 	 	
 	 }
 	 
-	function selectjob(orderid){
-		var user_name = "<?=$_SESSION['data_user_name'];?>";
-		var carnumber = "<?=$carnumber;?>";
-		var user_id = "<?=$user_id;?>";
+	function selectjob(orderid,idorder,invoice,code,program){
+		var carid = $('#carid').val();
 //		alert("<?=$_SESSION['data_user_name'];?>");
 		/*$('#material_dialog').show();
 		$('#dialoglLabel').text('<?=t_select_your_car;?>');
@@ -330,6 +431,55 @@
 		$.post(url,function(res){
 			$('#load_modal_body').html(res);
 		});*/
+		var driver = $('#driver').val();
+		swal({
+		  title: "<?=t_are_you_sure;?>",
+		  text: "<?=t_want_get_job;?>",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonClass: "btn-danger",
+		  confirmButtonText: "<?=t_confirm;?>",
+		  cancelButtonText: "<?=t_cancelled;?>",
+		  closeOnConfirm: false
+		},
+		function(){
+			var data = { 	 "idorder" : idorder, 
+							 "orderid" : orderid,
+							 "invoice" : invoice,
+							 "code" : code,
+							 "program" : program,
+							 "driver" : driver,
+							 "carid" : carid
+               			  };
+			var url = "mod/tbooking/curl_connect_api.php?type=getjob_booking";
+			console.log(data);
+
+			/*$.ajax({
+			    type: "POST",
+			    url: url,
+			    // The key needs to match your method's input parameter (case-sensitive).
+			    //data: JSON.stringify({ Markers: markers }),
+			    data: data,
+			    contentType: "application/json; charset=utf-8",
+			    dataType: "json",
+			    success: function(data){
+			    	console.log(data);
+			    	},
+			    failure: function(errMsg) {
+			        console.log(errMsg);
+			    }
+			});*/
+			$.post(url,data,function(res){
+				console.log(res);
+				if(res.status=="200"){
+					swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
+					hideDetail();
+				}else{
+					swal("<?=t_error;?>!", "<?=t_press_button_close;?>", "error");
+				}
+			});
+//		  
+		});
 		
 	} 
 	
@@ -343,4 +493,9 @@
 	    window.open("https://maps.google.com/maps?daddr="+lat+","+lng+"&amp;ll=");
 	}
 	
+	function hideDetail(){
+		$('#main_load_mod_popup_clean').hide(); 
+		$('#show_main_tool_bottom').fadeIn(500); 
+		$('#main_component').addClass('w3-animate-left');
+	}
 </script>
