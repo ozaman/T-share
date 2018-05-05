@@ -481,10 +481,7 @@ setTimeout(function(){
         closeOnClear: false,
         "showButtonPanel": false,
         onStart: function() {
-        	setInterval(function(){
-        	console.log('in setInterval sss') 
         	QueryData();
-        	 }, 1000);
             this.set('select', date); // Set to current date on load
    
         },

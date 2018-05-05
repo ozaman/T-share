@@ -280,7 +280,7 @@
          <td width="50%" align="center" class="tool-td-chat">
             <button type="button" class="btn btn-default "  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
-                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd"  style="margin-left:-3px;"></i></div>
+                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
                </center>
             </button>
@@ -430,13 +430,11 @@
    });
    $('#index_menu_transfer').click(function(){  
    	  $("#main_load_mod_popup" ).toggle();
-       // setInterval(function(){
    	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
    //	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
    	  console.log(url_load);
    	  $('#load_mod_popup').html(load_main_mod);
-   	  $('#load_mod_popup').load(url_load);
-         //}, 1000); 
+   	  $('#load_mod_popup').load(url_load); 
     	});
     function openMainShop(province,province_name){
     	console.log(province+" : "+province_name);
@@ -658,12 +656,13 @@
         socket.on('notification', function (data) {
         res_socket = data.transfer[0];
         if($('#check_open_worktbooking').val()==1){
-        console.log('now open popup')	
+        console.log(data.transfer);
+        console.log('now open popup');
 		readDataBooking();
 		}
         
 //        $('.list-container').remove();	
-        console.log(data.transfer)
+        
        
        /* $.each(data.transfer[0],function(index,res){
 		  var program = res.progream.topic_en;

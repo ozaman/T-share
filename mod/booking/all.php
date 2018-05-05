@@ -298,7 +298,7 @@
    <!----- ปิด row -->
 </div>
 <div class="w3-animate-right " id="sub_component" style="display: none;margin-top: 35px;overflow-x: hidden; margin-bottom:20px;width:100% ">
-	<div style="padding: 5px 0px;margin-top: 5px;" onclick="backMain();" ><a id="back_main"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+	<div class="font-22" style="padding: 5px 0px;margin-top: 5px;" onclick="backMain();" ><a id="back_main"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 	 <div id="body_load_shop_work">
 	 	
 	 </div>

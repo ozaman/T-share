@@ -17,6 +17,7 @@ switch ($_COOKIE['lng']) {
         $province           = "name_th";
         $place_shopping     = "topic_th";
         $google_map_api_lng = "th";
+        $car_pax = "pax_th";
         break;
     case "cn":
         //echo "PAGE cn";
@@ -24,6 +25,7 @@ switch ($_COOKIE['lng']) {
         $province           = "name_cn";
         $place_shopping     = "topic_cn";
         $google_map_api_lng = 'zh-CN';
+        $car_pax = "pax_cn";
         break;
     case "en":
         //echo "PAGE EN";
@@ -31,6 +33,7 @@ switch ($_COOKIE['lng']) {
         $google_map_api_lng = "en";
         $place_shopping     = "topic_en";
         $province           = "name";
+        $car_pax = "pax";
         break;
     default:
         //echo "PAGE EN - Setting Default";
@@ -38,8 +41,10 @@ switch ($_COOKIE['lng']) {
         //        $google_map_api_lng = $keep;
         if($keep=="en"){
 			$province           = "name";
+			$car_pax = "pax";
 		}else{
 			$province           = "name_" . $keep;
+			$car_pax = "pax". $keep;
 		}
         
         $place_shopping     = "topic_" . $keep;

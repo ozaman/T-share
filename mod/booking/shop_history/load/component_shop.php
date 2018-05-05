@@ -68,19 +68,19 @@ if ($_GET[request] == "check_status_checkin"){
 
   if($_GET[status]==1){  
 ?>
- <div class="font-22"><i class="fa  fa-clock-o fa-spin 6x" style="color:#88B34D"></i>  <strong><?=t_time;?> 
+ <div class="font-20"><i class="fa  fa-clock-o fa-spin 6x" style="color:#88B34D"></i>  <strong><?=t_time;?> 
 <?=$date = date('H:i:s', $_GET[time]);?></strong></div>
 <? }  
   if($_GET[status]==0){  
 ?>
- <div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div>
+ <div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div>
 <? } 
   if($_GET[status]==2){  
 ?>
  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tbody>
     <tr>
-      <td> <div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong style="color:#FF0000"><?=t_customer_no_register;?></strong>
+      <td> <div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong style="color:#FF0000"><?=t_customer_no_register;?></strong>
  <div><?=t_cause;?> : <?=t_guest_agent;?></div> </div></td>
       <td width="30" align="right">            <i  id="photo_driver_topoint_<?=$arr[project][id];?>" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "></i></td>
     </tr>

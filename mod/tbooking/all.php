@@ -1,6 +1,7 @@
 <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
+
 <script>
    $(".text-topic-action-mod").html('T-Booking');
 </script>
@@ -205,6 +206,71 @@
    color: #fff;
    }
 </style>
+<style>
+.box_his{
+	padding:10px 0px;
+}
+.mof{
+  position: relative;
+  border: none;
+  outline:none;
+  cursor: pointer;
+  background: #009688;
+  color: white;
+  padding: 13px;
+  border-radius: 2px;
+  font-size: 22px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+}
+
+
+.fab{
+  border-radius: 50%;
+  margin:0;
+  padding: 20px;
+}
+
+.material{
+  position:relative;
+  color:white;
+  margin: 20px auto;
+  height:400px;
+  width:500px;
+  background:#f45673;
+  
+}
+
+.ripple{
+  overflow:hidden;
+}
+
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;
+
+    
+  animation: ripple-animation 2s;
+}
+
+
+@keyframes ripple-animation {
+    from {
+      transform: scale(1);
+      opacity: 0.4;
+    }
+    to {
+      transform: scale(100);
+      opacity: 0;
+    }
+}
+.text-white{
+	color: #ffffff;
+}
+   </style>
+
 <div class="box " style="margin-top:50px;border-top: 0px;" id="main_component" >
    <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css">
    <script src="js/jquery-main.js"></script> 
@@ -235,7 +301,7 @@
 		</tbody>
 		</table>
 	</div>   
-   <div class="form-group">
+   <div class="form-group" style="margin-bottom:5px;">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
          <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
@@ -284,7 +350,9 @@
    <div id="body_load_tb_work">
    </div>
 </div>
+
 <script>
+   var dataHistoryA;
    function FilterType(type){
 //	console.log(type);
 	$('.tocheck').removeClass('btn_filter_active');
@@ -299,38 +367,32 @@
 	}
 	else if(type=="history"){
 		
+		$('#load_history_data .box_his').remove();
 		var driver = $('#driver').val();
-		
-//		var url = "mod/tbooking/curl_connect_api.php?type=history_booking";
-		
 	   	$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
-//	   		console.log(res_api_hit);
+	   		console.log(res_api_hit);
+	   		
 	   		if(res_api_hit.status=="200"){
-				$.each(res_api_hit.result, function( index, value ) {
-				  console.log(value);
-				  var component = 
-          '<div class="list-container " id="id_list_" onclick="">'
-	         +'<div class="w3-ul w3-card-4" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);">'
-	            +'<div class="w3-bar" >'
-	               /*+'<span class="ico-pos font-24"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'*/
-	               		+'<div class="w3-bar-item">'
-	                  		+'<table width="100%">'
-			                     +'<tbody>'
-			                        +'<tr>'
-			                           +'<td width="100%"><span class="font-24">Phuket Airport - 88 Hotel</span></td>'
-			                           /*+'<td width="20%" align="center" rowspan="2"></td>'*/
-			                        +'</tr>'
-			                        +'<tr>'
-			                           +'<td><span class="font-20">2018-05-04&nbsp;&nbsp;19.30 </span></td>'
-			                           +'<td></td>'
-			                        +'</tr>'
-			                     +'</tbody>'
-			                  +'</table>'
-	               		+'</div>'
-	            +'</div>'
-	         +'</div>'
-	      +'</div>';
-	      $('#load_history_data').append(component);
+	   			dataHistoryA = res_api_hit.data.result;
+				$.each(res_api_hit.data.result, function( index, value ) {
+      	  
+	      var component2 = 
+	      '<div class="box_his"><button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+');">'
+			   +'<div class="w3-bar-item">'
+			      +'<table width="100%">'
+			         +'<tbody>'
+			            +'<tr>'
+			               +'<td width="100%"><span class="font-24 text-white">Phuket Airport - 88 Hotel</span></td>'
+			            +'</tr>'
+			            +'<tr>'
+			               +'<td><span class="font-20 text-white">2018-05-04&nbsp;&nbsp;19.30 </span></td>'
+			               +'<td></td>'
+			            +'</tr>'
+			         +'</tbody>'
+			      +'</table>'
+			   +'</div>'
+			+'</button></div>';
+	      $('#load_history_data').append(component2);
 				});
 			}
 	   		
@@ -344,24 +406,30 @@
 
    function openDetailBooking(index){
    
-   /*	$('#main_component').hide();
-   	$('#sub_component').show();
-   	$('#main_load_mod_popup .back-full-popup').fadeOut(500);
-   	$('#show_main_tool_bottom').fadeOut(500);
-
-   	var url = "empty_style.php?name=tbooking&file=book_detail";
-   	$.post(url,res_socket[index],function(data){
-   		$('#body_load_tb_work').html(data);
-   	});*/
-   		
-   		
    		$('#main_load_mod_popup_clean').show();
    		$('#main_component').removeClass('w3-animate-left');
-   		var url = "empty_style.php?name=tbooking&file=book_detail";
-	   	$.post(url,res_socket[index],function(data){
+   		
+   			var url = "empty_style.php?name=tbooking&file=book_detail";
+			var post = res_socket[index];
+
+	   	$.post(url,post,function(data){
 	   		$('#load_mod_popup_clean').html(data);
 	   	});
    }
+   
+   function openSheetHandle(index){
+   		rippleClick(index)
+   		$('#main_load_mod_popup_clean').show();
+   		$('#main_component').removeClass('w3-animate-left');
+   		
+   			var url = "empty_style.php?name=tbooking&file=sheet_handle";
+			var post = dataHistoryA[index];
+
+	   	$.post(url,post,function(data){
+	   		$('#load_mod_popup_clean').html(data);
+	   	});
+   }
+
    function backMain(){
    	console.log('back');
    	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
@@ -422,7 +490,7 @@
 	 	
 	 }
 	 
-	function selectjob(orderid,idorder,invoice,code,program){
+	function selectjob(orderid,idorder,invoice,code,program,p_place,to_place){
 		var carid = $('#carid').val();
 //		alert("<?=$_SESSION['data_user_name'];?>");
 		/*$('#material_dialog').show();
@@ -449,7 +517,9 @@
 							 "code" : code,
 							 "program" : program,
 							 "driver" : driver,
-							 "carid" : carid
+							 "carid" : carid,
+							 "pickup_place" : p_place,
+							 "to_place" : to_place
                			  };
 			var url = "mod/tbooking/curl_connect_api.php?type=getjob_booking";
 			console.log(data);
@@ -498,4 +568,67 @@
 		$('#show_main_tool_bottom').fadeIn(500); 
 		$('#main_component').addClass('w3-animate-left');
 	}
+
+	function rippleClick(id){
+		console.log('ripple')
+      var $div = $('<div/>'),
+          btnOffset = $('#btn_'+id).offset(),
+      		xPos = event.pageX - btnOffset.left,
+      		yPos = event.pageY - btnOffset.top;
+
+      $div.addClass('ripple-effect');
+      var $ripple = $(".ripple-effect");
+      
+      $ripple.css("height", $('#btn_'+id).height());
+      $ripple.css("width", $('#btn_'+id).height());
+      $div
+        .css({
+          top: yPos - ($ripple.height()/2),
+          left: xPos - ($ripple.width()/2),
+          background: $('#btn_'+id).data("ripple-color")
+        }) 
+        .appendTo($('#btn_'+id));
+
+      window.setTimeout(function(){
+        $div.remove();
+      }, 2000);
+//       event.preventDefault();
+	}
+
+</script>
+
+<script>
+
+  $(function() {
+    
+    
+    $('.ripple').on('click', function (event) {
+     
+      console.log('ripple')
+      var $div = $('<div/>'),
+          btnOffset = $(this).offset(),
+      		xPos = event.pageX - btnOffset.left,
+      		yPos = event.pageY - btnOffset.top;
+
+      $div.addClass('ripple-effect');
+      var $ripple = $(".ripple-effect");
+      
+      $ripple.css("height", $(this).height());
+      $ripple.css("width", $(this).height());
+      $div
+        .css({
+          top: yPos - ($ripple.height()/2),
+          left: xPos - ($ripple.width()/2),
+          background: $(this).data("ripple-color")
+        }) 
+        .appendTo($(this));
+
+      window.setTimeout(function(){
+        $div.remove();
+      }, 2000);
+       event.preventDefault();
+    });
+    
+  });
+  
 </script>

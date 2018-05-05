@@ -88,9 +88,9 @@ td{
 
 </style>
 <?php 
-	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+	/*$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
 	$res[cartype] = $db->select_query("SELECT id, topic_en, topic_cn, topic_th, pax, pax_cn, pax_th FROM web_carall_type where id = ".$_POST[cartype]." ");
-	$arr[cartype] = $db->fetch($res[cartype]);
+	$arr[cartype] = $db->fetch($res[cartype]);*/
 	
 	$adult_txt = t_adult." ".$_POST[adult];
 	$child_txt = t_child." ".$_POST[child];
@@ -100,7 +100,7 @@ td{
 	}else{
 		$display_none_air = 'display:none;';
 	}
-	
+	$car_type = $_POST[car_type][$place_shopping];
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
@@ -164,7 +164,7 @@ td{
                            <tbody>
                               <tr>
                                  <td valign="top">
-                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16 text-cap"><?=t_pick_up_place;?></span></div>
+                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_pick_up_place;?></span></div>
                                  </td>
                                  <td width="40">
                                  	<div onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');">
@@ -185,8 +185,8 @@ td{
                </tr>
                <tr>
                   <td>
-                     <div align="left" style="font-size:16px;padding:5px; "> 
-                     <span id="address_form" style="padding: 15px;" class="font-24">
+                     <div align="left" style="font-size:16px;padding:5px 15px; "> 
+                     <span id="address_form" class="font-24">
                      	<?=$_POST[pickup_place][topic];?>
                      </span>					   
                        
@@ -195,10 +195,67 @@ td{
                      </font>
                   </td>
                </tr>
+              <!-- <tr>
+                  <td></td>
+               </tr>-->
                <tr>
+                  <td>
+                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_drop_place;?></span></div>
+                                 </td>
+                                 <td width="40">
+                                    <div onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');">
+                                       <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
+                                       target="_blank">
+                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i> </a>
+                                    </div>
+                                 </td>
+                                 <td width="40" style="padding-right:10px; ">
+                                    <div>
+                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div align="left" style="padding:5px 15px; "> 
+                     	<span id="address_to"class="font-24"><?=$_POST[to_place][topic];?></span>		   
+                       
+                     </div>
+                    
+                  </td>
+               </tr>
+				<tr>
+			   	<td>
+			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-info" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_details;?></b></span></div>
+                                 </td>
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+			   	</td>
+				</tr>
+				<tr>
                   <td id="show_guest_detail" class="show_guest_detail_all" style="display: table-cell;">
                      
-                     <table width="100%" border="0" cellspacing="2" cellpadding="4" style="margin-left:-8px;padding: 5px;">
+                     <table width="100%" border="0" cellspacing="2" cellpadding="4">
                         <tbody>
                            <tr>
                               <td width="20" valign="top"><i class="icon-new-uniF10E-5" style="color:#666666; font-size:18px;"></i></td>
@@ -238,65 +295,21 @@ td{
                               <span class="span-detail1"> <font color="#00808B" class="font-22" ><?=$_POST[invoice];?></font></span></a>
                               </td>
                            </tr>
-                           <tr>
-                              <td width="20" valign="top"><i class="fa fa-car" style="color:#666666; font-size:18px;"></i></td>
-                              <td width="100" valign="top" class="td-text text-cap"><b><?=t_type_of_vehicle;?></b></td>
-                              <td valign="top" class="td-text"><span class="font-22"><?=$arr[cartype][topic_en]." ".$arr[cartype][pax];?></span></td>
-                           </tr>
+                           
                         </tbody>
                      </table>
                      
                   </td>
                </tr>
-			   
                <tr>
-                  <td></td>
-               </tr>
-               <tr>
-                  <td>
-                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                           <tbody>
-                              <tr>
-                                 <td valign="top">
-                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1"></i> <span class="font_16 text-cap"><?=t_drop_place;?></span></div>
-                                 </td>
-                                 <td width="40">
-                                    <div onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');">
-                                       <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
-                                       target="_blank">
-                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i> </a>
-                                    </div>
-                                 </td>
-                                 <td width="40" style="padding-right:10px; ">
-                                    <div>
-                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <div align="left" style="font-size:16px;padding:5px;padding-bottom:15px; "> 
-                     	<span id="address_to" style="padding: 15px;" class="font-24"><?=$_POST[to_place][topic];?></span>		   
-                       
-                     </div>
-                    
-                  </td>
-               </tr>
-			   <tr>
 			   	<td>
 			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                            <tbody>
                               <tr>
                                  <td valign="top">
-                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-car" style="color:#c1c1c1;"></i> <span class="font_16 text-cap">
-                                    <b><?=t_select_your_car;?></b></span></div>
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-car" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_car_request;?></b></span></div>
                                  </td>
                                  
                               </tr>
@@ -306,11 +319,45 @@ td{
                      
 			   	</td>
 				</tr>
-			   	<tr>
+				<tr>
+					<td>
+						<table width="100%" border="0" cellspacing="2" cellpadding="4">
+                        <tbody>
+                           <tr>
+                              <td width="20" valign="top"><i class="fa fa-car" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_type_of_vehicle;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$car_type;?></span></td>
+                           </tr>
+                           <tr>
+                              <td width="20" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car_type][$car_pax];?></span></td>
+                           </tr>
+                        </tbody>
+                     </table>
+					</td>
+				</tr>
+			   <tr>
+			   	<td>
+			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-car" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_select_your_car;?></b></span></div>
+                                 </td>
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div> 
+			   	</td>
+				</tr>
+			   <tr>
 			   	<td>
 			   		<div style="padding: 0px 10px;">
-
-<div style="padding: 5px;border: 1px solid #ddd;margin-top: 5px;">
+					<div style="padding: 5px;border: 1px solid #ddd;margin-top: 0px;">
 <?php 
 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 $select = "SELECT * FROM web_carall where drivername = '".$_SESSION['data_user_id']."'  ";
@@ -358,7 +405,7 @@ $plate_color="FFCC00"; }
 <input id="carid" value="" type="hidden" />
 <? //echo $select; ?>
 </div>
-</div>
+					</div>
 			   	</td>
 			   </tr>
             </tbody>
@@ -370,7 +417,7 @@ $plate_color="FFCC00"; }
 
 
 <div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:5px;">
-<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
+<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 
 

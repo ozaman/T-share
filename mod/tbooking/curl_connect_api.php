@@ -51,12 +51,14 @@ $data = array(
     'code' => 7460258913,
     'program' => 38,
     'driver' => 6,
-    'carid' => 11
+    'carid' => 11,
+    'pickup_place' => 0,
+    'to_place' => 0
 );
 
 $payload = json_encode($data);
 
-$curl_post_data = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].'}';
+$curl_post_data = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].'}';
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 //set the content type to application/json

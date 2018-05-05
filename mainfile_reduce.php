@@ -10,37 +10,47 @@
 				}else{
 				 	$keep = 'en';
 				}
-switch ($_COOKIE['lng']){
+switch ($_COOKIE['lng']) {
     case "th":
         //echo "PAGE th";
-        include("includes/lang/th/t_share_2.php");//include check session DE
-        $province = "name_th";
-        $place_shopping = "topic_th";
+        include("includes/lang/th/t_share_2.php"); //include check session DE
+        $province           = "name_th";
+        $place_shopping     = "topic_th";
         $google_map_api_lng = "th";
+        $car_pax = "pax_th";
         break;
     case "cn":
         //echo "PAGE cn";
         include("includes/lang/cn/t_share_2.php");
-        $province = "name_cn";
-        $place_shopping = "topic_cn";
+        $province           = "name_cn";
+        $place_shopping     = "topic_cn";
         $google_map_api_lng = 'zh-CN';
+        $car_pax = "pax_cn";
         break;
     case "en":
         //echo "PAGE EN";
         include("includes/lang/en/t_share_2.php");
         $google_map_api_lng = "en";
-        $place_shopping = "topic_en";
-        $province = "name";
-        break;        
+        $place_shopping     = "topic_en";
+        $province           = "name";
+        $car_pax = "pax";
+        break;
     default:
         //echo "PAGE EN - Setting Default";
-        include("includes/lang/".$keep."/t_share_2.php");//include EN in all other cases of different lang detection
-//        $google_map_api_lng = $keep;
-        $province = "name";
-        $place_shopping = "topic_".$keep;
+        include("includes/lang/" . $keep . "/t_share_2.php"); //include EN in all other cases of different lang detection
+        //        $google_map_api_lng = $keep;
+        if($keep=="en"){
+			$province           = "name";
+			$car_pax = "pax";
+		}else{
+			$province           = "name_" . $keep;
+			$car_pax = "pax". $keep;
+		}
+        
+        $place_shopping     = "topic_" . $keep;
         $google_map_api_lng = $keep;
         break;
-} 
+}
  date_default_timezone_set("Asia/Bangkok");
 if (eregi("mainfile.php",$PHP_SELF)) {
     Header("Location: index.php");

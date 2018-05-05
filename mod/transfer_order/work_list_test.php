@@ -483,7 +483,6 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration,value;
 
 function FilterTypeTransfer(type){
 	console.log(type);
-    console.log('FilterTypeTransfer')
 	$('.tocheck').removeClass('btn_filter_active');
 	$('.tocheck').addClass('btn_filter');
 	$('#btn_'+type).removeClass('btn_filter');
@@ -808,9 +807,7 @@ var date=$('#date_transfer_work').val();
 		  onSet: function(context) {
 		  	     var date=$('#date_transfer_work').val();
 		    	console.log(date);
-               // setInterval(function(){ 
 		    	QueryData();
-           // }, 3000);
 		  }
         });
 }, 500);
