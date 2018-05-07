@@ -71,9 +71,9 @@ language_load();
 		<table width="100%">
 			<tr>
 
-				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-20"><? echo t_all_jobs?></span></div></td>
-				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-20"><? echo t_now?></span></div></td>
-				<td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-20"><? echo t_in_advance?></span></div></td>
+				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-22"><? echo t_all_jobs?></span></div></td>
+				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-22"><? echo t_now?></span></div></td>
+				<td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-22"><? echo t_in_advance?></span></div></td>
 			</tr>
 			<!-- <tr>
 				
@@ -745,12 +745,13 @@ function QueryData(){
 
 <script>
 
-    var check_lang = '<?=$_COOKIE["lng"];?>';
+    var check_lang = '<?=$check_default_browser_lng;?>';
+    console.log(check_lang);
 	if (check_lang == 'th') {
         $('#text_mod_topic_action').text('งานรับ-ส่ง');
       }
       else if (check_lang == 'cn') {
-        $('#text_mod_topic_action').text('  接送工作');
+        $('#text_mod_topic_action').text('接送工作');
       }
        else if (check_lang == 'en' || check_lang == undefined) {
         $('#text_mod_topic_action').text('Transfer job');

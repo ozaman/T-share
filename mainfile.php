@@ -51,6 +51,7 @@ switch ($_COOKIE['lng']) {
         $google_map_api_lng = $keep;
         break;
 }
+$check_default_browser_lng = $keep;
 date_default_timezone_set("Asia/Bangkok");
 if (eregi("mainfile.php", $PHP_SELF)) {
     Header("Location: index.php");

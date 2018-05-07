@@ -618,7 +618,7 @@
    			var area = obj.area;
    			var url2 = "mod/shop/update_num_place.php?op=update_all&province="+province+'&area='+area;
    			 $.post( url2, function( data2 ) {
-   			  	console.log(data2);
+//   			  	console.log(data2);
    			}); 
    	});  
    }	

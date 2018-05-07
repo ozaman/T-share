@@ -101,35 +101,25 @@
          <tr>
             <td width="50%" align="center">
                <div style=" background: #3b5998;
-                  font-size: 18px;
+/*                  font-size: 18px;*/
                   border-radius: 25px;
                   color: #fff;
                   padding: 5px 30px;
-                  border: 2px solid #3b5998;" onclick="shop_status()"><span><? echo t_guest_shopping?></span></div>
+                  border: 2px solid #3b5998;" onclick="shop_status()"><span class="font-22"><? echo t_guest_shopping?></span></div>
             </td>
             <td width="50%" align="center">
                <div style="
                   background: #fff;
-                  font-size: 18px;
+/*                  font-size: 18px;*/
                   border-radius: 25px;
                   color: #3b5998;
                   padding: 5px 30px;
-                  border: 2px solid #3b5998;" onclick="transfer_status()"><span><? echo t_customer?></span></div>
+                  border: 2px solid #3b5998;" onclick="transfer_status()" ><span class="font-22"><? echo t_customer?></span></div>
             </td>
          </tr>
       </table>
    </div>
-   <ul class="nav nav-tabs" style="width:100%; margin-top:10px;">
-      <li class="active" style="width:50%; text-align:center" id="btn_load_clock_day_1">
-      <a ><span class="font-26"><?echo t_today_job?> </span><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:<?=$main_color?>; padding-top:5px; " id="number_bottom_chat"  ><span  class="font-20" ><?=$numday_1?></span> </span> </a>
-      </li>
-      <li style="width:50%; text-align:center" id="btn_load_clock_day_2">
-      <a><span class="font-26"><? echo t_yesterday?></span><span data-toggle="tooltip" class="badge "   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; text-align:center; padding-top:5px; " id="number_bottom_chat" ><span  class="font-20"><?=$numday_2?></span></span></a>
-      </li>
-      <li style="width:33%; text-align:center; display:none" id="btn_load_clock_day_3">
-      <a ><? echo t_previous_day?><span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:5px; border-radius: 20px; height:25px; width:25px; background-color:#999999; padding-top:5px; " id="number_bottom_chat"><span  class="font-20"><?=$numday_3?></span></a>
-      </li>
-   </ul>
+
    <div class="form-group">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
@@ -263,36 +253,7 @@
       var url = "go.php?name=booking/load&file=work_all&find=day&day=<?=date('Y-m-d')?>";
       //	 $('#load_booking_data').load(url);
    </script>    
-   <script>
-      $("#btn_load_clock_day_1").click(function(){ 
-      $("#btn_load_clock_day_1").addClass('active');
-      $("#btn_load_clock_day_2").removeClass('active');
-      $("#btn_load_clock_day_3").removeClass('active');
-          $("#load_booking_data").html(load_main_icon_big);
-      	  var url = "go.php?name=booking/shop_history&file=shop_all&find=day&day=<?= date('Y-m-d',strtotime("-0 day")); ?>";
-      	  console.log(url);
-          $('#load_booking_data').load(url);
-      	  $('#date_report').val('<?= date('Y-m-d',strtotime("-0 day")); ?>');
-      });
-      $("#btn_load_clock_day_2").click(function(){ 
-      $("#btn_load_clock_day_2").addClass('active');
-      $("#btn_load_clock_day_1").removeClass('active');
-      $("#btn_load_clock_day_3").removeClass('active');
-          $("#load_booking_data").html(load_main_icon_big);
-      	var url = "go.php?name=booking/shop_history&file=shop_all&find=day&day=<?= date('Y-m-d',strtotime("-1 day")); ?>";
-      	 $('#load_booking_data').load(url);
-      	 $('#date_report').val('<?= date('Y-m-d',strtotime("-1 day")); ?>');
-      });
-      $("#btn_load_clock_day_3").click(function(){ 
-      $("#btn_load_clock_day_3").addClass('active');
-      $("#btn_load_clock_day_1").removeClass('active');
-      $("#btn_load_clock_day_2").removeClass('active');
-          $("#load_booking_data").html(load_main_icon_big);
-      	var url = "go.php?name=booking/load/shop_history&file=shop_all&find=day&day=<?= date('Y-m-d',strtotime("-2 day")); ?>";
-      	 $('#load_booking_data').load(url);
-      	 $('#date_report').val('<?= date('Y-m-d',strtotime("-2 day")); ?>');
-      });
-   </script>
+
    <!--แสดงผล-->
    <div id="load_booking_data"  style="padding:0px; margin:0; margin-top:-25px;"> <?  //include "mod/booking/load/work_driver.php" ;?></div>
    <!----- ปิด row -->
