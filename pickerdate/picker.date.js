@@ -33,8 +33,8 @@ var DAYS_IN_WEEK = 7,
  * The date picker constructor
  */
 function DatePicker( picker, settings ) {
-    console.log(picker)
-    console.log(settings)
+    // console.log(picker)
+    // console.log(settings)
      
 
     var calendar = this,
