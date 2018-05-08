@@ -107,7 +107,7 @@
    color: #333333;
    }
 </style>
-<div  class="bottom_popup max-min-height"   id="show_main_tool_bottom" >
+<!-- <div  class="bottom_popup max-min-height"   id="show_main_tool_bottom" >
    <div class="column txt-col">
       <span  id="btn_home_bottom_menu"  class="bottom-popup-icon-new-active">
          <div style="height:25px;" class="font-32"><i class="fa fa-home" ></i></div>
@@ -132,7 +132,7 @@
          <div class="txt-color font-19 text-cap"><?=t_friends;?></div>
       </span>
    </div>
-</div>
+</div> -->
 <!--<div  class="bottom_popup"   id="show_main_tool_bottom" style="display:none;     ">
    <table width="100%"  border="0" cellspacing="2" cellpadding="2" style="display: nones;">
       <tr align="center">

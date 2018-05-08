@@ -134,8 +134,8 @@
                </script>
                <div style="font-size:26px; color:#FFFFFF"><B> </div>
             </td>
-            <td width="40"  align="left"  style="padding-top:5px;" > <span > <i  class="icon-new-uniF12A-4"  style="font-size:22px; padding-left: 2px; color:#FFFFFF;margin-top:-20px;"   id="btn_gps_head_menu"></i></span>
-            </td>
+           <!--  <td width="40"  align="left"  style="padding-top:5px;" > <span > <i  class="icon-new-uniF12A-4"  style="font-size:22px; padding-left: 2px; color:#FFFFFF;margin-top:-20px;"   id="btn_gps_head_menu"></i></span>
+            </td> -->
             <td width="40"  align="left"  >
                <span >    <i  class="fa  fa-home"  style="font-size:30px; padding-left: 2px; color:#FFFFFF"   id="btn_home_head_menu"></i></span>
                <? 

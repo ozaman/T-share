@@ -377,6 +377,24 @@
 <? } ?>
 
 <!---- Language ---->
+<style>
+  .fa:before,.fa:after{
+   width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    line-height: 1em;
+    margin-left: .2em;
+  }
+</style>
+<li id="btn_qrcode_bottom_menu" class="treeview" style="display: nones;" >
+   <a href="#">
+   <i class="fa fa-qrcode l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;&nbsp;&nbsp;<? echo t_friends?></span>
+   <span class="pull-right-container">
+   <i class="fa fa-angle-left pull-right"></i>
+   </span>
+   </a>
+   
+</li>
 <li id="menu_lnguage" class="treeview" style="display: nones;" >
    <a href="#">
    <i class="icon-new-uniF161-3 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_language?></span>
@@ -426,7 +444,14 @@
 </section>
 
 <script>
- 
+  $('#btn_qrcode_bottom_menu').click(function(){  
+   hidepopup();
+    $("#btn_qrcode_bottom_menu").addClass("bottom-popup-icon-new-active");
+    $( "#main_load_mod_popup_3" ).toggle();
+     $('#load_mod_popup_3').html(load_main_mod);
+     var url_load= "load_page_mod_3.php?name=user&file=qrcode";
+      $('#load_mod_popup_3').load(url_load);
+      });
    $("#l-logout").click(function(){ 
    
    
