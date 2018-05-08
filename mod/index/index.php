@@ -248,7 +248,7 @@
             </button>
          </td>
       </tr>
-      <tr>
+      <!-- <tr>
          <td width="50%" align="center" class="tool-td-chat">
             <button type="button" class="btn btn-default "  id="index_menu_account"   style="width:100%">
                <center>
@@ -265,7 +265,7 @@
                </center>
             </button>
          </td>
-      </tr>
+      </tr> -->
       <tr>
          <td  width="50%" align="center" class="tool-td-chat">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
