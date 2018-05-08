@@ -1,12 +1,13 @@
 <script>
-   var url_driver_pickup = "mod/tbooking/load/component.php?id=<? echo $_POST[id];?>&request=check_status_checkin&type=check_driver_pickup&time=<?=$_POST[driver_pickup_date]?>&status=<?=$_POST[check_driver_pickup]?>";
+   var url_driver_pickup = "mod/tbooking/load/component.php?id=<? echo $_POST[id];?>&request=check_status_checkin&type=driver_pickup&time=<?=$_POST[driver_pickup_date]?>&status=<?=$_POST[driver_pickup]?>";
+   console.log(url_driver_pickup);
    $('#status_driver_pickup').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?=t_load_data;?>');
    $('#status_driver_pickup').load(url_driver_pickup);
 </script>
 <? 
    if($_POST[driver_pickup]==1 ){ ?>
 <script> 
-   $("#step_driver_pay_report").show();
+   $("#step_driver_complete").show();
       $('#iconchk_driver_pickup').attr("src", "images/yes.png");  
      $("#number_driver_pickup").removeClass('step-booking');
       $("#number_driver_pickup").addClass('step-booking-active');
@@ -29,7 +30,7 @@
                   </tr>
                   
                   <tr id="btn_pickup<?=$arr[order][invoice]?>" style="display: nonea">
-                    <td style="padding-top:5px"><button style="text-transform: capitalize;width:100%;text-align:center;padding:5px; background-color:#ff0000;  border-radius: 20px; border:none;" class="btn  btn-info"  id="btn_pickup_not_check" >ไม่เจอแขก</button></td>
+                    <td style="padding-top:5px"><button style="text-transform: capitalize;width:100%;text-align:center;padding:5px; background-color:#ff0000;  border-radius: 20px; border:none;" class="btn  btn-info"  id="btn_pickup_not_check" ><?=t_no_guests;?></button></td>
                   </tr>
                
 

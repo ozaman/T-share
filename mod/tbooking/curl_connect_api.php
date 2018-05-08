@@ -98,15 +98,17 @@ else if($_GET[type]=="history_booking"){
 
 if($_GET[type]=="checkin_approve"){
 	
-$step = $_GET[step];	
-$f_date = $step."_date";	
-$f_lat = $step."_lat";	
-$f_lng = $step."_lng";	
-
+$step = $_GET[step];
+if($step=="driver_checkcar"){
+	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';	
+}else{
+	$f_date = $step."_date";	
+	$f_lat = $step."_lat";	
+	$f_lng = $step."_lng";	
+	$curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+}
 $url = "http://www.welovetaxi.com:3000/updateJobstatus";                              
-$curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
 
-$curl_post_data = '{"driver_topoint": 1,"idorder": 553154,"driver_topoint_date":1525688136,"driver_topoint_lat":"7.907313146377322","driver_topoint_lng":"98.36081803057323"}';
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -118,4 +120,5 @@ header('Content-Type: application/json');
 echo json_encode($decode);
 //echo $curl_post_data2;
 }
+
 ?>
