@@ -656,8 +656,8 @@
         socket.on('notification', function (data) {
         res_socket = data.transfer[0];
         if($('#check_open_worktbooking').val()==1){
-        console.log(data.transfer);
-        console.log('now open popup');
+//        console.log(data.transfer);
+//        console.log('now open popup');
 		readDataBooking();
 		}
         

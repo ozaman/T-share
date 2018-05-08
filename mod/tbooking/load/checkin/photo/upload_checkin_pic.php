@@ -8,7 +8,7 @@
    #area u { display: block; padding: 15px; text-align: center; background: #ddd; border-radius: 6px;width: 100%;  }
 </style>
 <div id="file_photo_loads">
-<input type="file" class="form-control" value="<?echo t_no_photo_available?>" readonly  style="padding-left:5px; padding-right:5px; width:125px;o" name="load_chat_camera" id="load_chat_camera"   accept="image/*">
+<input type="file" class="form-control" value="<?echo t_no_photo_available?>" readonly  style="padding-left:5px; padding-right:5px; width:125px;o" name="load_chat_camera" id="load_chat_camera" accept="image/*">
 </div>
 </div>
 
@@ -43,11 +43,11 @@
                 f.name = file.name;
                 fd.append($('#area input').attr('name'), f);
                 var xhr = new XMLHttpRequest();
-                var url = "go.php?name=booking/shop_history/load/checkin/photo&file=upload_pic&action=upload";
+                var url = "go.php?name=tbooking/load/checkin/photo&file=upload_pic&action=upload";
                 url = url + "&type=" + document.getElementById('upload_pic_type').value;
                 url = url + "&code=" + document.getElementById('check_code').value;
                 console.log(url);
-                //   return;
+
                 xhr.open('POST', url, true);
                 xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
                 xhr.setRequestHeader("pragma", "no-cache");
@@ -62,7 +62,7 @@
                         
                          setTimeout(function() {
                                 $.ajax({
-                            url: '../data/fileupload/store/' + pictype + '_<?=$_GET[id];?>.jpg',
+                            url: '../data/fileupload/store/tbooking/' + pictype + '_<?=$_GET[id];?>.jpg',
                             type: 'HEAD',
                             error: function() {
                                 console.log('Error file');

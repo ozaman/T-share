@@ -53,14 +53,20 @@ $data = array(
     'driver' => 6,
     'carid' => 11,
     'pickup_place' => 0,
-    'to_place' => 0
+    'to_place' => 0,
+    'agent' => 113,
+    'airout_time' => 8.00,
+    'airin_time' => 8.00
 );
 
 $payload = json_encode($data);
 
-$curl_post_data = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].'}';
+$curl_post_data = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].',"agent":'.$_POST[agent].',"airout_time":"8:00","airin_time":"8:00"}';
+
+$curl_post_data2 = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].',"agent":'.$_POST[agent].',"airout_time":"'.$_POST[airin_time].'","airin_time":"'.$_POST[airin_time].'"}';
+
 //attach encoded JSON string to the POST fields
-curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
 //set the content type to application/json
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 //return response instead of outputting
@@ -90,4 +96,26 @@ else if($_GET[type]=="history_booking"){
 	
 }
 
+if($_GET[type]=="checkin_approve"){
+	
+$step = $_GET[step];	
+$f_date = $step."_date";	
+$f_lat = $step."_lat";	
+$f_lng = $step."_lng";	
+
+$url = "http://www.welovetaxi.com:3000/updateJobstatus";                              
+$curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+
+$curl_post_data = '{"driver_topoint": 1,"idorder": 553154,"driver_topoint_date":1525688136,"driver_topoint_lat":"7.907313146377322","driver_topoint_lng":"98.36081803057323"}';
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$result = curl_exec($ch);
+curl_close($ch);
+$decode = json_decode($result);
+header('Content-Type: application/json');
+echo json_encode($decode);
+//echo $curl_post_data2;
+}
 ?>

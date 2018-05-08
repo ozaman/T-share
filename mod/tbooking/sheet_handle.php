@@ -1,299 +1,376 @@
+<style>
+	.topictransfer1 {
+    padding-top: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 0x;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444444;
+    text-align: left;
+}
+.font_16 {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+td{
+	font-size: 14px;
+}
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	border-radius : 20px;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 11px;
+    top: 6px;
+    width: 9px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+</style>
 <?php 
-function checkTypePay($id){
-      if($id==1){
-      		$name_type = t_parking_fee." + ".t_person_fee;
-      }
-      else if($id==2){
-      		$name_type = t_parking_fee." + ".t_com_fee;
-      }
-      else if($id==3){
-      		$name_type = t_person_fee." + ".t_com_fee;
-      } 
-      else if($id==4){
-      		$name_type = t_parking_fee." + ".t_person_fee." + ".t_com_fee;
-      }
-      else if($id==5){
-      		$name_type = t_parking_fee;
-      }
-      else if($id==6){
-      		$name_type = t_person_fee;
-      }
-      else if($id==7){
-      		$name_type = t_com_fee;
-      }
-      return $name_type;
- }
- $main_color = "#3b5998";
- $car_type = explode("(",$_POST[car][cartype][$place_shopping]);
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[cartype] = $db->select_query("SELECT id, drivername,car_type, car_brand, car_sub_brand,car_color,plate_color,plate_num,province FROM web_carall where id = ".$_POST[carid]." ");
+	$arr[cartype] = $db->fetch($res[cartype]);
+	
+	$adult_txt = t_adult." ".$_POST[adult];
+	$child_txt = t_child." ".$_POST[child];
+	
+	if($_POST[air]!=""){
+		$display_none_air = '';
+	}else{
+		$display_none_air = 'display:none;';
+	}
+	$car_type = $_POST[car_type][$place_shopping];
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-
-<div style="padding: 5px 10px;" class="w3-animate-right">
-<div style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;border: 1px solid #3b5998;border-radius: 15px;">
-	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
-    position:  absolute;
-    right: 10px;
-    top: 40px;display: none;">
-		<span class="font-24 text-cap"><?=t_cancel;?></span>
-	</button>
-	<div id="status_booking_detail" class="font-30"><b><?=$status_txt;?></b></div>
-	<span class="font-28"><?=$arr[place_shop][$place_shopping];?></span>
-	
-	<table width="100%" border="0" cellspacing="1" cellpadding="1">
-   <tbody>
-      <tr>
-      </tr>
-      <tr>
-         <td width="33%" align="left" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;" data-toggle="dropdown" id="btn_div_dropdown_phone">
-               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+<div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
+<span style="font-size: 16px;"></span>
+   <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;">
+   <table width="100%" border="0" cellspacing="2" cellpadding="2">
+      <tbody>
+         <tr>
+            <td width="60" style="background-color:#F6F6F6 ">
+               <div id="cir_1">
+                  <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                     <tbody>
+                        <tr>
+                           <td height="35" class="boxnumber" style="font-size:18px; color:#FFFFFF; background-color: #006699 ; font-weight:bold ;border-radius: 0px;" id="">
+                              <center>
+                                 <span id="place_number_190914">1</span> | 1 
+                                 
+                              </center>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </td>
+            <td width="100" height="30" valign="top" style="background-color:#F3F3F3; padding-top:8px; padding-left:10px;  ">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tbody>
                      <tr>
-                        <td width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
-                        <td  class="font-24"><b><?=t_call;?></b></td>
+                        <td style="font-size:24px ; color:#009999; color:#444444;"><i class="fa fa-user"></i></td>
+                        <td style="font-size:14px ; font-weight:bold"><?=$_POST[program][type];?></td>
                      </tr>
                   </tbody>
                </table>
-            </div>
-         </td>
-         <td width="33%" align="left" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;" data-toggle="dropdown" id="btn_div_dropdown_zello">
-               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+            </td>
+            <td valign="middle" style="font-size:16px ; font-weight:bold; padding-top:5px;">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tbody>
                      <tr>
-                        <td width="30"><img src="images/icon/top/zello.png" width="30" height="30" alt=""/> </td>
-                        <td class="font-24">
-                           <b>Zello</b>
-                        </td>
+                        <td style="font-size:24px ; color: #3399CC; color:#444444  " width="35" >&nbsp;<?=$font_icon_area;?></td>
+                        <td style="font-size:14px ; font-weight:bold">&nbsp;<?=$area;?></td>
                      </tr>
                   </tbody>
                </table>
-            </div>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+  
+   <div style="margin-top:10px; font-size:22px; font-weight:bold; background-color:#F6F6F6; padding:5PX;border-radius: 10px; ">Golden&nbsp;&nbsp;151&nbsp;<span style="font-size:16px; margin-top: 30px; "> ( <?=$_POST[ondate];?> )</span></div>
+   <div style="margin-top:10px;padding:5px;    ">
+      <div class="show_product_detail_all" style="display: nones;">
+         <font class="font-24"><b>
+         <?=$_POST[program][topic_en];?>&nbsp; &nbsp;<br/><font color="#666666"></font></b></font>
+      </div>
+         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+               <tr>
+                  <td>
+                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_pick_up_place;?></span></div>
+                                 </td>
+                                 <td width="40">
+                                 	<div onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');">
+                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
+                                   target="_blank"> 
+                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
+                                    </a>
+                                    </div>
+                                 </td>
+                                 <td width="40" style="padding-right:10px; ">                                                                                      
+                                 <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div align="left" style="font-size:16px;padding:5px 15px; "> 
+                     <span id="address_form" class="font-24">
+                     	<?=$_POST[pickup_place][topic];?>
+                     </span>					   
+                       
+                     </div>
+                     <font color="#666666" class="font_16">
+                     </font>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_drop_place;?></span></div>
+                                 </td>
+                                 <td width="40">
+                                    <div onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');">
+                                       <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
+                                       target="_blank">
+                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i> </a>
+                                    </div>
+                                 </td>
+                                 <td width="40" style="padding-right:10px; ">
+                                    <div>
+                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div align="left" style="padding:5px 15px; "> 
+                     	<span id="address_to"class="font-24"><?=$_POST[to_place][topic];?></span>		   
+                       
+                     </div>
+                    
+                  </td>
+               </tr>
+			   <tr>
+			   	<td>
+			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-info" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_details;?></b></span></div>
+                                 </td>
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+			   	</td>
+				</tr>
+			   <tr>
+                  <td id="show_guest_detail" class="show_guest_detail_all" style="display: table-cell;">
+                     
+                     <table width="100%" border="0" cellspacing="2" cellpadding="4">
+                        <tbody>
+                           <tr>
+                              <td width="20" valign="top"><i class="icon-new-uniF10E-5" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_time;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[airout_time];?></span></td>
+                           </tr>
+                           <tr style="<?=$display_none_air;?>">
+                              <td valign="top"><i class="icon-new-uniF104" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text"><b><?=t_flight;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[air];?> </span></td>
+                           </tr>
+                           <tr>
+                              <td valign="top"><i class="icon-new-uniF137" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_agents;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[agent_q][username];?></span></td>
+                           </tr>
+                           <tr>
+                              <td valign="top"><i class="icon-new-uniF12B-3" style="color:#666666; font-size:18px"></i></td>
+                              <td valign="top" class="td-text text-cap"><b><?=t_number_customers;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"> <?=$adult_txt." ".$child_txt;?></span>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td valign="top"><i class="icon-new-uniF109-14" style="color:#666666; font-size:18px"></i></td>
+                              <td valign="top" class="td-text text-cap"><b><?=t_name_guest;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[bookagent][guest];?></span></td>
+                           </tr>
+                           <tr style="<?=$phone_none;?>">
+                              <td valign="top"><i class="icon-new-uniF152-4" style="color:#666666; font-size:18px"></i></td>
+                              <td valign="top" class="td-text text-cap"><b><?=t_phone;?></b></td>
+                              <td valign="top" class="td-text"><a href="tel:<?=$_POST[agent_q][phone];?>"><span class="font-22"><?=$_POST[agent_q][phone];?></span></a></td>
+                           </tr>
+                           <tr>
+                              <td valign="top"><i class="icon-app-uniF111" style="color:#666666; font-size:18px"></i></td>
+                              <td valign="top" class="td-text text-cap"><b><?=t_voucher_number;?></b></td>
+                              <td valign="top" class="td-text"><a href="<?=$_POST[invoice];?>" target="_blank">
+                              <span class="span-detail1"> <font color="#00808B" class="font-22" ><?=$_POST[invoice];?></font></span></a>
+                              </td>
+                           </tr>
+                           
+                        </tbody>
+                     </table>
+                     
+                  </td>
+               </tr>
+               <tr>
+			   	<td>
+			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa fa-car" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap">
+                                    <b><?=t_use_car;?></b></span></div>
+                                 </td>
+                                 
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     
+			   	</td>
+				</tr>
+			   <tr>
+					<td>
+						<table width="100%" border="0" cellspacing="2" cellpadding="4">
+                        <tbody>
+                           <tr>
+                              <td width="35" valign="top" align="center"><i class="fa fa-car" style="color:#666666; font-size:15px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b>Car</b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$arr[cartype][car_brand]." ".$arr[cartype][car_sub_brand];?></span>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="35" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_car_registration_number;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$arr[cartype][plate_num]." ".$arr[cartype][province];?></span></td>
+                           </tr>
+                           <tr>
+                              <td width="35" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
+                              <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car][cartype][$car_pax];?></span></td>
+                           </tr>
+                        </tbody>
+                     </table>
+					</td>
+				</tr>
+            </tbody>
+         </table>
+     
+   </div>
+	<div id="status_job" style="background: #ddd; 
+   background: #ddd;
+   border-radius: 10px;
+   padding: 8px;margin-top: 10px;">
+   <table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[order][invoice];?>">
+      <tr id="step_driver_topoint">
+         <td class="font-22">
+            <?  include ("mod/tbooking/load/checkin/topoint.php");?>
          </td>
-         <td width="33%" align="left"    >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;" data-toggle="dropdown" id="shop_sub_menu_map">
-               <table width="100%" border="0" cellspacing="1" cellpadding="1">
-                  <tbody>
-                     <tr>
-                        <td width="30"><img src="images/icon/top/map.png" width="30" height="30" alt=""/></td>
-                        <td class="font-24"><b><?=t_maps;?></b></td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
+      </tr>
+      <tr id="step_driver_pickup" style="display:none">
+         <td class="font-22">
+           <?  include ("mod/tbooking/load/checkin/driver_pickup.php");?>
          </td>
       </tr>
-   </tbody>
-</table>
-	
-	<div style="padding: 5px 0px;">
-		<span class="text-cap font-26"><?=t_reservation_information;?></span>
-		<table width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
-   		<tbody>
-   		<tr>
-	      <td width="100" class="font-22 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-	      <td class="font-22"><?=$arr[book][invoice];?></td>
-   		</tr>
-   		</tbody>
-		<tbody>
-      <tr>
-         <td class="font-22 text-cap"><font color="#333333"><?=t_date;?></font></td>
-         <td class="font-22"><?=$arr[book][transfer_date];?></td>
-      </tr>
-      <tr>
-         <td class="font-22 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
-         <td class="font-22"> <?=$arr[book][airout_h];?>:<?=str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
-      </tr>
-      <tr>
-         <td class="font-22 text-cap"><font color="#333333"><?=t_number;?></font></td>
-        <td class="font-22"><?
-            if($arr[book][adult]>0){ ?>
-            <?=t_adult;?> :
-            <?=$arr[book][adult];?>
-            &nbsp;
-            <? } ?>
-            <? if($arr[book][child]>0){ ?>
-            <?=t_child;?> :
-            <?=$arr[book][child];?>
-            <? } ?>
-            
+      <!--<tr id="step_guest_register_<?=$arr[order][invoice];?>" style="display:none">
+         <td class="font-22">
+            <?  include ("mod/booking/shop_history/load/checkin/guest_register.php");?>
          </td>
       </tr>
-         </tbody>
-</table>
-	</div>
-
-	<div style="padding: 5px 0px;">
-		<span class="text-cap font-26"><?=t_car_driver_information;?></span>
-		<table width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
-		  <tr>
-		    <td width="100"  class="font-22"><font color="#333333"></font><?=t_dv_name;?></td>
-		    <td colspan="3" class="font-22">
-			<?=$_POST[drivername];?></td>
-		  </tr>
-		  <tbody>
-		    <tr>
-		      <td  width="100" class="font-22"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
-		      <td class="font-22"><? echo $car_type[0]; ?></td>
-		      <td width="30" class="font-22"><font color="#333333"><?=t_car_coloring;?></font></td>
-		      <td class="font-22"><?=$car_color;?></td>
-		    </tr>
-		    <tr>
-		      <td   width="100"  class="font-22"><font color="#333333"><?=t_car_registration_number;?></font></td>
-		      <td colspan="3" class="font-22"><?=$arr[book][car_plate];?></td>
-		    </tr>
-		     <tr>
-		      <td   width="100"  class="font-22"><font color="#333333"><?=t_call;?></font></td>
-		      <td colspan="3" class="font-22"><a href="tel:<?=$arr[projectdriver][phone];?>" ><?=$arr[projectdriver][phone];?></a></td>
-		    </tr>
-		  </tbody>
-		</table>
-	</div>
-	
-	<div style="padding: 5px 0px;display: none;">
-	<span class="text-cap font-26"><?=t_check_in_information;?></span>
-		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
-		   <tr id="step_driver_topoint">
-		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin/topoint.php");?>
-		      </td>
-		   </tr>
-		   <tr id="step_guest_receive" style="display:none">
-		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin/guest_receive.php");?>
-		      </td>
-		   </tr>
-		   <tr id="step_guest_register" style="display:none">
-		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin/guest_register.php");?>
-		      </td>
-		   </tr>
-		   <tr id="step_driver_pay_report" style="display:none">
-		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
-		      </td>
-		   </tr>
-		</table>
-	</div>
-	
-	<div style="padding: 5px 0px;">
-	 <span class="text-cap font-26"><?=t_income;?></span>
-	 <table width="100%">
-	 	<tr>
-	 		<td align="center">
-	 		<button class="btn btn-repair waves-effect" onclick="openViewPrice();" style="text-transform: unset;background-color: #3b5998;color: #fff;width: 80%;">
-	 		<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View </button>
-	 		</td>
-	 	</tr>
-	 </table>
-	</div>
-	
+      <tr id="step_driver_pay_report_<?=$arr[order][invoice];?>" style="display:none">
+         <td class="font-22">
+            <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
+         </td>
+      </tr>-->
+   </table>
 </div>
+
 </div>
-<input type="hidden" id="check_cause" value="0"/>
 
-<script>
-	var remark1 = '<?=t_customer_no_register;?>';
-    var remark2 = '<?=t_customer_not_go;?>';
-    var remark3 = '<?=t_wrong_selected_place;?>';
-   function cancelBook(id){
-     swal({
-   title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
-   text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+"<table width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
-   type: "warning",
-   showCancelButton: true,
-   confirmButtonColor: '#3b5998',
-   confirmButtonText: '<?echo t_yes?>',
-   cancelButtonText: "<?echo t_no?>",
-   closeOnConfirm: false,
-   closeOnCancel: true,
-   html: true
-   },
-   function(isConfirm){
-     if (isConfirm){
-	   var cause = $('#check_cause').val();
-	   
-	   var url = "mod/booking/shop_history/php_shop.php?type=cancel&id="+id+"&cancel_type="+cause;
-	   
-	   console.log(url+" "+cause);
+</div>	
 
-	   $.post( url, function( data ) {
-	   		console.log(data);
-//	   		if(data.reult == true && data.history.result == true){
-				$('#btn_cancel_book_'+id).hide();
-				
-				var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status+"&type="+cause;
-				console.log(url_check_st);
-				$.post( url_check_st, function( com ) {
-					$('#status_booking_detail').html(com);
-					swal("<?=t_success;?>", "", "success");
-				});
-//			}
-	   });
-
-     }
-   });
-    }
-    
-   function check(id,num){
-    console.log(id+" "+num);	
-    $('.cause_'+id).attr('checked', false);
-    $('#remark'+num).attr('checked', true);
-    $('#check_cause').val(num);
-   }
-
-	$('#btn_div_dropdown_phone').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
-	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
-	    $('#load_mod_popup_4').html(load_main_mod);
-	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
-	});
-	
-	$('#btn_div_dropdown_zello').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
-	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
-	    $('#load_mod_popup_4').html(load_main_mod);
-	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
-	});
-	
-	$('#shop_sub_menu_map').click(function(){  
-
-
-	$('.bottom_popup').hide();
-	  console.log('lat '+$('#lat').val());
-	  console.log('lng '+$('#lng').val());
-	  $( "#main_load_mod_popup_map" ).toggle();
-	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
-	  url_load=url_load+"&lat="+document.getElementById('lat').value;
- 	  url_load=url_load+"&lng="+document.getElementById('lng').value;
-  	  $('#load_mod_popup_map').html(load_main_mod);
-  	  $('#load_mod_popup_map').load(url_load); 
-
- 	});
-</script>
-<script>
-	function ViewPhoto(id,type,date){
-		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
-		console.log(url);
-		$( "#load_mod_popup_photo" ).toggle();
-		
-		$('#load_mod_popup_photo').html(load_main_mod);
-  		
-  		
- 	 $('#load_mod_popup_photo').load(url); 
- 	 
-// 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
-
-	}	
-	
-	function openViewPrice(){
-		$( "#dialog_custom" ).show();
-	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
-	   	console.log(url_load);
-	   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
-	  	$('#body_dialog_custom_load').load(url_load); 
-	}
-	
-</script>

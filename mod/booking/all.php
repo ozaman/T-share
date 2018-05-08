@@ -258,28 +258,41 @@
    <div id="load_booking_data"  style="padding:0px; margin:0; margin-top:-25px;"> <?  //include "mod/booking/load/work_driver.php" ;?></div>
    <!----- ปิด row -->
 </div>
-<div class="w3-animate-right " id="sub_component" style="display: none;margin-top: 35px;overflow-x: hidden; margin-bottom:20px;width:100% ">
+<!--<div class="w3-animate-right " id="sub_component" style="display: none;margin-top: 35px;overflow-x: hidden; margin-bottom:20px;width:100% ">
 	<div class="font-22" style="padding: 5px 0px;margin-top: 5px;" onclick="backMain();" ><a id="back_main"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 	 <div id="body_load_shop_work">
 	 	
 	 </div>
-</div>
+</div>-->
 <script>
 	function openDetailBooking(id){
-		$('#main_component').hide();
+		/*$('#main_component').hide();
 		$('#sub_component').show();
 		var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail";
 		$.post(url,{ id : id },function(data){
 			$('#body_load_shop_work').html(data);
-		});
+		});*/
 		
+		var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail";
+	   	$.post(url,{ id : id },function(data){
+	   		$('#load_mod_popup_clean').html(data);
+	   		$('#main_load_mod_popup_clean').show();
+   			$('#main_component').removeClass('w3-animate-left');
+	   	});
 	}
-	function backMain(){
+	function backMain2(){
 		console.log('back');
    		$('#sub_component').hide();
    		$('#main_component').addClass('w3-animate-left');
    		$('#main_component').show();
 	}
+
+	function backMain(){
+   	console.log('back');
+   	$('#main_load_mod_popup_clean').hide(); 
+		$('#show_main_tool_bottom').fadeIn(500); 
+		$('#main_component').addClass('w3-animate-left');
+   }
 	/*$('#back_main').click(function(){
 		console.log('back');
    		$('#sub_component').hide();

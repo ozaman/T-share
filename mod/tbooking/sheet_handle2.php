@@ -24,76 +24,16 @@ function checkTypePay($id){
       return $name_type;
  }
  $main_color = "#3b5998";
- $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
- $res[book] = $db->select_query("SELECT * FROM  order_booking  where id = '".$_POST[id]."'  ");
- $arr[book] = $db->fetch($res[book]);  
- 
- $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
- $res[place_shop] = $db->select_query("SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ");
- $arr[place_shop] = $db->fetch($res[place_shop]);
- 
- $res[projectdriver] = $db->select_query("SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    "); 
- $arr[projectdriver] = $db->fetch($res[projectdriver]);
- 
- $res[qr_car] = $db->select_query("SELECT t1.car_type as car_type_id, t2.topic_en as topic_en,t2.topic_cn as topic_cn, t2.topic_th as topic_th, t1.car_color as color FROM web_carall as t1 left join web_carall_type as t2 on t1.car_type = t2.id WHERE t1.id ='".$arr[book][check_use_car_id]."' ");
- $arr[qr_car] = $db->fetch($res[qr_car]);
- 
- if($_COOKIE['lng']=="th"){
- 	 $full_name_driver = $arr[projectdriver][name]." (".$arr[projectdriver][nickname].")";
- 	 $car_color = $arr[book][car_color];
- }else{
- 	$full_name_driver =  $arr[projectdriver][name_en];
- 	$car_color = $arr[qr_car][color];
- }
-
- if($arr[book][status]=='CANCEL'){
-			 if($arr[book][cancel_type]=='1'){
-				$status_txt = '<font color="#ff0000">'.t_customer_no_register.'</font>';
-			}
-			else if($arr[book][cancel_type]=='2'){
-				$status_txt = '<font color="#ff0000">'.t_customer_not_go.'</font>';
-			}
-			else if($arr[book][cancel_type]=='3'){
-				$status_txt = '<font color="#ff0000">'.t_wrong_selected_place.'</font>';
-			}
-		}
-		else if($arr[book][status]=='NEW'){
-			$status_txt = '<font color="#3b5998">'.t_new.'</font>';
-		}
-		else if($arr[book][status]=='CONFIRM'){
-			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
-		}
-	  $arr[project] =  $arr[book]; 
-     /* $res[price] = $db->select_query("SELECT * FROM plan_product_price_name where  id=".$arr[book][plan_id]."   ");
-      $arr[price] = $db->fetch($res[price]);
-      $show_park = $arr[price][price_park];
-      $show_person = $arr[price][price_person];
-      $show_commision = $arr[price][price_commision];
-       if($show_park==1){	  
-      $status_show_park='show';	   	  
-       }
-       if($show_park==0){	  
-      $status_show_park='hide';	  	  
-       }
-       if($show_person==1){	  
-      $status_show_person='show';	   	  
-       }
-       if($show_person==0){	  
-      $status_show_person='hide';	    	  
-       }
-       if($show_commision==1){	  
-      $status_show_commision='show';	   	  
-       }
-       if($show_commision==0){	  
-      $status_show_commision='hide';	  
-       }*/		
+ $car_type = explode("(",$_POST[car][cartype][$place_shopping]);
 ?>
-<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div class="assas_<?=$_POST[id];?> w3-animate-right" style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;border: 1px solid #3b5998;border-radius: 15px;margin-top: 5px;" >
+<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+
+<div style="padding: 5px 10px;" class="w3-animate-right">
+<div style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;border: 1px solid #3b5998;border-radius: 15px;">
 	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
-    top: 0px;">
+    top: 40px;display: none;">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
 	<div id="status_booking_detail" class="font-30"><b><?=$status_txt;?></b></div>
@@ -189,12 +129,12 @@ function checkTypePay($id){
 		  <tr>
 		    <td width="100"  class="font-22"><font color="#333333"></font><?=t_dv_name;?></td>
 		    <td colspan="3" class="font-22">
-			<?=$full_name_driver;?></td>
+			<?=$_POST[drivername];?></td>
 		  </tr>
 		  <tbody>
 		    <tr>
 		      <td  width="100" class="font-22"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
-		      <td class="font-22"><? echo $arr[qr_car][$place_shopping]; ?></td>
+		      <td class="font-22"><? echo $car_type[0]; ?></td>
 		      <td width="30" class="font-22"><font color="#333333"><?=t_car_coloring;?></font></td>
 		      <td class="font-22"><?=$car_color;?></td>
 		    </tr>
@@ -210,7 +150,7 @@ function checkTypePay($id){
 		</table>
 	</div>
 	
-	<div style="padding: 5px 0px;">
+	<div style="padding: 5px 0px;display: none;">
 	<span class="text-cap font-26"><?=t_check_in_information;?></span>
 		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		   <tr id="step_driver_topoint">
@@ -247,73 +187,11 @@ function checkTypePay($id){
 	 	</tr>
 	 </table>
 	</div>
-	<!--<div style="padding: 5px 0px;">
-   <span class="text-cap font-26"><?=t_income;?></span>
-   <table width="100%" border="0" cellpadding="1" cellspacing="3" id="table_show_hide_price_<?=$arr[book][invoice];?>" style="padding: 2px 10px;"> 
-      <tbody>
-         <tr style="display:nones">
-            <td colspan="3" class="font-26">
-               <table width="100%" border="0" cellspacing="2" cellpadding="2" class="div-all-price" >
-                  <tbody>
-                     <tr>
-                        <td colspan="2" class="font-26 text-cap"><b><a id="show_plan_setting_<?=$arr[book][id];?>"><?=checkTypePay($arr[price][id]);?></a></b></td>
-                     </tr>
-                     <tr>
-                        <td width="70"  class="font-22 text-cap"><b><?=t_nationality;?></b></td>
-                        <td class="font-22"><b> <img src="images/flag/China.png" width="30" height="30" alt="" style="margin-top:-5px;"/> <?=t_china;?></td>
-                     </tr>
-                  </tbody>
-               </table>
-            </td>
-         </tr>
-         <tr id="main_td_price_park_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/park.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_person_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/person.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_com_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/com.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_all_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  /// include ("mod/booking/load/form/price/com.php");?>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-</div>-->
-
+	
+</div>
 </div>
 <input type="hidden" id="check_cause" value="0"/>
 
-
-
-<script>
-	  /*console.log('person : <?=$show_person;?>, park : <?=$show_park;?>, com : <?=$show_commision;?>');
-  $('#main_td_price_park_<?=$arr[book][id];?>').<?=$status_show_park?>();
-  $('#main_td_price_person_<?=$arr[book][id];?>').<?=$status_show_person?>();
-  $('#main_td_price_com_<?=$arr[book][id];?>').<?=$status_show_commision?>();
-  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
-  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').click(function() {
-      ///// tool status
-      var tool_status = $("#table_show_hide_price_<?=$arr[book][invoice];?>").is(":hidden");
-      // $("#table_show_hide_price_<?=$arr[book][invoice];?>" ).show(); 
-      if (tool_status == true) {
-          $("#table_show_hide_price_<?=$arr[book][invoice];?>").show();
-          $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
-      } else {
-          $("#table_show_hide_price_<?=$arr[book][invoice];?>").hide();
-          $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-down" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;แสดง</span>');
-      }
-  });*/
-</script>
 <script>
 	var remark1 = '<?=t_customer_no_register;?>';
     var remark2 = '<?=t_customer_not_go;?>';
