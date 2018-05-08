@@ -220,11 +220,20 @@
                </center>
             </button>
          </td>
-         <td align="center" class="tool-td-chat">
+         <!-- <td align="center" class="tool-td-chat">
            <button type="button" class="btn btn-default " onclick="warkingall()"       style="width:100%">
                <center>
                   <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_his_transfer ?></span>
+               </center>
+            </button>
+         </td> -->
+         <td  width="50%" align="center" class="tool-td-chat">
+            <button type="button" class="btn btn-default "  style="width:100%" onclick="workTbooking();" >
+            <input id="check_open_worktbooking" value="0" type="hidden"/>
+               <center>
+                  <div  class="circle-menu" style=" background-color:#ffc107;font-size: 26px;"><strong style="margin-left:-8px;margin-top: -3px;position: absolute;">T</strong></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "T-Booking" ?></span>
                </center>
             </button>
          </td>
@@ -286,7 +295,7 @@
             </button>
          </td>
       </tr>
-	   <tr>
+	  <!--  <tr>
          <td  width="50%" align="center" class="tool-td-chat">
             <button type="button" class="btn btn-default "  style="width:100%" onclick="workTbooking();" >
             <input id="check_open_worktbooking" value="0" type="hidden"/>
@@ -297,7 +306,7 @@
             </button>
          </td>
          
-      </tr>
+      </tr> -->
    </tbody>
 </table>
 <div></div>

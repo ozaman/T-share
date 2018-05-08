@@ -73,8 +73,14 @@ language_load();
 
 				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-22"><? echo t_all_jobs?></span></div></td>
 				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-22"><? echo t_now?></span></div></td>
-				<td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-22"><? echo t_in_advance?></span></div></td>
+				
 			</tr>
+            <tr>
+
+                
+                <td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-22"><? echo t_in_advance?></span></div></td>
+                <td><div id="btn_warkingall" class="btn_filter tocheck" align="center" onclick="warkingall('');"><span class="font-22"><? echo t_his_transfer?></span></div></td>
+            </tr>
 			<!-- <tr>
 				
 				<td colspan="3">

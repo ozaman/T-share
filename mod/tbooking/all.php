@@ -308,7 +308,7 @@
 				</td>
 				<td width="50%">
 				<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
-				<span id="number_history" class="badge font-20" style="position: absolute;top: -3px;right: 13%;font-size: 14px;background-color: #F44336;">0</span>
+				<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 13%;font-size: 14px;background-color: #F44336;">0</span>
 				</td>
 			</tr>
 		</tbody>
