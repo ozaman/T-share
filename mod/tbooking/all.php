@@ -209,7 +209,11 @@
 </style>
 <style>
 .box_his,.box_book{
-	padding: 7px 0px;
+	padding: 5px 0px;
+    border: 1px solid #3b5998;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
 .mof{
   width: 100%;	
@@ -217,12 +221,12 @@
   border: none;
   outline:none;
   cursor: pointer;
-  background: #009688;
-  color: white;
+  background: #FFFFFF;
+  color: #333;
   padding: 13px;
   border-radius: 2px;
   font-size: 22px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+  
 }
 
 
@@ -300,11 +304,11 @@
 			<tbody>
 			<tr>
 				<td width="50%"><div id="btn_job_now" class="btn_filter_active tocheck" align="center" onclick="FilterType('job_now');" ><span class="font-22"><?=t_now;?></span></div>
-				<span id="number_book" class="badge font-20" style="position: absolute;top: -3px;left: 107px;font-size: 14px;background-color: #F44336;">0</span>
+				<span id="number_book" class="badge font-20" style="position: absolute;top: -3px;left:31%;font-size: 14px;background-color: #F44336;">0</span>
 				</td>
 				<td width="50%">
 				<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
-				<span id="number_history" class="badge font-20" style="position: absolute;top: -3px;right: 20px;font-size: 14px;background-color: #F44336;">0</span>
+				<span id="number_history" class="badge font-20" style="position: absolute;top: -3px;right: 13%;font-size: 14px;background-color: #F44336;">0</span>
 				</td>
 			</tr>
 		</tbody>
@@ -350,7 +354,7 @@
    <div id="load_booking_data"  style="padding:0px; margin:0;" align="center">
      
    </div>
-   <div id="load_history_data"  style="padding:0px; margin:0;display: none;" class="w3-animate-bottom"  align="center">
+   <div id="load_history_data"  style="padding:0px; margin: 12px 0;display: none;" class="w3-animate-bottom"  align="center">
      	
    </div>
 
@@ -389,13 +393,13 @@
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
-					              +'<td width="100%"><span class="font-24 text-white">Ao Por Pier - Phuket Patri</span></td>'
+					              +'<td width="100%"><span class="font-24 ">Ao Por Pier - Phuket Patri</span></td>'
 					            +'</tr>'
 					            +'<tr style="line-height: 1.5;">'
-					               +'<td width="100%"><span class="font-24 text-white">Ao Por Pier - Phuket Patri</span></td>'
+					               +'<td width="100%"><span class="font-24 ">Ao Por Pier - Phuket Patri</span></td>'
 					            +'</tr>'
 					            +'<tr>'
-					               +'<td><span class="font-20 text-white">2018-05-04&nbsp;&nbsp;19.30 </span></td>'
+					               +'<td><span class="font-20 ">2018-05-04&nbsp;&nbsp;19.30 </span></td>'
 					               +'<td></td>'
 					            +'</tr>'
 		         			+'</table>'

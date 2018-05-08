@@ -380,15 +380,15 @@
 <style>
   .fa:before,.fa:after{
    width: 1em;
-    margin-right: .2em;
+    /*margin-right: .2em;*/
     text-align: center;
     line-height: 1em;
-    margin-left: .2em;
+    /*margin-left: .2em;*/
   }
 </style>
 <li id="btn_qrcode_bottom_menu" class="treeview" style="display: nones;" >
    <a href="#">
-   <i class="fa fa-qrcode l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;&nbsp;&nbsp;<? echo t_friends?></span>
+   <i class="fa fa-qrcode l-menu-li-icon-main" style="margin-left: 0;"></i> <span class="textmain-left-menu">&nbsp;&nbsp;<? echo t_friends?></span>
    <span class="pull-right-container">
    <i class="fa fa-angle-left pull-right"></i>
    </span>
