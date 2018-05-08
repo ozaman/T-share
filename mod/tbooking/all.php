@@ -426,7 +426,7 @@
 		
 		var driver = $('#driver').val();
 		if(dataHistoryA.length<=0){
-				$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
+			$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
 		   		console.log(res_api_hit);
 		   		
 		   		if(res_api_hit.status=="200"){
@@ -673,7 +673,21 @@
 	}
 
 </script>
+ <script>
+ 	function ViewPhoto(id,type,date){
+		var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
+		console.log(url);
+		$( "#load_mod_popup_photo" ).toggle();
+		
+		$('#load_mod_popup_photo').html(load_main_mod);
+  		
+  		
+ 	 $('#load_mod_popup_photo').load(url); 
+ 	 
+// 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
 
+	}		
+ </script>
 <script>
 
   $(function() {

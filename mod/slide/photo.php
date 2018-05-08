@@ -166,6 +166,9 @@ switch ($_COOKIE['lng']) {
 		if($_GET[type]=='park' or $_GET[type]=='person' or $_GET[type]=='com'){
 			$path = '../../../data/fileupload/doc_pay_driver/'.$_GET[type].'_'.$_GET[id].'.jpg?v='.time();
 		}
+		if($_GET[tb]=='1'){
+			$path = '../../../data/fileupload/store/tbooking/'.$_GET[type].'_'.$_GET[id].'.jpg?v='.time();
+		}
 		?>
       <img src="<?=$path;?>" style="width:100%"  >
    <!--  <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left" style="font-size:20px; padding-right:20px; margin-top:10px;" ></i></a>&nbsp;&nbsp;&nbsp;

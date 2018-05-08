@@ -357,16 +357,16 @@ td{
            <?  include ("mod/tbooking/load/checkin/driver_pickup.php");?>
          </td>
       </tr>
-      <!--<tr id="step_guest_register_<?=$arr[order][invoice];?>" style="display:none">
+      <tr id="step_driver_complete" style="display:none">
          <td class="font-22">
-            <?  include ("mod/booking/shop_history/load/checkin/guest_register.php");?>
+            <?  include ("mod/tbooking/load/checkin/driver_complete.php");?>
          </td>
       </tr>
-      <tr id="step_driver_pay_report_<?=$arr[order][invoice];?>" style="display:none">
+      <tr id="step_driver_checkcar" style="display:none">
          <td class="font-22">
-            <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
+            <?  include ("mod/tbooking/load/checkin/driver_checkcar.php");?>
          </td>
-      </tr>-->
+      </tr>
    </table>
 </div>
 

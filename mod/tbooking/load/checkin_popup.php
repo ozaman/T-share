@@ -4,27 +4,26 @@
     if($_GET[type]=='driver_topoint'){		
       $type= t_place_of_delivery;		
       $icon = 'icon-new-uniF12D-1';
-      $action = 'check_driver_topoint';
       $txt_photo = t_please_take_photo_drop_place;
       $next_step = "driver_pickup";
     }
     else if($_GET[type]=='driver_pickup'){		
       $type = t_check_customer_name;
       $icon = 'icon-new-uniF159-5';	
-      $action = 'check_guest_receive';
       $txt_photo = t_take_pic_guest;
+       $next_step = "driver_complete";
     } 
-    else if($_GET[type]=='guest_register'){		
-      $type= t_guest_registration;	
+    else if($_GET[type]=='driver_complete'){		
+      $type= t_check_vehicle;	
       $icon = 'icon-new-uniF116-6';	
-      $action = 'check_guest_register';
-      $txt_photo = t_please_take_guest_regis;
+      $txt_photo = t_please_take_photo_drop_place;
+      $next_step = "driver_checkcar";
     } 
-    else if($_GET[type]=='driver_pay_report'){		
-     $type= t_income_statement;		
+    else if($_GET[type]=='driver_checkcar'){		
+     $type= t_check_luggage;		
      $icon = 'icon-new-uniF121-10';
-     $action = 'check_driver_pay_report';
-     $txt_photo = t_take_photo_income_slip;
+     $txt_photo = t_take_picture_inside_car;
+     $last_step = 'driver_checkcar';
     }
     
    	?>
@@ -174,11 +173,19 @@
 		});
 	$('#<?=$_GET[type]?>_check_click').val(1);
 	$("#box_<?=$_GET[type]?>").removeClass('border-alert');
-	if(res.next_step=="finish"){
+	console.log('++++++++++++');
+	if("<?=$last_step;?>"=="driver_checkcar"){
+		var driver = $('#driver').val();
+		$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
+		   		console.log(res_api_hit);
+		   		if(res_api_hit.status=="200"){
+		   			dataHistoryA = res_api_hit.data.result;
+					eachObjHistory();
+				}
+			});	
 		return;
 	}
-	$("#step_"+res.next_step+"").show();
-//	$("#step_"+res.next_step+"").load('empty_style.php?name=booking/shop_history/load/checkin&file='+res.next_step);
+	$("#step_<?=$next_step;?>").show();
 	
 	}	
 </script>
