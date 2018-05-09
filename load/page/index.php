@@ -31,11 +31,8 @@
       <div class="wrapper" style="background-color:#F5F5F5" >
       <!-- head -->
       <? 
-         ///// head
+
           include "load/page/head.php" ;
-          ?> 
-      <? 
-         ///// head
           include "load/tool_bottom.php" ;
           ?> 
       <input type="hidden" name="check_data_chat_now" id="check_data_chat_now" value="0"  style="width:100px " />
@@ -97,9 +94,11 @@
                   <?  include ("".$MODPATHFILE."");?>  
                </div>
             </div>
+            </section>
          </div>
          <!-- ./wrapper -->
          <!-- ./wrapper -->
+      </div>
       </div>
    </body>
 </html>

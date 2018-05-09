@@ -123,7 +123,7 @@
                </td>
             </tr>
          </table>
-         <?  //include ("google/gps/check.php");?><br />
+         <?  //include ("google/gps/check.php");?>
          <? //  include "load/popup/shopping_place.php" ;?>
          <?  include "load/page/bottoms.php" ;?>
          <?  include "load/popup.php" ;?>

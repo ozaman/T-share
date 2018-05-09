@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
 <style>
+	.paddling-max{
+		padding : 17px 12px !important;
+		border-radius: 0px !important;
+		border : 0px !important;
+	}
 	.popup-open {
    overflow: hidden;
    } 
@@ -127,7 +132,6 @@
    z-index: 1;
    }
 </style>
-
 <div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:-10px;   ">
    <br>
    <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
@@ -167,32 +171,32 @@
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    	 $all_work = $db->num_rows('order_booking',"id","$filter");
    ?>
-<div  style="margin-top:-45px; width:100%; padding-right:0px;padding: 0px 5px;">
-<? //=$_SESSION['data_user_type']?>
-<? ///=$data_driver_name?>
+<div  style="margin-top:-40px; width:100%; padding-right:0px;padding: 0px 0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
    <tbody>
       <tr>
-         <td width="50%" align="center" class="tool-td-chat">
+         <td width="50%" align="center" class="">
             <center>
-            <button type="button" class="btn btn-default "  id="index_menu_shopping" style="width:100%;">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
                <center>
                   <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D"  ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
                </center>
             </button>
+			</center>
          </td>
-         <td align="center" class="tool-td-chat">
+         <td align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#FF0000; padding-top:3px;border: solid 2px #FFFFFF; display:none " id="number_bottom_chat3"  ><span  class="font-20 text-cap" >
             <?=$all_work?>
             </span></span>
             <center>
-            <button type="button" class="btn btn-default "  id="index_menu_shopping_history" style="width:100%;">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
                <center>
                   <div  class="circle-menu" style="background-color:#F7941D"><i class="fa fa-history"  ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_customer_history ?></span>
                </center>
             </button>
+            </center>
             <script>    
                $('#index_menu_shopping_history').click(function(){  
                $( "#main_load_mod_popup" ).toggle();
@@ -208,10 +212,10 @@
          </td>
       </tr>
       <tr>
-         <td width="50%" align="center" class="tool-td-chat">
+         <td width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
             <center>
-            <button type="button" class="btn btn-default "  id="index_menu_transfer"   style="width:100%">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%">
                <center>
                <div  class="circle-menu" >
                   <center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
@@ -219,17 +223,11 @@
                <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
                </center>
             </button>
+            </center>
          </td>
-         <!-- <td align="center" class="tool-td-chat">
-           <button type="button" class="btn btn-default " onclick="warkingall()"       style="width:100%">
-               <center>
-                  <div  class="circle-menu" style=" background-color:#4caf50"><i class="fa fa-calendar-o"   ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_his_transfer ?></span>
-               </center>
-            </button>
-         </td> -->
-         <td  width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  style="width:100%" onclick="workTbooking();" >
+
+         <td  width="50%" align="center" class="">
+            <button type="button" class="btn btn-default paddling-max"  style="width:100%" onclick="workTbooking();" >
             <input id="check_open_worktbooking" value="0" type="hidden"/>
                <center>
                   <div  class="circle-menu" style=" background-color:#ffc107;font-size: 26px;"><strong style="margin-left:-8px;margin-top: -3px;position: absolute;">T</strong></div>
@@ -239,17 +237,17 @@
          </td>
       </tr>
       <tr>
-         <td align="center" class="tool-td-chat">
+         <td align="center" class="">
             <center>
-            <button type="button" class="btn btn-default "   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+            <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#34A0E7"  > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
                </center>
             </button>
          </td>
-         <td align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  id="index_menu_payment" onclick="expenses()"  style="width:100%">
+         <td align="center" class="">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_payment" onclick="expenses()"  style="width:100%">
                <center>
                   <div  class="circle-menu" style=" background-color:#FF0000"><i class="demo-icon icon-money-payment" style="margin-left:-5px; font-size:28px;"></i> </div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_expenses ?></span>
@@ -276,18 +274,19 @@
          </td>
       </tr> -->
       <tr>
-         <td  width="50%" align="center" class="tool-td-chat">
+         <td  width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
             <center>
-            <button type="button" class="btn btn-default "   id="index_menu_tour"   style="width:100%">
+            <button type="button" class="btn btn-default paddling-max"   id="index_menu_tour"   style="width:100%">
                <center>
                   <div  class="circle-menu"  style="background-color:#8DC63F"><i class="fa fa-suitcase"  ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_tour_booking?> </span>
                </center>
             </button>
+            </button>
          </td>
-         <td width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+         <td width="50%" align="center" class="">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
@@ -309,7 +308,6 @@
       </tr> -->
    </tbody>
 </table>
-<div></div>
 <script>
    function warkingall(){
      //alert('asasas')
@@ -398,13 +396,6 @@
       </tr>
    </tbody>
 </table>
-<br/>
-<? 
-   ///// head
-   ///include "load/popup/place.php" ;
-    ?>
- 
-
 <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
    <div class="css-full-popup2">
       <div class="back-full-popup" style="z-index: 1;">
@@ -524,11 +515,6 @@
     });
     
 </script>  
-<div id="tab_chk_qr" class="tab-pane fade">
-   <?
-      //include("mod/load/show/step/qr_scan.php");
-       /// include("mod/load/show/step/index.html");
-      ?>
 </div>
 <style>
   /* .sweet-alert{
@@ -653,7 +639,6 @@
       return "";
    }
 </script>
-<div></div>
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
     <!-- <script src="socket.io/socket.io.js"></script> -->
