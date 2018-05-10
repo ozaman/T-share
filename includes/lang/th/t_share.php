@@ -48,7 +48,7 @@ define("t_minutes","เวลา");
 define("t_pay_deposit","นาที");
 define("t_ok","ตกลง");
 define("t_please_confirm_selection","โปรดยืนยันการเลือกงานของคุณ");
-define("t__not","ไม่เเลือก");
+define("t_not","ไม่เเลือก");
 define("t_select","เลือก");
 define("t_jobs","งาน");
 define("t_total","รวม");
