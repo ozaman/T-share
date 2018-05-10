@@ -55,7 +55,7 @@ GETMODULE($_GET[name],$_GET[file]);
     <link href="dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
  
   
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   
   
 <script src="bootstrap/js/bootstrapadmin.js"></script>
