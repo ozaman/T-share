@@ -129,13 +129,13 @@
          </div>-->
       <table width="100%">
          <tr>
-            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="open_map" style="border: 2px solid #3b5998;width: 100%;"><span class="text-cap font-24"><?=t_open." ".t_maps;?></span></button></td>
+            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="open_map" style="border: 2px solid #3b5998;width: 100%;    border-radius: 10px;"><span class="text-cap font-24"><?=t_open." ".t_maps;?></span></button></td>
          </tr>
          <tr>
-            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="submit_this_pv"  style="border: 2px solid #3b5998;width: 100%;"><span class="text-cap font-24"><?=t_login_province;?>&nbsp;(<span class="text-change-province"></span>)</span></button></td>
+            <td style="padding: 10px;"><button class="btn-repair waves-effect" id="submit_this_pv"  style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_province;?>&nbsp;(<span class="text-change-province"></span>)</span></button></td>
          </tr>
          <tr>
-            <td  style="padding: 10px;"><button class="btn-repair waves-effect" id="show_section" style="border: 2px solid #3b5998;width: 100%;"><span class="text-cap font-24"><?=t_login_another_province;?></span><i class="fa fa-chevron-right" aria-hidden="true" style="padding-left: 10px;font-size: 20px;color: #3b5998;position: absolute;"></i></button></td>
+            <td  style="padding: 10px;"><button class="btn-repair waves-effect" id="show_section" style="border: 2px solid #3b5998;width: 100%;border-radius: 10px;"><span class="text-cap font-24"><?=t_login_another_province;?></span><i class="fa fa-chevron-right" aria-hidden="true" style="padding-left: 10px;font-size: 20px;color: #3b5998;position: absolute;"></i></button></td>
          </tr>
       </table>
    </div>
