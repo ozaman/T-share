@@ -99,6 +99,10 @@ td{
 		$display_none_air = 'display:none;';
 	}
 	$car_type = $_POST[car_type][$place_shopping];
+	
+	$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
+	$res[com] = $db->select_query("SELECT id, company FROM web_admin where id = ".$_POST[program][company]." ");
+	$arr[com] = $db->fetch($res[com]);
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
@@ -147,7 +151,7 @@ td{
       </tbody>
    </table>
   
-   <div style="margin-top:10px; font-size:22px; font-weight:bold; background-color:#F6F6F6; padding:5PX;border-radius: 10px; ">Golden&nbsp;&nbsp;151&nbsp;<span style="font-size:16px; margin-top: 30px; "> ( <?=$_POST[ondate];?> )</span></div>
+   <div style="margin-top:10px; font-size:22px; font-weight:bold; background-color:#F6F6F6; padding:5PX;border-radius: 10px; "><?=$arr[com][company];?><span style="font-size:16px; margin-top: 30px; "> ( <?=$_POST[ondate];?> )</span></div>
    <div style="margin-top:10px;padding:5px;    ">
       <div class="show_product_detail_all" style="display: nones;">
          <font class="font-24"><b>

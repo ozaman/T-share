@@ -780,7 +780,7 @@
 }
 
 </style>
-<div class="container">
+<div class="outer-loading-mod" style="display: none;" >
 	<div class="row">
 		<div id="loader">
     		<div class="dot"></div>
