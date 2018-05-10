@@ -365,7 +365,7 @@ function QueryData2(){
 	var type = $('#type_transfer').val();
 	var date = $('#date_transfer_work').val();
 	
-	$('#body_to_append').html(load_main_icon_big);
+	
 	$.each( countdownTimer, function( key, value ) { 
 				clearInterval(countdownTimer[key]);
 		});

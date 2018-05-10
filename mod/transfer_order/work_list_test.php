@@ -312,7 +312,7 @@ var sec_array = new Array();
  function warkingall(){
     console.log('================================incase all==============================')
       // $('#body_to_append').html(load_main_icon_big);
-  
+  $('#body_to_append').html(load_main_icon_big);
 ckeckhis = true;
 $('#btn_all').removeClass('btn_filter_active');
    $('#btn_all').addClass('btn_filter');
@@ -334,9 +334,12 @@ $('#btn_all').removeClass('btn_filter_active');
      //         // $('#main_load_mod_popup').toggle();
      // $('#body_to_append').html(data);
      //  });
+      $('#body_to_append').load(load_main_mod_table);
+     $('#body_to_append').load(url_load); 
+     // $('#body_to_append').html(url_load); 
        
-       $('#body_to_append').load(url_load); 
-       $('#body_to_append').html(url_load); 
+       //$('#body_to_append').load(url_load); 
+       
 
        
    }
