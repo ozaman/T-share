@@ -53,7 +53,7 @@ function DatePicker( picker, settings ) {
                 // For normal browsers.
                 getComputedStyle( picker.$root[0] ).direction == 'rtl'
         }
-        console.log(calendar)
+        //console.log(calendar)
 
     calendar.settings = settings
     calendar.$node = picker.$node
