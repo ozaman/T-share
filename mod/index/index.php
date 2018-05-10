@@ -1,5 +1,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
 <style>
+	.box-shadow-only{
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+	}
 	.paddling-max{
 		padding : 17px 12px !important;
 		border-radius: 0px !important;
@@ -132,9 +135,8 @@
    z-index: 1;
    }
 </style>
-<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:-10px;   ">
-   <br>
-   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:-5px;">
+<div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:0px;" >
+   <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:0px;position: absolute; margin-top: 10px;">
       <tbody>
          <tr style="display: none;">
             <td align="center" class="font-24"><font color="#FFFFFF">ยินดีต้อนรับเข้าสู่  <font color="#FFFFF"><B>T Share </B></font></font> </td>
@@ -148,9 +150,7 @@
                <!--	<span style="color: #fff;"><i class="fa fa-refresh" aria-hidden="true"></i></span>-->
             </td>
          </tr>
-         <tr>
-            <td align="center" class="font-22"><font color="#FFFFFF"> </font> </td>
-         </tr>
+
       </tbody>
    </table>
 </div>
@@ -397,8 +397,8 @@
    </tbody>
 </table>
 <div class="background-smal-popup " id="load_mod_popup_select_pv" style="position: fixed; overflow: auto;display: none;">
-   <div class="css-full-popup2">
-      <div class="back-full-popup" style="z-index: 1;">
+   <div class="css-full-popup2 ">
+      <div class="back-full-popup box-shadow-only" style="z-index: 1;">
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                <tr>
@@ -452,16 +452,14 @@
      		$('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
      		$('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
      });
-    function GohomePage(){
-    	$('#btn_home_bottom_menu').click();
-    }
+
    $('#index_menu_shopping').click(function(){  
 
    $("#load_mod_popup_select_pv" ).show();
      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
       $('#body_load_select_pv').html(load_main_mod);
       $.post( url_load, function( data ) {
-      	   $('#body_load_select_pv').html(data);
+//      	   $('#body_load_select_pv').html(data);
    	   var txt = $('#province_text').text();
    		$('#txt_pv_fr').val(txt);
    		$('.text-change-province').text(txt);

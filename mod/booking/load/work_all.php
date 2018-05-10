@@ -123,7 +123,7 @@
        $payment= t_pay_cash;
    }
    if($arr[project][payment_type]=='bank'){
-   $payment="โอนเงินเข้าบัญชี";
+   $payment=t_transfer_to_account;
    }
    /// plan 
    $res[plan] = $db->select_query("SELECT * FROM plan_product_price_setting  WHERE id='".$arr[project][plan_setting]."' ");

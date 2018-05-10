@@ -4,7 +4,7 @@
          font-size: .81rem;
          -webkit-transition: all .2s ease-in-out;
          transition: all .2s ease-in-out;
-         margin: .375rem;
+/*         margin: .375rem;*/
          border: 0;
          border-radius: .125rem;
          cursor: pointer;

@@ -376,9 +376,10 @@
    function eachObjHistory(){
    	$('#load_history_data .box_his').remove();
    	$.each(dataHistoryA, function( index, value ) {
+   			  var id = "btn_"+index;
 		      var component2 = 
 		      '<div class="box_his">'
-		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+');" style="padding: 0px;">'
+		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+');rippleClick(\'' + id + '\');" style="padding: 0px;">'
    			  +'<div class="w3-bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
@@ -451,16 +452,7 @@
 }
 
    function openDetailBooking(index){
-/*   			var url = "empty_style.php?name=tbooking&file=book_detail";
-			var post = res_socket[index];
 
-	   	$.post(url,post,function(data){
-	   		$('#load_mod_popup_clean').html(data);
-	   		$('#main_load_mod_popup_clean').show();
-   			$('#main_component').removeClass('w3-animate-left');
-	   	});
-	   	*/
-	   	rippleClick(index);
 	   	setTimeout(function(){ 
    			var url = "empty_style.php?name=tbooking&file=book_detail";
 			var post = res_socket[index];
@@ -470,13 +462,11 @@
 	   		$('#main_load_mod_popup_clean').show();
    			$('#main_component').removeClass('w3-animate-left');
 	   	});
-	   	 }, 300);
+	   	 }, 0);
    }
    
    function openSheetHandle(index){
    	
-   		rippleClick(index)
-//   		return;
    		setTimeout(function(){ 
    		
    		
@@ -488,7 +478,7 @@
 	   		$('#main_load_mod_popup_clean').show();
    			$('#main_component').removeClass('w3-animate-left');
 	   	});
-	   	 }, 300);
+	   	 }, 0);
    }
 
    function backMain(){
@@ -540,9 +530,10 @@
 	         +'</div>'
 	      +'</div>';
 		  }
+		  var id = 'id_list_'+num;
 	      var component2 = 
 		      '<div class="box_book">'
-		      +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+')" style="padding: 0px;background:#fbfbfb;">'
+		      +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+');rippleClick(\'' + id + '\');" style="padding: 0px;background:#fbfbfb;">'
    			  +'<div class="w3-bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
@@ -651,24 +642,24 @@
 	}
 
 	function rippleClick(id){
-		console.log('ripple')
+		console.log('ripple : '+id)
       var $div = $('<div/>'),
-          btnOffset = $('#btn_'+id).offset(),
+          btnOffset = $('#'+id).offset(),
       		xPos = event.pageX - btnOffset.left,
       		yPos = event.pageY - btnOffset.top;
 
       $div.addClass('ripple-effect');
       var $ripple = $(".ripple-effect");
       
-      $ripple.css("height", $('#btn_'+id).height());
-      $ripple.css("width", $('#btn_'+id).height());
+      $ripple.css("height", $('#'+id).height());
+      $ripple.css("width", $('#'+id).height());
       $div
         .css({
           top: yPos - ($ripple.height()/2),
           left: xPos - ($ripple.width()/2),
-          background: $('#btn_'+id).data("ripple-color")
+          background: $('#'+id).data("ripple-color")
         }) 
-        .appendTo($('#btn_'+id));
+        .appendTo($('#'+id));
 
       window.setTimeout(function(){
         $div.remove();
@@ -694,7 +685,7 @@
  </script>
 <script>
 
-  $(function() {
+/*  $(function() {
     
     
     $('.ripple').on('click', function (event) {
@@ -724,6 +715,6 @@
        event.preventDefault();
     });
     
-  });
+  });*/
   
 </script>

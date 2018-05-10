@@ -1,5 +1,3 @@
-  <?  include ("mod/livechat/config.php");?> 
-  
 
  
 <div id="main_load_mod_popup_1" style="display: none;">
