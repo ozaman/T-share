@@ -53,7 +53,7 @@ function DatePicker( picker, settings ) {
                 // For normal browsers.
                 getComputedStyle( picker.$root[0] ).direction == 'rtl'
         }
-        console.log(calendar)
+        //console.log(calendar)
 
     calendar.settings = settings
     calendar.$node = picker.$node
@@ -139,7 +139,7 @@ function DatePicker( picker, settings ) {
             })
         }, 1 ).
         on( 'open', function() {
-        	console.log('+++++');
+        	// console.log('+++++');
         	$('.back-full-popup').hide();
         	$('.bottom_popup').hide();
             var includeToday = ''
@@ -164,7 +164,7 @@ DatePicker.prototype.set = function( type, value, options ) {
 
     var calendar = this,
         calendarItem = calendar.item
-        console.log(calendarItem)
+        // console.log(calendarItem)
 
     // If the value is `null` just set it immediately.
     if ( value === null ) {
@@ -1331,7 +1331,7 @@ DatePicker.prototype.nodes = function( isOpen ) {
  */
 
 DatePicker.defaults = (function( prefix ) {
-console.log('in csae date =================================')
+//console.log('in csae date =================================')
 // console.log($('#set_lng_cookies').val())
 // var armonth = [];
    

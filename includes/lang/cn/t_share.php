@@ -48,7 +48,7 @@ define("t_minutes","分钟");
 define("t_pay_deposit","请支付定金");
 define("t_ok","ok");
 define("t_please_confirm_selection","请确认你的选择");
-define("t__not","不選擇");
+define("t_not","不選擇");
 define("t_select","选择");
 define("t_jobs","工作");
 define("t_total","总共");

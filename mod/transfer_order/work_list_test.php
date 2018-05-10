@@ -195,7 +195,7 @@ language_load();
                     display: inline-block;
                     border-radius: 25px;
                     margin-right: 15px;
-                   " onclick="no_job()"><? echo t__not?></div>
+                   " onclick="no_job()"><? echo t_not?></div>
                     <div class="lng-yes2" style="    width: 120px;
                     padding: 10px 0px;
                     font-size: 15px;

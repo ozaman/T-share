@@ -48,7 +48,7 @@ define("t_minutes","Minutes");
 define("t_pay_deposit","Please pay deposit");
 define("t_ok","Ok");
 define("t_please_confirm_selection","Please confirm your selection");
-define("t__not","Not");
+define("t_not","Not");
 define("t_select","Select");
 define("t_jobs","Jobs");
 define("t_total","Total");
