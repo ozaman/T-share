@@ -54,7 +54,7 @@
    <body >
       <script src="voice/src/recorder.js"></script>
       <script src="voice/src/Fr.voice.js"></script>
-      <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <!-- <script src="voice/js/jquery.js"></script> -->
       <script src="voice/js/app.js"></script>
       <script src="js/jquery-main.js"></script>
