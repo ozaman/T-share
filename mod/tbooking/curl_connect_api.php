@@ -96,7 +96,7 @@ else if($_GET[type]=="history_booking"){
 	
 }
 
-if($_GET[type]=="checkin_approve"){
+else if($_GET[type]=="checkin_approve"){
 	
 $step = $_GET[step];
 if($step=="driver_checkcar"){
