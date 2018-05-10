@@ -149,7 +149,7 @@
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[book] = $db->select_query("SELECT * FROM  order_booking  where transfer_date='".$_GET[day]."' $filter  order by  id desc  ");
    if($numday_work<=0){
-   		$show_no_record = '<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+   		$show_no_record = '<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong>'.t_no_job.'</strong></div>';
    }
    echo $show_no_record;
 ?>

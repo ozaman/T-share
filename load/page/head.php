@@ -10,8 +10,14 @@
    box-shadow: 2px 1px 10px #333333; margin-right:5px; margin-bottom:5PX;max-width:400px;
    }
    #mainheadmenu {
-   position:fixed ;   z-index:999; width:100%; box-shadow: 0px 0px 0px #999999;background-color:<?=$main_color?>; margin-top:-5px; padding:0px;
-   border-bottom:1px solid #FFFFFF; 
+   position:fixed ;   
+   z-index:999; 
+   width:100%; 
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+   background-color:<?=$main_color?>; 
+   margin-top:-5px; 
+   padding:0px;
+/*   border-bottom:1px solid #FFFFFF; */
    }
    #mainheadmenu a:hover {
    background-color:#4BA7DC;padding:0px;

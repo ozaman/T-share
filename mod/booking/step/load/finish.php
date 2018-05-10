@@ -32,7 +32,7 @@
    /*$( "#time_number" ).addClass('border-alert');
    $( "#load_mod_popup_4" ).toggle();
    $("#back_booking_step_2").click();*/
-   $("#popup_edit").show();
+   $("#popup_edit").fadeIn(500);
    $('#load_mod_popup_4').css('overflow','hidden');
    $('#text_edit_popup').text('เวลาถึงโดยประมาณ');
    $('#edit_time').show();
@@ -46,7 +46,7 @@
    /* $( "#load_mod_popup_4" ).toggle();
    $("#back_booking_step_3").click();*/
    console.log('step2');
-   $("#popup_edit").show();
+   $("#popup_edit").fadeIn(500);
    $('#load_mod_popup_4').css('overflow','hidden');
    $('#text_edit_popup').text('จำนวนแขก');
    $('#edit_guest').show();
@@ -59,14 +59,14 @@
    $("#submit_booking_step_2").click();
    $( "#load_mod_popup_4" ).toggle();*/
    console.log('step3');
-   $("#popup_edit").show();
+   $("#popup_edit").fadeIn(500);
    $('#load_mod_popup_4').css('overflow','hidden');
    $('#text_edit_popup').text('ค่าตอบแทน');
    $('#edit_payment_detail').show();
    });
    $("#edit_booking_step_4").click(function(){ 
    console.log('step4');
-   $("#popup_edit").show();
+   $("#popup_edit").fadeIn(500);
    $('#load_mod_popup_4').css('overflow','hidden');
    $('#text_edit_popup').text('ข้อมูลรถ');
    $('#edit_transfer_detail').show();
@@ -373,7 +373,7 @@
                </table>
                <script>
                   $('#edit_book_bank').click(function(){
-                  	$('#popup_edit').show();
+                  	$('#popup_edit').fadeIn(500);
                   	var url_load = "empty_style.php?name=pay&file=bank_book&driver=<?=$arr[web_user][id]?>&place=<?=$_GET[place];?>";
                   	console.log(url_load);
                   //				$('#body_load_bank').load(load_main_mod); 
@@ -383,7 +383,7 @@
                   });
                   $('#add_bank').click(function(){
                   	console.log('add bank');
-                  	$('#popup_edit').show();
+                  	$('#popup_edit').fadeIn(500);
                   	var url_load = "empty_style.php?name=pay&file=bank_book&driver=<?=$arr[web_user][id]?>&place=<?=$_GET[place];?>";
                   	console.log(url_load);
                   //				$('#body_load_bank').load(load_main_mod); 
@@ -397,27 +397,7 @@
       </tr>
       <tr>
          <td>
-            <table width="100%"  border="0" cellspacing="0" cellpadding="0" id="button_show_finish_detail" style="display:nones; margin-top:10px;">
-               <tr >
-                  <td style="display:nones" >
-                     
-                     <button type="button"  id="back_booking_step_4" class="btn-repair waves-effect btn-other"  style="width:100%; background-color: #efefef;color: #000000!important;">
-                     <span class="font-24"><i class=" fa fa-chevron-circle-left"></i>&nbsp;<?=t_back_previous;?></span></button>
-                    
-                  </td>
-                  </tr>
-                  <tr>
-                  <td>
-                     
-                        <!-- <button id="submit_booking_step_4" type="button" class="btn  btn-primary" style="width:100%; background-color:#F7941D "><span class="font-26"><i class="    fa fa-save "></i>&nbsp;บันทึกข้อมูล</button>-->
-                        <button id="submit_booking_step_4" type="button" class="btn-repair waves-effect btn-other border-alert" 
-                        style="width:100%;background-color: #3b5998;border-radius: 25px;"><span class="font-24"><?=t_confirm;?></span>
-                        </button>
-                    
-                  </td>
-                  </tr>
-               
-            </table>
+             <button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;" id="submit_booking_step_4"> <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button>
          </td>
       </tr>
    </tbody>
@@ -445,9 +425,9 @@
        });
      });
 </script>
-<br/>
-<div class="background-smal-popup" style="position: fixed; overflow: auto;display: none;z-index: 99999;" id="popup_edit">
-   <div class="css-small-popup" style="width: 95%;top: 0px;">
+
+<div class="background-smal-popup " style="position: fixed; overflow: auto;display: none;z-index: 99999;" id="popup_edit">
+   <div class="css-small-popup" style="width: 95%;top: 0px;    margin: 40% auto;">
       <div class="back-full-popup" style="z-index: 1;position: absolute;border-top-right-radius: 8px;border-top-left-radius:8px">
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>

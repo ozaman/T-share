@@ -1,5 +1,3 @@
-  <?  include ("mod/livechat/config.php");?> 
-  
 
  <div id="main_load_mod_popup_2" style="display: none;">
   <div class="back-full-popup" style="z-index: 99999;"> 

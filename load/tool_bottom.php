@@ -33,6 +33,22 @@
 <script>
    var load_main_mod='<div class="outer-loading-mod"   id="main_index_load_page_mod"><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div></div></div>';
    var load_main_mod_table='<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> <?echo t_load_data?></span></center></div';
+   
+   /*var load_main_mod = '<div class="outer-loading-mod"  id="main_index_load_page_mod">'
+	+'<div class="row">'
+		+'<div id="loader">'
+    		+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="dot"></div>'
+			+'<div class="lading"></div>'
+		+'</div>'
+	+'</div>'
++'</div>';*/
 </script>
 <?php 
    if($data_user_class=='taxi'){
@@ -242,7 +258,7 @@
    $("#button_head_show").show();
    }
    }
-   $('#btn_home_bottom_menu').click(function(){   
+  /* $('#btn_home_bottom_menu').click(function(){   
    hidepopup();
    $("#btn_home_bottom_menu").addClass("bottom-popup-icon-new-active");
    console.log('main menu');
@@ -254,7 +270,8 @@
    // $('#load_mod_data').load('load_mod.php');
    //	location.reload();
    window.location = "https://www.welovetaxi.com/app/demo/index.php";
-       	});
+       	});*/
+       	
 </script>      
 <script>
    $('#btn_allwork_bottom_menu').click(function(){  
