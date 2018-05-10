@@ -8,7 +8,7 @@
 
 .btn_filter_active{
 	padding: 8px; 
-	border: 1px solid #3b5998;
+	/*border: 1px solid #3b5998;*/
 	border-radius: 25px;
 /*	width: 100px;*/
 	background-color: #3b5998;
@@ -71,15 +71,15 @@ language_load();
 		<table width="100%">
 			<tr>
 
-				<td><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-22"><? echo t_all_jobs?></span></div></td>
-				<td><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-22"><? echo t_now?></span></div></td>
+				<td width="50%"><div id="btn_all" class="btn_filter_active tocheck" align="center" onclick="FilterTypeTransfer('all');"><span class="font-22"><? echo t_all_jobs?></span></div></td>
+				<td width="50%"><div id="btn_Realtime" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Realtime');"><span class="font-22"><? echo t_now?></span></div></td>
 				
 			</tr>
             <tr>
 
                 
-                <td><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-22"><? echo t_in_advance?></span></div></td>
-                <td><div id="btn_warkingall" class="btn_filter tocheck" align="center" onclick="warkingall('');"><span class="font-22"><? echo t_his_transfer?></span></div></td>
+                <td width="50%"><div id="btn_Reservation" class="btn_filter tocheck" align="center" onclick="FilterTypeTransfer('Reservation');"><span class="font-22"><? echo t_in_advance?></span></div></td>
+                <td width="50%"><div id="btn_warkingall" class="btn_filter tocheck" align="center" onclick="warkingall('');"><span class="font-22"><? echo t_process?></span></div></td>
             </tr>
 			<!-- <tr>
 				
@@ -297,7 +297,7 @@ language_load();
                 
             </div>
 </div>
-	<div  style="padding:5px 5px; margin: auto;margin-top: 0px;" id="body_to_append">
+	<div  style="padding:5px 5px; margin: auto;margin-top: 0px;" id="body_to_append" class="body_to_append">
 		
 	</div>	
 </div>
@@ -309,7 +309,37 @@ var time_complete = new Array();
 var countdownTimer = new Array();
 var sec_array = new Array();
 
+ function warkingall(){
+    console.log('================================incase all==============================')
+      // $('#body_to_append').html(load_main_icon_big);
+  
+ckeckhis = true;
+$('#btn_all').removeClass('btn_filter_active');
+   $('#btn_all').addClass('btn_filter');
+   // $('#btn_warkingall').addClass('btn_filter');
+   $('#btn_Reservation').addClass('btn_filter');
+   // $('#btn_all').removeClass('btn_filter');
+   $('#btn_warkingall').addClass('btn_filter_active');
+   $('#btn_Reservation').removeClass('btn_filter_active');
+   $('#btn_Realtime').removeClass('btn_filter_active');
+   $('#btn_Realtime').addClass('btn_filter');
 
+
+     // $( "#main_load_mod_popup" ).toggle();
+     
+      var url_load= "load_page_mod.php?name=transfer_order&file=work_list_work&transfer_work=true&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+       console.log(url_load);
+     //    $.post( url_load, function( data ) {
+     //         // $('#main_load_mod_popup').toggle();
+     // $('#body_to_append').html(data);
+     //  });
+       
+       $('#body_to_append').load(url_load); 
+       $('#body_to_append').html(url_load); 
+
+       
+   }
 function timer(id,seconds) {
 	
 	if (typeof sec_array[id] == 'undefined') {
@@ -488,7 +518,9 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration,value;
  }
 
 function FilterTypeTransfer(type){
+    console.log("******************incase**********************")
 	console.log(type);
+    $('.body_to_append').html(''); 
 	$('.tocheck').removeClass('btn_filter_active');
 	$('.tocheck').addClass('btn_filter');
 	$('#btn_'+type).removeClass('btn_filter');
@@ -600,7 +632,7 @@ function getJob(x,y){
 // 			  });
 }
 function QueryData(){
-	
+	ckeckhis = false;
 	var type = $('#type_transfer').val();
 	var date = $('#date_transfer_work').val();
 	
@@ -643,7 +675,7 @@ function QueryData(){
 				$('#body_to_append').html('<div class="font-26" style="color: #ff0000;display: nones;" id="no_work_div" ><strong><?echo t_no_job?></strong></div>');
 				return;
 			}
-	  		$('#body_to_append').html('');
+	  		$('.body_to_append').html('');
 	  		$.each( obj, function( key, value ) {
 	  			console.log('****************')
 
@@ -814,7 +846,14 @@ var date=$('#date_transfer_work').val();
 		  onSet: function(context) {
 		  	     var date=$('#date_transfer_work').val();
 		    	console.log(date);
-		    	QueryData();
+		    	if (ckeckhis == true) {
+
+                }
+                else{
+                    QueryData();
+                }
+                
+                
 		  }
         });
 }, 500);

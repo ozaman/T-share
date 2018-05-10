@@ -309,17 +309,10 @@
    </tbody>
 </table>
 <script>
-   function warkingall(){
-     //alert('asasas')
-     // $( "#main_load_mod_popup" ).toggle();
-      $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=transfer_order&file=work_list_work&transfer_work=true&lat="+$('#lat').val()+"&lng="+$('#lng').val();
-   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-       console.log(url_load);
-       $('#load_mod_popup').html(load_main_mod);
-       $('#load_mod_popup').load(url_load); 
-   }
+   var ckeckhis = false;
+  
    function revenue(){
+      ckeckhis = false;
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
       $('#main_load_mod_popup').show();
@@ -330,6 +323,7 @@
        $('#load_mod_popup').load(url_load); 
    }
    function expenses(){
+      ckeckhis = false;
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
       $('#main_load_mod_popup').show();
@@ -340,6 +334,7 @@
        $('#load_mod_popup').load(url_load); 
    }
    function money_transfer(){
+      ckeckhis = false;
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
       $('#main_load_mod_popup').show();
@@ -349,6 +344,7 @@
        $('#load_mod_popup').load(url_load); 
    }
    function workTbooking(){
+      ckeckhis = false;
    		$('#main_load_mod_popup').show();
    		var url_load= "load_page_mod.php?name=tbooking&file=all";
    		$('#load_mod_popup').html(load_main_mod);

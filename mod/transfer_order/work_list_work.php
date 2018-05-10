@@ -5,7 +5,7 @@
 
 .btn_filter_active{
 	padding: 8px; 
-	border: 1px solid #3b5998;
+	/*border: 1px solid #3b5998;*/
 	border-radius: 25px;
 /*	width: 100px;*/
 	background-color: #3b5998;
@@ -278,45 +278,46 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration;
 	
  }
 
-function FilterTypeTransfer(type){
-	console.log(type);
-	$('.tocheck').removeClass('btn_filter_active');
-	$('.tocheck').addClass('btn_filter');
-	$('#btn_'+type).removeClass('btn_filter');
-	$('#btn_'+type).addClass('btn_filter_active');
+// function FilterTypeTransfer(type){
+// 	console.log(type);
+// 	$('.body_to_append').html(''); 
+// 	$('.tocheck').removeClass('btn_filter_active');
+// 	$('.tocheck').addClass('btn_filter');
+// 	$('#btn_'+type).removeClass('btn_filter');
+// 	$('#btn_'+type).addClass('btn_filter_active');
 	
-	$('#type_transfer').val(type);
-	QueryData();	
-	/*$('#body_to_append').html(load_main_icon_big);
-	$.each( countdownTimer, function( key, value ) { 
-				clearInterval(countdownTimer[key]);
-//				countdownTimer = new Array();
-		});
-		if(type=="all"){
-			type = "";
-		}
-	$.post( "mod/transfer_order/action_work.php?action=query_work",{ type : type },function( data ) {
-			var obj = JSON.parse(data);
-			if(obj==null){
-				$('#no_work_div').show();
-				return;
-			}
-	  		$('#body_to_append').html('');
-	  		$.each( obj, function( key, value ) {
-			  console.log( value.id );
-			  $.post( "mod/transfer_order/component_work_list.php",value, function( component ) {
+// 	$('#type_transfer').val(type);
+// 	QueryData();	
+// 	$('#body_to_append').html(load_main_icon_big);
+// 	$.each( countdownTimer, function( key, value ) { 
+// 				clearInterval(countdownTimer[key]);
+// //				countdownTimer = new Array();
+// 		});
+// 		if(type=="all"){
+// 			type = "";
+// 		}
+// 	$.post( "mod/transfer_order/action_work.php?action=query_work",{ type : type },function( data ) {
+// 			var obj = JSON.parse(data);
+// 			if(obj==null){
+// 				$('#no_work_div').show();
+// 				return;
+// 			}
+// 	  		$('#body_to_append').html('');
+// 	  		$.each( obj, function( key, value ) {
+// 			  console.log( value.id );
+// 			  $.post( "mod/transfer_order/component_work_list.php",value, function( component ) {
 
-//					console.log(value.id+" : "+key);
-			  		$('#body_to_append').append(component);
-					time_complete[value.id] = $('#time_'+value.id).val();
-					countdownTimer[value.id] = setInterval('timer('+value.id+','+time_complete[value.id]+')', 1000);
+// //					console.log(value.id+" : "+key);
+// 			  		$('#body_to_append').append(component);
+// 					time_complete[value.id] = $('#time_'+value.id).val();
+// 					countdownTimer[value.id] = setInterval('timer('+value.id+','+time_complete[value.id]+')', 1000);
 					
-			  });
+// 			  });
 			
-		    });
-	});*/
+// 		    });
+// 	});
 	
-}
+// }
 var id_product;
 function no_job(){
 	$('#pop_con').hide(500)
@@ -358,7 +359,8 @@ function getJob(x,y){
 					
 // 			  });
 }
-function QueryData(){
+function QueryData2(){
+	$('#body_to_append').append(''); 
 	
 	var type = $('#type_transfer').val();
 	var date = $('#date_transfer_work').val();
@@ -542,7 +544,7 @@ var date=$('#date_transfer_work').val();
 		  onSet: function(context) {
 		  	     var date=$('#date_transfer_work').val();
 		    	console.log(date);
-		    	QueryData();
+		    	QueryData2();
 		  }
         });
 }, 500);

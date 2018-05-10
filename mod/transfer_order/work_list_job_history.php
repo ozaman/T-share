@@ -5,7 +5,7 @@
 
 .btn_filter_active{
 	padding: 8px; 
-	border: 1px solid #3b5998;
+	/*border: 1px solid #3b5998;*/
 	border-radius: 25px;
 /*	width: 100px;*/
 	background-color: #3b5998;
@@ -279,6 +279,7 @@ var lat_t, lat_f,lng_t,lng_f,distance ,duration;
  }
 
 function FilterTypeTransfer(type){
+	
 	console.log(type);
 	$('.tocheck').removeClass('btn_filter_active');
 	$('.tocheck').addClass('btn_filter');
