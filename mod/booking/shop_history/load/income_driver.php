@@ -95,6 +95,7 @@ $arr[project] = $arr[book];
       </tbody>
    </table>
 </div>
+<div id="html_work_action" style="display: none;"></div>
 <script>
 	  console.log('person : <?=$show_person;?>, park : <?=$show_park;?>, com : <?=$show_commision;?>');
   $('#main_td_price_park_<?=$arr[book][id];?>').<?=$status_show_park?>();
@@ -113,4 +114,64 @@ $arr[project] = $arr[book];
           $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-down" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;แสดง</span>');
       }
   });
+  
+   function check(id,num){
+    console.log(id);	
+    $('.cause_'+id).attr('checked', false);
+    $('#remark'+num).attr('checked', true);
+    $('#check_cause_'+id).val(num);
+   }
+   function ApporvePayAdmin(id,invoice,price,type){
+   console.log(id);
+   if($('#check_img_'+type+'_'+id).val()==0){
+   	swal ( "<?=t_error;?>" ,  "<?=t_upload_the_document_picture;?>" ,  "error" );
+   	return;
+   }
+   	swal({
+   		title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?></b></font>",
+   		text: "<font style='font-size:22px'><?=t_want_confirm_payment;?></font>",
+   		type: "warning",
+   		showCancelButton: true,
+   		confirmButtonColor: '#5CB85C',
+   		confirmButtonText: '<?=t_yes;?>',
+   		cancelButtonText: "<?=t_no;?>",
+   		closeOnConfirm: false,
+   		closeOnCancel: true,
+   		html: true
+   	},
+   	function(isConfirm){
+   	    if (isConfirm){
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) {
+   //						console.log(data);
+   				$('#html_work_action').html(data);
+   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   			});
+   	    } 
+   	});
+   }
+   function ApporvePayDriver(id,invoice,price,type){
+   console.log(id);
+   	swal({
+   		title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?></b></font>",
+   		text: "<font style='font-size:22px'><?=t_already_received;?></font>",
+   		type: "warning",
+   		showCancelButton: true,
+   		confirmButtonColor: '#5CB85C',
+   		confirmButtonText: '<?=t_yes;?>',
+   		cancelButtonText: "<?=t_no;?>",
+   		closeOnConfirm: false,
+   		closeOnCancel: true,
+   		html: true
+   	},
+   	function(isConfirm){
+   	    if (isConfirm){
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) {
+   //						console.log(data);
+   				$('#html_work_action').html(data);
+   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   			});
+   	    } 
+   	});
+   }
+  
 </script>

@@ -25,11 +25,15 @@ $arr[project][id]=$_GET[id];
   $(".text-topic-action-mod-3").html('เอกสารจ่ายเงิน');
   </script>
     <script>
-  $('#btn_close_upload_pay_popup').click(function(){   
+  $('#btn_close_upload_pay_popup').click(function(){ 
+    $('#dialog_custom').hide();
+		 	$('#main_load_mod_popup_clean').hide();
   $( "#main_load_mod_popup_3" ).toggle();
  $( "#load_mod_popup_3" ).html('');
+ 
   	});
 	  </script>
+<input type="hidden" id="check_open_popup3" value="1" />	  
 <table width="300" border="0" align="center" cellpadding="5" cellspacing="5" style="margin-top: 10px;">
   <tbody>
   	<tr>
@@ -94,6 +98,10 @@ $arr[project][id]=$_GET[id];
    <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" onkeypress="PasswordEnter(this,event)"   value="<?=$_GET[type]?>" />
    <input type="hidden" value="0" id="check_img_<?=$_GET[type]?>"/>
  <script>
+ $('.button-close-popup-mod-3').click(function(){
+ 	$('#dialog_custom').show();
+	$('#main_load_mod_popup_clean').show();
+ });
  $.ajax({
     url: '../data/fileupload/doc_pay_driver/<?=$_GET[type]?>_<?=$_GET[id];?>.jpg',
     type:'HEAD',

@@ -14,7 +14,7 @@ if($data_user_class=='taxi'){
 			$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
   			$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_park][driver_approve_pay_date]).'</span>';
   			$btn_row_approve = 'display:none;';
-  			$alert_history ="swal('".t_history."' ,'".t_pay_on."' ".date('Y-m-d H:i:s', $arr[pay_park][last_update]).t_n." ' ,'success');";
+  			$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_park][last_update]).t_n." '  ,'success');";
 		}else{
 			$color_menu = 'background-color:#ecb304;';
 			$txt_pay = '<font style="color:#ecb304;">'.t_paid.'</font>';
@@ -138,7 +138,7 @@ else if($data_user_class=='lab'){
   		$color_red = '';
   		$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
   		$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_person][last_update]).'</span>';
-  		$alert_history = "swal('".t_history."' ,'".t_pay_on."' ".date('Y-m-d H:i:s', $arr[pay_person][last_update]).t_n." ' ,'success');";
+  		$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_person][last_update]).t_n." '  ,'success');";
   }	else{
   		$btn_row_approve = '';
   		$color_red = 'background-color: #f00000;';
@@ -223,7 +223,8 @@ else if($data_user_class=='lab'){
 		 	console.log(url_load);
 		 	$('#load_mod_popup_3').html(load_main_mod);
 		 	$('#load_mod_popup_3').load(url_load); 
-			
+			$('#dialog_custom').hide();
+		 	$('#main_load_mod_popup_clean').hide();
 		});
 		$.ajax({
 		    url: '../data/fileupload/doc_pay_driver/<?=$type;?>_<?=$arr[project][id]?>.jpg',

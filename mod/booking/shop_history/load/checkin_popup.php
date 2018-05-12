@@ -173,6 +173,7 @@
 	$('#<?=$_GET[type]?>_check_click').val(1);
 	$("#box_<?=$_GET[type]?>").removeClass('border-alert');
 	if(res.next_step=="finish"){
+		$('.btn_filter_active').click();
 		return;
 	}
 	$("#step_"+res.next_step+"").show();

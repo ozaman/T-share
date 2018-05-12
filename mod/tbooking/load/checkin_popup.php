@@ -176,13 +176,9 @@
 	console.log('++++++++++++');
 	if("<?=$last_step;?>"=="driver_checkcar"){
 		var driver = $('#driver').val();
-		$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver},function(res_api_hit){
-		   		console.log(res_api_hit);
-		   		if(res_api_hit.status=="200"){
-		   			dataHistoryA = res_api_hit.data.result;
-					eachObjHistory();
-				}
-			});	
+		callApiManage();
+		callApiLog();
+		
 		return;
 	}
 	$("#step_<?=$next_step;?>").show();
