@@ -1,12 +1,11 @@
-<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
 
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
   
 </script>
+<style>
 
+</style>
 <style>
 @media screen and (max-width: 320px) {
    .font-22{
@@ -295,10 +294,17 @@
      $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 	 $res[web_user] = $db->select_query("SELECT id FROM web_driver WHERE username='" . $_SESSION['data_user_name'] . "'    ");
      $arr[web_user] = $db->fetch($res[web_user]);
+     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+     $res[deposit] = $db->select_query("SELECT id,deposit,balance FROM deposit WHERE username='" . $_SESSION['data_user_name'] . "'    ");
+     $arr[deposit] = $db->fetch($res[deposit]);
      
      
       ?>
 <input id="driver" value="<?=$arr[web_user][id];?>" type="hidden" />
+<div style="
+    padding: 10px 20px;
+   /* border: 1px solid #ddd;*/margin: 15px 0px;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".$arr[deposit][balance]." ฿";?></span></div>
   <!-- <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
 		<table width="100%">
 			<tbody>
@@ -356,6 +362,8 @@
        }, 500);
    </script>
    
+   
+
    <div id="load_booking_data"  style="padding:0px; margin-top:10px;" align="center">
      
    </div>
@@ -438,7 +446,7 @@
 		         +'<tbody>'
 		         	+'<tr>'
 		         		+'<td width="30">'
-		         			+'<div style="margin-top: -17px;margin-left: 5px;">'
+		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
 							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
 							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
 							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
@@ -447,10 +455,14 @@
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
-					              +'<td width="100%"><span class="font-24 ">'+pickup_place+'</span></td>'
+					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
 					            +'</tr>'
 					            +'<tr style="line-height: 1.5;">'
-					               +'<td width="100%"><span class="font-24 ">'+to_place+'</span></td>'
+					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
+					            +'</tr>'
+					             +'<tr>'
+					               +'<td><strong><span class="font-22 "><?=t_pay_cash;?></span>&nbsp;&nbsp;<span class="font-22 ">750 <?=t_THB;?></span></strong></td>'
+					               
 					            +'</tr>'
 					            +'<tr>'
 					               +'<td><span class="font-20 ">'+ondate+'&nbsp;&nbsp;'+time+'</span></td>'

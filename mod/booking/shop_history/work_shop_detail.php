@@ -63,17 +63,19 @@ function checkTypePay($id){
 		else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
-	  $arr[project] =  $arr[book]; 
-		
+	if($arr[book][driver_complete]==1){
+		$cancel_shop = 'display:none;';
+	}
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div class="assas_<?=$_POST[id];?> " style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;/*border: 1px solid #3b5998;border-radius: 15px;*/margin-top: 5px;" >
 	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
-    top: 40px;">
+    top: 40px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
+	
 	<div id="status_booking_detail" class="font-30" style="margin-top: 10px;"><b><?=$status_txt;?></b></div>
 	<span class="font-28"><?=$arr[place_shop][$place_shopping];?></span>
 	
@@ -284,6 +286,7 @@ function checkTypePay($id){
 	  	$('#body_dialog_custom_load').load(url_load); 
 	}
 	function cancelBook(id){
+	
      swal({
    title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
    text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+"<table width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",

@@ -150,6 +150,10 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
 	
+	$data_ob[driver_payment] = 1;
+	$data_ob[driver_payment_date] = time();
+	$data[result_ob] = $db->add_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
+	
 	echo json_encode($data);
 	?>
 	<script>

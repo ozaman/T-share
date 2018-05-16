@@ -208,8 +208,7 @@
    background: #59AA47 !important;
    color: #fff;
    }
-</style>
-<style>
+
 .box_his,.box_book{
 	padding: 5px 0px;
     border: 1px solid #3b5998;
@@ -292,7 +291,6 @@
 				</td>
 			
 			</tr>
-			
 		</tbody>
 		</table>
 	</div>   
@@ -394,4 +392,12 @@ FilterType('ic_shop');
 		}
 		
    }
+   
+   function ViewPhoto(id,type,date){
+		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
+		console.log(url);
+		$( "#load_mod_popup_photo" ).toggle();
+		$('#load_mod_popup_photo').html(load_main_mod);
+ 	 	$('#load_mod_popup_photo').load(url); 
+	}	
 </script>
