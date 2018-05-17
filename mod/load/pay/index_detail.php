@@ -1,3 +1,4 @@
+
 <div style="font-size: 18px;
     font-weight: 600;
     padding: 0px 10px;
@@ -29,7 +30,7 @@
  $arr[price] = $db->fetch($res[price]) ;
  
  ?>
-						
+            
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr >
      
@@ -59,8 +60,8 @@
      </td>
   </tr>
 </table>
-						
- 	</div>
+            
+  </div>
   <div>
      <table>
         <tr>

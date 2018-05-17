@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div  style="padding-top:0px; padding:5px;margin-top: 50px; ">
 
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
@@ -30,25 +31,18 @@
     border: 1px solid #3b5998;
     border-radius: 15px;
 ">
+=======
+>>>>>>> 2f1f57989a9245fc85e18f05ef95bdbd3c977720
 
 
- <?php 
- include('../../../includes/class.mysql.php');
-
+<div id="load_body_mode" style="display: none">
   
-  $db = New DB();
-  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
-  
-  mysql_query("SET NAMES utf8"); 
-  mysql_query("SET character_set_results=utf-8");
-//   // $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-//   $res[project] = $db->select_query("SELECT id FROM  web_driver  where  username ='".$_POST[driver]."'");
-// $arr[project] = $db->fetch($res[project]);
- $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
- $res[price] = $db->select_query("SELECT * FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
-                      
- $arr[price] = $db->fetch($res[price]) ;
+</div>
+<script >
+  $('#load_body_mode').show();
+  $('#load_body_mode').html('');
  
+<<<<<<< HEAD
  ?>
 						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
@@ -97,3 +91,18 @@
   <script>
 $('.text-topic-action-mod').html('<?echo t_transfers ?>');
   </script>
+=======
+  $('.text-topic-action-mod').html('โอนเงิน');
+  $('#main_load_mod_popup').show();
+  var url_load = "go.php?name=load/pay&file=index_detail";
+  
+   //$('#load_th').load('load/page/loading.php');
+    
+  
+  //     $.post( url_load, function( data ) {
+  //   $('#load_body_mode').html(data);
+  // });
+
+</script>
+
+>>>>>>> 2f1f57989a9245fc85e18f05ef95bdbd3c977720

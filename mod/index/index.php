@@ -327,8 +327,9 @@
       $('#main_load_mod_popup').show();
       var url_load= "load_page_mod.php?name=pay&file=money_transfer"
    //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
-       $('#load_mod_popup').html(load_main_mod);
+      
        $('#load_mod_popup').load(url_load); 
+        $('#load_mod_popup').html(url_load);
    }
    function workTbooking(){
      	ckeckhis = false;

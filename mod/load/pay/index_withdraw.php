@@ -1,18 +1,24 @@
-<link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css"> 
-<!-- <script src="js/jquery-main.js"></script>  -->
-<!-- <script   src="calendar/js/th.js"></script> -->
+<?php 
+ include('../../../includes/class.mysql.php');
+
+  
+  $db = New DB();
+  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  
+  mysql_query("SET NAMES utf8"); 
+  mysql_query("SET character_set_results=utf-8");
+//   // $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+//   $res[project] = $db->select_query("SELECT id FROM  web_driver  where  username ='".$_POST[driver]."'");
+// $arr[project] = $db->fetch($res[project]);
+ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[driver] = $db->select_query("SELECT * FROM  web_driver where username  = '".$_COOKIE["app_remember_user"]."' ");
+                      
+ $arr[driver] = $db->fetch($res[price]) ;
+ 
+ ?>
+      
 
 
- <!-- <script   src="calendar/js/th.js"></script> -->
-
-<link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" /> 
-<link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" /> 
-<script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
-<script src="pickerdate/picker.date.js?v=<?=time();?>" type="text/javascript"></script>
-
-</table>
-            
-</div>
 <div style="font-size: 18px;
     font-weight: 600;
     padding: 0px 10px;
@@ -35,9 +41,9 @@
         <tr>
           <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_transfer_banks?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
-            <select class="form-control" name="bank" id="bank" style="border-radius: 25px;padding: 0 15px;">             
-                <option > ไทยภานิชย์(SCB) </option>
-            </select>
+            <!-- <select class="form-control" name="bank" id="bank" style="border-radius: 25px;padding: 0 15px;">   -->           
+                <div > <?= $arr[driver][pay_bank];?></div>
+            <!-- </select> -->
                  
         </td>
           
@@ -105,54 +111,3 @@
 </table>
             
   </div>
- 
-  <script>
-    $('.text-topic-action-mod').html('แจ้งโอน');
-     var url_load= "go.php?name=booking/load/form&file=checkin_request&id=<?=$_COOKIE["app_remember_user"];?>&type=money_request";
-      
-        $('#money_request').html(url_load);
-     
-        $('#money_request').load(url_load); 
-    var date=$('#date_request').val();
-//console.log(date)
-
-// $("#icon_camera_checkin").click(function(){  
- 
-//   document.getElementById('upload_pic_type').value='<?=$_GET[type]?>';
- 
-//   $("#load_chat_camera").click(); 
-  
-//   });
-    $('#date_request').pickadate({
-        format: 'yyyy-mm-dd',
-        formatSubmit: 'yyyy/mm/dd',
-        closeOnSelect: true,
-        closeOnClear: false,
-        "showButtonPanel": false,
-        onStart: function() {
-          console.log(date)
-            this.set('select', date); // Set to current date on load
-            var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["app_remember_user"];?>&date="+date;
-   $('#load_th').show();
-   //$('#load_th').load('load/page/loading.php');
-    $('#load_th').load(url_place_th); 
-   
-        },
-      onSet: function(context) {
-             var date=$('#date_request').val();
-          var url_place_th = "go.php?name=load/pay&file=index_job&server=th&driver=<?=$_COOKIE["app_remember_user"];?>&date="+date;
-   $('#load_th').show();
-   //$('#load_th').load('load/page/loading.php');
-    $('#load_th').load(url_place_th); 
-
-  
-  
-  
-  
-
-          //QueryData();
-      }
-        });
-$('.text-topic-action-mod').html('<?echo t_transfer_notice?>');
-
-  </script>
