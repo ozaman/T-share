@@ -156,6 +156,7 @@
       </tbody>
    </table>
 </div>
+
 <script>
    setInterval(function() {
    var url_check_data_time = "load_blank.php?name=load/update&file=time&driver=<?=$driver_id?>";
@@ -215,17 +216,20 @@
       </tr>
       <tr>
          <td width="50%" align="center" class="">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
+            <span id="number_tbooking" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: 12px 4px">0</span>
             <center>
             <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
                <center>
                <div  class="circle-menu"  style="background-color: #F7941D ">
-                  <center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
+                  <i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
                </div>
                <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_job_received?> </span>
                </center>
+               
             </button>
+            
             </center>
+            
          </td>
          <td width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
@@ -617,6 +621,7 @@
         //on message received we print all the data inside the #container div
         socket.on('notification', function (data) {
         res_socket = data.transfer[0];
+        $('#number_tbooking').text(data.transfer[0].length);
 	        if($('#check_open_worktbooking').val()==1){
 	        console.log(data.transfer);
 	//        console.log('now open popup');
