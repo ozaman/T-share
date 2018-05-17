@@ -72,54 +72,7 @@
                   <script> 
                      window.scrollTo(0,1);
                   </script>
-                  <?  include "load/page/index.php" ;
-                     ?> 
-                  <? //  include ("google/check/popup.php");?>  
-                  <?php
-                     function chkBrowser($nameBroser){
-                     	return preg_match("/".$nameBroser."/",$_SERVER['HTTP_USER_AGENT']);
-                     }
-                     ?>
-                  <?php
-                     if(chkBrowser("MSIE")==1){
-                     	$chk="IE";
-                     	if(chkBrowser("MSIE 8")==1){
-                     	echo "MSIE 8";
-                     		// IE 8
-                     	}elseif(chkBrowser("MSIE 7")==1){
-                     	echo "MSIE 7";
-                     		// IE 7	
-                     	}elseif(chkBrowser("MSIE 6")==1){
-                     	echo "MSIE 6";
-                     		// IE 6	
-                     	}else{
-                     		// IE อื่นๆ 
-                     	}	
-                     }
-                     elseif(chkBrowser("Firefox")==1){
-                     $chk="Firefox";
-                     	// Firefox
-                     }
-                     elseif(chkBrowser("Chrome")==1){
-                     $chk="Chrome";
-                     }
-                     elseif(chkBrowser("Chrome")==0 && chkBrowser("Safari")==1){
-                     $chk="Safari";
-                     	// Safari
-                     }
-                     elseif(chkBrowser("Opera")==1){
-                     $chk="Opera";
-                     	// Opera
-                     }elseif(chkBrowser("Netscape")==1)
-                     {
-                     $chk="Netscape";
-                     	// Netscape
-                     }
-                     else{
-                     	// Other
-                     }
-                     ///echo $chk;
-                     ?>
+                  <?  include "load/page/index.php" ;?> 
                </td>
             </tr>
          </table>
