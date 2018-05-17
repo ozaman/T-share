@@ -1,4 +1,7 @@
 
+<<<<<<< HEAD
+<div  id="load_money" style="display: none;" > 
+=======
 <!-- <div id="box_body_mode">
     
 </div> -->
@@ -53,6 +56,7 @@
 </div>
 
 <div id="load_body_mode" style="display: none">
+>>>>>>> 2f1f57989a9245fc85e18f05ef95bdbd3c977720
   
 </div>
 	

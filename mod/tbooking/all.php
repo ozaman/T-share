@@ -547,6 +547,8 @@
 	}
 	
 	function hideDetail(){
+		$('#load_mod_popup_clean').css('animation','unset'); 
+		console.log('hideDetail');
 		$('#main_load_mod_popup_clean').hide(); 
 		$('#show_main_tool_bottom').fadeIn(500); 
 //		$('#main_component').addClass('w3-animate-left');

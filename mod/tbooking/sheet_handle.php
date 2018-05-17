@@ -14,6 +14,15 @@
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
+.font_close_icon {
+    font-size: 36px;
+}
+@media screen and (max-width: 320px){
+	.font_close_icon {
+    	font-size: 32px;
+	}
+}
+
 td{
 	font-size: 14px;
 }
@@ -85,7 +94,11 @@ td{
 }
 
 </style>
+<script>
+	$('#load_mod_popup_clean').css('animation','showSweetAlert 0.4s');
+</script>
 <?php 
+	$color_main_use = '#3b5998';
 	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 	$res[cartype] = $db->select_query("SELECT id, drivername,car_type, car_brand, car_sub_brand,car_color,plate_color,plate_num,province FROM web_carall where id = ".$_POST[carid]." ");
 	$arr[cartype] = $db->fetch($res[cartype]);
@@ -104,10 +117,13 @@ td{
 	$res[com] = $db->select_query("SELECT id, company FROM web_admin where id = ".$_POST[program][company]." ");
 	$arr[com] = $db->fetch($res[com]);
 ?>
-<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
+<!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
+<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
+<a  onclick="hideDetail();"  style="position:  absolute; right: 15px;" ><i class="fa fa-times font_close_icon" aria-hidden="true"></i></a>
+</div>
+<div style="margin-top: 0px;padding: 5px;">
 <span style="font-size: 16px;"></span>
-   <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;">
+   <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
    <table width="100%" border="0" cellspacing="2" cellpadding="2">
       <tbody>
          <tr>
@@ -172,12 +188,12 @@ td{
                                  	<div onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');">
                                     <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
                                    target="_blank"> 
-                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
+                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:<?=$color_main_use;?>"></i>
                                     </a>
                                     </div>
                                  </td>
                                  <td width="40" style="padding-right:10px; ">                                                                                      
-                                 <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                 <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:<?=$color_main_use;?>"></i></a>
                                  </td>
                               </tr>
                            </tbody>
@@ -210,12 +226,12 @@ td{
                                     <div onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');">
                                        <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
                                        target="_blank">
-                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i> </a>
+                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:<?=$color_main_use;?>"></i> </a>
                                     </div>
                                  </td>
                                  <td width="40" style="padding-right:10px; ">
                                     <div>
-                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:<?=$color_main_use;?>"></i></a>
                                     </div>
                                  </td>
                               </tr>
@@ -324,17 +340,17 @@ td{
                         <tbody>
                            <tr>
                               <td width="35" valign="top" align="center"><i class="fa fa-car" style="color:#666666; font-size:15px;"></i></td>
-                              <td width="120" valign="top" class="td-text text-cap"><b>Car</b></td>
+                              <td width="120" valign="top" class="td-text text-cap"><b><?=t_brand;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$arr[cartype][car_brand]." ".$arr[cartype][car_sub_brand];?></span>
                               </td>
                            </tr>
                            <tr>
-                              <td width="35" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="35" valign="top" align="center"><i class="fa fa-clipboard" style="color:#666666; font-size:16px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_car_registration_number;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$arr[cartype][plate_num]." ".$arr[cartype][province];?></span></td>
                            </tr>
                            <tr>
-                              <td width="35" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="35" valign="top" align="center"><i class="fa fa-users" style="color:#666666; font-size:16px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car][cartype][$car_pax];?></span></td>
                            </tr>

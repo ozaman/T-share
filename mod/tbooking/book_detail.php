@@ -1,4 +1,12 @@
 <style>
+.font_close_icon {
+    font-size: 36px;
+}
+@media screen and (max-width: 320px){
+	.font_close_icon {
+    	font-size: 32px;
+	}
+}
 	.topictransfer1 {
     padding-top: 8px;
     font-family: Arial, Helvetica, sans-serif;
@@ -87,6 +95,9 @@ td{
 }
 
 </style>
+<script>
+	$('#load_mod_popup_clean').css('animation','showSweetAlert 0.4s');
+</script>
 <?php 
 	/*$db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
 	$res[cartype] = $db->select_query("SELECT id, topic_en, topic_cn, topic_th, pax, pax_cn, pax_th FROM web_carall_type where id = ".$_POST[cartype]." ");
@@ -102,10 +113,13 @@ td{
 	}
 	$car_type = $_POST[car_type][$place_shopping];
 ?>
-<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div style="margin-top: 0px;padding: 5px;" class="w3-animate-right">
+<!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
+<div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
+<a onclick="hideDetail();" style="position:  absolute; right: 15px;" ><i class="fa fa-times font_close_icon" aria-hidden="true"></i></a>
+</div>
+<div style="margin-top: 0px;padding: 5px;" >
 <span style="font-size: 16px;"></span>
-   <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;box-shadow: 0px -5px 5px #f6f6f6; padding:5px;">
+   <div style="margin-left:0px;  margin-right: 0px; margin-top:0px;/*box-shadow: 0px -5px 5px #f6f6f6;*/ padding:5px;">
    <table width="100%" border="0" cellspacing="2" cellpadding="2">
       <tbody>
          <tr>
@@ -329,7 +343,7 @@ td{
                               <td valign="top" class="td-text"><span class="font-22"><?=$car_type;?></span></td>
                            </tr>
                            <tr>
-                              <td width="20" valign="top" align="center"><i class="fa fa-male" style="color:#666666; font-size:18px;"></i></td>
+                              <td width="20" valign="top" align="center"><i class="fa fa-users" style="color:#666666; font-size:18px;"></i></td>
                               <td width="120" valign="top" class="td-text text-cap"><b><?=t_capacity;?></b></td>
                               <td valign="top" class="td-text"><span class="font-22"><?=$_POST[car_type][$car_pax];?></span></td>
                            </tr>

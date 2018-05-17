@@ -3210,34 +3210,3 @@ font-family:Tahoma,Arial, Helvetica, sans-serif;
 
 
 </style>
-
-<!-- Modal Big -->
-  <div class="modal fade" id="box_big" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">         
-    <div class="modal-body"></div>    
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal Big His -->
-  <div class="modal fade" id="box_big_his" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:80%">
-      <div class="modal-content">         
-    <div class="modal-body"></div>    
-    </div>
-  </div>
-</div>
-
-<!-- Modal Big His -->
-  <div class="modal fade" id="box_big_control" role="dialog">
-    <div class="modal-dialog modal-lg" style="width:80%">
-      <div class="modal-content">         
-    <div class="modal-body_control"></div>    
-    </div>
-  </div>
-</div>
-
- 
- 
