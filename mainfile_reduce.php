@@ -67,7 +67,7 @@ if (file_exists($modpathfile)) {
 	$MODPATHFILE = $modpathfile;
 	$MODPATH = "mod/".$name."/";
 	}else{
-	die ("page not found...");
+	die ("page not found...".$file);
 	}
 } 
 

@@ -1,10 +1,11 @@
 <script>
-   var url_guest_register = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[project][id];?>&request=check_status_checkin&type=check_guest_register&time=<?=$arr[project][guest_register_date]?>&status=<?=$arr[project][check_guest_register]?>";
+   var url_guest_register = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_guest_register&time=<?=$arr[book][guest_register_date]?>&status=<?=$arr[book][check_guest_register]?>";
    $('#status_guest_register').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?=t_load_data;?>');
+   console.log(url_guest_register);
    $('#status_guest_register').load(url_guest_register);
 </script>
 <? 
-   if($arr[project][check_guest_register]==1 ){ ?>
+   if($arr[book][check_guest_register]==1 ){ ?>
 <script> 
    $("#step_driver_pay_report").show();
       $('#iconchk_guest_register').attr("src", "images/yes.png");  
@@ -26,16 +27,16 @@
       <tr>
          <td style="height:30px;">
             <div  id="status_guest_register" ></div>
-            <input type="hidden" value="<?=$arr[project][check_guest_register];?>" id="guest_register_check_click"/>
+            <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click"/>
          </td>
          <td  width="30">
-            <i  id="photo_guest_register" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "  onclick="ViewPhoto('<?=$arr[project][id];?>','guest_register','<?=$arr[project][guest_register_date]?>');" ></i>
+            <i  id="photo_guest_register" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "  onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');" ></i>
          </td>
       </tr>
    </tbody>
 </table>
 <?php 
-   if(file_exists("../data/fileupload/store/guest_register_".$arr[project][id].".jpg")==0){ ?>
+   if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
 <script>
    $('#photo_guest_register').css('color','#3b59987a');
    $('#photo_guest_register').css('border','1px solid #3b59987a');
@@ -47,7 +48,7 @@
    $("#btn_guest_register").click(function(){ 
      if($('#guest_register_check_click').val()==0){
    /*	$( "#main_load_mod_popup_3" ).toggle();
-    var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[project][id]?>&type=guest_register";
+    var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
     $('#load_mod_popup_3').html(load_main_mod);
     $('#load_mod_popup_3').load(url_load); */
     $( "#dialog_custom" ).show();

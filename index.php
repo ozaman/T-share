@@ -397,9 +397,17 @@
          color: #fff;
          }
          #load_modal_body{
-         overflow : auto;
-         max-height: 400px;
+         	overflow : scroll;
+         	max-height: 500px;
          }
+         @media screen and (max-height: 568px) {
+         	#load_modal_body{
+	      
+         	overflow : scroll;
+	         max-height: 400px;
+	         }
+         }
+
       </style>
       <style>
          a:link {
@@ -600,7 +608,7 @@
                <div class="modal-header" style="padding: 10px;">
                   <h4 class="modal-title font-26" id="dialoglLabel" >Add Department</h4>
                </div>
-               <div class="modal-body" id="load_modal_body">
+               <div class="modal-body" id="load_modal_body" style="-webkit-overflow-scrolling: touch;">
                </div>
                <div class="modal-footer" style="padding: 7px 5px;margin-top: 5px;">
                   <button type="button" class="btn btn-dialog font-22 text-cap" onclick="$('#material_dialog').hide();" id="cancel_dialog"><?=t_close;?></button>

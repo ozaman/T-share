@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
+
 <style>
 	.box-shadow-only{
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
@@ -135,6 +136,7 @@
    z-index: 1;
    }
 </style>
+<input id="check_open_worktbooking" value="0" type="hidden"/>
 <div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:0px;" >
    <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:0px;position: absolute; margin-top: 10px;">
       <tbody>
@@ -193,7 +195,7 @@
             <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
                <center>
                   <div  class="circle-menu" style="background-color:#34A0E7"><i class="fa fa-history"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap">ประวัติช๊อปปิ้ง</span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_customer_history;?></span>
                </center>
             </button>
             </center>
@@ -215,7 +217,7 @@
          <td width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
             <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%" onclick="workTbooking();">
                <center>
                <div  class="circle-menu"  style="background-color: #F7941D ">
                   <center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
@@ -228,55 +230,38 @@
          <td width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
             <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer"   style="width:100%">
+            <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
                <center>
                <div  class="circle-menu"  style="background-color: #F7941D ">
-                  <center><i class="icon-new-uniF10A-9" style="font-size:30px; margin-left:-7px;  "  ></i>
+                  <center><i class="fa fa-history" style="/*font-size:30px; margin-left:-7px;*/  "  ></i>
                </div>
-               <span style="padding-bottom:20px;" class="font-20 text-cap">ประวัติรถรับส่ง </span>
+               <span style="padding-bottom:20px;" class="font-20 text-cap"><?=t_transfer_his;?> </span>
                </center>
             </button>
             </center>
          </td>
-         <!-- <td  width="50%" align="center" class="">
-            <button type="button" class="btn btn-default paddling-max"  style="width:100%" onclick="workTbooking();" >
-            <input id="check_open_worktbooking" value="0" type="hidden"/>
-               <center>
-                  <div  class="circle-menu" style=" background-color:#F7941D;font-size: 26px;"><strong style="margin-left:-8px;margin-top: -3px;position: absolute;">T</strong></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "T-Booking" ?></span>
-               </center>
-            </button>
-         </td> -->
       </tr>
-
-         <!-- <td align="center" class="">
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_payment" onclick="expenses()"  style="width:100%">
-               <center>
-                  <div  class="circle-menu" style=" background-color:#FF0000"><i class="demo-icon icon-money-payment" style="margin-left:-5px; font-size:28px;"></i> </div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_expenses ?></span>
-               </center>
-            </button>
-         </td> -->
-      </tr>
-      <!-- <tr>
-         <td width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  id="index_menu_account"   style="width:100%">
-               <center>
-                  <div  class="circle-menu" style=" background-color:#00AEEF"><i class="fa fa-user"   ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_my_account ?></span>
-               </center>
-            </button>
-         </td>
-         <td width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  id="index_menu_setting"   style="width:100%">
-               <center>
-                  <div  class="circle-menu" ><i class="fa fa-cog"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_help_tools ?></span>
-               </center>
-            </button>
-         </td>
-      </tr> -->
       <tr>
+         <td align="center" class="">
+            <center>
+            <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
+               <center>
+                  <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
+               </center>
+            </button>
+            </center>
+         </td>
+        <td align="center" class="">
+           <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+               <center>
+                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
+               </center>
+            </button>
+         </td>
+	 </tr>
+	  <tr>
          <td  width="50%" align="center" class="">
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF;  display:NONE " id="number_bottom_chat2"  ><span  class="font-20" > 0 </span></span>
             <center>
@@ -289,57 +274,33 @@
             </button>
          </td>
          <td width="50%" align="center" class="">
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
+         	<a href="https://www.welovetaxi.com/app/booking2/">
+            <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
-                  <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
+                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-taxi" ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "จองรถ"; ?></span>
                </center>
             </button>
+            </a>
          </td>
       </tr>
-      <tr>
-         <td align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
-               <center>
-                  <div  class="circle-menu"   > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
-               </center>
-            </button>
-         </td>
-         <td align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"   onclick="revenue()"  id="index_menu_income"   style="width:100%">
-               <center>
-                  <div  class="circle-menu"    > <i class="icon-new-uniF121-10" style="margin-left:-3px;"></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_receipts?></span>
-               </center>
-            </button>
-         </td>
-	  <!--  <tr>
-         <td  width="50%" align="center" class="tool-td-chat">
-            <button type="button" class="btn btn-default "  style="width:100%" onclick="workTbooking();" >
-            <input id="check_open_worktbooking" value="0" type="hidden"/>
-               <center>
-                  <div  class="circle-menu" style=" background-color:#ffc107;font-size: 26px;"><strong style="margin-left:-8px;margin-top: -3px;position: absolute;">T</strong></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "T-Booking" ?></span>
-               </center>
-            </button>
-         </td>
-         
-      </tr> -->
+	
    </tbody>
 </table>
 <script>
    var ckeckhis = false;
 
-   function revenue(){
+   function revenue2(){
       ckeckhis = false;
-     //alert('asasas')
-     // $( "#main_load_mod_popup" ).toggle();
       $('#main_load_mod_popup').show();
-      var url_load= "load_page_mod.php?name=pay&file=pay_job"
-   //    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+      var url_load= "load_page_mod.php?name=pay&file=pay_job";
+       console.log(url_load);
+       $('#load_mod_popup').html(load_main_mod);
+       $('#load_mod_popup').load(url_load); 
+   }
+   function revenue(){
+      $('#main_load_mod_popup').show();
+      var url_load= "load_page_mod.php?name=income&file=ic_main";
        console.log(url_load);
        $('#load_mod_popup').html(load_main_mod);
        $('#load_mod_popup').load(url_load); 
@@ -366,18 +327,20 @@
        $('#load_mod_popup').load(url_load); 
    }
    function workTbooking(){
-      ckeckhis = false;
+     	ckeckhis = false;
    		$('#main_load_mod_popup').show();
-   		var url_load= "load_page_mod.php?name=tbooking&file=all";
+   		var url_load = "load_page_mod.php?name=tbooking&file=all";
    		$('#load_mod_popup').html(load_main_mod);
         $('#load_mod_popup').load(url_load); 
         $('#check_open_worktbooking').val(1);
    }
-   // function closepop(x){
-   //   if (x == '7') {
-   //    $('#main_load_mod_popup_7').hide(500);
-   //   }
-   // }
+   function historyTransfer(){
+   		$('#main_load_mod_popup').show();
+   		var url_load= "load_page_mod.php?name=tbooking&file=his";
+   		$('#load_mod_popup').html(load_main_mod);
+        $('#load_mod_popup').load(url_load); 
+//        $('#check_open_worktbooking').val(1);
+   }
 </script>
 <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding:5px; display:none" >
    <tbody>
@@ -446,14 +409,14 @@
    $('#close_small_select').click(function(){
    	$('#popup_small_select').hide();
    });
-   $('#index_menu_transfer').click(function(){  
+   /*$('#index_menu_transfer').click(function(){  
    	  $("#main_load_mod_popup" ).toggle();
    	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list_test&lat="+$('#lat').val()+"&lng="+$('#lng').val()+"&transfer_work=true";
    //	  var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
    	  console.log(url_load);
    	  $('#load_mod_popup').html(load_main_mod);
    	  $('#load_mod_popup').load(url_load); 
-    	});
+    	});*/
     function openMainShop(province,province_name){
     	console.log(province+" : "+province_name);
 
@@ -510,19 +473,7 @@
      $('#index_menu_history_tour').click(function(){  
      alert('กำลังจะเปิดให้บริการ');
     });
-    ////// income 
-    $('#index_menu_income').click(function(){  
-    $( "#load_mod_popup_2" ).toggle();
-     var url_load= "load_page_mod_2.php?name=booking/account&file=index&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-     $('#load_mod_popup_2').html(load_main_mod);
-     /// $('#load_mod_data').html(load_main_mod);
-     $('#navload_topic').html('ไปที่หน้าแรก');
-     $('#load_mod_popup_2').load(url_load); 
-    });
-     //  $('#index_menu_payment').click(function(){  
-     // alert('กำลังจะเปิดให้บริการ');
-    // 
-    // });
+
      $('#index_menu_account').click(function(){  
      alert('กำลังจะเปิดให้บริการ');
     });
@@ -665,11 +616,11 @@
         //on message received we print all the data inside the #container div
         socket.on('notification', function (data) {
         res_socket = data.transfer[0];
-        if($('#check_open_worktbooking').val()==1){
-//        console.log(data.transfer);
-//        console.log('now open popup');
-		readDataBooking();
-		}
+	        if($('#check_open_worktbooking').val()==1){
+	        console.log(data.transfer);
+	//        console.log('now open popup');
+			readDataBooking();
+			}
         
 //        $('.list-container').remove();	
         

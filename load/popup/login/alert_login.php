@@ -182,11 +182,11 @@
                               </tr>
                               <tr>
                                  <td style="background-color:#FFFFFF "> 
-                                    <button type="button" id="submit_login" class="btn btn-repair waves-effect font-28" style=" width: 100%; background-color: #3b5998; border-radius:  25px;margin-top:15px;text-transform: capitalize;" ><?=t_log_in;?></button>
+                                    <button type="button" id="submit_login" class="btn btn-repair waves-effect font-26" style=" width: 100%; background-color: #3b5998; border-radius:  25px;margin-top:15px;text-transform: capitalize;" ><?=t_log_in;?></button>
                                  </td>
                               </tr>
                               <tr>
-                                 <td style="background-color:#FFFFFF "><button type="button" id="forget_inform_login" class="btn btn-repair waves-effect font-28" 
+                                 <td style="background-color:#FFFFFF "><button type="button" id="forget_inform_login" class="btn btn-repair waves-effect font-26" 
                                     style=" width: 100%; background-color: #666666; border-radius:  25px;margin-top:15px;text-transform: capitalize;"><?=t_forgot_password;?></button></td>
                               </tr>
                            </table>

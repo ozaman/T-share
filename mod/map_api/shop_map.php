@@ -3,15 +3,8 @@ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 $res[project] = $db->select_query("SELECT * FROM shopping_product where id=".$_GET[id]."  ");
 $arr[project] = $db->fetch($res[project]);
 
- $query_topic = "topic_cn"; 
-   	if($_COOKIE['lng']=="th"){
-   		$query_topic = "topic_th"; 
-   	}else if($_COOKIE['lng']=="en"){
-   		$query_topic = "topic_en"; 
-   	}else if($_COOKIE['lng']=="cn"){
-   		$query_topic = "topic_cn"; 
-   	}
- $res[projecttype] = $db->select_query("SELECT ".$query_topic." as name,id FROM shopping_product_sub where   id=".$arr[project][main]."  ");
+
+ $res[projecttype] = $db->select_query("SELECT ".$place_shopping." as name,id FROM shopping_product_sub where   id=".$arr[project][main]."  ");
  $arr[projecttype] = $db->fetch($res[projecttype]);
  
 $day_now =  date('D');
@@ -31,8 +24,8 @@ $day_now =  date('D');
        			</td>
        			<td >
        				<div class="element_to_find">
-       				<span class="font-22" style="color:<?=$main_color?>" ><? echo $arr[projecttype][name];?> </span><br>  
-       				<span class="font-22" style="color:#333333"><b><? echo $arr[project][$query_topic];?></span>
+       			
+       				<span class="font-22" style="color:#333333"><b><? echo $arr[project][$place_shopping];?></span>
        				</div>
        				</div>
        			</td>	

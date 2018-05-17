@@ -1,11 +1,4 @@
-<script>
-   //  $(".text-topic-action-mod" ).html("ส่งแขก > หมวดหมู่ทั้งหมด");
-     $(".text-topic-action-mod" ).html("<?=t_send_to_customer;?>");
-   //  $("#head_full_popup_icon" ).html('<i class="fa <?=$arr[project][logo_code]?>" style="font-size:30px; color:<?=$arr[project][text_color]?>; "></i>');
-//   	alert($('#province_text').text());
-//     $('.pv_name_btn').text( $('#province_text').text());
-     
-</script> 
+
 <style>
    .shop-main-icon {
    border-radius: 60px;
@@ -47,19 +40,20 @@ if($_COOKIE[lng]=="en"){
 }
 */
 ?>
+<script>
+   //  $(".text-topic-action-mod" ).html("ส่งแขก > หมวดหมู่ทั้งหมด");
+     $(".text-topic-action-mod" ).html("<?=t_send_to_customer;?> (<?=$province_name[$province];?>)");
+   //  $("#head_full_popup_icon" ).html('<i class="fa <?=$arr[project][logo_code]?>" style="font-size:30px; color:<?=$arr[project][text_color]?>; "></i>');
+//   	alert($('#province_text').text());
+//     $('.pv_name_btn').text( $('#province_text').text());
+     
+</script> 
 <div style="margin-top:45px;">
    <!--<div style="border: 1px solid rgba(153, 153, 153, 0.39);border-radius: 15px;padding: 5px; box-shadow: 0px 0px 0px #999999; margin-bottom:20px;" align="center" >-->
    <table width="100%">
-      <!--<tr>
-         <td colspan="2" align="center"><div class="box-show-pv" id="open_map" style="width: 150px;" ><strong><span style="font-size: 20px;">แผนที่</span></strong></div></td>
-         </tr>-->
       <tr>
-         <td width="50%" align="center">
-  
-            <div class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('stay');"><strong><span class="font-24 pv_name_btn text-cap"><?=$province_name[$province];?></span></strong></div>
-         </td>
-         <td width="50%" align="center">
-            <div class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-24 text-cap"><? echo t_provinces;?></span></strong></div>
+         <td width="100%" align="center">
+            <button style="max-width:250px;" class="btn-repair waves-effect box-show-pv"  onclick="ChangeProvince('other');"><strong><span class="font-24 text-cap"><? echo t_provinces;?></span></strong></button>
          </td>
       </tr>
    </table>
@@ -83,7 +77,7 @@ if($_COOKIE[lng]=="en"){
       }
    </script>
    <!--</div>-->
-   	<div class="w3-animate-bottom" style="overflow-x: hidden;">
+   	<div class="" style="overflow-x: hidden;">
    <?
       // echo $GET[province]." +++";
       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);

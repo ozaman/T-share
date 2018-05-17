@@ -63,40 +63,20 @@ function checkTypePay($id){
 		else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
-	  $arr[project] =  $arr[book]; 
-     /* $res[price] = $db->select_query("SELECT * FROM plan_product_price_name where  id=".$arr[book][plan_id]."   ");
-      $arr[price] = $db->fetch($res[price]);
-      $show_park = $arr[price][price_park];
-      $show_person = $arr[price][price_person];
-      $show_commision = $arr[price][price_commision];
-       if($show_park==1){	  
-      $status_show_park='show';	   	  
-       }
-       if($show_park==0){	  
-      $status_show_park='hide';	  	  
-       }
-       if($show_person==1){	  
-      $status_show_person='show';	   	  
-       }
-       if($show_person==0){	  
-      $status_show_person='hide';	    	  
-       }
-       if($show_commision==1){	  
-      $status_show_commision='show';	   	  
-       }
-       if($show_commision==0){	  
-      $status_show_commision='hide';	  
-       }*/		
+	if($arr[book][driver_complete]==1){
+		$cancel_shop = 'display:none;';
+	}
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div class="assas_<?=$_POST[id];?> w3-animate-right" style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;border: 1px solid #3b5998;border-radius: 15px;margin-top: 5px;" >
+<div class="assas_<?=$_POST[id];?> " style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;/*border: 1px solid #3b5998;border-radius: 15px;*/margin-top: 5px;" >
 	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
-    top: 0px;">
+    top: 40px;<?=$cancel_shop;?>">
 		<span class="font-24 text-cap"><?=t_cancel;?></span>
 	</button>
-	<div id="status_booking_detail" class="font-30"><b><?=$status_txt;?></b></div>
+	
+	<div id="status_booking_detail" class="font-30" style="margin-top: 10px;"><b><?=$status_txt;?></b></div>
 	<span class="font-28"><?=$arr[place_shop][$place_shopping];?></span>
 	
 	<table width="100%" border="0" cellspacing="1" cellpadding="1">
@@ -241,84 +221,72 @@ function checkTypePay($id){
 	 <table width="100%">
 	 	<tr>
 	 		<td align="center">
-	 		<button class="btn btn-repair waves-effect" onclick="openViewPrice();" style="text-transform: unset;background-color: #3b5998;color: #fff;width: 80%;">
-	 		<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View </button>
+	 		<button class="btn btn-repair waves-effect" onclick="openViewPrice();" style="text-transform: unset;
+    background-color: #ffffff;
+    color: #3b5998;
+    width: 80%;
+    border: 1px solid #3b5998;">
+	 		<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<?=t_check_detail;?> </button>
 	 		</td>
 	 	</tr>
 	 </table>
 	</div>
-	<!--<div style="padding: 5px 0px;">
-   <span class="text-cap font-26"><?=t_income;?></span>
-   <table width="100%" border="0" cellpadding="1" cellspacing="3" id="table_show_hide_price_<?=$arr[book][invoice];?>" style="padding: 2px 10px;"> 
-      <tbody>
-         <tr style="display:nones">
-            <td colspan="3" class="font-26">
-               <table width="100%" border="0" cellspacing="2" cellpadding="2" class="div-all-price" >
-                  <tbody>
-                     <tr>
-                        <td colspan="2" class="font-26 text-cap"><b><a id="show_plan_setting_<?=$arr[book][id];?>"><?=checkTypePay($arr[price][id]);?></a></b></td>
-                     </tr>
-                     <tr>
-                        <td width="70"  class="font-22 text-cap"><b><?=t_nationality;?></b></td>
-                        <td class="font-22"><b> <img src="images/flag/China.png" width="30" height="30" alt="" style="margin-top:-5px;"/> <?=t_china;?></td>
-                     </tr>
-                  </tbody>
-               </table>
-            </td>
-         </tr>
-         <tr id="main_td_price_park_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/park.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_person_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/person.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_com_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/com.php");?>
-            </td>
-         </tr>
-         <tr id="main_td_price_all_<?=$arr[book][id];?>">
-            <td colspan="3" class="font-22">
-               <?  /// include ("mod/booking/load/form/price/com.php");?>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-</div>-->
+
 
 </div>
 <input type="hidden" id="check_cause" value="0"/>
 
-
-
-<script>
-	  /*console.log('person : <?=$show_person;?>, park : <?=$show_park;?>, com : <?=$show_commision;?>');
-  $('#main_td_price_park_<?=$arr[book][id];?>').<?=$status_show_park?>();
-  $('#main_td_price_person_<?=$arr[book][id];?>').<?=$status_show_person?>();
-  $('#main_td_price_com_<?=$arr[book][id];?>').<?=$status_show_commision?>();
-  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
-  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').click(function() {
-      ///// tool status
-      var tool_status = $("#table_show_hide_price_<?=$arr[book][invoice];?>").is(":hidden");
-      // $("#table_show_hide_price_<?=$arr[book][invoice];?>" ).show(); 
-      if (tool_status == true) {
-          $("#table_show_hide_price_<?=$arr[book][invoice];?>").show();
-          $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
-      } else {
-          $("#table_show_hide_price_<?=$arr[book][invoice];?>").hide();
-          $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-down" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;แสดง</span>');
-      }
-  });*/
-</script>
 <script>
 	var remark1 = '<?=t_customer_no_register;?>';
     var remark2 = '<?=t_customer_not_go;?>';
     var remark3 = '<?=t_wrong_selected_place;?>';
-   function cancelBook(id){
+    
+	$('#btn_div_dropdown_phone').click(function(e) {
+	    $("#main_load_mod_popup_4").toggle();
+	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
+	    $('#load_mod_popup_4').html(load_main_mod);
+	    console.log(url_load);
+	    $('#load_mod_popup_4').load(url_load);
+	});
+	
+	$('#btn_div_dropdown_zello').click(function(e) {
+	    $("#main_load_mod_popup_4").toggle();
+	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
+	    $('#load_mod_popup_4').html(load_main_mod);
+	    console.log(url_load);
+	    $('#load_mod_popup_4').load(url_load);
+	});
+	
+	$('#shop_sub_menu_map').click(function(){  
+
+	  console.log('lat '+$('#lat').val());
+	  console.log('lng '+$('#lng').val());
+	  $( "#main_load_mod_popup_map" ).toggle();
+	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
+	  url_load=url_load+"&lat="+document.getElementById('lat').value;
+ 	  url_load=url_load+"&lng="+document.getElementById('lng').value;
+  	  $('#load_mod_popup_map').html(load_main_mod);
+  	  $('#load_mod_popup_map').load(url_load); 
+
+ 	});
+</script>
+<script>
+	function ViewPhoto(id,type,date){
+		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
+		console.log(url);
+		$( "#load_mod_popup_photo" ).toggle();
+		$('#load_mod_popup_photo').html(load_main_mod);
+ 	 	$('#load_mod_popup_photo').load(url); 
+	}	
+	function openViewPrice(){
+		$( "#dialog_custom" ).show();
+	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
+	   	console.log(url_load);
+	   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+	  	$('#body_dialog_custom_load').load(url_load); 
+	}
+	function cancelBook(id){
+	
      swal({
    title: "<font style='font-size:28px'><b><? echo t_are_you_sure?> </b></font>",
    text: "<font style='font-size:22px'><? echo t_need_cancel_transfer?></font>"+"<table width='100%' style='margin:15px;'><tr><td width='40'><input id='remark1' onclick='check("+id+",1);' class='cause_"+id+"'  type='checkbox' value='1' style='display:block;height:25px;' /></td><td><label style='margin-top:8px;' for='remark1'>"+remark1+"</label></td></tr><tr><td width='40'><input id='remark2' onclick='check("+id+",2);' class='cause_"+id+"'  type='checkbox' value='2' style='display:block;height:25px;' /></td><td><label for='remark2' style='margin-top:8px;'>"+remark2+"</label></td></tr><tr><td width='40'><input id='remark3' onclick='check("+id+",3);' class='cause_"+id+"'  type='checkbox' value='3' style='display:block;height:25px;' /></td><td><label for='remark3' style='margin-top:8px;'>"+remark3+"</label></td></tr></table>",
@@ -363,59 +331,4 @@ function checkTypePay($id){
     $('#remark'+num).attr('checked', true);
     $('#check_cause').val(num);
    }
-
-	$('#btn_div_dropdown_phone').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
-	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
-	    $('#load_mod_popup_4').html(load_main_mod);
-	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
-	});
-	
-	$('#btn_div_dropdown_zello').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
-	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
-	    $('#load_mod_popup_4').html(load_main_mod);
-	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
-	});
-	
-	$('#shop_sub_menu_map').click(function(){  
-
-
-	$('.bottom_popup').hide();
-	  console.log('lat '+$('#lat').val());
-	  console.log('lng '+$('#lng').val());
-	  $( "#main_load_mod_popup_map" ).toggle();
-	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
-	  url_load=url_load+"&lat="+document.getElementById('lat').value;
- 	  url_load=url_load+"&lng="+document.getElementById('lng').value;
-  	  $('#load_mod_popup_map').html(load_main_mod);
-  	  $('#load_mod_popup_map').load(url_load); 
-
- 	});
-</script>
-<script>
-	function ViewPhoto(id,type,date){
-		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
-		console.log(url);
-		$( "#load_mod_popup_photo" ).toggle();
-		
-		$('#load_mod_popup_photo').html(load_main_mod);
-  		
-  		
- 	 $('#load_mod_popup_photo').load(url); 
- 	 
-// 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
-
-	}	
-	
-	function openViewPrice(){
-		$( "#dialog_custom" ).show();
-	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
-	   	console.log(url_load);
-	   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
-	  	$('#body_dialog_custom_load').load(url_load); 
-	}
-	
 </script>

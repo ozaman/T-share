@@ -68,7 +68,7 @@ $('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
  
   
 
-  <div style="top:0px; padding:10px; overflow: auto; width:100%; padding-bottom:50px;   ">   
+  <div style="top:0px; padding:10px; width:100%; padding-bottom:50px;   ">   
  
   <? include ("".$MODPATHFILE.""); ?>
   </div>

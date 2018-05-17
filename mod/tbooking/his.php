@@ -1,11 +1,12 @@
+<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
 
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
   
 </script>
-<style>
 
-</style>
 <style>
 @media screen and (max-width: 320px) {
    .font-22{
@@ -205,8 +206,7 @@
    background: #59AA47 !important;
    color: #fff;
    }
-</style>
-<style>
+
 .box_his,.box_book{
 	padding: 5px 0px;
     border: 1px solid #3b5998;
@@ -291,32 +291,18 @@
       else { 
       $filter=""; 
       }
-     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-	 $res[web_user] = $db->select_query("SELECT id FROM web_driver WHERE username='" . $_SESSION['data_user_name'] . "'    ");
-     $arr[web_user] = $db->fetch($res[web_user]);
-     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-     $res[deposit] = $db->select_query("SELECT id,deposit,balance FROM deposit WHERE username='" . $_SESSION['data_user_name'] . "'    ");
-     $arr[deposit] = $db->fetch($res[deposit]);
-     
      
       ?>
-<input id="driver" value="<?=$arr[web_user][id];?>" type="hidden" />
-<div style="
-    padding: 10px 20px;
-   /* border: 1px solid #ddd;*/margin: 15px 0px;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".$arr[deposit][balance]." ฿";?></span></div>
-  <!-- <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
+<input id="driver" value="<?=$_SESSION['data_user_id'];?>" type="hidden" />
+   <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
 		<table width="100%">
 			<tbody>
 			<tr>
-				<td width="33%"><div id="btn_job_now" class="btn_filter_active tocheck" align="center" onclick="FilterType('job_now');" ><span class="font-22"><?=t_now;?></span></div>
-				<span id="number_book" class="badge font-20" style="position: absolute;top: -3px;left:70px;font-size: 14px;background-color: #F44336;">0</span>
+				<td width="50%"><div id="btn_manage" class="btn_filter tocheck" align="center" onclick="FilterType('manage');" ><span class="font-22"><?=t_process;?></span></div>
+				<span id="number_manage" class="badge font-20" style="position: absolute;top: -3px;left:120px;font-size: 14px;background-color: #F44336;">0</span>
 				</td>
-				<td width="33%">
-				<div id="btn_manage" class="btn_filter tocheck" align="center" onclick="FilterType('manage');" ><span class="font-22"><?=t_manage;?></span></div>
-				<span id="number_manage" class="badge font-20" style="position: absolute;top: -5px;right: 110px;font-size: 14px;background-color: #F44336;">0</span>
-				</td>
-				<td width="33%">
+				
+				<td width="50%">
 				<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
 				<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>
 				</td>
@@ -324,8 +310,8 @@
 			</tr>
 		</tbody>
 		</table>
-	</div>  --> 
-   <div class="form-group" style="margin-bottom:5px;">
+	</div>   
+   <div class="form-group" style="margin-bottom:5px;display: none;">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
          <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
@@ -356,26 +342,194 @@
          			console.log('open');
               },
       		  onSet: function(context) {
-//      			apiServiceBooking();
+      			callApiLog();
       		  }
               });
        }, 500);
    </script>
    
-   
-
-   <div id="load_booking_data"  style="padding:0px; margin-top:10px;" align="center">
-     
+  
+   <div id="load_manage_data"  style="padding:0px; margin: 12px 0;display: nones;" class="w3-animate-bottom"  align="center">
+     	
    </div>
-
-
+   <div id="load_history_data"  style="padding:0px; margin: 12px 0;display: none;" class="w3-animate-bottom"  align="center">
+     	
+   </div>
+	<button onclick="callApiLog();" style="display: none;">TEST</button>
 </div>
 
 
 <script>
 
  	var dataHistoryA;
- 	
+ 	var historyObj = [];
+ 	var manageObj = [];
+	var driver = $('#driver').val();
+	$('#btn_manage').click();
+	callApiLog();
+    function callApiLog(){
+    	var date = $('#date_report').val();
+    	var driver = $('#driver').val();
+		$.post("mod/tbooking/curl_connect_api.php?type=history_booking",{driver:driver,date:date},function(res_api_hit){
+	   		console.log(res_api_hit);
+	   		var h = [];
+	   		if(res_api_hit.status=="200"){
+	   				historyObj = res_api_hit.data.result;
+	   				console.log("his : "+historyObj.length)
+		   			if(historyObj.length>0){
+						$('#number_history').text(historyObj.length);
+						
+					}
+					eachObjHistory();
+	   			}
+	});
+	}
+	
+	function callApiManage(){
+    	var date = $('#date_report').val();
+    	var driver = $('#driver').val();
+		$.post("mod/tbooking/curl_connect_api.php?type=manage_booking",{driver:driver, date:date},function(res_api_hit){
+	   		console.log(res_api_hit);
+	   		var m = [];
+	   		if(res_api_hit.status=="200"){
+	   				manageObj = res_api_hit.data.result;
+	   				console.log("manage : "+manageObj.length)
+		   			if(manageObj.length>0){
+						$('#number_manage').text(manageObj.length);
+						
+					}
+					eachObjManage();
+	   			}
+	});
+	}
+	
+   function eachObjManage(){
+//   	$('#load_manage_data .box_his').remove();
+   	$('#load_manage_data div').remove();
+    console.log(manageObj.length+"++++++++++");
+   	if(manageObj.length<=0){
+			$('#load_manage_data').append('<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
+			return;
+		}
+		console.log(manageObj.length)
+   	$.each(manageObj, function( index, value ) {
+   			console.log(value);
+   			  var id = "btn_"+index;
+		      var component2 = 
+		      '<div class="box_his">'
+		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
+   			  +'<div class="w3-bar-item">'
+		      +'<table width="100%">'
+		         +'<tbody>'
+		         	+'<tr>'
+		         		+'<td width="30">'
+		         			+'<div style="margin-top: -17px;margin-left: 5px;">'
+							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
+							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;/* margin-top: -10px; */" class="line-center"></div>'
+							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
+							+'</div>'
+		         		+'</td>'
+		         		+'<td>'
+		         			+'<table width="100%"  >'
+		         				+'<tr style="line-height: 1.5;" >'
+					              +'<td width="100%"><span class="font-24 ">'+value.pickup_place.topic+'</span></td>'
+					            +'</tr>'
+					            +'<tr style="line-height: 1.5;">'
+					               +'<td width="100%"><span class="font-24 ">'+value.to_place.topic+'</span></td>'
+					            +'</tr>'
+					            +'<tr>'
+					               +'<td><span class="font-20 ">'+value.ondate+'&nbsp;&nbsp;'+value.airout_time+' </span></td>'
+					               +'<td></td>'
+					            +'</tr>'
+		         			+'</table>'
+		         		+'</td>'
+		         	+'</tr>'
+		         +'</tbody>'
+		      +'</table>'
+		      +'</div>'
+		      +'</button>'
+		      +'</div>';
+		      $('#load_manage_data').append(component2);
+					});
+   }	
+  
+   function eachObjHistory(){
+//   	$('#load_history_data .box_his').remove();
+   	$('#load_history_data div').remove();
+   		console.log(historyObj);
+   		if(historyObj.length<=0){
+			$('#load_history_data').append('<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
+			return;
+		}
+   	$.each(historyObj, function( index, value ) {
+   			  var id = "btn_"+index;
+		      var component2 = 
+		      '<div class="box_his">'
+		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',2);rippleClick(\'' + id + '\');" style="padding: 0px;">'
+   			  +'<div class="w3-bar-item">'
+		      +'<table width="100%">'
+		         +'<tbody>'
+		         	+'<tr>'
+		         		+'<td width="30">'
+		         			+'<div style="margin-top: -17px;margin-left: 5px;">'
+							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
+							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;/* margin-top: -10px; */" class="line-center"></div>'
+							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
+							+'</div>'
+		         		+'</td>'
+		         		+'<td>'
+		         			+'<table width="100%"  >'
+		         				+'<tr style="line-height: 1.5;" >'
+					              +'<td width="100%"><span class="font-24 ">'+value.pickup_place.topic+'</span></td>'
+					            +'</tr>'
+					            +'<tr style="line-height: 1.5;">'
+					               +'<td width="100%"><span class="font-24 ">'+value.to_place.topic+'</span></td>'
+					            +'</tr>'
+					            +'<tr>'
+					               +'<td><span class="font-20 ">'+value.ondate+'&nbsp;&nbsp;'+value.airout_time+' </span></td>'
+					               +'<td></td>'
+					            +'</tr>'
+		         			+'</table>'
+		         		+'</td>'
+		         	+'</tr>'
+		         +'</tbody>'
+		      +'</table>'
+		      +'</div>'
+		      +'</button>'
+		      +'</div>';
+		      $('#load_history_data').append(component2);
+					});
+   }
+
+   function FilterType(type){
+//	console.log(type);
+	$('.tocheck').removeClass('btn_filter_active');
+	$('.tocheck').addClass('btn_filter');
+	$('#btn_'+type).removeClass('btn_filter');
+	$('#btn_'+type).addClass('btn_filter_active');
+	
+	if(type=="history"){
+		$('.form-group').fadeIn(200);
+		var driver = $('#driver').val();
+			callApiLog();
+//			eachObjHistory();
+		$('#load_booking_data').hide();
+		$('#load_manage_data').hide();
+		$('#load_history_data').show();
+		console.log(driver+" : ");
+	}
+	else if(type=="manage"){
+		$('.form-group').fadeOut(200);
+		var driver = $('#driver').val();
+			callApiManage();
+//			eachObjManage();	   
+		$('#load_booking_data').hide();
+		$('#load_history_data').hide();
+		$('#load_manage_data').show();
+		console.log(driver+" : ");
+	}
+}
+
    function openDetailBooking(index){
 
 	   	setTimeout(function(){ 
@@ -419,122 +573,6 @@
      		$('#main_component').addClass('w3-animate-left');
      		$('#main_component').show();
    }
-
-   function readDataBooking(){
-   		
-	 	var num = 0;
-//	 	$('#load_booking_data .box_book').remove();
-	 	$('#load_booking_data div').remove();
-		$('#number_book').text(res_socket.length);
-		if(res_socket.length<=0){
-			$('#load_booking_data').append('<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
-			return;
-		}
-	 	$.each(res_socket,function(index,res){
-		  var program = res.program.topic_en;
-		  var pickup_place = res.pickup_place.topic;
-		  var to_place = res.to_place.topic;
-		  var ondate = res.ondate;
-          var type = res.program.area;
-          var time = res.airout_time;
-		  var id = 'id_list_'+num;
-	      var component2 = 
-		      '<div class="box_book">'
-		      +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+');rippleClick(\'' + id + '\');" style="padding: 0px;background:#fbfbfb;">'
-   			  +'<div class="w3-bar-item">'
-		      +'<table width="100%">'
-		         +'<tbody>'
-		         	+'<tr>'
-		         		+'<td width="30">'
-		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
-							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
-							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							+'</div>'
-		         		+'</td>'
-		         		+'<td>'
-		         			+'<table width="100%"  >'
-		         				+'<tr style="line-height: 1.5;" >'
-					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
-					            +'</tr>'
-					            +'<tr style="line-height: 1.5;">'
-					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
-					            +'</tr>'
-					             +'<tr>'
-					               +'<td><strong><span class="font-22 "><?=t_pay_cash;?></span>&nbsp;&nbsp;<span class="font-22 ">750 <?=t_THB;?></span></strong></td>'
-					               
-					            +'</tr>'
-					            +'<tr>'
-					               +'<td><span class="font-20 ">'+ondate+'&nbsp;&nbsp;'+time+'</span></td>'
-					               +'<td></td>'
-					            +'</tr>'
-		         			+'</table>'
-		         		+'</td>'
-		         	+'</tr>'
-		         +'</tbody>'
-		      +'</table>'
-		      +'</div>'
-		      +'</button>'
-		      +'</div>';
-	      
-	      $('#load_booking_data').append(component2);
-	      num++;
-        });
-	 	
-	 }
-	 
-	function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time){
-		
-		var carid = $('#carid').val();
-//		alert("<?=$_SESSION['data_user_name'];?>");
-		/*$('#material_dialog').show();
-		$('#dialoglLabel').text('<?=t_select_your_car;?>');
-		var url = "empty_style.php?name=tbooking&file=select_car&user_id="+user_id;
-		$.post(url,function(res){
-			$('#load_modal_body').html(res);
-		});*/
-		var driver = $('#driver').val();
-		swal({
-		  title: "<?=t_are_you_sure;?>",
-		  text: "<?=t_want_get_job;?>",
-		  type: "warning",
-		  showCancelButton: true,
-		  confirmButtonClass: "btn-danger",
-		  confirmButtonText: "<?=t_confirm;?>",
-		  cancelButtonText: "<?=t_cancelled;?>",
-		  closeOnConfirm: false
-		},
-		function(){
-			var data = { 	 "idorder" : idorder, 
-							 "orderid" : orderid,
-							 "invoice" : invoice,
-							 "code" : code,
-							 "program" : program,
-							 "driver" : driver,
-							 "carid" : carid,
-							 "pickup_place" : p_place,
-							 "to_place" : to_place,
-							 "agent" : agent,
-							 "airout_time" : airout_time,
-							 "airin_time" : airin_time
-               			  };
-			var url = "mod/tbooking/curl_connect_api.php?type=getjob_booking";
-			console.log(data);
-
-			$.post(url,data,function(res){
-				console.log(res);
-				if(res.status=="200"){
-					swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
-					hideDetail();
-					callApiLog();
-				}else{
-					swal("<?=t_error;?>!", "<?=t_press_button_close;?>", "error");
-				}
-			});
-//		  
-		});
-		
-	} 
 	
 	function mapsSelector(lat,lng) {
 	  if /* if we're on iOS, open in Apple Maps */
@@ -577,7 +615,6 @@
       }, 2000);
 //       event.preventDefault();
 	}
-
 
  	function ViewPhoto(id,type,date){
 		var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;

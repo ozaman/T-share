@@ -14,7 +14,7 @@ if($data_user_class=='taxi'){
   			$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_park][driver_approve_pay_date]).'</span>';
   			$btn_row_approve = 'display:none;';
 //  			$alert_history = "swal('ประวัติ' ,'จ่ายเงินเมื่อวันที่ ".date('Y-m-d H:i:s', $arr[pay_park][last_update])." น.' ,'success');";
-  			$alert_history = "swal('".t_history."' ,'".t_pay_on."' ".date('Y-m-d H:i:s', $arr[pay_park][last_update]).t_n."' ,'success');";
+  			$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_park][last_update]).t_n." '  ,'success');";
 		}else{
 			$color_menu = 'background-color:#ecb304;';
 			$txt_pay = '<font style="color:#ecb304;">'.t_paid.'</font>';
@@ -22,7 +22,7 @@ if($data_user_class=='taxi'){
   			$btn_row_approve = '';
   			$alert_history = "swal('".t_no_history."','','error')";
 		}
-  	
+
   }else{
   		$color_menu = 'background-color:#f00000;';
   		$txt_pay = '<font color="#f00000;">'.t_not_paid.'</font>';
@@ -106,6 +106,7 @@ if($data_user_class=='taxi'){
 		});
 </script>
 <? }
+
 else if($data_user_class=='lab'){ 
 	$type = 'park';
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
@@ -118,7 +119,7 @@ else if($data_user_class=='lab'){
   		$color_red = '';
   		$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
   		$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_park][last_update]).'</span>';
-  		$alert_history = "swal('".t_history."' ,'".t_pay_on."' ".date('Y-m-d H:i:s', $arr[pay_park][last_update]).t_n." ,'success');";
+  		$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_park][last_update]).t_n." '  ,'success');";
   }	else{
   		$btn_row_approve = '';
   		$color_red = 'background-color: #f00000;';
@@ -174,7 +175,8 @@ else if($data_user_class=='lab'){
             <td width="50%">
             <button  id="btn_park_doc_<?=$arr[project][id]?>" onclick=""  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:5px;  ;  border-radius: 3px; border:none; background-color:#FFF "><center><span class="font-22"><i class="fa fa-folder-open" style="width:24px;color:<?=$main_color?>"  ></i><?=t_documents;?> 
            <img src="images/yes.png" align="absmiddle" id="iconchk_park_<?=$arr[project][id]?>" style="display: none;"></span></center></button></td>
-            <td width="50%"><button  id="btn_park_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:5px;  ;  border-radius: 3px; border:none; background-color:#FFF " onclick="<?=$alert_history;?>"><center><span class="font-22"><i class="fa fa-history" style="width: 24px; color:<?=$main_color?>"  ></i><?=t_history;?></span></center></button></td>
+            <td width="50%">
+            <button  id="btn_park_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:5px;  ;  border-radius: 3px; border:none; background-color:#FFF " onclick="<?=$alert_history;?>"><center><span class="font-22"><i class="fa fa-history" style="width: 24px; color:<?=$main_color?>"  ></i><?=t_history;?></span></center></button></td>
           </tr>
        
         </tbody>
@@ -192,6 +194,9 @@ else if($data_user_class=='lab'){
 		 	console.log(url_load);
 		 	$('#load_mod_popup_3').html(load_main_mod);
 		 	$('#load_mod_popup_3').load(url_load); 
+		 	
+		 	$('#dialog_custom').hide();
+		 	$('#main_load_mod_popup_clean').hide();
 			
 		});
 		$.ajax({
