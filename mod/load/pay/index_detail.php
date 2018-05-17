@@ -29,7 +29,7 @@
  $arr[price] = $db->fetch($res[price]) ;
  
  ?>
-            
+						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr >
      
@@ -59,8 +59,8 @@
      </td>
   </tr>
 </table>
-            
-  </div>
+						
+ 	</div>
   <div>
      <table>
         <tr>
