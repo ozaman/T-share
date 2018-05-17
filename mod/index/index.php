@@ -477,7 +477,7 @@
      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
       $('#body_load_select_pv').html(load_main_mod);
       $.post( url_load, function( data ) {
-//      	   $('#body_load_select_pv').html(data);
+      	   $('#body_load_select_pv').html(data);
    	   var txt = $('#province_text').text();
    		$('#txt_pv_fr').val(txt);
    		$('.text-change-province').text(txt);
