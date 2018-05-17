@@ -1,5 +1,12 @@
-<div  style="padding-top:0px; padding:5px;margin-top: 50px; ">
 
+<!-- <div id="box_body_mode">
+    
+</div> -->
+
+<div  id="load_money" style="display: nones;" >
+
+  <div  style="padding-top:0px; padding:5px;margin-top: 50px; ">
+<div>
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
   <tr align="center">
     <td width="49%">
@@ -23,7 +30,7 @@
    
   </tr>
   <tr align="center">
-    <td width="49%"><div id="transfer_money" onclick="()" style="background: #fff;
+    <td width="49%"><div id="transfer_money" onclick="withdraw_money()" style="background: #fff;
         font-size: 18px;
         border-radius: 25px;
          color: #3b5998;
@@ -40,12 +47,12 @@
    
   </tr>
 </table>
+</div>
             
+</div> 
 </div>
-<div id="box_body_mode">
-    
-</div>
-<div  id="load_money" style="display: none;" > 
+
+<div id="load_body_mode" style="display: none">
   
 </div>
 	
@@ -69,40 +76,59 @@
        else if (check_lang == 'en' || check_lang == undefined) {
         $('.text-topic-action-mod').html('Transfers money');
       }
- 	$('#load_money').show();
- 	$('#load_money').html('');
- 	$('#load_money').html('');
- 	//$('.text-topic-action-mod').html('โอนเงิน');
+ 	// $('#load_money').show();
+ 	// $('#load_money').html('');
+ 	// $('#load_money').html('');
+ 	$('.text-topic-action-mod').html('โอนเงิน');
  	
-	var load_money = "go.php?name=load/pay&file=index_transfer";
+	var url_load = "go.php?name=load/pay&file=index_detail";
 	
-	 //$('#load_th').load('load/page/loading.php');
+	// //  //$('#load_th').load('load/page/loading.php');
  		
-	//$('#load_money').html(load_money);
+	// // //$('#load_money').html(load_money);
 	  
-	  $('#load_money').load(load_money);
-	 // $.post( url_load, function( data ) {
- // $('#load_money').html(load_money);
+	// //   //$('#load_money').load(load_money);
+  $('#load_body_mode').show()
+	  $.post( url_load, function( data ) {
+  $('#load_body_mode').html(data);
+  });
 	 function transfer_money(){
-
-    $('#load_money').html('');
+$('#main_load_mod_popup').show();
+    $('#load_body_mode').html('');
     
-    var load_money = "go.php?name=load/pay&file=index_transfer";
+    var url_load = "go.php?name=load/pay&file=index_detail";
     
-      $('#load_money').load(load_money);
-     // $.post( url_load, function( data ) {
-    //$('#load_money').html(load_money);
+      //$('#load_body_mode').load(load_money);
+     $.post( url_load, function( data ) {
+    $('#load_body_mode').html(data);
+  });
   } 
   function request_money(){
-    $('#load_money').html('');
+    $('#main_load_mod_popup').show();
+    $('#load_body_mode').html(' ');
     
-    var load_money = "go.php?name=load/pay&file=index_request";
-   
+    var url_load = "go.php?name=load/pay&file=index_request";
+    $.post( url_load, function( data ) {
+    $('#load_body_mode').html(data);
+  });
       
-      $('#load_money').load(load_money);
-     // $.post( url_load, function( data ) {
-    //$('#load_money').html(load_money);
-  } 
+    //   $('#load_body_mode').load(load_money);
+    //  // $.post( url_load, function( data ) {
+    // $('#load_body_mode').html(load_money);
+  }
+  function withdraw_money(){
+    $('#main_load_mod_popup').show();
+    $('#load_body_mode').html(' ');
+    
+    var url_load = "go.php?name=load/pay&file=index_withdraw";
+    $.post( url_load, function( data ) {
+    $('#load_body_mode').html(data);
+  });
+      
+    //   $('#load_body_mode').load(load_money);
+    //  // $.post( url_load, function( data ) {
+    // $('#load_body_mode').html(load_money);
+  }  
  	 </script>
 
- 
+ <!-- index_withdraw -->
