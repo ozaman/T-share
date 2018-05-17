@@ -1,9 +1,30 @@
+<div  style="padding-top:0px; padding:5px;margin-top: 50px; ">
+
+<table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
+  <tr align="center">
+    <td width="49%"><div id="transfer_money" onclick="transfer_money()" style="background: #3b5998;
+        font-size: 18px;
+        border-radius: 25px;
+        color: #fff;
+        padding: 5px 30px;
+        border: 2px solid #3b5998; "><? echo t_transfers?></div></td>
+        <td width="2%"></td>
+    <td width="49%" ><div id="requet_money" onclick="request_money()" style="
+        background: #fff;
+        font-size: 18px;
+        border-radius: 25px;
+        color: #3b5998;
+        padding: 5px 30px;
+        border: 2px solid #3b5998;"><? echo t_transfer_notice?></div></td>
+   
+  </tr>
+</table>
+            
+</div>
 <div style="font-size: 18px;
     font-weight: 600;
     padding: 0px 10px;
-    margin-top: 15px;"><? echo t_transferred_account_details?>
-      
-    </div>
+    margin-top: 15px;"><? echo t_transferred_account_details?></div>
 <div  style="margin-top: 15px;
     padding: 5px;
     border: 1px solid #3b5998;
@@ -29,7 +50,7 @@
  $arr[price] = $db->fetch($res[price]) ;
  
  ?>
-            
+						
 <table width="100%"  border="0" cellspacing="2" cellpadding="2"  >
   <tr >
      
@@ -59,8 +80,8 @@
      </td>
   </tr>
 </table>
-            
-  </div>
+						
+ 	</div>
   <div>
      <table>
         <tr>
@@ -73,3 +94,6 @@
         </tr>
         
   </div>
+  <script>
+$('.text-topic-action-mod').html('<?echo t_transfers ?>');
+  </script>

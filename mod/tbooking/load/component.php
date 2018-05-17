@@ -10,10 +10,11 @@ if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_brows
 } else {
     $keep = 'en';
 }
+
 switch ($_COOKIE['lng']) {
     case "th":
         //echo "PAGE th";
-        include("../../../includes/lang/th/t_share2.php"); //include check session DE
+        include("../../../includes/lang/th/t_share_2.php"); //include check session DE
         $province           = "name_th";
         $place_shopping     = "topic_th";
         $google_map_api_lng = "th";
@@ -41,7 +42,6 @@ switch ($_COOKIE['lng']) {
         $google_map_api_lng = $keep;
         break;
 }
-
 if ($_GET[request] == "check_status_shop") {
     
     if ($_GET[status] == 'CANCEL') {
@@ -63,7 +63,7 @@ if ($_GET[request] == "check_status_shop") {
 	}
     
 }
-
+//echo $place_shopping;
 if ($_GET[request] == "check_status_checkin"){
 
   if($_GET[status]==1){  
@@ -88,4 +88,5 @@ if ($_GET[request] == "check_status_checkin"){
 </table>
 <?	 }
 }
+//echo "../../../includes/lang/" . $keep . "/t_share_2.php";
 ?>
