@@ -1,15 +1,15 @@
 <?
    //echo $_GET[type];
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-    $query_topic = "topic_th"; 
+   /* $query_topic = "topic_th"; 
    	if($_COOKIE['lng']=="th"){
    		$query_topic = "topic_th"; 
    	}else if($_COOKIE['lng']=="en"){
    		$query_topic = "topic_en"; 
    	}else if($_COOKIE['lng']=="cn"){
    		$query_topic = "topic_cn"; 
-   	}
-   $res[projecttype] = $db->select_query("SELECT ".$query_topic." as name,id FROM shopping_product_sub where   id=".$_GET[type]."  ");
+   	}*/
+   $res[projecttype] = $db->select_query("SELECT ".$place_shopping." as name,id FROM shopping_product_sub where   id=".$_GET[type]."  ");
    $arr[projecttype] = $db->fetch($res[projecttype]);
    $ArrDayName[Sun] = t_sunday;
    $ArrDayName[Mon] = t_monday;
@@ -34,7 +34,7 @@
    }
 </style>
 <script>
-   console.log('<? echo $query_topic;?>');
+   console.log('<? echo $place_shopping;?>');
    $(".text-topic-action-mod-2" ).html("<? echo $arr[projecttype][name];?>");
 </script> 
 <div style="padding:5px; margin-top:45px;">
@@ -62,7 +62,7 @@
    </script>
    <?
       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-      $res[project] = $db->select_query("SELECT id,status,pic_logo,pic_book,pic_book_2,pic_book_3,".$query_topic." as name FROM shopping_product   WHERE sub=".$_GET[type]." and status=1 and province = '".$_GET[province]."'  ");
+      $res[project] = $db->select_query("SELECT id,status,pic_logo,pic_book,pic_book_2,pic_book_3,".$place_shopping." as name FROM shopping_product   WHERE sub=".$_GET[type]." and status=1 and province = '".$_GET[province]."'  ");
       while($arr[project] = $db->fetch($res[project])){
       ?>
    <div style="padding-bottom:10px; padding-top:10px;   <? if( $arr[project][status]==0){?>
@@ -387,7 +387,19 @@
          </table>
          </td>
          </tr>
-         <tr id="contact_<?=$arr[project][id]?>" <?=$display_none;?> <?=$class_tr;?>>
+         
+         <tr <?=$display_none;?> <?=$class_tr;?>>
+         <td class="font-22"><strong><?=t_download;?></strong></td>
+         <td id="shop_alert_menu_index_load_<?=$arr[project][id]?>" onclick="openPopUpBrochure('<?=$arr[project][id]?>','<?=$arr[project][pic_book]?>','<?=$arr[project][pic_book_2]?>','<?=$arr[project][pic_book_3]?>')">
+         <table>
+         <tr>
+         <td width="150"><span class="font-22"><?=t_bouchure;?></span></td>
+         <td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
+         </tr>
+         </table>         
+         </td>
+         </tr>
+		 <tr id="contact_<?=$arr[project][id]?>" <?=$display_none;?> <?=$class_tr;?>>
          <td class="font-22"><strong><?=t_contact;?></strong></td>
          <td>
          <script> 
@@ -416,7 +428,7 @@
          <table id="shop_alert_menu_call_<?=$arr[project][id]?>" >
          <tr >
          <td width="150"><span class="font-22"> <?=t_marketing;?> (<?=$arr[sale][name]?>)</span></td>
-         <td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
+         <td width="20" align="right"> <span > <i class="fa fa-phone" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
          </tr>
          </table>  
          </a>
@@ -426,17 +438,6 @@
             $('#contact_<?=$arr[project][id]?>').hide();
          </script>
          <? }?>
-         </td>
-         </tr>
-         <tr <?=$display_none;?> <?=$class_tr;?>>
-         <td class="font-22"><strong><?=t_download;?></strong></td>
-         <td id="shop_alert_menu_index_load_<?=$arr[project][id]?>" onclick="openPopUpBrochure('<?=$arr[project][id]?>','<?=$arr[project][pic_book]?>','<?=$arr[project][pic_book_2]?>','<?=$arr[project][pic_book_3]?>')">
-         <table>
-         <tr>
-         <td width="150"><span class="font-22"><?=t_bouchure;?></span></td>
-         <td width="20" align="right"> <span > <i class="fa fa-search" style="font-size:18px; color:<?=$main_color?>; width:20px;"></i>  </b></span></td>
-         </tr>
-         </table>         
          </td>
          </tr>
          <tr <?=$display_none;?> <?=$class_tr;?>>
