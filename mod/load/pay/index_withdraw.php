@@ -14,7 +14,8 @@
  $res[driver] = $db->select_query("SELECT * FROM  web_driver where username  = '".$_COOKIE["app_remember_user"]."' ");
                       
  $arr[driver] = $db->fetch($res[driver]) ;
- 
+ // $date = new DateTime();
+ // echo $date->format('H:i')
  ?>
       
 
@@ -69,9 +70,10 @@
         </tr>
         <tr>
             <td width="120" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_amount?></td>
-            <td width=""   class="font_16" style=" color:#FF0000;font-size: 16px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
+            <td width=""   class="font_16" style=" color:#FF0000;font-size: 16px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount_w"  style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
             </td>
         </tr>
+        
         <tr>
           <td colspan="2">
             <div style="
@@ -88,6 +90,16 @@
   </td>
         </tr>
         <tr>
+          <td colspan="2" width="100%" onclick="sendwithdraw()" style="    text-align: center;
+    background: #3b5998;
+    font-size: 18px;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 30px;
+    border: 2px solid #3b5998;
+    margin-bottom: 8px;"><div><? echo t_send ?></div></td>
+        </tr>
+        <tr>
           <td colspan="2">
             <div id="money_request">
               
@@ -97,8 +109,13 @@
           </td>
         </tr>
       </table>
+      <input class="form-control"  type="hidden" name="amount" id="amount_w" >
+      <input class="form-control"  type="hidden" name="amount" id="bank_name" value="<?= $arr[driver][pay_bank_name];?>">
+      <input class="form-control"  type="hidden" name="amount" id="bank_number" value="<?= $arr[driver][pay_bank_number];?>">
+      <input class="form-control"  type="hidden" name="amount" id="pay_bank" value="<?= $arr[driver][pay_bank];?>">
+      
       <style>
-        .recheck{
+        .recheck li{
               padding: 8px 5px;
         }
       </style>
@@ -120,3 +137,6 @@
 </table>
             
   </div>
+  <script >
+   
+  </script>

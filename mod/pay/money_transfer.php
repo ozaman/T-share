@@ -1,7 +1,4 @@
 
-<<<<<<< HEAD
-<div  id="load_money" style="display: none;" > 
-=======
 <!-- <div id="box_body_mode">
     
 </div> -->
@@ -13,40 +10,18 @@
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
   <tr align="center">
     <td width="49%">
-      <div id="transfer_money" onclick="transfer_money()" style="background: #3b5998;
-        font-size: 18px;
-        border-radius: 25px;
-        color: #fff;
-        padding: 5px 30px;
-        border: 2px solid #3b5998;    margin-bottom: 8px; "><? echo t_transfers?></div>
+      <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><? echo t_transfers?></div>
       </td>
         <td width="2%"></td>
     <td width="49%" >
-      <div id="requet_money" onclick="request_money()" style="
-        background: #fff;
-        font-size: 18px;
-        border-radius: 25px;
-        color: #3b5998;
-        padding: 5px 30px;
-        border: 2px solid #3b5998;    margin-bottom: 8px;"><? echo t_transfer_notice?></div>
+      <div id="requet_money" onclick="request_money()" class="btn_no_active"><? echo t_transfer_notice?></div>
       </td>
    
   </tr>
   <tr align="center">
-    <td width="49%"><div id="transfer_money" onclick="withdraw_money()" style="background: #fff;
-        font-size: 18px;
-        border-radius: 25px;
-         color: #3b5998;
-        padding: 5px 30px;
-        border: 2px solid #3b5998; ">ถอนเงิน</div></td>
+    <td width="49%"><div id="withdraw_money" onclick="withdraw_money()" class="btn_no_active">ถอนเงิน</div></td>
         <td width="2%"></td>
-    <td width="49%" ><div id="requet_money" onclick="()" style="
-        background: #fff;
-        font-size: 18px;
-        border-radius: 25px;
-        color: #3b5998;
-        padding: 5px 30px;
-        border: 2px solid #3b5998;"><? echo t_history?></div></td>
+    <td width="49%" ><div id="history_money" onclick="history_money()" class="btn_no_active"><? echo t_history?></div></td>
    
   </tr>
 </table>
@@ -56,7 +31,7 @@
 </div>
 
 <div id="load_body_mode" style="display: none">
->>>>>>> 2f1f57989a9245fc85e18f05ef95bdbd3c977720
+
   
 </div>
 	
@@ -70,6 +45,7 @@
  	}
  </style>
  <script >
+
   var check_lang = '<?=$_COOKIE["lng"];?>';
   if (check_lang == 'th') {
         $('.text-topic-action-mod').html('โอนเงิน');
@@ -83,7 +59,7 @@
  	// $('#load_money').show();
  	// $('#load_money').html('');
  	// $('#load_money').html('');
- 	$('.text-topic-action-mod').html('โอนเงิน');
+ 	$('.text-topic-action-mod').html('ถอน-โอน-แจ้งโอน');
  	
 	var url_load = "go.php?name=load/pay&file=index_detail";
 	
@@ -97,6 +73,13 @@
   $('#load_body_mode').html(data);
   });
 	 function transfer_money(){
+     $('#transfer_money').addClass('btn_active')
+     // $('#transfer_money').removeClass('btn_no_active')
+     $('#requet_money').removeClass('btn_active')
+     $('#withdraw_money').removeClass('btn_active')
+     $('#history_money').removeClass('btn_active')
+     
+
 $('#main_load_mod_popup').show();
     $('#load_body_mode').html('');
     
@@ -108,6 +91,11 @@ $('#main_load_mod_popup').show();
   });
   } 
   function request_money(){
+    $('#requet_money').addClass('btn_active')
+    $('#transfer_money').removeClass('btn_active')    
+     $('#withdraw_money').removeClass('btn_active')
+     $('#history_money').removeClass('btn_active')
+
     $('#main_load_mod_popup').show();
     $('#load_body_mode').html(' ');
     
@@ -121,6 +109,28 @@ $('#main_load_mod_popup').show();
     // $('#load_body_mode').html(load_money);
   }
   function withdraw_money(){
+    $('#withdraw_money').addClass('btn_active')
+    $('#requet_money').removeClass('btn_active')
+    $('#transfer_money').removeClass('btn_active') 
+     $('#history_money').removeClass('btn_active')
+
+    $('#main_load_mod_popup').show();
+    $('#load_body_mode').html(' ');
+    
+    var url_load = "go.php?name=load/pay&file=index_withdraw";
+    $.post( url_load, function( data ) {
+    $('#load_body_mode').html(data);
+  });
+  }
+    function history_money(){
+    
+    $('#history_money').addClass('btn_active')
+   
+    $('#requet_money').removeClass('btn_active')
+    $('#transfer_money').removeClass('btn_active')    
+     $('#withdraw_money').removeClass('btn_active')
+     
+    
     $('#main_load_mod_popup').show();
     $('#load_body_mode').html(' ');
     
@@ -132,7 +142,56 @@ $('#main_load_mod_popup').show();
     //   $('#load_body_mode').load(load_money);
     //  // $.post( url_load, function( data ) {
     // $('#load_body_mode').html(load_money);
-  }  
- 	 </script>
+  }
+   function sendwithdraw() {
+      console.log('in case')
 
+     
+      var amount = $('#amount_w').val();     
+      var bank = $('#pay_bank').val(); 
+      var bank_name = $('#bank_name').val(); 
+      var bank_number = $('#bank_number').val(); 
+      $.ajax({
+            type: 'POST',
+            url: 'mod/load/pay/savedata_withdraw.php',
+            data: {'amount':amount,'bank':bank,'bank_name': bank_name,'bank_number': bank_number,'driver':'<?=$_COOKIE["app_remember_user"];?>','action':'money_withdraw' },
+            //contentType: "application/json",
+            //dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                  alert('รอยืนยันการตรวจสอบการโอนเงิน')
+                  $('#main_load_mod_popup').toggle();
+                   $('#main_load_mod_popup').show(500);
+   var url_load= "load_page_mod.php?name=pay&file=money_transfer"
+//    var url_load= "load_page_mod.php?name=transfer_order&file=work_list&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>";
+    
+    
+    $('#load_mod_popup').html(load_main_mod);
+   
+    $('#load_mod_popup').load(url_load); 
+               }
+             });
+    }  
+ 	 </script>
+<style >
+  .btn_active{
+        background: #3b5998;
+    font-size: 18px;
+    border-radius: 25px;
+    color: #fff;
+    padding: 5px 30px;
+    border: 2px solid #3b5998;
+    margin-bottom: 8px;
+
+  }
+  .btn_no_active{
+       
+    font-size: 18px;
+    border-radius: 25px;
+    
+    padding: 5px 30px;
+    border: 2px solid #3b5998;
+    margin-bottom: 8px;
+  }
+</style>
  <!-- index_withdraw -->
