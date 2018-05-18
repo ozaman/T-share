@@ -304,7 +304,8 @@
 <div style="
     padding: 10px 20px;
    /* border: 1px solid #ddd;*/margin: 15px 0px;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".$arr[deposit][balance]." ฿";?></span></div>
+" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".$arr[deposit][balance]." ".t_THB;?></span></div>
+<input type="hidden" id="balance" value="<?=$arr[deposit][balance];?>" />
   <!-- <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
 		<table width="100%">
 			<tbody>
@@ -376,9 +377,20 @@
 
  	var dataHistoryA;
  	
-   function openDetailBooking(index){
-
-	   	setTimeout(function(){ 
+   function openDetailBooking(index,s_pay,cost){
+   	var dv_cost = $('#balance').val();
+		console.log(dv_cost+" : "+cost);
+		if(s_pay==0){
+			if(dv_cost<cost){
+				$('#material_dialog').show();
+				$('#dialoglLabel').text('ข้อความ');
+				
+				$('#load_modal_body').html('<h4>ไม่สามารถรับงานนี้ได้</h4><div class="font-22" style="padding:5px;">ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินเข้าระบบหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ</div>');
+				
+//				swal('ไม่สามารถรับงานนี้ได้','ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ','error');
+				return;
+			}
+		}
    			var url = "empty_style.php?name=tbooking&file=book_detail";
 			var post = res_socket[index];
 
@@ -387,7 +399,7 @@
 	   		$('#main_load_mod_popup_clean').show();
    			$('#main_component').removeClass('w3-animate-left');
 	   	});
-	   	 }, 0);
+	   	
    }
    
    function openSheetHandle(index,type){
@@ -438,9 +450,16 @@
           var type = res.program.area;
           var time = res.airout_time;
 		  var id = 'id_list_'+num;
+		  var s_pay = res.s_status_pay;
+		  var cost = res.s_cost;
+		  if(s_pay==0){
+		  	var type_pay = '<?=t_get_cash;?>';
+		  }else{
+		  	var type_pay = '<?=t_transfer_to_account;?>';
+		  }
 	      var component2 = 
 		      '<div class="box_book">'
-		      +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+');rippleClick(\'' + id + '\');" style="padding: 0px;background:#fbfbfb;">'
+		      +'<button class="mof ripple" id="id_list_'+num+'" onclick="openDetailBooking('+num+','+s_pay+','+cost+');rippleClick(\'' + id + '\');" style="padding: 0px;background:#fbfbfb;">'
    			  +'<div class="w3-bar-item">'
 		      +'<table width="100%">'
 		         +'<tbody>'
@@ -461,7 +480,7 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 "><?=t_pay_cash;?></span>&nbsp;&nbsp;<span class="font-22 ">750 <?=t_THB;?></span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+cost+' <?=t_THB;?></span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
@@ -531,8 +550,11 @@
 					swal("<?=t_error;?>!", "<?=t_press_button_close;?>", "error");
 				}
 			});
-//		  
+		   
+			
 		});
+
+		
 		
 	} 
 	
