@@ -555,7 +555,7 @@
          </div>
       </div>
       
-      <div id="material_dialog" style="width: 100%;height: 100%;position:  fixed;z-index: 99999;background-color: #00000057;top: 0px;left: 0px;display: none;">
+      <div id="material_dialog" style="width: 100%;height: 100%;position:  fixed;z-index: 99999;background-color: rgba(0, 0, 0, 0.80);top: 0px;left: 0px;display: none;">
          <div class="modal-dialog w3-animate-bottom" style="background-color: #fff; top:20px;" >
             <div class="modal-content">
                <div class="modal-header" style="padding: 10px;">
