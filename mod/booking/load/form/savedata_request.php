@@ -15,6 +15,7 @@ $arr[project] = $db->fetch($res[project]);
 if($_POST[action]=="money_request"){  
 	
 	// $db = New DB();
+	$date = new DateTime();
 	// $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[driver] = $arr[project][id];
@@ -24,6 +25,9 @@ if($_POST[action]=="money_request"){
 	$data[deposit_date] = $_POST[date];
 	$data[deposit_time] = $_POST[time];
 	$data[post_date] = time();
+	$data[bank_account] = $_POST[bank_name];
+	$data[bank_number] = $_POST[bank_number];
+	$data[post_date_f] = $date->format('Y-m-d');
 	//add_db("deposit_history",array("field"=>"value")); 
 
 	$res = $db->add_db("deposit_history",$data); 

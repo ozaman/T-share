@@ -67,6 +67,8 @@ $arr[project][id]=$_GET[id];
   var time = $('#time').val();
   var amount = $('#amount').val();
   var bank = $('#bank').val();
+  var b_acount = $('#b_acount').val();
+  var b_number = $('#b_number').val();
   console.log(time)
   console.log(amount)
   console.log(bank)
@@ -74,7 +76,7 @@ $arr[project][id]=$_GET[id];
    $.ajax({
             type: 'POST',
             url: 'mod/booking/load/form/savedata_request.php',
-            data: {'time':time,'amount':amount,'bank':bank,'driver':'<?=$_COOKIE["app_remember_user"];?>','action':'money_request','date':date },
+            data: {'bank_name':b_acount,'bank_number':b_number,'time':time,'amount':amount,'bank':bank,'driver':'<?=$_COOKIE["app_remember_user"];?>','action':'money_request','date':date },
             //contentType: "application/json",
             //dataType: 'json',
             success: function(data) {

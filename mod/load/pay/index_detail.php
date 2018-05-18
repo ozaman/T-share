@@ -62,15 +62,4 @@
 </table>
             
   </div>
-  <div>
-     <table>
-        <tr>
-          <td width="" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_your_balance?></td>
-          <td width=""   class="font_16" style="padding-left: 20px; color:#FF0000;font-size: 16px;"><div style="font-size: 16px;">
-           <!--  <img src="https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-1/p50x50/10897014_10152997534378545_3525821504956963563_n.jpg?oh=70839c63656c22249e06f3e5e4b812c3&oe=5B40AF5A"> -->
-          <span> <?= number_format( $arr[price][deposit] , 0 );?> </span></div>
-            </td>
-          
-        </tr>
-        
-  </div>
+  

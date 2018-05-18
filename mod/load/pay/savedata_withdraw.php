@@ -25,9 +25,11 @@ if($_POST[action]=="money_withdraw"){
 	$data[username] = $_POST[driver];
 	$data[deposit] = $_POST[amount];
 	$data[deposit_bank] = $_POST[bank];
-	$data[deposit_date] = time();
+	$data[deposit_date] = $date->format('Y-m-d');
 	$data[deposit_time] = $date->format('H:i');
 	$data[post_date] = time();
+	$data[type] = "WITHDRAW";
+	$data[post_date_f] =  $date->format('Y-m-d');
 	//add_db("deposit_history",array("field"=>"value")); 
 
 	$res = $db->add_db("deposit_history",$data); 
