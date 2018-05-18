@@ -414,7 +414,21 @@
 		console.log(manageObj.length)
    	$.each(manageObj, function( index, value ) {
    			console.log(value);
-   			  var id = "btn_"+index;
+   			var program = value.program.topic_en;
+		  	var pickup_place = value.pickup_place.topic;
+		  	var to_place = value.to_place.topic;
+		  	var outdate = value.outdate;
+		  	 
+          	var type = value.program.area;
+          	var time = value.airout_time;
+   			var id = "btn_"+index;
+   			var s_pay = value.s_status_pay;
+		  	var cost = value.s_cost;
+		  	if(s_pay==0){
+		  		var type_pay = '<?=t_get_cash;?>';
+		  	}else{
+		  		var type_pay = '<?=t_transfer_to_account;?>';
+		  	}
 		      var component2 = 
 		      '<div class="box_his">'
 		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',1);rippleClick(\'' + id + '\');" style="padding: 0px;">'
@@ -423,22 +437,26 @@
 		         +'<tbody>'
 		         	+'<tr>'
 		         		+'<td width="30">'
-		         			+'<div style="margin-top: -17px;margin-left: 5px;">'
+		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
 							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;/* margin-top: -10px; */" class="line-center"></div>'
+							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
 							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
 							+'</div>'
 		         		+'</td>'
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
-					              +'<td width="100%"><span class="font-24 ">'+value.pickup_place.topic+'</span></td>'
+					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
 					            +'</tr>'
 					            +'<tr style="line-height: 1.5;">'
-					               +'<td width="100%"><span class="font-24 ">'+value.to_place.topic+'</span></td>'
+					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
+					            +'</tr>'
+					             +'<tr>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+' <?=t_THB;?></span></strong></td>'
+					               
 					            +'</tr>'
 					            +'<tr>'
-					               +'<td><span class="font-20 ">'+value.ondate+'&nbsp;&nbsp;'+value.airout_time+' </span></td>'
+					               +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'
 					               +'<td></td>'
 					            +'</tr>'
 		         			+'</table>'
@@ -462,7 +480,21 @@
 			return;
 		}
    	$.each(historyObj, function( index, value ) {
-   			  var id = "btn_"+index;
+   			 console.log(value);
+   			var program = value.program.topic_en;
+		  	var pickup_place = value.pickup_place.topic;
+		  	var to_place = value.to_place.topic;
+		  	var ondate = value.ondate;
+          	var type = value.program.area;
+          	var time = value.airout_time;
+   			var id = "btn_"+index;
+   			var s_pay = value.s_status_pay;
+		  	var cost = value.s_cost;
+		  	if(s_pay==0){
+		  		var type_pay = '<?=t_get_cash;?>';
+		  	}else{
+		  		var type_pay = '<?=t_transfer_to_account;?>';
+		  	}
 		      var component2 = 
 		      '<div class="box_his">'
 		      +'<button class="mof ripple" id="btn_'+index+'" onclick="openSheetHandle('+index+',2);rippleClick(\'' + id + '\');" style="padding: 0px;">'
@@ -471,22 +503,26 @@
 		         +'<tbody>'
 		         	+'<tr>'
 		         		+'<td width="30">'
-		         			+'<div style="margin-top: -17px;margin-left: 5px;">'
+		         			+'<div style="margin-top: -38px;margin-left: 5px;">'
 							  +' <div style="background-color:  #795548;width: 10px;height: 10px; margin-left: 7px;"></div>'
-							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;/* margin-top: -10px; */" class="line-center"></div>'
+							   +'<div style="width: 2px;background: #999;margin-left: 11px;height: 20px;" class="line-center"></div>'
 							  +'<div style="background-color:  #3b5998;width: 10px;height: 10px; margin-left: 7px;"></div>'
 							+'</div>'
 		         		+'</td>'
 		         		+'<td>'
 		         			+'<table width="100%"  >'
 		         				+'<tr style="line-height: 1.5;" >'
-					              +'<td width="100%"><span class="font-24 ">'+value.pickup_place.topic+'</span></td>'
+					              +'<td width="100%"><span class="font-24" colspan="2">'+pickup_place+'</span></td>'
 					            +'</tr>'
 					            +'<tr style="line-height: 1.5;">'
-					               +'<td width="100%"><span class="font-24 ">'+value.to_place.topic+'</span></td>'
+					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
+					            +'</tr>'
+					             +'<tr>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+' <?=t_THB;?></span></strong></td>'
+					               
 					            +'</tr>'
 					            +'<tr>'
-					               +'<td><span class="font-20 ">'+value.ondate+'&nbsp;&nbsp;'+value.airout_time+' </span></td>'
+					               +'<td><span class="font-20 ">'+ondate+'&nbsp;&nbsp;'+time+'</span></td>'
 					               +'<td></td>'
 					            +'</tr>'
 		         			+'</table>'

@@ -304,7 +304,7 @@
 <div style="
     padding: 10px 20px;
    /* border: 1px solid #ddd;*/margin: 15px 0px;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".$arr[deposit][balance]." ".t_THB;?></span></div>
+" align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".number_format($arr[deposit][balance])." ".t_THB;?></span></div>
 <input type="hidden" id="balance" value="<?=$arr[deposit][balance];?>" />
   <!-- <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
 		<table width="100%">
@@ -366,7 +366,7 @@
    
 
    <div id="load_booking_data"  style="padding:0px; margin-top:10px;" align="center">
-     
+     	<div><img src="images/loader.gif" /></div>
    </div>
 
 
@@ -376,11 +376,12 @@
 <script>
 
  	var dataHistoryA;
- 	
+ 	var txt_pay_cash = '';
    function openDetailBooking(index,s_pay,cost){
    	var dv_cost = $('#balance').val();
 		console.log(dv_cost+" : "+cost);
 		if(s_pay==0){
+			txt_pay_cash = 'งานนี้เป็นงานลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
 			if(dv_cost<cost){
 				$('#material_dialog').show();
 				$('#dialoglLabel').text('ข้อความ');
@@ -390,6 +391,8 @@
 //				swal('ไม่สามารถรับงานนี้ได้','ยอดเงินคงเหลือในระบบของคุณไม่สามารถรับงานนี้ได้ กรุณาเติมเงินหรือติดต่อเจ้าหน้าที่ ขอบคุณค่ะ','error');
 				return;
 			}
+		}else{
+			txt_pay_cash = '';
 		}
    			var url = "empty_style.php?name=tbooking&file=book_detail";
 			var post = res_socket[index];
@@ -424,12 +427,12 @@
    }
 
    function backMain(){
-   	console.log('back');
-   	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
-   	$('#show_main_tool_bottom').fadeIn(500);
-     		$('#sub_component').hide();
-     		$('#main_component').addClass('w3-animate-left');
-     		$('#main_component').show();
+	   	console.log('back');
+	   	$('#main_load_mod_popup .back-full-popup').fadeIn(500);
+	   	$('#show_main_tool_bottom').fadeIn(500);
+	    $('#sub_component').hide();
+	    $('#main_component').addClass('w3-animate-left');
+	    $('#main_component').show();
    }
 
    function readDataBooking(){
@@ -446,7 +449,7 @@
 		  var program = res.program.topic_en;
 		  var pickup_place = res.pickup_place.topic;
 		  var to_place = res.to_place.topic;
-		  var ondate = res.ondate;
+		  var outdate = res.outdate;
           var type = res.program.area;
           var time = res.airout_time;
 		  var id = 'id_list_'+num;
@@ -480,11 +483,11 @@
 					               +'<td width="100%"><span class="font-24" colspan="2">'+to_place+'</span></td>'
 					            +'</tr>'
 					             +'<tr>'
-					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+cost+' <?=t_THB;?></span></strong></td>'
+					               +'<td><strong><span class="font-22 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-22" style="position: absolute;right: 15px;">'+addCommas(cost)+' <?=t_THB;?></span></strong></td>'
 					               
 					            +'</tr>'
 					            +'<tr>'
-					               +'<td><span class="font-20 ">'+ondate+'&nbsp;&nbsp;'+time+'</span></td>'
+					               +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'
 					               +'<td></td>'
 					            +'</tr>'
 		         			+'</table>'
@@ -502,20 +505,17 @@
 	 	
 	 }
 	 
-	function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time){
+	function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time,cost,outdate,ondate,s_status_pay){
 		
 		var carid = $('#carid').val();
-//		alert("<?=$_SESSION['data_user_name'];?>");
-		/*$('#material_dialog').show();
-		$('#dialoglLabel').text('<?=t_select_your_car;?>');
-		var url = "empty_style.php?name=tbooking&file=select_car&user_id="+user_id;
-		$.post(url,function(res){
-			$('#load_modal_body').html(res);
-		});*/
+		if(carid==''){
+			swal('กรุณาเลือกรถที่จะใช้งาน','','error');
+			return;
+		}
 		var driver = $('#driver').val();
 		swal({
-		  title: "<?=t_are_you_sure;?>",
-		  text: "<?=t_want_get_job;?>",
+		  title: "<?=t_job_confirmation;?>",
+		  text: txt_pay_cash,
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonClass: "btn-danger",
@@ -524,6 +524,11 @@
 		  closeOnConfirm: false
 		},
 		function(){
+			var url_cja = "mod/tbooking/curl_connect_api.php?type=detect_driver_approve";
+			/* check job approve */
+			$.post(url_cja,{ idorder:idorder},function(res_check){
+				console.log(res_check.data.result.length);
+				if(res_check.data.result.length>0){ // check this job have driver approve ?
 			var data = { 	 "idorder" : idorder, 
 							 "orderid" : orderid,
 							 "invoice" : invoice,
@@ -535,24 +540,64 @@
 							 "to_place" : to_place,
 							 "agent" : agent,
 							 "airout_time" : airout_time,
-							 "airin_time" : airin_time
+							 "airin_time" : airin_time,
+							 "s_cost" : cost,
+							 "outdate" : outdate,
+							 "ondate" : ondate
                			  };
 			var url = "mod/tbooking/curl_connect_api.php?type=getjob_booking";
-			console.log(data);
-
+			var bank_account = "Goldenbeach Tour";
+			var deposit_bank = "กสิกรไทย";
+			var bank_number = "909-609-6699";
+			var deposit_date = "<?=date('Y-m-d');?>";
+			var deposit_time = "<?=date('H:m');?>";
+			var username = '<?=$_SESSION["data_user_name"];?>';
+			var deposit = cost;
+			var his_ap = {
+						driver : driver,
+						idorder : idorder,
+						username : username,
+						deposit : deposit,
+						deposit_date : deposit_time,
+						type : "APPROVEJOB",
+						deposit_bank : deposit_bank,
+						bank_account : bank_account,
+						bank_number : bank_number,
+						deposit_date : deposit_date,
+						deposit_time : deposit_time,
+						post_date : '<?=time();?>',
+						post_date_f : deposit_date
+						};
 			$.post(url,data,function(res){
-				console.log(res);
+//				console.log(res);
 				if(res.status=="200"){
-					swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
-					hideDetail();
-					callApiLog();
+					if(s_status_pay==0){ // Pay Cash
+						$.post("mod/tbooking/curl_connect_api.php?type=php_approve_job",his_ap,function(logdata){
+							swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
+							hideDetail();
+							historyTransfer();
+							console.log(logdata);
+						});
+					}else{ // Pay Transfer bank
+						swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
+					}
+					
 				}else{
 					swal("<?=t_error;?>!", "<?=t_press_button_close;?>", "error");
 				}
+				
+				
+				
+				
+				
+				
+				
+				
+					});
+				}
 			});
-		   
-			
 		});
+		
 
 		
 		
@@ -602,7 +647,6 @@
 //       event.preventDefault();
 	}
 
-
  	function ViewPhoto(id,type,date){
 		var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
 		console.log(url);
@@ -616,4 +660,5 @@
 // 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
 
 	}		
+
  </script>

@@ -231,6 +231,16 @@
          }
       </style>
 	  <style>
+	  	 .btn-primary{
+		 	background-color: <?=$main_color;?> !important;
+		 }
+		 .btn-cus{
+		 	padding: 8px 16px !important;
+   			font-size: 18px !important;
+    		line-height: 1.3333333 !important;
+    		border-radius: 6px !important;
+    		min-width: 100px;
+		 }
          .modal.fade .modal-dialog {
          opacity: 0;
          -webkit-transform: scale(0.1);
@@ -571,6 +581,20 @@
             <!-- modal-content -->
          </div>
       </div>
+      
+      <div id="material_alert" style="width: 100%;height: 100%;position:  fixed;z-index: 99999;background-color: rgba(0, 0, 0, 0.80);top: 0px;left: 0px;display: none;">
+         <div class="modal-dialog" style="background-color: #fff; top:20px;animation: showSweetAlert 0.4s;" >
+            <div class="modal-content">
+               <div class="modal-body" id="load_modal_body" style="-webkit-overflow-scrolling: touch;">
+               </div>
+               <div class="modal-footer" style="padding: 7px 5px;margin-top: 5px;">
+                  <button type="button" class="btn btn-dialog font-22 text-cap" onclick="$('#material_alert').hide();" id="cancel_alert"><?=t_close;?></button>
+                  <button type="button" class="btn btn-dialog font-22 text-cap" onclick="$('#material_alert').hide();" id="ok_alert"><?=t_ok;?></button>
+               </div>
+            </div>
+            <!-- modal-content -->
+         </div>
+      </div>
    </body>
 </html>
 <script src="js/camera/binaryajax.js"></script> 
@@ -616,6 +640,18 @@
 //    $('#load_mod_data').load('go.php');
    window.location = "index.php";
    }
+   function addCommas(nStr)
+	{
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
+	}
 </script>
 
 <style>
