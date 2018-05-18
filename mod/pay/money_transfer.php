@@ -1,7 +1,30 @@
+<?php 
+ include('../../includes/class.mysql.php');
 
+  
+  $db = New DB();
+  $db->connectdb('admin_app','admin_MANbooking','252631MANbooking');
+  
+  mysql_query("SET NAMES uft8"); 
+  mysql_query("SET character_set_results=uft-8");
+//   // $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+//   $res[project] = $db->select_query("SELECT id FROM  web_driver  where  username ='".$_POST[driver]."'");
+// $arr[project] = $db->fetch($res[project]);
+ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[deposit] = $db->select_query("SELECT balance FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
+                      
+ $arr[deposit] = $db->fetch($res[deposit]) ;
+ // $date = new DateTime();
+ // echo $date->format('H:i')
+ ?>
 <!-- <div id="box_body_mode">
     
 </div> -->
+<script >
+  var balance = <?=$arr[deposit][balance];?>;
+  var balance_final = balance.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")+ ' '+ 'บาท';
+  $('#balance_final').html(balance_final)
+</script>
 
 <div  id="load_money" style="display: nones;" >
 
@@ -24,6 +47,15 @@
     <td width="49%" ><div id="history_money" onclick="history_money()" class="btn_no_active"><? echo t_history?></div></td>
    
   </tr>
+   <tr align="center">
+       <td colspan="3" width="100%">
+            <div style="border-radius: 25px;
+    padding: 8px 0;
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 3px 8px 0 rgba(0,0,0,0.2);
+    border-top: 1px solid #3b5998;" align="center">
+<span class="font-26 text-cap"><span>ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final"></span></div>
+            </td>
+    </tr>
 </table>
 </div>
             
@@ -134,7 +166,7 @@ $('#main_load_mod_popup').show();
     $('#main_load_mod_popup').show();
     $('#load_body_mode').html(' ');
     
-    var url_load = "go.php?name=load/pay&file=index_withdraw";
+    var url_load = "go.php?name=load/pay&file=index_logs";
     $.post( url_load, function( data ) {
     $('#load_body_mode').html(data);
   });
