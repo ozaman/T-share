@@ -637,6 +637,7 @@
         $('#number_tbooking').text(data.transfer[0].length);
 	        if($('#check_open_worktbooking').val()==1){
 	        console.log(data.transfer);
+	        
 	//        console.log('now open popup');
 			readDataBooking();
 			}

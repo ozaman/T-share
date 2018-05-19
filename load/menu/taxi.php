@@ -258,8 +258,6 @@
       		 setTimeout(function(){ 
       		 	window.location.href = "index.php";		}, 1000);
       });
-      } else {
-        swal("Cancelled", "", "error");
       }
     });
     });

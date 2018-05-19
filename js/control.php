@@ -2,8 +2,11 @@
 
  
  
-<script src="js/sweet/dist/sweetalert-dev.js"></script>
-<link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>">
+<!--<script src="js/sweet/dist/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>">-->
+
+<script src="js/sweet_origin/sweetalert.js"></script>
+<link rel="stylesheet" href="js/sweet_origin/sweetalert.css">
 
 <script src="js/tinybox/tinybox.js"></script>
 <link rel="stylesheet" href="js/tinybox/style.css">

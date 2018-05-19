@@ -112,6 +112,11 @@ td{
 		$display_none_air = 'display:none;';
 	}
 	$car_type = $_POST[car_type][$place_shopping];
+/*	if($_POST[s_status_pay]==0){
+		$type_pay = 'งานนี้เป็นงานลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินในระบบของคุณ จำนวน '.$_POST[s_cost];
+	}else{
+		$type_pay = 'โอนเงินเข้าบัญชี';
+	}*/
 ?>
 <!--<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="hideDetail();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>-->
 <div style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;">
@@ -431,7 +436,7 @@ $plate_color="FFCC00"; }
 
 
 <div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:5px;">
-<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
+<button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 
 
