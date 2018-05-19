@@ -309,7 +309,7 @@ var time_complete = new Array();
 var countdownTimer = new Array();
 var sec_array = new Array();
 
- function warkingall(){
+function warkingall(){
     console.log('================================incase all==============================')
       // $('#body_to_append').html(load_main_icon_big);
   $('#body_to_append').html(load_main_icon_big);
@@ -343,6 +343,7 @@ $('#btn_all').removeClass('btn_filter_active');
 
        
    }
+
 function timer(id,seconds) {
 	
 	if (typeof sec_array[id] == 'undefined') {
