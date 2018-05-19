@@ -260,7 +260,7 @@
            <button type="button" class="btn btn-default paddling-max"  id="index_menu_money" onclick="money_transfer()" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #e91e63"><i class="fa fa fa-usd" ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_transfer_record ?></span>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap">กระเป๋าเงิน-ประวัติ</span>
                </center>
             </button>
          </td>
@@ -283,6 +283,19 @@
                <center>
                   <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-taxi" ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "จองรถ"; ?></span>
+               </center>
+            </button>
+            </a>
+         </td>
+         
+      </tr>
+      <tr>
+         <td colspan="2" width="50%" align="center" class="">
+            <a href="https://www.welovetaxi.com:8080/">
+            <button type="button" class="btn btn-default paddling-max" style="width:100%">
+               <center>
+                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-taxi" ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
                </center>
             </button>
             </a>
