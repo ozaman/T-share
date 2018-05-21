@@ -1,5 +1,7 @@
 <script>
    $(".text-topic-action-mod").html('<?=t_job_received;?>');
+
+
 </script>
 <?php
 $thai_day_arr=array("อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์");
@@ -238,6 +240,18 @@ function thai_date($time){
    }
 </style>
 <style>
+	.btn-approve-job{
+		border-radius: 15px;
+    	padding: 7px 20px;
+    	position:  absolute;
+    	right: 15px;
+    	bottom: 4px;
+    	border: 0px solid;
+    	box-shadow: 2px 2px 10px #c5bfbf;
+    	background-color: #3b5998;
+    	color: #fff;
+    	font-size: 12px;
+	}
 	#main_component{
 		margin-top: 50px;
     	border-top: 0px;
@@ -305,6 +319,7 @@ function thai_date($time){
    color: #ffffff;
    }
 </style>
+
 <div id="main_component" >
    <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css">
    <script src="js/jquery-main.js"></script> 
@@ -333,25 +348,7 @@ function thai_date($time){
       /* border: 1px solid #ddd;*/margin: 15px 0px;box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
       " align="center"><span class="font-26 text-cap" ><?=t_u_balance." ".number_format($arr[deposit][balance])." ".t_THB;?></span></div>
    <input type="hidden" id="balance" value="<?=$arr[deposit][balance];?>" />
-   <!-- <div style="padding:0px 0px; margin: auto;margin-bottom: 5px">
-      <table width="100%">
-      	<tbody>
-      	<tr>
-      		<td width="33%"><div id="btn_job_now" class="btn_filter_active tocheck" align="center" onclick="FilterType('job_now');" ><span class="font-22"><?=t_now;?></span></div>
-      		<span id="number_book" class="badge font-20" style="position: absolute;top: -3px;left:70px;font-size: 14px;background-color: #F44336;">0</span>
-      		</td>
-      		<td width="33%">
-      		<div id="btn_manage" class="btn_filter tocheck" align="center" onclick="FilterType('manage');" ><span class="font-22"><?=t_manage;?></span></div>
-      		<span id="number_manage" class="badge font-20" style="position: absolute;top: -5px;right: 110px;font-size: 14px;background-color: #F44336;">0</span>
-      		</td>
-      		<td width="33%">
-      		<div id="btn_history" class="btn_filter tocheck" align="center" onclick="FilterType('history');" ><span class="font-22"><?=t_history;?></span></div>
-      		<span id="number_history" class="badge font-20" style="position: absolute;top: -5px;right: 5px;font-size: 14px;background-color: #F44336;">0</span>
-      		</td>
-      	</tr>
-      </tbody>
-      </table>
-      </div>  --> 
+ 
    <div class="form-group" style="margin-bottom:5px;">
    	  <div align="center" style="padding: 5px;"><span class="font-26"><?=thai_date(time());?></span></div>
       <div class="input-group date" style="padding:0px;display: none;">
@@ -389,9 +386,15 @@ function thai_date($time){
               });
        }, 500);
    </script>
-   <div id="load_booking_data"  style="padding:0px; margin-top:0px;" align="center">
+   <div id="load_booking_data"  style="padding:0px; margin-top:0px;display: nones;" align="center">
       <div style=" margin: 50px;"><img src="images/loader.gif" /></div>
    </div>
+
+   <table>
+   	<tr>
+   		<td colspan="2"></td>
+   	</tr>
+   </table>
 </div>
 <input type="hidden" value="<?=date();?>" id="current_datetime" />
 <script>
@@ -401,7 +404,7 @@ function thai_date($time){
     	var dv_cost = $('#balance').val();
    console.log(dv_cost+" : "+cost);
    if(s_pay==0){
-   	txt_pay_cash = 'งานนี้เป็นงานลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
+   	txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
    	if(dv_cost<cost){
    		$('#material_dialog').show();
    		$('#dialoglLabel').text('ข้อความ');
@@ -478,6 +481,17 @@ function thai_date($time){
      var id = 'id_list_'+num;
      var s_pay = res.s_status_pay;
      var cost = res.s_cost;
+     var car_type;
+     if(getCookie("lng")=='en'){
+	 	var car_type = res.car_type.topic_en;
+	 }else if(getCookie("lng")=='cn'){
+	 	var car_type = res.car_type.topic_cn;
+	 }else if(getCookie("lng")=='th'){
+	 	var car_type = res.car_type.topic_th;
+	 }else{
+	 	
+	 	var car_type = res.car_type.topic_<?=$keep;?>;
+	 }
      if(s_pay==0){
      	var type_pay = '<?=t_get_cash;?>';
      }else{
@@ -514,6 +528,9 @@ function thai_date($time){
    			            +'</tr>'
    			            +'<tr>'
    			               +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'					              
+   			            +'</tr>'
+   			             +'<tr>'
+   			               +'<td><span class="font-20">'+car_type+'</span><button class="btn-approve-job" ><span class="font-20"><?=t_accept_order;?></span></button></td>'					              
    			            +'</tr>'
             			+'</table>'
             		+'</td>'
