@@ -421,7 +421,7 @@
    							$('.button-close-popup-mod-1').click();
    							$('.button-close-popup-mod').click();
    							$('.close-small-popup').click();
-   							$('#btn_todaywork_bottom_menu').click();
+   							$('#index_menu_shopping_history').click();
        });
      });
 </script>

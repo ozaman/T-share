@@ -33,18 +33,18 @@
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
   <tr align="center">
     <td width="49%">
-      <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><? echo t_transfers?></div>
+      <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><span class="font-22"><? echo t_transfers?></span></div>
       </td>
         <td width="2%"></td>
     <td width="49%" >
-      <div id="requet_money" onclick="request_money()" class="btn_no_active"><? echo t_transfer_notice?></div>
+      <div id="requet_money" onclick="request_money()" class="btn_no_active"><span class="font-22"><? echo t_transfer_notice?></span></div>
       </td>
    
   </tr>
   <tr align="center">
-    <td width="49%"><div id="withdraw_money" onclick="withdraw_money()" class="btn_no_active">ถอนเงิน</div></td>
+    <td width="49%"><div id="withdraw_money" onclick="withdraw_money()" class="btn_no_active"><span class="font-22">ถอนเงิน</span></div></td>
         <td width="2%"></td>
-    <td width="49%" ><div id="history_money" onclick="history_money()" class="btn_no_active"><? echo t_history?></div></td>
+    <td width="49%" ><div id="history_money" onclick="history_money()" class="btn_no_active"><span class="font-22"><? echo t_history?></span></div></td>
    
   </tr>
    <tr align="center">
@@ -53,7 +53,7 @@
     padding: 8px 0;
     box-shadow: 0 5px 7px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 3px 8px 0 rgba(0,0,0,0.2);
     border-top: 1px solid #3b5998;" align="center">
-<span class="font-26 text-cap"><span>ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final"></span></div>
+<span class="font-26 text-cap"><span class="font-22">ยอดเงินของคุณ  </span><span style="margin-left: 10px" id="balance_final" class="font-22"></span></div>
             </td>
     </tr>
 </table>
@@ -68,14 +68,6 @@
 </div>
 	
 
-
- 
- 
- <style >
- 	.font_18{
- 		font-size: 16px !important;
- 	}
- </style>
  <script >
 
   var check_lang = '<?=$_COOKIE["lng"];?>';
@@ -212,7 +204,7 @@ $('#main_load_mod_popup').show();
     border-radius: 25px;
     color: #fff;
     padding: 5px 30px;
-    border: 2px solid #3b5998;
+    border: 1px solid #3b5998;
     margin-bottom: 8px;
 
   }
@@ -222,7 +214,7 @@ $('#main_load_mod_popup').show();
     border-radius: 25px;
     
     padding: 5px 30px;
-    border: 2px solid #3b5998;
+    border: 1px solid #3b5998;
     margin-bottom: 8px;
   }
 </style>

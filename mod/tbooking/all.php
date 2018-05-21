@@ -462,7 +462,7 @@ function thai_date($time){
    		var time_post = CheckTime(d_db,d_cr);
    	}else{
    //				console.log(2);
-   		console.log(CheckTime(d_cr,d_db));
+//   		console.log(CheckTime(d_cr,d_db));
    		var time_post = CheckTime(d_cr,d_db);
    	}
    		/*console.log(CheckTime(d_cr,d_db));
@@ -527,6 +527,7 @@ function thai_date($time){
         num++;
          });
    }
+
    function selectjob(orderid,idorder,invoice,code,program,p_place,to_place,agent,airout_time,airin_time,cost,outdate,ondate,s_status_pay){
    var carid = $('#carid').val();
    if(carid==''){
@@ -607,6 +608,10 @@ function thai_date($time){
    		}
    			});
    		}
+		else{
+			swal('ไม่สามารถรับงานได้','งานนี้มีคนขับคนอื่นรับงานแล้ว','error');
+			hideDetail();
+		}
    	});
    });
    } 
