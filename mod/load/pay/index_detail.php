@@ -74,11 +74,18 @@ while($arr[bank] = $db->fetch($res[bank])){
 // $arr[ct] = $db->fetch($res[ct]);
 
 if($arr[bank][bank_company]=="ธนาคารไทยพาณิชย์"){
-$plate_color="4b2885"; } 
+$plate_color="4b2885"; 
+$bank = 'thbanks-scb';
+} 
  if($arr[bank][bank_company]=="ธนาคารกสิกรไทย"){
- $plate_color="00a950"; } 
+ $plate_color="00a950"; 
+$bank = 'thbanks-kbank';
+
+} 
  if($arr[bank][bank_company]=="ธนาคารกรุงเทพ"){
  $plate_color="223d98"; 
+$bank = 'thbanks-bbl';
+
  } 
 ?>
   <a id="car_<?=$arr[bank][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[bank][id];?>','<?=$arr[bank][bank_company];?>','<?=$arr[bank][bank_number];?>');">
@@ -90,7 +97,7 @@ $plate_color="4b2885"; }
                          
                            <tr>
                            <td width="100" align="center" bgcolor="<?=$plate_color;?>" style="color: #DADADA;
-    padding: 5px; border-radius: 10px;"><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
+    padding: 5px; border-radius: 10px;"><i class="thbanks <?=$bank?>" aria-hidden="true"></i><font color="#FFFFFF" class="font-20"><?=$arr[bank][bank_company];?><br>
                                  <font class="font-20"><?=$arr[bank][bank_number];?></font></font>
                               </td>
                            </tr>
@@ -168,6 +175,33 @@ function selectCar(id,company,number){
 
   </script>
   <style>
+  .thbanks-scb {
+    color: #4b2885 !important;
+    background-color: #ffffff !important;
+    font-size: 21px;
+    padding: 6px;
+    border-radius: 50px;
+    position: absolute;
+    left: 40px;
+}
+.thbanks-bbl {
+    color: rgb(34, 61, 152);
+    background-color: #ffffff !important;
+    font-size: 21px;
+    padding: 6px;
+    border-radius: 50px;
+    position: absolute;
+    left: 40px;
+}
+.thbanks-kbank {
+    color: rgb(0, 169, 80) !important;
+    background-color: #ffffff !important;
+    font-size: 21px;
+    padding: 6px;
+    border-radius: 50px;
+    position: absolute;
+    left: 40px;
+}
 /* The container */
 h2{
       font-size: 20px;
