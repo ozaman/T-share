@@ -1,6 +1,22 @@
 <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css"> 
 <!-- <script src="js/jquery-main.js"></script>  -->
 <!-- <script   src="calendar/js/th.js"></script> -->
+  <?php 
+include('../../../includes/class.mysql.php');
+
+ mysql_query("SET NAMES utf8"); 
+  mysql_query("SET character_set_results=utf-8");
+$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+$select = "SELECT * FROM web_bank where status = 1  ";
+$res[bank] = $db->select_query($select);
+
+// $row_data[];
+//$databank =json_decode($arr[bank_tr]);
+
+?>
+
+
+
 
 
  <!-- <script   src="calendar/js/th.js"></script> -->
@@ -33,39 +49,44 @@
       <div >
         <table>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_transfer_banks?></td>
-          <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
-            <select class="form-control" name="bank" id="bank" style="border-radius: 25px;padding: 0 15px;">             
-                <option > ไทยพานิชย์ </option>
-            </select>
+          <td width="80" class="font_18 " style="height:30px;font-size: 14px;  padding-left:5px;"><? echo t_transfer_banks?></td>
+          <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
+            <select class="form-control" name="bank" id="selectbank_tr" style="border-radius: 25px;padding: 0 15px; " onchange="selectbank_tr(this.value)">             
+               
+<?php while($arr[bank] = $db->fetch($res[bank])){
+$row_data[] = $arr[bank]; ?>
+   <option value="<?php echo $arr[bank][id];?>"><?php echo $arr[bank][bank_company];?></option>
+<?php } echo json_encode($row_data); ?>
+</select>
+           
                  
         </td>
           
         </tr>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_account_name?></td>
-          <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
-            <input class="form-control" value="Mr.Ozaman Haha" name="bank" id="b_acount" style="border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
+          <td width="80" class="font_18 " style="height:30px;font-size: 14px;  padding-left:5px;"><? echo t_account_name?></td>
+          <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
+            <input class="form-control"  name="bank" id="b_acount" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
                
                  
         </td>
           
         </tr>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_account_number?></td>
-          <td width=""   class="font_16 " style="color:#333;font-size: 16px;">
-            <input class="form-control" value="857-208-8605" name="bank" id="b_number" style="border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
+          <td width="80" class="font_18 " style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_account_number?></td>
+          <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
+            <input class="form-control"  name="bank" id="b_number" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
                
                  
         </td>
           
         </tr>
         <tr>
-          <td width="80" class="font_18 " style="height:30px;  padding-left:5px;"><? echo t_today?></td>
+          <td width="80" class="font_18 " style="height:30px;font-size: 14px;  padding-left:5px;"><? echo t_today?></td>
           <td>
     
        <div class="input-group date" style="padding:0px;width: 100%">
-          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_request" id="date_request"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:16px;z-index: 0;padding:10px;width: 100%;border-radius: 25px;margin-top: 8px;"  >               
+          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_request" id="date_request"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:14px;z-index: 0;padding:10px;width: 100%;border-radius: 25px;margin-top: 8px;"  >               
           <!-- <div class="input-group-addon"  id="btn_calendar2" style="cursor:pointer "> -->
              <i class="fa fa-calendar icon_calendar" style="pointer-events: none;
     position: absolute;
@@ -79,14 +100,14 @@
  </td>
         </tr>
         <tr>
-          <td width="80" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_minutes?></td>
-          <td width=""   class="font_16" style="color:#FF0000;font-size: 16px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time" style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
+          <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_minutes?></td>
+          <td width=""   class="font_16" style="color:#FF0000;font-size: 14px;"> <input type="text" placeholder="xx:xx" class="form-control" name="time" id="time" style="border-radius: 25px;font-size: 14px;padding: 0 15px;margin-top: 8px;">
           </td>
           
         </tr>
         <tr>
-            <td width="80" class="font_18" style="height:30px;  padding-left:5px;"><? echo t_amount?></td>
-            <td width=""   class="font_16" style=" color:#FF0000;font-size: 16px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  style="border-radius: 25px;padding: 0 15px;margin-top: 8px;">
+            <td width="80" class="font_18" style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_amount?></td>
+            <td width=""   class="font_16" style=" color:#FF0000;font-size: 14px;"> <input class="form-control" placeholder="3xxx" type="text" name="amount" id="amount"  style="border-radius: 25px;font-size: 14px;padding: 0 15px;margin-top: 8px;">
             </td>
         </tr>
         <tr>
@@ -171,6 +192,28 @@
           //QueryData();
       }
         });
-$('.text-topic-action-mod').html('<?echo t_transfer_notice?>');
 
+    //document.getElementById("selectbank_tr").addEventListener("change", selectbank_tr);
+$('.text-topic-action-mod').html('<?echo t_transfer_notice?>');
+selectbank_tr(1)
+function selectbank_tr(x) {
+    var databank = <?=json_encode($row_data);?>
+    // for (var i = 0; i < databank.length; i++;) {
+    //   console.log(databank[i]);
+    // }
+
+    databank.forEach(function(data) {
+      if (x == data.id) {
+         console.log(data);
+         $('#b_acount').val(data.bank_acount)
+         $('#b_number').val(data.bank_number)
+      }
+   
+    });
+    // var x = document.getElementById("fname");
+    // x.value = x.value.toUpperCase();
+    console.log(databank)
+    console.log(databank.length)
+    console.log(x)
+}
   </script>

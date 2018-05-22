@@ -223,13 +223,7 @@
          z-index: 9999; 
          overflow-y:hidden ; padding:0px; background-color:#FFFFFF;
          }
-         .back-full-popup
-         { 
-         font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=$maincolor?>;      
-         border-top: 0px solid #000000; margin-bottom: 0px;  
-         top:  0; position:fixed;
-         z-index: 1; 
-         }
+         
       </style>
 	  <style>
 	  	 .btn-primary{
@@ -777,7 +771,110 @@
     transform: scale(1);
 }
 }
+.css-full-popup {
+   position: fixed;
+   left: 0px;
+   top: 0px; 
+   bottom:0;
+   width: 100%;
+   height: 100%;
+   z-index: 9999; 
+   overflow-y:hidden ; padding:0px; background-color:#FFFFFF;
+ 
+}
+.back-full-popup
+         { 
+         border-bottom: dashed 1px #3b5998 !important;
+    font-size: 22px !important;
+    padding: 10px !important;
+    color: #333333 !important;
+    width: 100% !important;
+    border-top: 0px solid #000000 !important;
+    margin-bottom: 0px!important;
+    top: 0 !important;
+    position: fixed !important;
+    
+    background: #e8e8e8 !important;
+         }
+.close-small-popup{
+   font-size:22px;
+    color:#333 !important;
+}
+.text_small_popup{
+color:#333 !important;
+}
 
+/*pop up*/
+.main_load_mod_popup{
+   color: #333;
+}
+.main_load_mod_popup_1{
+   color: #333;
+}
+.main_load_mod_popup_2{
+   color: #333;
+}
+.main_load_mod_popup_3{
+   color: #333;
+}
+.main_load_mod_popup_4{
+   color: #333;
+}
+.main_load_mod_popup_5{
+   color: #333;
+}
+
+.button-close-popup-mod-1{
+   color: #333333;
+   
+}
+.button-close-popup-mod-2{
+   color: #333333;
+   
+}
+.button-close-popup-mod-3{
+   color: #333333;
+   
+}
+.button-close-popup-mod-4{
+   color: #333333;
+   
+}
+.button-close-popup-mod-5{
+   color: #333333;
+   
+}
+.fa-home{
+   font-size:30px;
+}
+.button-close-popup-mod{
+   color: #333333;
+}
+.text_mod_topic_action_1{
+   font-size:22px;
+   color: #333333;
+}
+.text_mod_topic_action_2{
+   font-size:22px;
+   color: #333333;
+}
+.text_mod_topic_action_3{
+   font-size:22px;
+   color: #333333;
+}
+.text_mod_topic_action_4{
+   font-size:22px;
+   color: #333333;
+}
+.text_mod_topic_action_5{
+   font-size:22px;
+   color: #333333;
+}
+.text_mod_topic_action_6{
+   font-size:22px;
+   color: #333333;
+}
+/*****END*****/
 </style>
 <div class="container">
 	<div class="row">

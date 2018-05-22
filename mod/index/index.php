@@ -402,13 +402,13 @@
             <tbody>
                <tr>
                   <td width="40">
-                     <div class="close-small-popup"><i class="fa fa-close" style="font-size:22px; color:#FFFFFF "></i></div>
+                     <div class="close-small-popup"><i class="fa fa-close" style=" "></i></div>
                   </td>
                   <td>
-                     <div class="font-26" id="text_small_popup" style="color: #fff;" class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
+                     <div class="font-26" id="text_small_popup"  class="text-topic-action-mod-small-popup"><? echo t_province_you?> <span class="text-change-province"></span></div>
                   </td>
                   <td width="40" align="right">
-                     <div style="font-size:22px; color:#FFFFFF " onclick="GohomePage();"><i class="fa fa-home" style="font-size:30px; color:#ffff; "></i></div>
+                     <div  onclick="GohomePage();"><i class="fa fa-home" ></i></div>
                   </td>
                </tr>
             </tbody>

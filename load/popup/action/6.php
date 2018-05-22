@@ -5,10 +5,10 @@
     <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="40"   ><div class="button-close-popup-mod-6" ><?=$popup_icon_left_arow;?></div></td>
-  <td   ><span class="font-28"><div id="text_mod_topic_action_6" class="text-topic-action-mod-6 text-resize" style="color: #fff;" ></div></span></td>
+  <td   ><span class="font-28"><div id="text_mod_topic_action_6" class="text-topic-action-mod-6 text-resize" ></div></span></td>
 <td width="40" align="right"   >
     <div onclick="GohomePage();">
-    <i class="fa fa-home" style="font-size:30px; color:#ffff; "></i>
+    <i class="fa fa-home" "></i>
     </div>
     </td>
   </tr>

@@ -985,7 +985,7 @@ $detectname='Other';
  
  
  
- $popup_icon_left_arow='<i class="fa fa-close" style="font-size:22px; color:#FFFFFF "></i>';
+ $popup_icon_left_arow='<i class="fa fa-close" style="font-size:22px;"></i>';
  
  
  

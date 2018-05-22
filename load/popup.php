@@ -18,10 +18,16 @@
 }
 .back-full-popup
 { 
-font-size:22px;   padding:10px;  color:#FFFFF;  width:100%; background-color:<?=$maincolor?>;      
- border-top: 0px solid #000000; margin-bottom: 0px;  
-  top:  0; position:fixed;
-    z-index: 1; 
+border-bottom: dashed 1px #3b5998 !important;
+    font-size: 22px;
+    padding: 10px;
+    color: #333333 !important;
+    width: 100%;
+    border-top: 0px solid #000000;
+    margin-bottom: 0px;
+    top: 0;
+    position: fixed;
+    z-index: 1;
  
 }
  
