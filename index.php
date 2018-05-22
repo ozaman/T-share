@@ -34,6 +34,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
       <meta name="format-detection" content="telephone=no">
       <meta name="theme-color" content="<?=$main_color?>" />
+      <link rel="stylesheet" href="front_bank/css/thbanklogos.min.css" id="stylesheet">
       <!--<style type="text/css">
          a:link {
          	text-decoration: none;
