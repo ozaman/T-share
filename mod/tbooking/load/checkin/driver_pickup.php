@@ -8,6 +8,7 @@
    if($_POST[driver_pickup]==1 ){ ?>
 <script> 
    $("#step_driver_complete").show();
+   $("#btn_pickup_not_tr").hide();
       $('#iconchk_driver_pickup').attr("src", "images/yes.png");  
      $("#number_driver_pickup").removeClass('step-booking');
       $("#number_driver_pickup").addClass('step-booking-active');
@@ -29,7 +30,7 @@
                     </td>
                   </tr>
                   
-                  <tr id="btn_pickup<?=$arr[order][invoice]?>" style="display: nonea">
+                  <tr id="btn_pickup_not_tr" >
                     <td style="padding-top:5px"><button style="text-transform: capitalize;width:100%;text-align:center;padding:5px; background-color:#ff0000;  border-radius: 20px; border:none;" class="btn  btn-info"  id="btn_pickup_not_check" ><?=t_no_guests;?></button></td>
                   </tr>
                
