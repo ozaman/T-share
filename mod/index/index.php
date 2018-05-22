@@ -281,8 +281,8 @@
          	<a href="https://www.welovetaxi.com/app/booking2/">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
-                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-taxi" ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo "จองรถ"; ?></span>
+                  <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" ></i></div>
+                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
                </center>
             </button>
             </a>
@@ -294,7 +294,7 @@
             <a href="https://www.welovetaxi.com:8080/">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
-                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-taxi" ></i></div>
+                  <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap">test map</span>
                </center>
             </button>
@@ -501,22 +501,14 @@
     
 </script>  
 </div>
-<style>
-  /* .sweet-alert{
-   margin-top: -210px !important;
-   }*/
-</style>
+
 <script>
    var locat = getCookie("geolocation");
    geolocatCall();
-      /*if (locat != "") {
-   	geolocatCall();
-      }else{
-   	geolocatCallFrist();
-   }*/
-   /*$('#now_province').val('ภูเก็ต');
-   		$('#province_text').text('ภูเก็ต');
-   		updatePlaceNum('ภูเก็ต');*/
+   var userLang = navigator.language || navigator.userLanguage; 
+   userLang = userLang.split('-');
+   var js_lng = userLang[0];
+   console.log('Js Browser lng : '+js_lng);
    function geolocatCall(){
    if (navigator.geolocation) {
            navigator.geolocation.getCurrentPosition(showPosition);
@@ -525,14 +517,7 @@
        }
    }
    function geolocatCallFrist(){
-   /*var r = confirm("ต้องการเข้าถึงตำแหน่งปัจจุบันของคุณ เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้น และสะดวกในการเดินทางไปรับแขกของคุณ");
-   if (r){
-   	if (navigator.geolocation) {
-           navigator.geolocation.getCurrentPosition(showPosition);
-       } else { 
-          	console.log('ปิดตำแหน่ง');
-       }
-   }*/
+
    	swal({
    	  title: "แสดงตำแหน่งปัจจุบัน",
    	  text: "เพื่อการเข้าถึงข้อมูลของสถานที่ส่งแขกใกล้เคียงได้สะดวกยิ่งขึ้นและสะดวกในการเดินทางไปรับแขกของคุณ",
@@ -568,7 +553,7 @@
         }else{
      	lng = "<?=$keep;?>";
      }
-        console.log(lng);
+        console.log('Php Browser lng : '+lng);
     var url = 'https://maps.google.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=false&language='+lng+'&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
    //	 var url = 'https://maps.google.com/maps/api/geocode/json?latlng=9.13824,99.32175&sensor=false';
       $('#lat').val(position.coords.latitude);
