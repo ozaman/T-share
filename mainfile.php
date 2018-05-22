@@ -1,4 +1,5 @@
  <?
+// $_COOKIE['lng'] = 'en';
 $get_lng           = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 $get_lng           = $get_lng[0];
 $check_lng_browser = explode('-', $get_lng);

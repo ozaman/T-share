@@ -177,7 +177,7 @@
          </span>
          </a>
       </li>
-      <li id="menu_lnguage" class="treeview" style="display: nones;" >
+      <li id="menu_lnguage" class="treeview" style="display: none;" >
          <a href="#">
          <i class="icon-new-uniF161-3 l-menu-li-icon-main"></i> <span class="textmain-left-menu">&nbsp;<? echo t_language?></span>
          <span class="pull-right-container">
@@ -229,6 +229,7 @@
    </ul>
 </section>
 <script>
+	
    $('#btn_qrcode_bottom_menu').click(function(){  
     hidepopup();
      $("#btn_qrcode_bottom_menu").addClass("bottom-popup-icon-new-active");
