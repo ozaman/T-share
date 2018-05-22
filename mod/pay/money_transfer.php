@@ -33,7 +33,7 @@
 <table width="100%"  border="0" cellspacing="0" cellpadding="0"  >
   <tr align="center">
     <td width="49%">
-      <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><span class="font-22"><? echo t_transfers?></span></div>
+      <div id="transfer_money" onclick="transfer_money()" class="btn_no_active btn_active"><span class="font-22">เติมเงิน</span></div>
       </td>
         <td width="2%"></td>
     <td width="49%" >
