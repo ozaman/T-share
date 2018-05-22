@@ -311,11 +311,12 @@
 </script>   
 <script>
    $('#btn_home_head_menu').click(function(){  
-   hidepopup();
+   /*hidepopup();
      $("#btn_home_bottom_menu").addClass("bottom-popup-icon-new-active");
     $('#load_mod_data').html(load_main_mod);
      $('#navload_topic').html('ไปที่หน้าแรก');
-    $('#load_mod_data').load('go.php');
+    $('#load_mod_data').load('go.php');*/
+    	 location.reload();
          	});
     /// qr code
    $('#btn_qrcode_bottom_menu').click(function(){  

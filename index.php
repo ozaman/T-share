@@ -25,6 +25,7 @@
    // include('../js/jquery.cookie.js');
    //echo $_COOKIE['lng'];
    ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
    <head>
@@ -619,6 +620,7 @@
 
 <script >
    //alert("<?=$final_tt;?>");
+   	
       function language(lng) {
        console.log(lng);
    //    $.cookie("lng", lng, { path: '/' });

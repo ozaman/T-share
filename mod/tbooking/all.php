@@ -400,11 +400,13 @@ function thai_date($time){
 <script>
    var dataHistoryA;
    var txt_pay_cash = '';
+   var txt_pay_trans = '';
     function openDetailBooking(index,s_pay,cost){
     	var dv_cost = $('#balance').val();
    console.log(dv_cost+" : "+cost);
    if(s_pay==0){
    	txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน '+addCommas(cost)+' บาท';
+   	txt_pay_trans = '';
    	if(dv_cost<cost){
    		$('#material_dialog').show();
    		$('#dialoglLabel').text('ข้อความ');
@@ -414,6 +416,7 @@ function thai_date($time){
    	}
    }else{
    	txt_pay_cash = '';
+   	txt_pay_trans = '';
    }
     			var url = "empty_style.php?name=tbooking&file=book_detail";
    	var post = res_socket[index];

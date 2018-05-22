@@ -179,43 +179,83 @@ td{
          <font class="font-24">
          <b><?=$_POST[program][topic_en];?>&nbsp; &nbsp;<font color="#666666"></font></b></font>
       </div>
-   		<div style="padding: 10px;border:0px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin: 10px 0px;">
-      	<div style="padding: 5px;">
-      			<b><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
-      			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
-                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');" 
-                                   target="_blank"> 
-                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
-                                    </a>
-                                     <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
-                                    </div>
-      			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
-                     <span id="address_form" class="font-24">
-                     	<?=$_POST[pickup_place][topic];?>
-                     </span>					   
-                       
-                     </div>
-      	</div>
-		<div style="padding: 5px;">
-      			<b><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
-      			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
-                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');" 
-                                   target="_blank"> 
-                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
-                                    </a>
-                                     <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
-                                    </div>
-      			 <div align="left" style="font-size:16px;padding: 5px 15px; "> 
-                     <span id="address_form" class="font-24">
-                     	<?=$_POST[pickup_place][topic];?>
-                     </span>					   
-                       
-                     </div>
-      	</div>
-		</div>
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
-               
+               <tr>
+                  <td>
+                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top: -2px; margin-left:"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_pick_up_place;?></span></div>
+                                 </td>
+                                 <td width="40">
+                                 	<div onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');">
+                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
+                                   target="_blank"> 
+                                    <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
+                                    </a>
+                                    </div>
+                                 </td>
+                                 <td width="40" style="padding-right:10px; ">                                                                                      
+                                 <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div align="left" style="font-size:16px;padding:5px 15px; "> 
+                     <span id="address_form" class="font-24">
+                     	<?=$_POST[pickup_place][topic];?>
+                     </span>					   
+                       
+                     </div>
+                     <font color="#666666" class="font_16">
+                     </font>
+                  </td>
+               </tr>
+
+               <tr>
+                  <td>
+                     <div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <div class="topictransfer1" style=" margin-top:-2px;"><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;"></i> <span class="font_16 text-cap"><?=t_drop_place;?></span></div>
+                                 </td>
+                                 <td width="40">
+                                    <div onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');">
+                                       <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" 
+                                       target="_blank">
+                                       <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i> </a>
+                                    </div>
+                                 </td>
+                                 <td width="40" style="padding-right:10px; ">
+                                    <div>
+                                       <a href="tel:+6676380500" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"><i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <div align="left" style="padding:5px 15px; "> 
+                     	<span id="address_to"class="font-24"><?=$_POST[to_place][topic];?></span>		   
+                       
+                     </div>
+                    
+                  </td>
+               </tr>
 			   <tr>
 			   	<td>
 			   		<div style="background-color:#F6F6F6; margin-top:5px; margin-bottom:5px; padding: 2px 0px 2px 0px;border-radius: 10px;">
