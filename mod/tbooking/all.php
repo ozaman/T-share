@@ -621,6 +621,8 @@ function thai_date($time){
    					console.log(logdata);
    				});
    			}else{ // Pay Transfer bank
+   				hideDetail();
+   				historyTransfer();
    				swal("<?=t_success;?>!", "<?=t_press_button_close;?>", "success");
    			}
    		}else{

@@ -376,10 +376,9 @@
 	   		if(res_api_hit.status=="200"){
 	   				historyObj = res_api_hit.data.result;
 	   				console.log("his : "+historyObj.length)
-		   			if(historyObj.length>0){
+//		   			if(historyObj.length>0){
 						$('#number_history').text(historyObj.length);
-						
-					}
+//					}
 					eachObjHistory();
 	   			}
 	});
@@ -388,16 +387,17 @@
 	function callApiManage(){
     	var date = $('#date_report').val();
     	var driver = $('#driver').val();
+    	console.log(date+" "+driver);
 		$.post("mod/tbooking/curl_connect_api.php?type=manage_booking",{driver:driver, date:date},function(res_api_hit){
 	   		console.log(res_api_hit);
 	   		var m = [];
 	   		if(res_api_hit.status=="200"){
 	   				manageObj = res_api_hit.data.result;
 	   				console.log("manage : "+manageObj.length)
-		   			if(manageObj.length>0){
+//		   			if(manageObj.length>0){
 						$('#number_manage').text(manageObj.length);
 						
-					}
+//					}
 					eachObjManage();
 	   			}
 	});

@@ -179,9 +179,9 @@ td{
          <font class="font-24">
          <b><?=$_POST[program][topic_en];?>&nbsp; &nbsp;<font color="#666666"></font></b></font>
       </div>
-   		<div style="padding: 10px;border:0px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin: 10px 0px;">
-      	<div style="padding: 5px;">
-      			<b><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
+   		<div style="">
+      	<div style="padding: 10px;border:1px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin-top: 10px;">
+      			<b><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;font-size: 20px;"></i><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
       			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
                                     <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');" 
                                    target="_blank"> 
@@ -196,11 +196,11 @@ td{
                        
                      </div>
       	</div>
-		<div style="padding: 5px;">
-      			<b><span class="font_16 text-cap"><?=t_pick_up_place;?></span></b>
+		<div style="width: 2px; background: #999; margin-left: 135px;  height: 25px;" class="line-center" align="center"></div>
+		<div style="padding: 10px;border:1px solid #ddd;background-color: #f6f6f6;border-radius: 10px;margin-bottom: 10px;">
+      			<b><i class="fa  fa-map-marker" style="color:#c1c1c1;padding: 0px 7px;font-size: 20px;"></i><span class="font_16 text-cap"><?=t_drop_place;?></span></b>
       			<div style="position:  absolute; right: 20px; margin-top: -30px;" >
-                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[pickup_place][lat];?>','<?=$_POST[pickup_place][lng];?>');" 
-                                   target="_blank"> 
+                                    <a class="test" data-toggle="tooltip" title="<?=t_navigation_map;?>" onclick="mapsSelector('<?=$_POST[to_place][lat];?>','<?=$_POST[to_place][lng];?>');" target="_blank"> 
                                     <i class="icon-new-uniF13A-7" style=" font-size:28px; color:#3C8DBC"></i>
                                     </a>
                                      <a href="tel:076351166" target="_blank" class="test" data-toggle="tooltip" title="โทรออก"> <i class="icon-new-uniF152-4" style=" font-size:24px; color:#3C8DBC"></i></a>
@@ -352,7 +352,7 @@ td{
 			   <tr>
 			   	<td>
 			   		<div style="padding: 0px 10px;">
-					<div style="padding: 5px;border: 1px solid #ddd;margin-top: 0px;">
+					<div style="padding: 5px;margin-top: 0px;">
 <?php 
 $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 $select = "SELECT * FROM web_carall where drivername = '".$_SESSION['data_user_id']."'  ";
@@ -371,7 +371,7 @@ $plate_color="FFCC00"; }
  } 
 ?>
 	<a id="car_<?=$arr[car][id];?>" style="text-decoration:none; margin-top:30px;" onclick="selectCar('<?=$arr[car][id];?>');">
-    	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$arr[car][id];?>">
+    	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$arr[car][id];?>" style="border: 0px solid #ddd;background-color: #f6f6f6;">
                <tbody>
                   <tr>
                      <td>
@@ -411,7 +411,7 @@ $plate_color="FFCC00"; }
 
 
 
-<div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:5px;">
+<div style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;padding-top:0px;">
 <button onclick="selectjob('<?=$_POST[orderid];?>','<?=$_POST[id];?>','<?=$_POST[invoice];?>','<?=$_POST[code];?>','<?=$_POST[program][id];?>','<?=$_POST[pickup_place][id];?>','<?=$_POST[to_place][id];?>','<?=$_POST[agent];?>','<?=$_POST[airout_time];?>','<?=$_POST[airin_time];?>','<?=$_POST[s_cost];?>','<?=$_POST[outdate];?>','<?=$_POST[ondate];?>','<?=$_POST[s_status_pay];?>')" style="margin-top:10px;background-color: #fff;border: 1px solid #3b5998;width: 100%;border-radius: 25px;padding: 8px;color: #3b5998; "><span class="font-24"><strong><?=t_accept_order?></strong></span> </button>
 </div>
 

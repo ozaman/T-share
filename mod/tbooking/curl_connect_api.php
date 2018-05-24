@@ -47,7 +47,7 @@ echo json_encode($decode);
 else if($_GET[type]=="history_booking"){
 	
 	$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
-	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_complete" : 1 }';                            
+	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : 1 }';                            
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -63,7 +63,7 @@ else if($_GET[type]=="history_booking"){
 else if($_GET[type]=="manage_booking"){
 	
 	$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
-	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_complete" : 0 }';                            
+	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : 0 }';                            
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -94,7 +94,7 @@ else if($_GET[type]=="checkin_approve"){
 	
 $step = $_GET[step];
 if($step=="driver_checkcar"){
-	$curl_post_data2 = '{"driver_checkcar": 1,"driver_complete" : 1,"idorder": '.$_POST[idorder].'}';	
+	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';	
 }else{
 	$f_date = $step."_date";	
 	$f_lat = $step."_lat";	

@@ -133,7 +133,7 @@
     var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi="+idorder;
     console.log(url);
 		$.post(url,{ idorder:idorder,lat:lat, lng:lng  },function(res){
-			console.log(res);
+			
 			if(res.status=="ok"){
 				if(res.data.status=="200"){
 					$( "#close_dialog_custom" ).click();
@@ -142,10 +142,15 @@
 					swal("Error");
 				}
 			}
+			$('#btn_manage').click();
+			callApiLog();
 		});
     });
     	
     function afterAction(){
+    	if('<?=$_GET[type];?>'=='driver_pickup'){
+			$("#btn_pickup_not_tr").hide();
+		}
 		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";
 	$('#status_<?=$_GET[type]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
 	$('#status_<?=$_GET[type]?>').load(url_status); 
