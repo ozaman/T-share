@@ -75,7 +75,9 @@ $row_data[] = $arr[bank]; ?>
         <tr>
           <td width="80" class="font_18 " style="height:30px; font-size: 14px; padding-left:5px;"><? echo t_account_number?></td>
           <td width=""   class="font_16 " style="color:#333;font-size: 14px;">
-            <input class="form-control"  name="bank" id="b_number" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled>             
+            <input class="form-control"  name="bank" id="b_number" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled> 
+            <input type="hidden" class="form-control"  name="bank" id="b_bank" style="font-size: 14px;border-radius: 25px;padding: 0 15px;margin-top: 8px;" disabled> 
+
                
                  
         </td>
@@ -207,6 +209,9 @@ function selectbank_tr(x) {
          console.log(data);
          $('#b_acount').val(data.bank_acount)
          $('#b_number').val(data.bank_number)
+         $('#b_bank').val(data.bank_company)
+         
+
       }
    
     });
