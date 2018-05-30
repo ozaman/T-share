@@ -14,6 +14,16 @@
  $res[deposit] = $db->select_query("SELECT balance FROM  deposit where username  = '".$_COOKIE["app_remember_user"]."' ");
                       
  $arr[deposit] = $db->fetch($res[deposit]) ;
+ if($arr[deposit] == ''){
+  echo 'sssssssssssssssssssss';
+  $balance = 0;
+
+ }
+ else{
+  $balance = $arr[deposit][balance];
+
+ }
+ $arr[deposit]
  // $date = new DateTime();
  // echo $date->format('H:i')
  ?>
@@ -21,9 +31,13 @@
     
 </div> -->
 <script >
-  var balance = <?=$arr[deposit][balance];?>;
+ 
+  
+    var balance = <?= $balance;?>;
   var balance_final = balance.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")+ ' '+ 'บาท';
   $('#balance_final').html(balance_final)
+  
+  
 </script>
 
 <div  id="load_money" style="display: nones;" >
