@@ -222,7 +222,7 @@ $newdriver .= "</newdriver>";
 //  $("#login_logo").attr("src", "images/applogo.png");autologin
  ///window.location.href = "index.php?newlogin=1"; //will redirect to your blog page (an ex: blog.html)
  window.location.href = "signin.php?autologin=1&user=<?=$provincecode?><?=$member_in?>&pass=<?=$password?>"; //will redirect to your blog page (an ex: blog.html)
-}, 1000); //w
+}, 3000); //w
  
 	</script>
     

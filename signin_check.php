@@ -87,7 +87,10 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
  
 	
 <script>
- window.location.href = "index.php"; 
+var url = "index.php?check_new_user=<?=$_POST[check_new_user];?>";
+console.log(url);
+//return;
+ window.location.href = url; 
  </script>
  <?
 }

@@ -21,17 +21,17 @@
    }
    .btn_filter_active{
    padding: 8px; 
-   border: 1px solid #3b5998;
+   border: 1px solid <?=$main_color;?>;
    border-radius: 25px;
    /*	width: 100px;*/
-   background-color: #3b5998;
+   background-color: <?=$main_color;?>;
    color: #fff;
    box-shadow: 1px 1px 1px #333;
    cursor: pointer;
    }
    .btn_filter{
    padding: 5px; 
-   border: 1px solid #3b5998; 
+   border: 1px solid <?=$main_color;?>; 
    border-radius: 25px;
    /*	width: 100px;*/
    cursor: pointer;
@@ -356,6 +356,7 @@
    </div>
 </div>
 <script>
+	
    function filterMenu(type){
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');

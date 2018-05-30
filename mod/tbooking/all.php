@@ -686,6 +686,7 @@ function thai_date($time){
 </script>
 <script>
    function CheckTime(d1,d2){
+   		console.log(d1+" = "+d2);
    //        2018/05/19 12:05:00
    //		  2018/05/19 12:25:24
           datetime1 = d1; 

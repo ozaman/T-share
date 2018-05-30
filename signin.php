@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>ระบบจัดการงานรถรับ-ส่ง</title>
+      <title>T Share</title>
 	  <?php 
 	  		include "css/color/taxi.php" ;	
 	       	include "css/maincss.php" ;	
@@ -85,8 +85,8 @@
 	  }
 	  @media screen and (max-width: 320px) {
 		  	.btn-lng{
-		  	width: 30px !important;
-		  	margin-right: 15px;
+		  	width: 27px !important;
+		  	margin-right: 14px;
 		  }
 	  }
       .Absolute-Center {
@@ -209,7 +209,7 @@
          padding-left:20px;
          }
          .img_logo{
-         width: 200px;;
+         width: 190px;
          }
          .btn-other{
          width: 250px;
@@ -359,8 +359,7 @@
 </html>
 
 <div id="signin_load_popup"></div>
-</head>
-<body>
+
    <div class="containers">
 
    <style>
@@ -415,11 +414,16 @@
       </tbody>
    </table>
 
+</div>
+	
+
 <script >
 //console.log("<?=$_COOKIE['lng'];?>");
 
 
 function setCookie(cname,cvalue,exdays,refresh) {
+	
+	
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires=" + d.toGMTString();

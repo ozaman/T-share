@@ -158,10 +158,22 @@
 </div>
 
 <script>
-   setInterval(function() {
-   var url_check_data_time = "load_blank.php?name=load/update&file=time&driver=<?=$driver_id?>";
-   $('#load_data_time').load(url_check_data_time);
-   }, 1000); // 60000 milliseconds = one minute
+	startTimeHome();
+   var clock_h ;
+   function startTimeHome() {
+       var today = new Date();
+       var h = today.getHours();
+       var m = today.getMinutes();
+       var s = today.getSeconds();
+       m = checkTimeHome(m);
+       s = checkTimeHome(s);
+       document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
+       clock_h = setTimeout(startTimeHome, 1000);
+   }
+   function checkTimeHome(i) {
+       if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+       return i;
+   }
 </script>
 
 <?
@@ -189,9 +201,7 @@
 			</center>
          </td>
          <td align="center" class="">
-            <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#FF0000; padding-top:3px;border: solid 2px #FFFFFF; display:none " id="number_bottom_chat3"  ><span  class="font-20 text-cap" >
-            <?=$all_work?>
-            </span></span>
+            <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: 12px 4px;">0</span>
             <center>
             <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
                <center>
@@ -278,18 +288,18 @@
             </button>
          </td>
          <td width="50%" align="center" class="">
-         	<a href="https://www.welovetaxi.com/app/booking2/">
-            <button type="button" class="btn btn-default paddling-max" style="width:100%">
+         	
+            <button type="button" class="btn btn-default paddling-max" style="width:100%" id="booking_open">
                <center>
                   <div  class="circle-menu" style="background: #1CC1A4;"><i class="fa fa-taxi" ></i></div>
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_booking; ?></span>
                </center>
             </button>
-            </a>
+         
          </td>
          
       </tr>
-      <tr>
+      <tr style="display: none;">
          <td colspan="2" width="50%" align="center" class="">
             <a href="https://www.welovetaxi.com:8080/">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
@@ -306,7 +316,11 @@
 </table>
 <script>
    var ckeckhis = false;
-
+	$('#booking_open').click(function(){
+		swal("กำลังจะเปิดให้บริการ");
+		return;
+		window.location = "https://www.welovetaxi.com/app/booking2/";
+	});
    function revenue2(){
       ckeckhis = false;
       $('#main_load_mod_popup').show();
@@ -334,6 +348,8 @@
        $('#load_mod_popup').load(url_load); 
    }
    function money_transfer(){
+   	swal("กำลังจะเปิดให้บริการ");
+   	return;
       ckeckhis = false;
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
@@ -345,6 +361,8 @@
         $('#load_mod_popup').html(url_load);
    }
    function workTbooking(){
+   		swal("กำลังจะเปิดให้บริการ");
+   		return;
      	ckeckhis = false;
    		$('#main_load_mod_popup').show();
    		var url_load = "load_page_mod.php?name=tbooking&file=all";
@@ -353,6 +371,8 @@
         $('#check_open_worktbooking').val(1);
    }
    function historyTransfer(){
+   		swal("กำลังจะเปิดให้บริการ");
+   		return;
    		$('#main_load_mod_popup').show();
    		var url_load= "load_page_mod.php?name=tbooking&file=his";
    		$('#load_mod_popup').html(load_main_mod);
@@ -464,14 +484,7 @@
    		$('.text-change-province').text(txt);
    	});
     	});
-    $('#index_menu_history_shopping').click(function(){  
-    $( "#load_mod_popup_2" ).toggle();
-     var url_load= "load_page_mod_2.php?name=booking&file=all&shop_id=<?=$arr[project][id]?>&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-     $('#load_mod_popup_2').html(load_main_mod);
-     /// $('#load_mod_data').html(load_main_mod);
-     $('#navload_topic').html('ไปที่หน้าแรก');
-     $('#load_mod_popup_2').load(url_load); 
-    });
+
     ///// food
     $('#index_menu_food').click(function(){  
      $("#load_mod_popup" ).toggle();
@@ -479,26 +492,14 @@
      $('#load_mod_popup').html(load_main_mod);
      $('#load_mod_popup').load(url_load); 
     	});
-    $('#index_menu_history_food').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    	});
-     $('#index_menu_history_transfer').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    });
-      $('#index_menu_tour').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    	});
-     $('#index_menu_history_tour').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    });
 
-     $('#index_menu_account').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    });
-      $('#index_menu_setting').click(function(){  
-     alert('กำลังจะเปิดให้บริการ');
-    });
-    
+      $('#index_menu_tour').click(function(){  
+     swal('กำลังจะเปิดให้บริการ');
+     return;
+    	});
+
+
+
 </script>  
 </div>
 
@@ -626,37 +627,48 @@
 	//        console.log('now open popup');
 			readDataBooking();
 			}
-        
-//        $('.list-container').remove();	
-        
-       
-       /* $.each(data.transfer[0],function(index,res){
-		  var program = res.progream.topic_en;
-          
-          var component = 
-          '<div class="list-container">'
-	         +'<div class="w3-ul w3-card-4" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);">'
-	            +'<div class="w3-bar" onclick="">'
-	               +'<span class="ico-pos font-24"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
-	               		+'<div class="w3-bar-item">'
-	                  		+'<table width="100%">'
-			                     +'<tbody>'
-			                        +'<tr>'
-			                           +'<td width="90%"><span class="font-24">'+num+'. '+program+'</span></td>'
-			                           +'<td width="20%" align="center" rowspan="2"></td>'
-			                        +'</tr>'
-			                        +'<tr>'
-			                           +'<td><span class="font-20">S00106&nbsp;:&nbsp;2018-04-28 15:00 </span></td>'
-			                           +'<td></td>'
-			                        +'</tr>'
-			                     +'</tbody>'
-			                  +'</table>'
-	               		+'</div>'
-	            +'</div>'
-	         +'</div>'
-	      +'</div>';
-	      $('#load_booking_data').append(component);
-	      num++;
-        });*/
+    
 	});
+
+	var socket_shopping = [];
+	var user_class = "<?=$data_user_class;?>";
+	
+		socket.on('getbookinglab', function (data) { 
+		var array_data = [];       
+        $.each(data.booking,function(index,value){
+        	if(value.status == 'NEW' ){
+        		var current = formatDate(new Date());
+	        	var db = formatDate(value.transfer_date);
+        		if(user_class=="lab"){
+	        		
+					if(db == current){
+						array_data.push(value);
+					}
+				}
+				else {
+					if(db == current && value.drivername == "<?=$user_id;?>"){
+						array_data.push(value);
+					}
+				}
+				
+			}
+        });
+        socket_shopping = array_data;
+		console.log(socket_shopping);
+		$('#number_shop').text(socket_shopping.length);
+      });
+	
+	
+	function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+	}
 </script>
+

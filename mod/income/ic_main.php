@@ -284,7 +284,8 @@
 		<table width="100%">
 			<tbody>
 			<tr>
-				<td width="50%"><div id="btn_ic_shop" class="btn_filter_active tocheck" align="center" onclick="FilterType('ic_shop');" ><span class="font-22"><?=t_send_to_customer;?></span></div>
+				<td width="50%">
+				<div id="btn_ic_shop" class="btn_filter_active tocheck" align="center" onclick="FilterType('ic_shop');" ><span class="font-22"><?=t_send_to_customer;?></span></div>
 				</td>
 				<td width="50%">
 				<div id="btn_ic_transfer" class="btn_filter tocheck" align="center" onclick="FilterType('ic_transfer');" ><span class="font-22"><?=t_job_received;?></span></div>
@@ -310,7 +311,7 @@
 						$selected = "";
 					}
 		       	?>
-		       		<option value="<?=$month;?>" <?=$selected;?> ><?=str_pad($i, 2, '0', STR_PAD_LEFT);?></option>
+		       		<option value="<?=str_pad($i, 2, '0', STR_PAD_LEFT);?>" <?=$selected;?> ><?=str_pad($i, 2, '0', STR_PAD_LEFT);?></option>
 		       	<? } ?>
 		       	</select>
 		       	

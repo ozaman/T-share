@@ -122,6 +122,7 @@
             <div id="load_form_main" class="login-box-body" style="padding:15px; margin-bottom:10px ; background-color:#FFFFFF;border: solid 0px #999999;box-shadow: 0 0 0px 0px #666666;border-radius: 15px; width:100%; display:nones; margin-top:50px; ">
                <div id="load_form">
                   <form method="post" id="login_form"  enctype="multipart/form-data" >
+                  	
                      <div class="form-group has-feedback" style="display:none" >
                         <select class="form-control"  name="login_type" id="login_type"  style="text-align:left; font-size:16px; font-weight:bold; height:40px;">
                            <option value="" >--เลือกประเภทผู้ใช้งาน--</option>
@@ -192,6 +193,8 @@
                            </table>
                         </div>
                      </div>
+					<input type="hidden" value="<?=$_GET['autologin'];?>" name="check_new_user" id="check_new_user" />
+					<!--<input type="hidden" value="1" name="check_new_user" id="check_new_user" />-->
                   </form>
                </div>
                <!-- /.social-auth-links -->

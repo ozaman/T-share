@@ -6,39 +6,6 @@ $PHP_SELF = "index.php";
 GETMODULE($_GET[name],$_GET[file]);
  //require_once("js/control.php");
 
-?>    
- <!-- Bootstrap 3.3.6 -->
-  <?  include ("bootstrap/css/css.php");?>
- 
-  <!-- Font Awesome -->
- 
-  <!-- Theme style -->
-
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.css?v=<?=time()?>">
-  
-   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
- 
- 
-  <!-- Font Awesome -->
- 
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.css?v=<?=time()?>">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.css?v=<?=time()?>">
-  
-   
- 
- 
-  
-  
-  
-  <?php 
   if($_GET[type]=="driver_topoint"){
   		$txt = t_arrive_drop_place;
   }
@@ -53,7 +20,6 @@ GETMODULE($_GET[name],$_GET[file]);
   }
   
   ?>
-  
   
   
   <script>
@@ -79,7 +45,7 @@ GETMODULE($_GET[name],$_GET[file]);
   <td   ><div style="font-size:22px; color:#FFFFFF " id="text_mod_topic_action_photo-txt" class="text-topic-action-photo"><?=$txt;?></div></td>
     <td width="40" align="right"   >
     <div style="font-size:22px; color:#FFFFFF ;" id=""  onclick="GohomePage();">
-    <i class="fa fa-home" style="font-size:30px; color:#ffff; "></i>
+    <i class="fa fa-home  text-resize" style="font-size:30px;"></i>
     </div>
     </td>
   </tr>
@@ -90,8 +56,3 @@ GETMODULE($_GET[name],$_GET[file]);
  
   <? include ("".$MODPATHFILE.""); ?>
   </div>
-  <?
-  
-  ///  include ("css/maincss.php");
-  
-  ?>

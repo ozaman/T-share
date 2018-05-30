@@ -132,6 +132,11 @@
    </div>
 </form>
 <script>
+	var check_new_user = '<?=$_GET[check_new_user];?>';
+    if(check_new_user!=""){
+    	 document.getElementById('password').focus() ;
+    }
+	
    /*$('#img_tag').click(function(){
    	$('#imageUpload_profile').trigger('click');
    });

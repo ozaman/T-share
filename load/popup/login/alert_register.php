@@ -18,26 +18,12 @@
    }
 </style>
 <div class="css-full-popup"  id="alert_show_register" style="display:none; position:fixed;    padding:0px; margin-top:0px; animation: showSweetAlert 0.3s; overflow-y: scroll; -webkit-overflow-scrolling: touch;">
-   <div class="back-full-popup">
-               <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tbody><tr>
-                     <td width="40">
-                        <div class="button-close-popup-mod"><i class="fa fa-close" style="font-size:24px; color:#FFFFFF "></i></div>
-                     </td>
-                     <td>
-                        <div style=" color:#FFFFFF " id="text_mod_topic_action" class="text-topic-action-mod font-28"><?=t_register_member;?></div>
-                     </td>
-                     <td width="50" align="right" style="display: none;">
-                        <div style="font-size:22px; color:#FFFFFF " id="head_full_popup_icon"><i class="fa fa-sign-in" style=" font-size:26px;"></i></div>
-                     </td>
-                  </tr>
-               </tbody></table>
+	<div style="position: absolute;right: 15px;;margin-top: 10px;">
+	    <div class="button-close-popup-mod" onclick="$( '#alert_show_register' ).hide();">
+	    	<i class="fa fa-close" style="font-size:34px; color:#000000;"></i>
+	    </div>
     </div>
-   <script>
-      $(".button-close-popup-mod").click(function(){   
-  		  $( "#alert_show_register" ).hide();
-     });
-   </script>
+
    <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
    <!-- Ionicons -->
    <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">

@@ -26,10 +26,11 @@ $arr[project][id]=$_GET[id];
   </script>
     <script>
   $('#btn_close_upload_pay_popup').click(function(){ 
-    $('#dialog_custom').hide();
-		 	$('#main_load_mod_popup_clean').hide();
-  $( "#main_load_mod_popup_3" ).toggle();
- $( "#load_mod_popup_3" ).html('');
+  $('.button-close-popup-mod-3').click();
+//    $('#dialog_custom').hide();
+//	$('#main_load_mod_popup_clean').hide();
+//  	$( "#main_load_mod_popup_3" ).toggle();
+// 	$( "#load_mod_popup_3" ).html('');
  
   	});
 	  </script>

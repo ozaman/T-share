@@ -1,18 +1,24 @@
 <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css" />
-<!-- Ionicons -->
 <link rel="stylesheet" href="bootstrap/css/ionicons.min.css" />
 <? 
    $main_color="#000000";
    ?>
 <? 
    require_once("js/control.php");
-   $coldata="col-md-6 col-fix";
+   $coldata = "col-md-6 col-fix";
    ?>
 <style>
    .topicname { font-size:20px; font-weight:bold;
    }
+   .btn-lg{
+   	padding: 8px 12px !important;
+   	font-size: 18px !important;
+   }
+   .confirm {
+   	font-size: 18px !important;
+   }
 </style>
-<div   style="left:0; margin-left:-0px;margin-top:40px; " >
+<div style="left:0; margin-left:-0px;margin-top:15px; " >
    <div class="box-body "  >
   
       <div class="<?= $coldata?>" style="padding:0px;">
@@ -20,7 +26,7 @@
             <div class="topicname "><span class="font-24"><?=t_first_name." - ".t_last_name;?></span></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-               <input class="form-control" type="text" name="name" id="name"   required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][name];?>" >
+               <input class="form-control" type="text" name="name" id="name"   required="true"   value="<?=$arr[web_driver_edit][name];?>" >
             </div>
          </div>
       </div>
@@ -31,22 +37,20 @@
             <div class="topicname" ><span class="font-24"><?=t_nick_name;?></span></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-               <input class="form-control" type="text" name="nickname" id="nickname"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][nickname];?>"   >
+               <input class="form-control" type="text" name="nickname" id="nickname"  required="true"   value="<?=$arr[web_driver_edit][nickname];?>"   >
             </div>
          </div>
          <!-- end box -->
       </div>
       <!-- end col -->
-      <?  if($arr[web_driver_edit][nickname]==""){ ?> <script type="text/javascript"> $('#nickname').addClass_no("tab_alert");</script> <? } ;?><!-- end col -->
-      <?  if($arr[web_driver_edit][idcard]==""){ ?> <script type="text/javascript"> $('#idcard').addClass_no("tab_alert");</script> <? } ;?><!-- end col -->
-      <?  if($arr[web_driver_edit][iddriving]==""){ ?> <script type="text/javascript"> $('#iddriving').addClass_no("tab_alert");</script> <? } ;?> 
+   
       <div class="<?= $coldata?>"  style="padding:0px;" >
          <div>
             <!-- start box --> 
             <div class="topicname" ><span class="font-24"><?=t_current_address;?> </span></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-home"></i></span>
-               <input class="form-control" type="text" name="address" id="address"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][address];?>" >
+               <input class="form-control" type="text" name="address" id="address"  required="true"   value="<?=$arr[web_driver_edit][address];?>" >
             </div>
          </div>
          <!-- end box -->
@@ -59,7 +63,7 @@
             <div class="topicname" ><span class="font-24"><?=t_phone_number;?></span></div>
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-               <input class="form-control" type="number" name="phone" id="phone"  required="true" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_driver_edit][phone];?>" >
+               <input class="form-control" type="number" name="phone" id="phone"  required="true"   value="<?=$arr[web_driver_edit][phone];?>" >
             </div>
          </div>
          <!-- end box -->
@@ -73,19 +77,22 @@
             <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                <select name="driver_province" id="driver_province" style="width:100%; padding:5px; height:40px" class="font-24" >
-                  <option value="" selected>- <?=t_select_province;?> -</option>
+                  <option value="" >- <?=t_select_province;?> -</option>
                   <?
                      $db->connectdb(DB_NAME,DB_USERNAME,DB_PASSWORD);
-                       //$res[category] = $db->select_query("SELECT * FROM ".TB_transferplace." where pro < 4 and status = 1 ORDER BY topic ");
-                       $res[category] = $db->select_query("SELECT $province FROM web_province   ORDER BY id  limit 100 ");
+                       $res[category] = $db->select_query("SELECT ".$province.",id FROM web_province   ORDER BY id ");
                      while($arr[category] = $db->fetch($res[category])) {
-                       echo "<option value=\"".$arr[category][id]."\" >".$arr[category][$province]." </option>";
+                       ?>
+                       <option value="<?=$arr[category][id];?>"><?=$arr[category][$province];?></option>
+                       <?
                      }
                      $db->closedb ();
                      ?>
                </select>
+            
             </div>
-            <script>
+
+            <!--<script>
                $("#driver_province").change(function(){ 
                var url_load_price= "go.php?name=register/load&file=area";
                url_load_price=url_load_price+"&province="+document.getElementById('driver_province').value;
@@ -98,11 +105,12 @@
                $('#load_area').load(url_load_price); 
                });
             </script>
-            <div class="input-group" style="margin-top:10px; display:none" id="load_area"></div>
+            <div class="input-group" style="margin-top:10px; display:none" id="load_area"></div>-->
          </div>
          <!-- end box -->
       </div>
-      <!-- end box --><!-- end box --><!-- end box --><!-- end box -->
+      <!-- end box -->
+      
       <div class="col-md-6" style="padding:0px;">
          <div>
             <div class="topicname"><span class="font-24"><?=t_email;?>  <font color="#FF0000">( <?=t_not_mandatory;?> )</span></div>
@@ -123,7 +131,7 @@
    <?
       $rand = substr(str_shuffle('123456789012345678901234567890'),0,30);
       ?>
-   <input class="form-control" type="hidden" name="check_code" id="check_code"   onkeypress="PasswordEnter(this,event)"   value="<?=$rand ?>" >
+   <input class="form-control" type="hidden" name="check_code" id="check_code"      value="<?=$rand ?>" >
    <div class="<?= $coldata?>" >
       <div class="take_photo" >
          <center>
@@ -154,140 +162,84 @@
           
       </table>
       <br>
-      <br>
-      <br>
+
    </div>
-   <input class="form-control" type="hidden" name="check_photo_id_driver" id="check_photo_id_driver"   onkeypress="PasswordEnter(this,event)"   value="" >
-   <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true" onkeypress="PasswordEnter(this,event)"   value="" >
+   <input class="form-control" type="hidden" name="check_photo_id_driver" id="check_photo_id_driver"      value="" >
+   <input class="form-control" type="hidden" name="upload_pic_type" id="upload_pic_type"  required="true"    value="" >
    <script>
-      /// check login 
-       /////////  id driving
+
       $("#icon_camera_id_driver").click(function(){  
         document.getElementById('upload_pic_type').value='id_driver';
        $("#load_chat_camera").click(); 
        });
+
       $("#submit_step_1").click(function(){ 
-      /*
-      if(document.getElementById('password').value=="") {
-      alert('กรุณากรอกรหัสผ่าน'); 
-      document.getElementById('password').focus() ; 
-      return false ;
-      }
-      */
+
+
       if(document.getElementById('name').value=="") {
-      alert('กรุณากรอกชื่อ - นามสกุล (ภาษาไทย)'); 
+//      alert('กรุณากรอกชื่อ - นามสกุล (ภาษาไทย)'); 
+      swal('กรุณากรอกชื่อ - นามสกุล (ภาษาไทย)');
       document.getElementById('name').focus() ; 
       return false ;
       }
-      /*
-      if(document.getElementById('name_en').value=="") {
-      alert('กรุณากรอกชื่อ - นามสกุล(ภาษาอังกฤษ)'); 
-      document.getElementById('name_en').focus() ; 
-      return false ;
-      }
-      */
+
       if(document.getElementById('nickname').value=="") {
-      alert('กรุณากรอกชื่อเล่น'); 
+      swal('กรุณากรอกชื่อเล่น'); 
       document.getElementById('nickname').focus() ; 
       return false ;
       }
-      /*
-      if(document.getElementById('idcard').value=="") {
-      alert('กรุณากรอกหมายเลขบัตรประจำตัวประชาชน'); 
-      document.getElementById('idcard').focus() ; 
-      return false ;
-      }
-      if(document.getElementById('iddriving').value=="") {
-      alert('กรุณากรอกหมายเลขใบขับขี่'); 
-      document.getElementById('iddriving').focus() ; 
-      return false ;
-      }
-      */
+
       if(document.getElementById('address').value=="") {
-      alert('กรุณากรอกที่อยู่'); 
+      swal('กรุณากรอกที่อยู่'); 
       document.getElementById('address').focus() ; 
       return false ;
       }
       if(document.getElementById('phone').value=="") {
-      alert('กรุณากรอกเบอร์โทรศัพท์'); 
+      swal('กรุณากรอกเบอร์โทรศัพท์'); 
       document.getElementById('phone').focus() ; 
       return false ;
       }
-      /*
-      if(document.getElementById('contact').value=="") {
-      alert('กรุณากรอกเบอร์โทรฉุกเฉิน'); 
-      document.getElementById('contact').focus() ; 
-      return false ;
-      }
-      */
-      if(document.getElementById('driver_province').value=="") {
-      alert('กรุณาเลือกจัวหวัดที่อยู่ประจำ'); 
-      document.getElementById('driver_province').focus() ; 
-      return false ;
-      }
-      if(document.getElementById('driver_zone').value=="") {
-      alert('กรุณาเลือกพื้นที่ที่อยู่ประจำ'); 
-      document.getElementById('driver_zone').focus() ; 
-      return false ;
-      }
+      if($('#driver_province').val()==""){
+	  	swal('กรุณาเลือกที่อยู่');
+	  	 document.getElementById('driver_province').focus() ; 
+	  }
+
       if(document.getElementById('check_photo_id_driver').value=="") {
-      alert('กรุณาถ่ายภาพคุณ'); 
+      swal('กรุณาถ่ายภาพคุณ'); 
       document.getElementById('check_photo_id_driver').focus() ; 
       return false ;
       }
-      ///// bank
-      /*
-      if(document.getElementById('pay_bank_name').value=="") {
-      alert('กรุณาเลือกธนาคาร'); 
-      document.getElementById('pay_bank_name').focus() ; 
-      return false ;
-      }
-       if(document.getElementById('pay_bank_number').value=="") {
-      alert('กรุณากรอกเลขที่บัญชีธนาคาร'); 
-      document.getElementById('pay_bank_number').focus() ; 
-      return false ;
-      }
-      if(document.getElementById('pay_bank_user').value=="") {
-      alert('กรุณากรอกชื่อบัญชีธนาคาร'); 
-      document.getElementById('pay_bank_user').focus() ; 
-      return false ;
-      }
-      */
-       //// pay_bank_name
-      /*
-      $.post('go.php?name=register&file=savedata&type=user&id=<?=$arr[web_driver_edit][id]?>',$('#myform_regiter').serialize(),function(response){
-        $('#send_profile_data').html(response);
-       });
-       */
-        swal({
-      	title: "<font style='font-size:28px'><b> คุณแน่ใจหรือไม่",
-      	text: "<font style='font-size:22px'>ว่าข้อมูลถูกต้อง",
-      	type: "success",
+
+    swal({
+      	title: "คุณแน่ใจหรือไม่?",
+      	text: "ว่าข้อมูลถูกต้อง",
+      	type: "warning",
       	showCancelButton: true,
-      	confirmButtonColor: '#1BB4B4',
-      	confirmButtonText: 'แน่ใจ',
-      	cancelButtonText: "ไม่แน่ใจ",
+      	confirmButtonText: 'ยืนยัน',
+      	cancelButtonText: "ยกเลิก",
       	closeOnConfirm: true,
-      	closeOnCancel: true,
-      	html: true
+      	closeOnCancel: true
       },
       function(isConfirm){
          if (isConfirm){
-       var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>"
-      //url=url+"&iddriver_finish="+document.getElementById('iddriver_finish').value;
-      $.post(url,$('#myform_regiter').serialize(),function(response){
-        $('#send_profile_data').html(response);
-       });
-      //  alert('dd');
-         } else {
-           swal("Cancelled", "", "error");
+	       var url="go.php?name=register&file=savedata&type=user&action=add&id=<?=$_GET[id]?>";
+			console.log(url);
+	      $.post(url,$('#myform_regiter').serialize(),function(response){
+	        $('#send_profile_data').html(response);
+	        	swal('สำเร็จ','สมัครสมาชิกเสร็จสมบูรณ์ เลือกเมนูข้อมูลส่วนตัวเพื่อตรวจสอบข้อมูลของคุณ','success');
+	        	
+	       });
+	       
+	        $.post('send_messages/send_onesignal.php?key=new_driver',function(data){
+   					console.log(data);
+   				});
+
          }
       });
-      //// $("#register_step_2").click();
       });
    </script>  
 </div>
-<div  id="send_profile_data"></div>
+<div  id="send_profile_data" style="display: none;"></div>
 <div style="display:none">
    <?  include ("mod/register/photo/upload_main.php");?><br>
 </div>

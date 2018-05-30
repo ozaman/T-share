@@ -15,7 +15,8 @@
    	   $("#btn_guest_register").css('background-color','#666666');
 </script>
 <? } ?>
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_guest_register">
+<div >
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin " id="box_guest_register">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -35,6 +36,7 @@
       </tr>
    </tbody>
 </table>
+</div>
 <?php 
    if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
 <script>
@@ -46,19 +48,17 @@
    ?>
 <script>
    $("#btn_guest_register").click(function(){ 
-   	var check = $('#guest_register_check_click').val();
-   	if(check==0){
-		swal('แขกยังไม่ลงทะเบียน');
-	}else{
-		swal('ยืนยันแล้ว','แขกลงทะเบียนแล้ว','success');
-	}
-    /* if($('#guest_register_check_click').val()==0){
- 
+     if($('#guest_register_check_click').val()==0){
+   /*	$( "#main_load_mod_popup_3" ).toggle();
+    var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
+    $('#load_mod_popup_3').html(load_main_mod);
+    $('#load_mod_popup_3').load(url_load); */
     $( "#dialog_custom" ).show();
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_register";
     	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
     
-   }*/
+   }else{
+   }
    });
 </script>

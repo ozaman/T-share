@@ -1,6 +1,6 @@
 <?php 
 if($_GET[type]=="phone"){?>
-<div style="margin-top: 50px;">
+<div style="margin-top: 0px;">
 <?
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[shop] = $db->select_query("SELECT ".$place_shopping.",id FROM  shopping_product where id=".$_GET[shop_id]."  ORDER BY id  ");
@@ -57,7 +57,7 @@ if($_GET[type]=="phone"){?>
 else if($_GET[type]=="zello"){ 
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    ?>
-   <div style="margin-top: 50px;">
+   <div style="margin-top: 0px;">
 <script>
    $(".text-topic-action-mod-4" ).html("Zello");
 </script> 

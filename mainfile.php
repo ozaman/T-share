@@ -4,6 +4,7 @@ $get_lng           = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 $get_lng           = $get_lng[0];
 $check_lng_browser = explode('-', $get_lng);
 $check_lng_browser = $check_lng_browser[0];
+
 if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_browser == 'sh') {
     $keep = 'cn';
 } else if ($check_lng_browser == 'th') {
@@ -11,6 +12,7 @@ if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_brows
 } else {
     $keep = 'en';
 }
+$keep = 'th'; // set เป็น th ก่อน
 switch ($_COOKIE['lng']) {
     case "th":
         //echo "PAGE th";

@@ -1,3 +1,4 @@
+
 <?php
 //header("Location: https://www.welovetaxi.com/app/demo/"); /* Redirect browser */
 //exit();
@@ -9,12 +10,7 @@ $PHP_SELF = "popup.php";
 GETMODULE($_GET[name], $_GET[file]);
 require_once("css/maincss.php");
 $db->connectdb(DB_NAME_DATA, DB_USERNAME, DB_PASSWORD);
-//$db->del(TB_transfer_report_all,"transfer_date<'2016-09-01' and transfer_date>'2016-10-31'  "); 
-///	$db->del('acc_2017_06',"transfer_date NOT LIKE '%2017-06%'  "); 
-///$db->del('transfer_report_all',"transfer_date NOT LIKE '%2017-06%' and ondate NOT LIKE '%2017-06%'   "); 
-//   $_GET[lang]='th';
-//require_once ("includes/lang/chat.php");
-// echo $_SESSION['data_user_id'];
+
 if ($_SESSION['data_user_id'] == '') {
     ?> 
     <script>
@@ -22,12 +18,25 @@ if ($_SESSION['data_user_id'] == '') {
     </script> 
     <?
 }
-// include('../js/jquery.cookie.js');
-//echo $_COOKIE['lng'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
     <head>
+    
+<?php 
+if($data_user_class=='lab'){ ?>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "d99df0ae-f45c-4550-b71e-c9c793524da1",
+    });
+  });
+</script>
+
+<? }	?>
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <title>T-Share</title>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -207,7 +216,8 @@ if ($_SESSION['data_user_id'] == '') {
                                         font-family: 'Arial', sans-serif;
                                     }
                                     .text-resize{
-                                        color : #fff;
+                                        /*color : #fff;*/
+                                        color : #333333;
                                     }
                                 }
                             </style>
@@ -548,7 +558,7 @@ if ($_SESSION['data_user_id'] == '') {
                                 </div>
                             </div>
                             <div id="material_dialog" style="width: 100%;height: 100%;position:  fixed;z-index: 99999;background-color: rgba(0, 0, 0, 0.80);top: 0px;left: 0px;display: none;">
-                                <div class="modal-dialog w3-animate-bottom" style="background-color: #fff; top:20px;" >
+                                <div class="modal-dialog w3-animate-bottom" style="background-color: #fff; top:5px;" >
                                     <div class="modal-content">
                                         <div class="modal-header" style="padding: 10px;">
                                             <h4 class="modal-title font-26" id="dialoglLabel" >Add Department</h4>
@@ -617,6 +627,16 @@ if ($_SESSION['data_user_id'] == '') {
                                                     }
                                                     return x1 + x2;
                                                 }
+                                                var check_new_user = '<?=$_GET[check_new_user];?>';
+//                                                alert(check_new_user);
+                                                if(check_new_user!=""){
+													$( "#main_load_mod_popup" ).toggle();
+										          	var url_load = "load_page_mod.php?name=user&file=index&check_new_user="+check_new_user;
+										         	$('#load_mod_popup').html(load_main_mod);
+										          	$('#load_mod_popup').load(url_load); 
+										          	
+												}
+                                                
                         </script>
                         <style>
                             #loader {

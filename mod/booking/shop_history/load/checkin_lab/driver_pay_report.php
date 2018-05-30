@@ -20,7 +20,7 @@
       <tbody>
          <tr>
             <td width="60" rowspan="2">
-               <div class="step-booking"  id="number_driver_pay_report">2</div>
+               <div class="step-booking"  id="number_driver_pay_report">4</div>
                <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_driver_pay_report"    /></div>
             </td>
             <td colspan="2"><button  id="btn_driver_pay_report" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius:  20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"  ></i> <?=t_income_statement;?></button></td>
@@ -46,21 +46,14 @@
    <? } ?>
    <script>
       $("#btn_driver_pay_report").click(function(){
-      	
-    var check = $('#driver_pay_report_check_click').val();
-   	if(check==0){
-		swal('แลป ยังไม่แจ้งยอดรายได้');
-	}else{
-		swal('ยืนยันแล้ว','แลป แจ้งยอดรายได้แล้ว','success');
-	}
-      	/*if($('#driver_pay_report_check_click').val()==0){
+      	if($('#driver_pay_report_check_click').val()==0){
+       		
           $( "#dialog_custom" ).show();
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=driver_pay_report";
     	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
       }else{
-      }*/
-      
+      }
       });
    </script>      
    <?  ///  include ("mod/booking/load/form/price.php");?>

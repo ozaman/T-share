@@ -15,8 +15,8 @@
       $("#btn_guest_receive").css('background-color','#666666');
 </script>
 <? } ?>
-<div class="">
-   <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_guest_receive">
+<div>
+   <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin border-alert" id="box_guest_receive">
       <tbody>
          <tr>
             <td width="60" rowspan="2" >
@@ -50,21 +50,13 @@
    ?>
 <script>
    $("#btn_guest_receive").click(function(){ 
-   	var check = $('#guest_receive_check_click').val();
-   	if(check==0){
-		swal('พนักงานยังไม่รับแขก');
-	}else{
-		swal('ยืนยันแล้ว','พนักงานรับแขกแล้ว','success');
-	}
-   
-   /* if($('#guest_receive_check_click').val()==0){
+    if($('#guest_receive_check_click').val()==0){
     	$( "#dialog_custom" ).show();
 //   	 var url_load= "load_page_mod_3.php?name=booking/load/form&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
    	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=guest_receive";
     	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
   		$('#body_dialog_custom_load').load(url_load); 
+    }else{
     }
-	else{
-    }*/
    });
 </script>

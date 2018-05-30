@@ -73,18 +73,18 @@ $arr[project] = $arr[book];
          </tr>
          <tr id="main_td_price_park_<?=$arr[book][id];?>" >
             <td colspan="3" class="font-22">
-               <? include ("mod/booking/load/form/price/park.php");?>
+               <? include ("mod/booking/shop_history/load/price/park.php");?>
             </td>
            
          </tr>
          <tr id="main_td_price_person_<?=$arr[book][id];?>">
             <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/person.php");?>
+               <?  include ("mod/booking/shop_history/load/price/person.php");?>
             </td>
          </tr>
          <tr id="main_td_price_com_<?=$arr[book][id];?>">
             <td colspan="3" class="font-22">
-               <?  include ("mod/booking/load/form/price/com.php");?>
+               <?  include ("mod/booking/shop_history/load/price/com.php");?>
             </td>
          </tr>
          <tr id="main_td_price_all_<?=$arr[book][id];?>">
@@ -143,6 +143,7 @@ $arr[project] = $arr[book];
    	    if (isConfirm){
    	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) {
    //						console.log(data);
+   				$('.button-close-popup-mod-3').click();
    				$('#html_work_action').html(data);
    			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    			});

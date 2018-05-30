@@ -52,8 +52,13 @@ while($arr[timeline] = $db->fetch($res[timeline])){
 		$data_param = "";
 	}
 	$total_all = intval($total_all) + intval($arr[sum_each_day][each_day]);
+	if($num_work>0){
+		$tr_bg = "background-color:#8bc34a38;";
+	}else{
+		$tr_bg = "";
+	}
   	?>
-	    <tr onclick="viewIncomeDetail('<?=$data_param;?>');">
+	    <tr onclick="viewIncomeDetail('<?=$data_param;?>');" style="<?=$tr_bg;?>">
 	      <td class="mdl-data-table__cell--non-numeric" align="right"><?=str_pad($i, 2, '0', STR_PAD_LEFT);?></td>
 	     <!-- <td><?=$arr[order_book][id];?></td>-->
 	      

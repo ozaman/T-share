@@ -242,7 +242,7 @@
                                     <td width="30">
                                        <div class="step-booking-small"  id="number_step_3" style="margin-top:-2px;">5</div>
                                     </td>
-                                    <td height="40" valign="middle" class="font-26"><span><font color="<?=$text_topic_color?>" ><b><?=t_get_paid;?></b></font></span></td>
+                                    <td height="40" valign="middle" class="font-26"><span><font color="<?=$text_topic_color?>" ><b><?=t_get_paid_type;?></b></font></span></td>
                                  </tr>
                               </tbody>
                            </table>
@@ -397,7 +397,7 @@
       </tr>
       <tr>
          <td>
-             <button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;" id="submit_booking_step_4"> <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button>
+             <button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;margin-bottom:35px;" id="submit_booking_step_4"> <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button>
          </td>
       </tr>
    </tbody>
@@ -407,12 +407,15 @@
     $( "#load_mod_popup_4" ).toggle();
    });
    $("#submit_booking_step_4").click(function(){ 
+   $.post('send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$arr[web_user][id]?>" ,nickname : "<?=$arr[web_user][nickname]?>" },function(data){
+   					console.log(data);
+   				});
+//   				return;
     console.log($('#edit_form').serialize());
-   // return;
    ///  $( "#load_mod_popup_4" ).toggle();
    $('#load_mod_popup_4').html(load_main_mod);
       $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
-   //   		$('#send_booking_data').html(response);
+   				
    							console.log(response);
    							$('.button-close-popup-mod').click();
    							$('.button-close-popup-mod-4').click();

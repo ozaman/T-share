@@ -66,9 +66,17 @@ function checkTypePay($id){
 	if($arr[book][driver_complete]==1){
 		$cancel_shop = 'display:none;';
 	}
+	
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+  	$check_pay_dv = $db->num_rows("pay_history_driver_shopping","id","order_id=".$_POST[id]." and status = 1"); 
+  	if($check_pay_dv>0){
+		$show_alert = "";
+	}else{
+		$show_alert = "display:none;";
+	}
 ?>
 <div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div class="assas_<?=$_POST[id];?> " style="box-shadow: 0px -5px 5px #f6f6f6; padding:10px 12px;/*border: 1px solid #3b5998;border-radius: 15px;*/margin-top: 5px;" >
+<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
 	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
@@ -190,15 +198,32 @@ function checkTypePay($id){
 		</table>
 	</div>
 	
+	
+	<?php 
+	if($data_user_class=='taxi'){	
+	$txt_btn_pay = 'ยืนการการรับเงิน';
+	
+	?>
 	<div style="padding: 5px 0px;">
-	<span class="text-cap font-26"><?=t_check_in_information;?></span>
-		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+	<span class="text-cap font-26"><?=t_check_in_information." คนขับ";?></span>
+	<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		   <tr id="step_driver_topoint">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/topoint.php");?>
 		      </td>
 		   </tr>
-		   <tr id="step_guest_receive" style="display:none">
+			<!--<tr id="step_driver_pay_report" style="display:nones">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
+		      </td>
+		   </tr>-->
+		</table>
+	</div>
+	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
+	<div style="padding: 5px 0px;">
+		<span class="text-cap font-26"><?=t_check_in_information." แลป";?></span>
+		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+		  <tr id="step_guest_receive" style="display:nones">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/guest_receive.php");?>
 		      </td>
@@ -213,8 +238,52 @@ function checkTypePay($id){
 		         <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
 		      </td>
 		   </tr>
+		 </table>
+	</div>
+	<? }
+	else{ 
+	$txt_btn_pay = 'แจ้งยอดรายได้';
+	?>
+	<div style="padding: 5px 0px;">
+	<span class="text-cap font-26"><?=t_check_in_information." คนขับ";?></span>
+	<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+		   <tr id="step_driver_topoint">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin_lab/topoint.php");?>
+		      </td>
+		   </tr>
+			<!--<tr id="step_driver_pay_report" style="display:nones">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin_lab/driver_pay_report.php");?>
+		      </td>
+		   </tr>-->
 		</table>
 	</div>
+	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
+	<div style="padding: 5px 0px;">
+		<span class="text-cap font-26"><?=t_check_in_information." แลป";?></span>
+		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
+		  <tr id="step_guest_receive" style="display:nones">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin_lab/guest_receive.php");?>
+		      </td>
+		   </tr>
+		   <tr id="step_guest_register" style="display:none">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin_lab/guest_register.php");?>
+		      </td>
+		   </tr>
+		   <tr id="step_driver_pay_report" style="display:none">
+		      <td class="font-22">
+		         <?  include ("mod/booking/shop_history/load/checkin_lab/driver_pay_report.php");?>
+		      </td>
+		   </tr>
+		 </table>
+	</div>
+	<? }
+	
+	?>
+	
 	
 	<div style="padding: 5px 0px;">
 	 <span class="text-cap font-26"><?=t_income;?></span>
@@ -226,7 +295,8 @@ function checkTypePay($id){
     color: #3b5998;
     width: 80%;
     border: 1px solid #3b5998;">
-	 		<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<?=t_check_detail;?> </button>
+	 		<i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<?=$txt_btn_pay;?> </button>
+	 		<span id="alert_pay_driver" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin-left: -35px;z-index: 1;margin-top: 12;<?=$show_alert;?>"><strong>!</strong></span>
 	 		</td>
 	 	</tr>
 	 </table>
@@ -242,19 +312,31 @@ function checkTypePay($id){
     var remark3 = '<?=t_wrong_selected_place;?>';
     
 	$('#btn_div_dropdown_phone').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
+	    /*$("#main_load_mod_popup_4").toggle();
 	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
 	    $('#load_mod_popup_4').html(load_main_mod);
 	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
+	    $('#load_mod_popup_4').load(url_load);*/
+	    $( "#material_dialog" ).show();
+	    $( "#dialoglLabel" ).text('เบอร์โทรศัพท์');
+	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=phone&shop_id=<?=$arr[place_shop][id];?>";
+	   	console.log(url_load);
+	   	$('#load_modal_body').html("<br/><br/><br/><br/>");
+	  	$('#load_modal_body').load(url_load); 
 	});
 	
 	$('#btn_div_dropdown_zello').click(function(e) {
-	    $("#main_load_mod_popup_4").toggle();
+	  /*  $("#main_load_mod_popup_4").toggle();
 	    var url_load = "load_page_mod_4.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
 	    $('#load_mod_popup_4').html(load_main_mod);
 	    console.log(url_load);
-	    $('#load_mod_popup_4').load(url_load);
+	    $('#load_mod_popup_4').load(url_load);*/
+	     $( "#material_dialog" ).show();
+	    $( "#dialoglLabel" ).text('Zello');
+	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=social&type=zello&shop_id=<?=$arr[place_shop][id];?>";
+	   	console.log(url_load);
+	   	$('#load_modal_body').html("<br/><br/><br/><br/>");
+	  	$('#load_modal_body').load(url_load); 
 	});
 	
 	$('#shop_sub_menu_map').click(function(){  
@@ -262,6 +344,7 @@ function checkTypePay($id){
 	  console.log('lat '+$('#lat').val());
 	  console.log('lng '+$('#lng').val());
 	  $( "#main_load_mod_popup_map" ).toggle();
+	  $( "#main_load_mod_popup_clean" ).hide();
 	  var url_load= "load_page_map.php?name=booking/popup&file=map&shop_id=<?=$arr[place_shop][id]?>";
 	  url_load=url_load+"&lat="+document.getElementById('lat').value;
  	  url_load=url_load+"&lng="+document.getElementById('lng').value;
@@ -269,8 +352,10 @@ function checkTypePay($id){
   	  $('#load_mod_popup_map').load(url_load); 
 
  	});
-</script>
-<script>
+ 	$('#button-close-popup-map').click(function(){
+ 		$( "#main_load_mod_popup_clean" ).show();
+ 	});
+
 	function ViewPhoto(id,type,date){
 		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
 		console.log(url);

@@ -150,11 +150,11 @@
           $('#load_mod_popup_photo').load(url_load); 
          });
          $('#slide_menu_user_job').click(function(){  
-         $( "#main_load_mod_popup" ).toggle();
-          var url_load = "load_page_mod.php?name=user&file=job";
-         $('#load_mod_popup').html(load_main_mod);
-          $('#load_mod_popup').load(url_load); 
-         	});
+         	$( "#main_load_mod_popup" ).toggle();
+          	var url_load = "load_page_mod.php?name=user&file=job";
+         	$('#load_mod_popup').html(load_main_mod);
+          	$('#load_mod_popup').load(url_load); 
+         });
       </script> 
 
 
@@ -238,29 +238,27 @@
       var url_load= "load_page_mod_3.php?name=user&file=qrcode";
        $('#load_mod_popup_3').load(url_load);
        });
+       
     $("#l-logout").click(function(){ 
       swal({
-    title: "<font style='font-size:28px'><b> <?=t_sign_out;?>",
+    title: "<?=t_sign_out;?>",
     text: "<?=t_confirm_signout;?>",
     type: "warning",
     showCancelButton: true,
-    animation:  false ,
-    confirmButtonColor: '#DD6B55',
     confirmButtonText: '<?=t_yes;?>',
     cancelButtonText: "<?=t_no;?>",
     closeOnConfirm: false,
     closeOnCancel: true,
-    html: true
     },
-    function(isConfirm){
-      if (isConfirm){
+    function(){
+
       $.post('signout.php?type=logout',function(){
       		 swal("<?=t_sign_out_successfully;?>","", "success");
       		 setTimeout(function(){ 
       		 	window.location.href = "index.php";		}, 1000);
       });
-      }
-    });
+
+    	});
     });
 </script>
 <script src="js/jquery-main.js"></script> 

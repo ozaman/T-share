@@ -7,7 +7,7 @@
    if($arr[book][check_driver_topoint]== 1 ){ ?>
 <script> 
 //   $("#step_guest_receive").show();
-   $("#step_driver_pay_report").show();
+//   $("#step_driver_pay_report").show();
       $('#iconchk_driver_topoint').attr("src", "images/yes.png");  
      $("#number_driver_topoint").removeClass('step-booking');
       $("#number_driver_topoint").addClass('step-booking-active');
@@ -15,7 +15,7 @@
       $("#btn_driver_topoint").css('background-color','#666666');
 </script>
 <? } ?>
-<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin border-alert" id="box_driver_topoint">
+<table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_driver_topoint">
    <tbody>
       <tr>
          <td width="60" rowspan="2">
@@ -37,6 +37,7 @@
          </td>
       </tr>
    </tbody>
+   
 </table>
 <?php 
    if(file_exists("../data/fileupload/store/driver_topoint_".$arr[book][id].".jpg")==0){ ?>
@@ -48,16 +49,12 @@
 <? }?>
 <script>
    $("#btn_driver_topoint").click(function(){ 
-   if($('#driver_topoint_check_click').val()!=1){
-    $( "#dialog_custom" ).show();
-//   	var url_load= "load_page_mod_3.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=driver_topoint";
-   	var url_load= "empty_style.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=driver_topoint";
-   	console.log(url_load);
-//   	$('#body_dialog_custom_load').html(load_main_mod);
-   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
-  	$('#body_dialog_custom_load').load(url_load); 
-   }
-   else{
-   }
+   	var check = $('#driver_topoint_check_click').val();
+   	if(check==0){
+		swal('คนขับยังไม่ถึงสถานที่');
+	}else{
+		swal('','คนขับถึงสถานที่รับแขกแล้ว','success');
+	}
+		
    	 });
 </script>

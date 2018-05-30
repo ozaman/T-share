@@ -1107,7 +1107,7 @@ return $name_type;
        m = checkTime(m);
        s = checkTime(s);
        document.getElementById('time_book_page').innerHTML = h + ":" + m + ":" + s;
-       clock = setTimeout(startTime, 500);
+       clock = setTimeout(startTime, 1000);
    }
    function checkTime(i) {
        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
