@@ -42,9 +42,9 @@ GETMODULE($_GET[name],$_GET[file]);
     <table width="100%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="40"   ><div class="button-close-popup-photo" ><?=$popup_icon_left_arow;?></div></td>
-  <td   ><div style="font-size:22px; color:#FFFFFF " id="text_mod_topic_action_photo-txt" class="text-topic-action-photo"><?=$txt;?></div></td>
+  <td   ><div style="font-size:22px; color:#333333; " id="text_mod_topic_action_photo-txt" class="text-topic-action-photo"><?=$txt;?></div></td>
     <td width="40" align="right"   >
-    <div style="font-size:22px; color:#FFFFFF ;" id=""  onclick="GohomePage();">
+    <div style="font-size:22px; color:#333333;" id=""  onclick="GohomePage();">
     <i class="fa fa-home  text-resize" style="font-size:30px;"></i>
     </div>
     </td>

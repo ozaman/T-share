@@ -351,8 +351,8 @@
        $('#load_mod_popup').load(url_load); 
    }
    function money_transfer(){
-   	swal("กำลังจะเปิดให้บริการ");
-   	return;
+   	/*swal("กำลังจะเปิดให้บริการ");
+   	return;*/
       ckeckhis = false;
      //alert('asasas')
      // $( "#main_load_mod_popup" ).toggle();
@@ -364,8 +364,8 @@
         $('#load_mod_popup').html(url_load);
    }
    function workTbooking(){
-   		swal("กำลังจะเปิดให้บริการ");
-   		return;
+   		/*swal("กำลังจะเปิดให้บริการ");
+   		return;*/
      	ckeckhis = false;
    		$('#main_load_mod_popup').show();
    		var url_load = "load_page_mod.php?name=tbooking&file=all";
@@ -374,8 +374,8 @@
         $('#check_open_worktbooking').val(1);
    }
    function historyTransfer(){
-   		swal("กำลังจะเปิดให้บริการ");
-   		return;
+   		/*swal("กำลังจะเปิดให้บริการ");
+   		return;*/
    		$('#main_load_mod_popup').show();
    		var url_load= "load_page_mod.php?name=tbooking&file=his";
    		$('#load_mod_popup').html(load_main_mod);
