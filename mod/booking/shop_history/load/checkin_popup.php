@@ -136,7 +136,13 @@
 			console.log(res);
 			if(res.result==true){
 				$( "#close_dialog_custom" ).click();
-				afterAction(res);
+//				afterAction(res);
+				var url_load_dt = "empty_style.php?name=booking/shop_history&file=work_shop_detail";
+				var id = '<?=$arr[project][id]?>';
+				console.log(url_load_dt);
+		      	$.post(url_load_dt,{ id : id },function(data){
+		      		$('#load_mod_popup_clean').html(data);
+		      	});
 			}else{
 				swal("Error");
 			}

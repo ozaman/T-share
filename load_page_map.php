@@ -46,7 +46,7 @@ GETMODULE($_GET[name],$_GET[file]);
   <script>
     	
   $('.button-close-popup-map').click(function(){   
-
+	console.log(1);
    $( "#main_load_mod_popup_map" ).hide();
  
     $( "#load_mod_popup_map" ).html('');

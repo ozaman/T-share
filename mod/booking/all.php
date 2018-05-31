@@ -385,6 +385,8 @@
       		$('#main_load_mod_popup_clean').show();
      			$('#main_component').removeClass('w3-animate-left');
       	});
+      	
+      	$('#check_open_shop_id').val(id);
    }
 
    function backMain(){
@@ -392,6 +394,7 @@
      	$('#main_load_mod_popup_clean').hide(); 
    	$('#show_main_tool_bottom').fadeIn(500); 
    	$('#main_component').addClass('w3-animate-left');
+   	$('#check_open_shop_id').val(0);
      }
    /*$('#back_main').click(function(){
    	console.log('back');

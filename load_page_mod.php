@@ -21,6 +21,7 @@
    $('#show_main_tool_bottom span').removeClass('bottom-popup-icon-new-active');
    $('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
    $('#check_open_worktbooking').val(0);
+   $('#check_open_workshop').val(0);
    	});
 </script>
 <div style="top:0px; padding:10px; width:100%; padding-bottom:0px;   ">   

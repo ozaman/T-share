@@ -283,19 +283,12 @@
 
 <script>
    $('#open_map').click(function(){	
-   //		var province = '<?=$_GET[province];?>';
    var province = $('#province_id').val();
-   //		var txt_province = '<?=$name?>';
    $( "#main_load_mod_popup_map" ).toggle();
+   
    $( "#load_mod_popup_map" ).show();
    $('#load_mod_popup_map').html(load_main_mod);
-   /*$.post( "mod/map_api/query_data_map.php?request=location_province&txt_province="+txt_province, function( data ) {
-     	var obj_pv = JSON.parse(data);
-   console.log(obj_pv);
-   var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>&lat_cen="+obj_pv.lat+'&lng_cen='+obj_pv.lng;
-   console.log(url_load);
-   $('#load_mod_popup_map').load(url_load); 
-   });*/
+
    var url_load = "load_page_map.php?name=map_api&file=map_main&province="+province+"&user_id=<?=$user_id?>";
    $('#load_mod_popup_map').load(url_load); 
    $('#show_main_tool_bottom').hide();

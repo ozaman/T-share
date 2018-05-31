@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />  
-
+<input type="hidden" value="0" id="check_open_shop_id" /> <!-- เช็คเมนูช้อปปิ้ง ว่ากำลังเปิด detail ของ id ไหน -->
 <style>
 	.box-shadow-only{
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
@@ -201,6 +201,7 @@
 			</center>
          </td>
          <td align="center" class="">
+          <input id="check_open_workshop" value="0" type="hidden"/>
             <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: 12px 4px;">0</span>
             <center>
             <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping_history" style="width:100%;">
@@ -212,6 +213,7 @@
             </center>
             <script>    
                $('#index_menu_shopping_history').click(function(){  
+               $('#check_open_workshop').val(1);
                $( "#main_load_mod_popup" ).toggle();
                 var url_load = "load_page_mod.php?name=booking&file=all";
                $('#load_mod_popup').html(load_main_mod);
@@ -242,6 +244,7 @@
             
          </td>
          <td width="50%" align="center" class="">
+        
             <span data-toggle="tooltip" class="badge"   style="position:absolute; margin-left:10px; border-radius: 20px; height:25px; width:25px; background-color:#ff0000; padding-top:3px;border: solid 2px #FFFFFF; display:NONE " id="number_bottom_chat"  ><span  class="font-20" >0</span> </span>
             <center>
             <button type="button" class="btn btn-default paddling-max"  id="index_menu_transfer_his"   style="width:100%" onclick="historyTransfer();">
@@ -473,17 +476,36 @@
      });
 
    $('#index_menu_shopping').click(function(){  
-
-   $("#load_mod_popup_select_pv" ).show();
-     var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-      $('#body_load_select_pv').html(load_main_mod);
-      $.post( url_load, function( data ) {
-      	   $('#body_load_select_pv').html(data);
-   	   var txt = $('#province_text').text();
-   		$('#txt_pv_fr').val(txt);
-   		$('.text-change-province').text(txt);
-   	});
-    	});
+   var user_id = "<?=$_SESSION['data_user_id'];?>";
+		$.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
+			console.log(res);
+			if(res.idcard == ""){
+				swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
+				$( "#main_load_mod_popup" ).toggle();
+	          	var url_load = "load_page_mod.php?name=user&file=job";
+	         	$('#load_mod_popup').html(load_main_mod);
+	          	$('#load_mod_popup').load(url_load); 
+				return;
+			}
+			if(res.iddriving == ""){
+				swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
+				$( "#main_load_mod_popup" ).toggle();
+	          	var url_load = "load_page_mod.php?name=user&file=job";
+	         	$('#load_mod_popup').html(load_main_mod);
+	          	$('#load_mod_popup').load(url_load); 
+				return;
+			}
+			$("#load_mod_popup_select_pv" ).show();
+		     var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+		      $('#body_load_select_pv').html(load_main_mod);
+		      $.post( url_load, function( data ) {
+		      	   $('#body_load_select_pv').html(data);
+		   	   var txt = $('#province_text').text();
+		   		$('#txt_pv_fr').val(txt);
+		   		$('.text-change-province').text(txt);
+		   	});
+		});
+    });
 
     ///// food
     $('#index_menu_food').click(function(){  
@@ -631,9 +653,11 @@
 	});
 
 	var socket_shopping = [];
-	var user_class = "<?=$data_user_class;?>";
 	
+	var user_class = "<?=$data_user_class;?>";
+	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
+		var array_detail_shop = [];
 		var array_data = [];       
         $.each(data.booking,function(index,value){
         	if(value.status == 'NEW' ){
@@ -653,9 +677,28 @@
 				
 			}
         });
+        
+        if(array_data.length>socket_shopping.length && frist_socket==false && user_class=="lab"){
+			swal("มี Taxi แจ้งงานใหม่เข้ามา กรุณาตรวจสอบ");
+		}
         socket_shopping = array_data;
-		console.log(socket_shopping);
+        if($('#check_open_workshop').val()==1){
+//			console.log(socket_shopping);
+		}
 		$('#number_shop').text(socket_shopping.length);
+		frist_socket = false;
+		
+		if($('#check_open_shop_id').val()>0){
+			var id_op_detail = $('#check_open_shop_id').val();
+			$.each(socket_shopping,function(in2,val2){
+				
+				if(val2.id==id_op_detail){
+					array_detail_shop.push(val2);
+				}
+			});
+		}
+		console.log(array_detail_shop);
+		
       });
 	
 	

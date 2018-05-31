@@ -93,19 +93,19 @@
          </span>
          </a> 
          <ul class="treeview-menu">
-            <li><a id="slide_menu_account_income"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_receipt_of_parking_fee?></span></a></li>
+            <li><a id="slide_menu_account_income" onclick="revenue();"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_receipt_of_parking_fee?></span></a></li>
             <li style="display:none"><a href="?name=booking/account&file=pay"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_withdrawal_record?></span></a></li>
             <li><a id="slide_menu_account_bank"><i class="fa fa-circle-o"></i><span  class="textsub-left-menu-slide" style="color: #000000;"><? echo t_bank_account;?></span></a></li>
          </ul>
       </li>
       <? } ?>
       <script>
-         $('#slide_menu_account_income').click(function(){  
+        /* $('#slide_menu_account_income').click(function(){  
          $( "#main_load_mod_popup" ).toggle();
            var url_load = "load_page_mod.php?name=booking/account&file=index";
           $('#load_mod_popup').html(load_main_mod);
            $('#load_mod_popup').load(url_load); 
-          	});
+          	});*/
          	$('#slide_menu_account_bank').click(function(){  
          $( "#main_load_mod_popup" ).toggle();
            var url_load = "load_page_mod.php?name=pay&file=bank_book&driver=<?=$arr[web_user][id];?>&open=menu";

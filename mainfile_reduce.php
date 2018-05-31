@@ -10,6 +10,7 @@
 				}else{
 				 	$keep = 'en';
 				}
+$keep = 'th';				
 switch ($_COOKIE['lng']) {
     case "th":
         //echo "PAGE th";

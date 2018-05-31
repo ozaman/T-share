@@ -128,50 +128,48 @@ $arr[project] = $arr[book];
    	return;
    }
    	swal({
-   		title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?></b></font>",
-   		text: "<font style='font-size:22px'><?=t_want_confirm_payment;?></font>",
+   		title: "<?=t_are_you_sure;?>",
+   		text: "<?=t_want_confirm_payment;?>",
    		type: "warning",
    		showCancelButton: true,
-   		confirmButtonColor: '#5CB85C',
    		confirmButtonText: '<?=t_yes;?>',
    		cancelButtonText: "<?=t_no;?>",
    		closeOnConfirm: false,
-   		closeOnCancel: true,
-   		html: true
+   		closeOnCancel: true
    	},
-   	function(isConfirm){
-   	    if (isConfirm){
+   	function(){
+   	   
    	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) {
    //						console.log(data);
    				$('.button-close-popup-mod-3').click();
    				$('#html_work_action').html(data);
    			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   			  	filterMenu("manage");
    			});
-   	    } 
+   	  
    	});
    }
    function ApporvePayDriver(id,invoice,price,type){
    console.log(id);
    	swal({
-   		title: "<font style='font-size:28px'><b> <?=t_are_you_sure;?></b></font>",
-   		text: "<font style='font-size:22px'><?=t_already_received;?></font>",
+   		title: "<?=t_are_you_sure;?>",
+   		text: "<?=t_already_received;?>",
    		type: "warning",
    		showCancelButton: true,
-   		confirmButtonColor: '#5CB85C',
    		confirmButtonText: '<?=t_yes;?>',
    		cancelButtonText: "<?=t_no;?>",
    		closeOnConfirm: false,
-   		closeOnCancel: true,
-   		html: true
+   		closeOnCancel: true
    	},
-   	function(isConfirm){
-   	    if (isConfirm){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) {
+   	function(){
+   	  
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : id , invoice:invoice, price:price , type:type } ,function( data ) 		{
    //						console.log(data);
    				$('#html_work_action').html(data);
    			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+   			  	filterMenu("manage");
    			});
-   	    } 
+   
    	});
    }
   

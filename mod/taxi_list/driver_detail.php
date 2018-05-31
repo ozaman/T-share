@@ -34,7 +34,7 @@ $d1 = "2018-03-24";
 $d2 = date('Y-m-d',$arr[dv_data][post_date]);
 ?>
 <div style="">
-	<span>อายุการใช้งาน <?=findDiffDate($d1,$d2);?></span>
+	<span><strong>อายุการใช้งาน</strong> : <?=findDiffDate($d1,$d2);?></span>
 	<div  align="center">
    <img src="../data/pic/driver/small/default-avatar.jpg" id="img_tag" alt="Preview Image" width="150px" style="border: 2px solid #ddd;border-radius: 4px;padding: 0px;margin: 10px;">
    </div>

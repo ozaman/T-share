@@ -10,6 +10,7 @@ if ($check_lng_browser == 'ch' or $check_lng_browser == 'zh' or $check_lng_brows
 } else {
     $keep = 'en';
 }
+$keep = 'th';
 switch ($_COOKIE['lng']) {
     case "th":
         //echo "PAGE th";

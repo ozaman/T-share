@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css" />
+<!--<link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css" />
 <script src="js/jquery-main.js"></script> 
-<script   src="calendar/js/th.js"></script>
+<script   src="calendar/js/th.js"></script>-->
 <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
 <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
 <script src="pickerdate/picker.js?v=<?=time();?>" type="text/javascript"></script>
@@ -30,6 +30,15 @@
    height : unset !important;
    }*/
 </style>
+<?php 
+
+if($arr[web_user][idcard]==""){
+	$bd_al_idcard = "border-alert"; 
+}
+if($arr[web_user][iddriving]==""){
+	$bd_al_iddriving = "border-alert"; 
+}
+?>
 <form method="post" action="" id="edit_form" name="edit_form"  enctype="multipart/form-data" >
    <div class="box box-default" style="margin-top:30px;">
       <div class="box-body" >
@@ -40,7 +49,7 @@
                   <table width="100%"  border="0" cellspacing="0" cellpadding="0">
                      <tr>
                         <td width="70%" style="padding-right:5px; ">
-                           <input name="idcard" type="text" class="form-control" id="idcard" onkeypress="PasswordEnter(this,event)"  value="<?=$arr[web_user][idcard];?>"  required="true"  >
+                           <input name="idcard" type="text" class="form-control <?=$bd_al_idcard;?>" id="idcard"   value="<?=$arr[web_user][idcard];?>"  required="true"  >
                         </td>
                         <td id="pic_idcard"></td>
                      </tr>
@@ -65,7 +74,7 @@
                   <table width="100%"  border="0" cellspacing="0" cellpadding="0">
                      <tr>
                         <td width="70%" style="padding-right:5px; ">
-                           <input class="form-control" type="text" name="iddriving" id="iddriving"  required="true" onkeypress="PasswordEnter(this,event)"   value="<?=$arr[web_user][iddriving];?>" >
+                           <input class="form-control <?=$bd_al_iddriving;?>" type="text" name="iddriving" id="iddriving"  required="true"    value="<?=$arr[web_user][iddriving];?>" >
                         </td>
                         <td id="pic_iddriving"></td>
                      </tr>
@@ -91,18 +100,13 @@
             <!----- ปิด col--> 
          </div>
          <!---->
-         <div  id="send_user_data"></div>
-         <div class="alert alert-success alert-dismissible"  id="save" style="display: none;margin-top:10px;">
-            <i class="fa fa-check"></i>  <?=t_save_succeed;?>  
-         </div>
-         <div class="alert alert-error alert-dismissible" id="error" style="display: none;padding:14px;margin-top:10px;">
-            <i class="fa fa-check"></i>  <?=t_error;?>
-         </div>
+       
          <div style="margin-top:10px;"  >
             <table width="100%"  border="0" cellspacing="2" cellpadding="2" >
-               <tr>
-                  <td style="padding:5px;"><button type="reset" class="btn btn-block btn-default"  style="width:100%;padding:10px; "><?=t_reset;?></button></td>
-                  <td width="150" style="padding:5 px;"><button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding:10px;background-color:#3b5998; "><?=t_save_data;?></button></td>
+               <tr> 
+                  <td width="100%">
+                  <button id="submit_user_network" type="button" class="btn btn-block btn-primary" style="width:100%;padding: 8px;background-color:#3b5998;margin: 15px 0px;"><?=t_save_data;?></button>
+                  </td>
                </tr>
             </table>
          </div>
@@ -112,29 +116,26 @@
    <div id="popup_idcard"></div>
    <div id="popup_iddriving"></div>
    <script>
-      var url_idcard= "popup.php?name=load/card&file=button&userid=<?=$arr[web_user][id];?>&type=idcard";
+      var url_idcard= "empty_style.php?name=load/card&file=button&userid=<?=$arr[web_user][id];?>&type=idcard";
       $('#pic_idcard').load(url_idcard);
-      var url_popup_idcard = "popup.php?name=load/card&file=pic&userid=<?=$arr[web_user][id];?>&type=idcard&title=บัตรประชาชน";
+      var url_popup_idcard = "empty_style.php?name=load/card&file=pic&userid=<?=$arr[web_user][id];?>&type=idcard&title=บัตรประชาชน";
       $('#popup_idcard').load(url_popup_idcard);
-      var url_iddriving= "popup.php?name=load/card&file=button&userid=<?=$arr[web_user][id];?>&type=iddriving";
+      var url_iddriving= "empty_style.php?name=load/card&file=button&userid=<?=$arr[web_user][id];?>&type=iddriving";
       $('#pic_iddriving').load(url_iddriving);
-      var url_popup_iddriving = "popup.php?name=load/card&file=pic&userid=<?=$arr[web_user][id];?>&type=iddriving&title=ใบอนุญาตขับขี่";
+      var url_popup_iddriving = "empty_style.php?name=load/card&file=pic&userid=<?=$arr[web_user][id];?>&type=iddriving&title=ใบอนุญาตขับขี่";
       $('#popup_iddriving').load(url_popup_iddriving);
-      //alert(00);
+
       /// check login
       $("#submit_user_network").click(function(){ 
-      //$('#file_upload_line').click();
-      /*
-      if(document.getElementById('username').value=="") {
-      swal('กรุณากรอกชื่อผู้ใช้งาน'); 
-      document.getElementById('username').focus() ; 
-      return false ;
-      }
-      */
-      /* $.post('popup.php?name=user&file=savedata&type=card&id=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
-      $('#send_user_data').html(response);
-      });*/
-      //  					var url = "popup.php?name=user&file=savedata&type=test&id=<?=$arr[web_user][id]?>";
+			/*var url = "popup.php?name=user&file=savedata&type=test&id=<?=$arr[web_user][id]?>";*/
+	  if($('input[name="idcard"]').val()==""){
+	  		swal("กรุณากรอกเลขบัตรประชาชน");
+	  		return;
+	  }		
+	  if($('input[name="iddriving"]').val()==""){
+	  		swal("กรุณากรอกใบอนุญาตขับขี่");
+	  		return;
+	  }		
       data_form = $('#edit_form').serialize();
       data = new FormData($('#edit_form')[0]);
       //					alert(url); mod/user/savedata.php?type=555

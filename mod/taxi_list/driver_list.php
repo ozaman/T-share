@@ -4,7 +4,14 @@ $('#text_mod_topic_action').text('รายชื่อสมาชิก Taxi')
 
 <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />-->
 <div style="padding: 0px;  margin-top: 55px;margin-bottom: 30px;">
-
+<div style="padding: 0px;">
+	<table width="100%">
+		<tr>
+			<td width="50%"><input type="text" placeholder="ค้นหาจากชื่อ" value="" style="padding: 8px;border: 1px solid #ddd; width: 100%;" class="font-22" id="search_dv_name"  /></td>
+			<td width="50%"><input type="text" placeholder="ค้นหาจากเบอร์โทร" value="" style="padding: 8px;border: 1px solid #ddd; width: 100%;" class="font-22" id="search_dv_phone"  /></td>
+		</tr>
+	</table>
+</div>
 <table class="table" width="100%">
   <thead>
     <tr>
@@ -22,10 +29,10 @@ while($arr[dv] = $db->fetch($res[dv])){
  $d2 = date('Y-m-d',$arr[dv][post_date]);
 ?>
 
-	<tr >
-		<td onclick="openDetailDv('<?=$arr[dv][id];?>','<?=$arr[dv][nickname];?>');"><?=$arr[dv][id];?></td>
-		<td onclick="openDetailDv('<?=$arr[dv][id];?>','<?=$arr[dv][nickname];?>');"><?=$arr[dv][nickname];?></td>
-		<td><a href="tel:<?=$arr[dv][phone];?>"><?=$arr[dv][phone];?></a></td>
+	<tr id="tr_id_<?=$arr[dv][id];?>" >
+		<td onclick="openDetailDv('<?=$arr[dv][id];?>','<?=$arr[dv][nickname];?>');"><span class="sp_id"><?=$arr[dv][id];?></span></td>
+		<td onclick="openDetailDv('<?=$arr[dv][id];?>','<?=$arr[dv][nickname];?>');"><span class="sp_name" role="<?=$arr[dv][id];?>"><?=$arr[dv][nickname];?></span></td>
+		<td><a href="tel:<?=$arr[dv][phone];?>"><span class="sp_phone" role="<?=$arr[dv][id];?>"><?=$arr[dv][phone];?></span></a></td>
 	</tr>
 
 <? }
@@ -98,4 +105,28 @@ while($arr[dv] = $db->fetch($res[dv])){
 		console.log(load_img);
 		$('#img01').load(load_img);
 	}
+	$( "#search_dv_name" ).keyup(function() {
+	  	var txt_ip = $(this).val();
+	  	$('.sp_name').each(function() {
+			var txt_name = $(this).text();
+			var row_id = $(this).attr('role');
+			 if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
+		       	$('#tr_id_'+row_id).show();
+		      } else {
+		        $('#tr_id_'+row_id).hide();
+		      }
+		});
+	});
+	$( "#search_dv_phone" ).keyup(function() {
+	  	var txt_ip = $(this).val();
+	  	$('.sp_phone').each(function() {
+			var txt_phone = $(this).text();
+			var row_id = $(this).attr('role');
+			 if (txt_phone.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
+		       	$('#tr_id_'+row_id).show();
+		      } else {
+		        $('#tr_id_'+row_id).hide();
+		      }
+		});
+	});
  </script>

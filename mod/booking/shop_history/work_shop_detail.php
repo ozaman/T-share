@@ -352,6 +352,7 @@ function checkTypePay($id){
   	  $('#load_mod_popup_map').load(url_load); 
 
  	});
+
  	$('#button-close-popup-map').click(function(){
  		$( "#main_load_mod_popup_clean" ).show();
  	});
@@ -363,6 +364,7 @@ function checkTypePay($id){
 		$('#load_mod_popup_photo').html(load_main_mod);
  	 	$('#load_mod_popup_photo').load(url); 
 	}	
+
 	function openViewPrice(){
 		$( "#dialog_custom" ).show();
 	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
@@ -370,6 +372,7 @@ function checkTypePay($id){
 	   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
 	  	$('#body_dialog_custom_load').load(url_load); 
 	}
+
 	function cancelBook(id){
 	
      swal({
@@ -410,10 +413,14 @@ function checkTypePay($id){
    });
     }
     
-   function check(id,num){
+   	function check(id,num){
     console.log(id+" "+num);	
     $('.cause_'+id).attr('checked', false);
     $('#remark'+num).attr('checked', true);
     $('#check_cause').val(num);
    }
+
+	function cs(){
+		console.log(socket_shopping);
+	}
 </script>
