@@ -447,6 +447,7 @@
    <input type="hidden" value="0" id="lng"/>
 </div>
 <script>
+   
    $('#close_small_select').click(function(){
    	$('#popup_small_select').hide();
    });
@@ -701,7 +702,38 @@
 		
       });
 	
-
+var id = '<?=$user_id?>';
+   var dataorder={  
+    order : parseInt(id),  
+     
+    };
+    
+//socket.on('connect', function(){  
+    socket.emit('adduser', dataorder);
+    console.log(dataorder);
+ // });
+socket.on('updatechat', function (username, data) {
+   
+console.log(username)
+console.log(data)
+    console.log(data[0].id);
+    if(data[0].check_driver_topoint==1){
+      console.log("driver_topoint");
+      changeHtml("driver_topoint",data[0].id)
+   }
+    if(data[0].check_guest_receive==1){
+      console.log("guest_receive");
+      changeHtml("guest_receive",data[0].id)
+   }
+   if(data[0].check_guest_register==1){
+      console.log("guest_register");
+      changeHtml("guest_register",data[0].id)
+   }
+   if(data[0].check_driver_pay_report==1){
+      console.log("driver_pay_report");
+      changeHtml("driver_pay_report",data[0].id)
+   }
+   });
 	
 	function formatDate(date) {
     var d = new Date(date),
