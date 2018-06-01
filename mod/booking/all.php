@@ -2,6 +2,17 @@
    $(".text-topic-action-mod").html('<?php echo t_send_to_customer;?>');
 </script>
 <style>
+	.back_main{
+		padding: 5px 0px;
+	    margin-top: 0px;
+	    padding-left: 10px;
+	    position: fixed;
+	    background-color: #fff;
+	    width: 100%;
+/*	    border-bottom: 1px solid #ddd;*/
+		box-shadow: 1px 1px 10px #ddd;
+	    z-index: 2;
+	}
    @media screen and (max-width: 320px) {
    .font-22{
    font-size : 14px;
@@ -384,9 +395,11 @@
       		$('#load_mod_popup_clean').html(data);
       		$('#main_load_mod_popup_clean').show();
      			$('#main_component').removeClass('w3-animate-left');
+
       	});
       	
       	$('#check_open_shop_id').val(id);
+      	
    }
 
    function backMain(){
@@ -395,11 +408,7 @@
    	$('#show_main_tool_bottom').fadeIn(500); 
    	$('#main_component').addClass('w3-animate-left');
    	$('#check_open_shop_id').val(0);
+   	$('#load_mod_popup_clean').html('');
      }
-   /*$('#back_main').click(function(){
-   	console.log('back');
-     		$('#sub_component').hide();
-     		$('#main_component').addClass('w3-animate-left');
-     		$('#main_component').show();
-     });*/
+
 </script>

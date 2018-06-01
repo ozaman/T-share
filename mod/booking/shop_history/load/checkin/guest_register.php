@@ -7,7 +7,7 @@
 <? 
    if($arr[book][check_guest_register]==1 ){ ?>
 <script> 
-   $("#step_driver_pay_report").show();
+//   $("#step_driver_pay_report").show();
       $('#iconchk_guest_register').attr("src", "images/yes.png");  
      $("#number_guest_register").removeClass('step-booking');
       $("#number_guest_register").addClass('step-booking-active');

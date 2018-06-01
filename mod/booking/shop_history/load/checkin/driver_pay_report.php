@@ -7,7 +7,7 @@
    if($arr[book][check_driver_pay_report]==1 ){ 
    ?>
 <script> 
-   $("#step_driver_pay_report").show();
+//   $("#step_driver_pay_report").show();
       $('#iconchk_driver_pay_report').attr("src", "images/yes.png");  
      $("#number_driver_pay_report").removeClass('step-booking');
       $("#number_driver_pay_report").addClass('step-booking-active');
@@ -20,7 +20,7 @@
       <tbody>
          <tr>
             <td width="60" rowspan="2">
-               <div class="step-booking"  id="number_driver_pay_report">2</div>
+               <div class="step-booking"  id="number_driver_pay_report">4</div>
                <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_driver_pay_report"    /></div>
             </td>
             <td colspan="2"><button  id="btn_driver_pay_report" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius:  20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"  ></i> <?=t_income_statement;?></button></td>

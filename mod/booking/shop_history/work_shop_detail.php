@@ -75,8 +75,9 @@ function checkTypePay($id){
 		$show_alert = "display:none;";
 	}
 ?>
-<div class="font-22" style="padding: 5px 0px;margin-top: 0px;padding-left: 10px;" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
-<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
+<input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
+<div class="font-22 back_main" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
+<div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
 	<button class="btn btn-repair waves-effect btn-other btn-danger" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="
     position:  absolute;
     right: 10px;
@@ -228,12 +229,12 @@ function checkTypePay($id){
 		         <?  include ("mod/booking/shop_history/load/checkin/guest_receive.php");?>
 		      </td>
 		   </tr>
-		   <tr id="step_guest_register" style="display:none">
+		   <tr id="step_guest_register" style="display:nones">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/guest_register.php");?>
 		      </td>
 		   </tr>
-		   <tr id="step_driver_pay_report" style="display:none">
+		   <tr id="step_driver_pay_report" style="display:nones">
 		      <td class="font-22">
 		         <?  include ("mod/booking/shop_history/load/checkin/driver_pay_report.php");?>
 		      </td>
@@ -420,7 +421,67 @@ function checkTypePay($id){
     $('#check_cause').val(num);
    }
 
-	function cs(){
-		console.log(socket_shopping);
+
+</script>
+<script>
+		var id = $('#id_order').val();
+	var dataorder={  
+    order : parseInt(id),  
+     
+    };
+    
+//socket.on('connect', function(){  
+    socket.emit('adduser', dataorder);
+    console.log(dataorder);
+ // });
+socket.on('updatechat', function (username, data) {
+	
+//    console.log(username)
+    console.log(data[0].id);
+    if(data[0].check_driver_topoint==1){
+    	console.log("driver_topoint");
+		changeHtml("driver_topoint",data[0].id)
 	}
+    if(data[0].check_guest_receive==1){
+    	console.log("guest_receive");
+		changeHtml("guest_receive",data[0].id)
+	}
+	if(data[0].check_guest_register==1){
+		console.log("guest_register");
+		changeHtml("guest_register",data[0].id)
+	}
+	if(data[0].check_driver_pay_report==1){
+		console.log("driver_pay_report");
+		changeHtml("driver_pay_report",data[0].id)
+	}
+   });
+   
+function changeHtml(type,id){
+	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time=<?=TIMESTAMP?>&status=1";
+			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+			$('#status_'+type).load(url_status); 
+			$('#iconchk_'+type).attr("src", "images/yes.png");  
+			$("#number_"+type).removeClass('step-booking');
+			$("#number_"+type).addClass('step-booking-active');
+			$("#box_"+type).addClass('disabledbutton-checkin');
+			$("#btn_"+type).css('background-color','#666666');
+		/*$.ajax({
+			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_type').css('color','#3b5998');
+				$('#photo_type').css('border','2px solid #3b5998');
+				$('#photo_type').attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
+			}
+		});*/
+		$('#'+type+'_check_click').val(1);
+		$("#box_"+type).removeClass('border-alert');
+   }
 </script>

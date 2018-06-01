@@ -697,10 +697,11 @@
 				}
 			});
 		}
-		console.log(array_detail_shop);
+//		console.log(array_detail_shop);
 		
       });
 	
+
 	
 	function formatDate(date) {
     var d = new Date(date),

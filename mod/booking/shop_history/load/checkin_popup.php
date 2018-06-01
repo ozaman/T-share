@@ -135,6 +135,8 @@
 		$.post(url,function(res){
 			console.log(res);
 			if(res.result==true){
+				var message = "";
+				socket.emit('sendchat', message);
 				$( "#close_dialog_custom" ).click();
 //				afterAction(res);
 				var url_load_dt = "empty_style.php?name=booking/shop_history&file=work_shop_detail";
@@ -151,7 +153,7 @@
     	});
     	
     function afterAction(res){
-		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";
+	var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";
 	$('#status_<?=$_GET[type]?>').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
 	$('#status_<?=$_GET[type]?>').load(url_status); 
 	$('#iconchk_<?=$_GET[type]?>').attr("src", "images/yes.png");  
