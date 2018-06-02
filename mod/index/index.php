@@ -712,27 +712,54 @@ var id = '<?=$user_id?>';
     socket.emit('adduser', dataorder);
     console.log(dataorder);
  // });
+ socket.on('datalab', function (username, data) {
+   console.log('***********************datalab***************************')
+console.log(username)
+console.log(data)
+console.log(data[0].id);
+    if(data[0].check_driver_topoint==1){
+      console.log("driver_topoint");
+      changeHtml("driver_topoint",data[0].id)
+   }
+    if(data[0].check_guest_receive==1){
+      console.log("guest_receive");
+      changeHtml("guest_receive",data[0].id)
+   }
+   if(data[0].check_guest_register==1){
+      console.log("guest_register");
+      changeHtml("guest_register",data[0].id)
+   }
+   if(data[0].check_driver_pay_report==1){
+      console.log("driver_pay_report");
+      changeHtml("driver_pay_report",data[0].id)
+   }
+
+   
+   });
 socket.on('updatedriver', function (username, data) {
    
 console.log(username)
 console.log(data)
-   //console.log(data[0].id);
-   //  if(data[0].check_driver_topoint==1){
-   //    console.log("driver_topoint");
-   //    changeHtml("driver_topoint",data[0].id)
-   // }
-   //  if(data[0].check_guest_receive==1){
-   //    console.log("guest_receive");
-   //    changeHtml("guest_receive",data[0].id)
-   // }
-   // if(data[0].check_guest_register==1){
-   //    console.log("guest_register");
-   //    changeHtml("guest_register",data[0].id)
-   // }
-   // if(data[0].check_driver_pay_report==1){
-   //    console.log("driver_pay_report");
-   //    changeHtml("driver_pay_report",data[0].id)
-   // }
+if (data.length != 0) {
+   if(data[0].check_driver_topoint==1){
+      console.log("driver_topoint");
+      changeHtml("driver_topoint",data[0].id)
+   }
+    if(data[0].check_guest_receive==1){
+      console.log("guest_receive");
+      changeHtml("guest_receive",data[0].id)
+   }
+   if(data[0].check_guest_register==1){
+      console.log("guest_register");
+      changeHtml("guest_register",data[0].id)
+   }
+   if(data[0].check_driver_pay_report==1){
+      console.log("driver_pay_report");
+      changeHtml("driver_pay_report",data[0].id)
+   }
+}
+   // console.log(data[0].id);
+    
    });
 	
 	function formatDate(date) {
