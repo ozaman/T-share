@@ -1,10 +1,10 @@
 <script>
-   var url_guest_register = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_guest_register&time=<?=$arr[book][guest_register_date]?>&status=<?=$arr[book][check_guest_register]?>";
+/*   var url_guest_register = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_guest_register&time=<?=$arr[book][guest_register_date]?>&status=<?=$arr[book][check_guest_register]?>";
    $('#status_guest_register').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?=t_load_data;?>');
    console.log(url_guest_register);
-   $('#status_guest_register').load(url_guest_register);
+   $('#status_guest_register').load(url_guest_register);*/
 </script>
-<? 
+<!--<? 
    if($arr[book][check_guest_register]==1 ){ ?>
 <script> 
 //   $("#step_driver_pay_report").show();
@@ -14,7 +14,7 @@
       $("#box_guest_register").removeClass('border-alert');
    	   $("#btn_guest_register").css('background-color','#666666');
 </script>
-<? } ?>
+<? } ?>-->
 <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_guest_register">
    <tbody>
       <tr>
@@ -26,7 +26,7 @@
       </tr>
       <tr>
          <td style="height:30px;">
-            <div  id="status_guest_register" ></div>
+            <div  id="status_guest_register" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click"/>
          </td>
          <td  width="30">
@@ -35,7 +35,7 @@
       </tr>
    </tbody>
 </table>
-<?php 
+<!--<?php 
    if(file_exists("../data/fileupload/store/guest_register_".$arr[book][id].".jpg")==0){ ?>
 <script>
    $('#photo_guest_register').css('color','#3b59987a');
@@ -43,8 +43,28 @@
    $('#photo_guest_register').attr('onclick',' ');
 </script>
 <? }
-   ?>
+   ?>-->
 <script>
+var type = "guest_register";
+	$.ajax({
+			url: '../data/fileupload/store/guest_register_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			   $('#photo_guest_register').css('color','#3b59987a');
+			   $('#photo_guest_register').css('border','1px solid #3b59987a');
+			   $('#photo_guest_register').attr('onclick',' ');
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_guest_register').css('color','#3b5998');
+				$('#photo_guest_register').css('border','2px solid #3b5998');
+				$('#photo_guest_register').attr('onclick','ViewPhoto("'+id+'","guest_register","<?=TIMESTAMP;?>");');
+			}
+		});
    $("#btn_guest_register").click(function(){ 
    	var check = $('#guest_register_check_click').val();
    	if(check==0){

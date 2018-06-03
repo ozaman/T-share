@@ -210,6 +210,7 @@
    });
 </script>
 <script>
+
    ////////////// keyup
    $('#loginusername').on('keyup', function(e) { 
    ///alert('Key pressed: ' + e.keyCode);
@@ -224,6 +225,7 @@
     }
    });
    $("#submit_login").click(function(){ 
+
    /*
    if(document.getElementById('login_type').value=="") {
    alert('กรุณาเลือกประเภทผู้ใช้งาน'); 
@@ -242,6 +244,7 @@
     return false ;
    }
     $.post('signin_check.php',$('#login_form').serialize(),function(response){
+    	
       $('#sendlogin').html(response);
      });
     });

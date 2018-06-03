@@ -52,7 +52,7 @@ function checkTypePay($id){
 // echo  $arr[book][id]." ++ ".$data_user_class;
 $arr[project] = $arr[book];
 ?>
-<div style="padding: 5px 5px;">
+<div style="/*padding: 5px 5px;*/ margin-top: 50px;">
    
    <table width="100%" border="0" cellpadding="1" cellspacing="3" id="table_show_hide_price_<?=$arr[book][invoice];?>" style="padding: 2px 10px;margin-top: 20px;"> 
       <tbody>

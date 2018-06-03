@@ -1,20 +1,4 @@
-<script>
-   var url_driver_pay_report = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_driver_pay_report&time=<?=$arr[book][driver_pay_report_date]?>&status=<?=$arr[book][check_driver_pay_report]?>";
-   $('#status_driver_pay_report').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
-   $('#status_driver_pay_report').load(url_driver_pay_report);
-</script>
-<? 
-   if($arr[book][check_driver_pay_report]==1 ){ 
-   ?>
-<script> 
-   $("#step_driver_pay_report").show();
-      $('#iconchk_driver_pay_report').attr("src", "images/yes.png");  
-     $("#number_driver_pay_report").removeClass('step-booking');
-      $("#number_driver_pay_report").addClass('step-booking-active');
-    ///  $("#btn_driver_pay_report_<?=$arr[book][id]?>").addClass('disabledbutton-checkin');
-     $("#btn_driver_pay_report").css('background-color','#666666');
-</script>
-<? } ?>
+
 <div class="div-all-checkin">
    <table width="100%" border="0" cellspacing="2" cellpadding="0" >
       <tbody>
@@ -28,7 +12,7 @@
          <tr>
             <input type="hidden" value="<?=$arr[book][check_driver_pay_report];?>" id="driver_pay_report_check_click"/>
             <td style="height:30px;">
-               <div  id="status_driver_pay_report"></div>
+               <div  id="status_driver_pay_report"><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
                <i  id="photo_driver_pay_report" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date]?>');" ></i>
@@ -36,15 +20,27 @@
          </tr>
       </tbody>
    </table>
-   <?php 
-      if(file_exists("../data/fileupload/store/driver_pay_report_".$arr[book][id].".jpg")==0){ ?>
+
    <script>
-      $('#photo_driver_pay_report').css('color','#3b59987a');
-      $('#photo_driver_pay_report').css('border','1px solid #3b59987a');
-      $('#photo_driver_pay_report').attr('onclick',' ');
-   </script>
-   <? } ?>
-   <script>
+   $.ajax({
+			url: '../data/fileupload/store/driver_pay_report_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			   $('#photo_driver_pay_report').css('color','#3b59987a');
+			   $('#photo_driver_pay_report').css('border','1px solid #3b59987a');
+			   $('#photo_driver_pay_report').attr('onclick',' ');
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_driver_pay_report').css('color','#3b5998');
+				$('#photo_driver_pay_report').css('border','2px solid #3b5998');
+				$('#photo_driver_pay_report').attr('onclick','ViewPhoto("'+id+'","driver_pay_report","<?=TIMESTAMP;?>");');
+			}
+		});
       $("#btn_driver_pay_report").click(function(){
       	if($('#driver_pay_report_check_click').val()==0){
        		

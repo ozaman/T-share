@@ -1,20 +1,4 @@
-<script>
-   var url = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=<?=$arr[book][check_driver_topoint]?>&time=<?=$arr[book][driver_topoint_date];?>";
-   $('#status_driver_topoint').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
-   $('#status_driver_topoint').load(url);
-</script>
-<? 
-   if($arr[book][check_driver_topoint]== 1 ){ ?>
-<script> 
-//   $("#step_guest_receive").show();
-//   $("#step_driver_pay_report").show();
-      $('#iconchk_driver_topoint').attr("src", "images/yes.png");  
-     $("#number_driver_topoint").removeClass('step-booking');
-      $("#number_driver_topoint").addClass('step-booking-active');
-       $("#box_driver_topoint").removeClass('border-alert');
-      $("#btn_driver_topoint").css('background-color','#666666');
-</script>
-<? } ?>
+
 <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_driver_topoint">
    <tbody>
       <tr>
@@ -28,7 +12,7 @@
       </tr>
       <tr>
          <td style="height:30px;">
-            <div  id="status_driver_topoint" ></div>
+            <div  id="status_driver_topoint" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
          </td>
          <td width="30">
             <input type="hidden" value="<?=$arr[book][check_driver_topoint];?>" id="driver_topoint_check_click"/>
@@ -39,15 +23,28 @@
    </tbody>
    
 </table>
-<?php 
-   if(file_exists("../data/fileupload/store/driver_topoint_".$arr[book][id].".jpg")==0){ ?>
+
 <script>
-   $('#photo_driver_topoint').css('color','#3b59987a');
-   $('#photo_driver_topoint').css('border','1px solid #3b59987a');
-   $('#photo_driver_topoint').attr('onclick',' ');
-</script>
-<? }?>
-<script>
+	$.ajax({
+			url: '../data/fileupload/store/driver_topoint_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			   $('#photo_driver_topoint').css('color','#3b59987a');
+			   $('#photo_driver_topoint').css('border','1px solid #3b59987a');
+			   $('#photo_driver_topoint').attr('onclick',' ');
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_driver_topoint').css('color','#3b5998');
+				$('#photo_driver_topoint').css('border','2px solid #3b5998');
+				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');
+			}
+		});
+
    $("#btn_driver_topoint").click(function(){ 
    	var check = $('#driver_topoint_check_click').val();
    	if(check==0){

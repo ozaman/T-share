@@ -7,7 +7,7 @@
 	  <?php 
 	  		include "css/color/taxi.php" ;	
 	       	include "css/maincss.php" ;	
-	       
+	        
 	        $get_lng = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		    $get_lng = $get_lng[0];
 			$check_lng_browser = explode('-', $get_lng);
@@ -271,6 +271,7 @@
    	  		<img src="images/icon_county/thai.ico" class="btn-lng" onclick="setCookie('lng', 'th', 1, 1);">
    	  		<img src="images/icon_county/china.ico" class="btn-lng" onclick="setCookie('lng', 'cn', 1, 1);">
    	  </div>	
+   	
       <table width="100%"  border="0" align="center" cellpadding="2" cellspacing="2" style="max-width:350px; " class="Absolute-Center">
          <tr>
             <td align="center">
@@ -283,8 +284,28 @@
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#5a78b5; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_login">
                         <i class="fa fa-sign-in" style="padding-right:10px;" ></i><span >&nbsp;<?=t_log_in;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other " style="background-color:#666666; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_password"><i class="fa  fa-unlock-alt" style="padding-right:10px;padding-left:2px;" ></i><span ">&nbsp;<?=t_forgot_password;?></span></button>
+                        <div style="display: none;">
+                         <input type='file' id="imgInp"  />
+  <img id="blah" src="#" alt="your image" width="100px" />
+  </div>
                      </div>
                      <script>
+                     function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
                         $("#btn_login_register" ).click(function() {
                         ///   window.location.href = "new_driver.php"; 
                         $("#alert_show_register").toggle();
@@ -386,7 +407,7 @@
       background-color: #3b5998!important;
       }
    </style>
-   <?    include ("load/popup/login/alert_login.php");?>
+   <?  include ("load/popup/login/alert_login.php");?>
    <?  include ("load/popup/login/alert_password.php");?>
    <?  // include ("load/popup/login/alert_password_send.php");?>
    <?  include ("load/popup/login/alert_register.php");?>
@@ -419,6 +440,7 @@
 
 <script >
 //console.log("<?=$_COOKIE['lng'];?>");
+
 
 
 function setCookie(cname,cvalue,exdays,refresh) {

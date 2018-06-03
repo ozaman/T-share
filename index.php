@@ -22,21 +22,6 @@ if ($_SESSION['data_user_id'] == '') {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
     <head>
-    
-<?php 
-if($data_user_class=='lab'){ ?>
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-  var OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "d99df0ae-f45c-4550-b71e-c9c793524da1",
-    });
-  });
-</script>
-
-<? }	?>
-
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <title>T-Share</title>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -611,7 +596,7 @@ if($data_user_class=='lab'){ ?>
                                                     console.log('GohomePage Run');
                                                     $('#load_mod_data').html(load_main_mod);
                                                     $('#load_mod_data').html(load_main_mod);
-                                                    //   $('#navload_topic').html('ไปที่หน้า�?ร�?');
+                                                    //   $('#navload_topic').html('ไปที่หน้า๿ร฿');
                                                     //    $('#load_mod_data').load('go.php');
                                                     window.location = "index.php";
                                                 }

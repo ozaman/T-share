@@ -1,20 +1,4 @@
-<script>
-   var url_guest_receive = "mod/booking/shop_history/load/component_shop.php?id=<? echo $arr[book][id];?>&request=check_status_checkin&type=check_guest_receive&time=<?=$arr[book][guest_receive_date]?>&status=<?=$arr[book][check_guest_receive]?>";
-   $('#status_guest_receive').html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> <?echo t_load_data?>');
-   $('#status_guest_receive').load(url_guest_receive);
-</script>
-<? 
-   if($arr[book][check_guest_receive]==1 ){ ?>
-<script> 
-   $("#step_guest_register").show();
-   $("#step_guest_receive").show();
-      $('#iconchk_guest_receive').attr("src", "images/yes.png");  
-     $("#number_guest_receive").removeClass('step-booking');
-      $("#number_guest_receive").addClass('step-booking-active');
-     $("#box_guest_receive").removeClass('border-alert');
-      $("#btn_guest_receive").css('background-color','#666666');
-</script>
-<? } ?>
+
 <div class="">
    <table width="100%" border="0" cellspacing="2" cellpadding="0" class="div-all-checkin" id="box_guest_receive">
       <tbody>
@@ -30,7 +14,7 @@
          </tr>
          <tr>
             <td style="height:30px;">
-               <div  id="status_guest_receive" ></div>
+               <div  id="status_guest_receive" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
                <i  id="photo_guest_receive" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "  onclick="ViewPhoto('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date]?>');"></i>
@@ -39,16 +23,29 @@
       </tbody>
    </table>
 </div>
-<?php 
-   if(file_exists("../data/fileupload/store/guest_receive_".$arr[book][id].".jpg")==0){ ?>
+
 <script>
-   $('#photo_guest_receive').css('color','#3b59987a');
-   $('#photo_guest_receive').css('border','1px solid #3b59987a');
-   $('#photo_guest_receive').attr('onclick',' ');
-</script>
-<? }
-   ?>
-<script>
+//var type = "guest_receive";
+	$.ajax({
+			url: '../data/fileupload/store/photo_guest_receive_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			   $('#photo_guest_receive').css('color','#3b59987a');
+			   $('#photo_guest_receive').css('border','1px solid #3b59987a');
+			   $('#photo_guest_receive').attr('onclick',' ');
+//			   alert(type)
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_guest_receive').css('color','#3b5998');
+				$('#photo_guest_receive').css('border','2px solid #3b5998');
+				$('#photo_guest_receive').attr('onclick','ViewPhoto("'+id+'","photo_guest_receive","<?=TIMESTAMP;?>");');
+			}
+		});
    $("#btn_guest_receive").click(function(){ 
    	var check = $('#guest_receive_check_click').val();
    	if(check==0){

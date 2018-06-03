@@ -109,10 +109,10 @@ if($_GET[action]=="check_driver_pay_report"){
 	$data[driver_register_lat] = $_GET[lat];
 	$data[driver_register_lng] = $_GET[lng];
 	
-	$data[driver_complete] = 1;
+	/*$data[driver_complete] = 1;
 	$data[driver_complete_date] = time();
 	$data[driver_complete_lat] = $_GET[lat];
-	$data[driver_complete_lng] = $_GET[lng];
+	$data[driver_complete_lng] = $_GET[lng];*/
 	
 	$data[status] = "COMPLETED";
 	

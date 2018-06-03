@@ -416,7 +416,7 @@
    $('#load_mod_popup_4').html(load_main_mod);
       $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
    				
-   							console.log(response);
+//   							console.log(response);
    							$('.button-close-popup-mod').click();
    							$('.button-close-popup-mod-4').click();
    							$('.button-close-popup-mod-3').click();

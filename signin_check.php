@@ -87,10 +87,26 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
  
 	
 <script>
-var url = "index.php?check_new_user=<?=$_POST[check_new_user];?>";
+ var detect_mb = "<?=$detectname;?>";
+ var class_user = "<?=$arr[admin][user_class];?>";
+ var username = "<?=$arr[admin][username];?>";
+ console.log(class_user+" "+username);
+ if(detect_mb == "Android"){
+ 	 showMessage(class_user,username);
+ }
+
+ 
+ function showMessage(txt,username) {
+                Android.showToast(txt,username);
+        }  
+
+ setTimeout(function(){ 
+ 
+ var url = "index.php?check_new_user=<?=$_POST[check_new_user];?>";
 console.log(url);
-//return;
  window.location.href = url; 
+ 
+  }, 3000);
  </script>
  <?
 }
@@ -105,4 +121,3 @@ else{ ?>
 	<?
 }
 ?>
- 

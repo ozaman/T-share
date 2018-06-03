@@ -158,6 +158,7 @@
 </div>
 
 <script>
+	var array_data = [];
 	startTimeHome();
    var clock_h ;
    function startTimeHome() {
@@ -213,15 +214,17 @@
             </center>
             <script>    
                $('#index_menu_shopping_history').click(function(){  
-               $('#check_open_workshop').val(1);
-               $( "#main_load_mod_popup" ).toggle();
-                var url_load = "load_page_mod.php?name=booking&file=all";
-               $('#load_mod_popup').html(load_main_mod);
-               $.post( url_load, function( data ) {
-                $('#load_mod_popup').html(data);
-               });
-               /* $('#load_mod_popup').html(load_main_mod);
-                $('#load_mod_popup').load(url_load); */
+	               $('#check_open_workshop').val(1);
+	               $( "#main_load_mod_popup" ).toggle();
+	               console.log(array_data);
+//	               return;
+	                var url_load = "load_page_mod.php?name=booking&file=all";
+	               $('#load_mod_popup').html(load_main_mod);
+	               $.post( url_load,{ book : array_data } ,function( data ) {
+	                $('#load_mod_popup').html(data);
+	               });
+	               /* $('#load_mod_popup').html(load_main_mod);
+	                $('#load_mod_popup').load(url_load); */
                });
             </script>
          </td>
@@ -447,6 +450,7 @@
    <input type="hidden" value="0" id="lng"/>
 </div>
 <script>
+   
    $('#close_small_select').click(function(){
    	$('#popup_small_select').hide();
    });
@@ -652,58 +656,120 @@
     
 	});
 
-	var socket_shopping = [];
 	
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
-		var array_detail_shop = [];
-		var array_data = [];       
+		 array_data = [];
+		 var done = [];       
+		 var none = [];       
         $.each(data.booking,function(index,value){
-        	if(value.status == 'NEW' ){
-        		var current = formatDate(new Date());
-	        	var db = formatDate(value.transfer_date);
+        	var current = formatDate(new Date());
+	        var db = formatDate(value.transfer_date);
+        	if(value.driver_complete == 0 ){
         		if(user_class=="lab"){
 	        		
 					if(db == current){
-						array_data.push(value);
+						done.push(value);
 					}
 				}
 				else {
 					if(db == current && value.drivername == "<?=$user_id;?>"){
-						array_data.push(value);
+						done.push(value);
 					}
 				}
 				
 			}
-        });
-        
-        if(array_data.length>socket_shopping.length && frist_socket==false && user_class=="lab"){
-			swal("มี Taxi แจ้งงานใหม่เข้ามา กรุณาตรวจสอบ");
-		}
-        socket_shopping = array_data;
-        if($('#check_open_workshop').val()==1){
-//			console.log(socket_shopping);
-		}
-		$('#number_shop').text(socket_shopping.length);
-		frist_socket = false;
-		
-		if($('#check_open_shop_id').val()>0){
-			var id_op_detail = $('#check_open_shop_id').val();
-			$.each(socket_shopping,function(in2,val2){
-				
-				if(val2.id==id_op_detail){
-					array_detail_shop.push(val2);
+			else{
+				if(user_class=="lab"){
+	        		
+					if(db == current){
+						none.push(value);
+					}
 				}
-			});
-		}
-//		console.log(array_detail_shop);
-		
+				else {
+					if(db == current && value.drivername == "<?=$user_id;?>"){
+						none.push(value);
+					}
+				}
+			}
+			
+        });
+        array_data = {
+			manage : done,
+			history : none
+		};
+//        console.log(array_data);
+    	$('#number_shop').text(done.length);
       });
 	
+var id = '<?=$user_id?>';
+   var dataorder={  
+    order : parseInt(id),  
+     
+    };
+    
+//socket.on('connect', function(){  
+    socket.emit('adduser', dataorder);
+    console.log(dataorder);
+ // });
+socket.on('datalab', function (username, data) {
+   console.log('***********************datalab***************************')
+console.log(username)
+console.log(data)
+console.log(data[0].id);
+    if(data[0].check_driver_topoint==1){
+      console.log("driver_topoint");
+      changeHtml("driver_topoint",data[0].id)
+   }
+    if(data[0].check_guest_receive==1){
+      console.log("guest_receive");
+      changeHtml("guest_receive",data[0].id)
+   }
+   if(data[0].check_guest_register==1){
+      console.log("guest_register");
+      changeHtml("guest_register",data[0].id)
+   }
+   if(data[0].check_driver_pay_report==1){
+      console.log("driver_pay_report");
+      changeHtml("driver_pay_report",data[0].id)
+   }
 
+   
+   });
+   
+socket.on('updatedriver', function (username, data) {
+   
+console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+console.log(data)
+
+if (data.length != 0) {
+	console.log(data[0].id);
+	if($('#check_open_workshop').val()==1){
+		
+		   if(data[0].check_driver_topoint==1){
+		      console.log("driver_topoint");
+		      changeHtml("driver_topoint",data[0].id)
+		   }
+		    if(data[0].check_guest_receive==1){
+		      console.log("guest_receive");
+		      changeHtml("guest_receive",data[0].id)
+		   }
+		   if(data[0].check_guest_register==1){
+		      console.log("guest_register");
+		      changeHtml("guest_register",data[0].id)
+		   }
+		   if(data[0].check_driver_pay_report==1){
+		      console.log("driver_pay_report");
+		      changeHtml("driver_pay_report",data[0].id)
+		   }
+		
+	}
+   
+}
+   });
 	
-	function formatDate(date) {
+function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),

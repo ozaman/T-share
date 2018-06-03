@@ -289,7 +289,7 @@
          </tr>
       </table>
    </div>
-   <div class="form-group">
+   <div class="form-group" id="date_filter">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
          <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
@@ -362,12 +362,12 @@
               });
        }, 500);
    </script>
-   <div id="load_booking_data"  style="padding:0px; margin:0; "> <?  //include "mod/booking/load/work_driver.php" ;?>
+   <div id="load_booking_data"  style="padding:0px; margin:0; ">
    	
    </div>
 </div>
 <script>
-	
+	var array_filter = [];
    function filterMenu(type){
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');
@@ -376,22 +376,35 @@
    $('#btn_'+type).addClass('btn_filter_active');
    
    var date = $('#date_report').val();
+   
+   var obj = JSON.parse('<?=json_encode($_POST[book]);?>');
+   console.log(obj);
    	if(type=='manage'){
-   	 	var url = "go.php?name=booking/shop_history&file=shop_all&find=day&day="+date+"&status=new";
+   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new";
+   	 	$('#date_filter').hide();
+   	 	array_filter = obj.manage;
    	}
    	else if(type=='his'){
-   		 var url = "go.php?name=booking/shop_history&file=shop_all&find=day&day="+date+"&status=completed";
+   		 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed";
+   		 $('#date_filter').show();
+   		 array_filter = obj.history;
    	}
    	 $('#load_booking_data').html(load_main_icon_big);	
-	 console.log(url);
-     $.post(url,function(res){
-//     	console.log(res);
-     	$('#load_booking_data').html(res);
-     });
+//   	  $.each(array_filter, function( index, value ) {
+//			  console.log( value );
+			  $.post(url,{ data : array_filter},function(html){
+			  		$('#load_booking_data').html(html);
+			  });
+//		});
+
    }
+
    function openDetailBooking(id){
-   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail";
-      	$.post(url,{ id : id },function(data){
+
+   	console.log(array_filter[id]);
+
+   	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+      	$.post(url,array_filter[id],function(data){
       		$('#load_mod_popup_clean').html(data);
       		$('#main_load_mod_popup_clean').show();
      			$('#main_component').removeClass('w3-animate-left');
@@ -410,5 +423,6 @@
    	$('#check_open_shop_id').val(0);
    	$('#load_mod_popup_clean').html('');
      }
+
 
 </script>

@@ -1,3 +1,24 @@
+<script>
+			var obj = JSON.parse('<?=json_encode($_POST);?>');
+			console.log(obj);
+			if(obj.check_driver_topoint==1){
+		      console.log("driver_topoint");
+		      changeHtml("driver_topoint",obj.id)
+		   }
+		    if(obj.check_guest_receive==1){
+		      console.log("guest_receive");
+		      changeHtml("guest_receive",obj.id)
+		   }
+		   if(obj.check_guest_register==1){
+		      console.log("guest_register");
+		      changeHtml("guest_register",obj.id)
+		   }
+		   if(obj.check_driver_pay_report==1){
+		      console.log("driver_pay_report");
+		      changeHtml("driver_pay_report",obj.id)
+		   }
+
+</script>
 <?php 
 function checkTypePay($id){
       if($id==1){
@@ -23,11 +44,12 @@ function checkTypePay($id){
       }
       return $name_type;
  }
+
  $main_color = "#3b5998";
- $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[book] = $db->select_query("SELECT * FROM  order_booking  where id = '".$_POST[id]."'  ");
- $arr[book] = $db->fetch($res[book]);  
- 
+ $arr[book] = $db->fetch($res[book]);  */
+ $arr[book] = $_POST ;
  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[place_shop] = $db->select_query("SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ");
  $arr[place_shop] = $db->fetch($res[place_shop]);
@@ -253,11 +275,7 @@ function checkTypePay($id){
 		         <?  include ("mod/booking/shop_history/load/checkin_lab/topoint.php");?>
 		      </td>
 		   </tr>
-			<!--<tr id="step_driver_pay_report" style="display:nones">
-		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin_lab/driver_pay_report.php");?>
-		      </td>
-		   </tr>-->
+		
 		</table>
 	</div>
 	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
@@ -367,12 +385,26 @@ function checkTypePay($id){
 	}	
 
 	function openViewPrice(){
-		$( "#dialog_custom" ).show();
+//		$( "#dialog_custom" ).show();
 	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
 	   	console.log(url_load);
-	   	$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
-	  	$('#body_dialog_custom_load').load(url_load); 
+	   	/*$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
+	  	$('#body_dialog_custom_load').load(url_load); */
+	  	$('#main_load_mod_popup_clean').hide();
+	  	$('#main_load_mod_popup_2').show();
+	  	$('#text_mod_topic_action_2').html('รายได้');
+	  	$('#load_mod_popup_2').html(load_main_mod);
+	  	$.post(url_load,function(res){
+	  			$('#load_mod_popup_2').html(res);
+	  	});
+	  	
 	}
+	$('.button-close-popup-mod-2').click(function(){
+		$('#main_load_mod_popup_clean').show();
+		$('#main_load_mod_popup_clean').show();
+		$('#main_load_mod_popup_2').hide();
+		$('#load_mod_popup_2').html('');
+	});
 
 	function cancelBook(id){
 	
@@ -424,7 +456,7 @@ function checkTypePay($id){
 
 </script>
 <script>
-		
+	
    
 function changeHtml(type,id){
 	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time=<?=TIMESTAMP?>&status=1";
@@ -435,22 +467,25 @@ function changeHtml(type,id){
 			$("#number_"+type).addClass('step-booking-active');
 			$("#box_"+type).addClass('disabledbutton-checkin');
 			$("#btn_"+type).css('background-color','#666666');
-		/*$.ajax({
+		$.ajax({
 			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
+			   $('#photo_'+type).css('color','#3b59987a');
+			   $('#photo_'+type).css('border','1px solid #3b59987a');
+			   $('#photo_'+type).attr('onclick',' ');
 			},
 			success: function()
 			{
 				//file exists
 				console.log('success file');
-				$('#photo_type').css('color','#3b5998');
-				$('#photo_type').css('border','2px solid #3b5998');
-				$('#photo_type').attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
+				$('#photo_'+type).css('color','#3b5998');
+				$('#photo_'+type).css('border','2px solid #3b5998');
+				$('#photo_'+type).attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
 			}
-		});*/
+		});
 		$('#'+type+'_check_click').val(1);
 		$("#box_"+type).removeClass('border-alert');
    }
