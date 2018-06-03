@@ -71,10 +71,6 @@ if($data_user_class=='taxi'){
  
     </tr>
     <tr  class="box-bottom-line">
-      <td valign="middle" class="font-24"><font><?=จำนวนแขก;?></font></td>
-      <td align="right" class="font-20" ><span class="font-24"><?=$arr[project][pax]?></td>
-    </tr>
-    <tr  class="box-bottom-line">
       <td valign="middle" class="font-24"><font><?=t_register;?></font></td>
       <td align="right" class="font-20" id="price_park_time_payment_<?=$arr[project][id];?>3"><span class="font-24"><?=$arr[project][pax]?></td>
     </tr>
@@ -91,8 +87,7 @@ if($data_user_class=='taxi'){
       </span></td>
     </tr>
     <tr>
-      <td colspan="2" valign="middle" class="font-24">
-      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+      <td colspan="2" valign="middle" class="font-24"><table width="100%" border="0" cellspacing="2" cellpadding="2">
         <tbody>
         
           <tr id="show_com_his_<?=$arr[project][id]?>">
@@ -189,19 +184,11 @@ else if($data_user_class=='lab'){
  
     </tr>
     <tr  class="box-bottom-line">
-      <td valign="middle" class="font-24"><font><?=จำนวนแขก;?></font></td>
-      <td align="right" class="font-24" ><span class="font-24"><?=$arr[project][pax]?></td>
-    </tr>
-    <tr  class="box-bottom-line">
       <td valign="middle" class="font-24"><font ><?=t_register;?></font></td>
-      <td align="right" class="font-22" valign="middle" >
-      <!--<span class="font-24" id="txt_pax" ><b><?=$arr[project][pax]?></b></span>-->
-      <input id="ip_pax" value="<?=$arr[project][pax]?>" type="number" style="border: 1px solid #ddd;
-    width: 100px;
-    padding: 0px;
-    text-align: right;
-    padding: 0px 10px;
-    height: 40px;" /></td>
+      <td align="right" class="font-20" valign="middle" >
+      <button class="btn btn-xs" style="position: absolute;margin-left: -70px; background-color: #337ab7;color: #fff;display: none;" onclick="editPax();">แก้ไข</button>
+      <span class="font-24" id="txt_pax" ><b><?=$arr[project][pax]?></b></span>
+      <input id="ip_pax" value="<?=$arr[project][pax]?>" type="number" style="display: none;width: 50px;border: 1px solid #ddd;" /></td>
     </tr>
     <tr  class="box-bottom-line">
       <td valign="middle" class="font-24"><font ><?=t_per_person;?></font></td>

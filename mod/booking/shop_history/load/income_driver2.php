@@ -73,31 +73,57 @@ $arr[project] = $arr[book];
          </tr>
          <tr id="main_td_price_park_<?=$arr[book][id];?>" >
             <td colspan="3" class="font-22">
-               <? include ("mod/booking/shop_history/load/price/park.php");?>
+               <? //include ("mod/booking/shop_history/load/price/park.php");?>
             </td>
            
          </tr>
          <tr id="main_td_price_person_<?=$arr[book][id];?>">
             <td colspan="3" class="font-22">
-               <? include ("mod/booking/shop_history/load/price/person.php");?>
+               <? // include ("mod/booking/shop_history/load/price/person.php");?>
             </td>
          </tr>
          <tr id="main_td_price_com_<?=$arr[book][id];?>">
             <td colspan="3" class="font-22">
-               <?  include ("mod/booking/shop_history/load/price/com.php");?>
+               <?  //include ("mod/booking/shop_history/load/price/com.php");?>
             </td>
          </tr>
-         
+         <tr id="main_td_price_all_<?=$arr[book][id];?>">
+            <td colspan="3" class="font-22">
+               <?  /// include ("mod/booking/load/form/price/com.php");?>
+            </td>
+         </tr>
       </tbody>
    </table>
+   <?php 
+   		if($data_user_class=='taxi'){ ?>
+   		
+   		
+   			
+   		<? }else{ ?>
+		
+		<table width="100%" border="0" cellspacing="1" cellpadding="1"  class="div-all-price">
+  <tbody>
+  	<tr>
+  		<td width="50%"></td>
+  		<td width="50%"></td>
+  	</tr>
+    <tr>
+    	<td width="50%">สถานะ</td>
+    	<td width="50%"><div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></td>
+    </tr>
+  </tbody>
+</table>
+			
+	<?	}
+   ?>
 </div>
 <div id="html_work_action" style="display: none;"></div>
 <script>
-	  console.log('person : <?=$show_person;?>, park : <?=$show_park;?>, com : <?=$show_commision;?>');
+	  /*console.log('person : <?=$show_person;?>, park : <?=$show_park;?>, com : <?=$show_commision;?>');
   $('#main_td_price_park_<?=$arr[book][id];?>').<?=$status_show_park?>();
   $('#main_td_price_person_<?=$arr[book][id];?>').<?=$status_show_person?>();
   $('#main_td_price_com_<?=$arr[book][id];?>').<?=$status_show_commision?>();
-  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');
+  $('#btn_show_hide_price_<?=$arr[book][invoice];?>').html('<i class="fa fa-angle-up" style="font-size:20px;  "></i><span style="margin-top:-20px;">&nbsp;ซ่อน</span>');*/
   $('#btn_show_hide_price_<?=$arr[book][invoice];?>').click(function() {
       ///// tool status
       var tool_status = $("#table_show_hide_price_<?=$arr[book][invoice];?>").is(":hidden");

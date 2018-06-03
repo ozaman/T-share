@@ -153,13 +153,7 @@ else if($data_user_class=='lab'){
                 </tr>
               </tbody>
             </table></td>
-            <td width="60" align="right" valign="middle" class="font-22">
-            	<input type="text" value="<?= number_format($arr[project][price_park_total], 0 );?>" id="park_price" style="border: 1px solid #ddd;    width: 100px;
-    padding: 0px;
-    text-align: right;
-    padding: 0px 10px;
-    height: 40px;"  />
-            </td>
+            <td width="60" align="right" valign="middle" class="font-20"><?= number_format($arr[project][price_park_total], 0 );?></td>
           </tr>
         </tbody>
       </table></td>
@@ -174,7 +168,7 @@ else if($data_user_class=='lab'){
     </tr>
     <tr>
       <td valign="middle" class="font-24"><font ><?=t_amount;?></font></td>
-      <td align="right" class="font-20" id="price_park_cost_payment_<?=$arr[project][id];?>"><span class="font-24"><b id="cost_txt">
+      <td align="right" class="font-20" id="price_park_cost_payment_<?=$arr[project][id];?>"><span class="font-24"><b>
           <?= number_format($arr[project][price_park_total], 0 );?></b>
       </span></td>
     </tr>
@@ -196,11 +190,6 @@ else if($data_user_class=='lab'){
   </tbody>
 </table>
 	<script>
-	$('#park_price').keyup(function(){
-		var cost = $(this).val();		
-		
-		$('#cost_txt').text(cost);
-	});
 		$('#btn_park_doc_<?=$arr[project][id]?>').click(function(){
 //			$('#upload_doc_pay_park_<?=$arr[project][id]?>').click();
 			
