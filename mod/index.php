@@ -199,18 +199,8 @@
                   <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
                </center>
             </button>
-         </center>
-         </td>
-         <!-- <td width="50%" align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
-               <center>
-                  <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
-               </center>
-            </button>
 			</center>
-         </td> -->
+         </td>
          <td align="center" class="">
           <input id="check_open_workshop" value="0" type="hidden"/>
             <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: 12px 4px;">0</span>
@@ -489,39 +479,37 @@
      		$('#btn_home_bottom_menu').addClass('bottom-popup-icon-new-active');
      });
 
-/***************************** shopping old*******************************/
-  //  $('#index_menu_shopping').click(function(){  
-  //  var user_id = "<?=$_SESSION['data_user_id'];?>";
-		// $.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
-		// 	console.log(res);
-		// 	if(res.idcard == ""){
-		// 		swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
-		// 		$( "#main_load_mod_popup" ).toggle();
-	 //          	var url_load = "load_page_mod.php?name=user&file=job";
-	 //         	$('#load_mod_popup').html(load_main_mod);
-	 //          	$('#load_mod_popup').load(url_load); 
-		// 		return;
-		// 	}
-		// 	if(res.iddriving == ""){
-		// 		swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
-		// 		$( "#main_load_mod_popup" ).toggle();
-	 //          	var url_load = "load_page_mod.php?name=user&file=job";
-	 //         	$('#load_mod_popup').html(load_main_mod);
-	 //          	$('#load_mod_popup').load(url_load); 
-		// 		return;
-		// 	}
-		// 	$("#load_mod_popup_select_pv" ).show();
-		//      var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
-		//       $('#body_load_select_pv').html(load_main_mod);
-		//       $.post( url_load, function( data ) {
-		//       	   $('#body_load_select_pv').html(data);
-		//    	   var txt = $('#province_text').text();
-		//    		$('#txt_pv_fr').val(txt);
-		//    		$('.text-change-province').text(txt);
-		//    	});
-		// });
-  //   });
-/***************************** shopping old*******************************/
+   $('#index_menu_shopping').click(function(){  
+   var user_id = "<?=$_SESSION['data_user_id'];?>";
+		$.post("mod/user/check_user.php?check=idcard_idrive&user_id="+user_id,function(res){
+			console.log(res);
+			if(res.idcard == ""){
+				swal("คุณยังไม่ได้กรอกข้อมูลบัตรประชาชน");
+				$( "#main_load_mod_popup" ).toggle();
+	          	var url_load = "load_page_mod.php?name=user&file=job";
+	         	$('#load_mod_popup').html(load_main_mod);
+	          	$('#load_mod_popup').load(url_load); 
+				return;
+			}
+			if(res.iddriving == ""){
+				swal("คุณยังไม่ได้กรอกข้อมูลใบขับขี่");
+				$( "#main_load_mod_popup" ).toggle();
+	          	var url_load = "load_page_mod.php?name=user&file=job";
+	         	$('#load_mod_popup').html(load_main_mod);
+	          	$('#load_mod_popup').load(url_load); 
+				return;
+			}
+			$("#load_mod_popup_select_pv" ).show();
+		     var url_load= "empty_style.php?name=shop&file=select_province_new&id=1&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop";
+		      $('#body_load_select_pv').html(load_main_mod);
+		      $.post( url_load, function( data ) {
+		      	   $('#body_load_select_pv').html(data);
+		   	   var txt = $('#province_text').text();
+		   		$('#txt_pv_fr').val(txt);
+		   		$('.text-change-province').text(txt);
+		   	});
+		});
+    });
 
     ///// food
     $('#index_menu_food').click(function(){  
@@ -672,7 +660,6 @@
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
-         console.log(data.booking)
 		 array_data = [];
 		 var done = [];       
 		 var none = [];       
@@ -795,33 +782,4 @@ function formatDate(date) {
     return [year, month, day].join('-');
 	}
 </script>
-<script>
-         $('#index_menu_shopping').click(function(){
-            $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
-               var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
-                $.post( url, function( data ) {
-                  console.log(data);
-               });  
-          var num = 1;
-          if(num<=0){
-            alert('ไม่มีสินค้า');
-          }
-          else{
-            if(num==1){
-                var id_place_one = 1;
-                $("#main_load_mod_popup" ).toggle();
-               var url_load = "load_page_mod.php?name=shop&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
-               console.log(url_load);
-               $('#load_mod_popup').html(load_main_mod);
-               $('#load_mod_popup').load(url_load); 
-            }else{
-                console.log('1');
-                $("#main_load_mod_popup" ).show();
-                var url_load= "load_page_mod.php?name=shop&file=main&id=11&type=stop&province=1";
-                 $('#load_mod_popup').html(load_main_mod);
-                 $('#load_mod_popup').load(url_load); 
-            }
-          }
-         });
-      </script>
 
