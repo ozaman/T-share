@@ -672,7 +672,7 @@
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
-         console.log(data.booking)
+//         console.log(data.booking)
 		 array_data = [];
 		 var done = [];       
 		 var none = [];       
@@ -712,7 +712,7 @@
 			manage : done,
 			history : none
 		};
-//        console.log(array_data);
+        console.log(array_data);
     	$('#number_shop').text(done.length);
       });
 	
@@ -763,19 +763,21 @@ if (data.length != 0) {
 		
 		if(data[0].check_driver_topoint==1){
 		      console.log("driver_topoint");
-		      changeHtml("driver_topoint",data[0].id)
+		      changeHtml("driver_topoint",data[0].id,data[0].driver_topoint_date)
 		   }
 		    if(data[0].check_guest_receive==1){
 		      console.log("guest_receive");
-		      changeHtml("guest_receive",data[0].id)
+		      changeHtml("guest_receive",data[0].id,data[0].guest_receive_date)
+		      $('#step_guest_register').show();
 		   }
 		   if(data[0].check_guest_register==1){
 		      console.log("guest_register");
-		      changeHtml("guest_register",data[0].id)
+		      changeHtml("guest_register",data[0].id,data[0].guest_register_date)
+		       $('#step_driver_pay_report').show();
 		   }
 		   if(data[0].check_driver_pay_report==1){
 		      console.log("driver_pay_report");
-		      changeHtml("driver_pay_report",data[0].id)
+		      changeHtml("driver_pay_report",data[0].id,driver_pay_report_date)
 		   }
 		
 	}

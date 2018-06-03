@@ -128,11 +128,15 @@
 		<table width="100%">
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
-      			<td width="20%" align="center" rowspan="2"><span class="font-22" id="status_book_<?=$arr[book][id];?>"><?=$status_txt;?></span></td>
+      			<td width="20%" align="center" rowspan="2">
+      			<span class="font-22" id="status_book_<?=$arr[book][id];?>" ><?=$status_txt;?></span>
+      			</td>
       		</tr>
       		<tr>
       			<td colspan="2">
-      			<span class="font-20"><?=$arr[book][invoice];?>&nbsp;:&nbsp;<?=$arr[book][transfer_date]." ";?><font color="#ff0000;"><?=$arr[book][airout_h].":".str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font></span>
+      			<span class="font-20"><?=$arr[book][invoice];?>&nbsp;:&nbsp;<?=$arr[book][transfer_date]." ";?>
+      			<font color="#ff0000;"><?=$arr[book][airout_h].":".str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>
+      			</span>
       			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$arr[book][id];?>">-</span>
 
       			</td>

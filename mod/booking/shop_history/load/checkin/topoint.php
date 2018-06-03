@@ -17,11 +17,13 @@
       </tr>
       <tr>
          <td style="height:30px;">
-            <div  id="status_driver_topoint" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+            <div  id="status_driver_topoint" ><div class="font-20">
+            <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
          </td>
          <td width="30">
             <input type="hidden" value="<?=$arr[book][check_driver_topoint];?>" id="driver_topoint_check_click"/>
-            <i id="photo_driver_topoint" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');"></i>
+            <i id="photo_driver_topoint_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
+             <i id="photo_driver_topoint_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date]?>');"></i>
             <input type="hidden" id="check_code" value="<?=$arr[book][id];?>" />
          </td>
       </tr>
@@ -31,22 +33,26 @@
 <script>
 //	var type = "driver_topoint";
 	$.ajax({
-			url: '../data/fileupload/store/driver_topoint_'+id+'.jpg',
+			url: '../data/fileupload/store/driver_topoint_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
-			   $('#photo_driver_topoint').css('color','#3b59987a');
+			   /*$('#photo_driver_topoint').css('color','#3b59987a');
 			   $('#photo_driver_topoint').css('border','1px solid #3b59987a');
-			   $('#photo_driver_topoint').attr('onclick',' ');
+			   $('#photo_driver_topoint').attr('onclick',' ');*/
+			   $('#photo_driver_topoint_yes').hide();
+			   $('#photo_driver_topoint_no').show();
 			},
 			success: function()
 			{
 				//file exists
 				console.log('success file');
-				$('#photo_driver_topoint').css('color','#3b5998');
-				$('#photo_driver_topoint').css('border','2px solid #3b5998');
-				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');
+				 $('#photo_driver_topoint_yes').show();
+			   $('#photo_driver_topoint_no').hide();
+				/*$('#photo_driver_topoint').css('color','#3b5998');
+				$('#photo_driver_topoint').css('border','2px solid #3b5998');*/
+//				$('#photo_driver_topoint').attr('onclick','ViewPhoto("'+id+'","driver_topoint","<?=TIMESTAMP;?>");');
 			}
 		});
 

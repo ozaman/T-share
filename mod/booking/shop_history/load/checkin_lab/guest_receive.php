@@ -16,7 +16,9 @@
                <div  id="status_guest_receive" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
-               <i  id="photo_guest_receive" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "  onclick="ViewPhoto('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date]?>');"></i>
+               
+               <i id="photo_guest_receive_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
+             <i id="photo_guest_receive_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date]?>');"></i>
             </td>
          </tr>
       </tbody>
@@ -25,23 +27,27 @@
 
 <script>
 $.ajax({
-			url: '../data/fileupload/store/photo_guest_receive_'+id+'.jpg',
+			url: '../data/fileupload/store/guest_receive_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
-			   $('#photo_guest_receive').css('color','#3b59987a');
+			   /*$('#photo_guest_receive').css('color','#3b59987a');
 			   $('#photo_guest_receive').css('border','1px solid #3b59987a');
-			   $('#photo_guest_receive').attr('onclick',' ');
+			   $('#photo_guest_receive').attr('onclick',' ');*/
+			   $('#photo_guest_receive_no').show();
+			   $('#photo_guest_receive_yes').hide();
 //			   alert(type)
 			},
 			success: function()
 			{
 				//file exists
-				console.log('success file');
+				/*console.log('success file');
 				$('#photo_guest_receive').css('color','#3b5998');
 				$('#photo_guest_receive').css('border','2px solid #3b5998');
-				$('#photo_guest_receive').attr('onclick','ViewPhoto("'+id+'","photo_guest_receive","<?=TIMESTAMP;?>");');
+				$('#photo_guest_receive').attr('onclick','ViewPhoto("'+id+'","photo_guest_receive","<?=TIMESTAMP;?>");');*/
+				$('#photo_guest_receive_no').hide();
+			   $('#photo_guest_receive_yes').show();
 			}
 		});
    $("#btn_guest_receive").click(function(){ 

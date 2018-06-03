@@ -114,7 +114,7 @@ if($_GET[action]=="check_driver_pay_report"){
 	$data[driver_complete_lat] = $_GET[lat];
 	$data[driver_complete_lng] = $_GET[lng];*/
 	
-	$data[status] = "COMPLETED";
+//	$data[status] = "COMPLETED";
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->update_db('order_booking',$data,'id = "'.$_GET[id].'" ');
@@ -130,6 +130,7 @@ if($_GET[action]=="check_driver_complete"){
 	$data[driver_complete_date] = time();
 	$data[driver_complete_lat] = $_GET[lat];
 	$data[driver_complete_lng] = $_GET[lng];
+	$data[status] = "COMPLETED";
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->update_db('order_booking',$data,'id = "'.$_GET[id].'" ');
 

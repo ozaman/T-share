@@ -100,11 +100,12 @@
 		<table width="100%">
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
-      			<td width="20%" align="center" rowspan="2"><span class="font-22" id="status_book_<?=$val[id];?>"><?=$status_txt;?></span></td>
+      			<td width="20%" align="center" rowspan="2"><span class="font-22" id="status_book_<?=$val[id];?>" style=" margin-top: -20px; margin-left: -15px;position: absolute;"><?=$status_txt;?></span></td>
       		</tr>
       		<tr>
       			<td colspan="2">
-      			<span class="font-20"><?=$val[invoice];?>&nbsp;:&nbsp;<?=$val[transfer_date]." ";?><font color="#ff0000;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font></span>
+      			<span class="font-20" ><?=$val[invoice];?>&nbsp;:&nbsp;<?=$val[transfer_date]." ";?>
+      			<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font></span>
       			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
 
       			</td>

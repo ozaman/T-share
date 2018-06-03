@@ -1,31 +1,41 @@
 <script>
-function changeHtml(type,id){
-	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time=<?=TIMESTAMP?>&status=1";
+function changeHtml(type,id,status_time){
+	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time="+status_time+"&status=1";
 			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
 			$('#status_'+type).load(url_status); 
 			$('#iconchk_'+type).attr("src", "images/yes.png");  
 			$("#number_"+type).removeClass('step-booking');
 			$("#number_"+type).addClass('step-booking-active');
-			$("#box_"+type).addClass('disabledbutton-checkin');
+//			$("#box_"+type).addClass('disabledbutton-checkin');
 			$("#btn_"+type).css('background-color','#666666');
 			
+			if(type=="driver_topoint"){
+//				$('#driver_topoint').show();
+			}else if(type=="guest_receive"){
+				 $('#step_guest_register').show();
+			}else if(type=="guest_register"){
+				 $('#step_driver_pay_report').show();
+			}else if(type=="driver_pay_report"){
+				
+			}
 		$.ajax({
 			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
-			   $('#photo_'+type).css('color','#3b59987a');
-			   $('#photo_'+type).css('border','1px solid #3b59987a');
-			   $('#photo_'+type).attr('onclick',' ');
+			  
+			    $('#photo_'+type+'_yes').hide();
+			   $('#photo_'+type+'_no').show();
+			   alert()
 			},
 			success: function()
 			{
 				//file exists
 				console.log('success file');
-				$('#photo_'+type).css('color','#3b5998');
-				$('#photo_'+type).css('border','2px solid #3b5998');
-				$('#photo_'+type).attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
+				
+				 $('#photo_'+type+'_yes').show();
+			   $('#photo_'+type+'_no').hide();
 			}
 		});
 		
@@ -37,19 +47,21 @@ function changeHtml(type,id){
 			console.log(obj);
 			if(obj.check_driver_topoint==1){
 		      console.log("driver_topoint");
-		      changeHtml("driver_topoint",obj.id)
+		      changeHtml("driver_topoint",obj.id,obj.driver_topoint_date)
 		   }
 		    if(obj.check_guest_receive==1){
 		      console.log("guest_receive");
-		      changeHtml("guest_receive",obj.id)
+		      changeHtml("guest_receive",obj.id,obj.guest_receive_date)
+
 		   }
 		   if(obj.check_guest_register==1){
 		      console.log("guest_register");
-		      changeHtml("guest_register",obj.id)
+		      changeHtml("guest_register",obj.id,obj.guest_register_date)
+		    
 		   }
 		   if(obj.check_driver_pay_report==1){
 		      console.log("driver_pay_report");
-		      changeHtml("driver_pay_report",obj.id)
+		      changeHtml("driver_pay_report",obj.id,obj.driver_pay_report_date)
 		   }
 
 </script>
@@ -411,6 +423,7 @@ function checkTypePay($id){
  	});
 
 	function ViewPhoto(id,type,date){
+		console.log(id+" "+type+" "+date)
 		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
 		console.log(url);
 		$( "#load_mod_popup_photo" ).toggle();

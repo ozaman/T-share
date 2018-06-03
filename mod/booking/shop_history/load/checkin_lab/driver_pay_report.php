@@ -15,7 +15,11 @@
                <div  id="status_driver_pay_report"><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
-               <i  id="photo_driver_pay_report" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date]?>');" ></i>
+              <!-- <i  id="photo_driver_pay_report" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date]?>');" ></i>-->
+              
+              <i id="photo_driver_pay_report_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
+             <i id="photo_driver_pay_report_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: none; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date]?>');"></i>
+              
             </td>
          </tr>
       </tbody>
@@ -23,22 +27,27 @@
 
    <script>
    $.ajax({
-			url: '../data/fileupload/store/driver_pay_report_'+id+'.jpg',
+			url: '../data/fileupload/store/driver_pay_report_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
-			   $('#photo_driver_pay_report').css('color','#3b59987a');
+			  /* $('#photo_driver_pay_report').css('color','#3b59987a');
 			   $('#photo_driver_pay_report').css('border','1px solid #3b59987a');
-			   $('#photo_driver_pay_report').attr('onclick',' ');
+			   $('#photo_driver_pay_report').attr('onclick',' ');*/
+			    $('#photo_driver_pay_report_no').show();
+			   $('#photo_driver_pay_report_yes').hide();
 			},
 			success: function()
 			{
 				//file exists
 				console.log('success file');
-				$('#photo_driver_pay_report').css('color','#3b5998');
+				/*$('#photo_driver_pay_report').css('color','#3b5998');
 				$('#photo_driver_pay_report').css('border','2px solid #3b5998');
-				$('#photo_driver_pay_report').attr('onclick','ViewPhoto("'+id+'","driver_pay_report","<?=TIMESTAMP;?>");');
+				$('#photo_driver_pay_report').attr('onclick','ViewPhoto("'+id+'","driver_pay_report","<?=TIMESTAMP;?>");');*/
+				
+				$('#photo_driver_pay_report_no').hide();
+			   $('#photo_driver_pay_report_yes').show();
 			}
 		});
       $("#btn_driver_pay_report").click(function(){
