@@ -366,6 +366,8 @@
    	
    </div>
 </div>
+
+<textarea style="display: none;" id="json_shop"><?=json_encode($_POST[book]);?></textarea>
 <script>
 	var array_filter = [];
    function filterMenu(type){
@@ -376,35 +378,40 @@
    $('#btn_'+type).addClass('btn_filter_active');
    
    var date = $('#date_report').val();
-   
-   var obj = JSON.parse('<?=json_encode($_POST[book]);?>');
+//   console.log($('#json_shop').val());
+//   var obj = JSON.parse($('#json_shop').val());
+   var obj = array_data;
    console.log(obj);
    	if(type=='manage'){
-   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new";
+   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
    	 	array_filter = obj.manage;
    	}
    	else if(type=='his'){
-   		 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed";
+   		 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
    		 $('#date_filter').show();
    		 array_filter = obj.history;
    	}
    	 $('#load_booking_data').html(load_main_icon_big);	
-//   	  $.each(array_filter, function( index, value ) {
-//			  console.log( value );
+
 			  $.post(url,{ data : array_filter},function(html){
 			  		$('#load_booking_data').html(html);
 			  });
-//		});
 
    }
 
-   function openDetailBooking(id){
-
-   	console.log(array_filter[id]);
+   function openDetailBooking(id,type){
+	if(type=='manage'){
+		var detailObj = array_data.manage[id];
+	}else if(type=='his'){
+		var detailObj = array_data.history[id];
+	}
+	console.log(type+" : "+id);
+  /* 	console.log(array_filter[id]);
+   	array_data.manage[id]*/
 
    	var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-      	$.post(url,array_filter[id],function(data){
+      	$.post(url,detailObj,function(data){
       		$('#load_mod_popup_clean').html(data);
       		$('#main_load_mod_popup_clean').show();
      			$('#main_component').removeClass('w3-animate-left');
@@ -422,6 +429,7 @@
    	$('#main_component').addClass('w3-animate-left');
    	$('#check_open_shop_id').val(0);
    	$('#load_mod_popup_clean').html('');
+//   	filterMenu('manage')
      }
 
 
