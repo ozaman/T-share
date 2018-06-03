@@ -127,7 +127,7 @@
 
    ///
    $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
-    
+
     var lat = $('#lat').val();
     var lng = $('#lng').val();
     var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
@@ -135,10 +135,13 @@
 		$.post(url,function(res){
 			console.log(res);
 			if(res.result==true){
+				 changeHtml("driver_topoint","<?=$arr[project][id]?>")
+				 console.log(array_data);
+   				 $('#json_shop').val(JSON.stringify(array_data));
 				var message = "";
 				socket.emit('sendchat', message);
 				$( "#close_dialog_custom" ).click();
-
+				
 		      	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
    					console.log(data);
    				});
@@ -147,8 +150,7 @@
 				swal("Error");
 			}
 		});
-//    $('#status_<?=$_GET[type];?>').load(url);
-    	});
+    });
     	
     function afterAction(res){
 		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id=<? echo $arr[project][id];?>&type=check_<?=$_GET[type]?>&time=<?=TIMESTAMP?>&status=1";

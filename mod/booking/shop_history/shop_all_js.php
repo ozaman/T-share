@@ -96,7 +96,7 @@
 		}
 	?>
 	<div style="padding: 5px 0px;margin: 25px 0px;">
-	<div class="box-shop" onclick="openDetailBooking('<?=$key;?>');">
+	<div class="box-shop" onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
 		<table width="100%">
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>

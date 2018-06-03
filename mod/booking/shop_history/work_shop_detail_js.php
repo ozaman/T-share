@@ -1,4 +1,38 @@
 <script>
+function changeHtml(type,id){
+	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time=<?=TIMESTAMP?>&status=1";
+			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+			$('#status_'+type).load(url_status); 
+			$('#iconchk_'+type).attr("src", "images/yes.png");  
+			$("#number_"+type).removeClass('step-booking');
+			$("#number_"+type).addClass('step-booking-active');
+			$("#box_"+type).addClass('disabledbutton-checkin');
+			$("#btn_"+type).css('background-color','#666666');
+			
+		$.ajax({
+			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+			type:'HEAD',
+			error: function()
+			{
+			console.log('Error file');
+			   $('#photo_'+type).css('color','#3b59987a');
+			   $('#photo_'+type).css('border','1px solid #3b59987a');
+			   $('#photo_'+type).attr('onclick',' ');
+			},
+			success: function()
+			{
+				//file exists
+				console.log('success file');
+				$('#photo_'+type).css('color','#3b5998');
+				$('#photo_'+type).css('border','2px solid #3b5998');
+				$('#photo_'+type).attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
+			}
+		});
+		
+		$('#'+type+'_check_click').val(1);
+		$("#box_"+type).removeClass('border-alert');
+   }
+
 			var obj = JSON.parse('<?=json_encode($_POST);?>');
 			console.log(obj);
 			if(obj.check_driver_topoint==1){
@@ -454,39 +488,4 @@ function checkTypePay($id){
    }
 
 
-</script>
-<script>
-	
-   
-function changeHtml(type,id){
-	   		var url_status = "popup.php?name=booking/load/form&file=checkin_status&id="+id+"&type=check_"+type+"&time=<?=TIMESTAMP?>&status=1";
-			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
-			$('#status_'+type).load(url_status); 
-			$('#iconchk_'+type).attr("src", "images/yes.png");  
-			$("#number_"+type).removeClass('step-booking');
-			$("#number_"+type).addClass('step-booking-active');
-			$("#box_"+type).addClass('disabledbutton-checkin');
-			$("#btn_"+type).css('background-color','#666666');
-		$.ajax({
-			url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
-			type:'HEAD',
-			error: function()
-			{
-			console.log('Error file');
-			   $('#photo_'+type).css('color','#3b59987a');
-			   $('#photo_'+type).css('border','1px solid #3b59987a');
-			   $('#photo_'+type).attr('onclick',' ');
-			},
-			success: function()
-			{
-				//file exists
-				console.log('success file');
-				$('#photo_'+type).css('color','#3b5998');
-				$('#photo_'+type).css('border','2px solid #3b5998');
-				$('#photo_'+type).attr('onclick','ViewPhoto("'+id+'","'+type+'","<?=TIMESTAMP;?>");');
-			}
-		});
-		$('#'+type+'_check_click').val(1);
-		$("#box_"+type).removeClass('border-alert');
-   }
 </script>
