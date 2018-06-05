@@ -106,7 +106,7 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
 console.log(url);
  window.location.href = url; 
  
-  }, 3000);
+  }, 1000);
  </script>
  <?
 }
