@@ -36,7 +36,7 @@
 	cursor: pointer;
 }
 .btn_filter{
-	padding: 5px; 
+	padding: 8px; 
 	border: 1px solid #3b5998; 
 	border-radius: 25px;
 /*	width: 100px;*/

@@ -41,7 +41,7 @@
    cursor: pointer;
    }
    .btn_filter{
-   padding: 5px; 
+   padding: 8px; 
    border: 1px solid <?=$main_color;?>; 
    border-radius: 25px;
    /*	width: 100px;*/
@@ -216,7 +216,7 @@
    padding: 5px 0px;
    border: 1px solid #3b5998;
    margin-bottom: 10px;
-   border-radius: 8px;
+   border-radius: 25px;
    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
    }
    .mof{
@@ -291,9 +291,19 @@
    </div>
    <div class="form-group" id="date_filter">
       <div class="input-group date" style="padding:0px;">
-         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="background-color:#FFFFFF; height:40px; font-size:24px;z-index: 0;"  >               
-         <div class="input-group-addon"  id="btn_calendar" style="cursor:pointer ">
-            <i class="fa fa-calendar" style="font-size:26px; " id="icon_calendar"></i> 
+         <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="    padding: 20px 20px;
+    border-radius: 25px 0 0 25px;
+    border: 1px solid #3b5998;
+    border-right: none;
+    background-color: #FFFFFF;
+    font-size: 20px;
+    z-index: 0;"  >               
+         <div class="input-group-addon"  id="btn_calendar" style="    padding: 0 14px;
+    border-radius: 0 25px 25px 0;
+    border: 1px solid #3b5998;
+    cursor: pointer;
+    border-left: none;">
+            <i class="fa fa-calendar" style="font-size:25px; " id="icon_calendar"></i> 
          </div>
       </div>
       <!-- /.input group -->
