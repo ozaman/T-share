@@ -355,8 +355,8 @@
               },
       		  onSet: function(context) {
       		  	var date = $('#date_report').val();
-      		  var check_now_active = $('.btn_filter_active').attr('role');
-      		  console.log(date+' : '+check_now_active);
+      		  	var check_now_active = $('.btn_filter_active').attr('role');
+      		  	console.log(date+' : '+check_now_active);
 					filterMenu(check_now_active);
       		  }
               });
@@ -370,6 +370,7 @@
 <textarea style="display: none;" id="json_shop"><?=json_encode($_POST[book]);?></textarea>
 <script>
 	var array_filter = [];
+	var array_his = [];
    function filterMenu(type){
    	console.log(type);
    $('.tocheck').removeClass('btn_filter_active');
@@ -381,32 +382,73 @@
 //   console.log($('#json_shop').val());
 //   var obj = JSON.parse($('#json_shop').val());
    var obj = array_data;
-   console.log(obj);
+//   console.log(obj);
    	if(type=='manage'){
    	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
    	 	array_filter = obj.manage;
-   	}
-   	else if(type=='his'){
-   		 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
-   		 $('#date_filter').show();
-   		 array_filter = obj.history;
-   	}
-   	 $('#load_booking_data').html(load_main_icon_big);	
+   	 	$('#load_booking_data').html(load_main_icon_big);	
 
 			  $.post(url,{ data : array_filter},function(html){
 			  		$('#load_booking_data').html(html);
 			  });
+   	}
+   	else if(type=='his'){
+   		$('#date_filter').show();
+   		var date_rp = date.replace("-", "/");
+   		 date_rp = date_rp.replace("-", "/");
+   		 
+		if('<?=$data_user_class;?>'=="taxi"){
+			var url_his = 'http://www.welovetaxi.com:3000/getOrderhisdriver';
+			var driver = "<?=$_SESSION['data_user_id'];?>";
+			var data = {
+				date : date_rp,
+				driver : driver
+			}
+		}else{
+			var url_his = 'http://www.welovetaxi.com:3000/getOrderhislab';
+			var data = {
+				date : date_rp
+			}
+		}
+//		console.log(data);
+//		return;
+   		$.post(url_his,data,function(res){
+   			 console.log(res);
+   			 array_filter = res;
+   			 array_his = res;
+   			 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
+   			 
+   		 
+   		 $('#load_booking_data').html(load_main_icon_big);	
+
+			  $.post(url,{ data : array_filter },function(html){
+			  		$('#load_booking_data').html(html);
+			  });
+   		});
+   		
+   		 
+//   		 console.log(obj.history)
+   		/* $.each(obj.history, function( index, value ) {
+		 	
+		 	var td = formatDate(value.transfer_date);
+		 	console.log(td);
+		});*/
+//   		 array_filter = obj.history;
+			
+   	}
+   	 
 
    }
 
-   function openDetailBooking(id,type){
+   function openDetailBooking(key,type){
 	if(type=='manage'){
-		var detailObj = array_data.manage[id];
+		var detailObj = array_data.manage[key];
 	}else if(type=='his'){
-		var detailObj = array_data.history[id];
+		var detailObj = array_his[key];
 	}
-	console.log(type+" : "+id);
+	$('#check_open_num_detail').val(key)
+	console.log(type+" : "+key);
   /* 	console.log(array_filter[id]);
    	array_data.manage[id]*/
 
@@ -418,7 +460,7 @@
 
       	});
       	
-      	$('#check_open_shop_id').val(id);
+      	$('#check_open_shop_id').val(detailObj.id);
       	
    }
 

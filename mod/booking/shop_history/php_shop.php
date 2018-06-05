@@ -185,4 +185,15 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	</script>
 	<?
 }	
+
+if($_GET[query]=='history'){
+	
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+	$res[ob] = $db->select_query("SELECT * FROM order_booking  WHERE transfer_date = '".$_POST[date]."' ");
+	while($arr[ob] = $db->fetch($res[ob])){
+		$row[] = $arr[ob];
+	}
+	header('Content-Type: application/json');
+	echo json_encode($row);
+}
 ?>

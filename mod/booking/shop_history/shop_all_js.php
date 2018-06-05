@@ -100,11 +100,13 @@
 		<table width="100%">
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
-      			<td width="20%" align="center" rowspan="2"><span class="font-22" id="status_book_<?=$val[id];?>" style=" margin-top: -20px; margin-left: -15px;position: absolute;"><?=$status_txt;?></span></td>
+      			<td width="20%" align="center" rowspan="2">
+      			<span class="font-22" id="status_book_<?=$val[id];?>" style=" margin-top: -20px; margin-left: -15px;position: absolute;"><?=$status_txt;?></span></td>
       		</tr>
       		<tr>
       			<td colspan="2">
-      			<span class="font-20" ><?=$val[invoice];?>&nbsp;:&nbsp;<?=$val[transfer_date]." ";?>
+      			<span class="font-20" ><?=$val[invoice];?>&nbsp;:&nbsp;
+      			<span id="date_book_<?=$val[id];?>">-</span>
       			<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font></span>
       			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
 
@@ -117,9 +119,13 @@
 	
 	<script>
 		var d1 = "<?=date('Y/m/d H:m:s',$val[post_date]);?>";
+//		console.log(d1);
 		var d2 = js_yyyy_mm_dd_hh_mm_ss();
-		console.log(d1+" = "+d2);
+//		console.log(d1+" = "+d2);
 		$('#txt_date_diff_<?=$val[id];?>').text(CheckTime(d1,d2));
+//		console.log(formatDate('<?=$val[transfer_date];?>'));
+
+		$('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
 	</script>
 <?  	
 		} ?>

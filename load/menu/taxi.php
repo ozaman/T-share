@@ -240,7 +240,7 @@
        });
        
     $("#l-logout").click(function(){ 
-      swal({
+      /*swal({
     title: "<?=t_sign_out;?>",
     text: "<?=t_confirm_signout;?>",
     type: "warning",
@@ -258,7 +258,26 @@
       		 	window.location.href = "index.php";		}, 1000);
       });
 
-    	});
+    	});*/
+    	
+    	swal({
+		  title: "<?=t_sign_out;?>",
+		  text: "<?=t_confirm_signout;?>",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonClass: "btn-danger",
+		  confirmButtonText: "<?=t_yes;?>",
+		   cancelButtonText: "<?=t_no;?>",
+		  closeOnConfirm: false
+		},
+		function(){
+		   $.post('signout.php?type=logout',function(){
+      		 swal("<?=t_sign_out_successfully;?>","", "success");
+      		 setTimeout(function(){ 
+      		 	window.location.href = "index.php";		}, 1000);
+      		});
+		});
+    	
     });
 </script>
 <script src="js/jquery-main.js"></script> 

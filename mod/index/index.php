@@ -668,7 +668,7 @@
     
 	});
 
-	
+	var shop_frist_run = 0;
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
@@ -693,7 +693,7 @@
 				}
 				
 			}
-			else{
+			/*else{
 				if(user_class=="lab"){
 	        		
 					if(db == current){
@@ -705,7 +705,7 @@
 						none.push(value);
 					}
 				}
-			}
+			}*/
 			
         });
         array_data = {
@@ -713,7 +713,20 @@
 			history : none
 		};
         console.log(array_data);
+		
     	$('#number_shop').text(done.length);
+    	if($('#check_open_workshop').val()==1){
+    		
+    		if(shop_frist_run==0){
+				shop_frist_run = done.length;
+			}
+			if(done.length!=shop_frist_run){
+				filterMenu('manage');
+				shop_frist_run = done.length;
+			}
+			
+		}
+    	
       });
 	
 var id = '<?=$user_id?>';
@@ -730,23 +743,36 @@ socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
 console.log(data)
-console.log(data[0].id);
-    if(data[0].check_driver_topoint==1){
-      console.log("driver_topoint");
-      changeHtml("driver_topoint",data[0].id)
-   }
-    if(data[0].check_guest_receive==1){
-      console.log("guest_receive");
-      changeHtml("guest_receive",data[0].id)
-   }
-   if(data[0].check_guest_register==1){
-      console.log("guest_register");
-      changeHtml("guest_register",data[0].id)
-   }
-   if(data[0].check_driver_pay_report==1){
-      console.log("driver_pay_report");
-      changeHtml("driver_pay_report",data[0].id)
-   }
+//console.log(data[0].id);
+var check_open = $('#check_open_shop_id').val();
+if(check_open!=0){
+	
+	$.each(data, function( index, value ) {
+		
+		if(value.id==check_open){
+			console.log(value);
+			if(value.check_driver_topoint==1){
+		      console.log("driver_topoint");
+		      changeHtml("driver_topoint",value.id,value.driver_topoint_date)
+		   }
+		    if(value.check_guest_receive==1){
+		      console.log("guest_receive");
+		      changeHtml("guest_receive",value.id,value.guest_receive_date)
+		   }
+		   if(value.check_guest_register==1){
+		      console.log("guest_register");
+		      changeHtml("guest_register",value.id,value.guest_register_date)
+		   }
+		   if(value.check_driver_pay_report==1){
+		      console.log("driver_pay_report");
+		      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
+		   }
+		}
+	 	
+	});
+	
+}
+    
 
    
    });
@@ -785,6 +811,10 @@ if (data.length != 0) {
 }
    });
 	
+/*socket.on('getbookinglabhis', function (data) {        
+        console.log(data.booking)
+        
+      });	*/
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -795,7 +825,8 @@ function formatDate(date) {
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
-	}
+}
+
 </script>
 <script>
          $('#index_menu_shopping').click(function(){

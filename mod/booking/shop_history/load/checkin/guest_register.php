@@ -30,7 +30,8 @@
             <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click"/>
          </td>
          <td  width="30">
-            <i  id="photo_guest_register" class="fa  fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px; border: solid 2px <?=$main_color?>  "  onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');" ></i>
+             <i id="photo_guest_register_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
+             <i id="photo_guest_register_yes" class="fa fa-camera" style="color:<?=$main_color?>; font-size:16px; border-radius: 50%; padding:5px;display: nones; border: solid 2px <?=$main_color?>  " onclick="ViewPhoto('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date]?>');"></i>
          </td>
       </tr>
    </tbody>
@@ -45,24 +46,23 @@
 <? }
    ?>-->
 <script>
-var type = "guest_register";
-	$.ajax({
-			url: '../data/fileupload/store/guest_register_'+id+'.jpg',
+$.ajax({
+			url: '../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg',
 			type:'HEAD',
 			error: function()
 			{
 			console.log('Error file');
-			   $('#photo_guest_register').css('color','#3b59987a');
-			   $('#photo_guest_register').css('border','1px solid #3b59987a');
-			   $('#photo_guest_register').attr('onclick',' ');
+		
+			   $('#photo_guest_register_no').show();
+			   $('#photo_guest_register_yes').hide();
+//			   alert(type)
 			},
 			success: function()
 			{
 				//file exists
-				console.log('success file');
-				$('#photo_guest_register').css('color','#3b5998');
-				$('#photo_guest_register').css('border','2px solid #3b5998');
-				$('#photo_guest_register').attr('onclick','ViewPhoto("'+id+'","guest_register","<?=TIMESTAMP;?>");');
+
+			   $('#photo_guest_register_no').hide();
+			   $('#photo_guest_register_yes').show();
 			}
 		});
    $("#btn_guest_register").click(function(){ 

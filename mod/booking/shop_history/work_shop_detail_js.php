@@ -25,16 +25,16 @@ function changeHtml(type,id,status_time){
 			{
 			console.log('Error file');
 			  
-			    $('#photo_'+type+'_yes').hide();
+			   $('#photo_'+type+'_yes').hide();
 			   $('#photo_'+type+'_no').show();
-			   alert()
+//			   alert()
 			},
 			success: function()
 			{
 				//file exists
 				console.log('success file');
 				
-				 $('#photo_'+type+'_yes').show();
+				$('#photo_'+type+'_yes').show();
 			   $('#photo_'+type+'_no').hide();
 			}
 		});
