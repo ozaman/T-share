@@ -1,5 +1,5 @@
 <div  style="padding-top:30px;" >
-   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+   <!-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> -->
    <script>
       $('.text-topic-action-mod').html('<?=t_all_car;?>');
    </script>
