@@ -233,6 +233,7 @@
 	               $.post( url_load,{ book : array_data } ,function( data ) {
 	                $('#load_mod_popup').html(data);
 	               });
+                  socket.emit('getdatadriver', 'room'); //call getbookinglab
 	               /* $('#load_mod_popup').html(load_main_mod);
 	                $('#load_mod_popup').load(url_load); */
                });
