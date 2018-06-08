@@ -1,6 +1,7 @@
 <?php 
 if ($_GET[action] == 'add')
 	{
+//		exit();
 	// ////////// à¸„à¸³à¸™à¸§à¸“
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$res[price] = $db->select_query("SELECT * FROM  product_price_list_all where country=" . $_POST[nation] . "  and product_id	=" . $_POST[program] . " and plan_id=" . $_POST[price_plan] . " ORDER BY id  ");

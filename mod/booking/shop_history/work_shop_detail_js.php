@@ -63,7 +63,7 @@ function changeHtml(type,id,status_time){
 		      console.log("driver_pay_report");
 		      changeHtml("driver_pay_report",obj.id,obj.driver_pay_report_date)
 		   }
-
+		
 </script>
 <?php 
 function checkTypePay($id){
@@ -143,6 +143,9 @@ function checkTypePay($id){
 		$show_alert = "display:none;";
 	}
 ?>
+<script>
+	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
+</script>
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <div class="font-22 back_main" onclick="backMain();" ><a ><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;<?=t_back_previous;?></a></div>
 <div class="assas_<?=$_POST[id];?>" style=" padding:10px 12px; margin-top: 20px;" >
@@ -215,7 +218,7 @@ function checkTypePay($id){
 		<tbody>
       <tr>
          <td class="font-22 text-cap"><font color="#333333"><?=t_date;?></font></td>
-         <td class="font-22"><?=$arr[book][transfer_date];?></td>
+         <td class="font-22"><span id="date_trans"></span></td>
       </tr>
       <tr>
          <td class="font-22 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>

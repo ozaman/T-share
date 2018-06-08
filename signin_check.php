@@ -97,7 +97,7 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
 
  
  function showMessage(txt,username) {
-                Android.showToast(txt,username);
+//                Android.showToast(txt,username);
         }  
 
  setTimeout(function(){ 

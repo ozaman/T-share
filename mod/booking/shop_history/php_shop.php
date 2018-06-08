@@ -186,14 +186,57 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	<?
 }	
 
-if($_GET[query]=='history'){
+if($_GET[query]=='history_driver'){
 	
-	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$res[ob] = $db->select_query("SELECT * FROM order_booking  WHERE transfer_date = '".$_POST[date]."' ");
-	while($arr[ob] = $db->fetch($res[ob])){
-		$row[] = $arr[ob];
-	}
-	header('Content-Type: application/json');
-	echo json_encode($row);
+$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";                              
+
+//create a new cURL resource
+$ch = curl_init($url);
+
+//setup request to send json via POST
+
+$curl_post_data2 = '{"driver": '.$_POST[driver].',"date":"'.$_POST[date].'"}';
+
+//attach encoded JSON string to the POST fields
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+//set the content type to application/json
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+//return response instead of outputting
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//execute the POST request
+$result = curl_exec($ch);
+//close cURL resource
+curl_close($ch);
+$decode = 	json_decode($result);
+header('Content-Type: application/json');
+echo json_encode($decode);	
+	
+}
+
+if($_GET[query]=='history_lab'){
+	
+$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";                              
+
+//create a new cURL resource
+$ch = curl_init($url);
+
+//setup request to send json via POST
+
+$curl_post_data2 = '{"date":"'.$_POST[date].'"}';
+
+//attach encoded JSON string to the POST fields
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+//set the content type to application/json
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+//return response instead of outputting
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//execute the POST request
+$result = curl_exec($ch);
+//close cURL resource
+curl_close($ch);
+$decode = 	json_decode($result);
+header('Content-Type: application/json');
+echo json_encode($decode);	
+	
 }
 ?>

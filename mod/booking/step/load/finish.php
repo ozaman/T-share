@@ -406,17 +406,18 @@
    $("#back_booking_step_4").click(function(){ 
     $( "#load_mod_popup_4" ).toggle();
    });
+   
    $("#submit_booking_step_4").click(function(){ 
-   $.post('send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$arr[web_user][id]?>" ,nickname : "<?=$arr[web_user][nickname]?>" },function(data){
-   					console.log(data);
-   				});
-//   				return;
     console.log($('#edit_form').serialize());
-   ///  $( "#load_mod_popup_4" ).toggle();
    $('#load_mod_popup_4').html(load_main_mod);
+   
       $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
-   				
+   				$.post('send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$arr[web_user][id]?>" ,nickname : "<?=$arr[web_user][nickname]?>",car_plate : $('#car_plate').val() },function(data){
+   					console.log(data);
+   		});
+   		 clearTimeout(clock);
 //   							console.log(response);
+							$('#main_load_mod_popup_clean').hide();
    							$('.button-close-popup-mod').click();
    							$('.button-close-popup-mod-4').click();
    							$('.button-close-popup-mod-3').click();
@@ -426,6 +427,7 @@
    							$('.close-small-popup').click();
    							$('#index_menu_shopping_history').click();
        });
+   
      });
 </script>
 
