@@ -196,15 +196,15 @@
       $('#checkbookinglab').hide();
    }
 </script>
-<div style="    border-radius: 10px;
+<div id="checkbookinglab" style="    border-radius: 10px;
     border: 1px solid #ddd;
     background-color: #Fff;
     margin-bottom: 0px;
     box-shadow: 0px 0px 5px #DADADA;
     display: nones;
     padding: 5px;
-    margin-top: 5px;"> 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" id="checkbookinglab" style="display: none;">
+    margin-top: 5px;display: none;"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0"  style="">
    <tr>
       <td><b class="font-28" style="color:#16B3B1">กรุณาเลือกคนขับรถ</b></td>
    </tr>
