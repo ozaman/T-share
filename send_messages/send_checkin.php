@@ -15,7 +15,7 @@ function sendMessage() {
 	$arr[dv] = $db->fetch($res[dv]);
 	
 	if($_GET[type]=='driver_topoint'){		
-    	$type_txt = "มาถึง ".$arr[place_shop][topic_th]." แล้ว";
+    	$type_txt = $arr[book][car_plate]." "."มาถึง ".$arr[place_shop][topic_th]." แล้ว";
     	$tag = array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								);
@@ -39,7 +39,7 @@ function sendMessage() {
 								);
     }
 	 $content  = array(
-        "en" => $arr[book][invoice]." : "."ทะเบียน ".$arr[book][car_plate]." ".$type_txt
+        "en" => $arr[book][invoice]." : "."ทะเบียน ".$type_txt
    		 );
     $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",

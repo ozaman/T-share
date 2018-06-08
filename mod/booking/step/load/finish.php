@@ -404,6 +404,7 @@
       </tr>
    </tbody>
 </table>
+<input type="hidden" value="" />
 <script>
    $("#back_booking_step_4").click(function(){ 
     $( "#load_mod_popup_4" ).toggle();
@@ -412,7 +413,7 @@
    $("#submit_booking_step_4").click(function(){ 
     console.log($('#edit_form').serialize());
    $('#load_mod_popup_4').html(load_main_mod);
-   
+   var driver = $('#....').val();
       $.post('go.php?name=booking&file=savedata&action=add&type=driver&driver=<?=$arr[web_user][id]?>',$('#edit_form').serialize(),function(response){
    				$.post('send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$arr[web_user][id]?>" ,nickname : "<?=$arr[web_user][nickname]?>",car_plate : $('#car_plate').val() },function(data){
    					console.log(data);
