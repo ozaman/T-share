@@ -129,6 +129,86 @@
    margin-right: 1px;
    /*	background-color: rgb(25, 202, 153);*/
    }
+   /***********************/
+   .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  border-radius : 20px;
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #e4e4e4;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 11px;
+    top: 6px;
+    width: 9px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.form_input{
+   padding: 5px 22px;
+    height: 34px;
+    border: solid #3b5998 1px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 18px;
+    display: block;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #fff;
+    background-image: none;
+}
+
 </style>
 <div class="stepbar" style="margin-top: 48px;position: fixed;top: 0px;transition: 0.2s; " id="stepbar_book">
    <div class="progress" style="border-radius:0px;height : 8px !important;background-color:#cccccc;box-shadow: 1px 1px 5px #ddd;">
@@ -209,7 +289,144 @@
       <td><b class="font-28" style="color:#16B3B1">กรุณาเลือกคนขับรถ</b></td>
    </tr>
 </table> -->
+<div style="border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #Fff;
+    margin-bottom: 0px;
+    box-shadow: 0px 0px 5px #DADADA;
+    display: nones;
+    padding: 5px;
+    margin-top: 5px;">
+<div style="font-size: 18px;
+    font-weight: 600;
+    padding: 0px 10px;
+    margin-top: 15px;">เลือกประเภทรถที่จะใช้
+      
+    </div>
+    <div>
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+          <tr>
+          <td width="100%">
+            <div >
+         
+  <a id="car_type_1" style="text-decoration:none; margin-top:30px;" onclick="selecttypeCar(1,'taxi');">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_1">
+               
+                  <tr>
+                     <td>
+                        <table width="100%" cellpadding="1" cellspacing="2">
+                         
+                           <tr>
+                           <td width="100" align="center" style="    color: #333;
+    border: solid #FF9800 1px;
+    padding: 7px;
+    border-radius: 25px;
+    width: 100px;
+    text-align: -webkit-center;"><font  class="font-20">รถแท็กซี่<br></font>
+                                 <!-- <font class="font-20"></font></font> -->
+                              </td>
+                           </tr>
+                        
+                       </table>
+                        
+                     </td>
+                     <td width="50" align="right">
+                      <label class="container">
+            <input type="checkbox" name="car" id="type_car_1" value="1">
+            <span class="checkmark"></span>
+          </label>
+                     </td>
+                  </tr>
+              
+           </table>
+    </a>
+  <a id="car_type_2" style="text-decoration:none; margin-top:30px;" onclick="selecttypeCar(2,'คนชับรถของบริษัท');">
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_2">
+               
+                  <tr>
+                     <td>
+                        <table width="100%" cellpadding="1" cellspacing="2">
+                         
+                           <tr>
+                           <td width="100" align="center"  style="color: #333;
+    border: solid #5eb3b1 1px;
+    padding: 7px;
+    border-radius: 25px;
+    width: 100px;
+    text-align: -webkit-center;"><font  class="font-20">คนขับรถของบริษัท<br></font>
+                                 <!-- <font class="font-20">000-888-4455</font></font> -->
+                              </td>
+                           </tr>
+                        
+                       </table>
+                        
+                     </td>
+                     <td width="50" align="right">
+                      <label class="container">
+            <input type="checkbox" name="car" id="type_car_2" value="1">
+            <span class="checkmark"></span>
+          </label>
+                     </td>
+                  </tr>
+              
+         </table>
+    </a>
+ 
+<input id="typecar" value="" type="hidden">
+<!-- <input id="bank_company" value="" type="hidden"> -->
+
+          </div>
+          </td>
+         </tr>
+            
+         </table>
+     
+   </div>
 </div>
+
+</div>
+ <!-- DIV CAR --> 
+      <div style="border-radius: 10px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    box-shadow: rgb(218, 218, 218) 0px 0px 5px;
+    padding: 15px;
+    margin-top: 8px; display: none" id="selected_taxi">
+   <div class="form-group">
+    <label  >ป้ายทะเบียนรถ</label>
+    <input type="text" class="form_input" id="place_num">
+  </div>
+  <div class="form-group">
+    <label  >เบอร์โทรศัพท์</label>
+    <input type="text" class="form_input" id="phone_num" >
+  </div>
+       
+    </div>
+    <div id="checkbookinglab" style="    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #Fff;
+    margin-bottom: 0px;
+    box-shadow: 0px 0px 5px #DADADA;
+    display: nones;
+    padding: 5px;
+    margin-top: 5px;display: none;"> 
+
+</div>
+ <div id="carlab" style="    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #Fff;
+    margin-bottom: 0px;
+    box-shadow: 0px 0px 5px #DADADA;
+    display: nones;
+    padding: 5px;
+    margin-top: 5px;display: none;"> 
+
+</div>
+      
+      <!-- BTN  -->  
       <div class="<?= $coldata?>" id="show_time_detail" style=" border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; display:nones;padding: 5px;margin-top: 5px;"  >
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
@@ -736,35 +953,7 @@ return $name_type;
             </div>
          </div>
       </div>
-      <!-- DIV CAR -->	
-      <div class="<?= $coldata?>" id="show_transfer_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; display:none  ">
-         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tbody>
-               <tr>
-                  <td>
-                     <div class="font-28" style="color:<?=$main_color?>"><b><?=t_your_car_infor;?> </b></div>
-                  </td>
-                  <td width="50" style="display: none;" id="row_accept_car">
-                     <img src="images/checked.png" width="35px"/>
-                  </td>
-               </tr>
-            </tbody>
-         </table>
-         <div style="margin-top:-50px;" id="show_car_detail">
-            <?   include ("mod/booking/load/booking/car.php");   ?>
-         </div>
-         <table width="100%"  border="0" cellspacing="0" cellpadding="0" id="button_show_car_detail" style="display:none">
-            <tr >
-               <td width="100%"  style="display:none" ><button type="button"  id="back_booking_step_2" class="btn btn-block btn-default"  style="width:100%px "><span class="font-28"><i class="    fa fa-chevron-circle-left"></i>&nbsp;ย้อนกลับ</button></td>
-               <td width="100%"  >
-                  <div class="border-alert"  id="div_submit_booking_step_2"  style="width:100%; display:none ">
-                     <button id="submit_booking_step_2" type="button" class="btn  btn-primary" style="width:100% "><span class="font-28"><i class="    fa fa-chevron-circle-right"></i>&nbsp;ขั้นตอนต่อไป</button>
-                  </div>
-               </td>
-            </tr>
-         </table>
-      </div>
-      <!-- BTN  -->	
+     
       <table width="100%" border="0" cellspacing="2" cellpadding="2" id="show_submit" style="margin-top: 15px;display: none;">
          <!--<tbody>
             <tr>
@@ -775,7 +964,7 @@ return $name_type;
          </tbody>-->
          <tbody>
             <tr>
-               <td><button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="submit_data_update" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
+               <td><button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="submit_data_update2" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
             </tr>
          </tbody>
       </table>
@@ -790,6 +979,7 @@ return $name_type;
 <input type="hidden" value="<?=$_GET[place];?>" id="product_id" />	
 <button onclick="testUnckeck();" id="uncheckBtn" style="display: none;">test</button>
 <script>
+   var ifChecked = false;
    function testUnckeck(){
    	$('.genaral').iCheck('uncheck'); 
    	console.log('uncheckBtn');
@@ -978,7 +1168,8 @@ return $name_type;
    		$('#price_plan_3').iCheck('check'); 
    	}
    }
-   $("#submit_data_update").click(function(){
+   $("#submit_data_update2").click(function(){
+      console.log($('#selectdri').val())
     if(document.getElementById('airout_h').value =="" ) {
    alert('กรุณาเลือกชั่วโมง');
    document.getElementById('airout_h').focus() ;
@@ -989,20 +1180,20 @@ return $name_type;
    document.getElementById('airout_h').focus() ;
     return false ;	
    }
-   		if(document.getElementById('all_car').value < 1 ) {
-   alert('กรุณาเลือกรถที่ใช้งาน');
-    return false ;	
-   }
+   // 		if(document.getElementById('all_car').value < 1 ) {
+   // alert('กรุณาเลือกรถที่ใช้งาน');
+   //  return false ;	
+   // }
    			if(document.getElementById('adult').value=="0" && document.getElementById('child').value=="0" ) {
    				alert('กรุณาเลือกจำนวนผู้ใหญ่หรือเด็กอย่างน้อย 1 คน');
-   				document.getElementById('adult').focus() ;
-   				document.getElementById('child').focus() ;
+   				// document.getElementById('adult').focus() ;
+   				// document.getElementById('child').focus() ;
    				return false ;
    			}
-   if(document.getElementById('all_car').value < 1 ) {
-   alert('กรุณาเลือกรถที่ใช้งาน');
-    return false ;	
-   }
+   // if(document.getElementById('all_car').value < 1 ) {
+   // alert('กรุณาเลือกรถที่ใช้งาน');
+   //  return false ;	
+   // }
    			var price_plan = $('.price_plan').val();
    //			if(document.getElementById('plan_setting').value==0 ) {
    	if(document.getElementById('plan_setting').value==0 ) {
@@ -1011,11 +1202,11 @@ return $name_type;
    				return false ;
    			}
    		$( "#main_load_mod_popup_4" ).toggle();
-   			var url_load_finish= "load_page_mod_4.php?name=booking/step/load&file=finish&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&place=<?=$_GET[place]?>";
+   			var url_load_finish= "load_page_mod_4.php?name=booking/step/load&file=finish_lab&lat=<?=$arr[shop][lat]?>&lng=<?=$arr[shop][lng]?>&type=stop&place=<?=$_GET[place]?>";
    			url_load_finish =url_load_finish+"&adult="+document.getElementById('adult').value;
    			url_load_finish =url_load_finish+"&child="+document.getElementById('child').value;
    			url_load_finish =url_load_finish+"&time="+document.getElementById('time').value;
-   			url_load_finish =url_load_finish+"&car="+document.getElementById('check_use_car_id').value;
+   			url_load_finish =url_load_finish+"&car="+$('#selectdri').val();
    			url_load_finish =url_load_finish+"&airout_h="+document.getElementById('airout_h').value;
    			url_load_finish =url_load_finish+"&airout_m="+document.getElementById('airout_m').value;
    			url_load_finish =url_load_finish+"&car_color="+document.getElementById('car_color').value;
@@ -1071,7 +1262,9 @@ return $name_type;
    });
 </script>				
 <script>
+   
    $('.price_plan_select').on('ifChecked', function(event){
+     
    	var data_id = $(this).attr("value");
    	if($('#check_t_h').val()==0){
    				alert('กรุณาเลือกชั่วโมง');
@@ -1100,7 +1293,15 @@ return $name_type;
    					return false;
    			}
     $('#plan_setting').val(data_id);
-    $('#show_transfer_detail').show();
+    if ( $('#typecar').val() == 1) {
+      $('#selected_taxi').show(500)
+      // $('#show_transfer_detail').hide();
+    }
+    else{
+      $('#selected_taxi').hide(500)
+       // $('#show_transfer_detail').show();
+    }
+    
     $('#show_payment_detail').removeClass('border-alert');
     $('.iradio_square-green').removeClass('border-alert');
     $('#row_accept_payment').show();
@@ -1108,16 +1309,16 @@ return $name_type;
     if($('#check_show_submit').val()==1){
    // 	$('#step_4').show();
    	$('#step_1').css('width','80%');
-    $('#show_transfer_detail').removeClass('border-alert');
+    // $('#show_transfer_detail').removeClass('border-alert');
    	$('#show_submit').show();
    	$('#row_accept_car').show();
    	$('#load_mod_popup_3').animate({ 
     	 scrollTop: $(document).height()//$('#show_transfer_detail').offset().top 
     	 }, 'slow');
     }else{
-    	$('#show_transfer_detail').addClass('border-alert');
+    	// $('#show_transfer_detail').addClass('border-alert');
     	$('#check_show_submit').val(1);
-    	$('#load_mod_popup_3').animate({ scrollTop: $('#show_transfer_detail').offset().top }, 'slow');
+    	// $('#load_mod_popup_3').animate({ scrollTop: $('#show_transfer_detail').offset().top }, 'slow');
     }
    });
     
@@ -1143,5 +1344,76 @@ return $name_type;
 <script>
    $('.button-close-popup-mod-3').click(function(){
    });
+   function selectdriss(){
+      $('#carlab').show();
+      console.log($('#selectdri').val())
+       var url_load = "load_page_mod_4.php?name=booking/step&file=selectcar&driver="+$('#selectdri').val();
+            
+           
+            
+    $.post( url_load, function( data ) {
+             // $('#main_load_mod_popup').toggle();
+     $('#carlab').html(data);
+      });
+  
+
+}
+   function selecttypeCar(id,company){
+      
+      if (id == 1 ) {
+         $('#checkbookinglab').hide(500)
+         $('#selected_taxi').show(500)
+
+      }
+      else{
+         $('#checkbookinglab').show(500)
+         $('#selected_taxi').hide(500)
+         var url_load = "go.php?name=booking/step&file=selectdriver";
+            
+           
+            
+    $.post( url_load, function( data ) {
+             // $('#main_load_mod_popup').toggle();
+     $('#checkbookinglab').html(data);
+      });
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: 'mod/booking/step/getdriver.php',
+            //         // data: { 's_code': data[0].s_code },
+            //         //contentType: "application/json",
+            //         dataType: 'json',
+            //         success: function(res) {
+            //             console.log(res)
+            //              $.each(data, function(i, val) {
+            //     $('.selecetdriver').append('<option value="' + data[i].name_en + '" label="' + data[i].name_en + '" none=""></option>');
+               
+
+
+            // });
+            //         }
+            //     });
+         
+
+      }
+    // swal('คุณเลือกธนาคาร'+company,'เลขที่บัญชี '+number,'','warning');
+//  $('#car_use_'+id).click();
+//  
+  $('input[type="checkbox"]').prop('checked', false); // Unchecks it
+  $('#type_car_'+id).prop('checked', true); // Checks it
+  $('#typecar').val(id);
+  // swal({
+  //    title: 'คุณเลือกธนาคาร',
+  //    text: 'เลขที่บัญชี ',
+  //    type: "warning",
+  //    confirmButtonClass: "btn-primary",
+  //    confirmButtonText: "ยืนยัน",   
+  //    closeOnConfirm: true
+  //  },
+  //  function(){
+  //  });
+}
+
+
+
 </script>
 </div>
