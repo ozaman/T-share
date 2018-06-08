@@ -127,9 +127,15 @@
 
    ///
    $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
-//	changeHtml("<?=$_GET[type]?>","<?=$arr[project][id]?>")
-//	console.log('<?=$_GET[type]?>');
-//	return;
+/*   var message = "";
+ socket.emit('sendchat', message);
+   console.log('Test Click');
+    $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
+   					console.log(data);
+   				});
+  return;*/
+
+
     var lat = $('#lat').val();
     var lng = $('#lng').val();
     var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;

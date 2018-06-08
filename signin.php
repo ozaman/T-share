@@ -284,6 +284,11 @@
                         <button   class="btn btn-repair waves-effect btn-other" style="background-color:#5a78b5; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_login">
                         <i class="fa fa-sign-in" style="padding-right:10px;" ></i><span >&nbsp;<?=t_log_in;?></span></button>
                         <button   class="btn btn-repair waves-effect btn-other " style="background-color:#666666; color:#FFFFFF;margin-top:10px;text-transform: capitalize;"   id="btn_login_password"><i class="fa  fa-unlock-alt" style="padding-right:10px;padding-left:2px;" ></i><span ">&nbsp;<?=t_forgot_password;?></span></button>
+                        <!--<a href="tel://0935248406">0935248406 +++</a>
+                        <br/>
+                        <a href="zello://?add_channel">++++++++++++++++++++++++++++ZELLO</a>
+                        <br/>
+                        <a href="https://goldenbeachgroup.com/app/driver_master/index.php" target="_blank">Visit W3Schools</a>-->
                         <div style="display: none;">
                          <input type='file' id="imgInp"  />
   <img id="blah" src="#" alt="your image" width="100px" />

@@ -2,11 +2,12 @@
 function sendMessage() {
 	
 	if($_GET[key]=="new_shop"){
-		if($_POST[nickname]==""){
+		/*if($_POST[nickname]==""){
 			$txt_short = 'Taxi '.$_POST[driver];
 		}else{
 			$txt_short = 'คุณ '.$_POST[nickname];
-		}
+		}*/
+		$txt_short = 'ทะเบียน '.$_POST[car_plate];
 		 $content  = array(
         "en" => $txt_short.' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ'
    		 );

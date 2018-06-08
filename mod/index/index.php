@@ -713,7 +713,7 @@
 			manage : done,
 			history : none
 		};
-        console.log(array_data);
+//        console.log(array_data);
 		
     	$('#number_shop').text(done.length);
     	if($('#check_open_workshop').val()==1){
@@ -740,6 +740,10 @@ var id = '<?=$user_id?>';
     socket.emit('adduser', dataorder);
     console.log(dataorder);
  // });
+
+var class_user = "<?=$_SESSION['data_user_class'];?>";
+ 
+if(class_user=="lab"){
 socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
@@ -777,41 +781,43 @@ if(check_open!=0){
 
    
    });
-   
+}
+else{  
 socket.on('updatedriver', function (username, data) {
    
-console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
 //console.log(username)
-console.log(data)
+var check_open = $('#check_open_shop_id').val();
 
-if (data.length != 0) {
-	console.log(data[0].id);
-	if($('#check_open_workshop').val()==1){
+		if(check_open!=0){
 		
-		if(data[0].check_driver_topoint==1){
+		if(data.id==check_open){
+			console.log(data)
+			console.log(data.id);
+		   if(data.check_driver_topoint==1){
 		      console.log("driver_topoint");
-		      changeHtml("driver_topoint",data[0].id,data[0].driver_topoint_date)
+		      changeHtml("driver_topoint",data.id,data.driver_topoint_date)
 		   }
-		    if(data[0].check_guest_receive==1){
+		   if(data.check_guest_receive==1){
 		      console.log("guest_receive");
-		      changeHtml("guest_receive",data[0].id,data[0].guest_receive_date)
+		      changeHtml("guest_receive",data.id,data.guest_receive_date)
 		      $('#step_guest_register').show();
 		   }
-		   if(data[0].check_guest_register==1){
+		   if(data.check_guest_register==1){
 		      console.log("guest_register");
-		      changeHtml("guest_register",data[0].id,data[0].guest_register_date)
+		      changeHtml("guest_register",data.id,data.guest_register_date)
 		       $('#step_driver_pay_report').show();
 		   }
-		   if(data[0].check_driver_pay_report==1){
+		   if(data.check_driver_pay_report==1){
 		      console.log("driver_pay_report");
-		      changeHtml("driver_pay_report",data[0].id,driver_pay_report_date)
+		      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
 		   }
-		
-	}
-   
-}
-   });
+				}
+		}
 	
+
+   });
+	} 
 /*socket.on('getbookinglabhis', function (data) {        
         console.log(data.booking)
         

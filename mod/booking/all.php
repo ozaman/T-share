@@ -289,7 +289,7 @@
          </tr>
       </table>
    </div>
-   <div class="form-group" id="date_filter">
+   <div class="form-group" id="date_filter" style="display: none;">
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="    padding: 20px 20px;
     border-radius: 25px 0 0 25px;
@@ -379,7 +379,7 @@
 
 <textarea style="display: none;" id="json_shop"><?=json_encode($_POST[book]);?></textarea>
 <script>
-	var array_filter = [];
+	var array_ma = [];
 	var array_his = [];
    function filterMenu(type){
    	console.log(type);
@@ -391,15 +391,22 @@
    var date = $('#date_report').val();
 //   console.log($('#json_shop').val());
 //   var obj = JSON.parse($('#json_shop').val());
-   var obj = array_data;
-//   console.log(obj);
+  if(array_data.length==0){
+  	
+  	setTimeout(function(){ 
+  		filterMenu(type)
+  		return;
+  	 }, 2000);
+
+  }
+    var obj = array_data;
    	if(type=='manage'){
    	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
-   	 	array_filter = obj.manage;
+   	 	array_ma = obj.manage;
    	 	$('#load_booking_data').html(load_main_icon_big);	
 
-			  $.post(url,{ data : array_filter},function(html){
+			  $.post(url,{ data : array_ma},function(html){
 			  		$('#load_booking_data').html(html);
 			  });
    	}
@@ -409,30 +416,30 @@
    		 date_rp = date_rp.replace("-", "/");
    		 
 		if('<?=$data_user_class;?>'=="taxi"){
-			var url_his = 'http://www.welovetaxi.com:3000/getOrderhisdriver';
+			var url_his = 'mod/booking/shop_history/php_shop.php?query=history_driver';
 			var driver = "<?=$_SESSION['data_user_id'];?>";
 			var data = {
 				date : date_rp,
 				driver : driver
 			}
-		}else{
-			var url_his = 'http://www.welovetaxi.com:3000/getOrderhislab';
+		}
+		else{
+			var url_his = 'mod/booking/shop_history/php_shop.php?query=history_lab';
 			var data = {
 				date : date_rp
 			}
 		}
-//		console.log(data);
-//		return;
+
    		$.post(url_his,data,function(res){
-   			 console.log(res);
-   			 array_filter = res;
-   			 array_his = res;
+//   			 console.log(res);
+//   			 array_filter = res.data;
+   			 array_his = res.data;
    			 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
    			 
    		 
    		 $('#load_booking_data').html(load_main_icon_big);	
 
-			  $.post(url,{ data : array_filter },function(html){
+			  $.post(url,{ data : array_his },function(html){
 			  		$('#load_booking_data').html(html);
 			  });
    		});
@@ -483,6 +490,7 @@
    	$('#load_mod_popup_clean').html('');
 //   	filterMenu('manage')
      }
+
 
 
 </script>
