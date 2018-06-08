@@ -142,8 +142,8 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	
 	$data[order_id] = $_POST[order_id];
 	$data[invoice] = $_POST[invoice];
-	$data[total_price] = $_POST[price];
-	$data[type] = $_POST[type];
+	$data[total_price] = $_POST[all_total];
+	$data[plan_id] = $_POST[plan];
 	$data[status] = 1;
 	$data[last_update] = time();
 	$data[posted] = $_COOKIE[app_remember_user];
@@ -151,19 +151,41 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
 	
+	$cn[id] =  $_POST[cn];
+	$cn[pax] =  $_POST[regis_cn_pax_input];
+	$cn[price_unit] =  $_POST[price_person_cn];
+	
+	$oth[id] =  $_POST[oth];
+	$oth[pax] =  $_POST[regis_oth_pax_input];
+	$oth[price_unit] =  $_POST[price_person_oth];
+	
+	$json_nation_price[0] = $cn;
+	$json_nation_price[1] = $oth;
+	
 	$data_ob[driver_payment] = 1;
+	$data_ob[pax] = $_POST[pax];
+	
+	$data_ob[price_all_total] = $_POST[all_total];
+	$data_ob[price_park_unit] = $_POST[park_price];
+	$data_ob[price_park_total] = $_POST[park_price];
+	$data_ob[price_person_unit] = $_POST[price_person_cn];
+	$data_ob[price_person_total] = $_POST[total_person];
 	$data_ob[driver_payment_date] = time();
-	$data[result_ob] = $db->add_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
+	$data_ob[json_nation_price] = json_encode($json_nation_price);
+	
+	
+	
+	$data[result_ob] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
 	echo json_encode($data);
-	?>
+	/*?>
 	<script>
 		$('#tr_btn_<?=$_POST[type];?>_pay_<?=$_POST[order_id];?>').hide();
 		$('#pay_<?=$_POST[type];?>_admin_<?=$_POST[order_id];?>').css('background-color','#59AA47');
 		$('#txt_pay_<?=$_POST[type];?>_<?=$_POST[order_id];?>').html('<font color="#59AA47;"><b>จ่ายแล้ว</b></font>');
 		$('#price_<?=$_POST[type];?>_time_payment_<?=$_POST[order_id];?>').html('<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;<?=date("H:i:s",time());?></span>');
 	</script>
-	<?
+	<?*/
 }
 
 if($_GET[action]=='approve_pay_driver_taxi'){

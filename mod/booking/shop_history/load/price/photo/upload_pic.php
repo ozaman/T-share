@@ -22,14 +22,14 @@
 			$image = new hft_image($original_image);
 			$image->resize($desired_width, $desired_height, '0');
 //			$image->output_resized("../data/fileupload/store/".$_GET['type']."_".$_GET['code']."_".$_GET['type'].".jpg","JPG");
-			$image->output_resized("../data/fileupload/doc_pay_driver/".$_GET['type']."_".$_GET['code'].".jpg","JPG");
+			$image->output_resized("../data/fileupload/doc_pay_driver/".$_GET['plan']."_".$_GET['code'].".jpg","JPG");
  
 //opy ($_FILES['fileupload']['tmp_name'], "".$_POST[userid].".png" ); 
   }
   
  if($_GET['action']=='del'){
 	  
-@unlink("../data/fileupload/doc_pay_driver/".$_GET['type']."_".$_GET['code'].".jpg");  
+@unlink("../data/fileupload/doc_pay_driver/".$_GET['plan']."_".$_GET['code'].".jpg");  
   }
   
 

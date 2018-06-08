@@ -450,7 +450,7 @@
          <table width="100%" border="0" cellspacing="0" cellpadding="1">
          <tbody>
          <tr>
-         <td width="110" class="font-26" id="time_open_<? echo $arr[project][id];?>" style="color:#FF000">&nbsp;</td>
+         <td width="110" class="font-26" id="time_open_s<? echo $arr[project][id];?>" style="color:#FF000">&nbsp;</td>
          </tr>
          </tbody>
          </table>

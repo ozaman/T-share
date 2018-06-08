@@ -127,10 +127,10 @@
 
    ///
    $('#btn_checkin_popup_<?=$_GET[id]?>').click(function(){   
-/*   var message = "";
+   /*var message = "";
  socket.emit('sendchat', message);
-   console.log('Test Click');
-    $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
+   console.log('Test Click');*/
+   /* $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
    					console.log(data);
    				});
   return;*/
