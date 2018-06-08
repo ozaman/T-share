@@ -301,7 +301,7 @@
 					<span class="font-22"><?=t_month;?></span>
 				</td>
 				<td>	
-					<select class="form-control font-22" style="height: 35px;" id="month_select">
+					<select class="form-control font-22" style="height: 35px;border-radius: 25px;" id="month_select">
 		       	<?php 
 		       	$month = str_pad(date('m'), 2, '0', STR_PAD_LEFT);
 		       	for($i=1;$i<=12;$i++){ 
@@ -320,7 +320,7 @@
 					<span class="font-22"><?=t_year;?></span>
 				</td>
 				<td>	
-					<select class="form-control font-22" style="height: 35px;" id="year_select">
+					<select class="form-control font-22" style="height: 35px;border-radius: 25px;" id="year_select">
 		       	<?php 
 		       	$date = date('Y');
 		       	for($i=$date-1;$i<=$date+1;$i++){ 

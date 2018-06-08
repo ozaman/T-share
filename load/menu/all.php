@@ -334,8 +334,8 @@ $('#menu_chat_user').click(function(){
 		confirmButtonText: 'ใช่',
 		cancelButtonText: "ไม่ใช่",
 		closeOnConfirm: true,
-		closeOnCancel: true,
-		html: true
+		closeOnCancel: true
+		// html: true
 	},
 	function(isConfirm){
     if (isConfirm){

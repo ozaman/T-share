@@ -143,6 +143,7 @@
 </script>
 <div style="padding-bottom:30px;" >
 <form method="post"  id="edit_form" name="edit_form">
+
    <link rel="stylesheet" href="plugins/iCheck/square/green.css?v=<?=time();?>">
    <script src="plugins/iCheck/icheck.min.js?v=<?=time();?>"></script>
    <?
@@ -185,6 +186,30 @@
          date_default_timezone_set('UTC');
          // echo date('H:i:s');
          ?>
+                    <script> 
+   if (user_class == 'lab') {
+      $('#checkbookinglab').show();
+      // alert('in')
+
+   }
+   else{
+      $('#checkbookinglab').hide();
+   }
+</script>
+<div style="    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #Fff;
+    margin-bottom: 0px;
+    box-shadow: 0px 0px 5px #DADADA;
+    display: nones;
+    padding: 5px;
+    margin-top: 5px;"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="checkbookinglab" style="display: none;">
+   <tr>
+      <td><b class="font-28" style="color:#16B3B1">กรุณาเลือกคนขับรถ</b></td>
+   </tr>
+</table>
+</div>
       <div class="<?= $coldata?>" id="show_time_detail" style=" border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; display:nones;padding: 5px;margin-top: 5px;"  >
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
@@ -199,6 +224,7 @@
             </tbody>
          </table>
          <div>
+
             <table width="100%" border="0" cellspacing="1" cellpadding="1" style="margin-top:-10px;">
                <tbody>
                   <tr>
