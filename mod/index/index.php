@@ -673,7 +673,7 @@
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
-//         console.log(data.booking)
+console.log(data.booking)
 		 array_data = [];
 		 var done = [];       
 		 var none = [];       
@@ -786,7 +786,7 @@ else{
 socket.on('updatedriver', function (username, data) {
    
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-//console.log(username)
+console.log(username)
 var check_open = $('#check_open_shop_id').val();
 
 		if(check_open!=0){
@@ -840,7 +840,7 @@ function formatDate(date) {
             $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
                var url = "mod/shop/update_num_place.php?id=1&province=1&op=update";
                 $.post( url, function( data ) {
-                  console.log(data);
+                  // console.log(data);
                });  
           var num = 1;
           if(num<=0){
@@ -850,14 +850,14 @@ function formatDate(date) {
             if(num==1){
                 var id_place_one = 1;
                 $("#main_load_mod_popup" ).toggle();
-               var url_load = "load_page_mod.php?name=shop&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
+               var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
                console.log(url_load);
                $('#load_mod_popup').html(load_main_mod);
                $('#load_mod_popup').load(url_load); 
             }else{
                 console.log('1');
                 $("#main_load_mod_popup" ).show();
-                var url_load= "load_page_mod.php?name=shop&file=main&id=11&type=stop&province=1";
+                var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
                  $('#load_mod_popup').html(load_main_mod);
                  $('#load_mod_popup').load(url_load); 
             }

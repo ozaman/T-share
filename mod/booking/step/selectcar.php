@@ -56,7 +56,7 @@
    }
 </style>
 <input  name="all_car"  type="hidden" class="form-control"  id="all_car" value="<?=$all_car?>"   />
-<div  style="padding:5px;   border-radius: 5px; /*border: 1px solid #ddd;background-color:#F6F6F6;*/  margin-bottom: 0px; box-shadow: 0px  0px 0px #DADADA  ; margin-top: 15px;"  >
+<div  style=" border-radius: 5px; /*border: 1px solid #ddd;background-color:#F6F6F6;*/  margin-bottom: 0px; box-shadow: 0px  0px 0px #DADADA  ;"  >
    <div id="load_car_data_booking" style="display:none">
       <table width="100%" border="0" cellspacing="1" cellpadding="1">
          <tbody>
@@ -119,19 +119,20 @@
           $('#load_mod_popup_4').load(url_load_new_car_booking);
         });
    </script>
-   <div class="font-26" style="margin-top:10px;" >
+   <div class="font-26"  >
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
          <tbody>
             <tr>
                <td class="font-26">
+                <div class="font-28" style="color:<?=$main_color?>"><b><?=t_your_car_infor;?> </b></div>
                </td>
             </tr>
          </tbody>
       </table>
 
-                     <div class="font-28" style="color:<?=$main_color?>"><b><?=t_your_car_infor;?> </b></div>
+                     
                
-      </br>
+      
       <?
          /// $user_id=0;
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
@@ -204,7 +205,7 @@
       </script>
       <div style="border-radius: 6px;
          border: 0px solid #ddd;
-         background:<? echo $bgcolor; ?>; margin-bottom:5px; box-shadow: 0px  0px 5px #DADADA; margin-top:10px; margin-bottom:20px;"    >
+         background:<? echo $bgcolor; ?>; margin-bottom:5px; box-shadow: 0px  0px 5px #DADADA; "    >
          <table width="100%" border="0" cellspacing="2" cellpadding="2" style="display: none;">
             <tbody>
                <tr>
