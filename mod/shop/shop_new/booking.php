@@ -14,6 +14,12 @@
       $res[shopsub] = $db->select_query("SELECT * FROM shopping_product_main  WHERE id='".$arr[shop][main]."' ");
       $arr[shopsub] = $db->fetch($res[shopsub]);
       $arr[project][program] = $_GET[place];
+
+      //$all_car = $db->num_rows('web_carall',"id","drivername=".$user_id." and status=1");
+   
+      $res[car] = $db->select_query("SELECT * FROM   web_carall  where drivername='".$user_id."' and status=1 order by id desc  ");
+//   $res[contact_phone] = $db->select_query("SELECT * FROM  contact_phone WHERE company = '".$arr[product][admin_company]."' ");
+   $arr[car] = $db->fetch($res[car]);
       ?>
   
    <input name="program" type="hidden"  required="true" class="form-control" id="program" value="<?=$arr[shop][id]?>" >
@@ -28,7 +34,7 @@
         
         <div class="form-group">
           <label>เวลาถึงโดยประมาณ(นาที)</label>
-          <input type="text" class="form_input" id="time_num" name="time_num">
+          <input type="numbers" class="form_input" required="true" id="time_num" name="time_num">
         </div>
          <div class="" id="show_guest_detaila">
            <div class="form-group">
@@ -36,11 +42,11 @@
            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
             <tr>
                <td>
-                  <input  name="adult"  type="text" class="form_input" placeholder="ผู้ใหญ่" id="adult" >
+                  <input  name="adult" required="true"  type="numbers" class="form_input" placeholder="ผู้ใหญ่" id="adult" >
                </td>
                <td width="5"></td>
                <td>
-                   <input  name="child"  type="text" class="form_input" placeholder="เด็ก" id="child" >
+                   <input  name="child" required="true" type="numbers" class="form_input" placeholder="เด็ก" id="child" >
                </td>
             </tr>
          </table>
@@ -68,9 +74,15 @@
                </tr>
             </tbody>
          </table>
-         <div style="margin-top:-50px;" id="show_car_detail">
-            <?   include ("mod/booking/load/booking/car.php");   ?>
+         <div>
+            <!-- +"&car_color="+document.getElementById('car_color').value
+            +"car_plate="+document.getElementById('car_plate').value
+            +"&plan="+document.getElementById('plan_setting').value -->
+            <input type="" name="car_plate" required="true" value="<?= $res[car][plate_num]?>" type="text" class="form_input" placeholder="ป้ายทะเบียน">
          </div>
+         <!-- <div style="margin-top:-50px;" id="show_car_detail">
+            <?   //include ("mod/booking/load/booking/car.php");   ?>
+         </div> -->
          
       </div>
       <!-- BTN  -->	
