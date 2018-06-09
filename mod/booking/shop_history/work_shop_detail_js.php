@@ -295,7 +295,7 @@ function checkTypePay($id){
 	</div>
 	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
 	<div style="padding: 5px 0px;">
-		<span class="text-cap font-26"><?=t_check_in_information." แลป";?></span>
+		<span class="text-cap font-26"><?=t_check_in_information." พนักงาน";?></span>
 		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		  <tr id="step_guest_receive" style="display:nones">
 		      <td class="font-22">
@@ -331,7 +331,7 @@ function checkTypePay($id){
 	</div>
 	<div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
 	<div style="padding: 5px 0px;">
-		<span class="text-cap font-26"><?=t_check_in_information." แลป";?></span>
+		<span class="text-cap font-26"><?=t_check_in_information." พนักงาน";?></span>
 		<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		  <tr id="step_guest_receive" style="display:nones">
 		      <td class="font-22">
