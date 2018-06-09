@@ -293,14 +293,14 @@
       <div class="input-group date" style="padding:0px;">
          <input type="text" class="form-control pull-right" value="<?=date('Y-m-d');?>"  name="date_report" id="date_report"  readonly="true" style="    padding: 20px 20px;
     border-radius: 25px 0 0 25px;
-    border: 1px solid #3b5998;
+    border: 1px solid <?=$main_color;?>;
     border-right: none;
     background-color: #FFFFFF;
     font-size: 20px;
     z-index: 0;"  >               
          <div class="input-group-addon"  id="btn_calendar" style="    padding: 0 14px;
     border-radius: 0 25px 25px 0;
-    border: 1px solid #3b5998;
+    border: 1px solid <?=$main_color;?>;
     cursor: pointer;
     border-left: none;">
             <i class="fa fa-calendar" style="font-size:25px; " id="icon_calendar"></i> 

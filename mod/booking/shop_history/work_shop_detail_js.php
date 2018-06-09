@@ -92,10 +92,12 @@ function checkTypePay($id){
  }
 
  $main_color = "#3b5998";
- /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
- $res[book] = $db->select_query("SELECT * FROM  order_booking  where id = '".$_POST[id]."'  ");
- $arr[book] = $db->fetch($res[book]);  */
- $arr[book] = $_POST ;
+  $arr[book] = $_POST ;
+  
+ $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[plate] = $db->select_query("SELECT plate_num FROM  web_carall  where id = '".$arr[book][check_use_car_id]."'  ");
+ $arr[plate] = $db->fetch($res[plate]);  
+ 
  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[place_shop] = $db->select_query("SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ");
  $arr[place_shop] = $db->fetch($res[place_shop]);
@@ -260,7 +262,7 @@ function checkTypePay($id){
 		    </tr>
 		    <tr>
 		      <td   width="100"  class="font-22"><font color="#333333"><?=t_car_registration_number;?></font></td>
-		      <td colspan="3" class="font-22"><?=$arr[book][car_plate];?></td>
+		      <td colspan="3" class="font-22"><?=$arr[plate][plate_num];?></td>
 		    </tr>
 		     <tr>
 		      <td   width="100"  class="font-22"><font color="#333333"><?=t_call;?></font></td>
@@ -349,10 +351,8 @@ function checkTypePay($id){
 		 </table>
 	</div>
 	<? }
-	
 	?>
-	
-	
+
 	<div style="padding: 5px 0px;">
 	 <span class="text-cap font-26"><?=t_income;?></span>
 	 <table width="100%">
@@ -436,7 +436,14 @@ function checkTypePay($id){
 
 	function openViewPrice(){
 //		$( "#dialog_custom" ).show();
-	   	var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver&id=<?=$arr[book][id]?>";
+		var class_user = '<?=$data_user_class;?>';
+		console.log(class_user);
+		if(class_user=="lab"){
+			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_lab&id=<?=$arr[book][id]?>";
+		}else if(class_user=="taxi"){
+			var url_load= "empty_style.php?name=booking/shop_history/load&file=income_driver_taxi&id=<?=$arr[book][id]?>";
+		}
+	   	
 	   	console.log(url_load);
 	   	/*$('#body_dialog_custom_load').html("<br/><br/><br/><br/>");
 	  	$('#body_dialog_custom_load').load(url_load); */
