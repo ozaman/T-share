@@ -584,7 +584,14 @@
       $('#menu_add_new_booking_text_<? echo $arr[project][id];?>').click(function(){  
       $( "#alert_show_shopping_place" ).hide();
       $( "#main_load_mod_popup_3" ).toggle();
-      var url_load = "load_page_mod_3.php?name=booking/step&file=booking&driver=<?=$user_id?>&place=<? echo $arr[project][id];?>";
+      if (user_class == 'lab') {
+      var url_load = "load_page_mod_3.php?name=booking/step&file=booking_lab&driver=<?=$user_id?>&place=<? echo $arr[project][id];?>";
+
+      }
+      else{
+         var url_load = "load_page_mod_3.php?name=booking/step&file=booking&driver=<?=$user_id?>&place=<? echo $arr[project][id];?>";
+      }
+      
       $('#load_mod_popup_3').html(load_main_mod);
       ///  $( "#main_index_load_page" ).toggle();
       $('#load_mod_popup_3').load(url_load); 
