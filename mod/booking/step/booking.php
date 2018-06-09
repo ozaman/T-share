@@ -186,7 +186,7 @@
          date_default_timezone_set('UTC');
          // echo date('H:i:s');
          ?>
-    <!--                 <script> 
+                    <script> 
    if (user_class == 'lab') {
       $('#checkbookinglab').show();
       // alert('in')
@@ -196,7 +196,7 @@
       $('#checkbookinglab').hide();
    }
 </script>
- --><!-- <div id="checkbookinglab" style="    border-radius: 10px;
+<div id="checkbookinglab" style="    border-radius: 10px;
     border: 1px solid #ddd;
     background-color: #Fff;
     margin-bottom: 0px;
@@ -208,7 +208,7 @@
    <tr>
       <td><b class="font-28" style="color:#16B3B1">กรุณาเลือกคนขับรถ</b></td>
    </tr>
-</table> -->
+</table>
 </div>
       <div class="<?= $coldata?>" id="show_time_detail" style=" border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; display:nones;padding: 5px;margin-top: 5px;"  >
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
