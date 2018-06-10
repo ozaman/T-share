@@ -46,160 +46,179 @@
    	  }else{
    	  	$show_com_tr = "style='display:none;'";
    	  }
-         $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+         /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    					      	$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
    					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);
    					      	 echo $arr[price_person_cn][price_person_driver];
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    					      	$res[price_person_oth] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country=240   ORDER BY id  ");
    					      	$arr[price_person_oth] = $db->fetch($res[price_person_oth]);
-   					      	echo $arr[price_person_oth][price_person_driver];
+   					      	echo $arr[price_person_oth][price_person_driver];*/
    $arr[project] = $arr[book];
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
-   		$res[pay_row] = $db->select_query("SELECT last_update FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
+   			$res[pay_row] = $db->select_query("SELECT * FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
-     		$color_status = "#4CAF50";
-     		$txt_btn_action = "ยืนยันแล้ว";
-     		$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_row][last_update]).t_n." '  ,'success');";
-     		$show_el = "";
+     		if($arr[pay_park][driver_approve]>0){
+  			$color_menu = 'background-color:#59AA47;';
+			$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
+  			$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_park][driver_approve_pay_date]).'</span>';
+  			$btn_row_approve = 'display:none;';
+
+  			$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_park][last_update]).t_n." '  ,'success');";
+		}else{
+			$color_menu = 'background-color:#ecb304;';
+			$txt_pay = '<font style="color:#ecb304;">'.t_paid.'</font>';
+  			$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ecb304"></i> <strong><font color="#ecb304">'.t_please_check.'</font></strong></div>';
+  			$btn_row_approve = '';
+  			$alert_history = "swal('".t_no_history."','','error')";
+		}
      }	else{
-     		$color_status = $main_color;
-     		$txt_btn_action = "ยืนยันการจ่ายเงิน";
-     		$alert_history = "swal('".t_no_history."','','error')";
-     		$show_el = "display:none;";
+     		$color_menu = 'background-color:#f00000;';
+  		$txt_pay = '<font color="#f00000;">'.t_not_paid.'</font>';
+  		$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">'.t_pending.'</font></strong></div>';
+  		$btn_row_approve = 'display:none;';
+  		$alert_history = "swal('".t_no_history."','','error')";
      }
      $status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">'.t_pending.'</font></strong></div>';
    ?>
 <style>
+	
    .edit{
    margin-top: -5px;
+   border: 1px solid #9E9E9E !important;
    }
+   /* The container */
+.container-cb {
+    display: block;
+    position: relative;
+    padding-left: 0px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-cb input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	margin-top: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* On mouse-over, add a grey background color */
+.container-cb:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-cb input:checked ~ .checkmark {
+    background-color: #3b5998;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container-cb input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-cb .checkmark:after {
+    left: 8px;
+    top: 0px;
+    width: 9px;
+    height: 17px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 </style>
-<div style="/*padding: 5px 5px;*/ margin-top: 25px;">
+<div style="/*padding: 5px 5px;*/ margin-top: 40px;">
    <div style="padding: 15px 5px;">
-      <form method="post" id="form_save_pay">
-         <input type="hidden" name="order_id" value="<?=$arr[book][id];?>" />
-         <input type="hidden" name="invoice" value="<?=$arr[book][invoice];?>" />
-         <input type="hidden" name="plan" value="<?=$arr[book][plan_id];?>" />
-         <input type="hidden" name="cn" value="<?=$arr[price_person_cn][id];?>" />
-         <input type="hidden" name="oth" value="<?=$arr[price_person_oth][id];?>" />
-         <table width="100%" border="0" cellspacing="2" cellpadding="2">
-            <tr <?=$show_park_tr;?> >
-               <td colspan="2">
-                  <table width="100%" style="padding: 5px;">
-                     <tr>
-                        <td valign="middle"><span class="font-24">ค่าจอด</span></td>
-                        <td align="right"  valign="middle" >
-                        </td>
-                     </tr>
-                     <tr>
-                        <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
-                        <td align="right"  valign="middle" >
-                           <input type="hidden" value="<?=$arr[project][price_park_total];?>" id="park_price" name="park_price" />
-                           <span class="font-24" id="txt_park_price"><?= number_format($arr[project][price_park_total], 0 );?></span>
-                        </td>
-                        <td width="30">
-                           <button class="btn btn-xs edit" onclick="ChangePrice('park_price',1);" type="button">แก้ไข</button>
-                        </td>
-                     </tr>
-                  </table>
-               </td>
-            </tr>
-            <tr <?=$show_person_tr;?> >
-               <td colspan="2">
-                  <table width="100%" style="padding: 5px;">
-                     <tr>
-                        <td valign="middle"><span class="font-24">ค่าหัว</span></td>
-                        <td align="right"></td>
-                     </tr>
-                     <tr>
-                        <td valign="middle"><span class="font-24"><?=จำนวนแขก;?></span></td>
-                        <td align="right">
-                           <div>
-                              <span class="btn" onclick="minusPax('txt_pax');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                              <span class="font-24" id="txt_pax"><?=$arr[project][pax]?></span>
-                              <span  class="btn" onclick="pushPax('txt_pax');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                           </div>
-                           <input type="hidden" value="<?=$arr[project][pax]?>" id="pax" name="pax" />
-                        </td>
-                     </tr>
-                     <tr >
-                        <td valign="middle"><span class="font-24"><?=t_register;?></span></td>
-                        <td align="right" valign="middle" >
-                           <div>
-                              <span class="btn mr" onclick="minusRegis('txt_regis');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                              <span class="font-24" id="txt_regis" ><?=$arr[project][pax]?></span>
-                              <span  class="btn pr" onclick="pushRegis('txt_regis');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                           </div>
-                           <input id="regis_pax" value="<?=$arr[project][pax]?>" type="hidden" name="regis_pax"  />
-                        </td>
-                     </tr>
-                     <tr>
-                        <td valign="middle" colspan="2" >
-                           <table width="100%" style="padding-left: 0px;" border="0" cellspacing="0" cellpadding="0">
-                              <tr>
-                                 <td width="100">
-                                    <img src="images/flag/China.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
-                                    <span class="font-24" >จีน </span>
-                                 </td>
-                                 <td>
-                                    <span class="font-24" id="txt_price_person_cn"><?=$arr[price_person_cn][price_person_driver];?></span>
-                                    <input type="hidden" id="price_person_cn" value="<?=$arr[price_person_cn][price_person_driver];?>" name="price_person_cn" />
-                                    <button type="button" class="btn btn-xs edit" onclick="ChangePrice('price_person_cn',1);">แก้ไข</button>
-                                 </td>
-                                 <td align="right">
-                                    <div>
-                                       <span class="btn " onclick="minusNation('regis_cn_pax','cn');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                       <span class="font-24" id="regis_cn_pax"><?=$arr[project][pax]?></span>
-                                       <input type="hidden" id="regis_cn_pax_input" value="<?=$arr[project][pax]?>" name="regis_cn_pax_input" />
-                                       <span  class="btn " onclick="pushNation('regis_cn_pax','cn');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                    </div>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td width="100">
-                                    <img src="images/flag/Other.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
-                                    <span class="font-24" >ต่างชาติ</span>
-                                 </td>
-                                 <td>
-                                    <span class="font-24" id="txt_price_person_oth"><?=$arr[price_person_oth][price_person_driver];?></span>
-                                    <input type="hidden" id="price_person_oth" value="<?=$arr[price_person_oth][price_person_driver];?>" name="price_person_oth" />
-                                    <button type="button" class="btn btn-xs edit" onclick="ChangePrice('price_person_oth',1);">แก้ไข</button>
-                                 </td>
-                                 <td align="right">
-                                    <div>
-                                       <span class="btn " onclick="minusNation('regis_oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                       <span class="font-24" id="regis_oth_pax">0</span>
-                                       <input type="hidden" id="regis_oth_pax_input" value="0" name="regis_oth_pax_input" />
-                                       <span  class="btn " onclick="pushNation('regis_oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                    </div>
-                                 </td>
-                              </tr>
-                           </table>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td valign="middle" ><span class="font-24"><?=t_amount;?> </span></td>
-                        <td align="right" ><span class="font-24" id="txt_total_person">
-                           <?= number_format($arr[project][price_person_total], 0 );?>
-                           </span>
-                           <input type="hidden" value="<?=$arr[project][price_person_total];?>" id="total_person" name="total_person" />
-                           <button type="button" class="btn btn-xs btn-xs edit" onclick="ChangePrice('total_person',0);">แก้ไข</button>
-                        </td>
-                     </tr>
-                  </table>
-               </td>
-            </tr>
-            <tr <?=$show_com_tr;?> >
-               <td valign="middle">ค่าคอม</td>
-               <td></td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                  <table width="100%" style="padding: 5px;">
-                     <tr>
+      <div style="padding: 5px 15px">
+      	<table id="tb_park" border="0" cellspacing="2" cellpadding="2" width="100%">
+      		<tr>
+      			<td><label class="container-cb" >ค่าจอด</label></td>
+      			<td></td>
+      		</tr>
+      		<tr>
+		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
+			              <td align="right" valign="middle">
+			               <span class="font-24"><?= number_format($arr[project][price_park_total], 0 );?></span>
+			            </td>
+		      		</tr>
+      	</table>
+      	<?php 
+      	
+      		$json_nation_price = $arr[book][json_nation_price];
+     		$array_nation_price = json_decode($json_nation_price);
+/*     		echo print_r($array_nation_price);
+     		foreach ($array_nation_price as $val){
+				echo $val;
+			}*/
+     		/*$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
+   					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);*/
+      	?>
+      	<table id="tb_person" border="0" cellspacing="2" cellpadding="2" width="100%">
+      		<tr>
+      			<td><label class="container-cb" >ค่าหัว</label></td>
+      			<td></td>
+      		</tr>
+      		<tr>
+		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
+			              <td align="right" valign="middle">
+			               <span class="font-24"><?= number_format($arr[project][price_person_total], 0 );?></span>
+			            </td>
+		      		</tr>
+      	</table>
+      	
+      	<table id="tb_com" border="0" cellspacing="2" cellpadding="2" width="100%">
+      		<tr>
+      			<td><label class="container-cb" >ค่าคอม</label></td>
+      			<td></td>
+      		</tr>
+      		<tr>
+		      			 <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
+			              <td align="right" valign="middle">
+			                <input type="hidden" value="6" id="commission" name="commission">
+			                <span class="font-24" id="txt_commission">6</span>&nbsp;%
+			            </td>
+		      		</tr>
+		      		<tr>
+		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
+			              <td align="right" valign="middle">
+			               <div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF9800"></i> <strong><font color="#FF9800"><?=t_pending;?></font></strong></div>
+			            </td>
+		      		</tr>
+      	</table>
+
+		<table width="100%" cellspacing="2" cellpadding="2">
+			 <tr>
                         <td>
                            <span class="font-24">รวม</span>
                         </td>
@@ -207,33 +226,36 @@
                            <span class="font-24" id="txt_all_total">
                            <?= number_format($arr[project][price_all_total], 0 );?>
                            </span>
-                           <input type="hidden" value="<?=$arr[project][price_all_total];?>" id="all_total" name="all_total" />
-                           <button type="button" class="btn btn-xs" onclick="ChangePrice('all_total',0);">แก้ไข</button>
                         </td>
                      </tr>
-                  </table>
-               </td>
-            </tr>
-         </table>
-      </form>
-      <div style="padding: 5px 20px;display: none;" id="box_status_dv">
-         <table width="100%" style="border: 1px solid #ddd;padding: 10px;box-shadow: 1px 1px 3px #eee;">
+		</table>
+      </div>
+      
+      <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
+         <table width="100%" style="border: 1px solid #FF9800;padding: 10px;box-shadow: 1px 1px 3px #eee;">
          	<tr>
          		<td>
-         			<span class="font-24">สถานะคนขับ</span>
+         			<span class="font-24">สถานะการจ่ายเงิน</span>
          			
          		</td>
-         		<td align="right"><span class="font-24"><?=$status_icon;?></span></td>
+         		<td align="right"><span class="font-24"><?=$txt_pay;?></span></td>
          	</tr>
          </table>
       </div>
+      
       <table width="100%" border="0" cellspacing="2" cellpadding="2" style="padding: 0px 15px;">
          <tbody>
-            <tr id="show_person_his_<?=$arr[project][id]?>">
+         <tr  id="tr_btn_park_approve" style="<?=$btn_row_approve;?>">
+	          	<td colspan="2" >
+	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;backg;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[project][id]?>','<?=$arr[project][invoice]?>','<?=number_format($arr[project][price_park_total], 0 );?>','park');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
+	          	</td>
+	          	<td></td>
+          </tr>
+            <tr id="show_person_his">
                <td width="50%">
-                  <button type="button"  id="btn_doc" onclick=""  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
+                  <button type="button" onclick="ViewPhoto('<?=$arr[project][id]?>','doc_pay','<?=$arr[pay_row][last_update];?>',<?=$arr[project][plan_id]?>);" onclick=""  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
                   border:1px solid <?=$color_status;?>; background-color:#FFF;">
-                     <center><span class="font-22"><?=$txt_btn_action;?> 
+                     <center><span class="font-22"><?=t_documents;?> 
                         <img src="images/yes.png" align="absmiddle" id="iconchk_person" style="<?=$show_el;?>"></span>
                      </center>
                   </button>
@@ -244,6 +266,7 @@
                   </button>
                </td>
             </tr>
+            
          </tbody>
       </table>
    </div>

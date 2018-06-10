@@ -44,8 +44,15 @@
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
-   		$res[pay_row] = $db->select_query("SELECT last_update FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
+   		$res[pay_row] = $db->select_query("SELECT last_update,income_driver FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
+     		$json_price_plan = $arr[pay_row][income_driver];
+     		/*$array_price_plan = json_decode($json_price_plan);
+     		
+     		$check_park = $array_price_plan->check_park;
+     		$check_com = $array_price_plan->check_com;
+     		$check_person = $array_price_plan->check_person;*/
+     		
      		$color_status = "#4CAF50";
      		$txt_btn_action = "ยืนยันแล้ว";
      		$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_row][last_update]).t_n." '  ,'success');";
@@ -56,15 +63,17 @@
      		$alert_history = "swal('".t_no_history."','','error')";
      		$show_el = "display:none;";
      }
-     $status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">'.t_pending.'</font></strong></div>';
+     $status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF9800"></i> <strong><font color="#FF9800">'.t_pending.'</font></strong></div>';
      $park_price_default = $arr[project][price_park_total];
      if($arr[project][price_park_total]<=0){
 	 	$park_price_default = $arr[price_person_cn][price_park_driver];
 	 }
    ?>
 <style>
+	
    .edit{
    margin-top: -5px;
+   border: 1px solid #9E9E9E !important;
    }
    /* The container */
 .container-cb {
@@ -89,6 +98,7 @@
 
 /* Create a custom checkbox */
 .checkmark {
+	margin-top: 2px;
     position: absolute;
     top: 0;
     left: 0;
@@ -136,6 +146,9 @@
 </style>
 <div style="/*padding: 5px 5px;*/ margin-top: 25px;">
    <div style="padding: 15px 5px;">
+   <?php 
+   	
+   ?>
       <form method="post" id="form_save_pay">
          <input type="hidden" name="order_id" value="<?=$arr[book][id];?>" />
          <input type="hidden" name="invoice" value="<?=$arr[book][invoice];?>" />
@@ -173,7 +186,7 @@
                   <table width="100%" style="padding: 5px;display: none;" id="tb_person" cellspacing="2" cellpadding="2">
                      <tr>
                      	<td colspan="3">
-                     		<table width="100%">
+                     		<table width="100%" cellpadding="5">
                      			<tr>
                                  <td width="100">
                                     <img src="images/flag/China.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
@@ -251,6 +264,22 @@
                             </div>
                      	</td>
                      </tr>
+					 <tr>
+                        <td colspan="3">
+                        	<table width="100%">
+                        		<tr>
+			                        <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
+			                        <td align="right"  valign="middle" >
+			                           <input type="hidden" value="<?=$arr[project][price_person_total];?>" id="total_person" name="total_person" />
+			                           <span class="font-24" id="txt_total_person"><?= number_format($arr[project][price_person_total], 0 );?></span>
+			                        </td>
+			                        <td width="30" valign="middle">
+			                           <!--<button class="btn btn-xs edit" onclick="ChangePrice('total_person',1);" type="button">แก้ไข</button>-->
+			                        </td>
+			                     </tr>
+                        	</table>
+                        </td>
+                     </tr>
                   </table>
                </td>
             </tr>
@@ -266,7 +295,7 @@
 	                        <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
 	                        <td align="right" valign="middle">
 	                           <input type="hidden" value="6" id="commission" name="commission">
-	                           <span class="font-24" id="txt_commission">6%</span>
+	                           <span class="font-24" id="txt_commission">6</span>%
 	                        </td>
 	                        <td width="30">
 	                           <button class="btn btn-xs edit" onclick="ChangePrice('commission',0);" type="button">แก้ไข</button>
@@ -288,7 +317,7 @@
                            0
                            </span>
                            <input type="hidden" value="0" id="all_total" name="all_total" />
-                           <button type="button" class="btn btn-xs" onclick="ChangePrice('all_total',0);">แก้ไข</button>
+                           <button type="button" class="btn btn-xs edit" onclick="ChangePrice('all_total',0);">แก้ไข</button>
                         </td>
                      </tr>
                   </table>
@@ -297,8 +326,8 @@
          </table>
       </form>
       
-      <div style="padding: 5px 20px;display: none;" id="box_status_dv">
-         <table width="100%" style="border: 1px solid #ddd;padding: 10px;box-shadow: 1px 1px 3px #eee;">
+      <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
+         <table width="100%" style="border: 1px solid #FF9800;padding: 10px;box-shadow: 1px 1px 3px #eee;">
          	<tr>
          		<td>
          			<span class="font-24">สถานะคนขับ</span>
@@ -330,6 +359,20 @@
       </table>
    </div>
 </div>
+<script>
+	var json = '<?=$json_price_plan;?>';
+	if(json!=""){
+		var obj = JSON.parse(json);
+		console.log(obj);
+		$.each(obj, function( key, value ) {
+			if(value==1){
+				$('#'+key).click();
+			}
+		  	
+		});
+	}
+	
+</script>
 <script>
    function selectPay(id){
 //   		$( "#"+id ).prop( "checked", true );
@@ -370,7 +413,7 @@
    	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-//   				$('.button-close-popup-mod-3').click();
+   				$('.button-close-popup-mod-3').click();
    				
    				/*$('#btn_doc').css('border','1px solid #4CAF50');
    				$('#btn_his').css('border','1px solid #4CAF50');
@@ -379,6 +422,7 @@
    				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
    				 	console.log(re);
    				 });
+   				 
    			});
    	});
    }
@@ -403,6 +447,7 @@
    			});
    	});
    }
+
    function ChangePrice(id,cal){
    	var old_value = $('#'+id).val();
    		swal({
@@ -420,13 +465,19 @@
    //		    swal.showInputError("You need to write something!");
       return false
     }
+    console.log(inputValue+" : "+id);
     $('#'+id).val(inputValue);
     $('#txt_'+id).text(formatComma(inputValue));
-    if(cal==1){
-    	calculate();
-    }
+    	if(id=="total_person"){
+			calculateEditPerson();
+			return;
+		}
+	    if(cal==1){
+	    	calculate();
+	    }
    });
    }
+   
    function calculate(){
    		var check_park = $('#check_park').val();
    		var check_person = $('#check_person').val();
@@ -456,10 +507,41 @@
    		$('#txt_all_total').text(formatComma(total_all));
    		$('#all_total').val(total_all);
    }
+   
+   function calculateEditPerson(){
+   		var check_park = $('#check_park').val();
+   		var check_person = $('#check_person').val();
+   		var check_com = $('#check_com').val();
+   		var park_total = 0,total_person = 0;
+   		var price_unit_cn = 0,pax_cn = 0,price_unit_oth = 0,pax_oth = 0,total_cn = 0,total_oth = 0;
+   		var total_all = 0;
+   		
+   		 if(check_park>=1){
+			 park_total = $('#park_price').val();
+		 }
+   		 
+   	/*	 if(check_person>=1){
+		 	 price_unit_cn = $('#txt_price_person_cn').text();
+	   		 pax_cn = $('#regis_cn_pax').text();
+	   		 price_unit_oth = $('#txt_price_person_oth').text();
+	   		 pax_oth = $('#regis_oth_pax').text();
+	   		 total_cn = parseInt(price_unit_cn) * parseInt(pax_cn);
+	   		 total_oth = parseInt(price_unit_oth) * parseInt(pax_oth);
+	   		 console.log(total_cn+" "+total_oth)
+	   		 total_person = parseInt(total_cn) + parseInt(total_oth);
+		 }*/
+   		total_person = $('#total_person').val();
+   		/*$('#total_person').val(total_person)
+   		$('#txt_total_person').text(formatComma(total_person));*/
+   		 total_all = parseInt(park_total) + parseInt(total_person);
+   		$('#txt_all_total').text(formatComma(total_all));
+   		$('#all_total').val(total_all);
+   }
+   
    function formatComma(x){
    	  var parts = x.toString().split(".");
-   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-   return parts.join(".");
+   	  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
    }
 </script>
 <script>

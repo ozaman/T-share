@@ -164,7 +164,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data[income_driver] = json_encode($data_plan);
 	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-//	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
+	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
 	
 	$cn[id] =  $_POST[cn];
 	$cn[pax] =  $_POST[regis_cn_pax_input];
@@ -188,7 +188,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[driver_payment_date] = time();
 	$data_ob[json_nation_price] = json_encode($json_nation_price);
 	
-//	$data[result_ob] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
+	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
 	$return[his] = $data;
 	$return[book] = $data_ob;

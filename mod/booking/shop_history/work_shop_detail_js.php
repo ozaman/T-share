@@ -425,9 +425,14 @@ function checkTypePay($id){
  		$( "#main_load_mod_popup_clean" ).show();
  	});
 
-	function ViewPhoto(id,type,date){
+	function ViewPhoto(id,type,date,d){
 		console.log(id+" "+type+" "+date)
-		var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
+		if(type=="doc_pay"){
+			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date+'&plan='+d;
+		}
+		else{
+			var url = 'load_page_photo.php?name=booking/load/form&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
+		}
 		console.log(url);
 		$( "#load_mod_popup_photo" ).toggle();
 		$('#load_mod_popup_photo').html(load_main_mod);
