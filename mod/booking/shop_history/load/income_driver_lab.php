@@ -33,11 +33,11 @@
          $show_commision = $arr[price][price_commision];
          
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   					      	$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
+   					      	$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver,price_park_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
    					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);
    					      	 echo $arr[price_person_cn][price_person_driver];
    $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   					      	$res[price_person_oth] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country=240   ORDER BY id  ");
+   					      	$res[price_person_oth] = $db->select_query("SELECT country,id,price_person_driver,price_park_driver FROM  product_price_list_all where  plan_setting = 1 and country=240   ORDER BY id  ");
    					      	$arr[price_person_oth] = $db->fetch($res[price_person_oth]);
    					      	echo $arr[price_person_oth][price_person_driver];
    $arr[project] = $arr[book];
@@ -57,6 +57,10 @@
      		$show_el = "display:none;";
      }
      $status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">'.t_pending.'</font></strong></div>';
+     $park_price_default = $arr[project][price_park_total];
+     if($arr[project][price_park_total]<=0){
+	 	$park_price_default = $arr[price_person_cn][price_park_driver];
+	 }
    ?>
 <style>
    .edit{
@@ -150,8 +154,8 @@
                      <tr>
                         <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
                         <td align="right"  valign="middle" >
-                           <input type="hidden" value="<?=$arr[project][price_park_total];?>" id="park_price" name="park_price" />
-                           <span class="font-24" id="txt_park_price"><?= number_format($arr[project][price_park_total], 0 );?></span>
+                           <input type="hidden" value="<?=$park_price_default;?>" id="park_price" name="park_price" />
+                           <span class="font-24" id="txt_park_price"><?= number_format($park_price_default, 0 );?></span>
                         </td>
                         <td width="30">
                            <button class="btn btn-xs edit" onclick="ChangePrice('park_price',1);" type="button">แก้ไข</button>
@@ -256,7 +260,7 @@
 				  <input type="checkbox"  value="0" name="check_com" id="check_com" onclick="selectPay('com');" >
 				  <span class="checkmark"></span>
 				</label>
-				<table width="100%" id="tb_com" style="display: none;">
+				<table width="100%" id="tb_com" style="display: none;padding: 5px;">
                      <tbody>
 	                     <tr>
 	                        <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
@@ -346,7 +350,7 @@
     $('#remark'+num).attr('checked', true);
     $('#check_cause_'+id).val(num);
    }
-   function ApporvePayAdmin(id,invoice,price,type){
+   function ApporvePayAdmin(id,invoice,price,type,driver){
    console.log(id);
    if($('#check_img_'+type+'_'+id).val()==0){
    	swal ( "<?=t_error;?>" ,  "<?=t_upload_the_document_picture;?>" ,  "error" );
@@ -366,14 +370,14 @@
    	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   				$('.button-close-popup-mod-3').click();
+//   				$('.button-close-popup-mod-3').click();
    				
    				/*$('#btn_doc').css('border','1px solid #4CAF50');
    				$('#btn_his').css('border','1px solid #4CAF50');
    				$('#btn_his').attr('onclick',"swal('<?=t_history;?>' , '<?=t_pay_on;?> <?=date('Y-m-d H:i:s',time()).t_n;?> '  ,'success');");*/
    				openViewPrice();
-   				 $.post( "send_messages/send_pay_driver.php",$('#form_save_pay').serialize(),function( data ){
-   				 	
+   				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
+   				 	console.log(re);
    				 });
    			});
    	});
@@ -532,7 +536,7 @@
    }
    $('#btn_doc').click(function(){
    	 	$( "#main_load_mod_popup_3" ).toggle();
-   	 	var url_load= "load_page_mod_3.php?name=booking/shop_history/load&file=upload_pay_popup&id=<?=$arr[project][id]?>&plan=<?=$arr[book][plan_id];?>&invoice=<?=$arr[project][invoice]?>&check_confirm=<?=$check_pay;?>&price="+$('#all_total').val();
+   	 	var url_load= "load_page_mod_3.php?name=booking/shop_history/load&file=upload_pay_popup&id=<?=$arr[project][id]?>&plan=<?=$arr[book][plan_id];?>&invoice=<?=$arr[project][invoice]?>&check_confirm=<?=$check_pay;?>&price="+$('#all_total').val()+"&driver=<?=$arr[project][drivername]?>";
    	 	console.log(url_load);
    //		 	return;
    	 	$('#load_mod_popup_3').html(load_main_mod);

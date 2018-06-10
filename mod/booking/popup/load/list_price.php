@@ -313,7 +313,7 @@
                               </td>
                               <td width="70" align="center" valign="top" bgcolor="#C7EAFB" class="check_load_park_driver">
                                  <? if(0==1){?><strong> <?=t_driver;?> </strong>  <? } ?>
-                                 <div class="number_price font-22"><?= number_format($price_park_driver, 0 );?></div>
+                                 <div class="number_price font-22"><?= number_format($price_park_driver, 0 )."++";?></div>
                               </td>
                               <td width="70" align="center" valign="top" bgcolor="#C7EAFB" class="check_load_park_counter">
                                  <? if($park==1){?><strong> <?=t_counter;?> </strong><? } ?>

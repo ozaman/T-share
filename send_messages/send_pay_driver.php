@@ -1,33 +1,40 @@
 <?PHP
+require_once("../includes/class.mysql.php");
 function sendMessage() {
 	
-	if($_GET[key]=="new_shop"){
-		/*if($_POST[nickname]==""){
-			$txt_short = 'Taxi '.$_POST[driver];
-		}else{
-			$txt_short = 'คุณ '.$_POST[nickname];
-		}*/
-		$txt_short = 'ทะเบียน '.$_POST[car_plate];
+	$db = New DB();
+	define("DB_NAME_APP","admin_app");
+	define("DB_USERNAME","admin_MANbooking");
+	define("DB_PASSWORD","252631MANbooking");
+	$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+	$res[dv] = $db->select_query("SELECT username FROM web_driver  WHERE id='".$_GET[driver]."' ");
+	$arr[dv] = $db->fetch($res[dv]);
+	echo $arr[dv][username];
+	if($_GET[type]=="send_driver"){
+		
+		
+		 $txt_short = $_GET[iv]." : ";
 		 $content  = array(
-        "en" => $txt_short.' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ'
+        "en" => $txt_short.' พนักงานยืนยันการจ่ายเงินแล้ว กรุณาตรวจสอบ'
    		 );
-	}
-
-	else if($_GET[key]=="new_driver"){
-		 $content  = array(
-        "en" => 'มีคนขับรถสมัครสมาชิกเข้ามาใหม่'
-   		 );
-	}
-	
-    $fields = array(
+   		 $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => array(
-								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
+								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								),
 			'data' => array("foo" => "bar"),
 			'contents' => $content,
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
+	}
+
+	else if($_GET[key]=="lab"){
+		/* $content  = array(
+        "en" => 'มีคนขับรถสมัครสมาชิกเข้ามาใหม่'
+   		 );*/
+	}
+	
+    
     $response["param"] = $fields;
     $fields = json_encode($fields);
 

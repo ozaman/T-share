@@ -99,7 +99,7 @@ $arr[project][id]=$_GET[id];
            <button  id="btn_close_upload_pay_popup"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#FF0000;  border-radius: 20px; border:none "><span class="font-28"><center>ปิด</center></span></button>
            </td>
            <td align="center" style="<?=$none_btn_confirm;?>">
-          <button onclick="ApporvePayAdmin('<?=$_GET[id]?>','<?=$_GET[invoice];?>','<?=$_GET[price];?>','<?=$_GET[plan]?>');"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#59aa47;  border-radius: 20px; border:none; "><span class="font-28"><center>ยืนยัน</center></span></button>
+          <button onclick="ApporvePayAdmin('<?=$_GET[id]?>','<?=$_GET[invoice];?>','<?=$_GET[price];?>','<?=$_GET[plan]?>','<?=$_GET[driver];?>');"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:#59aa47;  border-radius: 20px; border:none; "><span class="font-28"><center>ยืนยัน</center></span></button>
           </td>
           </tr>
         </tbody>
