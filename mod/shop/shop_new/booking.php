@@ -25,6 +25,8 @@
      
       $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
             $arr[car_type] = $db->fetch($res[car_type]);
+            $res[cartype] = $db->select_query("SELECT * FROM ".TB_carall_type."");
+            // $arr[cartype] = $db->fetch($res[cartype]);
       ?>
   
    <input name="program" type="hidden"  required="true" class="form-control" id="program" value="<?=$arr[shop][id]?>" >
@@ -37,20 +39,114 @@
     margin-top: 8px;" id="selected_taxi">
     <div class="form-group">
           <label>ประเภทรถ</label>
-          <input type="text" class="form_input" required="true" id="car_type" name="car_type" value="<?= $arr[car_type][topic_th];?>">
+            <?
+            if (!$arr[car_type]) {
+               ?>
+               <select class="form-control"  name="car_type" id="car_type"  style="border-radius: 25px " >  
+        <option value="0"> กรุณาเลือกประเภทรถ</option>
+        <?
+
+                         
+                                    //$res[category] = $db->select_query("SELECT * FROM ".TB_transferplace." where pro < 4 and status = 1 ORDER BY topic ");
+                                  ///  $res[category] = $db->select_query("SELECT * FROM  guest_nation  ORDER BY id  ");
+                          
+                
+                       
+                                  while($arr[cartype] = $db->fetch($res[cartype])) {
+ 
+                                    echo "<option value=\"".$arr[cartype][topic_th]."\"";
+                                    // if($arr[category][id] == $arr[product][pickup_place]) {
+                                    //   echo " Selected";
+                                    // }
+                                    echo ">".$arr[cartype][topic_th]." </option>";
+                                  }
+                                  $db->closedb ();
+                                  ?>
+        
+      </select>
+            <?  
+            }
+            else{
+            ?>
+                   <select class="form-control"  name="car_type" id="car_type" onchange="selectdriss()" style="display:noneg;border-radius: 25px " >  
+        <option value="0"> กรุณาเลือกประเภทรถ</option>
+        <?
+
+                         
+                                    //$res[category] = $db->select_query("SELECT * FROM ".TB_transferplace." where pro < 4 and status = 1 ORDER BY topic ");
+                                  ///  $res[category] = $db->select_query("SELECT * FROM  guest_nation  ORDER BY id  ");
+                          
+                
+                       
+                                  while($arr[cartype] = $db->fetch($res[cartype])) {
+ 
+                                    echo "<option value=\"".$arr[cartype][topic_th]."\"";
+                                    if($arr[car_type][topic_th] == $arr[cartype][topic_th]) {
+                                      echo " Selected";
+                                    }
+                                    echo ">".$arr[cartype][topic_th]." </option>";
+                                  }
+                                  $db->closedb ();
+                                  ?>
+        
+      </select>
+            <?  
+            }
+            ?>
+            <!-- <input type="hidden" class="form_input" required="true" id="car_type" name="car_type" value=""> -->
+            
+
+         
+            
         </div>
          <div class="form-group">
             <label>ป้ายทะเบียนรถ</label>
+         <?
+          
+         ///$res[contact_phone] = $db->select_query("SELECT * FROM  contact_phone WHERE company = '".$arr[product][admin_company]."' ");
+            if (!$arr[car]) {
+              ?>
+              <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="<?=$arr[car][plate_num] ?>"    >
+              <? 
+            }
+         
+        
+        else{
+        
+         //// last id
+         $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+            $res[projectcarall] = $db->select_query("SELECT * FROM   web_carall  where drivername = '".$user_id."' and status=1 order by status_usecar desc  ");
+            ?>
+            <select class="form-control"  name="car_plate" id="car_plate"  style=" border-radius: 25px " > 
+                  <?
+         while($arr[projectcarall] = $db->fetch($res[projectcarall])){
+                  // echo $arr[projectcarall][plate_num];
+               
+               
+                           echo "<option value=\"".$arr[projectcarall][plate_num]."\"";
+                                    // if($arr[projectcar][topic_th] == $arr[cartype][topic_th]) {
+                                    //   echo " Selected";
+                                    // }
+                                    echo ">".$arr[projectcarall][plate_num]." </option>";
+                           }
+                                  $db->closedb ();
+                                  ?>
+                                  
+</select>
+         
+         <?
+        }
+        ?>
              <!-- <input type="" name="car_plate" required="true" value="<?=$arr[car][plate_num];?>" type="text" class="form_input" placeholder="ป้ายทะเบียน"> -->
             <!--  <input name="check_use_car_id" type="hidden"  required="true" class="form-control" id="check_use_car_id" style="padding:4px 2px;width:100%;"   value="<?=$arr[project][wait_status]?>"   > -->
-            <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="<?=$arr[car][plate_num] ?>"    >
+            
             <input name="car_color" type="hidden"   class="form-control" id="car_color" style="padding:4px 2px;width:100%;"   value="<?=$arr[car][car_color]?>"   >
          </div>
         
         
          
            <div class="form-group">
-          <label>จำณวนคน</label>
+          <label>จำนวนคน</label>
            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
             <tr>
                <td>
@@ -253,7 +349,7 @@ return $name_type;
                                          <table width="100%" border="0" cellspacing="1" cellpadding="1" >
                                              <tbody>
                                                 <tr>
-                                                   <td width="75"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_all;?></td>
+                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>  <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
@@ -357,8 +453,8 @@ return $name_type;
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
-                                                   <td width="75"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
-                                                   <span class="font-20">&nbsp;<?=t_all;?></span></td>
+                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
+                                                   <span class="font-20">ต่างชาติ</span></td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?>  <b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
                                                       <span style="display:none<?=$status_show_person?>"><?=t_person_fee;?>   <b><?=$arr[cost][price_person_driver]?></b>&nbsp;</span>
@@ -463,8 +559,8 @@ return $name_type;
                                           <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
-                                                   <td width="75">
-                                                   <img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;<?=t_all;?>
+                                                   <td width="80">
+                                                   <img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-20">&nbsp;ต่างชาติ</span>
                                                    </td>
                                                    <td>
                                                       <span style="display:none<?=$status_show_park?>"><?=t_parking_fee;?><b><?=$arr[cost][price_park_driver]?></b>&nbsp;</span>
@@ -552,20 +648,40 @@ return $name_type;
    	}
    }
    $("#submit_data_update").click(function(){
-   //  if(document.getElementById('airout_h').value =="" ) {
-   // alert('กรุณาเลือกชั่วโมง');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   //  if(document.getElementById('airout_m').value =="" ) {
-   //  alert('กรุณาเลือกนาที');
-   // document.getElementById('airout_h').focus() ;
-   //  return false ;	
-   // }
-   // 		if(document.getElementById('all_car').value < 1 ) {
-   // alert('กรุณาเลือกรถที่ใช้งาน');
-   //  return false ;	
-   // }
+      console.log($('#car_type').val())
+    if($('#car_type').val() == 0 ) {
+      swal("กรุณาเลือก !", "ประเภทรถ", "warning");
+   // alert('กรุณาเลือกประเภทรถ');
+   // $('#car_type').focus() ;
+    return false ;	
+   }
+   if($('#car_plate').val() =="" ) {
+      swal("กรุณาป้อน !", "ป้ายทะเบียนรถ", "warning");
+
+   
+   $('#car_plate').focus() ;
+    return false ;   
+   }
+    if($('#adult').val() =="" ) {
+      swal("กรุณาป้อน !", "จำนวนผู้ใหญ่", "warning");
+
+   
+   $('#adult').focus() ;
+    return false ;	
+   }
+   if($('#child').val() =="" ) {
+      swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
+
+   
+   $('#child').focus() ;
+    return false ;   
+   }
+   		if($('#time_num').val() == '' ) {
+      swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
+
+  
+    return false ;	
+   }
    			// if(document.getElementById('adult').value=="0" && document.getElementById('child').value=="0" ) {
    			// 	alert('กรุณาเลือกจำนวนผู้ใหญ่หรือเด็กอย่างน้อย 1 คน');
    			// 	document.getElementById('adult').focus() ;
@@ -616,7 +732,7 @@ return $name_type;
    						  closeOnConfirm: false
    						},
    						function(){
-                        console.log('<?=$user_id?>');
+                        // console.log('<?=$user_id?>');
                         $.post('go.php?name=shop/shop_new&file=save_data&action=add&type=driver&driver=<?=$user_id?>',$('#form_booking').serialize(),function(response){
                             console.log(response)
                $.post('go.php?name=send_messages/send_onesignal.php?key=new_shop',{ driver : "<?=$user_id?>" ,nickname : "<?=$arr[driver][nickname]?>",car_plate : place_num },function(data){
@@ -718,6 +834,21 @@ return $name_type;
     
 </script>            
 <script>
+   function selecttype(){
+      // $('#carlab').show();
+      console.log($('#selecttype').val())
+      // $('#car_type').val($('#selecttype').val())
+    //    var url_load = "load_page_mod_4.php?name=booking/step&file=selectcar&driver="+$('#selectdri').val();
+            
+           
+            
+    // $.post( url_load, function( data ) {
+    //          // $('#main_load_mod_popup').toggle();
+    //  $('#carlab').html(data);
+    //   });
+  
+
+}
    // startTime();
    // var clock ;
    // function startTime() {

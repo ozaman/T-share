@@ -249,6 +249,7 @@
      
       $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
             $arr[car_type] = $db->fetch($res[car_type]);
+            $res[cartype] = $db->select_query("SELECT * FROM ".TB_carall_type."");
       ?>
    <script>
       $(".text-topic-action-mod-3" ).html("<?=$arr[shop][$place_shopping]?>");
