@@ -4,6 +4,7 @@
 
    <?
       $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+       $all_car = $db->num_rows('web_carall',"id","drivername=".$user_id." and status=1");
       $res[driver] = $db->select_query("SELECT * FROM  web_driver where id = '".$user_id."' ");
                        
       $arr[driver] = $db->fetch($res[driver]);
@@ -17,9 +18,13 @@
 
       //$all_car = $db->num_rows('web_carall',"id","drivername=".$user_id." and status=1");
    
-      $res[car] = $db->select_query("SELECT * FROM   web_carall  where drivername='".$user_id."' and status=1 order by id desc  ");
+      $res[car] = $db->select_query("SELECT * FROM  web_carall  where drivername ='".$user_id."' and status=1 order by id desc  ");
+
 //   $res[contact_phone] = $db->select_query("SELECT * FROM  contact_phone WHERE company = '".$arr[product][admin_company]."' ");
-   $arr[car] = $db->fetch($res[car]);
+      $arr[car] = $db->fetch($res[car]);
+     
+      $res[car_type] = $db->select_query("SELECT * FROM ".TB_carall_type." WHERE id='".$arr[car][car_type]."' ");
+            $arr[car_type] = $db->fetch($res[car_type]);
       ?>
   
    <input name="program" type="hidden"  required="true" class="form-control" id="program" value="<?=$arr[shop][id]?>" >
@@ -30,13 +35,20 @@
     box-shadow: rgb(218, 218, 218) 0px 0px 5px;
     padding: 15px;
     margin-top: 8px;" id="selected_taxi">
-         
-        
-        <div class="form-group">
-          <label>เวลาถึงโดยประมาณ(นาที)</label>
-          <input type="numbers" class="form_input" required="true" id="time_num" name="time_num">
+    <div class="form-group">
+          <label>ประเภทรถ</label>
+          <input type="text" class="form_input" required="true" id="car_type" name="car_type" value="<?= $arr[car_type][topic_th];?>">
         </div>
-         <div class="" id="show_guest_detaila">
+         <div class="form-group">
+            <label>ป้ายทะเบียนรถ</label>
+             <!-- <input type="" name="car_plate" required="true" value="<?=$arr[car][plate_num];?>" type="text" class="form_input" placeholder="ป้ายทะเบียน"> -->
+            <!--  <input name="check_use_car_id" type="hidden"  required="true" class="form-control" id="check_use_car_id" style="padding:4px 2px;width:100%;"   value="<?=$arr[project][wait_status]?>"   > -->
+            <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="<?=$arr[car][plate_num] ?>"    >
+            <input name="car_color" type="hidden"   class="form-control" id="car_color" style="padding:4px 2px;width:100%;"   value="<?=$arr[car][car_color]?>"   >
+         </div>
+        
+        
+         
            <div class="form-group">
           <label>จำณวนคน</label>
            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
@@ -52,8 +64,13 @@
          </table>
          
         </div>
+        <div class="form-group">
+          <label>เวลาถึงโดยประมาณ(นาที)</label>
+          <input type="numbers" class="form_input" required="true" id="time_num" name="time_num">
+        </div>
             
-         </div>
+         
+         
        
     </div>
   
@@ -61,7 +78,7 @@
       <!-- DIV PAX -->
       
       <!-- DIV CAR -->	
-      <div class="<?= $coldata?>" id="show_transfer_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ;  ">
+      <!-- <div class="<?= $coldata?>" id="show_transfer_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ;  ">
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                <tr>
@@ -73,18 +90,18 @@
                   </td>
                </tr>
             </tbody>
-         </table>
-         <div>
+         </table> -->
+         <!-- <div> -->
             <!-- +"&car_color="+document.getElementById('car_color').value
             +"car_plate="+document.getElementById('car_plate').value
             +"&plan="+document.getElementById('plan_setting').value -->
-            <input type="" name="car_plate" required="true" value="<?= $res[car][plate_num]?>" type="text" class="form_input" placeholder="ป้ายทะเบียน">
-         </div>
+            <!-- <input type="" name="car_plate" required="true" value="<?=$arr[car][plate_num];?>" type="text" class="form_input" placeholder="ป้ายทะเบียน"> -->
+         <!-- </div> -->
          <!-- <div style="margin-top:-50px;" id="show_car_detail">
             <?   //include ("mod/booking/load/booking/car.php");   ?>
          </div> -->
          
-      </div>
+      <!-- </div> -->
       <!-- BTN  -->	
       <div id="testScroll">
         
@@ -572,7 +589,7 @@ return $name_type;
    			console.log("&adult="+document.getElementById('adult').value+
    			"&child="+document.getElementById('child').value
             +"&time="+document.getElementById('time_num').value
-            +"&check_use_car_id="+document.getElementById('check_use_car_id').value          
+            // +"&check_use_car_id="+document.getElementById('check_use_car_id').value          
             +"&car_color="+document.getElementById('car_color').value
             +"car_plate="+document.getElementById('car_plate').value
             +"&plan="+document.getElementById('plan_setting').value

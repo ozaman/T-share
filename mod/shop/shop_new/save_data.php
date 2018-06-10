@@ -108,7 +108,7 @@ if ($_GET[action] == 'add')
 		//
 		"product" => "$_POST[program]",
 		"program" => "$_POST[program]",
-		"transfer_date" => "$_POST[transfer_date_new]",
+		"transfer_date" => date('Y-m-d'),
 		"ondate" => "$_POST[transfer_date_new]",
 		"outdate" => "$_POST[transfer_date_new]",
 		"airout_h" => "00",
