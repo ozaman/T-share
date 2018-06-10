@@ -148,8 +148,23 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data[last_update] = time();
 	$data[posted] = $_COOKIE[app_remember_user];
 	
+	if($_POST[check_park]==NULL){
+		$_POST[check_park] = 0;
+	}
+	if($_POST[check_person]==NULL){
+		$_POST[check_person] = 0;
+	}
+	if($_POST[check_com]==NULL){
+		$_POST[check_com] = 0;
+	}
+	$data_plan[check_park] = $_POST[check_park];
+	$data_plan[check_person] = $_POST[check_person];
+	$data_plan[check_com] = $_POST[check_com];
+	
+	$data[income_driver] = json_encode($data_plan);
+	
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
+//	$data[result] = $db->add_db("pay_history_driver_shopping",$data); 
 	
 	$cn[id] =  $_POST[cn];
 	$cn[pax] =  $_POST[regis_cn_pax_input];
@@ -163,7 +178,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$json_nation_price[1] = $oth;
 	
 	$data_ob[driver_payment] = 1;
-	$data_ob[pax] = $_POST[pax];
+	$data_ob[pax] = intval($_POST[regis_cn_pax_input]) + intval($_POST[regis_oth_pax_input]);
 	
 	$data_ob[price_all_total] = $_POST[all_total];
 	$data_ob[price_park_unit] = $_POST[park_price];
@@ -173,19 +188,12 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[driver_payment_date] = time();
 	$data_ob[json_nation_price] = json_encode($json_nation_price);
 	
+//	$data[result_ob] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
+	$return[his] = $data;
+	$return[book] = $data_ob;
+	echo json_encode($return);
 	
-	$data[result_ob] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
-	
-	echo json_encode($data);
-	/*?>
-	<script>
-		$('#tr_btn_<?=$_POST[type];?>_pay_<?=$_POST[order_id];?>').hide();
-		$('#pay_<?=$_POST[type];?>_admin_<?=$_POST[order_id];?>').css('background-color','#59AA47');
-		$('#txt_pay_<?=$_POST[type];?>_<?=$_POST[order_id];?>').html('<font color="#59AA47;"><b>จ่ายแล้ว</b></font>');
-		$('#price_<?=$_POST[type];?>_time_payment_<?=$_POST[order_id];?>').html('<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;<?=date("H:i:s",time());?></span>');
-	</script>
-	<?*/
 }
 
 if($_GET[action]=='approve_pay_driver_taxi'){

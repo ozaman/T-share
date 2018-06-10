@@ -6,7 +6,7 @@
       <title>T Share</title>
 	  <?php 
 	  		include "css/color/taxi.php" ;	
-	       	include "css/maincss.php" ;	
+	       	//include "css/maincss.php" ;	
 	        
 	        $get_lng = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 		    $get_lng = $get_lng[0];

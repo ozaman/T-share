@@ -87,7 +87,7 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
  
 	
 <script>
- var detect_mb = "<?=$detectname;?>";
+/* var detect_mb = "<?=$detectname;?>";
  var class_user = "<?=$arr[admin][user_class];?>";
  var username = "<?=$arr[admin][username];?>";
  console.log(class_user+" "+username);
@@ -98,7 +98,7 @@ $_SESSION['data_user_class'] = $arr[admin][user_class] ;
  
  function showMessage(txt,username) {
 //                Android.showToast(txt,username);
-        }  
+        } */ 
 
  setTimeout(function(){ 
  

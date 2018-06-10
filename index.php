@@ -19,6 +19,25 @@ if ($_SESSION['data_user_id'] == '') {
     <?
 }
 ?>
+<script>
+ var detect_mb = "<?=$detectname;?>";
+ var class_user = "<?=$data_user_class;?>";
+ var username = "<?=$_SESSION['data_user_name'];?>";
+ console.log(detect_mb+" : "+class_user+" : "+username);
+ if(detect_mb == "Android"){
+ 	 showMessage(class_user,username);
+ }
+
+ 
+ function showMessage(txt,username) {
+ 				if (typeof Android !== 'undefined') {
+					Android.showToast(txt,username);
+//					alert(13);
+				}
+                
+        }  
+
+</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
     <head>
