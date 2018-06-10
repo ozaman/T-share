@@ -31,21 +31,7 @@
          $show_park = $arr[price][price_park];
          $show_person = $arr[price][price_person];
          $show_commision = $arr[price][price_commision];
-         if($show_park==1){
-   	  	$show_park_tr = "";
-   	  }else{
-   	  	$show_park_tr = "style='display:none;'";
-   	  }
-   	   if($show_person==1){
-   	  	$show_person_tr = "";
-   	  }else{
-   	  	$show_person_tr = "style='display:none;'";
-   	  }
-   	   if($show_commision==1){
-   	  	$show_com_tr = "";
-   	  }else{
-   	  	$show_com_tr = "style='display:none;'";
-   	  }
+         
          $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    					      	$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
    					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);
@@ -106,6 +92,7 @@
     width: 25px;
     background-color: #eee;
     border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 /* On mouse-over, add a grey background color */
@@ -132,8 +119,8 @@
 
 /* Style the checkmark/indicator */
 .container-cb .checkmark:after {
-    left: 9px;
-    top: 2px;
+    left: 8px;
+    top: 0px;
     width: 9px;
     height: 17px;
     border: solid white;
@@ -212,83 +199,6 @@
                      		</table>
                      	</td>
                      </tr>
-                    
-                     <!--<tr>
-                        <td valign="middle"><span class="font-24"><?=จำนวนแขก;?></span></td>
-                        <td align="right">
-                           <div>
-                              <span class="btn" onclick="minusPax('txt_pax');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                              <span class="font-24" id="txt_pax"><?=$arr[project][pax]?></span>
-                              <span  class="btn" onclick="pushPax('txt_pax');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                           </div>
-                           <input type="hidden" value="<?=$arr[project][pax]?>" id="pax" name="pax" />
-                        </td>
-                     </tr>
-                     <tr >
-                        <td valign="middle"><span class="font-24"><?=t_register;?></span></td>
-                        <td align="right" valign="middle" >
-                           <div>
-                              <span class="btn mr" onclick="minusRegis('txt_regis');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                              <span class="font-24" id="txt_regis" ><?=$arr[project][pax]?></span>
-                              <span  class="btn pr" onclick="pushRegis('txt_regis');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                           </div>
-                           <input id="regis_pax" value="<?=$arr[project][pax]?>" type="hidden" name="regis_pax"  />
-                        </td>
-                     </tr>
-                     <tr>
-                        <td valign="middle" colspan="2" >
-                           <table width="100%" style="padding-left: 0px;" border="0" cellspacing="0" cellpadding="0">
-                              <tr>
-                                 <td width="100">
-                                    <img src="images/flag/China.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
-                                    <span class="font-24" >จีน </span>
-                                 </td>
-                                 <td>
-                                    <span class="font-24" id="txt_price_person_cn"><?=$arr[price_person_cn][price_person_driver];?></span>
-                                    <input type="hidden" id="price_person_cn" value="<?=$arr[price_person_cn][price_person_driver];?>" name="price_person_cn" />
-                                    <button type="button" class="btn btn-xs edit" onclick="ChangePrice('price_person_cn',1);">แก้ไข</button>
-                                 </td>
-                                 <td align="right">
-                                    <div>
-                                       <span class="btn " onclick="minusNation('regis_cn_pax','cn');"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                       <span class="font-24" id="regis_cn_pax"><?=$arr[project][pax]?></span>
-                                       <input type="hidden" id="regis_cn_pax_input" value="<?=$arr[project][pax]?>" name="regis_cn_pax_input" />
-                                       <span  class="btn " onclick="pushNation('regis_cn_pax','cn');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                    </div>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td width="100">
-                                    <img src="images/flag/Other.png" width="25" height="" alt="" style="margin-top:-5px;margin-left: 0px;">
-                                    <span class="font-24" >ต่างชาติ</span>
-                                 </td>
-                                 <td>
-                                    <span class="font-24" id="txt_price_person_oth"><?=$arr[price_person_oth][price_person_driver];?></span>
-                                    <input type="hidden" id="price_person_oth" value="<?=$arr[price_person_oth][price_person_driver];?>" name="price_person_oth" />
-                                    <button type="button" class="btn btn-xs edit" onclick="ChangePrice('price_person_oth',1);">แก้ไข</button>
-                                 </td>
-                                 <td align="right">
-                                    <div>
-                                       <span class="btn " onclick="minusNation('regis_oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                       <span class="font-24" id="regis_oth_pax">0</span>
-                                       <input type="hidden" id="regis_oth_pax_input" value="0" name="regis_oth_pax_input" />
-                                       <span  class="btn " onclick="pushNation('regis_oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                    </div>
-                                 </td>
-                              </tr>
-   
-                           </table>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td valign="middle" ><span class="font-24"><?=t_amount;?> </span></td>
-                        <td align="right" ><span class="font-24" id="txt_total_person">
-                           <?= number_format($arr[project][price_person_total], 0 );?>
-                           </span>
-                           <input type="hidden" value="0" id="total_person" name="total_person" />
-                           <button type="button" class="btn btn-xs btn-xs edit" onclick="ChangePrice('total_person',0);">แก้ไข</button>
-                        </td>
-                     </tr>-->
                      <tr>
                               	<td></td>
                               	<td align="center"> 
@@ -311,17 +221,31 @@
                      	</td>
                      	<td align="center">
                      		<div>
+                                <span class="btn " onclick="minusNation('oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            	<span class="font-24" id="oth_pax">0</span>
+                                <input type="hidden" id="oth_pax_input" value="0" name="regis_oth_pax_input" />
+                                <span  class="btn " onclick="pushNation('oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            </div>
+                     	</td>
+                     </tr>
+                     <tr>
+                     	<td><span class="font-24">ลงทะเบียน</span></td>
+                     	<td align="center">
+                     		<div>
+                                <span class="btn " onclick="minusNation('cn_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            	<span class="font-24" id="cn_pax">0</span>
+                                <input type="hidden" id="cn_pax_input" value="0" name="regis_oth_pax_input" />
+                                <span  class="btn " onclick="pushNation('cn_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            </div>
+                     	</td>
+                     	<td align="center">
+                     		<div>
                                 <span class="btn " onclick="minusNation('regis_oth_pax','oth');" ><i class="fa fa-minus" aria-hidden="true"></i></span>
                             	<span class="font-24" id="regis_oth_pax">0</span>
                                 <input type="hidden" id="regis_oth_pax_input" value="0" name="regis_oth_pax_input" />
                                 <span  class="btn " onclick="pushNation('regis_oth_pax','oth');"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             </div>
                      	</td>
-                     </tr>
-                     <tr>
-                     	<td><span class="font-24">ลงทะเบียน</span></td>
-                     	<td align="center"><span class="font-24">0</span></td>
-                     	<td align="center"><span class="font-24">0</span></td>
                      </tr>
                   </table>
                </td>
@@ -332,8 +256,19 @@
 				  <input type="checkbox"  value="0" name="check_com" id="check_com" onclick="selectPay('com');" >
 				  <span class="checkmark"></span>
 				</label>
-				<table width="100%" id="tb_com">
-					
+				<table width="100%" id="tb_com" style="display: none;">
+                     <tbody>
+	                     <tr>
+	                        <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
+	                        <td align="right" valign="middle">
+	                           <input type="hidden" value="6" id="commission" name="commission">
+	                           <span class="font-24" id="txt_commission">6%</span>
+	                        </td>
+	                        <td width="30">
+	                           <button class="btn btn-xs edit" onclick="ChangePrice('commission',0);" type="button">แก้ไข</button>
+	                        </td>
+	                     </tr>
+                  	</tbody>
 				</table>
                </td>
             </tr>
@@ -563,6 +498,7 @@
    	calculate();
    }
    function pushNation(id,type){
+   
    	if(type=='oth'){
    		var any =  $('#regis_cn_pax').text();
    		var price_unit_nation = $('#txt_price_person_oth').text();
@@ -579,6 +515,9 @@
    		}
    	$('#'+id+'_input').val(current_num);
    	$('#'+id).text(current_num);
+   		if(id=="oth_pax" || id=="cn_pax"){
+			return;
+		}
    	calculate();
    }
    function minusNation(id,type){
