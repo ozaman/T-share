@@ -1,5 +1,5 @@
 <?
- ini_set('memory_limit', '128M');
+// ini_set('memory_limit', '512M');
  
  
 // 252631@MANbooking1+1
