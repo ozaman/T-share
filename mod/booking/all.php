@@ -402,7 +402,7 @@
 
    	if(type=='manage'){
 //   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
-   	 	var url = "go.php?name=booking/shop_history&file=test&find=day&day="+date+"&status=new&type=manage";
+   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
    	 	array_ma = obj.manage;
    	 	    
