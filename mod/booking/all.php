@@ -270,7 +270,6 @@
    }
 </style>
 
-
 <div  style="margin-top:40px;" id="main_component">
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.css?v=<?=time();?>" />
    <link rel="stylesheet" type="text/css" href="pickerdate/classic.date.css?v=<?=time();?>" />
@@ -391,24 +390,40 @@
    var date = $('#date_report').val();
 //   console.log($('#json_shop').val());
 //   var obj = JSON.parse($('#json_shop').val());
-  if(array_data.length==0){
+/*  if(array_data.length==0){
   	
   	setTimeout(function(){ 
   		filterMenu(type)
   		return;
   	 }, 2000);
 
-  }
+  }*/
     var obj = array_data;
+
    	if(type=='manage'){
-   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
+//   	 	var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
+   	 	var url = "go.php?name=booking/shop_history&file=test&find=day&day="+date+"&status=new&type=manage";
    	 	$('#date_filter').hide();
    	 	array_ma = obj.manage;
-   	 	$('#load_booking_data').html(load_main_icon_big);	
-
-			  $.post(url,{ data : array_ma},function(html){
-			  		$('#load_booking_data').html(html);
-			  });
+   	 	    
+   	 	$('#load_booking_data').html(load_main_icon_big);
+   	 	var pass = { data : array_ma};	
+   	 	console.log(pass);
+			/*	var pass = { data : array_ma};
+			  $.post(url,pass,function(html){
+			  	console.log(pass);
+//			  		console.log(html)
+//			  		$('#load_booking_data').html(html);
+			  });*/
+			$.ajax({
+			  url: url,
+			  data: pass,
+			  type: 'post',
+			  success: function(data) {
+//			  	console.log(data);
+			    $('#load_booking_data').html(data);
+			  }
+			});  
    	}
    	else if(type=='his'){
    		$('#date_filter').show();

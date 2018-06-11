@@ -122,11 +122,15 @@
 		var d1 = "<?=date('Y/m/d H:m:s',$val[post_date]);?>";
 //		console.log(d1);
 		var d2 = js_yyyy_mm_dd_hh_mm_ss();
-//		console.log(d1+" = "+d2);
+		console.log("<?=$val[invoice];?> : "+d1+" = "+d2);
 		$('#txt_date_diff_<?=$val[id];?>').text(CheckTime(d1,d2));
-//		console.log(formatDate('<?=$val[transfer_date];?>'));
+		console.log(formatDate('<?=$val[transfer_date];?>'));
 
-		$('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
+//		$('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
 	</script>
 <?  	
 		} ?>
+<script>
+	var obj = JSON.parse('<?=json_encode($_POST[data]);?>');
+	console.log(obj);
+</script>
