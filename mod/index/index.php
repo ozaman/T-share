@@ -670,7 +670,7 @@
 	var user_class = "<?=$data_user_class;?>";
 	var frist_socket = true;
 		socket.on('getbookinglab', function (data) { 
-// console.log(data.booking)
+ //console.log(data.booking)
 		 array_data = [];
 		 var done = [];       
 		 var none = [];       
