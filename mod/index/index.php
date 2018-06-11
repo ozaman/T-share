@@ -201,16 +201,7 @@
             </button>
          </center>
          </td>
-         <!-- <td width="50%" align="center" class="">
-            <center>
-            <button type="button" class="btn btn-default paddling-max"  id="index_menu_shopping" style="width:100%;">
-               <center>
-                  <div  class="circle-menu" style="background-color:#34A0E7"><i class="icon-new-uniF14D"  ></i></div>
-                  <span style="padding-bottom:20px;" class="font-20 text-cap"><? echo t_send_to_customer?></span>
-               </center>
-            </button>
-			</center>
-         </td> -->
+         
          <td align="center" class="">
           <input id="check_open_workshop" value="0" type="hidden"/>
             <span id="number_shop" class="badge font-20" style="position: absolute;font-size: 14px;background-color: #F44336;padding: 4px 7px;margin: 12px 4px;">0</span>
@@ -316,9 +307,9 @@
          </td>
          
       </tr>
-      <tr style="display: none;">
+      <tr style="display: nones;">
          <td colspan="2" width="50%" align="center" class="">
-            <a href="https://www.welovetaxi.com:8080/">
+            <a onclick="checkSocket();">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" ></i></div>
@@ -874,5 +865,11 @@ function formatDate(date) {
             }
           }
          });
+         
+         function checkSocket(){
+         	console.log('Click');
+		 	var message = "";
+				socket.emit('sendchat', message);
+		 }
       </script>
 
