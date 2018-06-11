@@ -611,7 +611,7 @@
    		console.log('OVER_QUERY_LIMIT');
    	}else{
    		console.log(data.results);
-      		console.log(data.results.length-2);
+      	console.log(data.results.length-2);
    		console.log(data.results[data.results.length-2].address_components[0].long_name);
    		var province = data.results[data.results.length-2].address_components[0].long_name;
    		 $('#province_text').text(province);
@@ -731,7 +731,6 @@
 				filterMenu('manage');
 				shop_frist_run = done.length;
 			}
-			
 		}
     	
       });
@@ -756,6 +755,7 @@ console.log(username)
 console.log(data)
 //console.log(data[0].id);
 var check_open = $('#check_open_shop_id').val();
+
 if(check_open!=0){
 	
 	$.each(data, function( index, value ) {
@@ -777,6 +777,11 @@ if(check_open!=0){
 		   if(value.check_driver_pay_report==1){
 		      console.log("driver_pay_report");
 		      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
+		   }
+		   var check_open_incom = $('#check_id_income_lab').val();
+		   if (typeof check_open_incom != 'undefined'){
+		   		console.log(check_open_incom);
+		   		
 		   }
 		}
 	 	

@@ -28,10 +28,23 @@ function sendMessage() {
 		);
 	}
 
-	else if($_GET[key]=="lab"){
-		/* $content  = array(
-        "en" => 'มีคนขับรถสมัครสมาชิกเข้ามาใหม่'
-   		 );*/
+	else if($_GET[type]=="send_lab"){
+		 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+		 $res[ob] = $db->select_query("SELECT car_plate,invoice FROM order_booking  WHERE id='".$_GET[order_id]."' ");
+		 $arr[ob] = $db->fetch($res[ob]);
+		 $txt_short = $_GET[iv]." : ทะเบียน ".$arr[ob][car_plate];
+		 $content  = array(
+        "en" => $txt_short.' กรุณาตรวจสอบ'
+   		 );
+   		 $fields = array(
+			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
+			'filters' => array(
+								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
+								),
+			'data' => array("foo" => "bar"),
+			'contents' => $content,
+			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
+		);
 	}
 	
     

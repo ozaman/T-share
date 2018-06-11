@@ -44,7 +44,7 @@
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
-   		$res[pay_row] = $db->select_query("SELECT last_update,income_driver FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
+   		$res[pay_row] = $db->select_query("SELECT * FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
      		$json_price_plan = $arr[pay_row][income_driver];
      		/*$array_price_plan = json_decode($json_price_plan);
@@ -57,13 +57,19 @@
      		$txt_btn_action = "ยืนยันแล้ว";
      		$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_row][last_update]).t_n." '  ,'success');";
      		$show_el = "";
+     		if($arr[pay_row][driver_approve]>0){
+				$status_icon = '<font color="#4CAF50">ยืนยันการรับเงินแล้ว</font>';
+			}else{
+				$status_icon = '<font style="color:#ecb304;">'.'คนขับยังไม่กดรับเงิน'.'</font>';
+			}
      }	else{
      		$color_status = $main_color;
      		$txt_btn_action = "ยืนยันการจ่ายเงิน";
      		$alert_history = "swal('".t_no_history."','','error')";
      		$show_el = "display:none;";
+     		$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF9800"></i> <strong><font color="#FF9800">'.t_pending.'</font></strong></div>';
      }
-     $status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF9800"></i> <strong><font color="#FF9800">'.t_pending.'</font></strong></div>';
+    
      $park_price_default = $arr[project][price_park_total];
      if($arr[project][price_park_total]<=0){
 	 	$park_price_default = $arr[price_person_cn][price_park_driver];
@@ -162,7 +168,7 @@
 				  <input type="checkbox" value="0" name="check_park" id="check_park" onclick="selectPay('park');">
 				  <span class="checkmark"></span>
 				</label>
-                  <table width="100%" style="padding: 5px;display: none;" id="tb_park">
+                  <table width="100%" style="padding: 5px;display: none;" id="check_park_tb">
                      
                      <tr>
                         <td valign="middle"><span class="font-24">จำนวนเงิน</span></td>
@@ -183,7 +189,7 @@
 				  <input type="checkbox"  value="0" name="check_person" id="check_person" onclick="selectPay('person');" >
 				  <span class="checkmark"></span>
 				</label>
-                  <table width="100%" style="padding: 5px;display: none;" id="tb_person" cellspacing="2" cellpadding="2">
+                  <table width="100%" style="padding: 5px;display: none;" id="check_person_tb" cellspacing="2" cellpadding="2">
                      <tr>
                      	<td colspan="3">
                      		<table width="100%" cellpadding="5">
@@ -289,7 +295,7 @@
 				  <input type="checkbox"  value="0" name="check_com" id="check_com" onclick="selectPay('com');" >
 				  <span class="checkmark"></span>
 				</label>
-				<table width="100%" id="tb_com" style="display: none;padding: 5px;">
+				<table width="100%" id="check_com_tb" style="display: none;padding: 5px;">
                      <tbody>
 	                     <tr>
 	                        <td valign="middle"><span class="font-24">เปอร์เซ็น</span></td>
@@ -327,7 +333,7 @@
       </form>
       
       <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
-         <table width="100%" style="border: 1px solid #FF9800;padding: 10px;box-shadow: 1px 1px 3px #eee;">
+         <table width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
          	<tr>
          		<td>
          			<span class="font-24">สถานะคนขับ</span>
@@ -359,6 +365,7 @@
       </table>
    </div>
 </div>
+<input type="hidden" value="<?=$_GET[id];?>" id="check_id_income_lab" />
 <script>
 	var json = '<?=$json_price_plan;?>';
 	if(json!=""){
@@ -367,6 +374,7 @@
 		$.each(obj, function( key, value ) {
 			if(value==1){
 				$('#'+key).click();
+				$('#'+key+'_tb').show();
 			}
 		  	
 		});
@@ -410,43 +418,23 @@
    		closeOnCancel: true
    	},
    	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
+   	/* $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
    				$('.button-close-popup-mod-3').click();
    				
-   				/*$('#btn_doc').css('border','1px solid #4CAF50');
-   				$('#btn_his').css('border','1px solid #4CAF50');
-   				$('#btn_his').attr('onclick',"swal('<?=t_history;?>' , '<?=t_pay_on;?> <?=date('Y-m-d H:i:s',time()).t_n;?> '  ,'success');");*/
+   				
    				openViewPrice();
    				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
    				 	console.log(re);
    				 });
    				 
-   			});
+   			});*/
+   			var message = "";
+				socket.emit('sendchat', message);
    	});
    }
-   function ApporvePayDriver(id,invoice,price,type){
-   console.log(id);
-   	swal({
-   		title: "<?=t_are_you_sure;?>",
-   		text: "<?=t_already_received;?>",
-   		type: "warning",
-   		showCancelButton: true,
-   		confirmButtonText: '<?=t_yes;?>',
-   		cancelButtonText: "<?=t_no;?>",
-   		closeOnConfirm: false,
-   		closeOnCancel: true
-   	},
-   	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",$('#form_save_pay').serialize() ,function( data ) 		{
-   						console.log(data);
-   //   				$('#html_work_action').html(data);
-   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   			  	filterMenu("manage");
-   			});
-   	});
-   }
+   
 
    function ChangePrice(id,cal){
    	var old_value = $('#'+id).val();

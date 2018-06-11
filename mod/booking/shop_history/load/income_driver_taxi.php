@@ -26,56 +26,47 @@
     $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
     $res[book] = $db->select_query("SELECT * FROM  order_booking  where id = '".$_GET[id]."'  ");
     $arr[book] = $db->fetch($res[book]); 
-     $res[price] = $db->select_query("SELECT * FROM plan_product_price_name where  id=".$arr[book][plan_id]."   ");
+     /*$res[price] = $db->select_query("SELECT * FROM plan_product_price_name where  id=".$arr[book][plan_id]."   ");
          $arr[price] = $db->fetch($res[price]);
          $show_park = $arr[price][price_park];
          $show_person = $arr[price][price_person];
-         $show_commision = $arr[price][price_commision];
-         if($show_park==1){
-   	  	$show_park_tr = "";
-   	  }else{
-   	  	$show_park_tr = "style='display:none;'";
-   	  }
-   	   if($show_person==1){
-   	  	$show_person_tr = "";
-   	  }else{
-   	  	$show_person_tr = "style='display:none;'";
-   	  }
-   	   if($show_commision==1){
-   	  	$show_com_tr = "";
-   	  }else{
-   	  	$show_com_tr = "style='display:none;'";
-   	  }
-         /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   					      	$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
-   					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);
-   					      	 echo $arr[price_person_cn][price_person_driver];
-   $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-   					      	$res[price_person_oth] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country=240   ORDER BY id  ");
-   					      	$arr[price_person_oth] = $db->fetch($res[price_person_oth]);
-   					      	echo $arr[price_person_oth][price_person_driver];*/
+         $show_commision = $arr[price][price_commision];*/
+	
+         
    $arr[project] = $arr[book];
    $db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
    $check_pay = $db->num_rows("pay_history_driver_shopping","id","order_id=".$arr[project][id]." and status = 1"); 
    if($check_pay>0){
+   			$txt_pay_park = '<span class="font-24">'.number_format($arr[project][price_park_total], 0 ).'</span>';
+     		$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
+     		$txt_pay_person = '<span class="font-24">'.number_format($arr[project][price_person_total], 0 ).'</span>';
+     		$txt_pay_all = '<span class="font-24" id="txt_all_total">'.number_format($arr[project][price_all_total], 0 ).'</span>';
+     		
+   			$hide_his_btn = "";
+   			$color_status;
    			$res[pay_row] = $db->select_query("SELECT * FROM pay_history_driver_shopping where  order_id=".$arr[project][id]." and status = 1  ");
      		$arr[pay_row] = $db->fetch($res[pay_row]);
-     		if($arr[pay_park][driver_approve]>0){
-  			$color_menu = 'background-color:#59AA47;';
-			$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
-  			$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_park][driver_approve_pay_date]).'</span>';
-  			$btn_row_approve = 'display:none;';
-
-  			$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_park][last_update]).t_n." '  ,'success');";
-		}else{
-			$color_menu = 'background-color:#ecb304;';
-			$txt_pay = '<font style="color:#ecb304;">'.t_paid.'</font>';
-  			$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ecb304"></i> <strong><font color="#ecb304">'.t_please_check.'</font></strong></div>';
-  			$btn_row_approve = '';
-  			$alert_history = "swal('".t_no_history."','','error')";
-		}
+     		$json_price_plan = $arr[pay_row][income_driver];
+     		if($arr[pay_row][driver_approve]>0){
+	  			$color_menu = 'background-color:#59AA47;';
+				$txt_pay = '<font color="#59AA47;">'.t_already_received.'</font>';
+	  			$status_icon = '<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;'.date('H:i:s', $arr[pay_row][driver_approve_pay_date]).'</span>';
+	  			$btn_row_approve = 'display:none;';
+	  			$alert_history = "swal('".t_history."' , '".t_pay_on." ".date('Y-m-d H:i:s',$arr[pay_row][last_update]).t_n." '  ,'success');";
+			}else{
+				$color_menu = 'background-color:#ecb304;';
+				$txt_pay = '<font style="color:#ecb304;">'.t_paid.'</font>';
+	  			$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ecb304"></i> <strong><font color="#ecb304">'.t_please_check.'</font></strong></div>';
+	  			$btn_row_approve = '';
+	  			$alert_history = "swal('".t_no_history."','','error')";
+			}
      }	else{
+     		$hide_his_btn = "display:none;";
      		$color_menu = 'background-color:#f00000;';
+     		$txt_pay_park = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
+     		$txt_pay_com = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
+     		$txt_pay_person = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
+     		$txt_pay_all = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#f00000;"></i><strong style="padding-left: 5px;"><font color="#f00000">'.t_pending.'</font></strong>';
   		$txt_pay = '<font color="#f00000;">'.t_not_paid.'</font>';
   		$status_icon = '<div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">'.t_pending.'</font></strong></div>';
   		$btn_row_approve = 'display:none;';
@@ -161,7 +152,7 @@
 <div style="/*padding: 5px 5px;*/ margin-top: 40px;">
    <div style="padding: 15px 5px;">
       <div style="padding: 5px 15px">
-      	<table id="tb_park" border="0" cellspacing="2" cellpadding="2" width="100%">
+      	<table id="check_park_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าจอด</label></td>
       			<td></td>
@@ -169,22 +160,13 @@
       		<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
 			              <td align="right" valign="middle">
-			               <span class="font-24"><?= number_format($arr[project][price_park_total], 0 );?></span>
+			               <span class="font-24"></span>
+			               <?=$txt_pay_park;?>
 			            </td>
 		      		</tr>
       	</table>
-      	<?php 
-      	
-      		$json_nation_price = $arr[book][json_nation_price];
-     		$array_nation_price = json_decode($json_nation_price);
-/*     		echo print_r($array_nation_price);
-     		foreach ($array_nation_price as $val){
-				echo $val;
-			}*/
-     		/*$res[price_person_cn] = $db->select_query("SELECT country,id,price_person_driver FROM  product_price_list_all where  plan_setting = 1 and country<>240 and status=1 and extra_country=1   ORDER BY  sort_country desc limit 1   ");
-   					      	$arr[price_person_cn] = $db->fetch($res[price_person_cn]);*/
-      	?>
-      	<table id="tb_person" border="0" cellspacing="2" cellpadding="2" width="100%">
+
+      	<table id="check_person_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าหัว</label></td>
       			<td></td>
@@ -192,12 +174,13 @@
       		<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
 			              <td align="right" valign="middle">
-			               <span class="font-24"><?= number_format($arr[project][price_person_total], 0 );?></span>
+			               
+			               <?=$txt_pay_person;?>
 			            </td>
 		      		</tr>
       	</table>
       	
-      	<table id="tb_com" border="0" cellspacing="2" cellpadding="2" width="100%">
+      	<table id="check_com_tb" border="0" cellspacing="2" cellpadding="2" width="100%">
       		<tr>
       			<td><label class="container-cb" >ค่าคอม</label></td>
       			<td></td>
@@ -212,27 +195,27 @@
 		      		<tr>
 		      			 <td valign="middle"><span class="font-24">จำนวน</span></td>
 			              <td align="right" valign="middle">
-			               <div class="font-22"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF9800"></i> <strong><font color="#FF9800"><?=t_pending;?></font></strong></div>
+			               <div class="font-22">
+			               <?=$txt_pay_com;?>
+			               </div>
 			            </td>
 		      		</tr>
       	</table>
 
-		<table width="100%" cellspacing="2" cellpadding="2">
+		<table width="100%" cellspacing="2" cellpadding="2" style="margin-top: 10px;">
 			 <tr>
                         <td>
                            <span class="font-24">รวม</span>
                         </td>
                         <td align="right" >
-                           <span class="font-24" id="txt_all_total">
-                           <?= number_format($arr[project][price_all_total], 0 );?>
-                           </span>
+                           <?=$txt_pay_all;?>
                         </td>
                      </tr>
 		</table>
       </div>
       
       <div style="padding: 5px 20px;<?=$show_el;?>" id="box_status_dv">
-         <table width="100%" style="border: 1px solid #FF9800;padding: 10px;box-shadow: 1px 1px 3px #eee;">
+         <table width="100%" style="padding: 10px;box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;">
          	<tr>
          		<td>
          			<span class="font-24">สถานะการจ่ายเงิน</span>
@@ -247,21 +230,22 @@
          <tbody>
          <tr  id="tr_btn_park_approve" style="<?=$btn_row_approve;?>">
 	          	<td colspan="2" >
-	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;backg;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[project][id]?>','<?=$arr[project][invoice]?>','<?=number_format($arr[project][price_park_total], 0 );?>','park');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
+	          	<button  id="btn_com_his_<?=$arr[project][id]?>"  type="button" class="btn btn-default"  
+	          	style="width:100%;text-align:left;padding: 7px;border-radius: 3px;border:none;background-color: #ecb304;color: #fff;" onclick="ApporvePayDriver('<?=$arr[pay_row][order_id]?>','<?=$arr[pay_row][invoice];?>');" ><center><strong class="font-22"><i class="fa fa-money" style="width: 24px; color:fff"  ></i><?=t_confirm_or_receipt;?></strong></center></button>
 	          	</td>
 	          	<td></td>
           </tr>
-            <tr id="show_person_his">
+            <tr id="show_person_his" style="<?=$hide_his_btn;?>">
                <td width="50%">
                   <button type="button" onclick="ViewPhoto('<?=$arr[project][id]?>','doc_pay','<?=$arr[pay_row][last_update];?>',<?=$arr[project][plan_id]?>);" onclick=""  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px;  border-radius: 3px; 
-                  border:1px solid <?=$color_status;?>; background-color:#FFF;">
+                 box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd; background-color:#FFF;">
                      <center><span class="font-22"><?=t_documents;?> 
                         <img src="images/yes.png" align="absmiddle" id="iconchk_person" style="<?=$show_el;?>"></span>
                      </center>
                   </button>
                </td>
                <td width="50%">
-                  <button type="button" onclick="<?=$alert_history;?>"  id="btn_his"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px; border-radius: 3px; border:1px solid <?=$color_status;?>;background-color:#FFF; ">
+                  <button type="button" onclick="<?=$alert_history;?>"  id="btn_his"  type="button" class="btn btn-default"  style="width:100%;text-align:left;padding:10px; border-radius: 3px; box-shadow: 1px 1px 3px #9E9E9E;border: 1px solid #ddd;background-color:#FFF; ">
                      <center><span class="font-22"><i class="fa fa-history" style="width: 24px; color:<?=$color_status;?>"  ></i><?=t_history;?></span></center>
                   </button>
                </td>
@@ -272,41 +256,28 @@
    </div>
 </div>
 <script>
+	var json = '<?=$json_price_plan;?>';
+	if(json!=""){
+		var obj = JSON.parse(json);
+		console.log(obj);
+		$.each(obj, function( key, value ) {
+			if(value==0){
+				$('#'+key+'_tb').hide();
+			}
+		  	
+		});
+	}
+	
+</script>
+<script>
    function check(id,num){
     console.log(id);	
     $('.cause_'+id).attr('checked', false);
     $('#remark'+num).attr('checked', true);
     $('#check_cause_'+id).val(num);
    }
-   function ApporvePayAdmin(id,invoice,price,type){
-   console.log(id);
-   if($('#check_img_'+type+'_'+id).val()==0){
-   	swal ( "<?=t_error;?>" ,  "<?=t_upload_the_document_picture;?>" ,  "error" );
-   	return;
-   }
-   	swal({
-   		title: "<?=t_are_you_sure;?>",
-   		text: "<?=t_want_confirm_payment;?>",
-   		type: "warning",
-   		showCancelButton: true,
-   		confirmButtonText: '<?=t_yes;?>',
-   		cancelButtonText: "<?=t_no;?>",
-   		closeOnConfirm: false,
-   		closeOnCancel: true
-   	},
-   	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
-   				console.log(data);
-   				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   				$('.button-close-popup-mod-3').click();
-   				/*
-   				$('#html_work_action').html(data);
-   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   			  	filterMenu("manage");*/
-   			});
-   	});
-   }
-   function ApporvePayDriver(id,invoice,price,type){
+   
+   function ApporvePayDriver(order_id,invoice){
    console.log(id);
    	swal({
    		title: "<?=t_are_you_sure;?>",
@@ -319,12 +290,25 @@
    		closeOnCancel: true
    	},
    	function(){
-   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",$('#form_save_pay').serialize() ,function( data ) 		{
-   						console.log(data);
-   //   				$('#html_work_action').html(data);
-   			  	swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   			  	filterMenu("manage");
-   			});
+   /*	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
+						openViewPrice();
+						var url_noti = "send_messages/send_pay_driver.php?type=send_lab&iv="+invoice+"&order_id="+order_id;
+						console.log(url_noti);
+						$.post( url_noti,function( re ){
+		   				 	console.log(re);
+		   				 });
+		   				navigator.geolocation.getCurrentPosition(showPosition); 
+		   				var url_completed = "mod/booking/shop_history/php_shop.php?action=check_driver_complete&order_id="+order_id+'&lat='+$('#lat').val()+'&lng='+$('#lng').val();
+						console.log(url_completed);
+						$.post( url_completed,function( re ){
+		   				 	console.log(re);
+//		   				 	console.log(array_data)
+		   				 }); 
+   			});*/
+   				var message = "";
+				socket.emit('sendchat', message);
+   			
    	});
    }
    function ChangePrice(id,cal){

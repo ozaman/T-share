@@ -132,7 +132,8 @@ if($_GET[action]=="check_driver_complete"){
 	$data[driver_complete_lng] = $_GET[lng];
 	$data[status] = "COMPLETED";
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$data[result] = $db->update_db('order_booking',$data,'id = "'.$_GET[id].'" ');
+	$data[result] = $db->update_db('order_booking',$data,'id = "'.$_GET[order_id].'" ');
+	$data[order_id] = $_GET[order_id];
 
 	header('Content-Type: application/json');
  	echo json_encode($data);
@@ -201,19 +202,16 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	$data[driver_approve] = 1;
 	$data[driver_approve_pay_date] = time();
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
-	$data[result] = $db->update_db("pay_history_driver_shopping",$data,"order_id = '".$_POST[order_id]."' and type = '".$_POST[type]."' and status = 1 "); 
-	echo json_encode($data);
-	?>
-	<script>
-		$('#tr_btn_<?=$_POST[type];?>_approve_<?=$_POST[order_id];?>').hide();
-		$('#pay_<?=$_POST[type];?>_taxi_<?=$_POST[order_id];?>').css('background-color','#59AA47');
-		
-		$('#txt_pay_<?=$_POST[type];?>_<?=$_POST[order_id];?>').html('<font color="#59AA47;"><b>ได้รับเงินแล้ว</b></font>');
-		$('#price_<?=$_POST[type];?>_time_payment_<?=$_POST[order_id];?>').html('<span><i class="fa  fa-clock-o " style="width:22px;" ></i>&nbsp;<?=date("H:i:s",time());?></span>');
-		
-		$('#pay_<?=$_POST[type];?>_taxi_<?=$_POST[order_id];?>').css('background-color','#59AA47');
-	</script>
-	<?
+	$data[result] = $db->update_db("pay_history_driver_shopping",$data,"order_id = '".$_POST[order_id]."'  and status = 1 "); 
+	
+	/*$data_ob[check_driver_pay_report] = 1;
+	$data_ob[driver_pay_report_date] = time();
+	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); */
+	
+	$res[his_pay] = $data;
+	$res[ob_pay] = $data_ob;
+	echo json_encode($res);
+	
 }	
 
 if($_GET[query]=='history_driver'){
