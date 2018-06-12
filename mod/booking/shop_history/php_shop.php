@@ -188,6 +188,7 @@ if($_GET[action]=='approve_pay_driver_admin'){
 	$data_ob[price_person_total] = $_POST[total_person];
 	$data_ob[driver_payment_date] = time();
 	$data_ob[json_nation_price] = json_encode($json_nation_price);
+	$data_ob[check_lab_pay] = 1;
 	
 	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
@@ -204,9 +205,8 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->update_db("pay_history_driver_shopping",$data,"order_id = '".$_POST[order_id]."'  and status = 1 "); 
 	
-	/*$data_ob[check_driver_pay_report] = 1;
-	$data_ob[driver_pay_report_date] = time();
-	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); */
+	$data_ob[check_lab_pay] = 1;
+	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
 	$res[his_pay] = $data;
 	$res[ob_pay] = $data_ob;

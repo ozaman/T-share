@@ -524,13 +524,13 @@
     	});
 
       $('#index_menu_tour').click(function(){  
-     swal('กำลังจะเปิดให้บริการ');
-     return;
+    /* swal('กำลังจะเปิดให้บริการ');
+     return;*/
      
-      // $( "#main_load_mod_popup_4" ).toggle();
-      // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
-      // $('#load_mod_popup_4').html(load_main_mod);
-      // $('#load_mod_popup_4').load(url_load); 
+      $( "#main_load_mod_popup_4" ).toggle();
+      var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
+      $('#load_mod_popup_4').html(load_main_mod);
+      $('#load_mod_popup_4').load(url_load); 
      
     	});
 
@@ -691,7 +691,7 @@
 				}
 				
 			}
-			/*else{
+			else{
 				if(user_class=="lab"){
 	        		
 					if(db == current){
@@ -703,7 +703,7 @@
 						none.push(value);
 					}
 				}
-			}*/
+			}
 			
         });
         array_data = {
@@ -739,7 +739,7 @@ var id = '<?=$user_id?>';
 
 var class_user = "<?=$_SESSION['data_user_class'];?>";
  
-// if(class_user=="lab"){
+if(class_user=="lab"){
 socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
@@ -772,7 +772,9 @@ if(check_open!=0){
 		   var check_open_incom = $('#check_id_income_lab').val();
 		   if (typeof check_open_incom != 'undefined'){
 		   		console.log(check_open_incom);
-		   		
+		   		if(value.check_lab_pay==1){
+					openViewPrice();
+				}
 		   }
 		}
 	 	
@@ -783,8 +785,8 @@ if(check_open!=0){
 
    
    });
-// }
-// else{  
+}
+else{  
 socket.on('updatedriver', function (username, data) {
    
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -819,7 +821,7 @@ var check_open = $('#check_open_shop_id').val();
 	
 
    });
-	// } 
+	} 
 /*socket.on('getbookinglabhis', function (data) {        
         console.log(data.booking)
         
