@@ -419,19 +419,19 @@
    		closeOnCancel: true
    	},
    	function(){
-   	/* $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   				$('.button-close-popup-mod-3').click();*/
+   				$('.button-close-popup-mod-3').click();
    				var message = "";
 				socket.emit('sendchat', message);
    				
    				openViewPrice();
-   			/*	 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
+   				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
    				 	console.log(re);
    				 });
    				 
-   			});*/
+   			});
    			
    	});
    }

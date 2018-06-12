@@ -19,28 +19,38 @@ function sendMessage() {
     	$tag = array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								);
+		$content  = array(
+        "en" => $arr[book][invoice]." : "."ทะเบียน ".$type_txt
+   		 );						
     }
     else if($_GET[type]=='guest_receive'){		
        $type_txt = "พนักงานต้องรับ รับแขกแล้ว";
        $tag =  array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								);
+		$content  = array(
+        "en" => $arr[book][invoice]." : "."ทะเบียน ".$type_txt
+   		 );							
     } 
     else if($_GET[type]=='guest_register'){		
       $type_txt = "แขกลงทะเบียนแล้ว";
       $tag =  array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								);
+		$content  = array(
+        "en" => $arr[book][invoice]." : "."ทะเบียน ".$type_txt
+   		 );							
     } 
     else if($_GET[type]=='driver_pay_report'){		
       $type_txt = "แจ้งยอดรายได้แล้ว";
       $tag =  array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
 								);
-    }
-	 $content  = array(
+		$content  = array(
         "en" => $arr[book][invoice]." : "."ทะเบียน ".$type_txt
-   		 );
+   		 );							
+    }
+	 
     $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => $tag,

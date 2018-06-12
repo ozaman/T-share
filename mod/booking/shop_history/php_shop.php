@@ -205,7 +205,7 @@ if($_GET[action]=='approve_pay_driver_taxi'){
 	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 	$data[result] = $db->update_db("pay_history_driver_shopping",$data,"order_id = '".$_POST[order_id]."'  and status = 1 "); 
 	
-	$data_ob[check_lab_pay] = 1;
+	$data_ob[check_driver_pay] = 1;
 	$data_ob[result] = $db->update_db("order_booking",$data_ob,"id = '".$_POST[order_id]."' "); 
 	
 	$res[his_pay] = $data;
@@ -243,7 +243,7 @@ echo json_encode($decode);
 
 if($_GET[query]=='history_lab'){
 	
-$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";                              
+$url = "http://www.welovetaxi.com:3000/getOrderhislab";                              
 
 //create a new cURL resource
 $ch = curl_init($url);

@@ -739,7 +739,9 @@ var id = '<?=$user_id?>';
 
 var class_user = "<?=$_SESSION['data_user_class'];?>";
  
-if(class_user=="lab"){
+//if(class_user=="lab"){
+	
+
 socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
@@ -770,7 +772,9 @@ if(check_open!=0){
 		      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
 		   }
 		   var check_open_incom = $('#check_id_income_lab').val();
-		   if (typeof check_open_incom != 'undefined'){
+		 
+		    if (typeof check_open_incom != 'undefined'){
+		   		console.log(9999999999999999);
 		   		console.log(check_open_incom);
 		   		if(value.check_lab_pay==1){
 					openViewPrice();
@@ -785,8 +789,8 @@ if(check_open!=0){
 
    
    });
-}
-else{  
+//}else{
+	
 socket.on('updatedriver', function (username, data) {
    
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -816,16 +820,24 @@ var check_open = $('#check_open_shop_id').val();
 		      console.log("driver_pay_report");
 		      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
 		   }
+//		   alert(value.check_lab_pay);
+		    var check_open_incom = $('#check_id_income_lab').val();
+		   if (typeof check_open_incom != 'undefined'){
+		   		console.log(check_open_incom);
+		   		if(value.check_driver_pay==1){
+					openViewPrice();
+//					alert(value.check_lab_pay);
 				}
+		   }
+		   
 		}
+	}
 	
 
    });
-	} 
-/*socket.on('getbookinglabhis', function (data) {        
-        console.log(data.booking)
-        
-      });	*/
+
+//}
+
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
