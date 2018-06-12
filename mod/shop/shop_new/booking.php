@@ -527,7 +527,7 @@
          
          <tbody>
             <tr>
-               <td><button type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="submit_data_update" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
+               <td><button onclick="save_bookin_shop();" type="button" class="btn-repair waves-effect btn-other" style="background-color: #3b5998; border-radius: 25px; color:#fff;text-transform: capitalize;width: 100%;"  id="" > <span id="txt_btn_save" class="font-28"><?=t_save_data;?></span> </button></td>
             </tr>
          </tbody>
       </table>
@@ -544,7 +544,7 @@
      $('#load_mod_popup_3').html(load_main_mod);
      $('#load_mod_popup_3').load(url_load); 
    });
-   $("#submit_data_update").click(function(){
+   function save_bookin_shop(){
      console.log($('#car_type').val())
       if ($('#car_type').val() == 0) {
          swal("กรุณาเลือก !", "ประเภทรถ", "warning");
@@ -604,7 +604,7 @@
                $('#index_menu_shopping_history').click();
             });
       });
-});
+}
 </script> 
 
 </div>

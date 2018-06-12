@@ -13,7 +13,7 @@
                <img src="images/no.png"  align="absmiddle" id="iconchk_driver_topoint"    />
             </div>
          </td>
-         <td colspan="2"><button  id="btn_driver_topoint"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-26 text-cap" ><i class="icon-new-uniF12D-1" style="width:10px;"  ></i> <?=t_place_of_delivery;?></span></button></td>
+         <td colspan="2"><button  id="" onclick="btn_driver_topoint()" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color?>;  border-radius: 20px; border:none "><span class="font-26 text-cap" ><i class="icon-new-uniF12D-1" style="width:10px;"  ></i> <?=t_place_of_delivery;?></span></button></td>
       </tr>
       <tr>
          <td style="height:30px;">
@@ -56,7 +56,7 @@
 			}
 		});
 
-   $("#btn_driver_topoint").click(function(){ 
+ function btn_driver_topoint(){ 
    if($('#driver_topoint_check_click').val()!=1){
     $( "#dialog_custom" ).show();
 //   	var url_load= "load_page_mod_3.php?name=booking/shop_history/load&file=checkin_popup&id=<?=$arr[book][id]?>&type=driver_topoint";
@@ -68,5 +68,5 @@
    }
    else{
    }
-   	 });
+   	 }
 </script>

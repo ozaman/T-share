@@ -8,13 +8,13 @@
                <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_guest_receive" /></div>
             </td>
             <td colspan="2">
-               <button  id="btn_guest_receive"  type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"  ></i> <?=t_reception;?></span></button>
+               <button  id="" onclick="btn_guest_receive()" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"  ></i> <?=t_reception;?></span></button>
                <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click"/>
             </td>
          </tr>
          <tr>
             <td style="height:30px;">
-               <div  id="status_guest_receive" ><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
+               <div  id="" onclick="status_guest_receive()"><div class="font-20"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=t_pending;?></font></strong></div></div>
             </td>
             <td  width="30">
             <i id="photo_guest_receive_no" class="fa fa-camera" style="color:#3b59987a; font-size:16px; border-radius: 50%; padding:5px; border: 1px solid #3b59987a;display: none;" ></i>
@@ -51,7 +51,7 @@ $.ajax({
 			   $('#photo_guest_receive_yes').show();
 			}
 		});
-   $("#btn_guest_receive").click(function(){ 
+   function btn_guest_receive(){ 
    	var check = $('#guest_receive_check_click').val();
    	if(check==0){
 		swal('พนักงานยังไม่รับแขก');
@@ -68,5 +68,5 @@ $.ajax({
     }
 	else{
     }*/
-   });
+   }
 </script>

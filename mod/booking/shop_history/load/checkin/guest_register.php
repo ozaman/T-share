@@ -22,7 +22,7 @@
             <div class="step-booking"  id="number_guest_register">3</div>
             <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_guest_register"    /></div>
          </td>
-         <td colspan="2"><button  id="btn_guest_register"  type="button" class="btns  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"  ></i><?=t_guest_registration;?></span></button></td>
+         <td colspan="2"><button  id="" onclick="btn_guest_register()" type="button" class="btns  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius: 20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"  ></i><?=t_guest_registration;?></span></button></td>
       </tr>
       <tr>
          <td style="height:30px;">
@@ -65,7 +65,7 @@ $.ajax({
 			   $('#photo_guest_register_yes').show();
 			}
 		});
-   $("#btn_guest_register").click(function(){ 
+   function btn_guest_register(){ 
    	var check = $('#guest_register_check_click').val();
    	if(check==0){
 		swal('แขกยังไม่ลงทะเบียน');
@@ -80,5 +80,5 @@ $.ajax({
   		$('#body_dialog_custom_load').load(url_load); 
     
    }*/
-   });
+   }
 </script>

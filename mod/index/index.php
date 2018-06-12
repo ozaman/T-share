@@ -649,7 +649,7 @@
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
     <!-- <script src="socket.io/socket.io.js"></script> -->
-<script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script>
+<!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
 <script>
 	var res_socket ;
 	var socket = io.connect('https://www.welovetaxi.com:3443');

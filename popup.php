@@ -7,8 +7,8 @@ GETMODULE($_GET[name],$_GET[file]);
 ?>   
  
   <?  include ("bootstrap/css/css.php");?>
-<script src="js/sweet/dist/sweetalert-dev.js"></script>
-<link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>">
+<!-- <script src="js/sweet/dist/sweetalert-dev.js"></script> -->
+<!-- <link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>"> -->
  
 
 <? include ("".$MODPATHFILE.""); ?>

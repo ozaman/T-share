@@ -1,7 +1,7 @@
   
-<script src="js/sweet/dist/sweetalert-dev.js"></script>
-<link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>">
-
+<!-- <script src="js/sweet/dist/sweetalert-dev.js"></script> -->
+<!-- <link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>"> -->
+<!--  -->
  <style>
  
  .div-all-work{
