@@ -383,14 +383,15 @@
 </script>
 <script>
    function selectPay(id){
+   		console.log(id);
 //   		$( "#"+id ).prop( "checked", true );
 		if($('#check_'+id).val()==0){
 			$('#check_'+id).val(1);
-			$('#tb_'+id).show();
+			$('#check_'+id+'_tb').show();
 			
 		}else{
 			$('#check_'+id).val(0);
-			$('#tb_'+id).hide();
+			$('#check_'+id+'_tb').hide();
 		}
    		console.log($('#check_'+id).val());
    		calculate();
@@ -421,17 +422,17 @@
    	/* $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_admin",$('#form_save_pay').serialize(),function( data ) 			{
    				console.log(data);
    				swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
-   				$('.button-close-popup-mod-3').click();
-   				
+   				$('.button-close-popup-mod-3').click();*/
+   				var message = "";
+				socket.emit('sendchat', message);
    				
    				openViewPrice();
-   				 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
+   			/*	 $.post( "send_messages/send_pay_driver.php?type=send_driver&iv="+invoice+'&driver='+driver,function( re ){
    				 	console.log(re);
    				 });
    				 
    			});*/
-   			var message = "";
-				socket.emit('sendchat', message);
+   			
    	});
    }
    
