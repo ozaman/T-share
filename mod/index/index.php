@@ -852,14 +852,14 @@ function formatDate(date) {
             if(num==1){
                 var id_place_one = 1;
                 $("#main_load_mod_popup" ).toggle();
-               var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
+               var url_load = "go.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
                console.log(url_load);
                $('#load_mod_popup').html(load_main_mod);
                $('#load_mod_popup').load(url_load); 
             }else{
                 console.log('1');
                 $("#main_load_mod_popup" ).show();
-                var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
+                var url_load= "go.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
                  $('#load_mod_popup').html(load_main_mod);
                  $('#load_mod_popup').load(url_load); 
             }
