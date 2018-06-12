@@ -524,13 +524,13 @@
     	});
 
       $('#index_menu_tour').click(function(){  
-    /* swal('กำลังจะเปิดให้บริการ');
-     return;*/
+     swal('กำลังจะเปิดให้บริการ');
+     return;
      
-      $( "#main_load_mod_popup_4" ).toggle();
-      var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
-      $('#load_mod_popup_4').html(load_main_mod);
-      $('#load_mod_popup_4').load(url_load); 
+      // $( "#main_load_mod_popup_4" ).toggle();
+      // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
+      // $('#load_mod_popup_4').html(load_main_mod);
+      // $('#load_mod_popup_4').load(url_load); 
      
     	});
 
