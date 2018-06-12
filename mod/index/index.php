@@ -739,7 +739,7 @@ var id = '<?=$user_id?>';
 
 var class_user = "<?=$_SESSION['data_user_class'];?>";
  
-if(class_user=="lab"){
+// if(class_user=="lab"){
 socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
@@ -783,8 +783,8 @@ if(check_open!=0){
 
    
    });
-}
-else{  
+// }
+// else{  
 socket.on('updatedriver', function (username, data) {
    
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -819,7 +819,7 @@ var check_open = $('#check_open_shop_id').val();
 	
 
    });
-	} 
+	// } 
 /*socket.on('getbookinglabhis', function (data) {        
         console.log(data.booking)
         
