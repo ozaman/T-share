@@ -32,7 +32,7 @@ function sendMessage() {
 		 $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
 		 $res[ob] = $db->select_query("SELECT car_plate,invoice FROM order_booking  WHERE id='".$_GET[order_id]."' ");
 		 $arr[ob] = $db->fetch($res[ob]);
-		 $txt_short = $_GET[iv]." : ทะเบียน ".$arr[ob][car_plate];
+		 $txt_short = $_GET[iv]." : ทะเบียน ".$arr[ob][car_plate]." คนขับยืนยันได้รับเงินแล้ว";
 		 $content  = array(
         "en" => $txt_short.' กรุณาตรวจสอบ'
    		 );
