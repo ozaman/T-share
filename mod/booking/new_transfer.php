@@ -1,11 +1,11 @@
   
-<script src="js/sweet/dist/sweetalert-dev.js"></script>
-<link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>">
+<!-- <script src="js/sweet/dist/sweetalert-dev.js"></script> -->
+<!-- <link rel="stylesheet" href="js/sweet/dist/sweetalert.css?v=<?=time()?>"> -->
 
 
  
 <link rel="stylesheet" type="text/css" href="calendar/css/smoothness/main.css"> 
-<script src="js/jquery-main.js"></script> 
+<!-- <script src="js/jquery-main.js"></script>  -->
 <script   src="calendar/js/th.js"></script>
 
 <style>

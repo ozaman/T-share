@@ -150,31 +150,7 @@ if ($_SESSION['data_user_password'] <> $arr[web_user][password]) {
  <?
 include "css/color/" . $data_user_class . ".php";
 ?>
- <script>
- var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
-echo t_load_data;
-?></center></font></div>";
- </script>
-  <script>
- var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-echo t_load_data;
-?></center></div></div>';
-</script>
- <script>
- var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
-echo t_load_data;
-?></center></div></div>';
-</script>
-  <script>
- var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
-echo t_load_data;
-?></center></font></td></tr></table></div> ";
- </script>
-   <script>
- var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
-echo t_load_data;
-?></center></font></td></tr></table></div> ";
- </script>
+ 
 <?
 //require_once("css/maincss.php");
 ?>  

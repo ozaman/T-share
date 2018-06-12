@@ -70,7 +70,7 @@
       <div class="content-wrapper" style="/*margin-top:55px;*/padding-top:55px; "  >
          <div >
             <div id="check_chat_update" style="display:none"> </div>
-            <script src="js/google.jquery.min.js"></script>
+            <!-- <script src="js/google.jquery.min.js"></script> -->
             <?  //include ("load/update/new_msg.php");?> 
             <? 
                if($data_user_class<>'taxi'){

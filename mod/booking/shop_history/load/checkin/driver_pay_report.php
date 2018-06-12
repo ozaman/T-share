@@ -7,7 +7,7 @@
                <div class="step-booking"  id="number_driver_pay_report">4</div>
                <div  style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="images/no.png"  align="absmiddle" id="iconchk_driver_pay_report"    /></div>
             </td>
-            <td colspan="2"><button  id="btn_driver_pay_report" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius:  20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"  ></i> <?=t_income_statement;?></button></td>
+            <td colspan="2"><button  id="" onclick="btn_driver_pay_report()" type="button" class="btn  btn-info "  style="width:100%;text-align:left;padding:5px; background-color:<?=$main_color;?>;  border-radius:  20px; border:none "><span class="font-26 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"  ></i> <?=t_income_statement;?></button></td>
          </tr>
          <tr>
             <input type="hidden" value="<?=$arr[book][check_driver_pay_report];?>" id="driver_pay_report_check_click"/>
@@ -48,7 +48,7 @@
 			   $('#photo_driver_pay_report_yes').show();
 			}
 		});
-      $("#btn_driver_pay_report").click(function(){
+     function btn_driver_pay_report(){
       	
     var check = $('#driver_pay_report_check_click').val();
    	if(check==0){
@@ -64,6 +64,6 @@
       }else{
       }*/
       
-      });
-   </script>      
+      }
+        </script>      
 </div>

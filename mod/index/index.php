@@ -524,13 +524,13 @@
     	});
 
       $('#index_menu_tour').click(function(){  
-    /* swal('กำลังจะเปิดให้บริการ');
-     return;*/
+     swal('กำลังจะเปิดให้บริการ');
+     return;
      
-      $( "#main_load_mod_popup_4" ).toggle();
-      var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
-      $('#load_mod_popup_4').html(load_main_mod);
-      $('#load_mod_popup_4').load(url_load); 
+      // $( "#main_load_mod_popup_4" ).toggle();
+      // var url_load= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&lat=0&lng=0&type=stop";
+      // $('#load_mod_popup_4').html(load_main_mod);
+      // $('#load_mod_popup_4').load(url_load); 
      
     	});
 
@@ -649,7 +649,7 @@
 <input  name="now_province"  type="hidden" class="form-control"  id="now_province" value=""   />
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
     <!-- <script src="socket.io/socket.io.js"></script> -->
-<script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script>
+<!-- <script src="https://code.jquery.com/jquery-latest.min.js?v=<?=time();?>"></script> -->
 <script>
 	var res_socket ;
 	var socket = io.connect('https://www.welovetaxi.com:3443');
@@ -691,7 +691,7 @@
 				}
 				
 			}
-			else{
+			/*else{
 				if(user_class=="lab"){
 	        		
 					if(db == current){
@@ -703,7 +703,7 @@
 						none.push(value);
 					}
 				}
-			}
+			}*/
 			
         });
         array_data = {
@@ -739,9 +739,7 @@ var id = '<?=$user_id?>';
 
 var class_user = "<?=$_SESSION['data_user_class'];?>";
  
-//if(class_user=="lab"){
-	
-
+// if(class_user=="lab"){
 socket.on('datalab', function (username, data) {
    console.log('***********************datalab***************************')
 console.log(username)
@@ -772,13 +770,9 @@ if(check_open!=0){
 		      changeHtml("driver_pay_report",value.id,value.driver_pay_report_date)
 		   }
 		   var check_open_incom = $('#check_id_income_lab').val();
-		 
-		    if (typeof check_open_incom != 'undefined'){
-		   		console.log(9999999999999999);
+		   if (typeof check_open_incom != 'undefined'){
 		   		console.log(check_open_incom);
-		   		if(value.check_lab_pay==1){
-					openViewPrice();
-				}
+		   		
 		   }
 		}
 	 	
@@ -789,8 +783,8 @@ if(check_open!=0){
 
    
    });
-//}else{
-	
+// }
+// else{  
 socket.on('updatedriver', function (username, data) {
    
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -820,24 +814,16 @@ var check_open = $('#check_open_shop_id').val();
 		      console.log("driver_pay_report");
 		      changeHtml("driver_pay_report",data.id,data.driver_pay_report_date)
 		   }
-//		   alert(value.check_lab_pay);
-		    var check_open_incom = $('#check_id_income_lab').val();
-		   if (typeof check_open_incom != 'undefined'){
-		   		console.log(check_open_incom);
-		   		if(value.check_driver_pay==1){
-					openViewPrice();
-//					alert(value.check_lab_pay);
 				}
-		   }
-		   
 		}
-	}
 	
 
    });
-
-//}
-
+	// } 
+/*socket.on('getbookinglabhis', function (data) {        
+        console.log(data.booking)
+        
+      });	*/
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -866,14 +852,14 @@ function formatDate(date) {
             if(num==1){
                 var id_place_one = 1;
                 $("#main_load_mod_popup" ).toggle();
-               var url_load = "go.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
+               var url_load = "load_page_mod.php?name=shop/shop_new&file=shop&driver=<?=$user_id?>&type="+id_place_one+"&province=1&detail=1";
                console.log(url_load);
                $('#load_mod_popup').html(load_main_mod);
                $('#load_mod_popup').load(url_load); 
             }else{
                 console.log('1');
                 $("#main_load_mod_popup" ).show();
-                var url_load= "go.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
+                var url_load= "load_page_mod.php?name=shop/shop_new&file=main&id=11&type=stop&province=1";
                  $('#load_mod_popup').html(load_main_mod);
                  $('#load_mod_popup').load(url_load); 
             }
@@ -886,4 +872,28 @@ function formatDate(date) {
 				socket.emit('sendchat', message);
 		 }
       </script>
-
+<script>
+ var load_main_icon_big="<div class='overlay' style='background-color:#FFFFFF; padding:15px;border: solid 1px #DADADA '><center> <i class='fa fa-circle-o-notch fa-spin 4x' style='font-size:100px; color:<?= $main_color_sorf ?>; ' ></i> </center><br><font style='font-size:14px; color:#333333 ' ><center><?
+echo t_load_data;
+?></center></font></div>";
+ </script>
+  <script>
+ var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
+echo t_load_data;
+?></center></div></div>';
+</script>
+ <script>
+ var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
+echo t_load_data;
+?></center></div></div>';
+</script>
+  <script>
+ var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
+echo t_load_data;
+?></center></font></td></tr></table></div> ";
+ </script>
+   <script>
+ var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
+echo t_load_data;
+?></center></font></td></tr></table></div> ";
+ </script>
