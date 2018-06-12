@@ -255,6 +255,7 @@
       </table>
    </div>
 </div>
+<input type="hidden" value="<?=$_GET[id];?>" id="check_id_income_lab" />
 <script>
 	var json = '<?=$json_price_plan;?>';
 	if(json!=""){
@@ -290,7 +291,7 @@
    		closeOnCancel: true
    	},
    	function(){
-   /*	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
+   	 $.post( "empty_style.php?name=booking/shop_history&file=php_shop&action=approve_pay_driver_taxi",{ order_id : order_id},function( data ) 		{
    			  			swal ( "<?=t_save_succeed;?>" ,  "" ,  "success" );
 						openViewPrice();
 						var url_noti = "send_messages/send_pay_driver.php?type=send_lab&iv="+invoice+"&order_id="+order_id;
@@ -298,6 +299,8 @@
 						$.post( url_noti,function( re ){
 		   				 	console.log(re);
 		   				 });
+		   				 var message = "";
+						socket.emit('sendchat', message);
 		   				navigator.geolocation.getCurrentPosition(showPosition); 
 		   				var url_completed = "mod/booking/shop_history/php_shop.php?action=check_driver_complete&order_id="+order_id+'&lat='+$('#lat').val()+'&lng='+$('#lng').val();
 						console.log(url_completed);
@@ -305,9 +308,8 @@
 		   				 	console.log(re);
 //		   				 	console.log(array_data)
 		   				 }); 
-   			});*/
-   				var message = "";
-				socket.emit('sendchat', message);
+   			});
+   				
    			
    	});
    }

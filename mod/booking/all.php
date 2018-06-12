@@ -446,7 +446,7 @@
 		}
 
    		$.post(url_his,data,function(res){
-//   			 console.log(res);
+   			 console.log(res);
 //   			 array_filter = res.data;
    			 array_his = res.data;
    			 var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=completed&type=his";
