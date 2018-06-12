@@ -485,6 +485,7 @@ function thai_date($time){
      var id = 'id_list_'+num;
      var s_pay = res.s_status_pay;
      var cost = res.s_cost;
+     var pax = res.pax;
      var car_type;
      if(getCookie("lng")=='en'){
 	 	var car_type = res.car_type.topic_en;
@@ -534,7 +535,10 @@ function thai_date($time){
    			               +'<td><span class="font-20 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'					              
    			            +'</tr>'
    			             +'<tr>'
-   			               +'<td><span class="font-20">'+car_type+'</span><button class="btn-approve-job" ><span class="font-20"><?=t_accept_order;?></span></button></td>'					              
+   			               +'<td><span class="font-20">'+car_type+'</span><button class="btn-approve-job" ><span class="font-20"><?=t_accept_order;?></span></button></td>'	
+   			            +'</tr>'
+   			            +'<tr>'
+   			               +'<td><span class="font-20 ">จำนวนแขก&nbsp;&nbsp;'+pax+' คน</span></td>'					              
    			            +'</tr>'
             			+'</table>'
             		+'</td>'
