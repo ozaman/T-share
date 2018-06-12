@@ -62,6 +62,7 @@ if ($_GET[action] == 'add')
 		"check_use_car_id" => "$_POST[check_use_car_id]",
 		"adult" => "$_POST[adult]",
 		"child" => "$_POST[child]",
+		"phone" => "$_POST[dri_phone]",
 		"nation" => "$_POST[nation]",
 		"booking_by" => "$_GET[driver]",
 		"payment_type" => "$_POST[payment_type]",

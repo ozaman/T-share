@@ -323,7 +323,7 @@ function checkTypePay($id){
 	<table width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_<?=$arr[book][invoice];?>">
 		   <tr id="step_driver_topoint">
 		      <td class="font-22">
-		         <?  include ("mod/booking/shop_history/load/checkin_lab/topoint.php");?>
+		         <?  include ("mod/booking/shop_history/load/checkin/topoint.php");?>
 		      </td>
 		   </tr>
 		

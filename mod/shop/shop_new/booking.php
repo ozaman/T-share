@@ -68,26 +68,8 @@
          </div>
          <div class="form-group">
             <label>ป้ายทะเบียนรถ</label>
-            <?
-                  if (!$arr[car]) {
-                    ?>
-            <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="<?=$arr[car][plate_num] ?>"    >
-            <? 
-               }
-               else{
-               ?>
-            <select class="form-control"  name="car_plate" id="car_plate"  style=" border-radius: 25px " > 
-            <?
-               while($arr[projectcarall] = $db->fetch($res[projectcarall])){
-                  echo "<option value=\"".$arr[projectcarall][plate_num]."\"";
-                  echo ">".$arr[projectcarall][plate_num]." </option>";
-               }
-               $db->closedb ();
-            ?>
-            </select>
-            <?
-               }
-               ?>
+             <input name="car_plate" type="text"   required="true" class="form_input" id="car_plate"  value="<?=$arr[car][plate_num] ?>"    >
+
             <input name="car_color" type="hidden"   class="form-control" id="car_color" style="padding:4px 2px;width:100%;"   value="<?=$arr[car][car_color]?>"   >
          </div>
          <div class="form-group">
@@ -95,18 +77,22 @@
             <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-5px;"  >
                <tr>
                   <td>
-                     <input  name="adult" required="true"  type="numbers" class="form_input" placeholder="ผู้ใหญ่" id="adult" >
+                     <input  name="adult" required="true"  type="number" class="form_input" placeholder="ผู้ใหญ่" id="adult" >
                   </td>
                   <td width="5"></td>
                   <td>
-                     <input  name="child" required="true" type="numbers" class="form_input" placeholder="เด็ก" id="child" >
+                     <input  name="child" required="true" type="number" class="form_input" placeholder="เด็ก" id="child" >
                   </td>
                </tr>
             </table>
          </div>
          <div class="form-group">
             <label>เวลาถึงโดยประมาณ(นาที)</label>
-            <input type="numbers" class="form_input" required="true" id="time_num" name="time_num">
+            <input type="number" class="form_input" required="true" id="time_num" name="time_num">
+         </div>
+         <div class="form-group">
+            <label>เบอร์โทรศัพท์</label>
+            <input type="number" class="form_input"  id="dri_phone" name="dri_phone">
          </div>
       </div>
       <!-- DIV CAR -->  
@@ -561,9 +547,10 @@
          return false;
       }
       if ($('#child').val() == "") {
-         swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
-         $('#child').focus();
-         return false;
+         $('#child').val(0)
+         // swal("กรุณาป้อน !", "จำนวนเด็ก", "warning");
+         // $('#child').focus();
+         // return false;
       }
       if ($('#time_num').val() == '') {
          swal("กรุณาป้อน !", "เวลาถึงโดยประมาณ", "warning");
