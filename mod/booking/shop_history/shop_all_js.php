@@ -65,6 +65,16 @@
     background-color: #fff;
     margin-top: -60px;
 }
+.edit-post-shop {
+       margin-right: 10px;
+    border: 1px solid #3b5998 !important;
+    padding: 4px !important;
+    position: absolute;
+    z-index: 1;
+    left: 30px;
+    background-color: #fff;
+    margin-top: -60px;
+}
 .box-shop{
 	padding: 17px 10px;
 	border-radius:25px;
@@ -97,8 +107,8 @@
 		}
 	?>
 	<div style="padding: 5px 0px;margin: 25px 0px;">
-	<div class="box-shop" onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
-		<table width="100%">
+	<div class="box-shop">
+		<table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
       		<tr>
       			<td width="80%" ><span class="font-24"><?=$arr[shop][$place_shopping];?></span></td>
       			<td width="20%" align="center" rowspan="2">
@@ -108,9 +118,31 @@
       			<td colspan="2">
       			<span class="font-20" ><?=$val[invoice];?>&nbsp;:&nbsp;
       			<span id="date_book_<?=$val[id];?>">-</span>
-      			<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font></span>
-      			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+      			<!--<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
+				<?php 
+				$minutes_to_add = $val[airout_m];
+				$time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+				$time = new DateTime($time_c);
+				$time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
 
+				$stamp = $time->format('H:i');
+				$current_time = date('H:i');
+				
+				$datetime1 = new DateTime($current_time);
+				$datetime2 = new DateTime($stamp);
+				
+				if($datetime1>$datetime2 and $data_user_class == "lab"){
+					$display_time_none = "";
+				}else{
+					$display_time_none = "display:none;";
+				}
+//				echo $data_user_class." +";
+				?>
+				<font color="#ff0000;"  style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงโดยประมาณ ".$stamp." น.";?></font>
+      			</span>
+      			<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
+      			<span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+				
       			</td>
       			
       		</tr>
@@ -119,7 +151,9 @@
 	</div>
 	
 	<script>
-		var d1 = "<?=date('Y/m/d H:m:s',$val[post_date]);?>";
+//		console.log("เวลาจอง : <?=$time_c;?> || <?=$minutes_to_add;?> นาที || ")
+		console.log("<?=$stamp;?> || <?=$current_time;?>")
+		var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
 //		console.log(d1);
 		var d2 = js_yyyy_mm_dd_hh_mm_ss();
 //		console.log("<?=$val[invoice];?> : "+d1+" = "+d2);
@@ -130,7 +164,3 @@
 	</script>
 <?  	
 		} ?>
-<script>
-	var obj = JSON.parse('<?=json_encode($_POST[data]);?>');
-	console.log(obj);
-</script>

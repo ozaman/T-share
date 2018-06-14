@@ -136,6 +136,274 @@
    z-index: 1;
    }
 </style>
+<style>
+	.back_main{
+		padding: 5px 0px;
+	    margin-top: 0px;
+	    padding-left: 10px;
+	    position: fixed;
+	    background-color: #fff;
+	    width: 100%;
+/*	    border-bottom: 1px solid #ddd;*/
+		box-shadow: 1px 1px 10px #ddd;
+	    z-index: 2;
+	}
+   @media screen and (max-width: 320px) {
+   .font-22{
+   font-size : 14px;
+   font-family: 'Arial', sans-serif;
+   }
+   .line-center{
+   /*   		height: 59px;*/
+   height: 50px;
+   }
+   #date_transfer_work{
+   height: 35px !important;
+   font-size: 20px !important;
+   }
+   .icon_calendar{
+   font-size: 20px !important;
+   }
+   }
+   .btn_filter_active{
+   padding: 8px; 
+   border: 1px solid <?=$main_color;?>;
+   border-radius: 25px;
+   /*	width: 100px;*/
+   background-color: <?=$main_color;?>;
+   color: #fff;
+   box-shadow: 1px 1px 1px #333;
+   cursor: pointer;
+   }
+   .btn_filter{
+   padding: 8px; 
+   border: 1px solid <?=$main_color;?>; 
+   border-radius: 25px;
+   /*	width: 100px;*/
+   cursor: pointer;
+   }
+   @media screen and (max-width: 320px) {
+   .font-22{
+   font-size : 14px !important;
+   font-family: 'Arial', sans-serif;
+   }
+   .font-24{
+   font-size : 16px !important;
+   font-family: 'Arial', sans-serif;
+   }
+   .font-26{
+   font-size : 18px !important;
+   font-family: 'Arial', sans-serif;
+   }
+   .font-28{
+   font-size : 20px !important;
+   font-family: 'Arial', sans-serif;
+   }
+   #date_report{
+   font-size : 20px !important ; 
+   height: 35px !important;
+   }
+   #icon_calendar{
+   font-size : 20px !important ; 
+   }
+   /*.form-group{
+   margin-bottom: 0px !important;
+   }*/
+   }
+   .payment-menu{
+   border-radius: 50%; background-color:#59AA47; display: block;  
+   padding: 12px; 
+   width: 50px;
+   height: 50px; 
+   color:#FFFFFF;  font-size:10px;  
+   border: solid 2px #FFFFFF;
+   text-align: center;
+   vertical-align: middle;  box-shadow: 0px  0px 10px #DADADA  ; margin-left: -5px;  
+   }
+   .div-all-price{
+   /* padding:3px;   
+   border-radius: 8px; 
+   border:  1px solid #ddd;*/
+   background-color:#FFFFFF;  
+   /*margin-bottom: 10px; */
+   margin-top:0px; 
+   /*	 box-shadow: 0px  0px 0px #DADADA  ;*/
+   }
+   .div-all-zello{
+   padding:5px;
+   border-radius: 0px;
+   border: 1px solid #ddd;
+   background-color:#FFF;
+   margin-bottom: 5px;
+   box-shadow: 0px 0px 0px #DADADA ;
+   }
+   .list-container{
+   font-size: 16px;
+   padding: 5px 0px;
+   transform: 0.3s;
+   /*   padding: 0px;*/
+   }
+   .w3-ul li{
+   padding: 0px 5px;
+   border-bottom: 1px solid #ddd;
+   }
+   .ico-pos{
+   position: absolute;
+   right: 0px;
+   margin: 20px 10px;
+   }
+   .cancel-work-shop{
+   box-shadow: 1px 2px 2px #35353575;
+   width: 90px;
+   border: 1px solid #a9a9a9;
+   background: #FF5722;
+   color: #fff;
+   position: absolute;
+   top: 50px;
+   right: 15px;
+   /*     margin: 50px 15px;*/
+   text-align: center;
+   border-radius: 10px;
+   }
+   .div-all-checkin{
+   padding:5px;
+   border-radius: 15px;
+   border: 1px solid #ddd;
+   background-color:#F6F6F6;
+   margin-bottom: 5px;
+   margin-top:5px;
+   box-shadow: 0px 0px 10px #DADADA ;
+   }
+   .disabledbutton-checkin {
+   pointer-events: none;
+   background-color:#FFF;
+   color:#FFF;
+   border: 1px solid #88B34D;
+   }
+   .step-booking-small {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 5px;
+   width: 40px;
+   height: 40px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:20px;
+   font-weight:bold;
+   margin-top:-10px;
+   text-align:center;
+   border: solid 4px #FFFFFF;
+   background: #f39c12 !important;
+   color: #fff;
+   }
+   .step-booking-small-no {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 5px;
+   width: 40px;
+   height: 40px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:20px;
+   font-weight:bold;
+   margin-top:-10px;
+   text-align:center;
+   border: solid 4px #FFFFFF;
+   background: #999999 !important;
+   color: #fff;
+   }
+   .step-booking {
+   border-radius: 50%;
+   background-color: #FF9933;
+   padding: 10px;
+   width: 60px;
+   height: 60px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:30px;
+   font-weight:bold;
+   text-align:center;
+   margin-left:-5px;
+   border: solid 3px #F6F6F6;
+   box-shadow: 0 0 10px 3px #E8E6E6;
+   background: #FF0000 !important;
+   color: #fff;
+   }
+   .step-booking-active {
+   border-radius: 50%;
+   padding: 10px;
+   width: 60px;
+   height: 60px;
+   text-align: justify;
+   color:#FFFFFF;
+   font-size:30px;
+   font-weight:bold;
+   text-align:center;
+   margin-left:-5px;
+   border: solid 3px #F6F6F6;
+   box-shadow: 0 0 10px 3px #E8E6E6;
+   background: #59AA47 !important;
+   color: #fff;
+   }
+   .form-group { background:none;
+   }
+   .box_his,.box_book{
+   padding: 5px 0px;
+   border: 1px solid #3b5998;
+   margin-bottom: 10px;
+   border-radius: 25px;
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+   }
+   .mof{
+   width: 100%;	
+   position: relative;
+   border: none;
+   outline:none;
+   cursor: pointer;
+   background: #FFFFFF;
+   color: #333;
+   padding: 13px;
+   border-radius: 2px;
+   font-size: 22px;
+   }
+   .fab{
+   border-radius: 50%;
+   margin:0;
+   padding: 20px;
+   }
+   .material{
+   position:relative;
+   color:white;
+   margin: 20px auto;
+   height:400px;
+   width:500px;
+   background:#f45673;
+   }
+   .ripple{
+   overflow:hidden;
+   }
+   .ripple-effect{
+   position: absolute;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   background: white;
+   animation: ripple-animation 2s;
+   }
+   @keyframes ripple-animation {
+   from {
+   transform: scale(1);
+   opacity: 0.4;
+   }
+   to {
+   transform: scale(100);
+   opacity: 0;
+   }
+   }
+   .text-white{
+   color: #ffffff;
+   }
+</style>
 <input id="check_open_worktbooking" value="0" type="hidden"/>
 <div style="background-color:<?=$main_color;?>; height:120px; width:100%;margin-left:0px; margin-top:0px;" >
    <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-left:0px;position: absolute; margin-top: 10px;">
@@ -309,7 +577,7 @@
       </tr>
       <tr style="display: nones;">
          <td colspan="2" width="50%" align="center" class="">
-            <a onclick="checkSocket();">
+            <a onclick="openOrderFromAndroid(126);">
             <button type="button" class="btn btn-default paddling-max" style="width:100%">
                <center>
                   <div  class="circle-menu" style="background: #CDDC39;"><i class="fa fa-map" ></i></div>
@@ -691,6 +959,7 @@
 				}
 				
 			}
+			
 			/*else{
 				if(user_class=="lab"){
 	        		
@@ -722,6 +991,37 @@
 				filterMenu('manage');
 				shop_frist_run = done.length;
 			}
+		}
+    	
+    	
+    	/* check open order id auto */
+    	if(frist_socket==true){
+			
+			var get_order_id = "<?=$_GET['order_id'];?>";
+			if(get_order_id!=""){
+				console.log("order id : "+get_order_id);
+				
+				console.log(array_data);
+				 $.each(array_data.manage,function(index,value){
+				 	if(value.id==get_order_id){
+				 		
+				$('#main_load_mod_popup').show();
+			      var url_load= "load_page_mod.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+			       console.log(url_load);
+			       $('#text_mod_topic_action').html("เลขที่ "+value.invoice);
+			       $('#load_mod_popup').html(load_main_mod);
+			       $.post(url_load,value,function(data){
+			      		 $('#load_mod_popup').html(data); 
+						 $('#btn_cancel_book_'+value.id).css('top','60px');
+						 $('.assas_'+value.id).css('margin-top','30px');
+			      	});
+      
+					}
+				 });
+				
+				
+			}
+    	frist_socket = false;
 		}
     	
       });
@@ -835,8 +1135,47 @@ function formatDate(date) {
 
     return [year, month, day].join('-');
 }
+function formatTime(date) {
+    var d = new Date(date),
+        hour = '' + d.getHours(),
+        minutes = d.getMinutes();
+		
+		if(hour<10){
+			hour = "0" + hour ;
+		}
+		if(minutes<10){
+			minutes = "0" + minutes ;
+		}
+		
+    return [hour, minutes].join(':');
+}
+function openOrderFromAndroid(id){
+	
+	var check_open_shop_id = $('#check_open_shop_id').val();
+	alert('Param : '+id+" : "+check_open_shop_id);
+	if(check_open_shop_id<=0){
+	
+	$.each(array_data.manage,function(index,value){
+				 	if(value.id==id){
+				 		
+				$('#main_load_mod_popup').show();
+			      var url_load= "load_page_mod.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
+			       console.log(url_load);
+			       $('#text_mod_topic_action').html("เลขที่ "+value.invoice);
+			       $('#load_mod_popup').html(load_main_mod);
+			       $.post(url_load,value,function(data){
+			      		 $('#load_mod_popup').html(data); 
+						 $('#btn_cancel_book_'+value.id).css('top','60px');
+						 $('.assas_'+value.id).css('margin-top','30px');
+			      	});
+      
+					}
+				 });
 
+	}
+}
 </script>
+
 <script>
          $('#index_menu_shopping').click(function(){
             $(".text-topic-action-mod").text('ส่งแขก (ภูเก็ต)')
@@ -877,23 +1216,24 @@ function formatDate(date) {
 echo t_load_data;
 ?></center></font></div>";
  </script>
-  <script>
+<script>
  var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:20px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
 echo t_load_data;
 ?></center></div></div>';
 </script>
- <script>
+<script>
  var load_main_icon_big='<center><div class="inner-loading"><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px; color:<?= $main_color ?>; margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;; margin-top:10px "><center> <?
 echo t_load_data;
 ?></center></div></div>';
 </script>
-  <script>
+<script>
  var load_main_icon_mini="<div style='top:0; left:0'><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:22px; color:<?= $main_color_sorf ?>; ' ></i> </td><td><font style='font-size:14px; color:#333333 ' ><?
 echo t_load_data;
 ?></center></font></td></tr></table></div> ";
  </script>
-   <script>
+<script>
  var load_main_icon_mod="<div style='top:0; left:0'><br><br><table width='100%'  border='0' cellspacing='0' cellpadding='0'><tr><td align='center' style='width:24px; '><i class='fa fa-refresh fa-spin 2x' style='font-size:60px; color:<?= $main_color_sorf ?>; ' ></i> <br><font style='font-size:14px; color:#333333 ' ><?
 echo t_load_data;
 ?></center></font></td></tr></table></div> ";
  </script>
+

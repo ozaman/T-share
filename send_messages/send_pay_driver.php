@@ -41,7 +41,7 @@ function sendMessage() {
 			'filters' => array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
 								),
-			'data' => array("foo" => "bar"),
+			'data' => array("order_id" => $_GET[order_id]),
 			'contents' => $content,
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);

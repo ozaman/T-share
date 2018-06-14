@@ -16,7 +16,8 @@
          folder instead of downloading all of them to reduce the load. -->
       <link rel="stylesheet" href="dist/css/skins/_all-skins.css?v=<?=time()?>">
       <link href="docs/css/highlight.css" rel="stylesheet">
-      <link href="dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+     <!-- <link href="dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">-->
+     
       <script src="plugins/jQuery/js/jquery-latest.js"></script>
       <?  include ("bootstrap/fonts/all.php");?> 
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

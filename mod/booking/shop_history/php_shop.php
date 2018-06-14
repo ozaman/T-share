@@ -267,4 +267,17 @@ header('Content-Type: application/json');
 echo json_encode($decode);	
 	
 }
+
+if($_GET[update]=="update_time_toplace"){
+	
+	$id = $_POST[order_id];
+	$data[airout_m] = $_POST[time];
+	$data[update_date] = time();
+	
+	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
+	$data[result] = $db->update_db("order_booking",$data,"id = '".$id."'  "); 
+	
+	header('Content-Type: application/json');
+	echo json_encode($data);
+}
 ?>

@@ -316,7 +316,7 @@
     $('#load_mod_data').html(load_main_mod);
      $('#navload_topic').html('ไปที่หน้าแรก');
     $('#load_mod_data').load('go.php');*/
-    	 location.reload();
+    	window.location = "https://www.welovetaxi.com/app/demo_new/index.php";
          	});
     /// qr code
    $('#btn_qrcode_bottom_menu').click(function(){  

@@ -94,9 +94,13 @@ function checkTypePay($id){
  $main_color = "#3b5998";
   $arr[book] = $_POST ;
   
- $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+/* $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[plate] = $db->select_query("SELECT plate_num FROM  web_carall  where id = '".$arr[book][check_use_car_id]."'  ");
- $arr[plate] = $db->fetch($res[plate]);  
+ $arr[plate] = $db->fetch($res[plate]);*/ 
+ 
+  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+ $res[car] = $db->select_query("SELECT car_plate, car_type FROM  order_booking  where id = '".$arr[book][id]."'  ");
+ $arr[car] = $db->fetch($res[car]);
  
  $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
  $res[place_shop] = $db->select_query("SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ");
@@ -105,15 +109,15 @@ function checkTypePay($id){
  $res[projectdriver] = $db->select_query("SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    "); 
  $arr[projectdriver] = $db->fetch($res[projectdriver]);
  
- $res[qr_car] = $db->select_query("SELECT t1.car_type as car_type_id, t2.topic_en as topic_en,t2.topic_cn as topic_cn, t2.topic_th as topic_th, t1.car_color as color FROM web_carall as t1 left join web_carall_type as t2 on t1.car_type = t2.id WHERE t1.id ='".$arr[book][check_use_car_id]."' ");
- $arr[qr_car] = $db->fetch($res[qr_car]);
+/* $res[qr_car] = $db->select_query("SELECT t1.car_type as car_type_id, t2.topic_en as topic_en,t2.topic_cn as topic_cn, t2.topic_th as topic_th, t1.car_color as color FROM web_carall as t1 left join web_carall_type as t2 on t1.car_type = t2.id WHERE t1.id ='".$arr[book][check_use_car_id]."' ");
+ $arr[qr_car] = $db->fetch($res[qr_car]);*/
  
  if($_COOKIE['lng']=="th"){
  	 $full_name_driver = $arr[projectdriver][name]." (".$arr[projectdriver][nickname].")";
- 	 $car_color = $arr[book][car_color];
+// 	 $car_color = $arr[book][car_color];
  }else{
  	$full_name_driver =  $arr[projectdriver][name_en];
- 	$car_color = $arr[qr_car][color];
+// 	$car_color = $arr[qr_car][color];
  }
 
  if($arr[book][status]=='CANCEL'){
@@ -256,13 +260,13 @@ function checkTypePay($id){
 		  <tbody>
 		    <tr>
 		      <td  width="100" class="font-22"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
-		      <td class="font-22"><? echo $arr[qr_car][$place_shopping]; ?></td>
-		      <td width="30" class="font-22"><font color="#333333"><?=t_car_coloring;?></font></td>
-		      <td class="font-22"><?=$car_color;?></td>
+		      <td class="font-22"><? echo $arr[car][car_type]; ?></td>
+		     <!-- <td width="30" class="font-22"><font color="#333333"><?=t_car_coloring;?></font></td>
+		      <td class="font-22"><?=$car_color;?></td>-->
 		    </tr>
 		    <tr>
 		      <td   width="100"  class="font-22"><font color="#333333"><?=t_car_registration_number;?></font></td>
-		      <td colspan="3" class="font-22"><?=$arr[plate][plate_num];?></td>
+		      <td colspan="3" class="font-22"><?=$arr[car][car_plate];?></td>
 		    </tr>
 		     <tr>
 		      <td   width="100"  class="font-22"><font color="#333333"><?=t_call;?></font></td>

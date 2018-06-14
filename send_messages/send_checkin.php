@@ -54,7 +54,7 @@ function sendMessage() {
     $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => $tag,
-			'data' => array("foo" => "bar"),
+			'data' => array("order_id" => $_GET[id]),
 			'contents' => $content,
 			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
 		);
