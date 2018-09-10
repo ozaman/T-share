@@ -250,22 +250,15 @@ var dataorder = {
     order: parseInt(id),
 };
 socket.emit('sendchat', '');
-// socket.on('connect', function(){  
+
 socket.emit('adduser', dataorder);
-//console.log(dataorder);
-// });
+
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
     array_rooms = rooms;
     console.log(current_room)
 });
-// socket.on("disconnect", function(){
-//    socket.disconnect();
-//      console.log("client disconnected from server");
-//  });
-
-// if(class_user=="lab"){
 
 socket.on('datalab', function(username, data) {
     console.log('***********************datalab***************************')
@@ -304,8 +297,7 @@ socket.on('datalab', function(username, data) {
         });
     }
 });
-// }
-// else{
+
 socket.on('updatedriver', function(username, data) {
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
@@ -333,19 +325,11 @@ socket.on('updatedriver', function(username, data) {
                 console.log("driver_pay_report");
                 changeHtml("driver_pay_report", data.id, data.driver_pay_report_date)
             }
-            /*var check_open_incom = $('#check_id_income_lab').val();
-            if (typeof check_open_incom != 'undefined'){
-            console.log(check_open_incom);
-            //             alert(check_open_incom);
-            openViewPrice()
-            }*/
+
         }
     }
 });
-// }
-/*socket.on('getbookinglabhis', function (data) {
-console.log(data.booking)
-});  */
+
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),

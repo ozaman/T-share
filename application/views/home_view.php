@@ -579,40 +579,64 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_shop">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab page="tab1.html" label="จัดการ"  >
+				    <ons-tab page="shop_manage.html" label="จัดการ"  >
 				    </ons-tab>
-				    <ons-tab page="tab2.html" label="ส่งแขก" active>
+				    <ons-tab page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
-				    <ons-tab page="tab3.html" label="ประวัติส่งแขก" >
+				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>
 
-				<template id="tab1.html">
-				  <ons-page id="Tab1">
+				<template id="shop_manage.html">
+				  <ons-page id="shop_manage">
 				    
 				  </ons-page>
 				</template>
 
-				<template id="tab2.html">
-				  <ons-page id="Tab2">
+				<template id="shop_add.html">
+				  <ons-page id="shop_add">
 				   <div>
 				   		<?php include("application/views/page/shop_view.php"); ?>
 				   </div>
 				  </ons-page>
 				</template>
 				
-				<template id="tab3.html">
-				  <ons-page id="Tab3">
-				    <p style="text-align: center;">
-				      This is the second page 3.
-				    </p>
+				<template id="shop_history.html">
+				  <ons-page id="shop_history">
+				    
 				  </ons-page>
 				</template>
 			
 				<script>
+					var array_ma = [];
+					var array_his = [];
+					var date = "<?=date('Y-m-d');?>";
 					document.addEventListener('prechange', function(event) {
-						console.log(event);
+						
+					console.log(event);
+					var page = event.tabItem.getAttribute('page');
+					if(page=="shop_manage.html"){
+						var obj = array_data;
+//						var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
+//						var url = "page/shop_manage?find=day&day="+date+"&status=new&type=manage";
+						var url = "page/shop_manage";
+				   	 	$('#date_filter').hide();
+				   	 	array_ma = obj.manage;
+				   	 	console.log(array_ma);
+				   	 	var pass = { data : array_ma};	
+				   	 	console.log(pass);
+
+							$.ajax({
+							  url: url,
+							  data: pass,
+							  type: 'post',
+							  success: function(data) {
+							  	console.log(data);
+//							    $('#load_booking_data').html(data);
+							  }
+							}); 
+					}
 				  document.querySelector('ons-toolbar .center')
 				    .innerHTML = event.tabItem.getAttribute('label');
 				    
@@ -633,7 +657,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         <ons-page>
             <ons-toolbar>
                 <div class="left">
-                    <ons-back-button>กลับ</ons-back-button>
+                    <ons-back-button onclick="$('#check_open_worktbooking').val(0);">กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
             </ons-toolbar>

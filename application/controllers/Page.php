@@ -26,6 +26,16 @@ public function booking_detail()
 public function transfer_manage()
 	{
 		$this->load->view('transfer/manage_view',$data);
+	}
+	
+public function shop_view()
+	{
+		$this->load->view('shop/shop_view',$data);
 	}		
+public function shop_manage()
+	{
+		$this->load->view('shop/shop_manage',$data);
+	}	
+	
 }
 ?>

@@ -3,7 +3,7 @@
   <ons-col style="margin: 10px;">
 	  <center>
 	  	<div onclick="fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})" class="circle-menu" style="    background-color: #34A0E7;" >
-	      <span id="number_shop" class="badge badge-custom font-22 pulse" style="display: none;">0</span>
+	      <span id="number_shop" class="badge badge-custom font-18 pulse" style="display: none;">0</span>
 	      <div class="content">
 	     	<i class="icon-new-uniF14D" style="font-size: 24px;position: relative; top: 7px; left: 2px;"></i>
 	      </div>
