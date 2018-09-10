@@ -266,6 +266,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             </ons-list>
 
             <script>
+                $(document).ready(function(){
+  $('.list-item--expandable').click(function(){
+    // alert('sasasa')
+    $('.list-item--expandable').removeClass("expanded",2000);
+    $(this).addClass("expanded");
+});
+});
                 ons.getScriptPage().onInit = function() {
         // Set ons-splitter-side animation
         this.parentElement.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
