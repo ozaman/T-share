@@ -147,7 +147,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
                     <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี'}, 'lift-ios')">
-                        <img src="../data/pic/driver/small/HKT0153.jpg" style="width: 35px; margin-top: 2px; margin-left: 0px; border-radius: 25px;" />
+                        <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
@@ -631,9 +631,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 							  url: url,
 							  data: pass,
 							  type: 'post',
-							  success: function(data) {
-							  	console.log(data);
-//							    $('#load_booking_data').html(data);
+							  success: function(ele) {
+//							  	console.log(data);
+							    $('#shop_manage').html(ele);
 							  }
 							}); 
 					}

@@ -118,9 +118,9 @@
       
     foreach ($_POST[data] as $key=>$val){
     
-	  $sql = "SELECT topic_th FROM shopping_product  WHERE id=".$val[program]." ";
+	  /*$sql = "SELECT topic_th FROM shopping_product  WHERE id=".$val[program]." ";
 	  $query = $this->db->query($sql);
-	  $arr[shop] = $query->row();
+	  $arr[shop] = $query->row();*/
 	  
     if($val[status]=='CANCEL'){
        /*if($val[cancel_type]=='1'){
@@ -183,7 +183,7 @@
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
         $time = new DateTime($time_c);
         $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-//        echo $time_c;
+        echo $time_c;
         $stamp = $time->format('H:i');
         $current_time = date('H:i');
         
@@ -235,7 +235,7 @@
   
   <script>
 //    console.log("เวลาจอง : <?=$time_c;?> || <?=$minutes_to_add;?> นาที || ")
-/*    console.log("<?=$stamp;?> || <?=$current_time;?>")
+    console.log("<?=$stamp;?> || <?=$current_time;?>")
     var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
 //    console.log(d1);
     var d2 = js_yyyy_mm_dd_hh_mm_ss();
@@ -243,7 +243,7 @@
     $('#txt_date_diff_<?=$val[id];?>').text(CheckTime(d1,d2));
 //    console.log(formatDate('<?=$val[transfer_date];?>'));
 
-    $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));*/
+    $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
   </script>
 <?    
     } ?>
