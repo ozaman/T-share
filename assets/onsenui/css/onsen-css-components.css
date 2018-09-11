@@ -4581,7 +4581,7 @@ h4, h5, h6 {
   display: none;
 }
 .text-input:disabled {
-  opacity: 0.3;
+  opacity: 1;
   cursor: default;
   pointer-events: none;
 }

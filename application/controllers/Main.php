@@ -45,6 +45,52 @@ class Main extends CI_Controller {
   	header('Content-Type: application/json');
   	echo json_encode($data['res']);
   }
+  
+  /**
+  * Query Data
+  * 
+  * @return
+  */
+  public function data_car_brand(){
+  	$data['res'] = $this->Main_model->query_car_brand();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  
+  public function data_car_type(){
+  	$data['res'] = $this->Main_model->query_car_type();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  public function data_car_color(){
+  	$data['res'] = $this->Main_model->query_car_color();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  public function data_car_plate(){
+  	$data['res'] = $this->Main_model->query_car_plate();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  public function data_car_province(){
+  	$data['res'] = $this->Main_model->query_province();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  public function data_user_province(){
+  	$data['res'] = $this->Main_model->query_province();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
+  /**
+  * *end
+  */
+  public function update_user(){
+  	$data['res'] = $this->Main_model->update_user();
+//	$data['res'] = 123;
+//  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
  
 // public function detect
 //////////////////////////// End

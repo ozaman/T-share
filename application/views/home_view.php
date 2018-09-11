@@ -104,12 +104,12 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     var detect_mb = "<?=$detectname;?>";
     var detect_user = $.cookie("detect_user");
    	  var class_user = $.cookie("detect_userclass");
-      var username = $.cookie("detect_username").toUpperCase();
+      var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
 	  if(username=="" || typeof username == 'undefined'){
-	  	
-	  	window.location = "signin";
-	  
+	  		window.location = "signin";
+	  }else{
+	  		username = username.toUpperCase();
 	  }
 	</script>
 <script src="assets/custom.js"></script>
@@ -146,7 +146,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี'}, 'lift-ios')">
+                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">
                         <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
@@ -182,8 +182,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลผู้ใช้งาน
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;">เอกสารสำคัญ</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
                     <div class="right" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -196,8 +196,14 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_car_info');">
                         ข้อมูลรถ
                     </div>
+                    <?php 
+                    	$this->db->select('id');
+						$this->db->where('status = 1 and drivername = '.$_COOKIE['detect_user']);
+						$query = $this->db->get('web_carall');
+						$num = $query->num_rows();
+                    ?>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')">รถใช้งาน (<?=$num;?> คัน)</div>
                     <div class="expandable-content" style="padding-left: 60px;">เพิ่มรถ</div>
-                    <div class="expandable-content" style="padding-left: 60px;">รถทั้งหมด</div>
                     <div class="right" id="list_car_info">
                          <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -551,8 +557,27 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">ข้อมูลบัญชี</div>
             </ons-toolbar>
+	            <div id="body_profile_view">
+	            	<?php //include("application/views/page/profile_view.php"); ?>
+	            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+    
+    <template id="car_manage.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center">ข้อมูลรถ</div>
+            </ons-toolbar>
 	            <div>
-	            	<?php include("application/views/page/profile_view.php"); ?>
+	            	<?php include("application/views/car/car_view.php"); ?>
 	            </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -910,6 +935,26 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  </ons-alert-dialog>
 	</template>
     
+    
+    <template id="option.html">
+	  <ons-page>
+	    <ons-toolbar>
+	      <div class="left">
+	        <ons-back-button class="option-back">กลับ</ons-back-button>
+	      </div>
+	      <div class="center"></div>
+	    </ons-toolbar>
+	    <div id="body_option">
+	    	
+	    </div>
+	    <script>
+	      ons.getScriptPage().onInit = function () {
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+	  </ons-page>
+</template>
+    
 </body>
 
 </html>
@@ -971,8 +1016,115 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             $.post(url,function(html){
             	$('#transfer_job').html(html);
             });
+		}else if(page.key == "profile"){
+			var url = "page/profile_edit";
+
+            $.post(url,function(html){
+            	$('#body_profile_view').html(html);
+            });
 		}
         
+        if(page.id=="option.html"){
+			console.log("option");
+			if(page.open=="car_brand"){
+				
+				$.ajax({
+	            url: "main/data_car_brand", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {
+	            	var d1 = [],d2 = [];
+	            	$.each(res, function( index, value ) {
+					  	if(value.popular>0){
+							d1.push(value);
+						}else{
+							d2.push(value);
+						}
+					});
+					var param = { data2 : d2, data1 : d1};
+					console.log(param);
+	                $.post("component/cpn_car_brand",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}
+			else if(page.open=="car_type"){
+				
+				$.ajax({
+	            url: "main/data_car_type", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_car_type",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+				
+			}
+			else if(page.open=="car_color"){
+				$.ajax({
+	            url: "main/data_car_color", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_car_color?plate=0",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+			else if(page.open=="plate_color"){
+				$.ajax({
+	            url: "main/data_car_plate", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_car_plate",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+			else if(page.open=="car_province"){
+				$.ajax({
+	            url: "main/data_car_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_user_province?type=car",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+			else if(page.open=="user_province"){
+				$.ajax({
+	            url: "main/data_user_province", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_user_province?type=user",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+		}
         if (anim) {
             document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
@@ -1126,4 +1278,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     function openNotifyline(){
     location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
   }
+  
+  
 </script>

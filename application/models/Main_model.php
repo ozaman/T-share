@@ -300,6 +300,101 @@ curl_close($curl);
   	
   }
   
+  public function query_car_brand(){
+  	  $sql = "SELECT id,name_en,name_th,name_cn,img,popular FROM web_car_brand WHERE status = 1 ";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  }
+  public function query_car_type(){
+  	  $sql = "SELECT id,name_th FROM web_car_use_type WHERE status = 1 ";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  }
+  public function query_car_color(){
+  	  $sql = "SELECT id,name_th,name_en,img,plate FROM web_car_color WHERE status = 1 ";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  }
+  public function query_car_plate(){
+  	  $sql = "SELECT id,name_th,name_en,img FROM web_car_plate WHERE status = 1 order by i_index asc";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  }
+  public function query_province(){
+  	  $sql = "SELECT name_th,id,name,code FROM web_province   order by name_th asc";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  } 
+  
+  public function update_user(){
+	  	
+	//	$data[pic_home] = $check;
+	    $data[password] = $_POST[password];
+	    $data[name_en] = $_POST[name_en];
+	    $data[name] = $_POST[name_th];
+	    $data[nickname] = $_POST[nickname];
+	    $data[idcard] = $_POST[idcard];
+	    $data[iddriving] = $_POST[iddriving];
+	    $data[idcard_finish] = $_POST[ex_idcard];
+	    $data[iddriving_finish] = $_POST[ex_iddriving];
+	    $data[phone] = $_POST[phone];
+	    $data[contact] = $_POST[contact];
+	    $data[address] = $_POST[address];
+	    $data[update_date] = time();
+	    $data[i_gender] = $_POST[gender];
+//	    $result = $db->update_db($tb_admin_chk,$data , " id= '".$_GET[id]."' ");
+		$this->db->where('id', $_GET[id]);
+	    $result = $this->db->update('web_driver', $data); 
+	    $this->adddriver($_GET[id]);
+
+	    $data[result] = $result;
+
+	  return $data;
+  } 
+  
+  function adddriver($id){
+  	$curl_post_data = '{"id":"'.$id.'","action":"add"}';
+                    
+    $headers = array();
+
+	$url = "http://www.welovetaxi.com:3000/adddriver";
+	//$api_key = '1f7bb35be49521bf6aca983a44df9a6250095bbb';
+	$curl = curl_init();
+	curl_setopt($curl, CURLOPT_HTTPHEADER,
+	    array(
+	        'Content-Type: application/json'
+	        // 'API-KEY: '.$api_key.''
+	    )
+	);
+	curl_setopt($curl, CURLOPT_ENCODING, 'gzip');
+	curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.6 (KHTML, like Gecko) Chrome/16.0.897.0 Safari/535.6");
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+	curl_setopt($curl, CURLOPT_REFERER, $url);
+	curl_setopt($curl, CURLOPT_URL, $url);  
+
+	curl_setopt($curl, CURLOPT_POST, true);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, $curl_post_data);
+	$curl_response = curl_exec($curl);
+	//echo $curl_response;
+	curl_close($curl);
+	
+}
   /**
   * *********** End
   */

@@ -36,6 +36,10 @@ public function shop_manage()
 	{
 		$this->load->view('shop/shop_manage',$data);
 	}	
+public function profile_edit()
+	{
+		$this->load->view('page/profile_view',$data);
+	}	
 	
 }
 ?>
