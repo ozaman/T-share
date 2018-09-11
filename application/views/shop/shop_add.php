@@ -24,7 +24,7 @@ $data_dv = $query_dv->row();
     <ons-card>
 
         <div class="form-group">
-            <div style="padding: 5px;margin-top: 0px;">
+            <div style="padding: 0px;margin-top: 0px;">
 			<?php 
 	  			foreach($query->result() as $val){ 
 	  			$bg_plate_color = "background-color: ".$val->plate_color;
@@ -103,7 +103,7 @@ $data_dv = $query_dv->row();
 
         <div class="form-group">
             <span class="font-18">ประเภทรถ</span>
-            <select class="select-input font-16" name="car_type" id="car_type" style="border-radius: 0px;padding: 5px;">
+            <select class="select-input font-16" name="car_type" id="car_type" style="border-radius: 0px;padding: 5px;    width: 100%;">
                 <option value="0"> กรุณาเลือกประเภทรถ</option>
                 <?php 
             	 $sql = "select * from web_carall_type where status = 1 ";
@@ -162,7 +162,7 @@ $data_dv = $query_dv->row();
 
         <div class="form-group">
             <span class="font-18">เวลาถึงโดยประมาณ(นาที)</span>
-            <select class="select-input font-16" name="time_select" id="time_select" style="border-radius: 0px;padding: 5px;width: 100%;">
+            <select class="select-input font-16" name="time_select" id="time_select" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
                 <option value="0">- เลือกนาที -</option>
                 <?php 
             		$mm = 5;

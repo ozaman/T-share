@@ -53,7 +53,7 @@
 <ons-row>
   <ons-col style="margin: 10px;">
 	  <center>
-	  	<div onclick="fn.pushPage({'id': 'popup1.html', 'title': 'ส่งแขก', 'key': 'shop'})" class="circle-menu" style="    background-color: #3b5998;" >
+	  	<div onclick="fn.pushPage({'id': 'popup1.html', 'title': 'จองทัวร์', 'key': 'shop'})" class="circle-menu" style="    background-color: #3b5998;" >
 	      
 	      <div class="content">
 	     	<i class="icon-new-uniF121-10" style="font-size: 24px;position: relative; top: 7px; left: 0px;"></i>
@@ -65,7 +65,7 @@
 
   <ons-col style="margin: 10px;">
    <center>
-	  	<div onclick="fn.pushPage({'id': 'popup1.html', 'title': 'ให้บริการรถ'})" class="circle-menu" style="    background-color: #e91e63;">
+	  	<div onclick="fn.pushPage({'id': 'popup1.html', 'title': 'รายรับ'})" class="circle-menu" style="    background-color: #e91e63;">
 	      <div class="content">
 	     	<i class="fa fa-usd" style="font-size: 28px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>

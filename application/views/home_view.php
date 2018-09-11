@@ -97,6 +97,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  </div>
 </ons-modal>
 <script>
+	
 //	alert('<?=$detectname;?>');
 	var modal = document.querySelector('ons-modal');
 		modal.show();
@@ -107,7 +108,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
       var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
 	  if(username=="" || typeof username == 'undefined'){
-	  		window.location = "signin";
+//	  		window.location = "signin";
+			$.cookie("detect_user",'153');
+			$.cookie("detect_userclass",'taxi');
+			$.cookie("detect_username",'HKT0153');
+			location.reload();
 	  }else{
 	  		username = username.toUpperCase();
 	  }
@@ -172,7 +177,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div class="profile-pic">
                 <img src="https://monaca.io/img/logos/download_image_onsenui_01.png">
             </div>
-            <ons-list-title>เมนู</ons-list-title>
+            <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
                 <ons-list-item expandable>
                     <div class="left">
@@ -184,7 +189,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
                     <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
-                    <div class="right" id="list_profile">
+                    <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
@@ -204,7 +209,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     ?>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')">รถใช้งาน (<?=$num;?> คัน)</div>
                     <div class="expandable-content" style="padding-left: 60px;">เพิ่มรถ</div>
-                    <div class="right" id="list_car_info">
+                    <div class="right arr" id="list_car_info">
                          <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
@@ -218,7 +223,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;">รายรับ</div>
                     <div class="expandable-content" style="padding-left: 60px;">ธนาคาร</div>
-                    <div class="right" id="list_acc">
+                    <div class="right arr" id="list_acc">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
@@ -930,7 +935,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	    </div>
 	    <div class="alert-dialog-footer">
 	      <ons-alert-dialog-button onclick="$('#signout-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-	      <ons-alert-dialog-button onclick="logout()">ยืนยัน</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="logOut()">ยืนยัน</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
@@ -1185,8 +1190,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     }
     
     function arrowChange(id){
+    	
     	var check = $('#'+id+' i').hasClass('fa-chevron-down');
-    	console.log(check);
+    	console.log(id+' : '+check);
 		if(check==true){
 			$('#'+id+' i').removeClass('fa-chevron-down');
 			$('#'+id+' i').addClass('fa-chevron-up');
@@ -1194,6 +1200,20 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 			$('#'+id+' i').addClass('fa-chevron-down');
 			$('#'+id+' i').removeClass('fa-chevron-up');
 		}
+		
+		
+		$('.arr').each (function() {
+//			console.log($(this).attr('id'));
+			if($(this).attr('id')==id){
+//				console.log(1);
+			}else{
+				$(this).find('i').removeClass('fa-chevron-up');
+				$(this).find('i').addClass('fa-chevron-down');
+			}
+		  	
+		}); 
+//		$( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
+//		$( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
 	}
 </script>
 
@@ -1253,8 +1273,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	}
     
     function logOut() {
-        
-                $.post('signout.php?type=logout', function() {
+        		  $('#signout-alert-dialog').hide();
+//                $.post('signin/signout', function() {
+                
                     $.cookie("detect_user", "", {
                         path: '/'
                     });
@@ -1264,15 +1285,22 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     $.cookie("detect_username", "", {
                         path: '/'
                     });
-                    swal("<?=t_sign_out_successfully;?>", "", "success");
-                    setTimeout(function() {
+                    ons.notification.alert({message: 'ออกจากระบบสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
+											  .then(function() {
+											   		
+											   		deleteTagOs("Test Text");
+                        							deleteTagIOS(class_user, username);
+                        							location.reload();
+                        							
+											  });
+                    /*setTimeout(function() {
 
                         deleteTagOs("Test Text");
                         deleteTagIOS(class_user, username);
                         window.location.href = "material/login/index.php";
                         //						    window.location.href = "signin.php";
-                    }, 1000);
-                });
+                    }, 1000);*/
+//                });
        
     }
     function openNotifyline(){

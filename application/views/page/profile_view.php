@@ -121,19 +121,21 @@
         	<div class="left list-item__left">
                  <i class="fa fa-venus-mars list-item__icon" aria-hidden="true" style="padding-left: 3px;"></i><span class="txt-important">*</span>
             </div>
-            	<ons-list-item tappable>
+            	<ons-list-item tappable onclick="selectGender(0);" >
 		        <label class="left">
-		          <ons-checkbox class="checkbox-color rcp" input-id="checkbox-0" onclick="selectGender(0);" <?=$ck_men;?>></ons-checkbox>
+		          <!--<ons-checkbox class="checkbox-color rcp" input-id="checkbox-0"  <?=$ck_men;?>></ons-checkbox>-->
+		          <ons-radio class="radio-fruit" input-id="radio-man" value="0" name="check" <?=$ck_men;?>></ons-radio>
 		        </label>
-		        <label class="center" for="checkbox-0" style="background-image: unset;">
+		        <label class="center" for="radio-man" style="background-image: unset;">
 		          ชาย
 		        </label>
 		      </ons-list-item>
-		        <ons-list-item tappable>
+		        <ons-list-item tappable onclick="selectGender(1);" <?=$ck_girl;?>>
 		        <label class="left">
-		          <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1"  onclick="selectGender(1);" <?=$ck_girl;?> ></ons-checkbox>
+		         <!-- <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1"    ></ons-checkbox>-->
+		         <ons-radio class="radio-fruit" input-id="radio-girl" value="1" name="check" <?=$ck_girl;?>></ons-radio>
 		        </label>
-		        <label class="center" for="checkbox-1" style="background-image: unset;">
+		        <label class="center" for="radio-girl" style="background-image: unset;">
 		          หญิง
 		        </label>
 		      </ons-list-item>
@@ -325,7 +327,7 @@
                 <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
             </div>
             <label class="center list-item__center">
-                <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;" value="<?=$driver->idcard;?>">
+                <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;" value="<?=$driver->iddriving;?>">
                     <input type="text" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
                     <span class="text-input__label">
                         </span>
@@ -441,12 +443,16 @@
 	      		var data = new FormData($('#edit_form')[0]);
 	      		if(type=="id_card"){
 					data.append('idcard_upload', $('#img_'+type)[0].files[0]);
-				}else{
+				}
+				else if(type=="id_driving"){
 					data.append('iddriving_upload', $('#img_'+type)[0].files[0]);
+				}
+				else if(type="profile"){
+					data.append('imgInp', $('#img_'+type)[0].files[0]);
 				}
       			
 //      			var url_upload = "../../mod/user/upload_img/upload.php?id="+$('#rand').val()+"&type="+type;
-      			var url_upload = "application/views/upload_img/upload.php?id=<?=$driver->id;?>&type="+type;
+      			var url_upload = "application/views/upload_img/upload.php?id=<?=$driver->username;?>&type="+type;
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
@@ -463,7 +469,14 @@
    				                   $('#txt-img-nohas-'+type).hide();
    				                   $('#pv_id_card').attr('src','../data/pic/driver/id_card/<?=$driver->id;?>_idcard.jpg?v='+num);
    				                   $('#pv_id_drving').attr('src','../data/pic/driver/id_driving/<?=$driver->id;?>_iddriving.jpg?v='+num);
+   				                   $('#pv_profile').attr('src','../data/pic/driver/small/<?=$driver->username;?>.jpg?v='+num);
+   				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/<?=$driver->username;?>.jpg?v='+num);
    				                   num = num+1;
+   				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+											  .then(function() {
+//											   		location.reload();
+													
+											  });
    				                },
 						        error: function(e){
 						                console.log(e)
@@ -489,22 +502,16 @@
 	});
 	
 	$("#img_profile").change(function() {
-//	  	 readURLprofile(this);
-		var input = this;
-		if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    	reader.onload = function(e) {
-	    		$('#pv_profile').attr('src', e.target.result);
-	    }
-	    	reader.readAsDataURL(input.files[0]);
-	  }
+	  	 readURL(this,'profile');
+		
  
 	});
 	
        
 	function selectGender(val){
-		$('.rcp').prop('checked', false);
-		$('#checkbox-'+val).prop('checked', true);
+		console.log(val);
+//		$('.rcp').prop('checked', false);
+//		$('#checkbox-'+val).attr('checked', true);
 		$('#gender').val(val);
 	}
 	
@@ -564,7 +571,7 @@ function saveDataPf(){
    									   		modal.hide();
    									  		ons.notification.alert({message: 'ทำการแก้ไขข้อมูลเรียบร้อยแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 											  .then(function() {
-											   		
+											   		location.reload();
 											  });
    									   }
    									  else{

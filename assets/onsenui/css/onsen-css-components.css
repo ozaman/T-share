@@ -3133,7 +3133,9 @@ h4, h5, h6 {
   bottom: 0;
   padding: 0;
   border: 0;
-  background-color: transparent;
+/*  background-color: transparent;*/
+  background-color: #0076ff;
+  border-radius: 50%;
   z-index: 1;
   vertical-align: top;
   outline: none;
@@ -3198,15 +3200,17 @@ h4, h5, h6 {
   pointer-events: none;
 }
 .radio-button__checkmark:after {
+	z-index: 1;
   content: '';
   position: absolute;
   top: 7px;
-  left: 4px;
+  left: 6px;
   opacity: 0;
   width: 11px;
   height: 4px;
   background: transparent;
-  border: 2px solid #0076ff;
+/*  border: 2px solid #0076ff;*/
+  border: 2px solid #fff;
   border-top: none;
   border-right: none;
   border-radius: 0;
@@ -3416,7 +3420,7 @@ h4, h5, h6 {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  padding: 0 0 0 14px;
+/*  padding: 0 0 0 14px;*/
   margin: 0 0 -1px 0;
   color: #1f1f21;
   transition: background-color 0.2s linear;
@@ -6222,6 +6226,8 @@ h4, h5, h6 {
     </select>
 */
 .select-input {
+  height: auto;	
+  border-bottom: 1px solid #ccc !important;
   box-sizing: border-box;
   background-clip: padding-box;
   padding: 0;
@@ -6241,7 +6247,7 @@ h4, h5, h6 {
   background-color: transparent;
   position: relative;
   font-size: 17px;
-  height: 32px;
+/*  height: 32px;*/
   line-height: 32px;
   border-color: #ccc;
   color: #1f1f21;
@@ -6250,7 +6256,7 @@ h4, h5, h6 {
           appearance: none;
   display: inline-block;
   border-radius: 0;
-  border: none;
+/*  border: none;*/
   padding: 0 20px 0 0;
   background-color: transparent;
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0My4yICgzOTA2OSkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+c2VsZWN0LWFsbG93PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9InNlbGVjdCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9Imlvcy1zZWxlY3QiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOTguMDAwMDAwLCAtMTE0LjAwMDAwMCkiIGZpbGw9IiM3NTc1NzUiPgogICAgICAgICAgICA8ZyBpZD0ibWVudS1iYXItKy1vcGVuLW1lbnUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyMy4wMDAwMDAsIDEwMC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJtZW51LWJhciI+CiAgICAgICAgICAgICAgICAgICAgPHBvbHlnb24gaWQ9InNlbGVjdC1hbGxvdyIgcG9pbnRzPSI3NSAxNCA4MCAxOSA4NSAxNCI+PC9wb2x5Z29uPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=');
