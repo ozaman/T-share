@@ -228,7 +228,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item>
+                <ons-list-item onclick="fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน'}, 'lift-ios')">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;"></i></span>
                     </div>
@@ -563,9 +563,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">ข้อมูลบัญชี</div>
             </ons-toolbar>
-            <p style="text-align: center">
-
-            </p>
+	            <div>
+	            	<?php include("application/views/page/profile_view.php"); ?>
+	            </div>
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -604,7 +604,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				<template id="shop_add.html">
 				  <ons-page id="shop_add">
 				   <div>
-				   		<?php include("application/views/page/shop_view.php"); ?>
+				   		<?php include("application/views/shop/shop_add.php"); ?>
 				   </div>
 				  </ons-page>
 				</template>
@@ -868,6 +868,25 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         </ons-page>
     </template>
 
+	 <template id="qrcode_ref.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_qrcode">
+            	<?php include("application/views/page/qrcode_ref.php"); ?>
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+    
     <style>
         ons-splitter-side[animation=overlay] {
     border-left: 1px solid #bbb;
@@ -877,15 +896,15 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <input type="hidden" id="set_lng_cookies" value="th" />
     <input type="hidden" id="check_open_worktbooking" value="0" />
     
-    <template id="submit-alert-dialog.html">
-	  <ons-alert-dialog id="submit-my-alert-dialog" modifier="rowfooter">
+    <template id="shop_add-dialog.html">
+	  <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
 	    <div class="alert-dialog-content">
 	       ว่าต้องการบันทึกข้อมูลนี้
 	    </div>
 	    <div class="alert-dialog-footer">
-	      <ons-alert-dialog-button onclick="hideAlertDialog()">ยกเลิก</ons-alert-dialog-button>
-	      <ons-alert-dialog-button onclick="submitSingUp()">บันทึก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="cancelShop()">ยกเลิก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="saveShop()">บันทึก</ons-alert-dialog-button>
 	    </div>
 	  </ons-alert-dialog>
 	</template>
