@@ -174,18 +174,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             </div>
             <ons-list-title>เมนู</ons-list-title>
             <ons-list>
-                <ons-list-item onclick="fn.loadView(0)">
-                    <div class="left" style="<?=$border_menu_color;?>">
-                        <ons-icon fixed-width class="list-item__icon" icon="ion-home, material:md-home"></ons-icon>
-                    </div>
-                    <div class="center">
-                        หน้าหลัก
-                    </div>
-                    <!--<div class="right">
-                        <ons-icon icon="fa-link"></ons-icon>
-                    </div>-->
-                </ons-list-item>
-                
                 <ons-list-item expandable>
                     <div class="left">
                         <!--<ons-icon fixed-width class="list-item__icon" icon="ion-edit, material:md-edit"></ons-icon>-->
@@ -236,7 +224,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         แนะนำเพื่อน
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="fn.loadLink('https://community.onsen.io/')">
+                <ons-list-item onclick="openNotifyline();">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <ons-icon fixed-width class="list-item__icon " icon="fa-link"></ons-icon>
                     </div>
@@ -254,7 +242,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                    
                 </ons-list-item>
-                <ons-list-item onclick="fn.loadLink('https://twitter.com/Onsen_UI')">
+                <ons-list-item onclick="createSignOut();">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <i class="icon-new-uniF186 icon_menu list-item__icon"></i>
                     </div>
@@ -908,6 +896,19 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	    </div>
 	  </ons-alert-dialog>
 	</template>
+	
+	<template id="signout-dialog.html">
+	  <ons-alert-dialog id="signout-alert-dialog" modifier="rowfooter">
+	    <div class="alert-dialog-title" id="signout-submit-dialog-title">คุณแน่ใจหรือไม่</div>
+	    <div class="alert-dialog-content">
+	       ว่าต้องการออกจากระบบ
+	    </div>
+	    <div class="alert-dialog-footer">
+	      <ons-alert-dialog-button onclick="$('#signout-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button onclick="logout()">ยืนยัน</ons-alert-dialog-button>
+	    </div>
+	  </ons-alert-dialog>
+	</template>
     
 </body>
 
@@ -1084,19 +1085,23 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         }
     }
 
+	function createSignOut(){
+		var dialog = document.getElementById('signout-alert-dialog');
+
+            if (dialog) {
+                dialog.show();
+            } else {
+                ons.createElement('signout-dialog.html', {
+                        append: true
+                    })
+                    .then(function(dialog) {
+                        dialog.show();
+                    });
+            }
+	}
+    
     function logOut() {
-        swal({
-                title: "<?=t_sign_out;?>",
-                text: "<?=t_confirm_signout;?>",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger waves-effect waves-light",
-                cancelButtonClass: "btn-cus waves-effect waves-light",
-                confirmButtonText: "<?=t_yes;?>",
-                cancelButtonText: "<?=t_no;?>",
-                closeOnConfirm: false
-            },
-            function() {
+        
                 $.post('signout.php?type=logout', function() {
                     $.cookie("detect_user", "", {
                         path: '/'
@@ -1116,6 +1121,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         //						    window.location.href = "signin.php";
                     }, 1000);
                 });
-            });
+       
     }
+    function openNotifyline(){
+    location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
+  }
 </script>
