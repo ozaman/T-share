@@ -4968,7 +4968,8 @@ h4, h5, h6 {
   margin: auto auto;
   overflow: hidden;
   min-width: 270px;
-  min-height: 100px;
+/*  min-height: 100px;*/
+  min-height: 330px;
   text-align: left;
 }
 .dialog-container {

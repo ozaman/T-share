@@ -18,9 +18,11 @@ $query = $this->db->query($select);
 $sql_dv = "SELECT name,phone FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
 $query_dv = $this->db->query($sql_dv);
 $data_dv = $query_dv->row();
-
+$user_id = $_COOKIE['detect_user'];
 ?>
 <div style="height: 100%;">
+    <form name="form_booking" id="form_booking">
+    <input type="hidden" value="1" name="program" id="program" />
     <ons-card>
 
         <div class="form-group">
@@ -70,12 +72,14 @@ $data_dv = $query_dv->row();
 				    $('#car_use_'+id).prop('checked', true); // Checks it
 				    var plate_num = $('#value_car_'+id).data('plate_num');
 				    $('#car_type').val(cartype);
+				    
 				    console.log(plate_num);
 				    $('#car_plate').val(plate_num);
 				    $('#car_id').val(id);
+				    $('#txt_car_type').val($("#car_type option:selected").text());
 				}
  			</script>
-		<input value="" id="car_id" name="car_id" type="hidden" />
+		<input value="" id="car_id" name="check_use_car_id" type="hidden" />
         </div>
         <table width="100%" border="0" cellspacing="4" cellpadding="4" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
@@ -100,9 +104,10 @@ $data_dv = $query_dv->row();
                 </td>
             </tr>
         </table>
-
+		
         <div class="form-group">
             <span class="font-18">ประเภทรถ</span>
+            <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
             <select class="select-input font-16" name="car_type" id="car_type" style="border-radius: 0px;padding: 5px;    width: 100%;">
                 <option value="0"> กรุณาเลือกประเภทรถ</option>
                 <?php 
@@ -115,6 +120,7 @@ $data_dv = $query_dv->row();
                 <?    }
             	?>
             </select>
+
         </div>
         <div class="form-group">
             <label class="font-18">ป้ายทะเบียนรถ</label>
@@ -348,10 +354,10 @@ $data_dv = $query_dv->row();
             </div>
         </div>
     </ons-card>
-
-    <ons-card class="card">
-        <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูล</ons-button>
-    </ons-card>
+	</form>
+    <div style="padding: 0px 10px;">
+        <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูล</ons-button>
+    </div>
     <script>
         if (class_user == 'lab') {
             var url_load = "go.php?name=shop/shop_new&file=booking_lab&driver=153&place=1";
@@ -397,7 +403,7 @@ $data_dv = $query_dv->row();
             if ($('#adult').val() == "") {
 
                 ons.notification.alert({
-                        message: 'กรุณาระบุจำนวนผู้ใหญ่ถ',
+                        message: 'กรุณาระบุจำนวนผู้ใหญ่',
                         title: "ข้อมูลไม่ครบ",
                         buttonLabel: "ปิด"
                     })
@@ -435,8 +441,12 @@ $data_dv = $query_dv->row();
         };
 
 		function saveShop(){
-			if(isConfirm){
-			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
+			var place_num = $('#car_plate').val();
+			modal.show();
+			$('#shop_add-alert-dialog').hide();
+			$('#txt_car_type').val($("#car_type option:selected").text());
+//			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
+			var url = "shop/add_shop"+"?type=driver&driver=<?=$user_id?>";
 			$.ajax({
 	        type: 'POST',
 	        data : $('#form_booking').serialize(),
@@ -445,26 +455,26 @@ $data_dv = $query_dv->row();
 	        },
 	        success: function (response) {
 	         	console.log(response);
+	         	modal.hide();
 	         	if(response.result==true){
-				 swal({
-	               title: "ทำรายการสำเร็จ!",
-	               text: "",
-	               html: false,
-	               type: "success"
-	            },
-	            function () {
-	               $('.close-small-popup').click();
-	               $('#index_menu_shopping_history').click();
-	            });
-	             console.log(response)
-	            	$.post('send_messages/send_onesignal.php?key=new_shop&order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
+				 
+				 ons.notification.alert({
+                        message: 'ทำรายการสำเร็จแล้ว',
+                        title: "สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                        $('ons-tab[page="shop_manage.html"]').click();
+                    });
+				
+	            	$.post('Send_onesignal/new_shop?order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
 		               driver: "<?=$user_id?>",
 		               nickname: "<?=$arr[driver][nickname]?>",
 		               car_plate: place_num
 		            }, function (data) {
 		               console.log(data);
 		            });
-	            var url_mail = "mail.php?key=new_shop&driver=<?=$user_id?>";
+	            var url_mail = "../TShare_new/mail.php?key=new_shop&driver=<?=$user_id?>";
 	             $.post(url_mail,$('#form_booking').serialize(),function(data){
 	                  console.log(data);
 	               });
@@ -472,18 +482,31 @@ $data_dv = $query_dv->row();
                setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
 			}
 				else{
-					swal("ทำรายการไม่สำเร็จ","กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่","error");
+					ons.notification.alert({
+                        message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
+                        title: "ทำรายการไม่สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                        
+                    });
 				}
 	        },
 	        error: function (data) {
-//	        	alert(data);
 				console.log(data);
-	        	swal("กรุณาตรวจสอบข้อมูลของท่าน");
+	        	ons.notification.alert({
+                        message: 'กรุณาตรวจสอบข้อมูลของท่าน',
+                        title: "ผิดพลาด",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                        
+                    });
 	        }
 	      });
 			
          
-		}
+		
 		}
 
     </script>

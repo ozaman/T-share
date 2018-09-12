@@ -99,10 +99,6 @@
         display: block;
       }
 
-      button {
-        margin-top: 10px;
-      }
-
 .camera {
     width: 100%;
 /*    height: 100%;*/
@@ -183,15 +179,7 @@
 .tb-txt-left td{
 		text-align: left;
 	}
-.badge-custom {
-    position: absolute;
-    background-color: #F44336;
-    padding: 4px 7px;
-    margin: -5px 3px;
-    z-index: 1;
-    border-radius: 50%;
-    margin-top: -20px !important;
-}
+
 .badge {
     display: inline-block;
     min-width: 10px;
@@ -462,7 +450,7 @@
 
     .onlyThisTable td,
     th {
-        padding: 5px 5px !important;
+        padding: 3px 0px !important;
     }
 
     /*td{
@@ -476,7 +464,7 @@
         position: absolute;
         background-color: #F44336;
         padding: 4px 7px;
-        margin: -5px 3px;
+        margin: -22px 3px;
         z-index: 0;
         border-radius: 50%;
     }
@@ -851,8 +839,8 @@ border:  1px solid #ddd;*/
         border-radius: 50%;
         background-color: #FF9933;
         padding: 10px;
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
         text-align: justify;
         color: #FFFFFF;
         font-size: 30px;

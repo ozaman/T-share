@@ -604,7 +604,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_shop">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab page="shop_manage.html" label="จัดการ"  >
+				    <ons-tab page="shop_manage.html" label="จัดการ" badge="" >
 				    </ons-tab>
 				    <ons-tab page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
@@ -612,7 +612,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>
-
+				
 				<template id="shop_manage.html">
 				  <ons-page id="shop_manage">
 				    
@@ -638,7 +638,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 					var array_his = [];
 					var date = "<?=date('Y-m-d');?>";
 					document.addEventListener('prechange', function(event) {
-						
+					$('ons-tab[page="shop_manage.html"]').attr('badge',$('#number_shop').text());	
 					console.log(event);
 					var page = event.tabItem.getAttribute('page');
 					if(page=="shop_manage.html"){
@@ -671,6 +671,24 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
+                	
+          window.fn.showDialog = function (id) {
+          var elem = document.getElementById(id);
+          if (id === 'popover-dialog') {
+            elem.show(infoButton);
+          } else {
+            elem.show();
+            if (id === 'modal-dialog') {
+              clearTimeout(timeoutID);
+              timeoutID = setTimeout(function() { fn.hideDialog(id) }, 2000);
+            }
+          }
+        };
+        
+         window.fn.hideDialog = function (id) {
+          document.getElementById(id).hide();
+        };
+        	
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
@@ -885,6 +903,25 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
+    
+    <template id="popup2.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_popup2">
+            	
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
 
 	 <template id="qrcode_ref.html">
         <ons-page>
@@ -913,6 +950,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     <input type="hidden" id="set_lng_cookies" value="th" />
     <input type="hidden" id="check_open_worktbooking" value="0" />
+    <input type="hidden" id="check_open_shop_id" value="0" />
     
     <template id="shop_add-dialog.html">
 	  <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">

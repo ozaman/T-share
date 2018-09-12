@@ -5,6 +5,7 @@ class Page extends CI_Controller {
     parent::__construct();
     $this->load->model('Main_model');
     $this->load->model('Transfer_model');
+    $this->load->model('Mobile_model');
   }
 
 
@@ -40,6 +41,9 @@ public function profile_edit()
 	{
 		$this->load->view('page/profile_view',$data);
 	}	
-	
+public function social()
+	{
+		$this->load->view('page/social_view',$data);
+	}	
 }
 ?>

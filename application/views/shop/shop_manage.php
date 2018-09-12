@@ -62,7 +62,7 @@
     z-index: 1;
 /*    right: 30px;*/
 /*    margin-top: 90px;*/
-    margin-top: -28px;
+    margin-top: -13px;
     margin-left: 5px;
     background-color: #fff;
     color: #4CAF50;
@@ -72,9 +72,9 @@
     z-index: 1;
 /*    right: 15px;*/
 /*    margin-top: 90px;*/
-   	margin-top: -28px;
-    margin-left: 5px;
-    background-color: #fff;
+   	margin-top: -10px;
+    margin-left: -4px;
+/*    background-color: #fff;*/
     color: #fb0006;
 }
 .time-post-shop {
@@ -86,7 +86,7 @@
     z-index: 1;
     right: 0px;
     background-color: #fff;
-    margin-top: -93px;
+    margin-top: -73px;
 }
 .edit-post-shop {
        margin-right: 10px;
@@ -99,6 +99,7 @@
     margin-top: -93px;
 }
 .box-shop{
+  background-color: #fff;	
   padding: 17px 10px;
   border-radius:25px;
   border: 1px solid #3b5998;
@@ -106,7 +107,7 @@
 }
 </style>
 <?php 
-
+	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
     if($_GET[type]=="his"){
       echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
@@ -142,20 +143,21 @@
     }
     if($data_user_class == "taxi"){
 	    if($val[lab_approve_job]==1){
-			$txt_lab_ap = '<span class="font-20 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
+			$txt_lab_ap = '<span class="font-16 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
 		}else{
-			$txt_lab_ap = '<span class="font-20 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
+			$txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
 		}
 	}
+	
   ?>
-  <div style="padding: 5px 0px;margin: 25px 0px;">
+  <div style="padding: 5px 0px;margin: 25px 10px;">
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
     <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
             <td width="20%" align="center" rowspan="2">
-            <div class="font-22" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
+            <div class="font-18" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
     margin-left: -85px;
     position: absolute;
     max-width: 150px;
@@ -164,8 +166,8 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" style="    padding: 10px 0px;">
-            <div class="font-20">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
+            <td colspan="2" style="padding: 10px 0px;">
+            <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
             </div>
            
 
@@ -174,7 +176,7 @@
           </tr>
           <tr>
             <td colspan="2">
-            <span class="font-20" ><?=$val[invoice];?>&nbsp;:&nbsp;
+            <span class="font-16" ><?=$val[invoice];?>&nbsp;:&nbsp;
             <span id="date_book_<?=$val[id];?>">-</span>
             <!--<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
         <?php 
@@ -182,8 +184,8 @@
 //        echo $minutes_to_add." ++";
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
         $time = new DateTime($time_c);
-        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-        echo $time_c;
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+//        echo $time_c;
         $stamp = $time->format('H:i');
         $current_time = date('H:i');
         
@@ -195,22 +197,23 @@
         }else{
           $display_time_none = "display:none;";
         }
-//        echo $data_user_class." +";
+//        echo $data_user_class." +".$stamp;
+
         ?>
-        <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงโดยประมาณ ".$stamp." น.";?></font>
+        <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
-            <span class="font-20 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
-        
+            <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+       
             </td>
             
           </tr>
     </table>
         <?php 
         if($val[driver_complete]==0){
-      
+      /*onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" */
         ?>
-        <a class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" id="cancel_book_<?=$val[id];?>" style="
+        <a class="btn waves-effect waves-light red lighten-3" align="center"  onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');"id="cancel_book_<?=$val[id];?>" style="
     color: #fff;margin-right: 15px;
     padding: 5px 20px;
     border-radius: 25px;
@@ -232,7 +235,51 @@
  
   </div>
   </div>
-  
+  <ons-dialog id="cancel-shop-dialog" cancelable>
+      <!-- Optional page. This could contain a Navigator as well. -->
+      <ons-page>
+        <ons-toolbar>
+          <div class="center">ยกเลิกรายการ</div>
+        </ons-toolbar>
+        <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
+        <form action="#" style="margin-left: 25px;" id="form_type_cancel">
+        <input type="hidden" value="0" id="order_id_cancel" name="order_id_cancel"/>
+        	<div>
+			  <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
+			   <input type="hidden" value="แขกลงทะเบียนไม่ได้" name="typname_1">
+			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test2" value="2"><label for="test2">แขกไม่ไป</label></p>
+			   <input type="hidden" value="แขกไม่ไป" name="typname_2">
+			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test3" value="3"><label for="test3">เลือกสถานที่ผิด</label></p>-->
+			   <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
+			   <input type="hidden" name="typname_2"  value="แขกไม่ไป" />
+			   <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
+			   <ons-list-item tappable>
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test1" value="1" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test1" class="center">แขกลงทะเบียนไม่ได้</label>
+		      </ons-list-item>
+		      <ons-list-item tappable>
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test2" value="2" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test2" class="center">แขกไม่ไป</label>
+		      </ons-list-item>
+		      <ons-list-item tappable modifier="longdivider">
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test3" value="3" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test3" class="center">เลือกสถานที่ผิด</label>
+		      </ons-list-item>
+			   <!--<input type="hidden" value="เลือกสถานที่ผิด" name="typname_3">-->
+		    </div>
+		</form>
+        <p style="text-align: center">
+          <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog')">ปิด</ons-button>
+          <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
+        </p>
+      </ons-page>
+    </ons-dialog>
   <script>
 //    console.log("เวลาจอง : <?=$time_c;?> || <?=$minutes_to_add;?> นาที || ")
     console.log("<?=$stamp;?> || <?=$current_time;?>")
@@ -247,3 +294,68 @@
   </script>
 <?    
     } ?>
+
+<script>
+	function openDetailBooking(key, type){
+		
+		var detailObj = array_data.manage[key];
+		fn.pushPage({'id': 'popup1.html', 'title': detailObj.invoice}, 'fade-md');
+		console.log(detailObj);
+		var url = "shop/detail_shop"+"?user_id=<?=$user_id;?>";
+      	$.post(url,detailObj,function(data){
+      		$('#body_popup1').html(data);
+      	});
+      	
+      	$('#check_open_shop_id').val(detailObj.id);
+		
+	}
+	function submitCancel(){
+		var order_id = $('#order_id_cancel').val();
+       if(! $('input[name="type_cancel"]').is(':checked')){
+
+	   		 ons.notification.alert({
+                        message: 'กรุณาเลือกสาเหตุที่ยกเลิก',
+                        title: "ข้อมูลไม่ครบ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                       
+                    });
+	   }	 
+
+       console.log($('#form_type_cancel' ).serialize());
+
+	   var url = "shop/cancel_shop"+"?id="+order_id+"&username=<?=$arr[web_user][username];?>";
+	   
+	   console.log(url+" ");
+
+	   $.post( url,$('#form_type_cancel' ).serialize(), function( data ) {
+	   	var obj = JSON.parse(data);
+	   		console.log(obj);
+				if(obj.result==true){
+				 ons.notification.alert({
+                        message: 'ยกเลิกสำเร็จ',
+                        title: "สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                       fn.hideDialog('cancel-shop-dialog');
+                    });	
+				$('#btn_cancel_book_'+order_id).hide();
+				/*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
+				console.log(url_check_st);
+				
+				$.post( url_check_st,$('#form_type_cancel' ).serialize(), function( com ) {
+					$('#status_booking_detail').html(com);
+					swal("<?=t_success;?>", "", "success");
+				});*/
+
+				var url_messages = "send_onesignal/cancel_shop?order_id="+order_id;
+				$.post( url_messages, function( res ) {
+					console.log(res)
+				});
+			}
+	   });
+
+	}
+</script>
