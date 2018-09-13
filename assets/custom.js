@@ -91,13 +91,15 @@ function showPosition(position) {
     } else if (cook_lng == 'en') {
         lng = "en";
     } else {
-        lng = "<?=$keep;?>";
+        lng = "th";
     }
     console.log('Php Browser lng : ' + lng);
     var url = 'https://maps.google.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false&language=' + lng + '&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
     console.log(url);
+    console.log(position.coords);
     $('#lat').val(position.coords.latitude);
     $('#lng').val(position.coords.longitude);
+    console.log($('#lat').val()+" ...");
     //console.log(position.coords.latitude+" : "+position.coords.longitude);
     $.post(url, function(data) {
         //   console.log(data);
@@ -197,6 +199,7 @@ socket.on('getbookinglab', function(data) {
         //			$('#circle_icon_shop').removeClass("btn-floating pulse pd-5");
     }
     $('#number_shop').text(done.length);
+    $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
     if ($('#check_open_workshop').val() == 1) {
         if (shop_frist_run == 0) {
             shop_frist_run = done.length;
@@ -486,4 +489,45 @@ function hideRes(id){
 	}else{
 		$('#'+id+'_x').show();
 	}
+}
+
+
+/*************************** Menu function *********************************/
+function sendShop(){
+	fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
+}
+
+function sendTransfer(){
+	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
+				  .then(function() { });
+				  return;
+	fn.pushPage({'id': 'transfer.html', 'title': 'ให้บริการรถ', 'key':'transfer'})
+}
+
+function booking(){
+	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
+				  .then(function() { });
+				  return;
+	fn.pushPage({'id': 'book_trans.html', 'title': 'จองรถ', 'key': 'book_trans'})
+}
+
+function tour(){
+	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
+				  .then(function() { });
+				  return;
+	fn.pushPage({'id': 'book_tour.html', 'title': 'จองทัวร์',  'key': 'book_tour' })
+}
+
+function income(){
+	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
+				  .then(function() { });
+				  return;
+	fn.pushPage({'id': 'popup1.html', 'title': 'จองทัวร์', 'key': 'shop'})
+}
+
+function pay(){
+	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
+				  .then(function() { });
+				  return;
+	fn.pushPage({'id': 'popup1.html', 'title': 'รายรับ'})
 }

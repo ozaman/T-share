@@ -158,7 +158,90 @@ class Shop_model extends CI_Model {
 	$result = file_get_contents(LINE_API,FALSE,$context);
 }
   
+  public function driver_topoint(){
+  	
+  		$data[$_GET[type].'_date'] = time();
+		$data[$_GET[type]] = 1;
+		$data["check_".$_GET[type]] = 1;
+		$data[$_GET[type]."_lat"] = $_GET[lat];
+		$data[$_GET[type]."_lng"] = $_GET[lng];
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = true; 
+		$data[next_step] = "guest_receive";
+		$data[time] = time();
+		
+  		return $data;
+  }
+  
+  public function guest_receive(){
+  	
+  		$data[check_guest_receive] = 1;
+		$data[guest_receive_date] = time();
+		$data[driver_pickup_lat] = $_GET[lat];
+		$data[driver_pickup_lng] = $_GET[lng];
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = true;
+		$data[next_step] = "guest_register";
+	 	$data[time] = time();
+	 			
+  		return $data;
+  }
+  
+  public function guest_register(){
+  		$data[check_guest_register] = 1;
+		$data[guest_register_date] = time();
+		$data[driver_register_lat] = $_GET[lat];
+		$data[driver_register_lng] = $_GET[lng];
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = true;
+		$data[next_step] = "driver_pay_report";
+		$data[time] = time();
+		
+  		return $data;
+  } 
+  
+  public function driver_pay_report(){
+  		$data[check_driver_pay_report] = 1;
+		$data[driver_pay_report_date] = time();
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = true;
+		$data[next_step] = "finish";
+		$data[time] = time();
+		
+  		return $data;
+  }
+  
+  public function driver_complete(){
+  		$data[driver_complete] = 1;
+		$data[driver_complete_date] = time();
+		$data[driver_complete_lat] = $_GET[lat];
+		$data[driver_complete_lng] = $_GET[lng];
+		$data[status] = "COMPLETED";
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = true;
+		$data[time] = time();
+		
+  		return $data;
+  }
+  
   /**
+  * 
+  * driver_topoint
+	guest_receive
+	guest_register
+	driver_pay_report
+	* 
   * *********** End
+  * 
   */
 }

@@ -464,7 +464,7 @@
         position: absolute;
         background-color: #F44336;
         padding: 4px 7px;
-        margin: -22px 3px;
+        margin: -18px 13px;
         z-index: 0;
         border-radius: 50%;
     }
@@ -856,8 +856,8 @@ border:  1px solid #ddd;*/
     .step-booking-active {
         border-radius: 50%;
         padding: 10px;
-        width: 60px;
-        height: 60px;
+        width: 30px;
+        height: 30px;
         text-align: justify;
         color: #FFFFFF;
         font-size: 30px;

@@ -8,7 +8,10 @@ class Page extends CI_Controller {
     $this->load->model('Mobile_model');
   }
 
-
+public function call_page()
+	{
+		$this->load->view($_POST[path]);
+	}
 public function shop()
 	{
 		$this->load->view('page/shop_view',$data);
@@ -44,6 +47,9 @@ public function profile_edit()
 public function social()
 	{
 		$this->load->view('page/social_view',$data);
-	}	
+	}
+ public function upload_img() {
+		$this->load->view('upload_img/upload');
+   }		
 }
 ?>

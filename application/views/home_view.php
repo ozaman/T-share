@@ -37,55 +37,20 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--<link rel="stylesheet" href="front_bank/css/thbanklogos.min.css" id="stylesheet">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/airport/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=time()?>">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=time()?>">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
 
-    <link rel="stylesheet" href="assets/extra.main.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css">
 </head>
-<script>
-    var load_main_mod = '<div class="outer-loading-mod">' +
-        '<div class="inner-loading">' +
-        '<div class="preloader-wrapper medium active">' +
-        '<div class="spinner-layer spinner-blue-only">' +
-        '<div class="circle-clipper left">' +
-        '<div class="circle"></div>' +
-        '</div><div class="gap-patch">' +
-        '<div class="circle"></div>' +
-        '</div><div class="circle-clipper right">' +
-        '<div class="circle"></div>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
 
-    var load_sub_mod = '<div class="sub-loader">' +
-        '<div class="preloader-wrapper active">' +
-        '<div class="spinner-layer spinner-blue-only">' +
-        '<div class="circle-clipper left">' +
-        '<div class="circle"></div>' +
-        '</div><div class="gap-patch">' +
-        '<div class="circle"></div>' +
-        '</div><div class="circle-clipper right">' +
-        '<div class="circle"></div>' +
-        '</div>' +
-        '</div>' +
-        '</div>'; +
-    '</div>';
-    var load_main_mod_table = '<br><center><span  class="navload"><i class="fa fa-circle-o-notch fa-spin 4x" style="font-size:40px;   margin-top:10px " ></i></center></span><div style="font-size:14px; color:#333333; font-weight:normal;  margin-top:10px " ><center><span id="navload_topic"> โหลดข้อมูล</span></center></div';
-
-    var progress_bar = '<div class="progress">' +
-        '<div class="indeterminate"></div>' +
-        '</div>';
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="assets/onsenui/css/onsenui.css">
-<link rel="stylesheet" href="assets/onsenui/css/onsen-css-components.css">
-<script src="assets/onsenui/js/onsenui.min.js"></script>
+<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css">
+<script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!--<script src="js/jquery.touchSwipe.min.js"></script>-->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
@@ -117,7 +82,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  		username = username.toUpperCase();
 	  }
 	</script>
-<script src="assets/custom.js"></script>
+
 
 
 <style>
@@ -593,8 +558,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </template>
 
     <template id="shopping.html">
-    	
         <ons-page>
+        
             <ons-toolbar>
                 <div class="left">
                     <ons-back-button>กลับ</ons-back-button>
@@ -604,7 +569,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_shop">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab page="shop_manage.html" label="จัดการ" badge="" >
+				    <ons-tab page="shop_manage.html" label="จัดการ" badge="0" >
 				    </ons-tab>
 				    <ons-tab page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
@@ -633,66 +598,31 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				  </ons-page>
 				</template>
 			
-				<script>
-					var array_ma = [];
-					var array_his = [];
-					var date = "<?=date('Y-m-d');?>";
-					document.addEventListener('prechange', function(event) {
-					$('ons-tab[page="shop_manage.html"]').attr('badge',$('#number_shop').text());	
-					console.log(event);
-					var page = event.tabItem.getAttribute('page');
-					if(page=="shop_manage.html"){
-						var obj = array_data;
-//						var url = "go.php?name=booking/shop_history&file=shop_all_js&find=day&day="+date+"&status=new&type=manage";
-//						var url = "page/shop_manage?find=day&day="+date+"&status=new&type=manage";
-						var url = "page/shop_manage";
-				   	 	$('#date_filter').hide();
-				   	 	array_ma = obj.manage;
-				   	 	console.log(array_ma);
-				   	 	var pass = { data : array_ma};	
-				   	 	console.log(pass);
-
-							$.ajax({
-							  url: url,
-							  data: pass,
-							  type: 'post',
-							  success: function(ele) {
-//							  	console.log(data);
-							    $('#shop_manage').html(ele);
-							  }
-							}); 
-					}
-				  document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');
-				    
-				});
-				
-				</script>
             </div>
             <script>
-                ons.getScriptPage().onInit = function () {
-                	
-          window.fn.showDialog = function (id) {
-          var elem = document.getElementById(id);
-          if (id === 'popover-dialog') {
-            elem.show(infoButton);
-          } else {
-            elem.show();
-            if (id === 'modal-dialog') {
-              clearTimeout(timeoutID);
-              timeoutID = setTimeout(function() { fn.hideDialog(id) }, 2000);
-            }
-          }
-        };
-        
-         window.fn.hideDialog = function (id) {
-          document.getElementById(id).hide();
-        };
-        	
-        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
-      }
+                ons.getScriptPage().onInit = function() {
+			    $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
+			    window.fn.showDialog = function(id) {
+			        var elem = document.getElementById(id);
+			        if (id === 'popover-dialog') {
+			            elem.show(infoButton);
+			        } else {
+			            elem.show();
+			            if (id === 'modal-dialog') {
+			                clearTimeout(timeoutID);
+			                timeoutID = setTimeout(function() {
+			                    fn.hideDialog(id)
+			                }, 2000);
+			            }
+			        }
+			    };
+			    window.fn.hideDialog = function(id) {
+			        document.getElementById(id).hide();
+			    };
+			    this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+			}
     </script>
-    	
+    	<script src="<?=base_url();?>assets/script/shop.js"></script>
         </ons-page>
     </template>
     
@@ -923,7 +853,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         </ons-page>
     </template>
 
-	 <template id="qrcode_ref.html">
+	<template id="qrcode_ref.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -952,6 +882,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <input type="hidden" id="check_open_worktbooking" value="0" />
     <input type="hidden" id="check_open_shop_id" value="0" />
     
+    <input type="hidden" id="lat" value="0" />
+    <input type="hidden" id="lng" value="0" />
+    
     <template id="shop_add-dialog.html">
 	  <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -978,7 +911,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  </ons-alert-dialog>
 	</template>
     
-    
     <template id="option.html">
 	  <ons-page>
 	    <ons-toolbar>
@@ -997,6 +929,74 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	    </script>
 	  </ons-page>
 </template>
+    
+    <template id="popup_shop_checkin.html">
+	  <ons-page>
+	    <ons-toolbar>
+	      <div class="left">
+	        <ons-back-button class="option-back">กลับ</ons-back-button>
+	      </div>
+	      <div class="center"></div>
+	    </ons-toolbar>
+	    <input type="hidden" id="type_checkin" value="xx" />
+	    <div id="body_shop_checkin">
+	    	
+	    </div>
+	    <script>
+	      ons.getScriptPage().onInit = function () {
+	      	
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+	  </ons-page>
+    </template>
+    
+    <ons-dialog id="cancel-shop-dialog" cancelable>
+      <!-- Optional page. This could contain a Navigator as well. -->
+      <ons-page>
+        <ons-toolbar>
+          <div class="center">ยกเลิกรายการ</div>
+        </ons-toolbar>
+        <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
+        <form action="#" style="margin-left: 25px;" id="form_type_cancel">
+        <input type="hidden" value="0" id="order_id_cancel" name="order_id_cancel"/>
+        	<div>
+			  <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
+			   <input type="hidden" value="แขกลงทะเบียนไม่ได้" name="typname_1">
+			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test2" value="2"><label for="test2">แขกไม่ไป</label></p>
+			   <input type="hidden" value="แขกไม่ไป" name="typname_2">
+			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test3" value="3"><label for="test3">เลือกสถานที่ผิด</label></p>-->
+			   <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
+			   <input type="hidden" name="typname_2"  value="แขกไม่ไป" />
+			   <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
+			   <ons-list-item tappable>
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test1" value="1" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test1" class="center">แขกลงทะเบียนไม่ได้</label>
+		      </ons-list-item>
+		      <ons-list-item tappable>
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test2" value="2" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test2" class="center">แขกไม่ไป</label>
+		      </ons-list-item>
+		      <ons-list-item tappable modifier="longdivider">
+		        <label class="left">
+		          <ons-radio class="radio-fruit" input-id="test3" value="3" name="type_cancel"></ons-radio>
+		        </label>
+		        <label for="test3" class="center">เลือกสถานที่ผิด</label>
+		      </ons-list-item>
+			   <!--<input type="hidden" value="เลือกสถานที่ผิด" name="typname_3">-->
+		    </div>
+		</form>
+        <p style="text-align: center">
+          <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog')">ปิด</ons-button>
+          <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
+        </p>
+      </ons-page>
+    </ons-dialog>
+    
     
 </body>
 
@@ -1255,22 +1255,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	}
 </script>
 
-<div class="container" style="display: none;">
-    <div class="row">
-        <div id="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="lading"></div>
-        </div>
-    </div>
-</div>
-
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
@@ -1344,6 +1328,5 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     function openNotifyline(){
     location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
   }
-  
-  
 </script>
+<script src="assets/custom.js"></script>

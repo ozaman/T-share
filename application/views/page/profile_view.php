@@ -264,7 +264,7 @@
     </ons-card>
     
     <ons-card  class="card">
-      <ons-list-header class="list-header"><b>เลขประชาชน/วันหมดอยายุ</b></ons-list-header>
+      <ons-list-header class="list-header"><b>เลขประชาชน/วันหมดอายุ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="   /* margin-left: -7px;*/">
                 <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
@@ -321,7 +321,7 @@
     border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         
-        <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอยายุ</b></ons-list-header>
+        <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" >
                 <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>

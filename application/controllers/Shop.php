@@ -23,5 +23,13 @@ public function cancel_shop()
 public function detail_shop(){
 		$this->load->view('shop/detail_shop_view');
 	}	
+	
+public function checkin()
+	{
+		$data['res'] = $this->Shop_model->$_GET[type]();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
+		
 }
 ?>

@@ -40,7 +40,6 @@ if($_GET[type]=="car_img"){
 	echo json_encode($result);
 	exit();
 }
-
 if($_GET[type]=="profile"){
 	include("class.resizepic.php");
 	$original_image = $_FILES['imgInp']['tmp_name'] ;
@@ -52,5 +51,23 @@ if($_GET[type]=="profile"){
 	$result = $image->output_resized("../../../../data/pic/driver/small/".$_GET[id].".jpg","JPG");
 	echo json_encode($result);
 }
-  	
+
+if($_GET[type]=="checkin"){
+	include("class.resizepic.php");
+	$original_image = $_FILES['fileUpload']['tmp_name'] ;
+	$desired_width = 600;
+	$desired_height = _INEWS_H ;
+	$image = new hft_image($original_image);
+	$image->resize($desired_width, $desired_height, '0');
+	header('Content-Type: application/json');
+	
+	$path = "../data/fileupload/store/".$_GET['action']."_".$_GET['id'].".jpg";
+	$result = $image->output_resized($path,"JPG");
+	$return[result] = $result;
+	$return[path] = $path;
+	$return[tmp] = $original_image;
+//	header('Content-Type: application/json');
+	echo json_encode($return);
+//	echo $_FILES['fileUpload']['tmp_name'];
+}  	
 ?>

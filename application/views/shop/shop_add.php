@@ -15,7 +15,7 @@
 $select = "SELECT t1.*, t2.txt_color,t2.plate_color FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id where t1.drivername  = '".$_COOKIE['detect_user']."'  ";
 $query = $this->db->query($select);
 
-$sql_dv = "SELECT name,phone FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
+$sql_dv = "SELECT name,phone,phone2 FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
 $query_dv = $this->db->query($sql_dv);
 $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
@@ -26,6 +26,7 @@ $user_id = $_COOKIE['detect_user'];
     <ons-card>
 
         <div class="form-group">
+        	<span class="font-18">เลือกรถส่งแขก</span>
             <div style="padding: 0px;margin-top: 0px;">
 			<?php 
 	  			foreach($query->result() as $val){ 
@@ -358,156 +359,5 @@ $user_id = $_COOKIE['detect_user'];
     <div style="padding: 0px 10px;">
         <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูล</ons-button>
     </div>
-    <script>
-        if (class_user == 'lab') {
-            var url_load = "go.php?name=shop/shop_new&file=booking_lab&driver=153&place=1";
-        } else {
-            var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
-        }
-        /* $.post(url_load, function(data) {
-             // $('#main_load_mod_popup').toggle();
-             $('#databook').html(data);
-         });*/
-        var cancelShop = function() {
-            document
-                .getElementById('shop_add-alert-dialog')
-                .hide();
-        };
-        var submitShop = function() {
 
-            if ($('#car_type').val() == 0) {
-
-                ons.notification.alert({
-                        message: 'กรุณาเลือกประเภทรถ',
-                        title: "ข้อมูลไม่ครบ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        $('#car_type').focus();
-                    });
-                return false;
-            }
-            if ($('#car_plate').val() == "") {
-
-                ons.notification.alert({
-                        message: 'กรุณาระบุป้ายทะเบียนรถ',
-                        title: "ข้อมูลไม่ครบ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        $('#car_plate').focus();
-                    });
-
-                return false;
-            }
-            if ($('#adult').val() == "") {
-
-                ons.notification.alert({
-                        message: 'กรุณาระบุจำนวนผู้ใหญ่',
-                        title: "ข้อมูลไม่ครบ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        $('#adult').focus();
-                    });
-                return false;
-            }
-
-            if ($('#time_num').val() == '') {
-
-                ons.notification.alert({
-                        message: 'กรุณาระบุเวลาถึงโดยประมาณ',
-                        title: "ข้อมูลไม่ครบ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        $('#time_num').focus();
-                    });
-                return false;
-            }
-
-            var dialog = document.getElementById('shop_add-alert-dialog');
-
-            if (dialog) {
-                dialog.show();
-            } else {
-                ons.createElement('shop_add-dialog.html', {
-                        append: true
-                    })
-                    .then(function(dialog) {
-                        dialog.show();
-                    });
-            }
-        };
-
-		function saveShop(){
-			var place_num = $('#car_plate').val();
-			modal.show();
-			$('#shop_add-alert-dialog').hide();
-			$('#txt_car_type').val($("#car_type option:selected").text());
-//			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
-			var url = "shop/add_shop"+"?type=driver&driver=<?=$user_id?>";
-			$.ajax({
-	        type: 'POST',
-	        data : $('#form_booking').serialize(),
-	        url: url,
-	        beforeSend: function () {
-	        },
-	        success: function (response) {
-	         	console.log(response);
-	         	modal.hide();
-	         	if(response.result==true){
-				 
-				 ons.notification.alert({
-                        message: 'ทำรายการสำเร็จแล้ว',
-                        title: "สำเร็จ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        $('ons-tab[page="shop_manage.html"]').click();
-                    });
-				
-	            	$.post('Send_onesignal/new_shop?order_id='+response.last_id+'&vc='+response.invoice+'&m='+response.airout_m, {
-		               driver: "<?=$user_id?>",
-		               nickname: "<?=$arr[driver][nickname]?>",
-		               car_plate: place_num
-		            }, function (data) {
-		               console.log(data);
-		            });
-	            var url_mail = "../TShare_new/mail.php?key=new_shop&driver=<?=$user_id?>";
-	             $.post(url_mail,$('#form_booking').serialize(),function(data){
-	                  console.log(data);
-	               });
-               
-               setTimeout(function(){  openOrderFromAndroid(response.last_id);}, 1500);
-			}
-				else{
-					ons.notification.alert({
-                        message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
-                        title: "ทำรายการไม่สำเร็จ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        
-                    });
-				}
-	        },
-	        error: function (data) {
-				console.log(data);
-	        	ons.notification.alert({
-                        message: 'กรุณาตรวจสอบข้อมูลของท่าน',
-                        title: "ผิดพลาด",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        
-                    });
-	        }
-	      });
-			
-         
-		
-		}
-
-    </script>
 </div>
