@@ -234,6 +234,14 @@ class Shop_model extends CI_Model {
   		return $data;
   }
   
+  public function editadult(){
+  		$data['adult'] = $_GET[num];
+		
+		$this->db->where('id', $_GET[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+		
+  		return $data;
+  }
   /**
   * 
   * driver_topoint

@@ -3,6 +3,39 @@ if (class_user == 'lab') {
 } else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
+function editBook(x){
+			console.log(x)
+			$('#text_edit_persion').show()
+
+			$('#btn_selectisedit').show()
+			$('#num_edit_persion').show()
+			$('#btn_isedit').hide()
+			$('#isedit').hide()
+			$('#num_edit_persion').css('display','inline-block')
+			$('#num_edit_persion').focus();
+}
+
+function saveeditBook(x){
+//			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
+			var url_load= "shop/editadult"+"?num="+$('#num_edit_persion').val()+"&id="+x;
+			console.log(url_load)
+			 $.post( url_load, function( data ) {
+               //$('#load_mod_popup').html(data);
+                  console.log(data);
+            });
+            
+			$('#text_edit_persion').hide()
+			number_persion_new = $('#num_edit_persion').val()
+			$('#num_final_edit').html(number_persion_new)
+			console.log(x)
+			$('#btn_selectisedit').hide()
+			$('#num_edit_persion').hide()
+			$('#btn_isedit').show()
+			$('#isedit').show()
+
+
+}
+		
 var cancelShop = function() {
     document
         .getElementById('shop_add-alert-dialog')
@@ -130,7 +163,7 @@ function openDetailBooking(key, type) {
     fn.pushPage({
         'id': 'popup1.html',
         'title': detailObj.invoice
-    }, 'fade-md');
+    }, 'slide-ios');
     console.log(detailObj);
     var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
     $.post(url, detailObj, function(data) {
@@ -154,9 +187,53 @@ function openDetailBooking(key, type) {
 		      console.log("driver_pay_report");
 		      changeHtml("driver_pay_report",obj.id,timestampToDate(obj.driver_pay_report_date,"time"));
 		   }
+		   checkPhotoCheckIn('driver_topoint', obj.id);
+		   checkPhotoCheckIn('guest_receive', obj.id);
+		   checkPhotoCheckIn('guest_register', obj.id);
+		   checkPhotoCheckIn('driver_pay_report', obj.id);
     });
     $('#check_open_shop_id').val(detailObj.id);
 }
+
+function viewPhotoShop(id,action, key){
+	fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'ภาพ'
+    }, 'fade-md');
+    var path = "../data/fileupload/store/"+action+"_"+id+".jpg";
+    var url_load = "page/view_photo?id=" + id +"&path="+path;
+    $.post(url_load, function(ele) {
+        $('#body_popup2').html(ele);
+    });
+}
+
+function checkPhotoCheckIn(type, id){
+	 if($('#'+type+'_check_click').val()==1){
+                   	$('#'+type+'_locat_off').hide();
+                   	$('#'+type+'_locat_on').show();
+                   
+                  }else{
+                  	 $('#'+type+'_locat_off').show();
+                  	 $('#'+type+'_locat_on').hide();
+                  }
+                  $.ajax({
+                  	url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+                  	type:'HEAD',
+                  	error: function()
+                  	{
+                  		console.log('Error file');
+                  	   $('#photo_'+type+'_no').show();
+                  	   $('#photo_'+type+'_yes').hide();
+                  	},
+                  	success: function()
+                  	{
+                  		console.log('Success file');
+                  		$('#photo_'+type+'_no').hide();
+                  	   $('#photo_'+type+'_yes').show();
+                  	}
+                  });
+}
+
 function submitCancel() {
     var order_id = $('#order_id_cancel').val();
     if (!$('input[name="type_cancel"]').is(':checked')) {
@@ -197,6 +274,7 @@ function submitCancel() {
         }
     });
 }
+
 function js_yyyy_mm_dd_hh_mm_ss() {
     now = new Date();
     year = "" + now.getFullYear();
@@ -222,6 +300,7 @@ function js_yyyy_mm_dd_hh_mm_ss() {
     }
     return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 }
+
 function CheckTime(d1, d2) {
     //      console.log(d1+" = "+d2);
     datetime1 = d1;
@@ -267,6 +346,7 @@ function CheckTime(d1, d2) {
     }
     return final_txt + "ที่ผ่านมา";
 }
+
 function openContact(shop_id) {
     fn.pushPage({
         'id': 'popup2.html',
@@ -277,6 +357,7 @@ function openContact(shop_id) {
         $('#body_popup2').html(ele);
     });
 }
+
 function openZello(shop_id) {
     fn.pushPage({
         'id': 'popup2.html',
@@ -287,6 +368,7 @@ function openZello(shop_id) {
         $('#body_popup2').html(ele);
     });
 }
+
 function openMapsDistance(shop_id) {
     //		 $( "#main_load_mod_popup_map" ).toggle();
     $('#map_side_popup').fadeIn();
@@ -390,6 +472,7 @@ function sendCheckIn(id, type){
 		});
 	
 }
+
 function readURL(input, type, subtype, id) {
 
 	  if (input.files && input.files[0]) {
@@ -425,8 +508,6 @@ function readURL(input, type, subtype, id) {
 	  }
 	  
 	}
-	
-
 	
 function performClick(elemId) {
 	console.log(elemId);

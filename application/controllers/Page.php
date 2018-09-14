@@ -50,6 +50,11 @@ public function social()
 	}
  public function upload_img() {
 		$this->load->view('upload_img/upload');
-   }		
+   }
+ public function view_photo() {
+		$this->load->view('page/photo_view');
+   }
+   
+   		
 }
 ?>

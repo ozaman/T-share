@@ -30,6 +30,13 @@ public function checkin()
   		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}
+
+public function editadult()
+	{
+		$data['res'] = $this->Shop_model->editadult();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
 		
 }
 ?>

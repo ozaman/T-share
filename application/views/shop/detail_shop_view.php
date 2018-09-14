@@ -1,8 +1,3 @@
-<script>
-
-			
-		
-</script>
 <?php 
 function checkTypePay($id){
       if($id==1){
@@ -211,10 +206,10 @@ else if($arr[book][status]=='CONFIRM'){
         				<span id="isedit"><?
             if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
-            <!-- <?=$arr[book][adult];?> -->
+            
             &nbsp;
             <? } ?>
-            <span id="num_final_edit"></span></span>
+            <span id="num_final_edit"><?=$arr[book][adult];?> </span></span>
             <span id="text_edit_persion" style="display: none;"><?
         			 if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
@@ -233,14 +228,14 @@ else if($arr[book][status]=='CONFIRM'){
         			</td>
         			
         			<td>
-        				<span  class="btn " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+        				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 25px;display: inline-block;" id="btn_isedit">
 		<span class="font-18 text-cap">แก้ไข</span>
 	</span>
-	<span class="btn " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;

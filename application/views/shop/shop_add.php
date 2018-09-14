@@ -19,6 +19,12 @@ $sql_dv = "SELECT name,phone,phone2 FROM web_driver  WHERE id = ".$_COOKIE['dete
 $query_dv = $this->db->query($sql_dv);
 $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
+
+
+$sql_place = "SELECT * FROM shopping_product  WHERE id='".$_GET[place]."' ";
+$query_place = $this->db->query($sql_place);
+$data_place = $query_place->row();
+
 ?>
 <div style="height: 100%;">
     <form name="form_booking" id="form_booking">
@@ -44,7 +50,7 @@ $user_id = $_COOKIE['detect_user'];
                            <tbody>
                            <tr>
                            <td width="100" align="center" style="border: solid 2px; height:20px; color:#DADADA; padding:5px; padding-right:0px;border-radius:5px;<?=$bg_plate_color;?>"><font color="<?=$val->txt_color;?></font>" class="font-28"><b><?=$val->plate_num;?><br>
-                                 <font class="font-20"><?=$val->province;?></font></b></font>
+                                 <font class="font-14"><?=$val->province;?></font></b></font>
                               </td>
                            </tr>
                         </tbody>
@@ -112,11 +118,11 @@ $user_id = $_COOKIE['detect_user'];
             <select class="select-input font-16" name="car_type" id="car_type" style="border-radius: 0px;padding: 5px;    width: 100%;">
                 <option value="0"> กรุณาเลือกประเภทรถ</option>
                 <?php 
-            	 $sql = "select * from web_carall_type where status = 1 ";
+            	 $sql = "select * from web_car_use_type where status = 1 ";
 				 $query = $this->db->query($sql);
             	 foreach($query->result() as $val){ ?>
                 <option value="<?=$val->id;?>">
-                    <?=$val->topic_th;?>
+                    <?=$val->name_th;?>
                 </option>
                 <?    }
             	?>
@@ -218,142 +224,190 @@ $user_id = $_COOKIE['detect_user'];
             </ons-row>
         </div>
 
+
         <div id="testScroll">
-            <!-- Agent Issu -->
-            <div class="" id="show_payment_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; ">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="font-18" style=""><b>ค่าตอบแทน</b></div>
-                            </td>
-                            <td width="50" style="display: none;" id="row_accept_payment">
-                                <img src="assets/images/checked.png" width="35px">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div>
-                    <table width="100%" border="0" cellspacing="1" cellpadding="5" style="">
-                        <tbody>
-                            <tr>
-                                <td width="100%">
-                                    <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
-                                    <script>
-                                        ///
-                                        /*$('#show_price_plan_1').click(function() {
-                                            $("#main_load_mod_popup_4").toggle();
-                                            var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=1&lat=7.872888&lng=98.360599&type=stop";
-                                            $('#load_mod_popup_4').html(load_main_mod);
-                                            $('#load_mod_popup_4').load(url_load_1);
-                                        });*/
-                                    </script>
-                                    <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;" onclick="ClickPay(1)">
-                                        <table width="100%" border="0" cellspacing="1" cellpadding="3">
-                                            <tbody>
+         <!-- Agent Issu -->  
+         <div class="" id="show_payment_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; ">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tbody>
+                  <tr>
+                     <td>
+                        <div class="font-22" style="color:#3b5998"><b>ค่าตอบแทน</b></div>
+                     </td>
+                     <td width="50" style="display: none;" id="row_accept_payment">
+                        <img src="images/checked.png" width="35px">
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <div>
+               <table width="100%" border="0" cellspacing="1" cellpadding="5" style="">
+                  <tbody>
+                     <tr>
+                                                <td width="100%">
+                           <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
+                                                      <script>
+                              ///
+                              $('#show_price_plan_1').click(function(){  
+                              $( "#main_load_mod_popup_4" ).toggle();
+                              var url_load_1= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=1&lat=7.872888&lng=98.360599&type=stop";
+                              $('#load_mod_popup_4').html(load_main_mod);
+                              $('#load_mod_popup_4').load(url_load_1); 
+                              });
+                           </script>                    
+                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(1)">
+                              <table width="100%" border="0" cellspacing="1" cellpadding="3">
+                                 <tbody>
+                                    <tr>
+                                       <td width="30" rowspan="2" align="center" style="display: none;">
+                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="1" id="price_plan_1" /> -->
+                                       </td>
+                                       <td class="font-16"><b> ค่าจอด + ค่าหัว</b> </td>
+                                       <!--<td width="35" rowspan="2" valign="middle"><a id="show_price_plan_1"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                                                                                                              <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                             <tbody>
                                                 <tr>
-                                                    <td width="30" rowspan="2" align="center">
-                                                        <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="1" id="price_plan_1" /> -->
-                                                    </td>
-                                                    <td class="font-18"><b> ค่าจอด + ค่าหัว</b> </td>
-                                                    <!--<td width="35" rowspan="2" valign="middle"><a id="show_price_plan_1"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
+                                                   <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"><span class="font-14">&nbsp;จีน  </span></td>
+                                                   <td>
+                                                      <span style="display:show">ค่าจอด  <b>1100</b>&nbsp;</span>
+                                                      <span style="display:show">ค่าหัว  <b>200</b>&nbsp;</span>
+                                                      <span style="display:none">ค่าคอมมิชชั่น  <b>0 %</b>&nbsp;</span>
+                                                      &nbsp;
+                                                   </td>
                                                 </tr>
+                                             </tbody>
+                                          </table>
+                                           
+                                                                                    <!-- <table width="100%" border="0" cellspacing="1" cellpadding="1" >
+                                             <tbody>
                                                 <tr>
-                                                    <td>
-                                                        <table width="100%" border="0" cellspacing="1" cellpadding="1">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"><span class="font-18">&nbsp;จีน </span></td>
-                                                                    <td>
-                                                                        <span style="display:show">ค่าจอด <b>1100</b>&nbsp;</span>
-                                                                        <span style="display:show">ค่าหัว <b>200</b>&nbsp;</span>
-                                                                        <span style="display:none">ค่าคอมมิชชั่น <b>0 %</b>&nbsp;</span>
-                                                                        &nbsp;
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
+                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-14">&nbsp;ต่างชาติ</td>
+                                                   <td>
+                                                      <span style="display:noneshow">ค่าจอด  <b>200</b>&nbsp;</span>
+                                                      <span style="display:noneshow">ค่าหัว  <b>0</b>&nbsp;</span>
+                                                      <span style="display:none">ค่าคอมมิชชั่น  <b>0 %</b>&nbsp;</span>
+                                                      &nbsp;
+                                                   </td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <script>
-                                        ///
-                                        $('#show_price_plan_2').click(function() {
-                                            $("#main_load_mod_popup_4").toggle();
-                                            var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=2&lat=7.872888&lng=98.360599&type=stop";
-                                            $('#load_mod_popup_4').html(load_main_mod);
-                                            $('#load_mod_popup_4').load(url_load_1);
-                                        });
-                                    </script>
-                                    <script>
-                                        ///
-                                        /*$('#show_price_plan_3').click(function() {
-                                            $("#main_load_mod_popup_4").toggle();
-                                            var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=25&lat=7.872888&lng=98.360599&type=stop";
-                                            $('#load_mod_popup_4').html(load_main_mod);
-                                            $('#load_mod_popup_4').load(url_load_1);
-                                        });*/
-                                    </script>
-                                    <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 0px;" onclick="ClickPay(3);">
-                                        <table width="100%" border="0" cellspacing="1" cellpadding="3">
-                                            <tbody>
+                                             </tbody>
+                                          </table> -->
+                                           
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                                                      <script>
+                              ///
+                              $('#show_price_plan_2').click(function(){  
+                              $( "#main_load_mod_popup_4" ).toggle();
+                              var url_load_1= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=2&lat=7.872888&lng=98.360599&type=stop";
+                              $('#load_mod_popup_4').html(load_main_mod);
+                              $('#load_mod_popup_4').load(url_load_1); 
+                              });
+                           </script>                    
+                          <!--  <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" onclick="ClickPay(2);">
+                              <table width="100%" border="0" cellspacing="1" cellpadding="3" >
+                                 <tbody>
+                                    <tr>
+                                       <td width="30" rowspan="2" align="center">
+                                         
+                                       <td class="font-16"><b> ค่าคอมมิชชั่น</b> </td>
+                                       <td width="35" rowspan="2"><a id="show_price_plan_2"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                                                                     
+                                                                                    <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                             <tbody>
                                                 <tr>
-                                                    <td width="30" rowspan="2" align="center">
-                                                        <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="2" id="price_plan_3" /></td> -->
-                                                    </td>
-                                                    <td class="font-18"><b> ค่าจอด + ค่าคอมมิชชั่น </b></td>
-                                                   <!-- <td width="35" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
+                                                   <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
+                                                      <span class="font-14">ต่างชาติ</span>
+                                                   </td>
+                                                   <td>
+                                                      <span style="display:none">ค่าจอด  <b>200</b>&nbsp;</span>
+                                                      <span style="display:none">ค่าหัว   <b>0</b>&nbsp;</span>
+                                                      <span style="display:noneshow">ค่าคอมมิชชั่น   <b>5 %</b>&nbsp;</span>
+                                                      &nbsp;
+                                                   </td>
                                                 </tr>
+                                             </tbody>
+                                          </table>
+                                           
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div> -->
+                                                      <script>
+                              ///
+                              $('#show_price_plan_3').click(function(){  
+                              $( "#main_load_mod_popup_4" ).toggle();
+                              var url_load_1= "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=25&lat=7.872888&lng=98.360599&type=stop";
+                              $('#load_mod_popup_4').html(load_main_mod);
+                              $('#load_mod_popup_4').load(url_load_1); 
+                              });
+                           </script>                    
+                           <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 0px;padding: 10px 0px;" onclick="ClickPay(3);">
+                              <table width="100%" border="0" cellspacing="1" cellpadding="3">
+                                 <tbody>
+                                    <tr>
+                                       <td width="30" rowspan="2" align="center" style="display: none;">
+                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="2" id="price_plan_3" /></td> -->
+                                       </td><td class="font-16"><b> ค่าจอด + ค่าคอมมิชชั่น </b></td>
+                                       <!--<td width="35" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                                                                                                              <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                             <tbody>
                                                 <tr>
-                                                    <td>
-                                                        <table width="100%" border="0" cellspacing="1" cellpadding="1">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;">
-                                                                        <span class="font-18">&nbsp;จีน </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span style="display:noneshow">ค่าจอด <b>600</b>&nbsp;</span>
-                                                                        <span style="display:none">ค่าหัว <b>0</b>&nbsp;</span>
-                                                                        <span style="display:noneshow">ค่าคอมมิชชั่น <b>5 %</b>&nbsp;</span>
-                                                                        &nbsp;
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                   <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;">
+                                                      <span class="font-14">&nbsp;จีน </span>
+                                                   </td>
+                                                   <td>
+                                                      <span style="display:noneshow">ค่าจอด  <b>600</b>&nbsp;</span>
+                                                      <span style="display:none">ค่าหัว  <b>0</b>&nbsp;</span>
+                                                      <span style="display:noneshow">ค่าคอมมิชชั่น  <b>5 %</b>&nbsp;</span>
+                                                      &nbsp;
+                                                   </td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                           
 
-
-                                                        <table width="100%" border="0" cellspacing="1" cellpadding="1">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td width="80">
-                                                                        <img src="assets/images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"><span class="font-18">&nbsp;ต่างชาติ</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <span style="display:noneshow">ค่าจอด<b>200</b>&nbsp;</span>
-                                                                        <span style="display:none">ค่าหัว<b>200</b>&nbsp;</span>
-                                                                        <span style="display:noneshow">ค่าคอมมิชชั่น<b>5 %</b>&nbsp;</span>
-                                                                        &nbsp;
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-
-                                                    </td>
+                                                                                    <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                             <tbody>
+                                                <tr>
+                                                   <td width="80">
+                                                      <img src="assets/images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"><span class="font-14">&nbsp;ต่างชาติ</span>
+                                                   </td>
+                                                   <td>
+                                                      <span style="display:noneshow">ค่าจอด<b>200</b>&nbsp;</span>
+                                                      <span style="display:none">ค่าหัว<b>200</b>&nbsp;</span>
+                                                      <!-- <span style="display:noneshow">ค่าคอมมิชชั่น<b>5 %</b>&nbsp;</span> -->
+                                                      &nbsp;
+                                                   </td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!--</select>-->
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                             </tbody>
+                                          </table>
+                                           
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                                                      <!--</select>-->
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
             </div>
-        </div>
+         </div>
+      </div>
     </ons-card>
 	</form>
     <div style="padding: 0px 10px;">
