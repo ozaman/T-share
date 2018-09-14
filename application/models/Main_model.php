@@ -360,6 +360,7 @@ curl_close($curl);
 	    $data[contact] = $_POST[contact];
 	    $data[address] = $_POST[address];
 	    $data[update_date] = time();
+	    $data[province] = $_POST[province];
 	    $data[i_gender] = $_POST[gender];
 //	    $result = $db->update_db($tb_admin_chk,$data , " id= '".$_GET[id]."' ");
 		$this->db->where('id', $_GET[id]);

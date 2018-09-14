@@ -116,8 +116,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">
-                        <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg" class="shotcut-profile" />
+                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">
+                        <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg?v=<?=time();?>" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
@@ -140,7 +140,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <template id="sidemenu.html">
         <ons-page>
             <div class="profile-pic">
-                <img src="../data/pic/driver/small/<?=$_COOKIE["app_remember_user"];?>.jpg">
+                <img src="../data/pic/driver/small/<?=$_COOKIE["app_remember_user"];?>.jpg?v=<?=time();?>">
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
