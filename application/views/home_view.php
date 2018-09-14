@@ -140,7 +140,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <template id="sidemenu.html">
         <ons-page>
             <div class="profile-pic">
-                <img src="https://monaca.io/img/logos/download_image_onsenui_01.png">
+                <img src="../data/pic/driver/small/<?=$_COOKIE["app_remember_user"];?>.jpg">
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
