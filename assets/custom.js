@@ -507,3 +507,12 @@ function myCar(){
     	$('#body_car_manage').html(ele);
     });
 }
+function contrac_us(){
+	fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'slide-ios')
+	 var url = "page/contrac_us";
+
+            $.post(url,function(html){
+              console.log(html)
+            	$('#body_contrac').html(html);
+            });
+}

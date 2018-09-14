@@ -192,7 +192,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน'}, 'lift-ios')">
+                <ons-list-item onclick="fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน','key':'contract_us'}, 'lift-ios')">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;"></i></span>
                     </div>
@@ -209,8 +209,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                    
                 </ons-list-item>
-            s
-                <ons-list-item onclick="fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'lift-ios')">
+                <ons-list-item onclick="contrac_us();">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <i class="material-icons list-item__icon <?=$menu_ion_class;?>">contact_phone</i>
                     </div>
@@ -888,15 +887,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <?php include("application/views/page/line_noti.php"); ?>
             </div>
             <script>
-                 var url = "page/linenoti";
-                //var url = "application/views/page/line_noti.php";
-            
-            // $.post(url,function(html){
-            //     console.log('***-----')
-            //     console.log(html)
-            //     $('#body_line').html(html);
-            // });
-                // console.log('*****')
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
@@ -1116,13 +1106,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             	$('#body_profile_view').html(html);
             });
 		
-        }else if(page.id == "contract_us.html"){
-			var url = "page/contrac_us";
-
-            $.post(url,function(html){
-            	$('#body_contrac').html(html);
-            });
-		}
+        }
         
         if(page.id=="option.html"){
 			console.log("option");
