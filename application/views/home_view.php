@@ -530,6 +530,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            <div id="body_profile_view">
 	            	<?php //include("application/views/page/profile_view.php"); ?>
 	            </div>
+	       
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
