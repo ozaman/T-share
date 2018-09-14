@@ -8,50 +8,50 @@ class Page extends CI_Controller {
     $this->load->model('Mobile_model');
   }
 
-public function call_page()
-	{
+public function call_page(){
 		$this->load->view($_POST[path]);
 	}
-public function shop()
-	{
+	
+public function shop(){
 		$this->load->view('page/shop_view',$data);
 	}
-public function transfer()
-	{
+	
+public function transfer(){
 		$username = $_COOKIE[detect_username];
 		$result = $this->Transfer_model->driver_deposit($username);
 //		echo json_encode($result);
 		$this->load->view('transfer/transfer_view',$result);
 	}
-public function booking_detail()
-	{
+	
+public function booking_detail(){
 		$this->load->view('transfer/book_detail_view',$data);
 	}
-public function transfer_manage()
-	{
+	
+public function transfer_manage(){
 		$this->load->view('transfer/manage_view',$data);
 	}
 	
-public function shop_view()
-	{
+public function shop_view(){
 		$this->load->view('shop/shop_view',$data);
-	}		
-public function shop_manage()
-	{
+	}	
+		
+public function shop_manage(){
 		$this->load->view('shop/shop_manage',$data);
 	}	
-public function profile_edit()
-	{
+	
+public function profile_edit(){
 		$this->load->view('page/profile_view',$data);
 	}	
-public function social()
-	{
+	
+public function social(){
 		$this->load->view('page/social_view',$data);
 	}
- public function upload_img() {
+	
+ public function upload_img(){
 		$this->load->view('upload_img/upload');
    }
- public function view_photo() {
+   
+ public function view_photo(){
 		$this->load->view('page/photo_view');
    }
    

@@ -314,29 +314,18 @@ else if($arr[book][status]=='CONFIRM'){
 	<?php 
 	if($arr[book][status]!='CANCELs'){
 
-	include("application/views/shop/checkin.php") ?>
+	include("application/views/shop/checkin.php"); 
+	
+	if($_COOKIE[detect_userclass]=="taxi"){
+		$txt_btn_pay = 'ยืนการการรับเงิน';
+	}else{
+		$txt_btn_pay = 'แจ้งยอดรายได้';
+	}
+	?>
 
-	<div style="padding: 5px 0px;display: none;">
+	<div style="padding: 5px 0px;display: nones;">
 	 <span class="text-cap font-22"><?=t_income;?></span>
-	 <table class="onlyThisTable" width="100%">
-	 	<tr>
-	 		<td align="center">
-	 		<button class="btn btn-repair waves-effect" onclick="openViewPrice();" style="text-transform: unset;
-    background-color: #ffffff;
-    color: #3b5998;
-    width: 100%;
-    border: 1px solid #3b5998;">
-	 		<i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16"><?=$txt_btn_pay;?></span> 
-	 		<!--<span id="alert_pay_driver" class="badge font-20" style="    position: absolute;
-    font-size: 14px;
-    background-color: #F44336;
-    padding: 4px 7px;
-    z-index: 1;
-    right: 45px;<?=$show_alert;?>"><strong>!</strong></span>-->
-    </button>
-	 		</td>
-	 	</tr>
-	 </table>
+	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16"><?=$txt_btn_pay;?></span> </ons-button>
 	</div>
 	
 	<div style="padding: 5px 0px;display: none;">

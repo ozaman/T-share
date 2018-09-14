@@ -1,17 +1,29 @@
+<style>
+.photo-preview{
+/*        position:absolute; */
+        left:0; right:0;
+        top: 10%;
+        margin:auto;
+        /*this to solve "the content will not be cut when the window is smaller than the content": */
+        max-width:100%;
+        max-height:100%;
+        overflow:auto;
+}
+.txt-caption{
+	color: #fff;
+	margin: 20px;
+}
+</style>
 <?php 
-echo $_GET[path];
+	if($_GET[time]!=""){
+		$txt_date = "ถ่ายเวลา ".date('Y-m-d h:i',$_GET[time])." น.";
+	}else{
+		$txt_date = "ไม่มีเวลาที่บันทึก";
+	}
 ?>
-<ons-carousel id="carousel" fullscreen swipeable auto-scroll overscrollable initial-index="0">
-      <ons-carousel-item class="carousel-item" style="background-color: gray">
-        <div class="color-tag">Gray</div>
-      </ons-carousel-item>
-      <ons-carousel-item class="carousel-item" style="background-color: #085078">
-        <div class="color-tag">Blue</div>
-      </ons-carousel-item>
-      <ons-carousel-item class="carousel-item" style="background-color: #373B44">
-        <div class="color-tag">Dark</div>
-      </ons-carousel-item>
-      <ons-carousel-item class="carousel-item" style="background-color: #D38312">
-        <div class="color-tag">Orange</div>
-      </ons-carousel-item>
-    </ons-carousel>
+<div style="position: absolute; background-color: #000; width: 100%;  height: 100%;">
+	<div class="txt-caption font-24" align="center">
+		 <?=$txt_date;?>
+	</div>
+	<img src="<?=$_GET[path]."?v=".time();?>" width="100%;" class="photo-preview" />
+</div>

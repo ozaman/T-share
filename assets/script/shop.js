@@ -3,6 +3,7 @@ if (class_user == 'lab') {
 } else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
+
 function editBook(x){
 			console.log(x)
 			$('#text_edit_persion').show()
@@ -195,16 +196,23 @@ function openDetailBooking(key, type) {
     $('#check_open_shop_id').val(detailObj.id);
 }
 
-function viewPhotoShop(id,action, key){
+function viewPhotoShop(id,action, time){
 	fn.pushPage({
         'id': 'popup2.html',
         'title': 'ภาพ'
     }, 'fade-md');
     var path = "../data/fileupload/store/"+action+"_"+id+".jpg";
-    var url_load = "page/view_photo?id=" + id +"&path="+path;
+    var url_load = "page/view_photo?id=" + id +"&time="+time+"&path="+path;
     $.post(url_load, function(ele) {
         $('#body_popup2').html(ele);
     });
+}
+
+function openPointMaps(){
+	fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'ตำแหน่งที่ยืนยัน'
+    }, 'fade-md');
 }
 
 function checkPhotoCheckIn(type, id){
@@ -450,6 +458,7 @@ function sendCheckIn(id, type){
 			console.log(res);
 			modal.hide();
 			if(res.result==true){
+				$('#'+type+'_check_click').val(1)
 				changeHtml(type,id,timestampToDate(res.time,"time"));
 				 
 //				 console.log(array_cdata);
@@ -520,7 +529,9 @@ function performClick(elemId) {
 }
 
 function btn_driver_topoint(id) {
-    
+    if($('#driver_topoint_check_click').val()==1){
+		return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
@@ -535,7 +546,19 @@ function btn_driver_topoint(id) {
 }
 
 function btn_guest_receive(id) {
-    
+	if($('#guest_receive_check_click').val()==1){
+		return;
+	}
+    if(class_user=="taxi"){
+    	  ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            });
+		return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "พนักงานรับแขก"
@@ -550,7 +573,19 @@ function btn_guest_receive(id) {
 }
 
 function btn_guest_register(id) {
-    
+	if($('#guest_register_check_click').val()==1){
+		return;
+	}
+    if(class_user=="taxi"){
+    	  ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            });
+		return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "แขกลงทะเบียน"
@@ -565,7 +600,19 @@ function btn_guest_register(id) {
 }
 
 function btn_driver_pay_report(id) {
-    
+	if($('#driver_pay_report_check_click').val()==1){
+		return;
+	}
+    if(class_user=="taxi"){
+    	  ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            });
+		return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "แจ้งยอดรายได้แล้ว"
@@ -639,3 +686,16 @@ function timestampToDate(unix_timestamp,type){
 		}
 		
 	  }
+
+/******* <!-------- function Income ------------> *******/
+function openViewPrice(id){
+	fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "รายได้"
+    }, 'lift-ios');
+    var url = "page/call_page?&id="+id;
+    console.log(url);
+    $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
+    	$('#body_shop_checkin').html(ele);
+    });
+}

@@ -448,38 +448,6 @@ function sendSocket(id) {
     };
     socket.emit('sendchat', dataorder);
 }
-
-function selectnation(x){
-
-    	var val = $('#persion_china').val();
-    	console.log('cn '+val);
-        if(val==0){
-			 $('#persion_china').prop('checked', true); 
-			 $('#persion_china').val(1);
-		}else{
-			 $('#persion_china').prop('checked', false); 
-			  $('#persion_china').val(0);
-		}
-         
-      }
-
-function selectnation2(x){
-        console.log('oth');
-        /* if (x == 0 && ch_other == false) {
-            $('#persion_other').prop('checked', true); // Checks it
-            ch_other = true;
-            $('#persion_other').val(x)
-            $('#box_other').show(500)
-         }
-         else {
-            $('#persion_other').prop('checked', false);
-            ch_other = false;
-            $('#persion_other').val('')
-             $('#box_other').hide(500)
-         }*/
-         
-         
-}
       
 function hideRes(id){
 	var txt = $('#'+id).val();
@@ -530,4 +498,8 @@ function pay(){
 				  .then(function() { });
 				  return;
 	fn.pushPage({'id': 'popup1.html', 'title': 'รายรับ'})
+}
+
+function myCar(){
+	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')
 }
