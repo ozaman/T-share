@@ -399,6 +399,15 @@ curl_close($curl);
 	curl_close($curl);
 	
 }
+public function contrac_us(){
+  	  $sql = "SELECT t1.phone, t1.name, t1.product_id, t2.topic_th FROM  shopping_contact as t1
+left join shopping_product as t2 on t1.product_id = t2.id where  t1.type='phone'  and t1.usertype=9 and t1.admintype=1  and t2.status = 1 ORDER BY t1.id ";
+	  $query = $this->db->query($sql);
+	  foreach($query->result() as $val){ 
+	  	$data[] = $val;
+	  }
+	  return $data;
+  } 
   /**
   * *********** End
   */
