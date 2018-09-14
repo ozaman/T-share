@@ -25,23 +25,23 @@
 			{
 			   console.log('Error file');
 //			   $('#iddriving_img').hide();
-			   $('#pv_id_drving').attr('src','images/ex_card/id_driving.jpg');
+			   $('#pv_id_driving').attr('src','images/ex_card/id_driving.jpg');
 			},
 			success: function()
 			{
 				console.log('success file');
 //				$('#iddriving_img').show();
-				 $('#box_img_id_drving').fadeIn(200);
-   				 $('#txt-img-has-id_drving').show();
-   				 $('#txt-img-nohas-id_drving').hide();
-				$('#pv_id_drving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
+				 $('#box_img_id_driving').fadeIn(200);
+   				 $('#txt-img-has-id_driving').show();
+   				 $('#txt-img-nohas-id_driving').hide();
+				$('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
 			}
 		});
 
-	var num = 0;
+	
 	
     function readURL(input,type) {
-
+//		alert(type);
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    	reader.onload = function(e) {
@@ -50,20 +50,24 @@
 	      		var data = new FormData($('#edit_form')[0]);
 	      		if(type=="id_card"){
 					data.append('idcard_upload', $('#img_'+type)[0].files[0]);
+					var id = $.cookie("detect_user");
 				}
 				else if(type=="id_driving"){
 					data.append('iddriving_upload', $('#img_'+type)[0].files[0]);
+					var id = $.cookie("detect_user");
+//					alert()
 				}
-				else if(type="profile"){
+				else if(type=="profile"){
 					data.append('imgInp', $('#img_'+type)[0].files[0]);
+					var id = $.cookie("detect_username");
 				}
       			
 //      			var url_upload = "../../mod/user/upload_img/upload.php?id="+$('#rand').val()+"&type="+type;
-      			var url_upload = "application/views/upload_img/upload.php?id="+$.cookie("detect_username")+"&type="+type;
+      			var url_upload = "application/views/upload_img/upload.php?id="+id+"&type="+type;
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
-   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                dataType: 'json',  // what to expect back from the PHP script, if anything
    				                cache: false,
    				                contentType: false,
    				                processData: false,
@@ -74,11 +78,12 @@
    				                   $('#box_img_'+type).fadeIn(200);
    				                   $('#txt-img-has-'+type).show();
    				                   $('#txt-img-nohas-'+type).hide();
-   				                   $('#pv_id_card').attr('src','../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg?v='+num);
-   				                   $('#pv_id_drving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+num);
-   				                   $('#pv_profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_user")+'.jpg?v='+num);
-   				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_user")+'.jpg?v='+num);
-   				                   num = num+1;
+   				                   $('#pv_id_card').attr('src','../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg?v='+$.now());
+   				                   $('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
+   				                   console.log('../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
+   				                   $('#pv_profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
+//   				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
+   				                   
    				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 											  .then(function() {
 //											   		location.reload();
@@ -99,8 +104,9 @@
 	  	 readURL(this,'id_card');
 	});
 	
-	$("#img_id_drving").change(function() {
-	  	 readURL(this,'id_drving');
+	$("#img_id_driving").change(function() {
+//		 console.log('img_id_driving');
+	  	 readURL(this,'id_driving');
 	});
 	
 	$("#img_car_img").change(function() {
