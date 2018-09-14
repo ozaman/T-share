@@ -1115,7 +1115,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             $.post(url,function(html){
             	$('#body_profile_view').html(html);
             });
-		}
+		
         }else if(page.id == "contract_us.html"){
 			var url = "page/contrac_us";
 
