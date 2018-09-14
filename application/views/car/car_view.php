@@ -1,13 +1,12 @@
 <div style="padding: 15px;">
 	<div align="center" style="width:100%; margin-top: 20px;">
-		<div class="btn waves-effect waves-light" style=" border: 1px solid #3b5998;width: 100%;border-radius: 25px;" id="add_car">
+		<div class="btn waves-effect waves-light" style=" border: 1px solid #3b5998;width: 100%;border-radius: 25px;" onclick="addCar();">
 	      <span class="font-26"><strong>เพิ่มรถ <i class="fa fa-plus-circle" aria-hidden="true"></i></strong></span>
 	   </div>
    </div>
    
    <div style="margin-top: 10px;">
             <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 30px;">
-         
          <div style="padding:5px;   border-radius: 6px; border: 1px solid #ddd;box-shadow:1px 1px 3px #ddd  ; background:#FFFFFF   ">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tbody><tr>

@@ -502,4 +502,8 @@ function pay(){
 
 function myCar(){
 	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')
+	 var url = "page/call_page";
+    $.post(url,{ path : "car/car_view" },function(ele){
+    	$('#body_car_manage').html(ele);
+    });
 }
