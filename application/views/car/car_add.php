@@ -76,12 +76,12 @@
         </ons-list-item>
         <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_img"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1"  style="opacity: 0;position: absolute;">
 			</div>
-			<span id="txt-img-has-car_img" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
-			<span id="txt-img-nohas-car_img" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_car_img" onclick="performClick('img_car_img');" >
-	      	<img src="" style="" class="img-preview-show" id="pv_car_img"  /> 
+			<span id="txt-img-has-img_car_1" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-img_car_1" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_car_1" onclick="performClick('img_car_1');" >
+	      	<img src="" style="" class="img-preview-show" id="pv_img_car_1"  /> 
 	      </div> 
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
