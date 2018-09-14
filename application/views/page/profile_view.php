@@ -254,8 +254,8 @@
 			</div>
 			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_profile"  style="width: 170px;height: 170px;">
-	      	<img src="../data/pic/driver/small/<?=$driver->username;?>.jpg" style="max-width: 100%; height: 170px;" id="pv_profile" onclick="performClick('img_profile');"  /><br/>
+	      <div class="box-preview-img" id="box_img_profile"  style="width: 170px;height: 170px;" onclick="performClick('img_profile');">
+	      	<img src="../data/pic/driver/small/<?=$driver->username;?>.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
 	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
 	      </div> 
 	    </div>
@@ -354,20 +354,20 @@
         </ons-list-item>
       <div align="center" style="margin: 10px;">
 			<div >
-			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_drving').click();" >เลือกภาพใบขับขี่</button>-->
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_drving"  style="opacity: 0;position: absolute;">
+			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_driving').click();" >เลือกภาพใบขับขี่</button>-->
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_driving"  style="opacity: 0;position: absolute;">
 			</div>
-			<span id="txt-img-has-id_drving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
-			<span id="txt-img-nohas-id_drving" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_id_drving" >
-	      	<img src="assets/images/ex_card/id_driving.jpg" class="img-preview-show" id="pv_id_drving" onclick="performClick('img_id_drving');" />
+			<span id="txt-img-has-id_driving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-id_driving" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_id_driving" >
+	      	<img src="assets/images/ex_card/id_driving.jpg" class="img-preview-show" id="pv_id_driving" onclick="performClick('img_id_driving');" />
 	      </div> 
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
     /*bottom: 22px;*/
-    margin-top: -27px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
         

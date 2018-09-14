@@ -9,11 +9,13 @@ if($_GET[type]=="id_card"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg","JPG");
-	echo json_encode($result);
+	$return[result] = $result;
+	$return[path] = "../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg";
+	echo json_encode($return);
 //	echo json_encode($_FILES);
 	exit();
 }
-if($_GET[type]=="id_drving"){
+if($_GET[type]=="id_driving"){
 	
 	include("class.resizepic.php");
 	$original_image = $_FILES['iddriving_upload']['tmp_name'] ;
@@ -23,7 +25,9 @@ if($_GET[type]=="id_drving"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg","JPG");
-	echo json_encode($result);
+	$return[result] = $result;
+	$return[path] = "../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg";
+	echo json_encode($return);
 	exit();
 }
 if($_GET[type]=="car_img"){
@@ -35,7 +39,6 @@ if($_GET[type]=="car_img"){
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-//	$result = $image->output_resized("../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg","JPG");
 	$result = $image->output_resized("../../../../data/pic/car/".$_GET[id].".jpg","JPG");
 	echo json_encode($result);
 	exit();
@@ -49,7 +52,9 @@ if($_GET[type]=="profile"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/small/".$_GET[id].".jpg","JPG");
-	echo json_encode($result);
+	$return[result] = $result;
+	$return[path] = "../../../../data/pic/driver/small/".$_GET[id].".jpg";
+	echo json_encode($return);
 }
 
 if($_GET[type]=="checkin"){

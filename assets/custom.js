@@ -16,7 +16,7 @@ function startTimeHome() {
 function checkTimeHome(i) {
     if (i < 10) {
         i = "0" + i
-    }; // add zero in front of numbers < 10
+    } // add zero in front of numbers < 10
     return i;
 }
 
@@ -501,7 +501,7 @@ function pay(){
 }
 
 function myCar(){
-	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')
+	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'slide-ios')
 	 var url = "page/call_page";
     $.post(url,{ path : "car/car_view" },function(ele){
     	$('#body_car_manage').html(ele);
