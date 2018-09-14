@@ -54,6 +54,9 @@ public function social(){
  public function view_photo(){
 		$this->load->view('page/photo_view');
    }
+   public function linenoti(){
+		$this->load->view('page/line_noti',$data);
+	}
    
    		
 }
