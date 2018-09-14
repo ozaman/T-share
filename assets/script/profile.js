@@ -82,7 +82,7 @@
    				                   $('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
    				                   console.log('../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
    				                   $('#pv_profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
-//   				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
+   				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
    				                   
    				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 											  .then(function() {
