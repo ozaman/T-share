@@ -172,7 +172,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 						$query = $this->db->get('web_carall');
 						$num = $query->num_rows();
                     ?>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'lift-ios')">รถใช้งาน (<?=$num;?> คัน)</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="myCar();">รถใช้งาน (<?=$num;?> คัน)</div>
                     <div class="expandable-content" style="padding-left: 60px;">เพิ่มรถ</div>
                     <div class="right arr" id="list_car_info">
                          <i class="fa fa-chevron-down" aria-hidden="true"></i>

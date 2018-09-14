@@ -3,6 +3,7 @@ if (class_user == 'lab') {
 } else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
+
 function editBook(x){
 			console.log(x)
 			$('#text_edit_persion').show()

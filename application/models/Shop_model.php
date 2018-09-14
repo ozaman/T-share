@@ -51,9 +51,16 @@ class Shop_model extends CI_Model {
 //		"posted" = "$_SESSION[data_user_driver]";
 		$data["post_date"] = time();
 		$data["update_date"] = time();
-		$data["num_ch"] = $_POST[persion_china];
-		$data["num_other"] = $_POST[persion_other];
 
+		if($_POST[nation]==1){
+			$data["num_ch"] = $_POST[persion_china];
+		}else if($_POST[nation]==2){
+			$data["num_other"] = $_POST[persion_other];
+		}else{
+			$data["num_ch"] = $_POST[persion_china];
+			$data["num_other"] = $_POST[persion_other];
+		}
+		
 	$result = $this->db->insert('order_booking', $data);
 	$last_id = mysql_insert_id();
 	$data[last_id] = $last_id;
