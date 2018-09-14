@@ -200,7 +200,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         แนะนำเพื่อน
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="openNotifyline();">
+                <ons-list-item onclick="fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <ons-icon fixed-width class="list-item__icon " icon="fa-link"></ons-icon>
                     </div>
@@ -867,6 +867,35 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             	<?php include("application/views/page/qrcode_ref.php"); ?>
             </div>
             <script>
+                ons.getScriptPage().onInit = function () {
+
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+        console.log('****')
+      }
+    </script>
+        </ons-page>
+    </template>
+    <template id="line_noti.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_line">
+                <?php include("application/views/page/line_noti.php"); ?>
+            </div>
+            <script>
+                 var url = "page/linenoti";
+                //var url = "application/views/page/line_noti.php";
+            
+            // $.post(url,function(html){
+            //     console.log('***-----')
+            //     console.log(html)
+            //     $('#body_line').html(html);
+            // });
+                // console.log('*****')
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
