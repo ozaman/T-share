@@ -209,7 +209,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                    
                 </ons-list-item>
-                <ons-list-item onclick="fn.loadLink('https://twitter.com/Onsen_UI')">
+            s
+                <ons-list-item onclick="fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'lift-ios')">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <i class="material-icons list-item__icon <?=$menu_ion_class;?>">contact_phone</i>
                     </div>
@@ -910,8 +911,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center"></div>
             </ons-toolbar>
-            <div id="body_line">
-                <?php include("application/views/page/contract_us.php"); ?>
+            <div id="body_contrac">
+               
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -1113,6 +1114,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
             $.post(url,function(html){
             	$('#body_profile_view').html(html);
+            });
+		}
+        }else if(page.id == "contract_us.html"){
+			var url = "page/contrac_us";
+
+            $.post(url,function(html){
+            	$('#body_contrac').html(html);
             });
 		}
         
