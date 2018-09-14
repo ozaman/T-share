@@ -1,3 +1,4 @@
+/*****/
 .txt-important{
 	color: #FF1313;
 	font-weight: bold;
@@ -5,12 +6,12 @@
     margin-left: 25px;
 }
 .brand-small {
-    background-image: url(../../images/sprite--brandsP.png);
+    background-image: url(images/car/sprite--brandsP.png);
     background-size: 28px auto;
     background-position: 0 0;
     background-repeat: no-repeat;
-    height: 28px;
-    width: 28px;
+    height: 28px !important;
+    width: 28px !important;
 }
 .txt-upload-profile{
 	background-color: #f4f4f4;

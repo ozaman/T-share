@@ -1,12 +1,18 @@
 <style>
    .drivertable{        
-   border-radius:5px; margin-top:10px; margin-bottom:10px;
-   border:0px solid #999999; background-color:#FFFFFF; 
-   box-shadow: 0px 1px 5px #DADADA;  }
+  		border-radius:5px; margin-top:10px; margin-bottom:10px;
+  		border:0px solid #999999; background-color:#FFFFFF; 
+   		box-shadow: 0px 1px 5px #DADADA;  }
    .tdtable  td {height:26px;}
    .img-car{
-   height: 60px;
-   width: auto;
+   		height: 60px;
+   		width: auto;
+   }
+   .btn-action-car{
+   	    border: 1px solid #ccc;
+   	    color: #000;
+   	    background-color: #fff;
+   	    box-shadow: 1px 1px 3px #cacaca;
    }
 </style>
 <div style="padding: 15px;">
@@ -44,7 +50,7 @@
                            <tbody>
                               <tr>
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
-                                    <button type="button" class="button button--outline" id="edit_car_38" onclick="editCar('<?=$row->id;?>');" style="width:100%">
+                                    <button type="button" class="button btn-action-car" id="edit_car_38" onclick="editCar('<?=$row->id;?>');" style="width:100%">
                                        <center>
                                           <div class="font-30"><i class="fa fa-edit" style="color:#3b5998"></i></div>
                                           <span style="padding-bottom:20px;" class="font-16"> แก้ไขข้อมูลรถ </span>
@@ -54,7 +60,7 @@
                               </tr>
                               <tr>
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
-                                    <button type="button" class="button button--outline" id="use_car_38" onclick="use_often('<?=$row->id;?>','close');" style="width:100%">
+                                    <button type="button" class="button btn-action-car" id="use_car_38" onclick="use_often('<?=$row->id;?>','close');" style="width:100%">
                                        <center>
                                           <div class="font-30"><i class="fa fa-times-circle" style="color: #FF0000"></i></div>
                                           <span style="padding-bottom:20px;" class="font-16">เลิกใช้ประจำ  </span>
@@ -64,7 +70,7 @@
                               </tr>
                               <tr>
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
-                                    <button type="button" class="button button--outline" onclick="cancelCar('<?=$row->id;?>')" style="width:100%">
+                                    <button type="button" class="button btn-action-car" onclick="cancelCar('<?=$row->id;?>')" style="width:100%">
                                        <center>
                                           <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
                                           <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>

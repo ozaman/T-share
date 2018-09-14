@@ -1,7 +1,15 @@
 function addCar(){
 	fn.pushPage({'id': 'popup1.html', 'title': 'เพิ่มรถ'}, 'lift-ios')
+	 var url = "page/call_page";
+    $.post(url,{ path : "car/car_add" },function(ele){
+    	$('#body_popup1').html(ele);
+    });
+}
+
+function editCar(){
 	
 }
+
 
 function checkPicCar(id){
       	console.log(id)
