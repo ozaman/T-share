@@ -83,16 +83,16 @@
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
                                  	<?php 
                                  		if($row->status==1){ ?>
-                                 			<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>')" style="width:100%">
+                                 			<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',0)" style="width:100%">
 		                                       <center>
-		                                          <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
-		                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
+		                                          <div class="font-30"><i class="fa fa-car " style="color:#34cb4a;"></i></div>
+		                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
 		                                       </center>
 		                                    </button>
                                  		<? }else{ ?>
-											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>')" style="width:100%">
+											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',1)" style="width:100%">
 		                                       <center>
-		                                          <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
+		                                          <div class="font-30"><i class="fa fa-car " style="color:#FF0000"></i></div>
 		                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
 		                                       </center>
 		                                    </button>
@@ -136,7 +136,7 @@
                                  <td class="font-16"><strong>สถานะ</strong></td>
                                  <td class="font-16">
                                     <font color="#3b5998"><strong>เปิดใช้งาน</strong></font>
-                                    <span style="font-size: 12px;"><b>(ใช้งาน)</b></span>
+                                    <!--<span style="font-size: 12px;"><b>(ใช้งาน)</b></span>-->
                                  </td>
                               </tr>
                            </tbody>
@@ -157,7 +157,7 @@
          </div>
       </div>
       <script>
-         setTimeout(function(){ checkPicCar('<?=$row->id;?>'); }, 3000);
+         setTimeout(function(){ checkPicCar('<?=$row->id;?>'); }, 500);
       </script>
       
       <?php $num++; }  ?>

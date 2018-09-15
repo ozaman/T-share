@@ -49,7 +49,7 @@ function changeCarOften(id){
 }
 
 function changeCarStatus(id,status){
-	modal.show();
+//	modal.show();
 	console.log(id);
 	if(status==0){
 		var messages = "ยกเลิกใช้รถคันนี้แล้ว";
@@ -72,7 +72,7 @@ function changeCarStatus(id,status){
                
                	ons.notification.alert({message: messages ,title:"สำเร็จ", buttonLabel:"ปิด"})
   				.then(function() { 
-  					modal.hide();
+//  					modal.hide();
   					var url_reload = "page/call_page";
 	  				$.post(url_reload,{ path : "car/car_view" },function(ele){
 					   $('#body_car_manage').html(ele);
@@ -262,7 +262,7 @@ function submitEditCar(){
 					  });
 			return;		  
 		}
-		if($('#img_car_2').val()==""){
+		/*if($('#img_car_2').val()==""){
 			ons
 					  .notification.alert({message: 'กรุณาอัพโหลดภาพข้างรถ',title:"ข้อมูลไม่สมบูรณ์",buttonLabel:"ปิด"})
 					  .then(function() {
@@ -277,7 +277,7 @@ function submitEditCar(){
 					    	 modal.hide();
 					  });
 			return;		  
-		}
+		}*/
 		modal.show();
 		
 		var data = new FormData($('#form_editcar')[0]);

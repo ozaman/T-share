@@ -147,7 +147,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
                 <ons-list-item expandable>
-                    <div class="left">
+                    <div class="left" style="border-bottom: 1px solid #ccc;">
                         <!--<ons-icon fixed-width class="list-item__icon" icon="ion-edit, material:md-edit"></ons-icon>-->
                         <i class="icon-new-uniF133-2 list-item__icon"></i>
                     </div>
@@ -161,7 +161,22 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     </div>
                 </ons-list-item>
                 
-                <ons-list-item expandable>
+                <ons-list-item onclick="myCar();">
+                <?php 
+                    	$this->db->select('id');
+						$this->db->where('status = 1 and drivername = '.$_COOKIE['detect_user']);
+						$query = $this->db->get('web_carall');
+						$num = $query->num_rows();
+                    ?>
+                    <div class="left" style="border-bottom: 1px solid #ccc;">
+                         <i class="icon-new-uniF10A-9 list-item__icon"></i>
+                    </div>
+                    <div class="center" >
+                        ข้อมูลรถ ใช้งาน (<?=$num;?> คัน)
+                    </div>
+                   
+                </ons-list-item>
+                <!--<ons-list-item expandable>
                     <div class="left">
                        <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
@@ -179,10 +194,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="right arr" id="list_car_info">
                          <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                </ons-list-item>
+                </ons-list-item>-->
 
                 <ons-list-item expandable>
-                    <div class="left">
+                    <div class="left" style="border-bottom: 1px solid #ccc;">
                         <i class="icon-new-uniF121-10 list-item__icon "></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_acc');">

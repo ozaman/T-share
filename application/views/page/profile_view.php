@@ -375,7 +375,7 @@
 
 </form>
      <div style="margin: 0px 10px;">
-    <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveDataPf();" style="background-color: #fff;" >ยืนยันข้อมูล</ons-button>
+    <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveDataPf();" style="background-color: #fff;" >แก้ไขข้อมูลส่วนตัว</ons-button>
     </div>
 	
 </div>   
