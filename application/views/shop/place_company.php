@@ -1,7 +1,7 @@
 <?php
 foreach ($place_company as $data){
     ?>
-    <div class="card" onclick="getplan('<?=$data->id;?>')">
+    <div class="card" onclick="sendShop('<?=$data->id;?>')">
         <table width="100%" border="0" cellspacing="4" cellpadding="4" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
                 <td width="110">

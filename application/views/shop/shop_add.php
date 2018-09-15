@@ -238,7 +238,7 @@ $data_place = $query_place->row();
                <table width="100%" border="0" cellspacing="1" cellpadding="5" style="">
                   <tbody>
                      <tr>
-                                                <td width="100%">
+                        <td width="100%">
                            <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
                                                       <script>
                               ///

@@ -460,7 +460,7 @@ function hideRes(id){
 
 
 /*************************** Menu function *********************************/
-function sendShop(){
+function sendShop(company){
 	fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
 }
 function sendShop2(){
