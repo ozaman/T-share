@@ -13,6 +13,7 @@ class Car_model extends CI_Model {
 		$car[car_color] = $_POST[car_color_txt];
 		$car[plate_color] = $_POST[plate_color_txt];
 		$car[i_plate_color] = $_POST[plate_color];
+		$car[i_province] = $_POST[car_province];
 		$car[status] = 1;
 		$car[status_usecar] = 0;
 		$car[post_date] = time();
@@ -27,6 +28,28 @@ class Car_model extends CI_Model {
 		$return[p3] =  rename("../data/pic/car/".$_POST[rand]."_3.jpg", "../data/pic/car/".$last_id_car."_3.jpg");
 		
 		return $return;
+  }
+  
+  public function edit_car(){
+  		$car[plate_num] = $_POST[plate_num];
+		$car[drivername] = $_GET[driver_id];
+		$car[car_type] = $_POST[car_type];
+		$car[car_brand] = $_POST[car_brand_txt];
+		$car[i_car_brand] = $_POST[car_brand];
+		$car[i_car_color] = $_POST[car_color];
+		$car[car_color] = $_POST[car_color_txt];
+		$car[plate_color] = $_POST[plate_color_txt];
+		$car[i_plate_color] = $_POST[plate_color];
+		$car[i_province] = $_POST[car_province];
+		$car[status] = 1;
+		$car[status_usecar] = 0;
+		$car[post_date] = time();
+		$car[update_date] = time();
+		
+		$this->db->where('id', $_GET[id]);
+		$car[result] = $this->db->update('web_carall', $car); 
+		
+		return $car;
   }
 
   /**
