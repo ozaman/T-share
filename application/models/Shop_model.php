@@ -26,6 +26,7 @@ class Shop_model extends CI_Model {
 		$data["price_extra_park"] = $price_extra_park;
 		$data["price_extra_person"] = $price_extra_park;
 		$data["income_price_park"] = $income_price_park;*/
+		$data["plan_id"] = $_POST[price_plan];
 		$data["pax"] = $_POST[adult];
 		$data["program"] = $_POST[program];
 		$data["transfer_date"] = date('Y-m-d');
@@ -249,6 +250,15 @@ class Shop_model extends CI_Model {
 		
   		return $data;
   }
+  public function place_companycount(){
+  		$this->db->select('count(*)');
+$this->db->from(TBL_SHOPPING_PRODUCT);
+$this->db->where('status','1');
+$query = $this->db->get();
+
+  return $query->num_rows();
+  		// $this->load->view('shop/place_company',$data);
+	}
   /**
   * 
   * driver_topoint

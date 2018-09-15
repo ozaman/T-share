@@ -20,7 +20,7 @@
     color: #fb0006;
 }
 .time-post-shop {
-    border-radius: 25px;
+    border-radius: 10px;
     margin-right: 10px;
     border: 1px solid #333;
     padding: 5px;
@@ -43,7 +43,7 @@
 .box-shop{
   background-color: #fff;	
   padding: 17px 10px;
-  border-radius:25px;
+  border-radius:10px;
   border: 1px solid #3b5998;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
@@ -158,7 +158,7 @@
         <a class="btn waves-effect waves-light red lighten-3" align="center"  onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');"id="cancel_book_<?=$val[id];?>" style="
     color: #fff;margin-right: 15px;
     padding: 5px 20px;
-    border-radius: 25px;
+    border-radius: 8px;
     background-color: #F44336 ;
     margin-top: 10px;">
     <span class="font-22 text-cap"><?=t_cancel;?></span>
