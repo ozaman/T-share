@@ -18,6 +18,12 @@ public function edit_car(){
   		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}
+	
+public function change_car_often(){
+		$data['res'] = $this->Car_model->change_car_often();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
 
 }
 ?>

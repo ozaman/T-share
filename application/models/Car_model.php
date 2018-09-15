@@ -51,6 +51,19 @@ class Car_model extends CI_Model {
 		
 		return $car;
   }
+  
+  public function change_car_often(){
+  		
+  		$update[status_usecar] = 0;
+  		$this->db->where('drivername', $_POST[driver_id]);
+  		$this->db->update('web_carall', $update); 
+  		
+  		$car[status_usecar] = 1;
+		$this->db->where('id', $_POST[car_id]);
+		$car[result] = $this->db->update('web_carall', $car); 
+		$car[car_id] = $_POST[car_id];
+  		return $car;
+  }
 
   /**
   * 

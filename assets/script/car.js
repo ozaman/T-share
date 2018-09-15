@@ -18,8 +18,10 @@ function editCar(id){
 function changeCarOften(id){
 	console.log(id);
 	var data = {
-		car_id : id
+		car_id : id,
+		driver_id : $.cookie("detect_user")
 	};
+	var url = "car/change_car_often";
 	$.ajax({
             url: url, // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
@@ -27,7 +29,15 @@ function changeCarOften(id){
             type: 'post',
             success: function(res) {
                console.log(res);
-              
+               
+               	ons.notification.alert({message: 'ใช้รถคันนี้ เป็นรถประจำแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+  				.then(function() { 
+  					var url_reload = "page/call_page";
+	  				$.post(url_reload,{ path : "car/car_view" },function(ele){
+					   $('#body_car_manage').html(ele);
+					});
+  				});
+				  
             },
 	        error: function(err){
 	        	console.log(err);
