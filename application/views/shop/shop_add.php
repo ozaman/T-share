@@ -351,7 +351,7 @@ $data_place = $query_place->row();
                                  <tbody>
                                     <tr>
                                        <td width="30" rowspan="2" align="center" style="display: nones;">
-                                        <ons-radio class="radio-fruit" input-id="price_plan_3" value="1" name="price_plan" id="price_plan_3"></ons-radio>
+                                        <ons-radio class="radio-fruit" input-id="price_plan_3" value="3" name="price_plan" id="price_plan_3"></ons-radio>
                                           <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="2" id="price_plan_3" /></td> -->
                                        </td><td class="font-16"><b> ค่าจอด + ค่าคอมมิชชั่น </b></td>
                                        <!--<td width="35" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->

@@ -26,6 +26,7 @@ class Shop_model extends CI_Model {
 		$data["price_extra_park"] = $price_extra_park;
 		$data["price_extra_person"] = $price_extra_park;
 		$data["income_price_park"] = $income_price_park;*/
+		$data["plan_id"] = $_POST[price_plan];
 		$data["pax"] = $_POST[adult];
 		$data["program"] = $_POST[program];
 		$data["transfer_date"] = date('Y-m-d');
