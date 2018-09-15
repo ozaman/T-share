@@ -15,6 +15,27 @@ function editCar(id){
     });
 }
 
+function changeCarOften(id){
+	console.log(id);
+	var data = {
+		car_id : id
+	};
+	$.ajax({
+            url: url, // point to server-side PHP script 
+            dataType: 'json', // what to expect back from the PHP script, if anything
+            data: data,
+            type: 'post',
+            success: function(res) {
+               console.log(res);
+              
+            },
+	        error: function(err){
+	        	console.log(err);
+	                //your code here
+	        }
+        });
+}
+
 function submitAddCar(){
 
 		modal.show();
@@ -32,7 +53,7 @@ function submitAddCar(){
             data: data,
             type: 'post',
             success: function(res) {
-               console.log(res);modal.hide();
+               console.log(res);
                if(res.data.result==true){
 
                		ons
@@ -46,6 +67,7 @@ function submitAddCar(){
 					  .notification.alert({message: 'ไม่สามารถเพิ่มรถได้ กรุณาลองใหม่อีกครั้ง',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					  modal.hide();
 			   }
+			   modal.hide();
             },
 	        error: function(err){
 	        	console.log(err);

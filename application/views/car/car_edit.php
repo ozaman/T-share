@@ -30,18 +30,30 @@
 		
 		if($data_car->type_name!=""){
 			$txt_type = $data_car->type_name;
+		}else{
+			$type_ds_none = "display:none;";
 		}
+		
 		if($data_car->car_brand!=""){
 			$txt_brand = $data_car->car_brand;
 			$img_brand = "background-position:".$data_brand->img;
+		}else{
+			$brand_ds_none = "display:none;";
 		}
+		
 		if($data_car->car_color!=""){
 			$txt_car_color = $data_car->car_color;
 			$img_car_color = "assets/images/car/".$data_car->color_img;
+		}else{
+			$color_ds_none = "display:none;";
 		}
+		
 		if($data_car->plate_color!=""){
 			$txt_plate_color = $data_car->plate_color;
 			$plate_img = "assets/images/car/plate/".$data_car->plate_img;
+			
+		}else{
+			$plate_ds_none = "display:none;";
 		}
 		
 		
@@ -83,7 +95,7 @@
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
                 
-                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: nones;<?=$img_brand;?>"  ></span>
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;<?=$brand_ds_none;?><?=$img_brand;?>"  ></span>
                 <span id="txt_car_brand" ><?=$txt_brand;?></span>
                 <input type="hidden" name="car_brand" id="car_brand" value="<?=$data_car->i_car_brand;?>" />
                 <input type="hidden" name="car_brand_txt" id="car_brand_txt" value="<?=$data_car->car_brand;?>" />
@@ -94,7 +106,7 @@
                 <span>สีรถ</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios')">
-             	<img src="<?=$img_car_color;?>" style="width: 30px; margin-right: 15px;display: nones;border: 1px solid #eee;" id="img_car_color_show"  />
+             	<img src="<?=$img_car_color;?>" style="width: 30px; margin-right: 15px;border: 1px solid #eee;<?=$color_ds_none;?>" id="img_car_color_show"  />
                 <span id="txt_car_color" ><?=$txt_car_color;?></span>
                 <input type="hidden" name="car_color" id="car_color" value="<?=$data_car->i_car_color;?>" />
                 <input type="hidden" name="car_color_txt" id="car_color_txt" value="<?=$data_car->car_color;?>" />
@@ -105,7 +117,7 @@
                 <span>สีป้ายทะเบียน</span>
             </div>
             <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
-            	<img src="<?=$plate_img;?>" style="width: 50px; margin-right: 0px;display: nones;" id="img_plate_color_show"  />
+            	<img src="<?=$plate_img;?>" style="width: 50px; margin-right: 0px;<?=$plate_ds_none;?>" id="img_plate_color_show"  />
                 <span id="txt_plate_color" ><?=$txt_plate_color;?></span>
                 <input type="hidden" name="plate_color" id="plate_color" value="<?=$data_car->i_plate_color;?>" />
                 <input type="hidden" name="plate_color_txt" id="plate_color_txt" value="<?=$data_car->plate_color;?>" />

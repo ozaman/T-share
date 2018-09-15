@@ -20,6 +20,13 @@ function checkTimeHome(i) {
     return i;
 }
 
+function use_often(id){
+	
+}
+
+function cancel_often(id){
+	
+}
 
 var userLang = navigator.language || navigator.userLanguage;
 userLang = userLang.split('-');
