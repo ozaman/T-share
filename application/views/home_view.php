@@ -116,7 +116,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">
+                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">
                         <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg?v=<?=time();?>" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
@@ -140,7 +140,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <template id="sidemenu.html">
         <ons-page>
             <div class="profile-pic">
-                <img src="../data/pic/driver/small/<?=$_COOKIE[detect_username];?>.jpg?v=<?=time();?>">
+
+                <img src="../data/pic/driver/small/<?=$_COOKIE["app_remember_user"];?>.jpg?v=<?=time();?>">
+
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
@@ -150,9 +152,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="icon-new-uniF133-2 list-item__icon"></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_profile');">
-                        ข้อมูลผู้ใช้งาน
+                        ข้อมูลส่วนตัว
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
                     <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -550,7 +552,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            <div id="body_car_manage">
 	            	
 	            </div>
-	       <script src="<?=base_url();?>assets/script/car.js"></script>     
+	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;

@@ -3,6 +3,21 @@
 		padding-left: 14px;
 	}
 </style>
+<?php 
+		$rand = time().generateRandomString();    	
+    	function generateRandomString($length = 10) {
+		    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		    $charactersLength = strlen($characters);
+		    $randomString = '';
+		    for ($i = 0; $i < $length; $i++) {
+		        $randomString .= $characters[rand(0, $charactersLength - 1)];
+		    }
+		    return $randomString;
+		}
+?>
+
+<form name="form_addcar" id="form_addcar"  enctype="multipart/form-data">
+<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
 <ons-card  class="card">
       <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
@@ -74,9 +89,13 @@
                 <input type="hidden" name="car_province" id="car_province" />
             </div>
         </ons-list-item>
-        <div align="center" style="margin-top: 10px;">
+ 	</ons-card>
+
+<ons-card  class="card">
+      <ons-list-header class="list-header"><b>ภาพหน้ารถ</b></ons-list-header>
+      <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1" onchange="readURL(this,'img_car_1',1);"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-has-img_car_1" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_1" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -87,7 +106,52 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-        margin-top: -28px;
+    margin-top: -28px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
- 	</ons-card>
+</ons-card>   
+
+<ons-card  class="card">
+      <ons-list-header class="list-header"><b>ภาพข้างรถ</b></ons-list-header>
+      <div align="center" style="margin-top: 10px;">
+			<div >
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_2"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_2',2);">
+			</div>
+			<span id="txt-img-has-img_car_2" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-img_car_2" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_car_2" onclick="performClick('img_car_2');" >
+	      	<img src="" style="" class="img-preview-show" id="pv_img_car_2"  /> 
+	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    margin-top: -28px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    </div>
+</ons-card>  
+
+<ons-card  class="card">
+      <ons-list-header class="list-header"><b>ภาพใน</b></ons-list-header>
+      <div align="center" style="margin-top: 10px;">
+			<div >
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_3"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_3',3);">
+			</div>
+			<span id="txt-img-has-img_car_3" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-img_car_3" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_car_3" onclick="performClick('img_car_3');" >
+	      	<img src="" style="" class="img-preview-show" id="pv_img_car_3"  /> 
+	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    margin-top: -28px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    </div>
+</ons-card> 
+
+<div style="padding: 10px; margin-bottom: 10px;">
+	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitAddCar();" style="background-color: #fff;">เพิ่มรถ</ons-button>
+</div>
+</form>    

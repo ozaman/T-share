@@ -139,7 +139,7 @@
 		          หญิง
 		        </label>
 		      </ons-list-item>
-            <input type="hidden" value="" id="gender" value="" name="gender"/>
+            <input type="hidden" value="<?=$driver->i_gender;?>" id="gender" value="" name="gender"/>
         </ons-list-item>
 
         <ons-list-item class="input-items list-item p-l-0">
@@ -255,7 +255,7 @@
 			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
 	      <div class="box-preview-img" id="box_img_profile"  style="width: 170px;height: 170px;" onclick="performClick('img_profile');">
-	      	<img src="../data/pic/driver/small/<?=$driver->username;?>.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
+	      	<img src="../data/pic/driver/small/<?=$driver->username;?>.jpg?v=<?=time();?>" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
 	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
 	      </div> 
 	    </div>
@@ -284,7 +284,7 @@
         
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
-            	<img src="assets/images/ex_card/crd.png" width="25px;" />
+            	<img src="assets/images/ex_card/crd.png?v=<?=time();?>" width="25px;" />
                 <!--<b style="width: 100px;font-size: 14px;">หมดอายุ</b>-->
             </div>
             <div class="center list-item__center">
@@ -310,7 +310,7 @@
 			<span id="txt-img-has-id_card" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-id_card" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
 	      <div class="box-preview-img" id="box_img_id_card" >
-	      	<img src="assets/images/ex_card/id_card.jpg" class="img-preview-show" id="pv_id_card" onclick="performClick('img_id_card');" />
+	      	<img src="assets/images/ex_card/id_card.jpg?v=<?=time();?>" class="img-preview-show" id="pv_id_card" onclick="performClick('img_id_card');" />
 	      </div> 
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
