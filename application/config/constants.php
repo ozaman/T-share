@@ -73,6 +73,16 @@ defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREA
 |       http://tldp.org/LDP/abs/html/exitcodes.html
 |
 */
+
+define('TBL_SHOPPING_PRODUCT', 'shopping_product');
+define('TBL_SHOPPING_PRODUCT_MAIN', 'shopping_product_main');
+define('TBL_PLAN_PRODUCT_PRICE_NAME', 'plan_product_price_name');
+define('TBL_PLAN_PRODUCT_PRICE_SETTING', 'plan_product_price_setting');
+define('TBL_PRODUCT_PRICE_LIST_ALL', 'product_price_list_all');
+
+
+
+
 defined('EXIT_SUCCESS')        OR define('EXIT_SUCCESS', 0); // no errors
 defined('EXIT_ERROR')          OR define('EXIT_ERROR', 1); // generic error
 defined('EXIT_CONFIG')         OR define('EXIT_CONFIG', 3); // configuration error

@@ -41,7 +41,6 @@ options = {
 };
 
 function success(pos) {
-
     if (first_get_pos == true) {
         current = {
             lat: parseFloat(pos.coords.latitude),
@@ -461,10 +460,17 @@ function hideRes(id){
 
 
 /*************************** Menu function *********************************/
-function sendShop(){
+function sendShop(company){
 	fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
 }
-
+function sendShop2(){
+    fn.pushPage({'id': 'place_company.html', 'title': 'ส่งแขก'}, 'slide-ios')
+   
+     var url = "shop/place_company";
+    $.post(url,function(res){
+        $('#body_place_company').html(res);
+    });
+}
 function sendTransfer(){
 	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
 				  .then(function() { });

@@ -913,7 +913,24 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
-    
+    <template id="place_company.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_place_company">
+                
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
     <style>
         ons-splitter-side[animation=overlay] {
     border-left: 1px solid #bbb;
@@ -1372,4 +1389,4 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
   }
 </script>
-<script src="assets/custom.js"></script>
+<script src="assets/custom.js?<?=time();?>"></script>

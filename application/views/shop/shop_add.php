@@ -32,48 +32,11 @@ $data_place = $query_place->row();
     <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
     <input type="hidden" value="" name="car_type" id="car_type" />
     <input type="hidden" value="" name="car_plate" id="car_plate" />
-    <ons-card>
-
-        <div class="form-group">
-        	<span class="font-18">เลือกรถส่งแขก</span>
-            <div style="padding: 0px;margin-top: 0px;">
-			<?php 
-	  			foreach($query->result() as $val){ 
-	  			$bg_plate_color = "background-color: ".$val->plate_color;
-//	  			$text_plate_color = "background-color: ".$val->txt_color;
-	  			?>
-	  				
-	  				<a id="car_<?=$val->id;?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id;?>','<?=$val->car_type;?>','<?=$val->car_type_txt;?>');">
-		<input type="hidden" id="value_car_<?=$val->id;?>" data-plate_num="<?=$val->plate_num;?>" />
-    	<table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$val->id;?>" style="border: 0px solid #ddd;background-color: #f6f6f6;">
-               <tbody>
-                  <tr>
-                     <td>
-                        <table width="100%" cellpadding="1" cellspacing="2">
-                           <tbody>
-                           <tr>
-                           <td width="100" align="center" style="border: solid 2px; height:20px; color:#DADADA; padding:5px; padding-right:0px;border-radius:5px;<?=$bg_plate_color;?>"><font color="<?=$val->txt_color;?>" class="font-28"><b><?=$val->plate_num;?></font><br>
-                                 <font class="font-14"><?=$val->province;?></font></b></font>
-                              </td>
-                           </tr>
-                        </tbody>
-                        </table>
-                        
-                     </td>
-                     <td width="50" align="center">
-                      <label class="container">
-					  <input type="checkbox" name="car" id="car_use_<?=$val->id;?>" value="1">
-					  <span class="checkmark"></span>
-					</label>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-    	</a>		
-	  		<?	}
-			?>
-            
-            </div>
+    <div>
+      <div class="card">
+        <div class="form-group ">
+        	
+           
             <script>
 			   function selectCarShops(id, cartype, car_type_txt){
 				    $('input[type="checkbox"]').prop('checked', false); // Unchecks it
@@ -112,7 +75,47 @@ $data_place = $query_place->row();
                 </td>
             </tr>
         </table>
-
+      </div>
+      <div class="card">
+        <span class="font-18">เลือกรถส่งแขก</span>
+           <div style="padding: 0px;margin-top: 0px;" >
+      <?php 
+          foreach($query->result() as $val){ 
+          $bg_plate_color = "background-color: ".$val->plate_color;
+//          $text_plate_color = "background-color: ".$val->txt_color;
+          ?>
+            
+            <a id="car_<?=$val->id;?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id;?>','<?=$val->car_type;?>','<?=$val->car_type_txt;?>');">
+    <input type="hidden" id="value_car_<?=$val->id;?>" data-plate_num="<?=$val->plate_num;?>" />
+      <table width="100%" border="0" cellspacing="2" cellpadding="2" id="div_car_<?=$val->id;?>" style="border: 0px solid #ddd;background-color: #f6f6f6;">
+               <tbody>
+                  <tr>
+                     <td>
+                        <table width="100%" cellpadding="1" cellspacing="2">
+                           <tbody>
+                           <tr>
+                           <td width="100" align="center" style="border: solid 2px; height:20px; color:#DADADA; padding:5px; padding-right:0px;border-radius:5px;<?=$bg_plate_color;?>"><font color="<?=$val->txt_color;?>" class="font-28"><b><?=$val->plate_num;?></font><br>
+                                 <font class="font-14"><?=$val->province;?></font></b></font>
+                              </td>
+                           </tr>
+                        </tbody>
+                        </table>
+                        
+                     </td>
+                     <td width="50" align="center">
+                      <label class="container">
+            <input type="checkbox" name="car" id="car_use_<?=$val->id;?>" value="1">
+            <span class="checkmark"></span>
+          </label>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+      </a>    
+        <?  }
+      ?>
+            
+            </div>
         <div class="form-group">
 
             <ons-list-item tappable ">
@@ -213,11 +216,12 @@ $data_place = $query_place->row();
                 <ons-input id="dri_phone" name="dri_phone" type="number" pattern="\d*" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onkeyup="hideRes('dri_phone');" placeholder="" value="<?=$data_dv->phone;?>"></ons-input>
             </ons-row>
         </div>
+      </div>
 
 
-        <div id="testScroll">
+        <div id="testScroll" class="card">
          <!-- Agent Issu -->  
-         <div class="" id="show_payment_detail" style="margin-top:10px;padding:5px;   border-radius: 10px; border: 1px solid #ddd;background-color:#Fff;  margin-bottom: 0px; box-shadow: 0px  0px 5px #DADADA  ; ">
+         <div class="" id="show_payment_detail" style="">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tbody>
                   <tr>
@@ -234,7 +238,7 @@ $data_place = $query_place->row();
                <table width="100%" border="0" cellspacing="1" cellpadding="5" style="">
                   <tbody>
                      <tr>
-                                                <td width="100%">
+                        <td width="100%">
                            <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
                                                       <script>
                               ///
@@ -249,15 +253,16 @@ $data_place = $query_place->row();
                               <table width="100%" border="0" cellspacing="1" cellpadding="3">
                                  <tbody>
                                     <tr>
-                                       <td width="30" rowspan="2" align="center" style="display: none;">
-                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="1" id="price_plan_1" /> -->
+                                       <td width="30" rowspan="2" align="center" style="display: nones;">
+                                        <ons-radio class="radio-fruit" input-id="price_plan_1" value="1" name="price_plan" id="price_plan_1"></ons-radio>
+                                          <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="1" id="" /> -->
                                        </td>
                                        <td class="font-16"><b> ค่าจอด + ค่าหัว</b> </td>
                                        <!--<td width="35" rowspan="2" valign="middle"><a id="show_price_plan_1"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
                                     </tr>
                                     <tr>
                                        <td>
-                                                                                                                              <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                          <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
                                                    <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;"><span class="font-14">&nbsp;จีน  </span></td>
@@ -345,14 +350,15 @@ $data_place = $query_place->row();
                               <table width="100%" border="0" cellspacing="1" cellpadding="3">
                                  <tbody>
                                     <tr>
-                                       <td width="30" rowspan="2" align="center" style="display: none;">
+                                       <td width="30" rowspan="2" align="center" style="display: nones;">
+                                        <ons-radio class="radio-fruit" input-id="price_plan_3" value="1" name="price_plan" id="price_plan_3"></ons-radio>
                                           <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="2" id="price_plan_3" /></td> -->
                                        </td><td class="font-16"><b> ค่าจอด + ค่าคอมมิชชั่น </b></td>
                                        <!--<td width="35" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
                                     </tr>
                                     <tr>
                                        <td>
-                                                                                                                              <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                                          <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                              <tbody>
                                                 <tr>
                                                    <td width="75"> <img src="assets/images/flag/China.png" width="25" height="25" alt="" style="margin-top:-5px;">
@@ -398,7 +404,7 @@ $data_place = $query_place->row();
             </div>
          </div>
       </div>
-    </ons-card>
+    </div>
 	</form>
     <div style="padding: 0px 10px;">
         <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูล</ons-button>
