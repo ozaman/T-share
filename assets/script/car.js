@@ -1,13 +1,18 @@
 function addCar(){
-	fn.pushPage({'id': 'popup1.html', 'title': 'เพิ่มรถ'}, 'lift-ios')
+	fn.pushPage({'id': 'popup1.html', 'title': 'เพิ่มรถข้อมูลรถ'}, 'lift-ios')
 	 var url = "page/call_page";
     $.post(url,{ path : "car/car_add" },function(ele){
     	$('#body_popup1').html(ele);
     });
 }
 
-function editCar(){
-	
+function editCar(id){
+	fn.pushPage({'id': 'popup1.html', 'title': 'แก้ไขข้อมูลรถ'}, 'lift-ios')
+	 var url = "page/call_page?id="+id;
+    $.post(url,{ path : "car/car_edit" },function(ele){
+    	$('#body_popup1').html(ele);
+    	checkPicCar(id);
+    });
 }
 
 function submitAddCar(){
@@ -28,7 +33,47 @@ function submitAddCar(){
             type: 'post',
             success: function(res) {
                console.log(res);modal.hide();
-               /*if(res.data.result==true){
+               if(res.data.result==true){
+
+               		ons
+					  .notification.alert({message: 'เพิ่มรถสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+					  .then(function() {
+					    	
+					  });
+		    		modal.hide();
+			   }else{
+			   		ons
+					  .notification.alert({message: 'ไม่สามารถเพิ่มรถได้ กรุณาลองใหม่อีกครั้ง',title:"ผิดพลาด",buttonLabel:"ปิด"});
+					  modal.hide();
+			   }
+            },
+	        error: function(err){
+	        	console.log(err);
+	                //your code here
+	        }
+        });
+	
+}
+
+function submitEditCar(){
+
+		modal.show();
+		
+		var data = new FormData($('#form_editcar')[0]);
+		
+		var url = "car/edit_car?driver_id="+$.cookie("detect_user");
+		
+		$.ajax({
+            url: url, // point to server-side PHP script 
+            dataType: 'json', // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: data,
+            type: 'post',
+            success: function(res) {
+               console.log(res);modal.hide();
+              /*if(res.data.result==true){
 
                		ons
 					  .notification.alert({message: 'เพิ่มรถสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
@@ -50,7 +95,11 @@ function submitAddCar(){
 	
 }
 
-function readURL(input, id, num) {
+function validPlate(input){
+	
+}
+
+function readURL(input, id, num, type) {
 	  console.log("read file : " + id);
 	  console.log("rand : " + $('#rand').val());
 //	  return;
@@ -62,7 +111,12 @@ function readURL(input, id, num) {
 
 	      		var data = new FormData($('#form_addcar')[0]);
       			data.append('fileUpload', $('#'+id)[0].files[0]);
-      			var url_upload = "application/views/upload_img/upload.php?id="+$('#rand').val()+"&type=car_img&num="+num;
+      			if(type=="add"){
+					var param_id = $('#rand').val();
+				}else{
+					var param_id = $('#id_carall').val();
+				}
+      			var url_upload = "application/views/upload_img/upload.php?id="+param_id+"&type=car_img&num="+num;
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
