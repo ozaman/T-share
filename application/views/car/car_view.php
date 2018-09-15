@@ -157,7 +157,7 @@
          </div>
       </div>
       <script>
-         setTimeout(function(){ checkPicCar('<?=$row->id;?>'); }, 500);
+         setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);
       </script>
       
       <?php $num++; }  ?>

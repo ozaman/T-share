@@ -11,7 +11,7 @@ function editCar(id){
 	 var url = "page/call_page?id="+id;
     $.post(url,{ path : "car/car_edit" },function(ele){
     	$('#body_popup1').html(ele);
-    	checkPicCar(id);
+    	checkPicCar(id,'');
     });
 }
 
@@ -282,7 +282,7 @@ function submitEditCar(){
 		
 		var data = new FormData($('#form_editcar')[0]);
 		
-		var url = "car/edit_car?driver_id="+$.cookie("detect_user");
+		var url = "car/edit_car?driver_id="+$.cookie("detect_user")+"&car_id="+$('#id_carall').val();
 		
 		$.ajax({
             url: url, // point to server-side PHP script 
@@ -300,6 +300,10 @@ function submitEditCar(){
 					  .notification.alert({message: 'แก้ไขข้อมูลรถสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
 					  .then(function() {
 					    	modal.hide();
+					    	var url = "page/call_page&checkcalledit=1";
+							  $.post(url,{ path : "car/car_view" },function(ele){
+							   $('#body_car_manage').html(ele);
+							});
 					  });
 //		    		modal.hide();
 			   }else{
@@ -374,7 +378,7 @@ function performClick(elemId){
    }
 }
 
-function checkPicCar(id){
+function checkPicCar(id,checkcalledit){
       	console.log(id)
       	var p1 = '../data/pic/car/'+id+'_1.jpg';
       	var p2 = '../data/pic/car/'+id+'_2.jpg';
@@ -392,7 +396,9 @@ function checkPicCar(id){
 				{
 					$('.'+id+'_pic_car_1').attr('src',p1);
 					$('.'+id+'_pic_car_1').show();
-					
+					if(checkcalledit!=""){
+						return;
+					}
 					$('#pv_img_car_1').attr('src',p1);
 				}
 			});
@@ -410,6 +416,9 @@ function checkPicCar(id){
 //					$('#'+id+'_pic_car_2').show();
 					$('.'+id+'_pic_car_2').attr('src',p2);
 					$('.'+id+'_pic_car_2').show();
+					if(checkcalledit!=""){
+						return;
+					}
 					$('#pv_img_car_2').attr('src',p2);
 				}
 			});
@@ -427,6 +436,9 @@ function checkPicCar(id){
 //					$('#'+id+'_pic_car_3').show();
 					$('.'+id+'_pic_car_3').attr('src',p3);
 					$('.'+id+'_pic_car_3').show();
+					if(checkcalledit!=""){
+						return;
+					}
 					$('#pv_img_car_3').attr('src',p3);
 				}
 			});

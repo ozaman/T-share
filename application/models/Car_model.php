@@ -32,7 +32,7 @@ class Car_model extends CI_Model {
   
   public function edit_car(){
   		$car[plate_num] = $_POST[plate_num];
-		$car[drivername] = $_GET[driver_id];
+//		$car[drivername] = $_GET[driver_id];
 		$car[car_type] = $_POST[car_type];
 		$car[car_brand] = $_POST[car_brand_txt];
 		$car[i_car_brand] = $_POST[car_brand];
@@ -42,14 +42,15 @@ class Car_model extends CI_Model {
 		$car[i_plate_color] = $_POST[plate_color];
 		$car[i_province] = $_POST[car_province];
 		$car[status] = 1;
-		$car[status_usecar] = 0;
+//		$car[status_usecar] = 0;
 		$car[post_date] = time();
 		$car[update_date] = time();
 		
-		$this->db->where('id', $_GET[id]);
+		$this->db->where('id', $_GET[car_id]);
 		$car[result] = $this->db->update('web_carall', $car); 
-		
-		return $car;
+		$return[data] = $car;
+		$return[id] = $_GET[car_id];
+		return $return;
   }
   
   public function change_car_often(){

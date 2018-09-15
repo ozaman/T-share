@@ -147,7 +147,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
                 <ons-list-item expandable>
-                    <div class="left" style="border-bottom: 1px solid #ccc;">
+                    <div class="left">
                         <!--<ons-icon fixed-width class="list-item__icon" icon="ion-edit, material:md-edit"></ons-icon>-->
                         <i class="icon-new-uniF133-2 list-item__icon"></i>
                     </div>
@@ -168,7 +168,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 						$query = $this->db->get('web_carall');
 						$num = $query->num_rows();
                     ?>
-                    <div class="left" style="border-bottom: 1px solid #ccc;">
+                    <div class="left" style="">
                          <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
                     <div class="center" >
@@ -197,7 +197,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </ons-list-item>-->
 
                 <ons-list-item expandable>
-                    <div class="left" style="border-bottom: 1px solid #ccc;">
+                    <div class="left">
                         <i class="icon-new-uniF121-10 list-item__icon "></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_acc');">
