@@ -53,7 +53,7 @@
                            <tbody>
                            	  <tr>
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
-                                 	 <ons-list-item tappable>
+                                 	 
 								        <label class="left">
 								         <?php 
 								         	if($row->status_usecar==1){
@@ -65,7 +65,7 @@
 								          <ons-radio <?=$this_status_usecar;?> class="radio-fruit" input-id="often-<?=$num;?>" value="<?=$num;?>" name="use_often" onclick="changeCarOften('<?=$row->id;?>');" ></ons-radio>
 								        </label>
 								        <label for="often-<?=$num;?>" class="center">ใช้คันนี้เป็นรถประจำ</label>
-								      </ons-list-item>
+								      
                                  </td>
                               </tr> 
                               <tr>
@@ -81,12 +81,24 @@
                               
                               <tr>
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
-                                    <button type="button" class="button btn-action-car" onclick="cancelCar('<?=$row->id;?>')" style="width:100%">
-                                       <center>
-                                          <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
-                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
-                                       </center>
-                                    </button>
+                                 	<?php 
+                                 		if($row->status==1){ ?>
+                                 			<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>')" style="width:100%">
+		                                       <center>
+		                                          <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
+		                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
+		                                       </center>
+		                                    </button>
+                                 		<? }else{ ?>
+											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>')" style="width:100%">
+		                                       <center>
+		                                          <div class="font-30"><i class="fa fa-trash " style="color:#FF0000"></i></div>
+		                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
+		                                       </center>
+		                                    </button>
+										<? }
+                                 	?>
+                                    
                                  </td>
                               </tr>
                            </tbody>

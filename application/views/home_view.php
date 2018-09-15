@@ -141,7 +141,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         <ons-page>
             <div class="profile-pic">
 
-                <img src="../data/pic/driver/small/<?=$_COOKIE["app_remember_user"];?>.jpg?v=<?=time();?>">
+                <img src="../data/pic/driver/small/<?=$_COOKIE["detect_username"];?>.jpg?v=<?=time();?>">
 
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->

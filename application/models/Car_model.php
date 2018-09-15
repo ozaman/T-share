@@ -65,6 +65,14 @@ class Car_model extends CI_Model {
   		return $car;
   }
 
+  public function change_status_car(){
+  		
+  		$car[status] = $_POST[status];
+		$this->db->where('id', $_POST[car_id]);
+		$car[result] = $this->db->update('web_carall', $car); 
+		$car[car_id] = $_POST[car_id];
+  		return $car;
+  }
   /**
   * 
   * 
