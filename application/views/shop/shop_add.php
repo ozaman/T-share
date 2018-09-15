@@ -406,7 +406,7 @@ $data_place = $query_place->row();
       </div>
     </div>
 	</form>
-    <div style="padding: 0px 10px;">
+    <div style="padding: 0px 10px;margin-bottom: 10px;">
         <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูล</ons-button>
     </div>
 

@@ -461,6 +461,213 @@ left join shopping_product as t2 on t1.product_id = t2.id where  t1.type='phone'
     }
     return false;
   }
+
+  public function getNameCol($table,$arr_where,$col) {
+    $chk = explode('_',$table);
+    $table = ($chk[0] == 'tbl' ? $table : 'tbl_'.$table);
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    $this->db->select($col);
+    $query = $this->db->get($table)->row();
+    return $query->$col;
+  }
+
+  public function delete($id,$table) {
+    $chk = explode('_',$table);
+    if ($chk[0] == 'tbl') {
+      
+    } else {
+      $table = 'tbl_'.$table;
+    }
+    $this->db->where('id',$id);
+    $query = $this->db->delete($table);
+    return $query;
+  }
+
+  public function updateStatus() {
+    ///////////// Time
+    $id = $this->input->post('id');
+    $status = $this->input->post('status');
+    if ($status == 0) {
+      $status = 1;
+    } else {
+      $status = 0;
+    }
+    $table = $this->input->post('tbl');
+    $chk = explode('_',$table);
+    if ($chk[0] == 'tbl') {
+      
+    } else {
+      $table = 'tbl_'.$table;
+    }
+    $this->i_status = $status;
+    $this->db->update($table,$this,array('id' => $id));
+    $this->session->set_userdata(array('savedata' => 1));
+    return $id;
+  }
+
+  public function rows($table,$arr_where) {
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    $query = $this->db->get($table);
+    return $query->num_rows();
+  }
+
+  public function num_row($table,$arr_where) {
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    $query = $this->db->get($table);
+    return $query->num_rows();
+  }
+
+  public function rows_between($table,$arr_where,$arr_between) {
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    if ($arr_between) {
+      foreach ($arr_between as $key => $value) {
+        $data_get = explode(':',$value);
+        $this->db->where($key.' BETWEEN "'.date('Y-m-d',strtotime($data_get[0])).'" and "'.date('Y-m-d',strtotime($data_get[1])).'"');
+      }
+    }
+    $query = $this->db->get($table);
+    return $query->num_rows();
+  }
+
+  public function rows_query($table,$arr_query) {
+    if ($arr_query) {
+      $this->db->query($arr_query);
+      $query = $this->db->get();
+      return $query->num_rows();
+    }
+  }
+
+ 
+
+  public function fetch_data_order($limit,$start,$table,$arr_where,$arr_select,$arr_order) {
+
+    $chk = explode('_',$table);
+    if ($chk[0] == 'tbl') {
+      
+    } else {
+      $table = 'tbl_'.$table;
+    }
+
+    if ($limit) {
+      $this->db->limit($limit,$start);
+    }
+
+
+
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+
+
+    if ($arr_select) {
+      foreach ($arr_select as $val_select) {
+        $this->db->select($val_select);
+      }
+    } else {
+      $this->db->select('*');
+    }
+
+    if ($arr_order) {
+      foreach ($arr_order as $key => $value) {
+        $this->db->order_by($key,$value);
+      }
+    }
+    $query = $this->db->get($table);
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
+
+  public function fetch_data_between($limit,$start,$table,$arr_where,$arr_select,$arr_order,$arr_between) {
+
+    $chk = explode('_',$table);
+    if ($chk[0] == 'tbl') {
+      
+    } else {
+      $table = 'tbl_'.$table;
+    }
+
+    //*
+    if ($limit) {
+      $this->db->limit($limit,$start);
+    }
+
+    if ($arr_between) {
+      foreach ($arr_between as $key => $value) {
+        $data_get = explode(':',$value);
+        $this->db->where($key.' BETWEEN "'.date('Y-m-d',strtotime($data_get[0])).'" and "'.date('Y-m-d',strtotime($data_get[1])).'"');
+      }
+    }
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+
+    if ($arr_select) {
+      foreach ($arr_select as $val_select) {
+        $this->db->select($val_select);
+      }
+    } else {
+      $this->db->select('*');
+    }
+
+    if ($arr_order) {
+      foreach ($arr_order as $key => $value) {
+        $this->db->order_by($key,$value);
+      }
+    }
+    $query = $this->db->get($table);
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
+
+  public function fetch_data_query($limit,$start,$table,$arr_query) {
+    if ($limit) {
+      $this->db->limit($limit,$start);
+    }
+    if ($arr_query) {
+      $this->db->query($arr_query);
+    }
+
+    $query = $this->db->get($table);
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
+
+ 
   /**
   * *********** End
   */

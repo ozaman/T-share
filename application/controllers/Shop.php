@@ -46,7 +46,16 @@ public function editadult()
     $data['place_company'] = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT, $arr_where, $arr_select,$arr_order);
 		// $data['place_company'] = $this->Shop_model->place_company();
   		// header('Content-Type: application/json');
+  		// echo json_encode($data);
   		$this->load->view('shop/place_company',$data);
+	}
+	public function place_companycount(){	
+    $data = $this->Shop_model->place_companycount();
+		// $data['place_company'] = $this->Shop_model->place_company();
+  		// header('Content-Type: application/json');
+  		echo json_encode($data);
+  		
+  		// $this->load->view('shop/place_company',$data);
 	}
 		
 }

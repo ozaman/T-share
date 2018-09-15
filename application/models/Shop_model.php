@@ -249,6 +249,15 @@ class Shop_model extends CI_Model {
 		
   		return $data;
   }
+  public function place_companycount(){
+  		$this->db->select('count(*)');
+$this->db->from(TBL_SHOPPING_PRODUCT);
+$this->db->where('status','1');
+$query = $this->db->get();
+
+  return $query->num_rows();
+  		// $this->load->view('shop/place_company',$data);
+	}
   /**
   * 
   * driver_topoint
