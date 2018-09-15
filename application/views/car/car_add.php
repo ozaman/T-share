@@ -15,9 +15,9 @@
 		    return $randomString;
 		}
 ?>
-<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
+
 <form name="form_addcar" id="form_addcar"  enctype="multipart/form-data">
-	
+<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
 <ons-card  class="card">
       <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
@@ -95,7 +95,7 @@
       <ons-list-header class="list-header"><b>ภาพหน้ารถ</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1" onchange="readURL(this,'img_car_1');"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1" onchange="readURL(this,'img_car_1',1);"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-has-img_car_1" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_1" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -115,7 +115,7 @@
       <ons-list-header class="list-header"><b>ภาพข้างรถ</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_2"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_2');">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_2"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_2',2);">
 			</div>
 			<span id="txt-img-has-img_car_2" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_2" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -135,7 +135,7 @@
       <ons-list-header class="list-header"><b>ภาพใน</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_3"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_3');">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_3"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_3',3);">
 			</div>
 			<span id="txt-img-has-img_car_3" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_3" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>

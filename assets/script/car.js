@@ -11,13 +11,12 @@ function editCar(){
 }
 
 function submitAddCar(){
-	
-	hideAlertDialog();	
+
 		modal.show();
 		
 		var data = new FormData($('#form_addcar')[0]);
 		
-		var url = "";
+		var url = "car/add_car?driver_id="+$.cookie("detect_user");
 		
 		$.ajax({
             url: url, // point to server-side PHP script 
@@ -27,21 +26,21 @@ function submitAddCar(){
             processData: false,
             data: data,
             type: 'post',
-            success: function(php_script_response) {
-               console.log(php_script_response);
-               if(php_script_response.add.result==true){
+            success: function(res) {
+               console.log(res);modal.hide();
+               /*if(res.data.result==true){
 
                		ons
-					  .notification.alert({message: 'สมัครสมาชิกสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"กดเพื่อเข้าสู่ระบบ"})
+					  .notification.alert({message: 'เพิ่มรถสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 					  .then(function() {
 					    	
 					  });
 		    		modal.hide();
 			   }else{
 			   		ons
-					  .notification.alert({message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง',title:"ผิดพลาด",buttonLabel:"ปิด"});
+					  .notification.alert({message: 'ไม่สามารถเพิ่มรถได้ กรุณาลองใหม่อีกครั้ง',title:"ผิดพลาด",buttonLabel:"ปิด"});
 					  modal.hide();
-			   }
+			   }*/
             },
 	        error: function(err){
 	        	console.log(err);
@@ -51,8 +50,10 @@ function submitAddCar(){
 	
 }
 
-function readURL(input,id) {
-	  console.log("read file " + id);
+function readURL(input, id, num) {
+	  console.log("read file : " + id);
+	  console.log("rand : " + $('#rand').val());
+//	  return;
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
 	    	reader.onload = function(e) {
@@ -61,11 +62,11 @@ function readURL(input,id) {
 
 	      		var data = new FormData($('#form_addcar')[0]);
       			data.append('fileUpload', $('#'+id)[0].files[0]);
-      			var url_upload = "application/views/upload_img/upload.php?id="+$('#rand').val()+"&type=car_img";
+      			var url_upload = "application/views/upload_img/upload.php?id="+$('#rand').val()+"&type=car_img&num="+num;
       			console.log(url_upload);
    				   $.ajax({
    				                url: url_upload, // point to server-side PHP script 
-   				                dataType: 'text',  // what to expect back from the PHP script, if anything
+   				                dataType: 'json',  // what to expect back from the PHP script, if anything
    				                cache: false,
    				                contentType: false,
    				                processData: false,
@@ -201,7 +202,8 @@ function selectPlateColor(id,val){
 	$('#img_plate_color_show').attr('src',"assets/images/car/plate/"+img);
 	
 	$('#plate_color').val(id);
-	$('#i_plate_color').val(val);
+
+	$('#plate_color_txt').val(val);
 	$('#txt_plate_color').text(val);
 	$('#img_plate_color_show').show();
 	$('ons-back-button').click();

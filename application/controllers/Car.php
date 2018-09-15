@@ -9,7 +9,7 @@ class Car extends CI_Controller {
 
 public function add_car()
 	{
-		$data['res'] = $this->Shop_model->add_car();
+		$data['res'] = $this->Car_model->add_car();
   		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}
