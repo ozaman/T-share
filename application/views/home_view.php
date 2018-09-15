@@ -152,9 +152,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="icon-new-uniF133-2 list-item__icon"></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_profile');">
-                        ข้อมูลผู้ใช้งาน
+                        ข้อมูลส่วนตัว
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลบัญชี', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
                     <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -552,7 +552,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            <div id="body_car_manage">
 	            	
 	            </div>
-	       <script src="<?=base_url();?>assets/script/car.js"></script>     
+	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;

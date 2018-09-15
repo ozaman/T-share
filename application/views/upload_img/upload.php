@@ -40,7 +40,9 @@ if($_GET[type]=="car_img"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/car/".$_GET[id].".jpg","JPG");
-	echo json_encode($result);
+	$return[path] = "../../../../data/pic/car/".$_GET[id].".jpg";
+	$return[result] = $result;
+	echo json_encode($return);
 	exit();
 }
 if($_GET[type]=="profile"){
