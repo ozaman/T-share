@@ -40,7 +40,9 @@
 	  		$query_carcolor = $this->db->query($sql_carcolor);
 	  		$carcolor = $query_carcolor->row();
 	  		
-	  		
+	  		$sql_pv = "SELECT name_th FROM web_province  WHERE id = ".$row->i_province." ";
+	  		$query_pv = $this->db->query($sql_pv);
+	  		$car_pv = $query_pv->row();
          ?>
          
       <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 30px;">
@@ -109,7 +111,7 @@
                            <tbody>
                               <tr>
                                  <td width="80" height="70" align="center" bgcolor="#009999" style="border: solid 2px; height:70px; color:#DADADA; padding:10px; padding-right:10px;border-radius:10px;<?=$bg_plate;?>"><font color="<?=$row->txt_color;?>" class="font-32"><b><?=$row->plate_num;?><br> 
-                                    <font class="font-16"><?=$row->province;?></font></b></font>
+                                    <font class="font-16"><?=$car_pv->name_th;?></font></b></font>
                                  </td>
                               </tr>
                            </tbody>

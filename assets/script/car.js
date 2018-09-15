@@ -73,9 +73,10 @@ function changeCarStatus(id,status){
                	ons.notification.alert({message: messages ,title:"สำเร็จ", buttonLabel:"ปิด"})
   				.then(function() { 
 //  					modal.hide();
-  					var url_reload = "page/call_page";
-	  				$.post(url_reload,{ path : "car/car_view" },function(ele){
-					   $('#body_car_manage').html(ele);
+  					var url = "page/call_page?checkcalledit=1";
+							  $.post(url,{ path : "car/car_view" },function(ele){
+							   $('#body_car_manage').html(ele);
+							   console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
 					});
   				});
 				  
@@ -300,9 +301,10 @@ function submitEditCar(){
 					  .notification.alert({message: 'แก้ไขข้อมูลรถสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
 					  .then(function() {
 					    	modal.hide();
-					    	var url = "page/call_page&checkcalledit=1";
+					    	var url = "page/call_page?checkcalledit=1";
 							  $.post(url,{ path : "car/car_view" },function(ele){
 							   $('#body_car_manage').html(ele);
+							   console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
 							});
 					  });
 //		    		modal.hide();

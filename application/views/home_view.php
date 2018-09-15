@@ -164,7 +164,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <ons-list-item onclick="myCar();">
                 <?php 
                     	$this->db->select('id');
-						$this->db->where('status = 1 and drivername = '.$_COOKIE['detect_user']);
+						$this->db->where('drivername = '.$_COOKIE['detect_user']);
 						$query = $this->db->get('web_carall');
 						$num = $query->num_rows();
                     ?>
@@ -172,7 +172,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                          <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
                     <div class="center" >
-                        ข้อมูลรถ ใช้งาน (<?=$num;?> คัน)
+                        ข้อมูลรถ (<?=$num;?> คัน)
                     </div>
                    
                 </ons-list-item>
