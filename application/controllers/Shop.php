@@ -37,6 +37,20 @@ public function editadult()
   		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}
+	public function place_company(){
+	$arr_where = array();
+	$arr_where['status'] = 1;
+    $arr_select = array('*');
+    $arr_order = array();
+    $arr_order['id'] = 'ASC';
+    $data['place_company'] = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT, $arr_where, $arr_select,$arr_order);
+		// $data['place_company'] = $this->Shop_model->place_company();
+  		// header('Content-Type: application/json');
+  		$this->load->view('shop/place_company',$data);
+	}
 		
 }
+
+		
+
 ?>

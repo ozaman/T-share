@@ -91,6 +91,25 @@ class Main extends CI_Controller {
 //  	header('Content-Type: application/json');
   	echo json_encode($data['res']);
   }
+  public function rowdata($table,$arr_where,$arr_select) {
+    $chk = explode('_',$table);
+    $table = ($chk[0] == 'tbl' ? $table : 'tbl_'.$table);
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    if ($arr_select) {
+      foreach ($arr_select as $val_select) {
+        $this->db->select($val_select);
+      }
+    }
+    else {
+      $this->db->select('*');
+    }
+    $query = $this->db->get($table)->row();
+    return $query;
+  }
  
 // public function detect
 //////////////////////////// End

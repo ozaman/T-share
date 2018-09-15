@@ -408,6 +408,58 @@ left join shopping_product as t2 on t1.product_id = t2.id where  t1.type='phone'
 	  }
 	  return $data;
   } 
+  public function rowdata($table,$arr_where,$arr_select) {
+    // $chk = explode($table);
+    // $table = ($chk[0] == $table);
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    if ($arr_select) {
+      foreach ($arr_select as $val_select) {
+        $this->db->select($val_select);
+      }
+    }
+    else {
+      $this->db->select('*');
+    }
+    $query = $this->db->get($table)->row();
+    return $query;
+  }
+  public function fetch_data($limit,$start,$table,$arr_where,$arr_select,$arr_order) {
+    // $chk = explode('_',$table);
+    // $table = ($chk[0] == 'tbl' ? $table : 'tbl_'.$table);
+    if ($limit) {
+      $this->db->limit($limit,$start);
+    }
+    if ($arr_where) {
+      foreach ($arr_where as $key => $value) {
+        $this->db->where($key,$value);
+      }
+    }
+    if ($arr_select) {
+      foreach ($arr_select as $val_select) {
+        $this->db->select($val_select);
+      }
+    }
+    else {
+      $this->db->select('*');
+    }
+    if ($arr_order) {
+      foreach ($arr_order as $key => $value) {
+        $this->db->order_by($key,$value);
+      }
+    }
+    $query = $this->db->get($table);
+    if ($query->num_rows() > 0) {
+      foreach ($query->result() as $row) {
+        $data[] = $row;
+      }
+      return $data;
+    }
+    return false;
+  }
   /**
   * *********** End
   */
