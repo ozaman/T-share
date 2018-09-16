@@ -184,8 +184,8 @@ function saveShop() {
     //			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
     var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user");
      // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
-                        $('ons-tab[page="shop_manage.html"]').click();
-                        modal.hide();
+                        // $('ons-tab[page="shop_manage.html"]').click();
+                        
     $.ajax({
         type: 'POST',
         data: $('#form_booking').serialize(),
@@ -193,18 +193,28 @@ function saveShop() {
         beforeSend: function() {},
         success: function(response) {
             console.log(response);
-            modal.hide();
+            
             if (response.result == true) {
-                ons.notification.alert({
-                        message: 'ทำรายการสำเร็จแล้ว',
-                        title: "สำเร็จ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                        console.log('********************')
-                        // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
-                        $('ons-tab[page="shop_manage.html"]').click();
-                    });
+                var url2 = "shop/shop_pageadd";
+                  $.post(url2,function(ele2){
+                    $('#shop_add').html(ele2);
+
+                });
+                setTimeout(function() {
+                    modal.hide();
+                     $('ons-tab[page="shop_manage.html"]').click();
+                }, 2000);
+                // ons.notification.alert({
+                //         message: 'ทำรายการสำเร็จแล้ว',
+                //         title: "สำเร็จ",
+                //         buttonLabel: "ปิด"
+                //     })
+                //     .then(function() {
+                //         console.log('********************')
+                //         // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
+                       
+                         
+                //     });
                 $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
                     driver: $.cookie("detect_user"),
                     //                    nickname: "<?=$arr[driver][nickname]?>",
@@ -337,10 +347,12 @@ function submitCancel() {
         });
     }
     console.log($('#form_type_cancel').serialize());
-    var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
+    // var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
+    var url = "shop/cancel_shop";
     console.log(url + " ");
     $.post(url, $('#form_type_cancel').serialize(), function(data) {
-        var obj = JSON.parse(data);
+        console.log(data)
+        var obj = data;
         console.log(obj);
         if (obj.result == true) {
             ons.notification.alert({
@@ -350,6 +362,15 @@ function submitCancel() {
             })
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
+                var urlx = "shop/shop_manage";
+        
+        
+        
+        $.post(urlx, function(res) {
+            // this.popPage('popup1.html');
+                $('#shop_manage').html(res);
+            });
+       
             });
             $('#btn_cancel_book_' + order_id).hide();
             /*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
@@ -716,6 +737,7 @@ var date = "<?=date('Y-m-d');?>";
 document.addEventListener('prechange', function(event) {
     console.log(event);
     var page = event.tabItem.getAttribute('page');
+    console.log(page)
     if (page == "shop_manage.html") {
         var obj = array_data;
         var url = "page/shop_manage";
@@ -733,6 +755,26 @@ document.addEventListener('prechange', function(event) {
             success: function(ele) {
                 //							  	console.log(data);
                 $('#shop_manage').html(ele);
+            }
+        });
+    }
+    if (page == "shop_add.html") {
+        // var obj = array_data;
+        var url = "shop/shop_pageadd";
+        // $('#date_filter').hide();
+        // array_ma = obj.manage;
+        // console.log(array_ma);
+        // var pass = {
+            // data: array_ma
+        // };
+        // console.log(pass);
+        $.ajax({
+            url: url,
+            // data: pass,
+            type: 'post',
+            success: function(ele) {
+                //                              console.log(data);
+                $('#shop_add').html(ele);
             }
         });
     }

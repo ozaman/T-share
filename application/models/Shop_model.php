@@ -42,7 +42,7 @@ class Shop_model extends CI_Model {
 		$data["check_use_car_id"] = $_POST[check_use_car_id];
 		$data["adult"] = $_POST[adult];
 		$data["child"] = $_POST[child];
-		$data["phone"] = $_POST[dri_phone];
+		// $data["phone"] = $_POST[dri_phone];
 //		$data["nation"] = $_POST[nation];
 		$data["booking_by"] = $_GET[driver];
 //		$data["payment_type"] = $_POST[payment_type];
@@ -95,7 +95,7 @@ class Shop_model extends CI_Model {
 	
 	$data[update] = $data_update;
 
-	// $this->linenoti();
+	$this->linenoti();
 	
 	return $data;
 	
@@ -108,16 +108,16 @@ class Shop_model extends CI_Model {
 	$data[driver_complete] = 1;
 	$data[update_date] = time();
 // 	$data[result] = $db->update_db('order_booking',$data," id='".$_GET[id]."' ");
-	$this->db->where('id', $_GET[id]);
+	$this->db->where('id', $_POST[order_id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 
 
 	$typname = "typname_".$_POST[type_cancel];
-	$data_his[order_id] = $_GET[id];
-	$data_his[type] = $_POST[$typname];
+	$data_his[order_id] = $_POST[order_id];
+	$data_his[type] = $typname;
 	$data_his[status] = "CANCEL";
 	$data_his[type] = $_POST[type];
-	$data_his[posted] = $_GET[username];
+	$data_his[posted] = $_POST[username];
 	$data_his[post_date] = time();
 	$data_his[update_date] = time();
 //	$data_his[result] = $db->add_db('history_del_order_booking', $data_his);

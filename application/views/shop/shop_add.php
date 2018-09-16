@@ -31,6 +31,10 @@ $data_place = $query_place->row();
     <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
     <input type="hidden" value="" name="car_type" id="car_type" />
     <input type="hidden" value="" name="car_plate" id="car_plate" />
+    
+    
+     <input id="dri_phone" name="dri_phone" type="hidden" value="<?=$data_dv->phone; ?>">
+     <input id="dri_name" name="dri_name" type="hidden" value="<?=$data_dv->name; ?>">
     <div>
       <div class="card">
         <div class="form-group ">
@@ -102,12 +106,12 @@ $data_place = $query_place->row();
                           <script>
                             selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
                           </script>
-                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num" checked></ons-radio>
+                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" checked></ons-radio>
 
                      <?php }
                       else{
                         ?>
-                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num" ></ons-radio>
+                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" ></ons-radio>
 
                       
                       <?php }
@@ -254,7 +258,7 @@ $data_place = $query_place->row();
                   <!-- <div class="font-22" style="color:#3b5998"><b></b></div> -->
                 </td>
                 <td width="50" style="display: none;" id="row_accept_payment">
-                  <img src="images/checked.png" width="35px">
+                  <!-- <img src="images/checked.png" width="35px"> -->
                 </td>
               </tr>
             </tbody>

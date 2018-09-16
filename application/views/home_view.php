@@ -590,7 +590,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				  <ons-tabbar swipeable position="top">
 				    <ons-tab page="shop_manage.html" label="จัดการ" badge="0" >
 				    </ons-tab>
-				    <ons-tab page="shop_add.html" label="ส่งแขก" active>
+				    <ons-tab  page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
 				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
 				    </ons-tab>
@@ -598,7 +598,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</ons-page>
 				
 				<template id="shop_manage.html">
-				  <ons-page id="shop_manage">
+				  <ons-page id="shop_manage" style="overflow-y: scroll;">
 				    
 				  </ons-page>
 				</template>
@@ -612,7 +612,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</template>
 				
 				<template id="shop_history.html">
-				  <ons-page id="shop_history">
+				  <ons-page id="shop_history" style="overflow-y: scroll;">
 				    
 				  </ons-page>
 				</template>
@@ -1032,8 +1032,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
           <div class="center">ยกเลิกรายการ</div>
         </ons-toolbar>
         <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
-        <form action="#" style="margin-left: 25px;" id="form_type_cancel">
-        <input type="hidden" value="0" id="order_id_cancel" name="order_id_cancel"/>
+        <form   enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
+        <input type="hidden" value="" id="order_id_cancel" name="order_id"/>
+        <!-- <input type="hiddens" value="" id="order_id_cancel" name="username"/> -->
+        <input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="order_id_cancel" name="username"/>
+
         	<div>
 			  <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
 			   <input type="hidden" value="แขกลงทะเบียนไม่ได้" name="typname_1">

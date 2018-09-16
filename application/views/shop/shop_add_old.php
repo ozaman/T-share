@@ -235,7 +235,7 @@ $data_place = $query_place->row();
                         <div class="font-22" style="color:#3b5998"><b>ค่าตอบแทน</b></div>
                      </td>
                      <td width="50" style="display: none;" id="row_accept_payment">
-                        <img src="images/checked.png" width="35px">
+                        <!-- <img src="images/checked.png" width="35px"> -->
                      </td>
                   </tr>
                </tbody>

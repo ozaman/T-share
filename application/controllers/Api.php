@@ -51,7 +51,7 @@ public function manage_booking()
 	{
 		$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
 //		$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : 0 }';                            
-		$curl_post_data = '{"driver": 153,"date": "2018-09-01","driver_checkcar" : 0 }';                            
+		$curl_post_data = '{"driver": 153,"date": "2018-09-16","driver_checkcar" : 0 }';                            
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));

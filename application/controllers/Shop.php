@@ -63,6 +63,9 @@ public function editadult()
 	public function shop_pageadd(){
 		$this->load->view('shop/shop_add');
 	}
+	public function shop_manage(){
+		$this->load->view('shop/shop_manage');
+	}
 		
 }
 
