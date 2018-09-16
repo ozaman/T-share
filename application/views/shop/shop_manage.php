@@ -92,7 +92,7 @@
 	}
 	
   ?>
-  <div style="padding: 5px 0px;margin: 25px 10px;">
+  <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
     <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">

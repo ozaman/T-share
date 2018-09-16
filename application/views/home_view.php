@@ -44,7 +44,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
 
-    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -55,9 +55,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <!--<script src="js/jquery.touchSwipe.min.js"></script>-->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
 <ons-modal direction="up">
-	  <div style="text-align: center">
-	    <p>
-	      <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+	  <div style="text-align: center;">
+	    <p sty>
+	      <ons-icon icon="md-spinner" size="25px" spin></ons-icon> <span size="18px">Loading...</span>
 	    </p>
 	  </div>
 </ons-modal>

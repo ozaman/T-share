@@ -103,18 +103,19 @@ else if($arr[book][status]=='CONFIRM'){
 		<span class="font-22 text-cap"><?=t_cancel;?></span>
 	</button>-->
 	
-	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="position: absolute;
-    right: 10px;
-	border: 1px solid #F44336;
+	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="    float: right;
+    /* position: absolute; */
+    /* right: 10px; */
+    border: 1px solid #F44336;
     color: #F44336;
     box-shadow: 1px 1px 3px #efefef;
-    padding: 4px 10px;
+    padding: 0px 4px;
     border-radius: 5px;
     top: 0px;
-    margin: 15px;<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>
+    /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>
 
-	<div id="status_booking_detail" class="font-26" style="margin-top: 10px;"><b><?=$status_txt;?></b></div>
-	<span class="font-28"><?=$res_ps->$place_shopping;?></span>
+	<div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
+	<span class="font-20"><?=$res_ps->$place_shopping;?></span>
 		
 	<table width="100%" border="0" cellspacing="1" cellpadding="1">
    <tbody>
@@ -163,7 +164,8 @@ else if($arr[book][status]=='CONFIRM'){
 	</table>
 	
 	<div style="padding: 5px 0px;">
-		<span class="text-cap font-22"><?=t_reservation_information;?></span>
+     <ons-list-header class="list-header"> <?=t_reservation_information;?></ons-list-header>
+		<!-- <span class="text-cap font-22"></span> -->
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
    		<tbody>
    		<tr>
@@ -232,14 +234,14 @@ else if($arr[book][status]=='CONFIRM'){
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
-    border-radius: 25px;display: inline-block;" id="btn_isedit">
+    border-radius: 8px;display: inline-block;" id="btn_isedit">
 		<span class="font-18 text-cap">แก้ไข</span>
 	</span>
 	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
-    border-radius: 25px;display: none;" id="btn_selectisedit">
+    border-radius: 8px;display: none;" id="btn_selectisedit">
 		<span class="font-24 text-cap">บันทึก</span>
 	</span>
         			</td>
@@ -286,7 +288,9 @@ else if($arr[book][status]=='CONFIRM'){
 	</div>
 
 	<div style="padding: 5px 0px;">
-		<span class="text-cap font-22"><?=t_car_driver_information;?></span>
+     <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
+
+		<!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
 		  <tr>
 		    <td width="100"  class="font-16"><font color="#333333"></font><?=t_dv_name;?></td>
@@ -324,6 +328,8 @@ else if($arr[book][status]=='CONFIRM'){
 	?>
 
 	<div style="padding: 5px 0px;display: nones;">
+     <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
+
 	 <span class="text-cap font-22"><?=t_income;?></span>
 	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16"><?=$txt_btn_pay;?></span> </ons-button>
 	</div>
@@ -340,7 +346,7 @@ else if($arr[book][status]=='CONFIRM'){
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
-    border-radius: 25px;">
+    border-radius: 8px;">
 		<span class="font-24 text-cap">บันทึก</span>
 	</span></td>
 			</tr>
@@ -362,7 +368,7 @@ else if($arr[book][status]=='CONFIRM'){
 				<td width="60">
 				<span class="font-16">อัพโหลด</span></td>
 				<td>
-				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 25px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
+				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 8px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
 			</tr>
 		</table>
 <?	} ?>

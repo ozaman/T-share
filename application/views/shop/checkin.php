@@ -1,5 +1,7 @@
 <div style="padding: 5px 0px;">
-   <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span>
+     <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
+   
+   <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
    <div class="div-all-checkin">
       <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
          <tbody>

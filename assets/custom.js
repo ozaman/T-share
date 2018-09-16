@@ -471,6 +471,7 @@ function sendShop(company){
 	
 }
 function sendShop2(){
+     modal.show();
     var urlo = 'shop/place_companycount';
     $.post(urlo,function(res){
         console.log(res)
@@ -482,11 +483,16 @@ function sendShop2(){
 //   $.post(url,{ path : "car/car_view" },function(ele){
 //    $('#body_shop').html(ele);
 // });
- var url2 = "shop/shop_pageadd";
-                  $.post(url2,function(ele2){
+var url2 = "shop/shop_pageadd";
+ setTimeout(function() {
+                    modal.hide();
+                      $.post(url2,function(ele2){
                     $('#shop_add').html(ele2);
 
                 });
+                }, 500);
+ 
+                 
             // var url = "shop/shop_page";
             //   $.post(url,function(ele){
             //     $('#body_shop').html(ele);
