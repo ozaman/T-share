@@ -350,6 +350,7 @@ function submitCancel() {
     // var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
     var url = "shop/cancel_shop";
     console.log(url + " ");
+     // ons.navigator.resetToPage('popup1.html')
     $.post(url, $('#form_type_cancel').serialize(), function(data) {
         console.log(data)
         var obj = data;
@@ -368,6 +369,7 @@ function submitCancel() {
         
         $.post(urlx, function(res) {
             // this.popPage('popup1.html');
+            appNavigator.popPage()
                 $('#shop_manage').html(res);
             });
        
