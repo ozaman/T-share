@@ -76,6 +76,7 @@ function changeCarStatus(id,status){
   					var url = "page/call_page?checkcalledit=1";
 							  $.post(url,{ path : "car/car_view" },function(ele){
 							   $('#body_car_manage').html(ele);
+							   //location.reload()
 							   console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
 					});
   				});

@@ -95,7 +95,7 @@ class Shop_model extends CI_Model {
 	
 	$data[update] = $data_update;
 
-	$this->linenoti();
+	// $this->linenoti();
 	
 	return $data;
 	

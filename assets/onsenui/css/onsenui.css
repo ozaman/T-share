@@ -27,7 +27,7 @@ ons-alert-dialog {
   touch-action: manipulation; /* Remove click delay */
 }
 
-ons-toast {
+ons-toast {  
   pointer-events: none;
 }
 

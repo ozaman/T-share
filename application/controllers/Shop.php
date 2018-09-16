@@ -57,6 +57,12 @@ public function editadult()
   		
   		// $this->load->view('shop/place_company',$data);
 	}
+	public function shop_page(){
+		$this->load->view('shop/home_view');
+	}
+	public function shop_pageadd(){
+		$this->load->view('shop/shop_add');
+	}
 		
 }
 

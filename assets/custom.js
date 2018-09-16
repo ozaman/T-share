@@ -475,11 +475,27 @@ function sendShop2(){
     $.post(urlo,function(res){
         console.log(res)
         if (res == 1) {
-            fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
+
+             
+             fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
+//                       var url = "page/call_page";
+//   $.post(url,{ path : "car/car_view" },function(ele){
+//    $('#body_shop').html(ele);
+// });
+ var url2 = "shop/shop_pageadd";
+                  $.post(url2,function(ele2){
+                    $('#shop_add').html(ele2);
+
+                });
+            // var url = "shop/shop_page";
+            //   $.post(url,function(ele){
+            //     $('#body_shop').html(ele);
+                 
+
+            // });
         }
         else{
-            fn.pushPage({'id': 'place_company.html', 'title': 'ส่งแขก'}, 'slide-ios')
-            
+            fn.pushPage({'id': 'place_company.html', 'title': 'ส่งแขก'}, 'slide-ios')  
             var url = "shop/place_company";
             $.post(url,function(res){
                 console.log(res)

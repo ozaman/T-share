@@ -48,9 +48,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css">
-<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css">
-<script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js"></script>
+<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css?v=<?=time()?>">
+<link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css?v=<?=time()?>">
+<script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!--<script src="js/jquery.touchSwipe.min.js"></script>-->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
@@ -604,9 +604,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</template>
 
 				<template id="shop_add.html">
-				  <ons-page id="shop_add">
+				  <ons-page id="shop_add" style="overflow-y: scroll;">
 				   <div>
-				   		<?php include("application/views/shop/shop_add.php"); ?>
+				   		<!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
 				   </div>
 				  </ons-page>
 				</template>
@@ -641,7 +641,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 			    this.querySelector('ons-toolbar div.center').textContent = this.data.title;
 			}
     </script>
-    	<script src="<?=base_url();?>assets/script/shop.js"></script>
+    	<script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
         </ons-page>
     </template>
     
