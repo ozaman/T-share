@@ -616,14 +616,6 @@ function checkPicCar(id, checkcalledit, icons) {
     });
 }
 
-function iconsHasPic(icons, id1, id2){
-	if(icons>=1){
-		$('#'+id1).show();
-    	$('#'+id2).hide();
-	}
-	
-}
-
 function selectCarType(id) {
     var name = $('#item_car_type_' + id).data('name');
     console.log(name + " " + id);

@@ -54,7 +54,7 @@
 		<ons-list-header class="list-header"><b>ข้อมูลส่วนตัว</b></ons-list-header>
 		 <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
-                <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
+                <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><!--<span class="txt-important">*</span>-->
             </div>
             <label class="center list-item__center">
                 <ons-input id="username-input" float="" maxlength="30" placeholder="<?=$username;?>" name="username" style="width:100%;" disabled value="<?=$driver->username;?>">
@@ -117,11 +117,12 @@
             </label>
         </ons-list-item>
        
-        <ons-list-item class="input-items list-item p-l-0">
+        <ons-list-item class="input-items list-item p-l-0" style="padding: 3.5px 0px;">
         	<div class="left list-item__left">
                  <i class="fa fa-venus-mars list-item__icon" aria-hidden="true" style="padding-left: 3px;"></i><span class="txt-important">*</span>
             </div>
-            	<ons-list-item tappable onclick="selectGender(0);" >
+           
+            	<ons-list-item tappable onclick="selectGender(0);" style="border-bottom: 1px solid #ccc;">
 		        <label class="left">
 		          <!--<ons-checkbox class="checkbox-color rcp" input-id="checkbox-0"  <?=$ck_men;?>></ons-checkbox>-->
 		          <ons-radio class="radio-fruit" input-id="radio-man" value="0" name="check" <?=$ck_men;?>></ons-radio>
@@ -130,7 +131,7 @@
 		          ชาย
 		        </label>
 		      </ons-list-item>
-		        <ons-list-item tappable onclick="selectGender(1);" <?=$ck_girl;?>>
+		        <ons-list-item tappable onclick="selectGender(1);" style="border-bottom: 1px solid #ccc;">
 		        <label class="left">
 		         <!-- <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1"    ></ons-checkbox>-->
 		         <ons-radio class="radio-fruit" input-id="radio-girl" value="1" name="check" <?=$ck_girl;?>></ons-radio>
@@ -139,6 +140,7 @@
 		          หญิง
 		        </label>
 		      </ons-list-item>
+		    
             <input type="hidden" value="<?=$driver->i_gender;?>" id="gender" value="" name="gender"/>
         </ons-list-item>
 
@@ -256,7 +258,7 @@
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
 	      <div class="box-preview-img" id="box_img_profile"  style="width: 170px;height: 170px;" onclick="performClick('img_profile');">
 	      	<img src="../data/pic/driver/small/default-avatar.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
-	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
+	      	<span class="txt-upload-profile" style="margin-left: -42px;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	      </div> 
 	    </div>
 	   
@@ -315,10 +317,10 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -27px;
+    margin-left: -4px;
 /*    bottom: 278px;*/
 	margin-top: -25px;
-    border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
         
         <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>
@@ -365,10 +367,10 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -28px;
+    margin-left: -4px;
     /*bottom: 22px;*/
     margin-top: -25px;
-    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
         
  	</ons-card>

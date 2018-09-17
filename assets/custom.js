@@ -17,6 +17,7 @@ function checkImgProfile(username,pf){
 					console.log('Success Profile');
 					if(pf==1){
 						$('#pv_profile').attr('src',url);
+						iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
 						return;
 					}
 					$('.shotcut-profile').attr('src',url);
@@ -24,7 +25,16 @@ function checkImgProfile(username,pf){
 				}
 			});
 }	
+
 checkImgProfile($.cookie("detect_username"),0);
+
+function iconsHasPic(icons, id1, id2){
+	if(icons>=1){
+		$('#'+id1).show();
+    	$('#'+id2).hide();
+	}
+	
+}
         
 function startTimeHome() {
     var today = new Date();

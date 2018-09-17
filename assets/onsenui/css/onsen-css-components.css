@@ -6229,7 +6229,7 @@ h4, h5, h6 {
 */
 .select-input {
   height: auto;	
-  border-bottom: 1px solid #ccc !important;
+/*  border-bottom: 1px solid #ccc !important;*/
   box-sizing: border-box;
   background-clip: padding-box;
   padding: 0;
