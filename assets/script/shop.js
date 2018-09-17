@@ -735,7 +735,7 @@ function btn_driver_pay_report(id) {
 /******* <!-------- function run page ------------> *******/
 var array_ma = [];
 var array_his = [];
-var date = "<?=date('Y-m-d');?>";
+var date = moment().format('YYYY-MM-DD');
 document.addEventListener('prechange', function(event) {
     console.log(event);
     var page = event.tabItem.getAttribute('page');
@@ -777,6 +777,30 @@ document.addEventListener('prechange', function(event) {
             success: function(ele) {
                 //                              console.log(data);
                 $('#shop_add').html(ele);
+            }
+        });
+    }
+    if (page == "shop_history.html") {
+        var obj = array_data;
+        var url = "page/shop_manage";
+        // $('#date_filter').hide();
+        array_ma = obj.manage;
+        console.log(array_ma);
+        console.log($('#date_filter').val())
+        console.log(moment().format('YYYY-MM-DD'))
+        console.log($.cookie("detect_userclass"))
+        var pass = {
+            date: date,
+            driver : $.cookie("detect_username")
+        };
+        console.log(pass);
+        $.ajax({
+            url: url,
+            data: pass,
+            type: 'post',
+            success: function(ele) {
+                //                              console.log(data);
+                $('#shop_manage').html(ele);
             }
         });
     }

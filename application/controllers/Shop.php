@@ -66,6 +66,26 @@ public function editadult()
 	public function shop_manage(){
 		$this->load->view('shop/shop_manage');
 	}
+
+	public function shop_history()
+	{
+		$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";  
+		// $curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'"}';
+		$curl_post_data = '{"driver": 153,"date": "2018-09-17"}';
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		 $this->load->view('shop/shop_history',$result);
+
+		 $decode = 	json_decode($result);
+		header('Content-Type: application/json');
+		 echo json_encode($decode);
+	}
+
+
 		
 }
 
