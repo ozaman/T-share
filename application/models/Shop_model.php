@@ -270,6 +270,17 @@ $query = $this->db->get();
   		return $query->num_rows();
   		// $this->load->view('shop/place_company',$data);
 	}
+	public function car_counthis(){
+		$login_id = $this->input->cookie('detect_user');
+		//echo $login_id;
+  		// $this->db->select('count(*)');
+		$this->db->from(TBL_WEB_CARALL);
+		$this->db->where('drivername',$login_id);
+		$query = $this->db->get();
+		// echo $query->num_rows();
+  		return $query->num_rows();
+  		// $this->load->view('shop/place_company',$data);
+	}
   /**
   * 
   * driver_topoint

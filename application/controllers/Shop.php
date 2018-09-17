@@ -70,8 +70,8 @@ public function editadult()
 	public function shop_history()
 	{
 		$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";  
-		// $curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'"}';
-		$curl_post_data = '{"driver": 153,"date": "2018-09-17"}';
+		$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'"}';
+		// $curl_post_data = '{"driver": 153,"date": "2018-09-17"}';
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -92,6 +92,24 @@ public function editadult()
 	public function car_count(){
 		$data = $this->Shop_model->car_count();
 		echo $data;
+	}
+	public function count_his(){
+		$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";  
+		$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'"}';
+		// $curl_post_data = '{"driver": 153,"date": "2018-09-17"}';
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$data = curl_exec($ch);
+		curl_close($ch);
+		 
+
+		 $decode = 	json_decode($data);
+		 echo count($decode->data);
+		// header('Content-Type: application/json');
+	 // $this->load->view('shop/shop_history',$decode);
+		 //echo json_encode($decode);
 	}
 
 
