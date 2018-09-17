@@ -12,6 +12,10 @@ function addBank(){
     });
 }
 
+function changeBankOften(){
+	
+}
+
 function selectBankList(id) {
     console.log(id);
     var txt = $('#item_bank_list_' + id).data('name');
