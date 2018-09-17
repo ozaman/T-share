@@ -51,7 +51,15 @@
 
 <?php 
  $result = $his;
- echo print_r($result);
+ echo "<br/><br/><br/><br/>123<br/>";
+ echo print_r($result->status);
+  echo "<br/>";
+ echo print_r($result->data);
+  echo "<br/>"; echo "<br/>";
+ foreach($result->data as $key=>$val){
+ 	echo $val->id."<br/>";
+ }
+ exit();
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
     if($_POST[type]=="his"){
