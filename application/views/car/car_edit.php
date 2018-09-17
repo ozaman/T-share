@@ -151,7 +151,7 @@
     position: absolute;
     margin-left: -28px;
     margin-top: -25px;
-    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
 </ons-card>   
 
@@ -171,7 +171,7 @@
     position: absolute;
     margin-left: -28px;
     margin-top: -25px;
-    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
 </ons-card>  
 
@@ -191,12 +191,12 @@
     position: absolute;
     margin-left: -28px;
     margin-top: -25px;
-    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
 </ons-card> 
 
 <div style="padding: 10px; margin-bottom: 10px;">
-	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitEditCar();" style="background-color: #fff;">แก้ไขรถ</ons-button>
+	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitEditCar();" style="background-color: #fff;">แก้ไขข้อมูลรถ</ons-button>
 </div>
 </form>  
 <input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_1" />  

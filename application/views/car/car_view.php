@@ -48,20 +48,23 @@
 	  		
 	  		if($row->status==1){
 				$txt_status = "เปิดใช้งาน";
+				$btn_use_often = "";
 			}else{
 				$txt_status = "ปิดใช้งาน";
+				$btn_use_often = "display:none;";
 			}
          ?>
          
       <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 10px;">
          <ons-card class="card">
+         	
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tbody>
                   <tr>
                      <td valign="middle" class="font-16">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                            <tbody>
-                           	  <tr>
+                           	  <tr style="<?=$btn_use_often;?>">
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
                                  	 
 								        <label class="left">
@@ -75,7 +78,6 @@
 								          <ons-radio <?=$this_status_usecar;?> class="radio-fruit" input-id="often-<?=$num;?>" value="<?=$num;?>" name="use_often" onclick="changeCarOften('<?=$row->id;?>');" ></ons-radio>
 								        </label>
 								        <label for="often-<?=$num;?>" class="center">ใช้คันนี้เป็นรถประจำ</label>
-								      
                                  </td>
                               </tr> 
                               <tr>
@@ -148,6 +150,14 @@
                                     <font color="#3b5998"><strong><?=$txt_status;?></strong></font>
                                     <!--<span style="font-size: 12px;"><b>(ใช้งาน)</b></span>-->
                                  </td>
+                              </tr>
+                              <tr>
+                              	<td class="font-14">
+                              		<strong>เพิ่มเมื่อ</strong>
+                              	</td>
+                              	<td class="font-14">
+                              		<?=date("Y-d-m h:i",$row->post_date);?>
+                              	</td>
                               </tr>
                            </tbody>
                         </table>
