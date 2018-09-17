@@ -117,7 +117,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">
+                    <ons-toolbar-button onclick="profileInfo('lift-ios')">
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
@@ -155,7 +155,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลส่วนตัว
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo();">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>

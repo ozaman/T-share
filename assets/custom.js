@@ -494,12 +494,12 @@ function sendShop2() {
         // $('#body_place_company').html(res);
     });
 }
-function profileInfo() {
+function profileInfo(animate) {
     fn.pushPage({
         'id': 'pf.html',
         'title': 'ข้อมูลส่วนตัว',
         'key': 'profile'
-    }, 'slide-ios');
+    }, animate);
     var url = "page/profile_edit";
     $.post(url, function(html) {
         $('#body_profile_view').html(html);
