@@ -255,7 +255,7 @@
 			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
 	      <div class="box-preview-img" id="box_img_profile"  style="width: 170px;height: 170px;" onclick="performClick('img_profile');">
-	      	<img src="../data/pic/driver/small/<?=$driver->username;?>.jpg?v=<?=time();?>" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
+	      	<img src="../data/pic/driver/small/default-avatar.jpg" style="max-width: 100%; height: 170px;" id="pv_profile"   /><br/>
 	      	<span class="txt-upload-profile"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลด</span>
 	      </div> 
 	    </div>

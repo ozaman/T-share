@@ -31,9 +31,10 @@
       ?>
    <div style="margin-top: 10px;">
       <?php 
-      	 $num = 1;
+      	 $num = 0;
          foreach ($query_car->result()  as $row){
-         	
+         	$num++;
+//         	echo $num;
          	$bg_plate = "background-color: ".$row->plate_color;
 //         	$bg_plate = "background-color: #000;";
          	
@@ -169,6 +170,7 @@
          setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);
       </script>
       
-      <?php $num++; }  ?>
+      <?php  }  ?>
    </div>
 </div>
+<input type="hidden" value="<?=$num;?>" id="detect_num_car" />
