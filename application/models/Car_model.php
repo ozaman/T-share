@@ -74,6 +74,21 @@ class Car_model extends CI_Model {
 		$car[car_id] = $_POST[car_id];
   		return $car;
   }
+
+  public function running_single_often_car(){
+  	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" ');
+	$check = $query->num_rows();
+		if($check==1){
+			$this->db->where('drivername', $_POST[driver_id]);
+			$car[result] = $this->db->update('web_carall', $car); 
+			$car[driver] = $_POST[driver_id];
+		}else{
+			$car[driver] = $_POST[driver_id];
+			$car[mg] = "More than 1";
+		}
+		
+	return $car;	
+  }
   /**
   * 
   * 
