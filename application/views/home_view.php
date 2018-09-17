@@ -77,7 +77,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 //	  		window.location = "signin";
 			$.cookie("detect_user",'153');
 			$.cookie("detect_userclass",'taxi');
-			$.cookie("detect_username",'HKT153');
+			$.cookie("detect_username",'HKT0153');
 			location.reload();
 	  }else{
 	  		username = username.toUpperCase();
@@ -142,7 +142,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         <ons-page>
             <div class="profile-pic">
 
-                <img src="../data/pic/driver/small/default-avatar.jpg">
+                <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big">
 
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
@@ -156,7 +156,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         ข้อมูลส่วนตัว
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร</div>
+                     <?php 
+                    	$this->db->select('id');
+						$this->db->where('driver_id = '.$_COOKIE['detect_user']);
+						$query = $this->db->get('web_bank_driver');
+						$num_bank = $query->num_rows();
+                    ?>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร (<?=$num_bank." บัญชี";?>)</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>

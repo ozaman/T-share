@@ -84,6 +84,7 @@ checkImgProfile($.cookie("detect_username"), 1);
    				                   console.log('../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
    				                   $('#pv_profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
    				                   $('.shotcut-profile').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
+   				                   $('.profile-pic-big').attr('src','../data/pic/driver/small/'+$.cookie("detect_username")+'.jpg?v='+$.now());
    				                   
    				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 											  .then(function() {

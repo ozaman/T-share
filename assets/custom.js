@@ -29,7 +29,7 @@ function checkImgProfile(username, pf) {
                 return;
             }
             $('.shotcut-profile').attr('src', url);
-            $('.profile-pic img').attr('src', url);
+            $('.profile-pic-big').attr('src', url);
         }
     });
 }

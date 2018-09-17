@@ -93,7 +93,7 @@
 							      </tr>-->
 							      <tr>
 							   	  	<td colspan="2">
-							   	  		<img src="../data/pic/driver/book_bank/1.jpg" style="max-width: 100px; height: 70px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" />
+							   	  		<img src="../data/pic/driver/book_bank/<?=$row->id;?>.jpg" style="max-width: 100px; height: 70px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" />
 							   	  	</td>
 							   	  </tr>
 							   </tbody>
