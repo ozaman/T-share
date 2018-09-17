@@ -1257,7 +1257,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            	console.log(res);
 					var param = { data : res };
 					console.log(param);
-	                $.post("component/cpn_user_province?type=user",param,function(el){
+	                $.post("component/cpn_bank_list",param,function(el){
 						$('#body_option').html(el);
 					});
 	             }

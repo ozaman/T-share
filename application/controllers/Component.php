@@ -41,5 +41,12 @@ public function cpn_car_type()
 		
 	}
 	
+	public function cpn_bank_list()
+	{
+//		$data['data'] = $this->Main_model->query_province();
+		$this->load->view('component/bank_list');
+		
+	}
+	
 }
 ?>
