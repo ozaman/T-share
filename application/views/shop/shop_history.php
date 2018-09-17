@@ -50,7 +50,7 @@
 </style>
 
 <?php 
-echo json_encode($his);
+echo $result = json_decode($his);
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
     if($_POST[type]=="his"){
@@ -61,7 +61,7 @@ echo json_encode($his);
     //exit();
   }
       
-    foreach ($his as $val->data){
+    foreach ($result as $val){
     
 	  /*$sql = "SELECT topic_th FROM shopping_product  WHERE id=".$val[program]." ";
 	  $query = $this->db->query($sql);
