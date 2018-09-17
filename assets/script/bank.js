@@ -31,7 +31,7 @@ function readURL(input, id, type) {
 
             $('#pv_' + id).attr('src', e.target.result);
 
-           /* var data = new FormData($('#form_addcar')[0]);
+            var data = new FormData($('#form_addbank')[0]);
             data.append('fileUpload', $('#' + id)[0].files[0]);
             if (type == "add") {
                 var param_id = $('#rand').val();
@@ -39,7 +39,7 @@ function readURL(input, id, type) {
                 var param_id = $('#id_carall').val();
                 $('#' + id + '_check_upload_' + num).val(1);
             }
-            var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=car_img&num=" + num;
+            var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=book_bank_img";
             console.log(url_upload);
             $.ajax({
                 url: url_upload, // point to server-side PHP script 
@@ -57,7 +57,7 @@ function readURL(input, id, type) {
                 error: function(e) {
                     console.log(e)
                 }
-            });*/
+            });
         }
         reader.readAsDataURL(input.files[0]);
 

@@ -45,6 +45,21 @@ if($_GET[type]=="car_img"){
 	echo json_encode($return);
 	exit();
 }
+if($_GET[type]=="book_bank_img"){
+	
+	include("class.resizepic.php");
+	$original_image = $_FILES['fileUpload']['tmp_name'] ;
+	$desired_width = 600;
+	$desired_height = _INEWS_H ;
+	$image = new hft_image($original_image);
+	$image->resize($desired_width, $desired_height, '0');
+	header('Content-Type: application/json');
+	$result = $image->output_resized("../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg","JPG");
+	$return[path] = "../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg";
+	$return[result] = $result;
+	echo json_encode($return);
+	exit();
+}
 if($_GET[type]=="profile"){
 	include("class.resizepic.php");
 	$original_image = $_FILES['imgInp']['tmp_name'] ;
