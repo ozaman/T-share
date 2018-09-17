@@ -87,6 +87,7 @@ $data_place = $query_place->row();
               <!--<span >เลือกรถส่งแขก</span>-->
               <div style="padding: 0px;margin-top: 0px;" >
                 <?php
+
           // echo json_encode($query->result());
                 foreach ($query->result() as $val) {
 
@@ -101,7 +102,9 @@ $data_place = $query_place->row();
                         <tr>
                           <td width="30">
                             <!--<label class="container">-->
-                              <?php if($val->status_usecar == 1){
+                              <?php 
+                              
+                              if($val->status_usecar == 1){
                                 ?>
                                 <script>
                                   selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
@@ -125,8 +128,9 @@ $data_place = $query_place->row();
                               <table width="100%" cellpadding="1" cellspacing="2">
                                 <tbody>
                                   <tr>
-                                    <td width="100" align="center" style="padding:5px; border-radius:5px;<?=$bg_plate_color; ?>"><font color="<?=$val->txt_color; ?>" class="font-18"><b><?=$val->plate_num; ?></font><br>
-                                      <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font>
+                                    <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color; ?>">
+                                      <div style="border-radius:5px;border: 1px solid <?=$val->txt_color; ?>;"><font color="<?=$val->txt_color; ?>" class="font-18"><b><?=$val->plate_num; ?></font><br>
+                                      <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font></div>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -453,7 +457,13 @@ $data_place = $query_place->row();
     </div>
   </form>
   <div style="padding: 0px 10px;margin-bottom: 10px;">
+    <?php 
+    if(count($val) != 0){
+      // echo count($val);
+      ?>
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันข้อมูลส่งแขก</ons-button>
+
+    <?php } ?>
   </div>
 
 </div>

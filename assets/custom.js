@@ -6,24 +6,24 @@ function checkImgProfile(username,pf){
 	console.log(username);
 	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
 	$.ajax({
-				url: url,
-				type:'HEAD',
-				error: function()
-				{
-					console.log('Error Profile');
-				},
-				success: function()
-				{
-					console.log('Success Profile');
-					if(pf==1){
-						$('#pv_profile').attr('src',url);
-						iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
-						return;
-					}
-					$('.shotcut-profile').attr('src',url);
-					$('.profile-pic img').attr('src',url);
-				}
-			});
+        url: url,
+        type:'HEAD',
+        error: function()
+        {
+         console.log('Error Profile');
+     },
+     success: function()
+     {
+         console.log('Success Profile');
+         if(pf==1){
+          $('#pv_profile').attr('src',url);
+          iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
+          return;
+      }
+      $('.shotcut-profile').attr('src',url);
+      $('.profile-pic img').attr('src',url);
+  }
+});
 }	
 
 checkImgProfile($.cookie("detect_username"),0);
@@ -31,11 +31,11 @@ checkImgProfile($.cookie("detect_username"),0);
 function iconsHasPic(icons, id1, id2){
 	if(icons>=1){
 		$('#'+id1).show();
-    	$('#'+id2).hide();
-	}
-	
+     $('#'+id2).hide();
+ }
+
 }
-        
+
 function startTimeHome() {
     var today = new Date();
     var h = today.getHours();
@@ -505,32 +505,53 @@ function sendShop(company){
 	
 }
 function sendShop2(){
-     modal.show();
-    var urlo = 'shop/place_companycount';
-    $.post(urlo,function(res){
-        console.log(res)
-        if (res == 1) {
+ modal.show();
+ var urlo = 'shop/place_companycount';
+ $.post(urlo,function(res){
+    console.log(res)
+    if (res == 1) {
 
-             
-             fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
+
+     fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
 //                       var url = "page/call_page";
 //   $.post(url,{ path : "car/car_view" },function(ele){
 //    $('#body_shop').html(ele);
 // });
 var url2 = "shop/shop_pageadd";
- setTimeout(function() {
-                    modal.hide();
-                      $.post(url2,function(ele2){
-                    $('#shop_add').html(ele2);
+var urlcount = "shop/car_count"
+setTimeout(function() {
+    modal.hide();
+    $.post(url2,function(ele2){
+        $('#shop_add').html(ele2);
+        setTimeout(function() {
+         $.post(urlcount,function(res){
+            if (res == 0) {  
 
-                });
-                }, 500);
- 
-                 
+            ons.notification.alert({
+                message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+                title: "ไม่สามารถส่งแขกได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                // callpop();
+                myCar();
+                
+               
+            });
+        }
+
+
+    });
+     }, 1000);
+
+    });
+}, 500);
+
+
             // var url = "shop/shop_page";
             //   $.post(url,function(ele){
             //     $('#body_shop').html(ele);
-                 
+
 
             // });
         }
@@ -545,7 +566,10 @@ var url2 = "shop/shop_pageadd";
         // $('#body_place_company').html(res);
     });
 
-    
+
+}
+function callpop(){
+     appNavigator.popPage()
 }
 function sendTransfer(){
 	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
@@ -587,11 +611,11 @@ function myCar(){
 	
 	$.post("car/check_num_car",{ driver_id : $.cookie("detect_user") },function(res){
 		console.log(res);
-	  	var url = "page/call_page";
-		  $.post(url,{ path : "car/car_view" },function(ele){
-		   $('#body_car_manage').html(ele);
-		});
-	});
+        var url = "page/call_page";
+        $.post(url,{ path : "car/car_view" },function(ele){
+         $('#body_car_manage').html(ele);
+     });
+    });
 }
 function contrac_us(){
 	fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'slide-ios');

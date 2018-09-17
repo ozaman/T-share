@@ -80,6 +80,8 @@ define('TBL_PLAN_PRODUCT_PRICE_NAME', 'plan_product_price_name');
 define('TBL_PLAN_PRODUCT_PRICE_SETTING', 'plan_product_price_setting');
 define('TBL_PRODUCT_PRICE_LIST_ALL', 'product_price_list_all');
 define('TBL_ORDER_BOOKING', 'order_booking');
+define('TBL_WEB_CARALL', 'web_carall');
+
 
 
 
