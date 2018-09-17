@@ -538,15 +538,7 @@ function readURL(input, id, num, type) {
 
 }
 
-function performClick(elemId) {
-    console.log(elemId);
-    var elem = document.getElementById(elemId);
-    if (elem && document.createEvent) {
-        var evt = document.createEvent("MouseEvents");
-        evt.initEvent("click", true, false);
-        elem.dispatchEvent(evt);
-    }
-}
+
 
 function checkPicCar(id, checkcalledit, icons) {
     console.log(id)

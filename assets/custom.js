@@ -1,6 +1,16 @@
 var array_data = [];
 //startTimeHome();
 var clock_h;
+function performClick(elemId) {
+    console.log(elemId);
+    var elem = document.getElementById(elemId);
+    if (elem && document.createEvent) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+    }
+}
+
 function checkImgProfile(username, pf) {
     console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();

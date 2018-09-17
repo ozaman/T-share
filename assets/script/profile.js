@@ -138,15 +138,7 @@ function selectUserProvince(id,code){
 	$('ons-back-button').click();
 }
 
-function performClick(elemId) {
-	console.log(elemId);
-   var elem = document.getElementById(elemId);
-   if(elem && document.createEvent) {
-      var evt = document.createEvent("MouseEvents");
-      evt.initEvent("click", true, false);
-      elem.dispatchEvent(evt);
-   }
-}
+
 
 function createDialogPf(){
 	 var dialog = document.getElementById('pf_edit-alert-dialog');

@@ -676,15 +676,7 @@ reader.readAsDataURL(input.files[0]);
 
 }
 
-function performClick(elemId) {
-	console.log(elemId);
- var elem = document.getElementById(elemId);
- if(elem && document.createEvent) {
-  var evt = document.createEvent("MouseEvents");
-  evt.initEvent("click", true, false);
-  elem.dispatchEvent(evt);
-}
-}
+
 
 function btn_driver_topoint(id) {
     if($('#driver_topoint_check_click').val()==1){
