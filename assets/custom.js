@@ -11,42 +11,7 @@ function performClick(elemId) {
     }
 }
 
-<<<<<<< HEAD
-function checkImgProfile(username,pf){
-	console.log(username);
-	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
-	$.ajax({
-        url: url,
-        type:'HEAD',
-        error: function()
-        {
-         console.log('Error Profile');
-     },
-     success: function()
-     {
-         console.log('Success Profile');
-         if(pf==1){
-          $('#pv_profile').attr('src',url);
-          iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
-          return;
-      }
-      $('.shotcut-profile').attr('src',url);
-      $('.profile-pic img').attr('src',url);
-  }
-});
-}	
 
-checkImgProfile($.cookie("detect_username"),0);
-
-function iconsHasPic(icons, id1, id2){
-	if(icons>=1){
-		$('#'+id1).show();
-     $('#'+id2).hide();
- }
-
-}
-
-=======
 function checkImgProfile(username, pf) {
     console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
@@ -75,7 +40,7 @@ function iconsHasPic(icons, id1, id2) {
         $('#' + id2).hide();
     }
 }
->>>>>>> 5e660d06bcd31a4bf64696bc3562871be8e31df5
+
 function startTimeHome() {
     var today = new Date();
     var h = today.getHours();
