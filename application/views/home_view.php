@@ -568,7 +568,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            <div id="body_account_bank">
 	            	
 	            </div>
-	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
+	       <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -913,6 +913,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
+
     <template id="line_noti.html">
         <ons-page>
             <ons-toolbar>

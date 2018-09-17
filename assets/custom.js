@@ -588,7 +588,7 @@ function myAccountBank() {
     $.post(url, {
             path: "account/bank_view"
         }, function(ele) {
-            $('#body_car_manage').html(ele);
+            $('#body_account_bank').html(ele);
         });
 }
 function myCar() {
