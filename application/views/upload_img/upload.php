@@ -54,8 +54,8 @@ if($_GET[type]=="book_bank_img"){
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-	$result = $image->output_resized("../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg","JPG");
-	$return[path] = "../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg";
+	$result = $image->output_resized("../../../../data/pic/driver/book_bank/".$_GET[id].".jpg","JPG");
+	$return[path] = "../../../../data/pic/driver/book_bank/".$_GET[id].".jpg";
 	$return[result] = $result;
 	echo json_encode($return);
 	exit();
