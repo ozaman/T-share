@@ -169,7 +169,7 @@
       <script>
          setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);
       </script>
-      
+      <!--<input value="<?=$row->status;?>" id="check_status_<?=$row->id;?>" type="hidden" />-->
       <?php  }  ?>
    </div>
 </div>

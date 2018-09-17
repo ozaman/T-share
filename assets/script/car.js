@@ -16,6 +16,7 @@ function editCar(id){
 }
 
 function changeCarOften(id){
+
 	modal.show();
 	console.log(id);
 	var data = {
@@ -77,19 +78,27 @@ function changeCarStatus(id,status){
             data: data,
             type: 'post',
             success: function(res) {
-               console.log(res);
-               
-               	ons.notification.alert({message: messages ,title:"สำเร็จ", buttonLabel:"ปิด"})
-  				.then(function() { 
-  					modal.hide();
-  					var url = "page/call_page?checkcalledit=1";
-							  $.post(url,{ path : "car/car_view" },function(ele){
-							   $('#body_car_manage').html(ele);
-							   //location.reload()
-							   console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
-					});
-  				});
-				  
+               console.log(res.res);
+               if(res.res.check==false){
+			   		ons.notification.alert({message: "ไม่สารมารถยกเลิกใช้งานได้ จำเป็นต้องมีรถที่ใช้งานอย่างน้อย 1 คัน" ,title:"ขออภัย", buttonLabel:"ปิด"})
+	  				.then(function() { 
+	  					modal.hide();
+	  					return;
+	  				});
+			   }else{
+				   	if(res.res.data.result==true){
+					   	ons.notification.alert({message: messages ,title:"สำเร็จ", buttonLabel:"ปิด"})
+		  				.then(function() { 
+		  					modal.hide();
+		  					var url = "page/call_page?checkcalledit=1";
+									  $.post(url,{ path : "car/car_view" },function(ele){
+									   $('#body_car_manage').html(ele);
+									   //location.reload()
+									   console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
+							});
+		  				});
+				   }
+			   }
             },
 	        error: function(err){
 	        	console.log(err);

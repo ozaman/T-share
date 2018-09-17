@@ -67,22 +67,37 @@ class Car_model extends CI_Model {
   }
 
   public function change_status_car(){
+  		if($_POST[status]==0){
+			$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" and status = 1 ');
+			$check = $query->num_rows();
+			if($check<=1){
+				$return[check] = false;
+				$return[data] = $check;
+				return $return;
+			}
+			
+		}
   		
-  		$car[status] = $_POST[status];
-		$this->db->where('id', $_POST[car_id]);
-		$car[result] = $this->db->update('web_carall', $car); 
-		$car[car_id] = $_POST[car_id];
-  		return $car;
+			$car[status] = $_POST[status];
+			$this->db->where('id', $_POST[car_id]);
+			$car[result] = $this->db->update('web_carall', $car); 
+			$car[car_id] = $_POST[car_id];
+			$return[check] = true;
+			$return[data] = $car;
+  		
+  		return $return;
   }
 
   public function running_single_often_car(){
-  	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" ');
+  	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" and status = 1 ');
 	$check = $query->num_rows();
 		if($check==1){
+			$row = $query->row();
 			$data[status_usecar] = 1;
-			$this->db->where('drivername', $_POST[driver_id]);
+			$this->db->where('id', $row->id);
 			$car[result] = $this->db->update('web_carall', $data); 
 			$car[driver] = $_POST[driver_id];
+			$car[id_car] = $row->id;
 		}else{
 			$car[driver] = $_POST[driver_id];
 			$car[mg] = "More than 1";
