@@ -117,7 +117,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">
+                    <ons-toolbar-button onclick="profileInfo('lift-ios')">
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>
                 </div>
@@ -155,8 +155,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลส่วนตัว
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -557,6 +557,26 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         </ons-page>
     </template>
     
+    <template id="account_bank.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center">ข้อมูลรถ</div>
+            </ons-toolbar>
+	            <div id="body_account_bank">
+	            	
+	            </div>
+	       <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>     
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+    
     <template id="car_manage.html">
         <ons-page>
             <ons-toolbar>
@@ -893,6 +913,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
+
     <template id="line_noti.html">
         <ons-page>
             <ons-toolbar>
@@ -1126,25 +1147,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     window.fn.pushPage = function(page, anim) {
         console.log(page);
-        if (page.key == "shop") {
-          /*  var url = "page/shop";
-            $.post(url,function(html){
-            	$('#body_popup1').html(html);
-            });*/
-        }else if(page.key == "transfer"){
-			var url = "page/transfer";
-			$('#check_open_worktbooking').val(1);
-            $.post(url,function(html){
-            	$('#transfer_job').html(html);
-            });
-		}else if(page.key == "profile"){
-			var url = "page/profile_edit";
-
-            $.post(url,function(html){
-            	$('#body_profile_view').html(html);
-            });
-		
-        }
         
         if(page.id=="option.html"){
 			console.log("option");
@@ -1246,6 +1248,21 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	             }
 	        	});
 			}
+			else if(page.open=="bank_list"){
+				$.ajax({
+	            url: "main/data_bank_list", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_bank_list",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
 		}
         if (anim) {
             document.getElementById('appNavigator').pushPage(page.id, {
@@ -1254,7 +1271,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 },
                 animation: anim
             });
-        } else {
+        } 
+		else {
             document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
                     title: page.title

@@ -111,6 +111,17 @@ class Main_model extends CI_Model {
 	return $data;
   }
   
+  function query_bank_list(){
+  	
+	$sql = "SELECT name_th,id,img FROM web_bank_list ORDER BY id ";
+	$query = $this->db->query($sql);
+	foreach($query->result() as $key=>$val)
+    {
+        $data[] = $val;
+    }
+	return $data;
+  }
+  
   function register(){
   
 	

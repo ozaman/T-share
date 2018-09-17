@@ -1,7 +1,17 @@
 var array_data = [];
 //startTimeHome();
 var clock_h;
+function performClick(elemId) {
+    console.log(elemId);
+    var elem = document.getElementById(elemId);
+    if (elem && document.createEvent) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+    }
+}
 
+<<<<<<< HEAD
 function checkImgProfile(username,pf){
 	console.log(username);
 	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
@@ -36,6 +46,36 @@ function iconsHasPic(icons, id1, id2){
 
 }
 
+=======
+function checkImgProfile(username, pf) {
+    console.log(username);
+    var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
+    $.ajax({
+        url: url,
+        type: 'HEAD',
+        error: function() {
+            console.log('Error Profile');
+        },
+        success: function() {
+            console.log('Success Profile');
+            if (pf == 1) {
+                $('#pv_profile').attr('src', url);
+                iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
+                return;
+            }
+            $('.shotcut-profile').attr('src', url);
+            $('.profile-pic img').attr('src', url);
+        }
+    });
+}
+checkImgProfile($.cookie("detect_username"), 0);
+function iconsHasPic(icons, id1, id2) {
+    if (icons >= 1) {
+        $('#' + id1).show();
+        $('#' + id2).hide();
+    }
+}
+>>>>>>> 5e660d06bcd31a4bf64696bc3562871be8e31df5
 function startTimeHome() {
     var today = new Date();
     var h = today.getHours();
@@ -46,27 +86,20 @@ function startTimeHome() {
     document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
     clock_h = setTimeout(startTimeHome, 1000);
 }
-
 function checkTimeHome(i) {
     if (i < 10) {
         i = "0" + i
     } // add zero in front of numbers < 10
     return i;
 }
-
-function use_often(id){
-	
+function use_often(id) {
 }
-
-function cancel_often(id){
-	
+function cancel_often(id) {
 }
-
 var userLang = navigator.language || navigator.userLanguage;
 userLang = userLang.split('-');
 var js_lng = userLang[0];
 console.log('Js Browser lng : ' + js_lng);
-
 var id, target, options;
 var first_get_pos = true;
 var current, crd;
@@ -74,13 +107,11 @@ target = {
     latitude: 0,
     longitude: 0
 };
-
 options = {
     enableHighAccuracy: false,
     timeout: 5000,
     maximumAge: 0
 };
-
 function success(pos) {
     if (first_get_pos == true) {
         current = {
@@ -106,21 +137,18 @@ function success(pos) {
     var m = dist * 1000;
     //        console.log(m);
     //		if( JSON.stringify(current) != JSON.stringify(start) ){
-        if (m > 50) {
-            showPosition(pos)
-            console.log(m);
-            current = crd;
-        } else {
+    if (m > 50) {
+        showPosition(pos)
+        console.log(m);
+        current = crd;
+    } else {
         //			return false;
     }
 }
-
 function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
 }
 id = navigator.geolocation.watchPosition(success, error, options);
-
-
 function showPosition(position) {
     //      var cook_lng = getCookie("lng");
     var cook_lng = $.cookie("lng");
@@ -139,7 +167,7 @@ function showPosition(position) {
     console.log(position.coords);
     $('#lat').val(position.coords.latitude);
     $('#lng').val(position.coords.longitude);
-    console.log($('#lat').val()+" ...");
+    console.log($('#lat').val() + " ...");
     //console.log(position.coords.latitude+" : "+position.coords.longitude);
     $.post(url, function(data) {
         //   console.log(data);
@@ -156,50 +184,45 @@ function showPosition(position) {
         }
     });
 }
-
 function updatePlaceNum(province) {
-	console.log(province)
-//    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
-var url = "main/get_id_province";
-$.post(url, {
-    txt_pv: province
-}, function(obj) {
-//        var obj = JSON.parse(data);
+    console.log(province)
+    //    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
+    var url = "main/get_id_province";
+    $.post(url, {
+        txt_pv: province
+    }, function(obj) {
+        //        var obj = JSON.parse(data);
         //      console.log(obj);
         var province = obj[0].id;
         var area = obj[0].area;
-//        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
-var url2 = "main/update_num_place"+"?province=" + province + '&area=' + area;
-$.post(url2, function(data2) {
- console.log(data2);
-});
-});
+        //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
+        var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
+        $.post(url2, function(data2) {
+            console.log(data2);
+        });
+    });
 }
-
 var array_rooms;
 var res_socket;
 var socket = io.connect('https://www.welovetaxi.com:3443');
-
 //on message received we print all the data inside the #container div
 socket.on('notification', function(data) {
     //          console.log("Start Socket");
-//    			console.log(data);
-if (typeof data.transfer !== 'undefined' && data.transfer.length > 0) {
-    res_socket = data.transfer[0];
-    if (data.transfer[0].length > 0) {
-        $('#number_tbooking').show();
-    } else {
-        $('#number_tbooking').hide();
-    }
-
-    $('#number_tbooking').text(data.transfer[0].length);
-    if ($('#check_open_worktbooking').val() == 1) {
-        console.log(data.transfer);
-        $('#tab-trans_job').attr('badge',data.transfer[0].length);
+    //    			console.log(data);
+    if (typeof data.transfer !== 'undefined' && data.transfer.length > 0) {
+        res_socket = data.transfer[0];
+        if (data.transfer[0].length > 0) {
+            $('#number_tbooking').show();
+        } else {
+            $('#number_tbooking').hide();
+        }
+        $('#number_tbooking').text(data.transfer[0].length);
+        if ($('#check_open_worktbooking').val() == 1) {
+            console.log(data.transfer);
+            $('#tab-trans_job').attr('badge', data.transfer[0].length);
             //        console.log('now open popup');
             readDataBooking();
         }
-
     }
 });
 var shop_frist_run = 0;
@@ -224,7 +247,6 @@ socket.on('getbookinglab', function(data) {
                 }
             }
         }
-
     });
     array_data = {
         manage: done,
@@ -249,60 +271,49 @@ socket.on('getbookinglab', function(data) {
             shop_frist_run = done.length;
         }
     }
-    
     /* check open order id auto */
-    
     if (frist_socket == true) {
-    	var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var get_order_id = url.searchParams.get("order_id");
-      
-//        var get_order_id = "<?=$_GET['order_id'];?>";
-var status = url.searchParams.get("status");
-var open_ic = url.searchParams.get("open_ic");;
-if (get_order_id != "") {
-    if (status == "his") {
-        openOrderFromAndroidHistory(get_order_id, status, open_ic);
-
-    } else {
-        console.log("order id : " + get_order_id);
-        console.log(array_data);
-        $.each(array_data.manage, function(index, value) {
-            if (value.id == get_order_id) {
-
-                console.log(value.id + " : " + index);
-                $('#check_open_num_detail').val(index)
-                $('#check_open_shop_id').val(value.id);
-                var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id="+detect_user;
-                $.post(url, value, function(data) {
-                    $('#load_mod_popup_clean').html(data);
-                    $('#main_load_mod_popup_clean').fadeIn();
-
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var get_order_id = url.searchParams.get("order_id");
+        //        var get_order_id = "<?=$_GET['order_id'];?>";
+        var status = url.searchParams.get("status");
+        var open_ic = url.searchParams.get("open_ic");;
+        if (get_order_id != "") {
+            if (status == "his") {
+                openOrderFromAndroidHistory(get_order_id, status, open_ic);
+            } else {
+                console.log("order id : " + get_order_id);
+                console.log(array_data);
+                $.each(array_data.manage, function(index, value) {
+                    if (value.id == get_order_id) {
+                        console.log(value.id + " : " + index);
+                        $('#check_open_num_detail').val(index)
+                        $('#check_open_shop_id').val(value.id);
+                        var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
+                        $.post(url, value, function(data) {
+                            $('#load_mod_popup_clean').html(data);
+                            $('#main_load_mod_popup_clean').fadeIn();
+                        });
+                    }
                 });
-
             }
-        });
+        }
+        frist_socket = false;
     }
-
-}
-frist_socket = false;
-}
 });
 var id = detect_user;
 var dataorder = {
     order: parseInt(id),
 };
 socket.emit('sendchat', '');
-
 socket.emit('adduser', dataorder);
-
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
     array_rooms = rooms;
     console.log(current_room)
 });
-
 socket.on('datalab', function(username, data) {
     console.log('***********************datalab***************************')
     console.log(username)
@@ -340,7 +351,6 @@ socket.on('datalab', function(username, data) {
         });
     }
 });
-
 socket.on('updatedriver', function(username, data) {
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
@@ -368,25 +378,22 @@ socket.on('updatedriver', function(username, data) {
                 console.log("driver_pay_report");
                 changeHtml("driver_pay_report", data.id, data.driver_pay_report_date)
             }
-
         }
     }
 });
-
 function formatDate(date) {
     var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
 }
-
 function formatTime(date) {
     var d = new Date(date),
-    hour = '' + d.getHours(),
-    minutes = d.getMinutes();
+        hour = '' + d.getHours(),
+        minutes = d.getMinutes();
     if (hour < 10) {
         hour = "0" + hour;
     }
@@ -395,7 +402,6 @@ function formatTime(date) {
     }
     return [hour, minutes].join(':');
 }
-
 function openOrderFromAndroid(id, status, open_ic) {
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     if (status == "his") {
@@ -415,30 +421,29 @@ function openOrderFromAndroid(id, status, open_ic) {
                     $('#btn_cancel_book_'+value.id).css('top','60px');
                     $('.assas_'+value.id).css('margin-top','30px');
                 });*/
-                console.log(value.id + " : " + index);
-                $('#check_open_num_detail').val(index)
-                var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id="+detect_user;
-                $.post(url, value, function(data) {
-                    $('#load_mod_popup_clean').html(data);
-                    $('#main_load_mod_popup_clean').show();
-                    if (open_ic == '1') {
-                        openViewPrice();
-                        console.log('Open Income')
-                    }
-                });
-                $('#check_open_shop_id').val(value.id);
-            }
-        });
+                    console.log(value.id + " : " + index);
+                    $('#check_open_num_detail').val(index)
+                    var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
+                    $.post(url, value, function(data) {
+                        $('#load_mod_popup_clean').html(data);
+                        $('#main_load_mod_popup_clean').show();
+                        if (open_ic == '1') {
+                            openViewPrice();
+                            console.log('Open Income')
+                        }
+                    });
+                    $('#check_open_shop_id').val(value.id);
+                }
+            });
         }
     }
 }
-
 function openOrderFromAndroidHistory(id, status, open_ic) {
     //    alert(id);
     $.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=" + id, function(data) {
         console.log(data);
         var value = data.data[0];
-        var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id="+detect_user;
+        var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
         console.log(url);
         $.post(url, value, function(data) {
             $('#load_mod_popup_clean').html(data);
@@ -453,24 +458,21 @@ function openOrderFromAndroidHistory(id, status, open_ic) {
         });
     });
 }
-
 getTansferJobNumber(detect_user, today);
-
 function getTansferJobNumber(driver, date) {
-	var pram = {
+    var pram = {
         driver: driver,
         date: date
     };
-//    console.log("+99-");
-//    console.log(pram);
-$.post("api/get_my_transfer_job", pram , function(res) {
-//    	console.log(res)
-var res = JSON.parse(res);
-var num = res.data.result;
-console.log(num + " +++")
-
-if (num > 0) {
-    $('#number_tbooking_history').show();
+    //    console.log("+99-");
+    //    console.log(pram);
+    $.post("api/get_my_transfer_job", pram, function(res) {
+        //    	console.log(res)
+        var res = JSON.parse(res);
+        var num = res.data.result;
+        console.log(num + " +++")
+        if (num > 0) {
+            $('#number_tbooking_history').show();
             //			alert(32);
         } else {
             $('#number_tbooking_history').hide();
@@ -479,7 +481,6 @@ if (num > 0) {
         $('#number_tbooking_history').text(num);
     });
 }
-
 function sendSocket(id) {
     console.log('Click');
     //   var message = "";
@@ -488,22 +489,19 @@ function sendSocket(id) {
     };
     socket.emit('sendchat', dataorder);
 }
-
-function hideRes(id){
-	var txt = $('#'+id).val();
-	console.log(txt);
-	if(txt.length<1){
-		$('#'+id+'_x').hide();
-	}else{
-		$('#'+id+'_x').show();
-	}
+function hideRes(id) {
+    var txt = $('#' + id).val();
+    console.log(txt);
+    if (txt.length < 1) {
+        $('#' + id + '_x').hide();
+    } else {
+        $('#' + id + '_x').show();
+    }
 }
-
-
 /*************************** Menu function *********************************/
-function sendShop(company){
-	
+function sendShop(company) {
 }
+
 function sendShop2(){
  modal.show();
  var urlo = 'shop/place_companycount';
@@ -548,63 +546,100 @@ setTimeout(function() {
 }, 500);
 
 
-            // var url = "shop/shop_page";
-            //   $.post(url,function(ele){
-            //     $('#body_shop').html(ele);
-
-
-            // });
-        }
-        else{
-            fn.pushPage({'id': 'place_company.html', 'title': 'ส่งแขก'}, 'slide-ios')  
+     
+        } else {
+            fn.pushPage({
+                'id': 'place_company.html',
+                'title': 'ส่งแขก'
+            }, 'slide-ios')
             var url = "shop/place_company";
-            $.post(url,function(res){
+            $.post(url, function(res) {
                 console.log(res)
                 $('#body_place_company').html(res);
-            }); 
+            });
         }
         // $('#body_place_company').html(res);
     });
+
 
 
 }
 function callpop(){
      appNavigator.popPage()
 }
-function sendTransfer(){
-	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
-  .then(function() { });
-  return;
-  fn.pushPage({'id': 'transfer.html', 'title': 'ให้บริการรถ', 'key':'transfer'})
+function profileInfo(animate) {
+    fn.pushPage({
+        'id': 'pf.html',
+        'title': 'ข้อมูลส่วนตัว',
+        'key': 'profile'
+    }, animate);
+    var url = "page/profile_edit";
+    $.post(url, function(html) {
+        $('#body_profile_view').html(html);
+    });
+}
+function sendTransfer() {
+    ons.notification.alert({
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+    return;
+    fn.pushPage({
+        'id': 'transfer.html',
+        'title': 'ให้บริการรถ',
+        'key': 'transfer'
+    })
+    var url = "page/transfer";
+    $('#check_open_worktbooking').val(1);
+    $.post(url, function(html) {
+        $('#transfer_job').html(html);
+    });
+}
+function booking() {
+    ons.notification.alert({
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+    return;
+    fn.pushPage({
+        'id': 'book_trans.html',
+        'title': 'จองรถ',
+        'key': 'book_trans'
+    })
+}
+function tour() {
+    ons.notification.alert({
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+    return;
+    fn.pushPage({
+        'id': 'book_tour.html',
+        'title': 'จองทัวร์',
+        'key': 'book_tour'
+    })
+}
+function income() {
+    ons.notification.alert({
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+    return;
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': 'จองทัวร์',
+        'key': 'shop'
+    })
 }
 
-function booking(){
-	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
-  .then(function() { });
-  return;
-  fn.pushPage({'id': 'book_trans.html', 'title': 'จองรถ', 'key': 'book_trans'})
-}
-
-function tour(){
-	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
-  .then(function() { });
-  return;
-  fn.pushPage({'id': 'book_tour.html', 'title': 'จองทัวร์',  'key': 'book_tour' })
-}
-
-function income(){
-	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
-  .then(function() { });
-  return;
-  fn.pushPage({'id': 'popup1.html', 'title': 'จองทัวร์', 'key': 'shop'})
-}
-
-function pay(){
-	ons.notification.alert({message: 'ยังไม่เปิดให้บริการ',title:"ขอภัย",buttonLabel:"ปิด"})
-  .then(function() { });
-  return;
-  fn.pushPage({'id': 'popup1.html', 'title': 'รายรับ'})
-}
 
 function myCar(){
 	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'slide-ios');
@@ -616,13 +651,56 @@ function myCar(){
          $('#body_car_manage').html(ele);
      });
     });
+function pay() {
+    ons.notification.alert({
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+    return;
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': 'รายรับ'
+    })
 }
-function contrac_us(){
-	fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'slide-ios');
-  var url = "page/contrac_us";
-
-  $.post(url,function(html){
-      console.log(html)
-      $('#body_contrac').html(html);
-  });
+function myAccountBank() {
+    fn.pushPage({
+        'id': 'account_bank.html',
+        'title': 'บัญชีธนาคาร'
+    }, 'slide-ios');
+    var url = "page/call_page";
+    $.post(url, {
+            path: "bank/bank_view"
+        }, function(ele) {
+            $('#body_account_bank').html(ele);
+        });
+}
+function myCar() {
+    fn.pushPage({
+        'id': 'car_manage.html',
+        'title': 'ข้อมูลรถ'
+    }, 'slide-ios');
+    $.post("car/check_num_car", {
+        driver_id: $.cookie("detect_user")
+    }, function(res) {
+        console.log(res);
+        var url = "page/call_page";
+        $.post(url, {
+            path: "car/car_view"
+        }, function(ele) {
+            $('#body_car_manage').html(ele);
+        });
+    });
+}
+function contrac_us() {
+    fn.pushPage({
+        'id': 'contract_us.html',
+        'title': 'ติดต่อเรา'
+    }, 'slide-ios');
+    var url = "page/contrac_us";
+    $.post(url, function(html) {
+        console.log(html)
+        $('#body_contrac').html(html);
+    });
 }

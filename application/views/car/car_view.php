@@ -7,7 +7,7 @@
    .img-car{
    		height: 60px;
 /*   		width: auto;*/
-		max-width: 100px;
+		max-width: 85px;
    }
    .btn-action-car{
    	    border: 1px solid #ccc;
@@ -22,7 +22,7 @@
    </div>
    <?php 
       //	$sql_car = "select * from web_car_all where drivername = '".$_COOKIE[detect_username]."' ";
-      	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc  ";
+      	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc, status desc  ";
       	$query_car = $this->db->query($sql);
       	/*foreach ($query_car->result() as $row){
       		$data[] = $row;
@@ -77,7 +77,7 @@
 								         ?>
 								          <ons-radio <?=$this_status_usecar;?> class="radio-fruit" input-id="often-<?=$num;?>" value="<?=$num;?>" name="use_often" onclick="changeCarOften('<?=$row->id;?>');" ></ons-radio>
 								        </label>
-								        <label for="often-<?=$num;?>" class="center">ใช้คันนี้เป็นรถประจำ</label>
+								        <label for="often-<?=$num;?>" class="center">ใช้ประจำ</label>
                                  </td>
                               </tr> 
                               <tr>
@@ -152,11 +152,11 @@
                                  </td>
                               </tr>
                               <tr>
-                              	<td class="font-14">
+                              	<td class="font-16">
                               		<strong>เพิ่มเมื่อ</strong>
                               	</td>
-                              	<td class="font-14">
-                              		<?=date("Y-d-m h:i",$row->post_date);?>
+                              	<td class="font-16">
+                              		<?=date("Y-m-d h:i",$row->post_date);?>
                               	</td>
                               </tr>
                            </tbody>
