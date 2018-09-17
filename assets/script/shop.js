@@ -498,7 +498,7 @@ function CheckTime(d1, d2) {
     if (hrs_d_bc == 0) {
         h_txy = '';
     } else {
-        h_txy = ' ' + hrs_d_bc + ' ชม.';
+        h_txy = ' ' + hrs_d_bc + ' ชัวโมง.';
     }
     if (mnts_bc == 0) {
         m_txt = '';
