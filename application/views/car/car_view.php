@@ -6,7 +6,8 @@
    .tdtable  td {height:26px;}
    .img-car{
    		height: 60px;
-   		width: auto;
+/*   		width: auto;*/
+		max-width: 100px;
    }
    .btn-action-car{
    	    border: 1px solid #ccc;
@@ -15,8 +16,8 @@
    	    box-shadow: 1px 1px 3px #cacaca;
    }
 </style>
-<div style="padding: 15px;">
-   <div style="padding: 0px 0px;">
+<div style="padding: 0px;">
+   <div style="padding: 10px 10px;">
       <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();">เพิ่มรถ</ons-button>
    </div>
    <?php 
@@ -43,10 +44,16 @@
 	  		$sql_pv = "SELECT name_th FROM web_province  WHERE id = ".$row->i_province." ";
 	  		$query_pv = $this->db->query($sql_pv);
 	  		$car_pv = $query_pv->row();
+	  		
+	  		if($row->status==1){
+				$txt_status = "เปิดใช้งาน";
+			}else{
+				$txt_status = "ปิดใช้งาน";
+			}
          ?>
          
-      <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 30px;">
-         <div style="padding:5px;   border-radius: 6px; border: 1px solid #ddd;box-shadow:1px 1px 3px #ddd  ; background:#FFFFFF   ">
+      <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 20px;">
+         <ons-card class="card">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tbody>
                   <tr>
@@ -137,7 +144,7 @@
                               <tr>
                                  <td class="font-16"><strong>สถานะ</strong></td>
                                  <td class="font-16">
-                                    <font color="#3b5998"><strong>เปิดใช้งาน</strong></font>
+                                    <font color="#3b5998"><strong><?=$txt_status;?></strong></font>
                                     <!--<span style="font-size: 12px;"><b>(ใช้งาน)</b></span>-->
                                  </td>
                               </tr>
@@ -156,7 +163,7 @@
                   </tr>
                </tbody>
             </table>
-         </div>
+         </ons-card>
       </div>
       <script>
          setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);

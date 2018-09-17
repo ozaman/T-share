@@ -2,6 +2,25 @@ var array_data = [];
 //startTimeHome();
 var clock_h;
 
+function checkImgProfile(username){
+	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
+	$.ajax({
+				url: url,
+				type:'HEAD',
+				error: function()
+				{
+					console.log('Error Profile');
+				},
+				success: function()
+				{
+					console.log('Success Profile');
+					$('.shotcut-profile').attr('src',url);
+					$('.profile-pic').attr('src',url);
+				}
+			});
+}	
+checkImgProfile($.cookie("detect_username"));
+        
 function startTimeHome() {
     var today = new Date();
     var h = today.getHours();
