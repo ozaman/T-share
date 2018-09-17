@@ -18,6 +18,7 @@ function selectBankList(id) {
     /*$('#img_plate_color_show').attr('src', "assets/images/car/plate/" + img);*/
     $('#bank').val(id);
     $('#txt_bank').text(txt);
+    $('#txt_bank').css("color","#1f1f21");
     /*$('#plate_color_txt').val(val);
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();*/
