@@ -616,6 +616,7 @@ function myCar(){
          $('#body_car_manage').html(ele);
      });
     });
+}  
 function pay() {
     ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
