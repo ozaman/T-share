@@ -82,5 +82,5 @@
 </ons-card>  
 </form>
 <div style="padding: 10px; margin-bottom: 10px;">
-	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitAddCar();" style="background-color: #fff;">เพิ่มข้อมูลบัญชี</ons-button>
+	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitAddBank();" style="background-color: #fff;">เพิ่มข้อมูลบัญชี</ons-button>
 </div>

@@ -97,7 +97,7 @@ function submitAddBank() {
 
     var data = new FormData($('#form_addbank')[0]);
 
-    var url = "add_bank/add_bank?driver_id=" + $.cookie("detect_user");
+    var url = "bank/add_bank?driver_id=" + $.cookie("detect_user");
 
     $.ajax({
         url: url, // point to server-side PHP script 
