@@ -48,10 +48,12 @@
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
 </style>
+
 <?php 
+echo json_encode($his);
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
-    if($_GET[type]=="his"){
+    if($_POST[type]=="his"){
       echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
     }else{
       echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 15px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
@@ -59,7 +61,7 @@
     //exit();
   }
       
-    foreach ($_POST[data] as $key=>$val){
+    foreach ($his as $val->data){
     
 	  /*$sql = "SELECT topic_th FROM shopping_product  WHERE id=".$val[program]." ";
 	  $query = $this->db->query($sql);

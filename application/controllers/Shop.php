@@ -76,13 +76,14 @@ public function editadult()
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
+		$data['his'] = curl_exec($ch);
 		curl_close($ch);
-		 $this->load->view('shop/shop_history',$result);
+		 
 
-		 $decode = 	json_decode($result);
-		header('Content-Type: application/json');
-		 echo json_encode($decode);
+		 $decode = 	json_decode($data);
+		// header('Content-Type: application/json');
+	 $this->load->view('shop/shop_history',$data);
+		 //echo json_encode($decode);
 	}
 
 
