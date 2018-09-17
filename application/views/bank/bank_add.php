@@ -28,6 +28,18 @@
             </label>
         </ons-list-item>
       <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <i class="material-icons">account_balance_wallet</i><!--<span class="txt-important">*</span>-->
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="bank_number-input" float="" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" style="width:100%;" value="">
+                    <input type="text" class="text-input" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" >
+                    <span class="text-input__label">
+                        เลขที่บัญชี</span>
+                </ons-input>
+            </label>
+        </ons-list-item>  
+      <ons-list-item class="input-items list-item p-l-0">
         	<div class="left list-item__left" >
                 <i class="material-icons">account_balance</i>
             </div>
@@ -48,18 +60,7 @@
                 </ons-input>
             </label>
         </ons-list-item>
-        <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left">
-                <i class="material-icons">account_balance_wallet</i><!--<span class="txt-important">*</span>-->
-            </div>
-            <label class="center list-item__center">
-                <ons-input id="bank_number-input" float="" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" style="width:100%;" value="">
-                    <input type="text" class="text-input" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" >
-                    <span class="text-input__label">
-                        สาขาธนาคาร</span>
-                </ons-input>
-            </label>
-        </ons-list-item>
+        
 </ons-card>
 <ons-card  class="card">
       <ons-list-header class="list-header"><b>ภาพสมุดบัญชีธนาคาร</b></ons-list-header>

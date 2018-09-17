@@ -11,6 +11,7 @@ class Bank_model extends CI_Model {
 	 	$bank[status] = 1;
 	 	$bank[post_date] = time();
 	 	$bank[last_update] = time();
+	 	$bank[driver_id] = $_GET[driver_id];
 	 	
 		$bank[result] = $this->db->insert('web_bank_driver', $bank);
 		$last_id_bank = mysql_insert_id();

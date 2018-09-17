@@ -50,7 +50,7 @@
 				$txt_status = "เปิดใช้งาน";
 				$btn_use_often = "";
 			}else{
-				$txt_status = "ปิดใช้งาน";
+				$txt_status = "หยุดใช้งาน";
 				$btn_use_often = "display:none;";
 			}
          ?>
@@ -105,7 +105,7 @@
 											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',1)" style="width:100%">
 		                                       <center>
 		                                          <div class="font-30"><i class="fa fa-car " style="color:#FF0000"></i></div>
-		                                          <span style="padding-bottom:20px;" class="font-16">  เลิกใช้งาน  </span>
+		                                          <span style="padding-bottom:20px;" class="font-16">  หยุดใช้งาน  </span>
 		                                       </center>
 		                                    </button>
 										<? }
