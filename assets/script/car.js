@@ -74,7 +74,7 @@ function changeCarStatus(id, status) {
     modal.show();
     console.log(id);
     if (status == 0) {
-        var messages = "ยกเลิกใช้รถคันนี้แล้ว";
+        var messages = "หยุดใช้งานรถคันนี้แล้ว";
         if ($('#detect_num_car').val() == 1) {
             alert($('#detect_num_car').val());
             ons.notification.alert({
@@ -106,7 +106,7 @@ function changeCarStatus(id, status) {
             console.log(res.res);
             if (res.res.check == false) {
                 ons.notification.alert({
-                        message: "ไม่สารมารถยกเลิกใช้งานได้ จำเป็นต้องมีรถที่ใช้งานอย่างน้อย 1 คัน",
+                        message: "ไม่สารมารถหยุดใช้งานได้ จำเป็นต้องมีรถที่ใช้งานอย่างน้อย 1 คัน",
                         title: "ขออภัย",
                         buttonLabel: "ปิด"
                     })
