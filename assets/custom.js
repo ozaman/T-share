@@ -3,6 +3,7 @@ var array_data = [];
 var clock_h;
 
 function checkImgProfile(username){
+	console.log(username);
 	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
 	$.ajax({
 				url: url,
