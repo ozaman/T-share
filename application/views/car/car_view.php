@@ -7,7 +7,7 @@
    .img-car{
    		height: 60px;
 /*   		width: auto;*/
-		max-width: 100px;
+		max-width: 85px;
    }
    .btn-action-car{
    	    border: 1px solid #ccc;
@@ -77,7 +77,7 @@
 								         ?>
 								          <ons-radio <?=$this_status_usecar;?> class="radio-fruit" input-id="often-<?=$num;?>" value="<?=$num;?>" name="use_often" onclick="changeCarOften('<?=$row->id;?>');" ></ons-radio>
 								        </label>
-								        <label for="often-<?=$num;?>" class="center">ใช้คันนี้เป็นรถประจำ</label>
+								        <label for="often-<?=$num;?>" class="center">ใช้ประจำ</label>
                                  </td>
                               </tr> 
                               <tr>
@@ -152,11 +152,11 @@
                                  </td>
                               </tr>
                               <tr>
-                              	<td class="font-14">
+                              	<td class="font-16">
                               		<strong>เพิ่มเมื่อ</strong>
                               	</td>
-                              	<td class="font-14">
-                              		<?=date("Y-d-m h:i",$row->post_date);?>
+                              	<td class="font-16">
+                              		<?=date("Y-m-d h:i",$row->post_date);?>
                               	</td>
                               </tr>
                            </tbody>

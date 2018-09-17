@@ -155,8 +155,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลส่วนตัว
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="fn.pushPage({'id': 'pf.html', 'title': 'ข้อมูลส่วนตัว', 'key':'profile'}, 'lift-ios')">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;">บัญชีธนาคาร</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo();">ข้อมูลส่วนตัว</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -549,6 +549,26 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	            	<?php //include("application/views/page/profile_view.php"); ?>
 	            </div>
 	       
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+    
+    <template id="account_bank.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center">ข้อมูลรถ</div>
+            </ons-toolbar>
+	            <div id="body_account_bank">
+	            	
+	            </div>
+	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -1126,25 +1146,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     window.fn.pushPage = function(page, anim) {
         console.log(page);
-        if (page.key == "shop") {
-          /*  var url = "page/shop";
-            $.post(url,function(html){
-            	$('#body_popup1').html(html);
-            });*/
-        }else if(page.key == "transfer"){
-			var url = "page/transfer";
-			$('#check_open_worktbooking').val(1);
-            $.post(url,function(html){
-            	$('#transfer_job').html(html);
-            });
-		}else if(page.key == "profile"){
-			var url = "page/profile_edit";
-
-            $.post(url,function(html){
-            	$('#body_profile_view').html(html);
-            });
-		
-        }
         
         if(page.id=="option.html"){
 			console.log("option");
@@ -1254,7 +1255,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 },
                 animation: anim
             });
-        } else {
+        } 
+		else {
             document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
                     title: page.title
