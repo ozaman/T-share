@@ -18,7 +18,7 @@
 </style>
 <div style="padding: 0px;">
    <div style="padding: 10px 10px;">
-      <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();">เพิ่มรถ</ons-button>
+      <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();">เพิ่มข้อมูลรถ</ons-button>
    </div>
    <?php 
       //	$sql_car = "select * from web_car_all where drivername = '".$_COOKIE[detect_username]."' ";

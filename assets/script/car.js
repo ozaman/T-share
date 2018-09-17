@@ -24,7 +24,8 @@ function editCar(id) {
         path: "car/car_edit"
     }, function(ele) {
         $('#body_popup1').html(ele);
-        checkPicCar(id, '');
+        var icons = 1;
+        checkPicCar(id, '', icons);
     });
 }
 
@@ -522,8 +523,9 @@ function readURL(input, id, num, type) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id).fadeIn(200);
-                    $('#txt-img-has-' + id).show();
-                    $('#txt-img-nohas-' + id).hide();
+//                    console.log('.'+param_id+'_pic_car_'+num);
+                    $('.'+param_id+'_pic_car_'+num).attr('src', "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now());
+//                    iconsHasPic(1, "txt-img-has-"+num, "txt-img-nohas-"+num);
                 },
                 error: function(e) {
                     console.log(e)
@@ -546,7 +548,7 @@ function performClick(elemId) {
     }
 }
 
-function checkPicCar(id, checkcalledit) {
+function checkPicCar(id, checkcalledit, icons) {
     console.log(id)
     var p1 = '../data/pic/car/' + id + '_1.jpg?v=' + $.now();
     var p2 = '../data/pic/car/' + id + '_2.jpg?v=' + $.now();
@@ -563,6 +565,9 @@ function checkPicCar(id, checkcalledit) {
             $('.' + id + '_pic_car_1').attr('src', p1);
             $('.' + id + '_pic_car_1').show();
             $('#' + id + '_check_upload_1').val(1);
+            
+            iconsHasPic(icons, "txt-img-has-img_car_1", "txt-img-nohas-img_car_1");
+            
             if (checkcalledit != "") {
                 return;
             }
@@ -582,6 +587,7 @@ function checkPicCar(id, checkcalledit) {
             $('.' + id + '_pic_car_2').attr('src', p2);
             $('.' + id + '_pic_car_2').show();
             $('#' + id + '_check_upload_2').val(1);
+            iconsHasPic(icons, "txt-img-has-img_car_2", "txt-img-nohas-img_car_2");
             if (checkcalledit != "") {
                 return;
             }
@@ -601,12 +607,21 @@ function checkPicCar(id, checkcalledit) {
             $('.' + id + '_pic_car_3').attr('src', p3);
             $('.' + id + '_pic_car_3').show();
             $('#' + id + '_check_upload_3').val(1);
+            iconsHasPic(icons, "txt-img-has-img_car_3", "txt-img-nohas-img_car_3");
             if (checkcalledit != "") {
                 return;
             }
             $('#pv_img_car_3').attr('src', p3);
         }
     });
+}
+
+function iconsHasPic(icons, id1, id2){
+	if(icons>=1){
+		$('#'+id1).show();
+    	$('#'+id2).hide();
+	}
+	
 }
 
 function selectCarType(id) {

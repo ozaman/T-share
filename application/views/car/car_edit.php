@@ -149,7 +149,7 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -28px;
+    margin-left: -9px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
@@ -169,7 +169,7 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -28px;
+    margin-left: -9px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
@@ -189,7 +189,7 @@
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
-    margin-left: -28px;
+    margin-left: -9px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
