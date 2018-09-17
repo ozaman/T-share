@@ -1,3 +1,4 @@
+checkImgProfile($.cookie("detect_username"),1); 
 	 $.ajax({
 			url: '../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg',
 			type:'HEAD',
@@ -5,7 +6,7 @@
 			{
 			   console.log('Error file');
 //			   $('#idcard_img').hide();
-			   $('#pv_id_card').attr('src','images/ex_card/id_card.jpg');
+//			   $('#pv_id_card').attr('src','images/ex_card/id_card.jpg');
 			},
 			success: function()
 			{
@@ -25,7 +26,7 @@
 			{
 			   console.log('Error file');
 //			   $('#iddriving_img').hide();
-			   $('#pv_id_driving').attr('src','images/ex_card/id_driving.jpg');
+//			   $('#pv_id_driving').attr('src','images/ex_card/id_driving.jpg');
 			},
 			success: function()
 			{

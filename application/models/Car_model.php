@@ -79,8 +79,9 @@ class Car_model extends CI_Model {
   	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" ');
 	$check = $query->num_rows();
 		if($check==1){
+			$data[status_usecar] = 1;
 			$this->db->where('drivername', $_POST[driver_id]);
-			$car[result] = $this->db->update('web_carall', $car); 
+			$car[result] = $this->db->update('web_carall', $data); 
 			$car[driver] = $_POST[driver_id];
 		}else{
 			$car[driver] = $_POST[driver_id];

@@ -49,10 +49,19 @@ function changeCarOften(id){
 }
 
 function changeCarStatus(id,status){
-//	modal.show();
+	
+	modal.show();
 	console.log(id);
 	if(status==0){
 		var messages = "ยกเลิกใช้รถคันนี้แล้ว";
+		if($('#detect_num_car').val()==1){
+			alert($('#detect_num_car').val());
+			ons.notification.alert({message: "ไม่สารมารถยกเลิกใช้งานได้ เนื่องจากคุณมีรถคันเดียว" ,title:"ขออภัย", buttonLabel:"ปิด"})
+  				.then(function() { 
+  					modal.hide();
+  				});
+  		    return;
+		}
 	}else{
 		var messages = "เปิดใช้รถคันนี้แล้ว";
 	}
@@ -72,7 +81,7 @@ function changeCarStatus(id,status){
                
                	ons.notification.alert({message: messages ,title:"สำเร็จ", buttonLabel:"ปิด"})
   				.then(function() { 
-//  					modal.hide();
+  					modal.hide();
   					var url = "page/call_page?checkcalledit=1";
 							  $.post(url,{ path : "car/car_view" },function(ele){
 							   $('#body_car_manage').html(ele);
@@ -398,9 +407,9 @@ function performClick(elemId){
 
 function checkPicCar(id,checkcalledit){
       	console.log(id)
-      	var p1 = '../data/pic/car/'+id+'_1.jpg';
-      	var p2 = '../data/pic/car/'+id+'_2.jpg';
-      	var p3 = '../data/pic/car/'+id+'_3.jpg';
+      	var p1 = '../data/pic/car/'+id+'_1.jpg?v='+$.now();
+      	var p2 = '../data/pic/car/'+id+'_2.jpg?v='+$.now();
+      	var p3 = '../data/pic/car/'+id+'_3.jpg?v='+$.now();
 	  	var src = p1;
 			$.ajax({
 				url: src,

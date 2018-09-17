@@ -2,7 +2,7 @@ var array_data = [];
 //startTimeHome();
 var clock_h;
 
-function checkImgProfile(username){
+function checkImgProfile(username,pf){
 	console.log(username);
 	var url = "../data/pic/driver/small/"+username+".jpg?v="+$.now();
 	$.ajax({
@@ -15,12 +15,16 @@ function checkImgProfile(username){
 				success: function()
 				{
 					console.log('Success Profile');
+					if(pf==1){
+						$('#pv_profile').attr('src',url);
+						return;
+					}
 					$('.shotcut-profile').attr('src',url);
-					$('.profile-pic').attr('src',url);
+					$('.profile-pic img').attr('src',url);
 				}
 			});
 }	
-checkImgProfile($.cookie("detect_username"));
+checkImgProfile($.cookie("detect_username"),0);
         
 function startTimeHome() {
     var today = new Date();
