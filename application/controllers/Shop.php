@@ -89,6 +89,10 @@ public function editadult()
 		$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('invoice' => $_POST[invoice]), '');
 		$this->load->view('shop/detail_shop_his',$data);
 	}
+	public function car_count(){
+		$data = $this->Shop_model->car_count();
+		echo $data;
+	}
 
 
 		

@@ -108,7 +108,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </ons-navigator>
 
     <template id="tabbar.html">
-        <ons-page id="tabbar-page">
+        <ons-page id="tabbar-page tabbar_page">
             <ons-toolbar>
                 <div class="left">
                     <ons-toolbar-button onclick="fn.toggleMenu()">
@@ -613,7 +613,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				    </ons-tab>
 				    <ons-tab  page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
-				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
+				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" badge="0">
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>
