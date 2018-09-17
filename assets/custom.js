@@ -586,7 +586,7 @@ function myAccountBank() {
     }, 'slide-ios');
     var url = "page/call_page";
     $.post(url, {
-            path: "account/bank_view"
+            path: "bank/bank_view"
         }, function(ele) {
             $('#body_account_bank').html(ele);
         });

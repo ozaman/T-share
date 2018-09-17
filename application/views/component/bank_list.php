@@ -4,7 +4,7 @@
 	
 	foreach($_POST[data] as $val){ 
 	?>
-		<ons-list-item id="item_user_province_<?=$val[id];?>" class="list-item" onclick="selectUserProvince('<?=$val[id];?>','<?=$val[code];?>');" data-name="<?=$val[name_th];?>">
+		<ons-list-item id="item_bank_list_<?=$val[id];?>" class="list-item" onclick="selectBankList('<?=$val[id];?>');" data-name="<?=$val[name_th];?>">
 	            <div class="left list-item__left">
 	                <!--<img class="list-item__thumbnail" src="https://placekitten.com/g/54/41">-->
 	                <!--<span class="brand-small list-item__thumbnail" style="<?=$img_pos;?>" ></span>-->
