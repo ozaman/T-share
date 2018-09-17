@@ -14,10 +14,11 @@ class Bank_model extends CI_Model {
 	 	
 		$bank[result] = $this->db->insert('web_bank_driver', $bank);
 		$last_id_bank = mysql_insert_id();
-		$return[last_id] = $last_id_car;
+		$return[last_id] = $last_id_bank;
 		$return[data] = $bank;
+		$return[rand] = $_POST[rand];
 
-		$return[p1] = rename("../data/pic/car/".$_POST[rand]."_1.jpg", "../data/pic/car/".$last_id_bank.".jpg");
+		$return[p] = rename("../data/pic/driver/book_bank/".$_POST[rand].".jpg", "../data/pic/driver/book_bank/".$last_id_bank.".jpg");
 		
 		return $return;
   }
