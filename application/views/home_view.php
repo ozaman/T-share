@@ -74,9 +74,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
       console.log(detect_mb+" : "+class_user+" : "+username);
 	  if(username=="" || typeof username == 'undefined'){
 //	  		window.location = "signin";
-			$.cookie("detect_user",'466');
+			$.cookie("detect_user",'467');
 			$.cookie("detect_userclass",'taxi');
-			$.cookie("detect_username",'PKT466');
+			$.cookie("detect_username",'PKT467');
 			location.reload();
 	  }else{
 	  		username = username.toUpperCase();

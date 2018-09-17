@@ -29,5 +29,11 @@ public function change_status_car(){
   		header('Content-Type: application/json');
   		echo json_encode($data);
 	}
+public function check_num_car(){
+		$data['res'] = $this->Car_model->running_single_often_car();
+  		header('Content-Type: application/json');
+  		echo json_encode($data);
+	}	
+	
 }
 ?>

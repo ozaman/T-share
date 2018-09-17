@@ -198,4 +198,7 @@
 <div style="padding: 10px; margin-bottom: 10px;">
 	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitEditCar();" style="background-color: #fff;">แก้ไขรถ</ons-button>
 </div>
-</form>    
+</form>  
+<input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_1" />  
+<input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_2" />  
+<input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_3" />  

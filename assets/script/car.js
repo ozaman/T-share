@@ -1,5 +1,5 @@
 function addCar(){
-	fn.pushPage({'id': 'popup1.html', 'title': 'เพิ่มรถข้อมูลรถ'}, 'lift-ios')
+	fn.pushPage({'id': 'popup1.html', 'title': 'เพิ่มข้อมูลรถ'}, 'lift-ios')
 	 var url = "page/call_page";
     $.post(url,{ path : "car/car_add" },function(ele){
     	$('#body_popup1').html(ele);
@@ -191,6 +191,12 @@ function submitAddCar(){
 					  .notification.alert({message: 'เพิ่มรถสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
 					  .then(function() {
 					    	 modal.hide();
+					    	 
+					    	 var url = "page/call_page";
+							  $.post(url,{ path : "car/car_view" },function(ele){
+							   $('#body_car_manage').html(ele);
+							   $('ons-back-button').click();
+							});
 					  });
 
 			   }else{
@@ -264,7 +270,15 @@ function submitEditCar(){
 					  });
 			return;		  
 		}
-		/*if($('#img_car_2').val()==""){
+		if($('#'+$('#id_carall').val()+'_check_upload_1').val()==0){
+			ons
+					  .notification.alert({message: 'กรุณาอัพโหลดภาพหน้ารถ',title:"ข้อมูลไม่สมบูรณ์",buttonLabel:"ปิด"})
+					  .then(function() {
+					    	 modal.hide();
+					  });
+			return;
+		}
+		if($('#'+$('#id_carall').val()+'_check_upload_2').val()==0){
 			ons
 					  .notification.alert({message: 'กรุณาอัพโหลดภาพข้างรถ',title:"ข้อมูลไม่สมบูรณ์",buttonLabel:"ปิด"})
 					  .then(function() {
@@ -272,14 +286,14 @@ function submitEditCar(){
 					  });
 			return;
 		}
-		if($('#img_car_3').val()==""){
+		if($('#'+$('#id_carall').val()+'_check_upload_3').val()==0){
 			ons
 					  .notification.alert({message: 'กรุณาอัพโหลดภาพในรถ',title:"ข้อมูลไม่สมบูรณ์",buttonLabel:"ปิด"})
 					  .then(function() {
 					    	 modal.hide();
 					  });
 			return;		  
-		}*/
+		}
 		modal.show();
 		
 		var data = new FormData($('#form_editcar')[0]);
@@ -343,6 +357,7 @@ function readURL(input, id, num, type) {
 					var param_id = $('#rand').val();
 				}else{
 					var param_id = $('#id_carall').val();
+					$('#'+id+'_check_upload_'+num).val(1);
 				}
       			var url_upload = "application/views/upload_img/upload.php?id="+param_id+"&type=car_img&num="+num;
       			console.log(url_upload);
@@ -399,6 +414,7 @@ function checkPicCar(id,checkcalledit){
 				{
 					$('.'+id+'_pic_car_1').attr('src',p1);
 					$('.'+id+'_pic_car_1').show();
+					$('#'+id+'_check_upload_1').val(1);
 					if(checkcalledit!=""){
 						return;
 					}
@@ -419,6 +435,7 @@ function checkPicCar(id,checkcalledit){
 //					$('#'+id+'_pic_car_2').show();
 					$('.'+id+'_pic_car_2').attr('src',p2);
 					$('.'+id+'_pic_car_2').show();
+					$('#'+id+'_check_upload_2').val(1);
 					if(checkcalledit!=""){
 						return;
 					}
@@ -439,6 +456,7 @@ function checkPicCar(id,checkcalledit){
 //					$('#'+id+'_pic_car_3').show();
 					$('.'+id+'_pic_car_3').attr('src',p3);
 					$('.'+id+'_pic_car_3').show();
+					$('#'+id+'_check_upload_3').val(1);
 					if(checkcalledit!=""){
 						return;
 					}

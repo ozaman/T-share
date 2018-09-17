@@ -52,7 +52,7 @@
 			}
          ?>
          
-      <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 20px;">
+      <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 10px;">
          <ons-card class="card">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                <tbody>

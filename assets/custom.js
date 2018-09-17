@@ -568,14 +568,18 @@ function pay(){
 }
 
 function myCar(){
-	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'slide-ios')
-  var url = "page/call_page";
-  $.post(url,{ path : "car/car_view" },function(ele){
-   $('#body_car_manage').html(ele);
-});
+	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'slide-ios');
+	
+	$.post("car/check_num_car",{ driver_id : $.cookie("detect_user") },function(res){
+		console.log(res);
+	  	var url = "page/call_page";
+		  $.post(url,{ path : "car/car_view" },function(ele){
+		   $('#body_car_manage').html(ele);
+		});
+	});
 }
 function contrac_us(){
-	fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'slide-ios')
+	fn.pushPage({'id': 'contract_us.html', 'title': 'ติดต่อเรา'}, 'slide-ios');
   var url = "page/contrac_us";
 
   $.post(url,function(html){
