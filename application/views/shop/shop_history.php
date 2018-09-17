@@ -50,7 +50,8 @@
 </style>
 
 <?php 
-echo $result = json_decode($his);
+ $result = $his;
+ echo print_r($result);
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
     if($_POST[type]=="his"){
