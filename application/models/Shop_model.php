@@ -42,7 +42,7 @@ class Shop_model extends CI_Model {
 		$data["check_use_car_id"] = $_POST[check_use_car_id];
 		$data["adult"] = $_POST[adult];
 		$data["child"] = $_POST[child];
-		// $data["phone"] = $_POST[dri_phone];
+		$data["phone"] = $_POST[dri_phone];
 //		$data["nation"] = $_POST[nation];
 		$data["booking_by"] = $_GET[driver];
 //		$data["payment_type"] = $_POST[payment_type];
