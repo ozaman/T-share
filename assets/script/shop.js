@@ -833,7 +833,7 @@ document.addEventListener('prechange', function(event) {
         console.log($.cookie("detect_userclass"))
         var pass = {
             date: date,
-            driver : $.cookie("detect_username"),
+            driver : $.cookie("detect_user"),
             type : 'his'
         };
         console.log(pass);
