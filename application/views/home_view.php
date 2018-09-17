@@ -1248,6 +1248,21 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	             }
 	        	});
 			}
+			else if(page.open=="bank_list"){
+				$.ajax({
+	            url: "main/data_bank_list", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_user_province?type=user",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
 		}
         if (anim) {
             document.getElementById('appNavigator').pushPage(page.id, {
