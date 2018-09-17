@@ -298,12 +298,12 @@ else if($arr[book][status]=='CONFIRM'){
 			<?=$full_name_driver;?></td>
 		  </tr>
 		  <tbody>
-		    <tr>
+		    <!-- <tr>
 		      <td  width="100" class="font-16"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
 		      <td class="font-16"><? echo $res_od->car_type; ?></td>
-		     <!-- <td width="30" class="font-16"><font color="#333333"><?=t_car_coloring;?></font></td>
-		      <td class="font-16"><?=$car_color;?></td>-->
-		    </tr>
+		    
+		      <td class="font-16"><?=$car_color;?></td>
+		    </tr> -->
 		    <tr>
 		      <td   width="100"  class="font-16"><font color="#333333"><?=t_car_registration_number;?></font></td>
 		      <td colspan="3" class="font-16"><?=$res_od->car_plate;?></td>

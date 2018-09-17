@@ -19,7 +19,7 @@
 /*    background-color: #fff;*/
     color: #fb0006;
 }
-.time-post-shop {
+.time-post-shop-his {
        border-radius: 8px 8px 0 8px;
     margin-right: 10px;
     border: 1px solid #333;
@@ -159,7 +159,7 @@
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val->id;?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val->id;?>" onclick="editTimeToPlace('<?=$val->id;?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
-            <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val->id;?>">-</span>
+            <span class="font-14 time-post-shop-his" id="txt_date_diff_<?=$val->id;?>">-</span>
        
             </td>
             
