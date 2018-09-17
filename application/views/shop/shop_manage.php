@@ -95,7 +95,7 @@
   <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
-    <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>');">
+    <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
             <td width="20%" align="center" rowspan="2">

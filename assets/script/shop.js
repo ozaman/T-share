@@ -289,6 +289,58 @@ checkPhotoCheckIn('driver_pay_report', obj.id);
     $('#check_open_shop_id').val(detailObj.id);
 }
 
+
+function openDetailBookinghistory(key, type,invoice) {
+    
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': invoice
+    }, 'slide-ios');
+   
+    var url = "shop/detail_shop_his";
+    var param = {
+            user_id: $.cookie("detect_user"),
+            invoice : invoice,
+        };
+        console.log(param);
+        $.ajax({
+            url: url,
+            data: param,
+            type: 'post',
+            success: function(res) {
+                 console.log(res);
+                $('#body_popup1').html(res);
+            }
+        });
+    // $.post(url, function(data) {
+    //     $('#body_popup1').html(data);
+//        var obj = JSON.parse('<?=json_encode($_POST);?>');
+// var obj = detailObj;
+// console.log(obj);
+// if(obj.check_driver_topoint==1){
+//     console.log("driver_topoint");
+//     changeHtml("driver_topoint",obj.id,timestampToDate(obj.driver_topoint_date,"time"));
+// }
+// if(obj.check_guest_receive==1){
+//     console.log("guest_receive");
+//     changeHtml("guest_receive",obj.id,timestampToDate(obj.guest_receive_date,"time"));
+// }
+// if(obj.check_guest_register==1){
+//     console.log("guest_register");
+//     changeHtml("guest_register",obj.id,timestampToDate(obj.guest_register_date,"time"));
+// }
+// if(obj.check_driver_pay_report==1){
+//     console.log("driver_pay_report");
+//     changeHtml("driver_pay_report",obj.id,timestampToDate(obj.driver_pay_report_date,"time"));
+// }
+// checkPhotoCheckIn('driver_topoint', obj.id);
+// checkPhotoCheckIn('guest_receive', obj.id);
+// checkPhotoCheckIn('guest_register', obj.id);
+// checkPhotoCheckIn('driver_pay_report', obj.id);
+// });
+    // $('#check_open_shop_id').val(detailObj.id);
+}
+
 function viewPhotoShop(id,action, time){
 	fn.pushPage({
         'id': 'popup2.html',
