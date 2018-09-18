@@ -882,7 +882,7 @@ function timestampToDate(unix_timestamp,type){
  }
 
  /******* <!-------- function Income ------------> *******/
- function openViewPrice(id){
+function openViewPrice(id){
    fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "รายได้"
@@ -892,4 +892,28 @@ function timestampToDate(unix_timestamp,type){
    $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
        $('#body_shop_checkin').html(ele);
    });
+}
+function ex_booking(){
+    var url = "shop/shop_history";
+  console.log(moment().format('YYYY-MM-DD'))
+        console.log($.cookie("detect_userclass"))
+        var pass = {
+            date: $('#ex_booking').val(),
+            driver : $.cookie("detect_user"),
+            type : 'his'
+        };
+        console.log(pass);
+        $.ajax({
+            url: url,
+            data: pass,
+            type: 'post',
+            success: function(res) {
+                 console.log(res);
+                $('#shop_history').html(res);
+            }
+        });
+   console.log($('#ex_booking').val())
+// dateInput.addEventListener('change', function(e) {
+//   console.log(e.target.value);
+// }); 
 }

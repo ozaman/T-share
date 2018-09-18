@@ -615,11 +615,18 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_shop">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab page="shop_manage.html" label="จัดการ" badge="0" >
+				    <ons-tab page="shop_manage.html" label="จัดการ"  >
+                         <span class="notification none" id="num_manage" style="    float: right;
+    margin-top: 15px;
+    right: 25%;"></span>
+
 				    </ons-tab>
 				    <ons-tab  page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
-				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" badge="0">
+				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
+                        <span class="notification none" id="num_his" style="float: right;
+    margin-top: 15px;
+    right: 10%;"></span>
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>
@@ -647,7 +654,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             </div>
             <script>
                 ons.getScriptPage().onInit = function() {
-			    $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
+                    console.log($('#number_shop').text())
+			    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
 			    window.fn.showDialog = function(id) {
 			        var elem = document.getElementById(id);
 			        if (id === 'popover-dialog') {
