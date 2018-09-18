@@ -404,13 +404,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</ons-page>
 				
 				<template id="shop_manage.html">
-				  <ons-page id="shop_manage" style="overflow-y: scroll;">
+				  <ons-page id="shop_manage">
 				    
 				  </ons-page>
 				</template>
 
 				<template id="shop_add.html">
-				  <ons-page id="shop_add" style="overflow-y: scroll;">
+				  <ons-page id="shop_add">
 				   <div>
 				   		<!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
 				   </div>
