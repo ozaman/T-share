@@ -226,7 +226,13 @@ socket.on('getbookinglab', function(data) {
         //			$('#circle_icon_shop').removeClass("btn-floating pulse pd-5");
     }
     $('#number_shop').text(done.length);
-    $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
+    if ($('#number_shop').text() != 0) {
+        $('#num_manage').show();
+        $('#num_manage').html($('#number_shop').text());
+    }
+    
+
+    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
     if ($('#check_open_workshop').val() == 1) {
         if (shop_frist_run == 0) {
             shop_frist_run = done.length;
@@ -499,7 +505,11 @@ setTimeout(function() {
             type: 'post',
             success: function(res) {
                  console.log(res);
-                $('ons-tab[page="shop_history.html"]').attr('badge', res);
+                 if (res != 0) {
+        $('#num_his').show();
+        $('#num_his').html(res);
+    }
+                // $('ons-tab[page="shop_history.html"]').attr('badge', res);
             }
         });
         setTimeout(function() {
