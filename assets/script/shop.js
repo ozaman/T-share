@@ -3,9 +3,10 @@ if (class_user == 'lab') {
 } else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
+
 function checformadd(tax){
-   var form = document.getElementById("form_booking");
-   if (tax == 'nation_box') {
+  var form = document.getElementById("form_booking");
+  if (tax == 'nation_box') {
      $('#'+tax).removeClass('borderBlink')
      if(form.elements["adult"].value == 0){
      }
@@ -50,7 +51,39 @@ if (tax == 'box_com') {
     }
 }
 }
+var rad = document.form_booking.nation;
+function handleClick(tax,name){
+    console.log(tax)
+    console.log(name)
+    console.log('#'+tax+name)
+    if (tax == 'nation') {
+        if (name == 1) {
+            $('#'+tax+'_'+name).addClass('cus_focus')
+            $('#'+tax+'_'+2).removeClass('cus_focus')
+            $('#'+tax+'_'+3).removeClass('cus_focus')
+        }
+        if (name == 2) {
+            $('#'+tax+'_'+name).addClass('cus_focus')
+            $('#'+tax+'_'+1).removeClass('cus_focus')
+            $('#'+tax+'_'+3).removeClass('cus_focus')
+        }
+        if (name == 3) {
+            $('#'+tax+'_'+name).addClass('cus_focus')
+            $('#'+tax+'_'+1).removeClass('cus_focus')
+            $('#'+tax+'_'+2).removeClass('cus_focus')
+        }
+    }
+    if (tax == 'car') {
+        $('.box_car').removeClass('cus_focus')
+        $('#div_car_'+name).addClass('cus_focus')
+    }
+    
 
+}
+// ons-tab[page="shop_history.html"]
+$('ons-tab[name=nation]').focus(function() {
+    alert('aaaa')
+})
 function editBook(x){
    console.log(x)
    $('#text_edit_persion').show()
@@ -149,13 +182,13 @@ if ($('#adult').val() == "" ) {
     .then(function() {
         $('#adult').focus();
     });
-    
+
     return false;
 }
 $('#adult').val(parseInt($('#adult').val()))
 console.log(parseInt($('#adult').val()))
 if ( parseInt($('#adult').val()) <= 0) {
-    
+
     ons.notification.alert({
         message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
         title: "ข้อมูลไม่ครบ",
@@ -164,7 +197,7 @@ if ( parseInt($('#adult').val()) <= 0) {
     .then(function() {
      $('#adult').focus();
  });
-    
+
     return false;
 }
 var time_num = document.getElementById("form_booking");
@@ -240,7 +273,7 @@ function saveShop() {
                             beforeSend: function() {},
                             success: function(response) {
                                 console.log(response);
-                                
+
                                 if (response.result == true) {
                                     var url2 = "shop/shop_pageadd";
                                     $.post(url2,function(ele2){
@@ -259,8 +292,8 @@ function saveShop() {
                 //     .then(function() {
                 //         console.log('********************')
                 //         // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
-                
-                
+
+
                 //     });
                 $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
                     driver: $.cookie("detect_user"),
@@ -338,12 +371,12 @@ checkPhotoCheckIn('driver_pay_report', obj.id);
 
 
                     function openDetailBookinghistory(key, type,invoice) {
-                        
+
                         fn.pushPage({
                             'id': 'popup1.html',
                             'title': invoice
                         }, 'slide-ios');
-                        
+
                         var url = "shop/detail_shop_his";
                         var param = {
                             user_id: $.cookie("detect_user"),
@@ -447,7 +480,7 @@ function openPointMaps(type,id){
    //  'z-index: 100'})
 }
 });
-    
+
 }
 
 function checkPhotoCheckIn(type, id){
@@ -506,15 +539,15 @@ function submitCancel() {
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
                 var urlx = "shop/shop_manage";
-                
-                
-                
+
+
+
                 $.post(urlx, function(res) {
             // this.popPage('popup1.html');
             appNavigator.popPage()
             $('#shop_manage').html(res);
         });
-                
+
             });
             $('#btn_cancel_book_' + order_id).hide();
             /*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;

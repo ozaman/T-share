@@ -82,6 +82,7 @@ $data_place = $query_place->row();
               </table>
             </div>
             <div class="card">
+              <input type="hidden" name="" id="numcar" value="<?=count($val);?>">
               <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
               <!--<div></div>-->
               <!--<span >เลือกรถส่งแขก</span>-->
@@ -89,15 +90,24 @@ $data_place = $query_place->row();
                 <?php
 
           // echo json_encode($query->result());
-                foreach ($query->result() as $val) {
+          $i =1;
+                foreach ($query->result() as $key=>$val) {
+
 
                   $bg_plate_color = "background-color: ".$val->plate_color;
 //          $text_plate_color = "background-color: ".$val->txt_color;
                   ?>
 
-                  <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');">
+                  <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
                     <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
-                    <table width="100%" border="0" id="div_car_<?=$val->id; ?>" style="border: 0px solid #ddd;">
+                    <?php if($val->status_usecar == 1){
+                      $calss_box = 'cus_focus';
+                    }
+                    else{
+                      $calss_box = '';
+                    }
+                                ?>
+                    <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
                       <tbody>
                         <tr>
                           <td width="30">
@@ -109,12 +119,12 @@ $data_place = $query_place->row();
                                 <script>
                                   selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
                                 </script>
-                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" checked></ons-radio>
+                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" checked  ></ons-radio>
 
                               <?php }
                               else{
                                 ?>
-                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" ></ons-radio>
+                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"  ></ons-radio>
 
 
                               <?php }
@@ -142,7 +152,9 @@ $data_place = $query_place->row();
                         </tbody>
                       </table>
                     </a>    
-                  <?php  }
+                  <?php  
+                  $i++;
+                }
                   ?>
 
                 </div>
@@ -195,30 +207,30 @@ $data_place = $query_place->row();
         <div class="form-group">
                   <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
                   <!-- <span class="font-18"></span> -->
-                  <ons-list-item tappable>
+                  <ons-list-item tappable id="nation_1">
                    <label class=" left">
                     <!--<ons-checkbox class="checkbox-color" name="persion_china" input-id="persion_china" value="0" onclick="selectnation(1)"></ons-checkbox>-->
-                    <ons-radio class="radio-fruit" input-id="radio-nation1" value="1" name="nation" ></ons-radio>
+                    <ons-radio class="radio-fruit" input-id="radio-nation1" value="1" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
                   </label>
                   <label class="center" for="radio-nation1">
                     <img src="assets/images/flag/China.png" width="25" height="25" alt="">&nbsp; <span>แขกจีน</span>
                   </label>
                 </ons-list-item>
 
-                <ons-list-item tappable>
+                <ons-list-item tappable id="nation_2">
                   <label class="left">
                     <!--<ons-checkbox class="checkbox-color" name="persion_other" input-id="persion_other" value="0" onclick="selectnation2(1)"></ons-checkbox>-->
-                    <ons-radio class="radio-fruit" input-id="radio-nation2" value="2" name="nation"></ons-radio>
+                    <ons-radio class="radio-fruit" input-id="radio-nation2" value="2" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
                   </label>
                   <label class="center" for="radio-nation2">
                     <img src="assets/images/flag/Other.png" width="25" height="25" alt="">&nbsp; <span>ต่างชาติ</span>
                   </label>
                 </ons-list-item>
 
-                <ons-list-item tappable>
+                <ons-list-item tappable id="nation_3">
                   <label class="left">
                     <!--<ons-checkbox class="checkbox-color" name="persion_other" input-id="persion_other" value="0" onclick="selectnation2(1)"></ons-checkbox>-->
-                    <ons-radio class="radio-fruit" input-id="radio-nation3" value="2" name="nation"></ons-radio>
+                    <ons-radio class="radio-fruit" input-id="radio-nation3" value="3" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
                   </label>
                   <label class="center" for="radio-nation3">
                     <img src="assets/images/flag/China.png" width="25" height="25" alt=""> + <img src="assets/images/flag/Other.png" width="25" height="25" alt="">&nbsp;
