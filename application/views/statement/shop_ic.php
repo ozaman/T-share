@@ -27,7 +27,7 @@
               <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
             </div>
             <div class="center list-item__center" style="background-image: none;">
-                 <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
+                 <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'เดือน', 'open':'month'}, 'lift-ios')">
 	                <span id="txt_user_province" style="color: #000;margin-left: 0px;" >เดือน <?=$thai_month_arr[date("n",time())]." "."พ.ศ.".(date("Yํ",time())+543);?></span>
 	                 <input type="hidden" name="province" id="province" value="" />
 	            </label>
