@@ -353,11 +353,45 @@ function viewPhotoShop(id,action, time){
     });
 }
 
-function openPointMaps(){
+function openPointMaps(type,id){
+    console.log(id)
+    console.log(type)
+    var title = '';
+    if (type == 'driver_topoint') {
+        title = 'ตำแหน่งถึงสถานที่ส่งแขก'
+    }
+    else if(type == 'guest_register'){
+        title = 'ตำแหน่งแขกลงทะเบียน'
+
+    }
+    else if(type == 'guest_receive'){
+        title = 'ตำแหน่งพนักงานรับแขก'
+
+    }
+    // else if(type == 'driver_pay_report'){
+    //     // title = 'ตำแหน่งแจ้งยอดรายได้'
+
+    // }
 	fn.pushPage({
         'id': 'popup2.html',
-        'title': 'ตำแหน่งที่ยืนยัน'
+        'title': title
     }, 'fade-md');
+    var url = "maps/map_shop_checkin";
+    var param = {
+            order_id : id,
+            type : type,
+        };
+        console.log(param);
+        $.ajax({
+            url: url,
+            data: param,
+            type: 'post',
+            success: function(res) {
+                 // console.log(res);
+                $('#body_popup2').html(res);
+            }
+        });
+   
 }
 
 function checkPhotoCheckIn(type, id){
