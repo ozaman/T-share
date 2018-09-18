@@ -5,13 +5,24 @@
    	    background-color: #fff;
    	    box-shadow: 1px 1px 3px #cacaca;
    }
+   .logo-bank{
+   	width: 50px; 
+   	box-shadow: 1px 2px 3px #9E9E9E; 
+   	border-radius: 10px;
+   }
+   .bookbank-img{
+   	height: 60px; 
+   	width: 100px; 
+   	border: 1px solid #eee; 
+   	box-shadow: 1px 1px 3px #ccc;
+   }
 </style>
 <div style="padding: 10px 10px;">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addBank();">เพิ่มข้อมูลบัญชี</ons-button>
 </div>
 
 <?php 
-		$sql = "SELECT t1.*,t2.name_th as bank_list FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
+		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
       	$num = 0;
       	foreach($query_bank->result()  as $row){ 
@@ -66,7 +77,7 @@
 												<button type="button" class="button btn-action-bank" onclick="changeBankStatus('<?=$row->id;?>',1)" style="width:100%">
 			                                       <center>
 			                                          <div class="font-30"><i class="fa fa-times " style="color:#ff0000;"></i></div>
-			                                          <span style="padding-bottom:20px;" class="font-16">  ปิดใช้งาน  </span>
+			                                          <span style="padding-bottom:20px;" class="font-16">  หยุดใช้งาน  </span>
 			                                       </center>
 			                                    </button>
 										<?php }
@@ -79,7 +90,9 @@
 						<td>
 							<table width="100%" border="0" cellspacing="2" cellpadding="2">
 							   <tbody>
+							   	  <tr>
 							   	  
+							   	  </tr>
 							   	  <tr>
 							         <td width="80" class="font-16 "><strong>ชื่อบัญชี</strong></td>
 							         <td>
@@ -110,7 +123,14 @@
 							      </tr>../data/pic/driver/book_bank/<?=$row->id;?>.jpg-->
 							      <tr>
 							   	  	<td colspan="2">
-							   	  		<img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" style="    height: 70px; width: 120px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" />
+							   	  		<table width="100%">
+							   	  			<tr>
+							   	  				<td><img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" class="bookbank-img" /></td>
+							   	  				<td width="70" align="center"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" /></td>
+							   	  			</tr>
+							   	  		</table>
+							   	  		
+							   	  		
 							   	  	</td>
 							   	  </tr>
 							   </tbody>

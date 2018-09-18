@@ -211,13 +211,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_acc');">
                         บัญชี
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;">รายรับ</div>
-                    <div class="expandable-content" style="padding-left: 60px;">ธนาคาร</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
+                    <div class="expandable-content" style="padding-left: 60px;">รายจ่าย</div>
                     <div class="right arr" id="list_acc">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน','key':'contract_us'}, 'lift-ios')">
+                <ons-list-item onclick="reference();">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;"></i></span>
                     </div>
@@ -292,7 +292,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     <template id="home.html">
         <ons-page>
-            <?php include("application/views/main_body_view.php"); ?>
+            <?php 
+//            include("application/views/main_body_view.php"); 
+            $this->load->view('main_body_view');
+            ?>
+            
         </ons-page>
     </template>
 
@@ -401,13 +405,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</ons-page>
 				
 				<template id="shop_manage.html">
-				  <ons-page id="shop_manage" style="overflow-y: scroll;">
+				  <ons-page id="shop_manage">
 				    
 				  </ons-page>
 				</template>
 
 				<template id="shop_add.html">
-				  <ons-page id="shop_add" style="overflow-y: scroll;">
+				  <ons-page id="shop_add">
 				   <div>
 				   		<!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
 				   </div>
@@ -685,7 +689,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <div class="center"></div>
             </ons-toolbar>
             <div id="body_qrcode">
-            	<?php include("application/views/page/qrcode_ref.php"); ?>
+            	<?php 
+//            	include("application/views/page/qrcode_ref.php"); 
+				$this->load->view('page/qrcode_ref');
+				?>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -706,7 +713,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <div class="center"></div>
             </ons-toolbar>
             <div id="body_line">
-                <?php include("application/views/page/line_noti.php"); ?>
+                <?php 
+//                include("application/views/page/line_noti.php"); 
+				  $this->load->view('page/line_noti');
+                ?>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -715,7 +725,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
-  <template id="contract_us.html">
+
+  	<template id="contract_us.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -733,6 +744,55 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
+
+	<template id="income.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button >กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_transfer">
+            	<ons-page>
+				  <ons-tabbar swipeable position="top">
+				    <ons-tab id="tab-shop_ic" page="shop_ic.html" label="ส่งแขก" active  >
+				    </ons-tab>
+				    <ons-tab id="tab-transfer_ic" page="transfer_ic.html" label="ให้บริการรถ">
+				    </ons-tab>
+				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
+				    </ons-tab>-->
+				  </ons-tabbar>
+				</ons-page>
+
+				<template id="shop_ic.html">
+				  <ons-page id="shop_ic">
+				    	
+				  </ons-page>
+				</template>
+
+				<template id="transfer_ic.html">
+				  <ons-page id="transfer_ic">
+				   	
+				  </ons-page>
+				</template>
+			
+				<script>
+					document.addEventListener('prechange', function(event) {
+						
+				  document.querySelector('ons-toolbar .center')
+				    .innerHTML = event.tabItem.getAttribute('label');
+				});
+				</script>
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+	
     <template id="place_company.html">
         <ons-page>
             <ons-toolbar>

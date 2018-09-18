@@ -117,23 +117,24 @@
             </label>
         </ons-list-item>
        
-        <ons-list-item class="input-items list-item p-l-0" style="padding: 3.5px 0px;">
+        <ons-list-item class="input-items list-item p-l-0" >
         	<div class="left list-item__left">
-                 <i class="fa fa-venus-mars list-item__icon" aria-hidden="true" style="padding-left: 3px;"></i><span class="txt-important">*</span>
+                 
+                 <ons-icon icon="fa-venus-mars" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
            
-            	<ons-list-item tappable onclick="selectGender(0);" style="border-bottom: 1px solid #ccc;">
+            	<ons-list-item tappable onclick="selectGender(0);" style="border-bottom: 0px solid #ccc;">
 		        <label class="left">
-		          <!--<ons-checkbox class="checkbox-color rcp" input-id="checkbox-0"  <?=$ck_men;?>></ons-checkbox>-->
+		          
 		          <ons-radio class="radio-fruit" input-id="radio-man" value="0" name="check" <?=$ck_men;?>></ons-radio>
 		        </label>
 		        <label class="center" for="radio-man" style="background-image: unset;">
 		          ชาย
 		        </label>
 		      </ons-list-item>
-		        <ons-list-item tappable onclick="selectGender(1);" style="border-bottom: 1px solid #ccc;">
+		        <ons-list-item tappable onclick="selectGender(1);" style="border-bottom: 0px solid #ccc;">
 		        <label class="left">
-		         <!-- <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1"    ></ons-checkbox>-->
+		        
 		         <ons-radio class="radio-fruit" input-id="radio-girl" value="1" name="check" <?=$ck_girl;?>></ons-radio>
 		        </label>
 		        <label class="center" for="radio-girl" style="background-image: unset;">
@@ -186,6 +187,7 @@
              
             </label>
         </ons-list-item>
+
         <ons-list-item class="input-items list-item p-l-0">
         	<div class="left list-item__left">
                 <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
@@ -323,7 +325,10 @@
     border-top-left-radius: 5px; pointer-events: none;" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
         
-        <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>
+ 	</ons-card>
+
+   <ons-card  class="card">
+	<ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>  
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" >
                 <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
@@ -372,9 +377,7 @@
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	    </div>
-        
- 	</ons-card>
-
+	</ons-card>
 </form>
      <div style="margin: 0px 10px;">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveDataPf();" style="background-color: #fff;" >แก้ไขข้อมูลส่วนตัว</ons-button>
