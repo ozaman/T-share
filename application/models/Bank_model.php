@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Bank_model extends CI_Model {
   
-  public function bank_car(){
+  public function add_bank(){
   
 	 	$bank[bank_name] = $_POST[bank_name];
 	 	$bank[bank_id] = $_POST[bank];
@@ -24,27 +24,88 @@ class Bank_model extends CI_Model {
 		return $return;
   }
   
-  public function edit_car(){
-  		$car[plate_num] = $_POST[plate_num];
-//		$car[drivername] = $_GET[driver_id];
-		$car[car_type] = $_POST[car_type];
-		$car[car_brand] = $_POST[car_brand_txt];
-		$car[i_car_brand] = $_POST[car_brand];
-		$car[i_car_color] = $_POST[car_color];
-		$car[car_color] = $_POST[car_color_txt];
-		$car[plate_color] = $_POST[plate_color_txt];
-		$car[i_plate_color] = $_POST[plate_color];
-		$car[i_province] = $_POST[car_province];
-		$car[status] = 1;
-//		$car[status_usecar] = 0;
-		$car[post_date] = time();
-		$car[update_date] = time();
+  public function edit_bank(){
+  		$bank[bank_name] = $_POST[bank_name];
+	 	$bank[bank_id] = $_POST[bank];
+	 	$bank[bank_number] = $_POST[bank_number];
+	 	$bank[bank_branch] = $_POST[bank_branch];
+	 	$bank[status] = 1;
+	 	$bank[post_date] = time();
+	 	$bank[last_update] = time();
+//	 	$bank[driver_id] = $_GET[driver_id];
 		
-		$this->db->where('id', $_GET[car_id]);
-		$car[result] = $this->db->update('web_carall', $car); 
-		$return[data] = $car;
-		$return[id] = $_GET[car_id];
+		$this->db->where('id', $_GET[id]);
+		$bank[result] = $this->db->update('web_bank_driver', $bank); 
+		$return[data] = $bank;
+		$return[id] = $_GET[id];
 		return $return;
+  }
+  
+  public function change_status_bank(){
+  	
+  	if($_POST[status]==0){
+			$query = $this->db->query('SELECT id FROM web_bank_driver where driver_id = "'.$_POST[driver_id].'" and status = 1 ');
+			$check = $query->num_rows();
+			if($check<=1){
+				$return[check] = false;
+				$return[data] = $check;
+				return $return;
+			}
+			
+		}
+  			
+			$bank[status] = $_POST[status];
+			$this->db->where('id', $_POST[bank_id]);
+			$bank[result] = $this->db->update('web_bank_driver', $bank); 
+			$bank[bank_id] = $_POST[bank_id];
+			
+			$data_often[status_often] = 0;
+			$this->db->where('id', $_POST[bank_id]);
+			$data_often[result] = $this->db->update('web_bank_driver', $data_often); 
+			
+			
+			$return[check] = true;
+			$return[data] = $bank;
+			$return[data_often] = $data_often;
+  		
+  		return $return;
+  		
+  }
+  
+  public function change_bank_often(){
+  		$update[status_often] = 0;
+  		$this->db->where('driver_id', $_POST[driver_id]);
+  		$this->db->update('web_bank_driver', $update); 
+  		
+  		$bank[status_often] = 1;
+		$this->db->where('id', $_POST[bank_id]);
+		$bank[result] = $this->db->update('web_bank_driver', $bank); 
+		$bank[bank_id] = $_POST[bank_id];
+  		return $bank;
+  }
+  
+  public function running_single_often_bank(){
+  	
+  	$query = $this->db->query('SELECT id FROM web_bank_driver where driver_id = "'.$_POST[driver_id].'" and status = 1 ');
+	$check = $query->num_rows();
+		if($check>=1){
+			$data_often[status_often] = 0;
+			$this->db->where('driver_id', $_POST[driver_id]);
+			$data_often[result] = $this->db->update('web_bank_driver', $data_often); 
+			
+			$row = $query->row();
+			$data[status_often] = 1;
+			$this->db->where('id', $row->id);
+			$this->db->limit(1);
+			$bank[result] = $this->db->update('web_bank_driver', $data); 
+			$bank[driver] = $_POST[driver_id];
+			$bank[id_bank] = $row->id;
+		}else{
+			$bank[driver] = $_POST[driver_id];
+			$bank[mg] = "More than 1";
+		}
+		
+	return $bank;	
   }
   
   /**

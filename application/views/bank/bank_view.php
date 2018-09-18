@@ -11,18 +11,23 @@
 </div>
 
 <?php 
-		$sql = "SELECT t1.*,t2.name_th as bank_list FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id ";
+		$sql = "SELECT t1.*,t2.name_th as bank_list FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
       	$num = 0;
       	foreach($query_bank->result()  as $row){ 
       	$num+=1;
+      	if($row->status==0){
+      		$tr_often = "display:none;";
+      	}else{
+			$tr_often = "";
+		}
       	?>
 			<ons-card class="card">
 				<table width="100%">
 					<tr>
-						<td>
-							<table>
-								<tr>
+						<td width="35%">
+							<table width="100%">
+								<tr style="<?=$tr_often;?>">
 							   	  	<td colspan="">
 							   	  		<label class="left">
 								         <?php 
@@ -39,7 +44,7 @@
 							   	  </tr>
 								<tr>
 									<td>
-										<button type="button" class="button btn-action-bank" onclick="editBank('38');" style="width:100%">
+										<button type="button" class="button btn-action-bank" onclick="editBank('<?=$row->id;?>');" style="width:100%">
 	                                       <center>
 	                                          <div class="font-30"><i class="fa fa-edit" style="color:#3b5998"></i></div>
 	                                          <span style="padding-bottom:20px;" class="font-16"> แก้ไขข้อมูล </span>
@@ -49,12 +54,24 @@
 								</tr>
 								<tr>	
 									<td>
-										<button type="button" class="button btn-action-bank" onclick="changeCarStatus('38',0)" style="width:100%">
-		                                       <center>
-		                                          <div class="font-30"><i class="fa fa-check " style="color:#34cb4a;"></i></div>
-		                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
-		                                       </center>
-		                                    </button>
+										<?php 
+											if($row->status==1){ ?>
+												<button type="button" class="button btn-action-bank" onclick="changeBankStatus('<?=$row->id;?>',0)" style="width:100%">
+			                                       <center>
+			                                          <div class="font-30"><i class="fa fa-check " style="color:#34cb4a;"></i></div>
+			                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
+			                                       </center>
+			                                    </button>
+										<?php	}else{ ?>
+												<button type="button" class="button btn-action-bank" onclick="changeBankStatus('<?=$row->id;?>',1)" style="width:100%">
+			                                       <center>
+			                                          <div class="font-30"><i class="fa fa-times " style="color:#ff0000;"></i></div>
+			                                          <span style="padding-bottom:20px;" class="font-16">  ปิดใช้งาน  </span>
+			                                       </center>
+			                                    </button>
+										<?php }
+										?>
+										
 									</td>
 								</tr>
 							</table>
@@ -71,7 +88,7 @@
 							      </tr>
 							      <tr>
 							         <td width="80" class="font-16"><strong>เลขที่บัญชี</strong></td>
-							         <td width="" class="font-16"> <span>5540011055</span></td>
+							         <td width="" class="font-16"> <span><?=$row->bank_number;?></span></td>
 							      </tr>
 							      <tr>
 							         <td width="80" class="font-16 "><strong>ธนาคาร</strong></td>
@@ -90,10 +107,10 @@
 							      	<td width="" class="font-16 " >
 							            <span><?=date('Y-m-d h:i',$row->post_date);?> </span>
 							         </td>
-							      </tr>-->
+							      </tr>../data/pic/driver/book_bank/<?=$row->id;?>.jpg-->
 							      <tr>
 							   	  	<td colspan="2">
-							   	  		<img src="../data/pic/driver/book_bank/<?=$row->id;?>.jpg" style="max-width: 100px; height: 70px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" />
+							   	  		<img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" style="    height: 70px; width: 120px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" />
 							   	  	</td>
 							   	  </tr>
 							   </tbody>
@@ -102,8 +119,11 @@
 					</tr>
 				</table>
 			</ons-card>
-
+			<script>
+				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank'); }, 500);
+			</script>
 <?php		}
 ?>
+<input type="hidden" value="<?=$num;?>" id="detect_num_bank" />
 
 

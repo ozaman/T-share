@@ -120,7 +120,16 @@
                         <table width="100%" cellpadding="1" cellspacing="2" style="margin-top:0px;  margin-right: 0px; margin-bottom:0px; margin-right:0px; ">
                            <tbody>
                               <tr>
-                                 <td width="80" height="70" align="center" bgcolor="#009999" style="border: solid 2px; height:70px; color:#DADADA; padding:10px; padding-right:10px;border-radius:10px;<?=$bg_plate;?>"><font color="<?=$row->txt_color;?>" class="font-32"><b><?=$row->plate_num;?><br> 
+                                 <td width="80" height="70" align="center" bgcolor="#009999" style="
+                                 border: solid 2px <?=$row->txt_color;?>; 
+							     height: 50px;
+							     color: #DADADA;
+							     padding: 5px;
+							     padding-right: 10px;
+							     border-radius: 10px;
+
+                                 <?=$bg_plate;?>">
+                                 <font color="<?=$row->txt_color;?>" class="font-32"><b><?=$row->plate_num;?><br> 
                                     <font class="font-16"><?=$car_pv->name_th;?></font></b></font>
                                  </td>
                               </tr>
@@ -155,7 +164,7 @@
                               	<td class="font-16">
                               		<strong>เพิ่มเมื่อ</strong>
                               	</td>
-                              	<td class="font-16">
+                              	<td class="font-15">
                               		<?=date("Y-m-d h:i",$row->post_date);?>
                               	</td>
                               </tr>
