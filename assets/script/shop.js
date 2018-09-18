@@ -51,7 +51,7 @@ if (tax == 'box_com') {
     }
 }
 }
-var rad = document.form_booking.nation;
+// var rad = document.form_booking.nation;
 function handleClick(tax,name){
     console.log(tax)
     console.log(name)
@@ -81,9 +81,7 @@ function handleClick(tax,name){
 
 }
 // ons-tab[page="shop_history.html"]
-$('ons-tab[name=nation]').focus(function() {
-    alert('aaaa')
-})
+
 function editBook(x){
    console.log(x)
    $('#text_edit_persion').show()
@@ -927,26 +925,26 @@ document.addEventListener('prechange', function(event) {
             }
         });
     }
-    if (page == "shop_add.html") {
-        // var obj = array_data;
-        var url = "shop/shop_pageadd";
-        // $('#date_filter').hide();
-        // array_ma = obj.manage;
-        // console.log(array_ma);
-        // var pass = {
-            // data: array_ma
-        // };
-        // console.log(pass);
-        $.ajax({
-            url: url,
-            // data: pass,
-            type: 'post',
-            success: function(ele) {
-                //                              console.log(data);
-                $('#shop_add').html(ele);
-            }
-        });
-    }
+    // if (page == "shop_add.html") {
+    //     // var obj = array_data;
+    //     var url = "shop/shop_pageadd";
+    //     // $('#date_filter').hide();
+    //     // array_ma = obj.manage;
+    //     // console.log(array_ma);
+    //     // var pass = {
+    //         // data: array_ma
+    //     // };
+    //     // console.log(pass);
+    //     $.ajax({
+    //         url: url,
+    //         // data: pass,
+    //         type: 'post',
+    //         success: function(ele) {
+    //             //                              console.log(data);
+    //             $('#shop_add').html(ele);
+    //         }
+    //     });
+    // }
     if (page == "shop_history.html") {
         var obj = array_data;
         var url = "shop/shop_history";

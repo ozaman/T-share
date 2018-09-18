@@ -90,7 +90,7 @@ $data_place = $query_place->row();
                 <?php
 
           // echo json_encode($query->result());
-          $i =1;
+                $i =1;
                 foreach ($query->result() as $key=>$val) {
 
 
@@ -170,7 +170,12 @@ $data_place = $query_place->row();
         </div> -->
       </div>
       <style >
-        @-webkit-keyframes borderBlink {    
+      @keyframes border-pulsate {
+    0%   { border-color: rgba(0, 255, 255, 1); }
+    50% { border-color: rgba(0, 255, 255, 0); }
+    100%   { border-color: rgba(0, 255, 255, 1); }
+}
+       /* @-webkit-keyframes borderBlink {    
     from, to {    
         border-color: transparent    
     }    
@@ -185,16 +190,18 @@ $data_place = $query_place->row();
     50% {    
         border-color: #FF5722    
     }    
-}    
-.borderBlink{    
+}    */
+.borderBlink{   
+/*animation: border-pulsate 2s infinite; */
+    /*border: 1px solid;*/
     border: 1px solid #FF5722;
-    -webkit-animation: borderBlink 1s step-end infinite;    
-    animation: borderBlink 1s step-end infinite;
+    /*-webkit-animation: borderBlink 1s step-end infinite;    */
+    /*animation: borderBlink 1s step-end infinite;*/
     /* add 'border-color: transparent' if you wish no border to show initially */  
 }
 .borderBlink:hover {    
-    -webkit-animation: borderBlink 1s step-end infinite;    
-    animation: borderBlink 1s step-end infinite;    
+    /*-webkit-animation: borderBlink 1s step-end infinite;    */
+    /*animation: borderBlink 1s step-end infinite;    */
 }
 .cus_focus{
       background-color: #eeeeee7d;
@@ -204,8 +211,9 @@ $data_place = $query_place->row();
        
       </script>
       <div class="card borderBlink" id="nation_box" onclick="checformadd('nation_box')">
+         <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
         <div class="form-group">
-                  <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
+                 
                   <!-- <span class="font-18"></span> -->
                   <ons-list-item tappable id="nation_1">
                    <label class=" left">
@@ -243,9 +251,10 @@ $data_place = $query_place->row();
              
       </div>
       <div class="card" id="num_customer" onclick="checformadd('num_customer')">
+        <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
          <div class="form-group">
                
-                <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
+                
                 <!-- <label class="font-18">จำนวนคน</label> -->
                 
                   <ons-row>
@@ -261,8 +270,9 @@ $data_place = $query_place->row();
               </div>
       </div>
       <div class="card" id="box_time" onclick="checformadd('box_time')">
+         <ons-list-header class="list-header "> เลือกเวลา</ons-list-header>
          <div class="form-group">
-               <ons-list-header class="list-header "> เลือกเวลา</ons-list-header>
+              
                   <!-- <span class="list-header" style="background-image: none;"></span> -->
                  
                   <select class="select-input font-16" name="time_num" id="time_num" value="" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">

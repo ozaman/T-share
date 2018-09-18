@@ -140,6 +140,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </template>
 
     <template id="sidemenu.html">
+        <?=$_COOKIE['detect_user'];?>
         <ons-page> 
             <div class="profile-pic" align="center">
 

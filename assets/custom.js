@@ -505,7 +505,7 @@ function sendShop2() {
             var url2 = "shop/shop_pageadd";
             var urlcount = "shop/car_count"
 
-
+setTimeout(function() {
             $.post(url2, function(ele2) {
                 $.post(urlcount, function(res) {
                     if (res == 0) {
@@ -528,6 +528,7 @@ function sendShop2() {
                     }
                 });
                 modal.hide();
+                
                 $('#shop_add').html(ele2);
                 var pass = {
                     date: moment().format('YYYY-MM-DD'),
@@ -552,7 +553,8 @@ function sendShop2() {
 
 
             });
-
+            
+ }, 700);
 
 
         } else {
