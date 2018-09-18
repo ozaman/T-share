@@ -711,5 +711,9 @@ function income() {
         'id': 'income.html',
         'title': 'รายได้'
     }, 'slide-ios');
+    
+    $.post("page/call_page",{ path: "statement/shop_ic" },function(ele){
+    	$('#shop_ic').html(ele);
+    });
 
 }

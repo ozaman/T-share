@@ -755,23 +755,23 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_transfer">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab id="tab-trans_manage" page="shop_job.html" label="ส่งแขก" active  >
+				    <ons-tab id="tab-shop_ic" page="shop_ic.html" label="ส่งแขก" active  >
 				    </ons-tab>
-				    <ons-tab id="tab-trans_job" page="transfer_job.html" label="ให้บริการรถ">
+				    <ons-tab id="tab-transfer_ic" page="transfer_ic.html" label="ให้บริการรถ">
 				    </ons-tab>
 				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
 				    </ons-tab>-->
 				  </ons-tabbar>
 				</ons-page>
 
-				<template id="shop_job.html">
-				  <ons-page id="shop_job">
+				<template id="shop_ic.html">
+				  <ons-page id="shop_ic">
 				    	
 				  </ons-page>
 				</template>
 
-				<template id="transfer_job.html">
-				  <ons-page id="transfer_job">
+				<template id="transfer_ic.html">
+				  <ons-page id="transfer_ic">
 				   	
 				  </ons-page>
 				</template>
