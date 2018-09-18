@@ -1,6 +1,7 @@
 var array_data = [];
 //startTimeHome();
 var clock_h;
+
 function performClick(elemId) {
     console.log(elemId);
     var elem = document.getElementById(elemId);
@@ -34,6 +35,7 @@ function checkImgProfile(username, pf) {
     });
 }
 checkImgProfile($.cookie("detect_username"), 0);
+
 function iconsHasPic(icons, id1, id2) {
     if (icons >= 1) {
         $('#' + id1).show();
@@ -51,16 +53,17 @@ function startTimeHome() {
     document.getElementById('load_data_time').innerHTML = h + ":" + m + ":" + s;
     clock_h = setTimeout(startTimeHome, 1000);
 }
+
 function checkTimeHome(i) {
     if (i < 10) {
         i = "0" + i
     } // add zero in front of numbers < 10
     return i;
 }
-function use_often(id) {
-}
-function cancel_often(id) {
-}
+
+function use_often(id) {}
+
+function cancel_often(id) {}
 var userLang = navigator.language || navigator.userLanguage;
 userLang = userLang.split('-');
 var js_lng = userLang[0];
@@ -77,6 +80,7 @@ options = {
     timeout: 5000,
     maximumAge: 0
 };
+
 function success(pos) {
     if (first_get_pos == true) {
         current = {
@@ -102,18 +106,20 @@ function success(pos) {
     var m = dist * 1000;
     //        console.log(m);
     //		if( JSON.stringify(current) != JSON.stringify(start) ){
-        if (m > 50) {
-            showPosition(pos)
-            console.log(m);
-            current = crd;
-        } else {
+    if (m > 50) {
+        showPosition(pos)
+        console.log(m);
+        current = crd;
+    } else {
         //			return false;
     }
 }
+
 function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
 }
 id = navigator.geolocation.watchPosition(success, error, options);
+
 function showPosition(position) {
     //      var cook_lng = getCookie("lng");
     var cook_lng = $.cookie("lng");
@@ -149,6 +155,7 @@ function showPosition(position) {
         }
     });
 }
+
 function updatePlaceNum(province) {
     console.log(province)
     //    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
@@ -230,7 +237,7 @@ socket.on('getbookinglab', function(data) {
         $('#num_manage').show();
         $('#num_manage').html($('#number_shop').text());
     }
-    
+
 
     // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
     if ($('#check_open_workshop').val() == 1) {
@@ -353,19 +360,21 @@ socket.on('updatedriver', function(username, data) {
         }
     }
 });
+
 function formatDate(date) {
     var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
 }
+
 function formatTime(date) {
     var d = new Date(date),
-    hour = '' + d.getHours(),
-    minutes = d.getMinutes();
+        hour = '' + d.getHours(),
+        minutes = d.getMinutes();
     if (hour < 10) {
         hour = "0" + hour;
     }
@@ -374,6 +383,7 @@ function formatTime(date) {
     }
     return [hour, minutes].join(':');
 }
+
 function openOrderFromAndroid(id, status, open_ic) {
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     if (status == "his") {
@@ -393,23 +403,24 @@ function openOrderFromAndroid(id, status, open_ic) {
                     $('#btn_cancel_book_'+value.id).css('top','60px');
                     $('.assas_'+value.id).css('margin-top','30px');
                 });*/
-                console.log(value.id + " : " + index);
-                $('#check_open_num_detail').val(index)
-                var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
-                $.post(url, value, function(data) {
-                    $('#load_mod_popup_clean').html(data);
-                    $('#main_load_mod_popup_clean').show();
-                    if (open_ic == '1') {
-                        openViewPrice();
-                        console.log('Open Income')
-                    }
-                });
-                $('#check_open_shop_id').val(value.id);
-            }
-        });
+                    console.log(value.id + " : " + index);
+                    $('#check_open_num_detail').val(index)
+                    var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
+                    $.post(url, value, function(data) {
+                        $('#load_mod_popup_clean').html(data);
+                        $('#main_load_mod_popup_clean').show();
+                        if (open_ic == '1') {
+                            openViewPrice();
+                            console.log('Open Income')
+                        }
+                    });
+                    $('#check_open_shop_id').val(value.id);
+                }
+            });
         }
     }
 }
+
 function openOrderFromAndroidHistory(id, status, open_ic) {
     //    alert(id);
     $.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=" + id, function(data) {
@@ -431,6 +442,7 @@ function openOrderFromAndroidHistory(id, status, open_ic) {
     });
 }
 getTansferJobNumber(detect_user, today);
+
 function getTansferJobNumber(driver, date) {
     var pram = {
         driver: driver,
@@ -453,6 +465,7 @@ function getTansferJobNumber(driver, date) {
         $('#number_tbooking_history').text(num);
     });
 }
+
 function sendSocket(id) {
     console.log('Click');
     //   var message = "";
@@ -461,6 +474,7 @@ function sendSocket(id) {
     };
     socket.emit('sendchat', dataorder);
 }
+
 function hideRes(id) {
     var txt = $('#' + id).val();
     console.log(txt);
@@ -471,94 +485,98 @@ function hideRes(id) {
     }
 }
 /*************************** Menu function *********************************/
-function sendShop(company) {
-}
+function sendShop(company) {}
 
-function sendShop2(){
-   modal.show();
-   var urlo = 'shop/place_companycount';
-   $.post(urlo,function(res){
-    console.log(res)
-    if (res == 1) {
+function sendShop2() {
+    modal.show();
+    var urlo = 'shop/place_companycount';
+    $.post(urlo, function(res) {
+        console.log(res)
+        if (res == 1) {
+            fn.pushPage({
+                'id': 'shopping.html',
+                'title': 'ส่งแขก',
+                'key': 'shop'
+            })
+            //                       var url = "page/call_page";
+            //   $.post(url,{ path : "car/car_view" },function(ele){
+            //    $('#body_shop').html(ele);
+            // });
+            var url2 = "shop/shop_pageadd";
+            var urlcount = "shop/car_count"
 
 
-       fn.pushPage({'id': 'shopping.html', 'title': 'ส่งแขก', 'key': 'shop'})
-//                       var url = "page/call_page";
-//   $.post(url,{ path : "car/car_view" },function(ele){
-//    $('#body_shop').html(ele);
-// });
-var url2 = "shop/shop_pageadd";
-var urlcount = "shop/car_count"
-setTimeout(function() {
-    modal.hide();
-    $.post(url2,function(ele2){
-        $('#shop_add').html(ele2);
-        var pass = {
-            date: moment().format('YYYY-MM-DD'),
-            driver : $.cookie("detect_user"),
-            type : 'his'
-        };
-        console.log(pass);
-        var urlcounthis = "shop/count_his"
-        $.ajax({
-            url: urlcounthis,
-            data: pass,
-            type: 'post',
-            success: function(res) {
-                 console.log(res);
-                 if (res != 0) {
-        $('#num_his').show();
-        $('#num_his').html(res);
-    }
-                // $('ons-tab[page="shop_history.html"]').attr('badge', res);
-            }
-        });
-        setTimeout(function() {
-           $.post(urlcount,function(res){
-            if (res == 0) {  
+            $.post(url2, function(ele2) {
+                $.post(urlcount, function(res) {
+                    if (0 == 0) {
 
-                ons.notification.alert({
-                    message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
-                    title: "ไม่สามารถส่งแขกได้",
-                    buttonLabel: "ปิด"
-                })
-                .then(function() {
-                // callpop();
-                myCar();
-                
+                        ons.notification.alert({
+                                message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+                                title: "ไม่สามารถส่งแขกได้",
+                                buttonLabel: "ปิด"
+                            })
+                            .then(function() {
+                                // callpop();
+                                $('ons-back-button').click();
+                                setTimeout(function() {
+                                    myCar();
+                                }, 700);
+
+                                return;
+                            });
+
+                    }
+                });
+                modal.hide();
+                $('#shop_add').html(ele2);
+                var pass = {
+                    date: moment().format('YYYY-MM-DD'),
+                    driver: $.cookie("detect_user"),
+                    type: 'his'
+                };
+                console.log(pass);
+                var urlcounthis = "shop/count_his"
+                $.ajax({
+                    url: urlcounthis,
+                    data: pass,
+                    type: 'post',
+                    success: function(res) {
+                        console.log(res);
+                        if (res != 0) {
+                            $('#num_his').show();
+                            $('#num_his').html(res);
+                        }
+                        // $('ons-tab[page="shop_history.html"]').attr('badge', res);
+                    }
+                });
+
 
             });
-            }
-
-
-        });
-       }, 1000);
-
-    });
-}, 500);
 
 
 
-} else {
-    fn.pushPage({
-        'id': 'place_company.html',
-        'title': 'ส่งแขก'
-    }, 'slide-ios')
-    var url = "shop/place_company";
-    $.post(url, function(res) {
-        console.log(res)
-        $('#body_place_company').html(res);
-    });
-}
+        } else {
+            fn.pushPage({
+                'id': 'place_company.html',
+                'title': 'ส่งแขก'
+            }, 'slide-ios')
+            var url = "shop/place_company";
+            $.post(url, function(res) {
+                console.log(res)
+                $('#body_place_company').html(res);
+            });
+        }
         // $('#body_place_company').html(res);
     });
 
 
 
 }
-function callpop(){
-   appNavigator.popPage()
+
+function callpop() {
+    appNavigator.popPage()
 }
+
 function profileInfo(animate) {
     fn.pushPage({
         'id': 'pf.html',
@@ -570,13 +588,14 @@ function profileInfo(animate) {
         $('#body_profile_view').html(html);
     });
 }
+
 function sendTransfer() {
     ons.notification.alert({
-        message: 'ยังไม่เปิดให้บริการ',
-        title: "ขอภัย",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {});
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
     return;
     fn.pushPage({
         'id': 'transfer.html',
@@ -589,13 +608,14 @@ function sendTransfer() {
         $('#transfer_job').html(html);
     });
 }
+
 function booking() {
     ons.notification.alert({
-        message: 'ยังไม่เปิดให้บริการ',
-        title: "ขอภัย",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {});
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
     return;
     fn.pushPage({
         'id': 'book_trans.html',
@@ -603,13 +623,14 @@ function booking() {
         'key': 'book_trans'
     })
 }
+
 function tour() {
     ons.notification.alert({
-        message: 'ยังไม่เปิดให้บริการ',
-        title: "ขอภัย",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {});
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
     return;
     fn.pushPage({
         'id': 'book_tour.html',
@@ -619,30 +640,21 @@ function tour() {
 }
 
 
-function myCar(){
-	fn.pushPage({'id': 'car_manage.html', 'title': 'ข้อมูลรถ'}, 'slide-ios');
-	
-	$.post("car/check_num_car",{ driver_id : $.cookie("detect_user") },function(res){
-		console.log(res);
-        var url = "page/call_page";
-        $.post(url,{ path : "car/car_view" },function(ele){
-           $('#body_car_manage').html(ele);
-       });
-    });
-}
+
 function pay() {
     ons.notification.alert({
-        message: 'ยังไม่เปิดให้บริการ',
-        title: "ขอภัย",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {});
+            message: 'ยังไม่เปิดให้บริการ',
+            title: "ขอภัย",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
     return;
     fn.pushPage({
         'id': 'popup1.html',
         'title': 'รายรับ'
     })
 }
+
 function myAccountBank() {
     fn.pushPage({
         'id': 'account_bank.html',
@@ -655,6 +667,7 @@ function myAccountBank() {
         $('#body_account_bank').html(ele);
     });
 }
+
 function myCar() {
     fn.pushPage({
         'id': 'car_manage.html',
@@ -672,6 +685,7 @@ function myCar() {
         });
     });
 }
+
 function contrac_us() {
     fn.pushPage({
         'id': 'contract_us.html',
@@ -683,14 +697,19 @@ function contrac_us() {
         $('#body_contrac').html(html);
     });
 }
-function reference(){
-	fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน','key':'contract_us'}, 'lift-ios');
+
+function reference() {
+    fn.pushPage({
+        'id': 'qrcode_ref.html',
+        'title': 'แนะนำเพื่อน',
+        'key': 'contract_us'
+    }, 'lift-ios');
 }
 
-function income(){
-	 fn.pushPage({
+function income() {
+    fn.pushPage({
         'id': 'income.html',
         'title': 'รายได้'
     }, 'slide-ios');
-	
+
 }
