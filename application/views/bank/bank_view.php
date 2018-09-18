@@ -5,6 +5,17 @@
    	    background-color: #fff;
    	    box-shadow: 1px 1px 3px #cacaca;
    }
+   .logo-bank{
+   	width: 50px; 
+   	box-shadow: 1px 2px 3px #9E9E9E; 
+   	border-radius: 10px;
+   }
+   .bookbank-img{
+   	height: 60px; 
+   	width: 100px; 
+   	border: 1px solid #eee; 
+   	box-shadow: 1px 1px 3px #ccc;
+   }
 </style>
 <div style="padding: 10px 10px;">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addBank();">เพิ่มข้อมูลบัญชี</ons-button>
@@ -114,8 +125,8 @@
 							   	  	<td colspan="2">
 							   	  		<table width="100%">
 							   	  			<tr>
-							   	  				<td><img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" style="    height: 60px; width: 100px; border: 1px solid #eee; box-shadow: 1px 1px 3px #ccc;" /></td>
-							   	  				<td width="70" align="center"><img src="assets/images/bank/<?=$row->bank_img;?>" style="width: 50px; box-shadow: 1px 2px 3px #828282; border-radius: 10px;" /></td>
+							   	  				<td><img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" class="bookbank-img" /></td>
+							   	  				<td width="70" align="center"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" /></td>
 							   	  			</tr>
 							   	  		</table>
 							   	  		
