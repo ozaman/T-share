@@ -3,17 +3,64 @@ if (class_user == 'lab') {
 } else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
+function checformadd(tax){
+   var form = document.getElementById("form_booking");
+   if (tax == 'nation_box') {
+     $('#'+tax).removeClass('borderBlink')
+     if(form.elements["adult"].value == 0){
+     }
+     if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
+        $('#num_customer').addClass('borderBlink')
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["adult"].value != 0 && form.elements["time_num"].value == 0) {
+      $('#box_time').addClass('borderBlink')
+  }
+}
+if (tax == 'num_customer') {
+    $('#'+tax).removeClass('borderBlink')
+    if (form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["time_num"].value == 0) {
+        $('#box_time').addClass('borderBlink')
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["time_num"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+    }
+}
+if (tax == 'box_time') {
+   $('#'+tax).removeClass('borderBlink')
+   if (form.elements["nation"].value == 0) {
+    $('#nation_box').addClass('borderBlink')
+}
+else if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
+    $('#num_customer').addClass('borderBlink')
+}
+else if (form.elements["adult"].value == 0) {
+    $('#num_customer').addClass('borderBlink')
+}
+}
+if (tax == 'box_com') {
+    $('#'+tax).removeClass('borderBlink')
+    if (form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
+        $('#num_customer').addClass('borderBlink')
+    }
+}
+}
 
 function editBook(x){
- console.log(x)
- $('#text_edit_persion').show()
+   console.log(x)
+   $('#text_edit_persion').show()
 
- $('#btn_selectisedit').show()
- $('#num_edit_persion').show()
- $('#btn_isedit').hide()
- $('#isedit').hide()
- $('#num_edit_persion').css('display','inline-block')
- $('#num_edit_persion').focus();
+   $('#btn_selectisedit').show()
+   $('#num_edit_persion').show()
+   $('#btn_isedit').hide()
+   $('#isedit').hide()
+   $('#num_edit_persion').css('display','inline-block')
+   $('#num_edit_persion').focus();
 }
 
 function saveeditBook(x){
@@ -92,62 +139,62 @@ var submitShop = function() {
 
 }
 
-    if ($('#adult').val() == "" ) {
+if ($('#adult').val() == "" ) {
+    $('#adult').focus();
+    ons.notification.alert({
+        message: 'กรุณาระบุจำนวนผู้ใหญ่',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
         $('#adult').focus();
-        ons.notification.alert({
-            message: 'กรุณาระบุจำนวนผู้ใหญ่',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $('#adult').focus();
-        });
-         
-        return false;
-    }
-    $('#adult').val(parseInt($('#adult').val()))
-    console.log(parseInt($('#adult').val()))
-    if ( parseInt($('#adult').val()) <= 0) {
-        
-        ons.notification.alert({
-            message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-           $('#adult').focus();
-        });
-         
-        return false;
-    }
-    var time_num = document.getElementById("form_booking");
+    });
+    
+    return false;
+}
+$('#adult').val(parseInt($('#adult').val()))
+console.log(parseInt($('#adult').val()))
+if ( parseInt($('#adult').val()) <= 0) {
+    
+    ons.notification.alert({
+        message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
+     $('#adult').focus();
+ });
+    
+    return false;
+}
+var time_num = document.getElementById("form_booking");
 console.log(time_num.elements["time_num"].value)
 if(time_num.elements["time_num"].value == 0){
-        ons.notification.alert({
-            message: 'กรุณาเลือกเวลาโดยประมาณ',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $('#time_num').focus();
-        });
-        return false;
+    ons.notification.alert({
+        message: 'กรุณาเลือกเวลาโดยประมาณ',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
+        $('#time_num').focus();
+    });
+    return false;
     // rate_value = document.getElementById('price_plan_1').value;
 
 }
-    if ($('#time_num').val() == '') {
-        ons.notification.alert({
-            message: 'กรุณาระบุเวลาถึงโดยประมาณ',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $('#time_num').focus();
-        });
-        return false;
-    }
-    var price_plan = document.getElementById("form_booking");
-    
+if ($('#time_num').val() == '') {
+    ons.notification.alert({
+        message: 'กรุณาระบุเวลาถึงโดยประมาณ',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
+        $('#time_num').focus();
+    });
+    return false;
+}
+var price_plan = document.getElementById("form_booking");
+
     // console.log(price_plan)
     // var rate_value;
     if(price_plan.elements["price_plan"].value == ''){
@@ -186,24 +233,24 @@ function saveShop() {
      // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
                         // $('ons-tab[page="shop_manage.html"]').click();
                         
-    $.ajax({
-        type: 'POST',
-        data: $('#form_booking').serialize(),
-        url: url,
-        beforeSend: function() {},
-        success: function(response) {
-            console.log(response);
-            
-            if (response.result == true) {
-                var url2 = "shop/shop_pageadd";
-                  $.post(url2,function(ele2){
-                    $('#shop_add').html(ele2);
+                        $.ajax({
+                            type: 'POST',
+                            data: $('#form_booking').serialize(),
+                            url: url,
+                            beforeSend: function() {},
+                            success: function(response) {
+                                console.log(response);
+                                
+                                if (response.result == true) {
+                                    var url2 = "shop/shop_pageadd";
+                                    $.post(url2,function(ele2){
+                                        $('#shop_add').html(ele2);
 
-                });
-                setTimeout(function() {
-                    modal.hide();
-                     $('ons-tab[page="shop_manage.html"]').click();
-                }, 2000);
+                                    });
+                                    setTimeout(function() {
+                                        modal.hide();
+                                        $('ons-tab[page="shop_manage.html"]').click();
+                                    }, 2000);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
                 //         title: "สำเร็จ",
@@ -212,8 +259,8 @@ function saveShop() {
                 //     .then(function() {
                 //         console.log('********************')
                 //         // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
-                       
-                         
+                
+                
                 //     });
                 $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
                     driver: $.cookie("detect_user"),
@@ -232,36 +279,36 @@ function saveShop() {
                 }, 1500);
             } else {
                 ons.notification.alert({
-                        message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
-                        title: "ทำรายการไม่สำเร็จ",
-                        buttonLabel: "ปิด"
-                    })
-                    .then(function() {
-                    });
+                    message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
+                    title: "ทำรายการไม่สำเร็จ",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                });
             }
         },
         error: function(data) {
             console.log(data);
             ons.notification.alert({
-                    message: 'กรุณาตรวจสอบข้อมูลของท่าน',
-                    title: "ผิดพลาด",
-                    buttonLabel: "ปิด"
-                })
-                .then(function() {
-                });
+                message: 'กรุณาตรวจสอบข้อมูลของท่าน',
+                title: "ผิดพลาด",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            });
         }
     });
-}
-function openDetailBooking(key, type) {
-    var detailObj = array_data.manage[key];
-    fn.pushPage({
-        'id': 'popup1.html',
-        'title': detailObj.invoice
-    }, 'slide-ios');
-    console.log(detailObj);
-    var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
-    $.post(url, detailObj, function(data) {
-        $('#body_popup1').html(data);
+                    }
+                    function openDetailBooking(key, type) {
+                        var detailObj = array_data.manage[key];
+                        fn.pushPage({
+                            'id': 'popup1.html',
+                            'title': detailObj.invoice
+                        }, 'slide-ios');
+                        console.log(detailObj);
+                        var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
+                        $.post(url, detailObj, function(data) {
+                            $('#body_popup1').html(data);
 //        var obj = JSON.parse('<?=json_encode($_POST);?>');
 var obj = detailObj;
 console.log(obj);
@@ -286,32 +333,32 @@ checkPhotoCheckIn('guest_receive', obj.id);
 checkPhotoCheckIn('guest_register', obj.id);
 checkPhotoCheckIn('driver_pay_report', obj.id);
 });
-    $('#check_open_shop_id').val(detailObj.id);
-}
+                        $('#check_open_shop_id').val(detailObj.id);
+                    }
 
 
-function openDetailBookinghistory(key, type,invoice) {
-    
-    fn.pushPage({
-        'id': 'popup1.html',
-        'title': invoice
-    }, 'slide-ios');
-   
-    var url = "shop/detail_shop_his";
-    var param = {
-            user_id: $.cookie("detect_user"),
-            invoice : invoice,
-        };
-        console.log(param);
-        $.ajax({
-            url: url,
-            data: param,
-            type: 'post',
-            success: function(res) {
-                 console.log(res);
-                $('#body_popup1').html(res);
-            }
-        });
+                    function openDetailBookinghistory(key, type,invoice) {
+                        
+                        fn.pushPage({
+                            'id': 'popup1.html',
+                            'title': invoice
+                        }, 'slide-ios');
+                        
+                        var url = "shop/detail_shop_his";
+                        var param = {
+                            user_id: $.cookie("detect_user"),
+                            invoice : invoice,
+                        };
+                        console.log(param);
+                        $.ajax({
+                            url: url,
+                            data: param,
+                            type: 'post',
+                            success: function(res) {
+                               console.log(res);
+                               $('#body_popup1').html(res);
+                           }
+                       });
     // $.post(url, function(data) {
     //     $('#body_popup1').html(data);
 //        var obj = JSON.parse('<?=json_encode($_POST);?>');
@@ -372,25 +419,25 @@ function openPointMaps(type,id){
     //     // title = 'ตำแหน่งแจ้งยอดรายได้'
 
     // }
-	fn.pushPage({
+    fn.pushPage({
         'id': 'popup2.html',
         'title': title
     }, 'fade-md');
     var url = "maps/map_shop_checkin";
     var param = {
-            order_id : id,
-            type : type,
-        };
-        console.log(param);
-        $.ajax({
-            url: url,
-            data: param,
-            type: 'post',
-            success: function(res) {
+        order_id : id,
+        type : type,
+    };
+    console.log(param);
+    $.ajax({
+        url: url,
+        data: param,
+        type: 'post',
+        success: function(res) {
                  // console.log(res);
-                $('#body_popup2').html(res);
-                var elem = document.getElementById("body_popup2");
-                elem.setAttribute("style","width: 100%;background-color: rgb(221, 221, 221);position: fixed;top: 0px; bottom: 0px; overflow: scroll;z-index: 100")
+                 $('#body_popup2').html(res);
+                 var elem = document.getElementById("body_popup2");
+                 elem.setAttribute("style","width: 100%;background-color: rgb(221, 221, 221);position: fixed;top: 0px; bottom: 0px; overflow: scroll;z-index: 100")
    //              $('#body_popup2').css({'width: 100%',
    //  'background-color: rgb(221, 221, 221)',
    //  'position: fixed',
@@ -398,9 +445,9 @@ function openPointMaps(type,id){
    // ' bottom: 0px',
    // ' overflow: scroll',
    //  'z-index: 100'})
-            }
-        });
-   
+}
+});
+    
 }
 
 function checkPhotoCheckIn(type, id){
@@ -413,10 +460,10 @@ function checkPhotoCheckIn(type, id){
     $('#'+type+'_locat_on').hide();
 }
 $.ajax({
- url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
- type:'HEAD',
- error: function()
- {
+   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+   type:'HEAD',
+   error: function()
+   {
     console.log('Error file');
     $('#photo_'+type+'_no').show();
     $('#photo_'+type+'_yes').hide();
@@ -446,7 +493,7 @@ function submitCancel() {
     var url = "shop/cancel_shop";
     console.log(url + " ");
      // ons.navigator.resetToPage('popup1.html')
-    $.post(url, $('#form_type_cancel').serialize(), function(data) {
+     $.post(url, $('#form_type_cancel').serialize(), function(data) {
         console.log(data)
         var obj = data;
         console.log(obj);
@@ -459,15 +506,15 @@ function submitCancel() {
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
                 var urlx = "shop/shop_manage";
-        
-        
-        
-        $.post(urlx, function(res) {
+                
+                
+                
+                $.post(urlx, function(res) {
             // this.popPage('popup1.html');
             appNavigator.popPage()
-                $('#shop_manage').html(res);
-            });
-       
+            $('#shop_manage').html(res);
+        });
+                
             });
             $('#btn_cancel_book_' + order_id).hide();
             /*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
@@ -482,9 +529,9 @@ function submitCancel() {
             });
         }
     });
-}
+ }
 
-function js_yyyy_mm_dd_hh_mm_ss() {
+ function js_yyyy_mm_dd_hh_mm_ss() {
     now = new Date();
     year = "" + now.getFullYear();
     month = "" + (now.getMonth() + 1);
@@ -606,21 +653,21 @@ if(type=="driver_topoint"){
 }else if(type=="guest_receive"){
     $('#step_guest_register').show();
 }else if(type=="guest_register"){
-   $('#step_driver_pay_report').show();
+ $('#step_driver_pay_report').show();
 }else if(type=="driver_pay_report"){
 
 }
 $('#'+type+'_locat_off').hide();
 $('#'+type+'_locat_on').show();
 $.ajax({
- url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
- type:'HEAD',
- error: function()
- {
-     console.log('Error file');
+   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+   type:'HEAD',
+   error: function()
+   {
+       console.log('Error file');
 
-     $('#photo_'+type+'_yes').hide();
-     $('#photo_'+type+'_no').show();
+       $('#photo_'+type+'_yes').hide();
+       $('#photo_'+type+'_no').show();
 
 //			   $('#'+type+'_locat_off').show();
 //			   $('#'+type+'_locat_on').hide();
@@ -656,9 +703,9 @@ var url = "shop/checkin?type="+type+"&id="+id+"&lat="+lat+"&lng="+lng;
 console.log(url);
 
 $.post(url,function(res){
- console.log(res);
- modal.hide();
- if(res.result==true){
+   console.log(res);
+   modal.hide();
+   if(res.result==true){
     $('#'+type+'_check_click').val(1)
     changeHtml(type,id,timestampToDate(res.time,"time"));
 
@@ -672,11 +719,11 @@ sendSocket(id);
 		      /*	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
    					console.log(data);
    				});*/
-                   ons.notification.alert({message: 'ยืนยันแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
-                   .then(function() {
-                       $('ons-back-button').click();
-                   });
-               }else{
+                 ons.notification.alert({message: 'ยืนยันแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+                 .then(function() {
+                     $('ons-back-button').click();
+                 });
+             }else{
 //				swal("Error");
 }
 });
@@ -685,14 +732,14 @@ sendSocket(id);
 
 function readURL(input, type, subtype, id) {
 
- if (input.files && input.files[0]) {
-   var reader = new FileReader();
-   reader.onload = function(e) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function(e) {
 
-    $('#pv_'+type).attr('src', e.target.result);
-    $('#pv_'+type).fadeIn(500);
-    var url = "page/upload_img?type="+type+"&action="+subtype+"&id="+id;
-    console.log(url);
+        $('#pv_'+type).attr('src', e.target.result);
+        $('#pv_'+type).fadeIn(500);
+        var url = "page/upload_img?type="+type+"&action="+subtype+"&id="+id;
+        console.log(url);
 //				return;
 var data = new FormData($('#form_checkin')[0]);
 data.append('fileUpload', $('#img_checkin')[0].files[0]);
@@ -707,11 +754,11 @@ $.ajax({
    				                success: function(php_script_response){
                                       console.log(php_script_response);
                                       if(php_script_response.result==true){
-                                       $('#txt-img-nohas-checkin').hide();
-                                       $('#txt-img-has-checkin').show();
-                                   }
-                               }
-                           });
+                                         $('#txt-img-nohas-checkin').hide();
+                                         $('#txt-img-has-checkin').show();
+                                     }
+                                 }
+                             });
 }
 reader.readAsDataURL(input.files[0]);
 
@@ -732,8 +779,8 @@ function btn_driver_topoint(id) {
   var url = "page/call_page?type=driver_topoint&id="+id;
   console.log(url);
   $.post(url,{ path : "shop/checkin_action" },function(ele){
-   $('#body_shop_checkin').html(ele);
-});
+     $('#body_shop_checkin').html(ele);
+ });
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -743,24 +790,24 @@ function btn_guest_receive(id) {
 		return;
 	}
     if(class_user=="taxi"){
-     ons.notification.alert({
+       ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-     .then(function() {
-     });
-     return;
- }
- fn.pushPage({
+       .then(function() {
+       });
+       return;
+   }
+   fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "พนักงานรับแขก"
 }, 'fade-ios');
- var url = "page/call_page?type=guest_receive&id="+id;
- console.log(url);
- $.post(url,{ path : "shop/checkin_action" },function(ele){
-   $('#body_shop_checkin').html(ele);
-});
+   var url = "page/call_page?type=guest_receive&id="+id;
+   console.log(url);
+   $.post(url,{ path : "shop/checkin_action" },function(ele){
+     $('#body_shop_checkin').html(ele);
+ });
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -770,24 +817,24 @@ function btn_guest_register(id) {
 		return;
 	}
     if(class_user=="taxi"){
-     ons.notification.alert({
+       ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-     .then(function() {
-     });
-     return;
- }
- fn.pushPage({
+       .then(function() {
+       });
+       return;
+   }
+   fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "แขกลงทะเบียน"
 }, 'fade-ios');
- var url = "page/call_page?type=guest_register&id="+id;
- console.log(url);
- $.post(url,{ path : "shop/checkin_action" },function(ele){
-   $('#body_shop_checkin').html(ele);
-});
+   var url = "page/call_page?type=guest_register&id="+id;
+   console.log(url);
+   $.post(url,{ path : "shop/checkin_action" },function(ele){
+     $('#body_shop_checkin').html(ele);
+ });
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -797,24 +844,24 @@ function btn_driver_pay_report(id) {
 		return;
 	}
     if(class_user=="taxi"){
-     ons.notification.alert({
+       ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-     .then(function() {
-     });
-     return;
- }
- fn.pushPage({
+       .then(function() {
+       });
+       return;
+   }
+   fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "แจ้งยอดรายได้แล้ว"
 }, 'fade-ios');
- var url = "page/call_page?type=driver_pay_report&id="+id;
- console.log(url);
- $.post(url,{ path : "shop/checkin_action" },function(ele){
-   $('#body_shop_checkin').html(ele);
-});
+   var url = "page/call_page?type=driver_pay_report&id="+id;
+   console.log(url);
+   $.post(url,{ path : "shop/checkin_action" },function(ele){
+     $('#body_shop_checkin').html(ele);
+ });
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -885,10 +932,10 @@ document.addEventListener('prechange', function(event) {
             data: pass,
             type: 'post',
             success: function(res) {
-                 console.log(res);
-                $('#shop_history').html(res);
-            }
-        });
+               console.log(res);
+               $('#shop_history').html(res);
+           }
+       });
     }
     document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');
@@ -901,18 +948,18 @@ function timestampToDate(unix_timestamp,type){
   var day = date.getDate();
   var month = date.getMonth()+1;
   if(month<=10){
-     month = "0"+month;
- }
- if(day<=10){
-     day = "0"+day
- }
- var year = date.getFullYear();
- var txt_date = year+"-"+month+"-"+day;
+   month = "0"+month;
+}
+if(day<=10){
+   day = "0"+day
+}
+var year = date.getFullYear();
+var txt_date = year+"-"+month+"-"+day;
 
- var hours = date.getHours();
- var minutes = "0" + date.getMinutes();
- var seconds = "0" + date.getSeconds();
- var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+var hours = date.getHours();
+var minutes = "0" + date.getMinutes();
+var seconds = "0" + date.getSeconds();
+var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 		//return formattedTime;
 		if(type=="date"){
 			return txt_date;
@@ -922,40 +969,40 @@ function timestampToDate(unix_timestamp,type){
 			return txt_date+" "+formattedTime;
 		}
 		
- }
+   }
 
- /******* <!-------- function Income ------------> *******/
-function openViewPrice(id){
-   fn.pushPage({
-    'id': 'popup_shop_checkin.html',
-    'title': "รายได้"
-}, 'lift-ios');
-   var url = "page/call_page?&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
-       $('#body_shop_checkin').html(ele);
-   });
-}
-function ex_booking(){
+   /******* <!-------- function Income ------------> *******/
+   function openViewPrice(id){
+     fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "รายได้"
+    }, 'lift-ios');
+     var url = "page/call_page?&id="+id;
+     console.log(url);
+     $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
+         $('#body_shop_checkin').html(ele);
+     });
+ }
+ function ex_booking(){
     var url = "shop/shop_history";
-  console.log(moment().format('YYYY-MM-DD'))
-        console.log($.cookie("detect_userclass"))
-        var pass = {
-            date: $('#ex_booking').val(),
-            driver : $.cookie("detect_user"),
-            type : 'his'
-        };
-        console.log(pass);
-        $.ajax({
-            url: url,
-            data: pass,
-            type: 'post',
-            success: function(res) {
-                 console.log(res);
-                $('#shop_history').html(res);
-            }
-        });
-   console.log($('#ex_booking').val())
+    console.log(moment().format('YYYY-MM-DD'))
+    console.log($.cookie("detect_userclass"))
+    var pass = {
+        date: $('#ex_booking').val(),
+        driver : $.cookie("detect_user"),
+        type : 'his'
+    };
+    console.log(pass);
+    $.ajax({
+        url: url,
+        data: pass,
+        type: 'post',
+        success: function(res) {
+           console.log(res);
+           $('#shop_history').html(res);
+       }
+   });
+    console.log($('#ex_booking').val())
 // dateInput.addEventListener('change', function(e) {
 //   console.log(e.target.value);
 // }); 
