@@ -508,7 +508,7 @@ function sendShop2() {
 
             $.post(url2, function(ele2) {
                 $.post(urlcount, function(res) {
-                    if (0 == 0) {
+                    if (res == 0) {
 
                         ons.notification.alert({
                                 message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
