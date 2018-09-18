@@ -293,6 +293,7 @@ socket.on('datalab', function(username, data) {
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
         $.each(data, function(index, value) {
+            console.log(data)
             if (value.id == check_open) {
                 console.log(value);
                 if (value.check_driver_topoint == 1) {

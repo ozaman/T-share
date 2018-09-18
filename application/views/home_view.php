@@ -616,13 +616,17 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
 				    <ons-tab page="shop_manage.html" label="จัดการ"  >
-                         <span class="notification none" id="num_manage"></span>
+                         <span class="notification none" id="num_manage" style="    float: right;
+    margin-top: 15px;
+    right: 25%;"></span>
 
 				    </ons-tab>
 				    <ons-tab  page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
 				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
-                        <span class="notification none" id="num_his"></span>
+                        <span class="notification none" id="num_his" style="float: right;
+    margin-top: 15px;
+    right: 10%;"></span>
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>

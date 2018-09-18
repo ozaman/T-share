@@ -310,7 +310,7 @@ else if($arr[book][status]=='CONFIRM'){
 		    </tr>
 		     <tr>
 		      <td   width="100"  class="font-16"><font color="#333333"><?=t_call;?></font></td>
-		      <td colspan="3" class="font-16"><a href="tel:<?=$res_od->phone;?>" ><?=$res_od->phone;?></a></td>
+		      <td colspan="3" class="font-16"><a href="tel:<?=$res_od->phone;?>" ><?=$arr[book][phone];?></a></td>
 		    </tr>
 		  </tbody>
 		</table>
