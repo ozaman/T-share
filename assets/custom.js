@@ -690,10 +690,18 @@ function contrac_us() {
     fn.pushPage({
         'id': 'contract_us.html',
         'title': 'ติดต่อเรา'
-    }, 'slide-ios');
+    }, 'lift-ios');
     var url = "page/contrac_us";
     $.post(url, function(html) {
         console.log(html)
         $('#body_contrac').html(html);
     });
+}
+function reference(){
+	fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน','key':'contract_us'}, 'lift-ios');
+}
+
+function income(){
+	fn.pushPage({'id': 'income.html', 'title': 'รายรับ'}, 'lift-ios');
+	
 }

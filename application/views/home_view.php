@@ -210,13 +210,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                     <div class="center" onclick="arrowChange('list_acc');">
                         บัญชี
                     </div>
-                    <div class="expandable-content" style="padding-left: 60px;">รายรับ</div>
-                    <div class="expandable-content" style="padding-left: 60px;">ธนาคาร</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
+                    <div class="expandable-content" style="padding-left: 60px;">รายจ่าย</div>
                     <div class="right arr" id="list_acc">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="fn.pushPage({'id': 'qrcode_ref.html', 'title': 'แนะนำเพื่อน','key':'contract_us'}, 'lift-ios')">
+                <ons-list-item onclick="reference();">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;"></i></span>
                     </div>
@@ -714,7 +714,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
-  <template id="contract_us.html">
+
+  	<template id="contract_us.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -732,6 +733,55 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </script>
         </ons-page>
     </template>
+
+	<template id="income.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button >กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_transfer">
+            	<ons-page>
+				  <ons-tabbar swipeable position="top">
+				    <ons-tab id="tab-trans_manage" page="shop_job.html" label="จัดการ" active  >
+				    </ons-tab>
+				    <ons-tab id="tab-trans_job" page="transfer_job.html" label="ให้บริการรถ">
+				    </ons-tab>
+				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
+				    </ons-tab>-->
+				  </ons-tabbar>
+				</ons-page>
+
+				<template id="shop_job.html">
+				  <ons-page id="shop_job">
+				    
+				  </ons-page>
+				</template>
+
+				<template id="transfer_job.html">
+				  <ons-page id="transfer_job">
+				   	
+				  </ons-page>
+				</template>
+			
+				<script>
+					document.addEventListener('prechange', function(event) {
+						
+				  document.querySelector('ons-toolbar .center')
+				    .innerHTML = event.tabItem.getAttribute('label');
+				});
+				</script>
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+	
     <template id="place_company.html">
         <ons-page>
             <ons-toolbar>
