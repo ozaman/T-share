@@ -113,7 +113,7 @@ class Main_model extends CI_Model {
   
   function query_bank_list(){
   	
-	$sql = "SELECT name_th,id,img FROM web_bank_list ORDER BY id ";
+	$sql = "SELECT name_th,id,img FROM web_bank_list where status = 1 ORDER BY id ";
 	$query = $this->db->query($sql);
 	foreach($query->result() as $key=>$val)
     {

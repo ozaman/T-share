@@ -1742,6 +1742,7 @@ h4, h5, h6 {
   background-color: transparent;
   color: #2979ff;
   transition: all 0.25s linear;
+  border: 1px solid;
 }
 .button--material--flat:hover { /* stylelint-disable-line */
   transition: all 0.25s linear;
@@ -4016,7 +4017,8 @@ h4, h5, h6 {
 }
 .list-item--material {
   border: 0;
-  padding: 0 0 0 16px;
+/*  padding: 0 0 0 16px;*/
+  padding: 0 0 0 6px;
   line-height: normal;
 }
 .list-item--material__subtitle {
@@ -4120,14 +4122,14 @@ h4, h5, h6 {
     </ul>
 */
 .list-header--material {
-  background: #fff;
+/*  background: #fff;*/
   border: none;
-  font-size: 14px;
+/*  font-size: 14px;*/
   text-transform: none;
   margin: -1px 0 0 0;
-  color: #757575;
-  font-weight: 500;
-  padding: 8px 16px;
+/*  color: #757575;*/
+/*  font-weight: 500;*/
+/*  padding: 8px 16px;*/
 }
 .list-header--material:not(:first-of-type) {
   border-top: none;
@@ -4142,7 +4144,7 @@ h4, h5, h6 {
   }
 }
 .list-header--material:not(:first-of-type) {
-  padding-top: 16px;
+/*  padding-top: 16px;*/
 }
 /*~
   name: Material List with Checkboxes
@@ -4743,7 +4745,7 @@ h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   color: #212121;
-  background-image: linear-gradient(to top, transparent 1px, #afafaf 1px);
+/*  background-image: linear-gradient(to top, transparent 1px, #afafaf 1px);*/
   background-size: 100% 2px;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -4770,7 +4772,8 @@ h4, h5, h6 {
   pointer-events: none;
 }
 .text-input--material__label--active {
-  color: #3d5afe;
+/*  color: #3d5afe;*/
+  color: #9E9E9E;
   -webkit-transform: translate(0, -75%) scale(0.75);
           transform: translate(0, -75%) scale(0.75);
   -webkit-transform-origin: left top;
