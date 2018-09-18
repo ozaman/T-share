@@ -60,7 +60,7 @@
       <ons-list-header class="list-header"><b>ภาพสมุดบัญชีธนาคาร</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_book_bank" onchange="readURL(this,'img_book_bank','add');"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_book_bank" onchange="readURL(this,'img_book_bank','edit');"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-has-img_book_bank" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_book_bank" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>

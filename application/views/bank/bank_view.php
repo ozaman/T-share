@@ -88,7 +88,7 @@
 							      </tr>
 							      <tr>
 							         <td width="80" class="font-16"><strong>เลขที่บัญชี</strong></td>
-							         <td width="" class="font-16"> <span>5540011055</span></td>
+							         <td width="" class="font-16"> <span><?=$row->bank_number;?></span></td>
 							      </tr>
 							      <tr>
 							         <td width="80" class="font-16 "><strong>ธนาคาร</strong></td>
@@ -120,7 +120,7 @@
 				</table>
 			</ons-card>
 			<script>
-				checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank');
+				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank'); }, 500);
 			</script>
 <?php		}
 ?>

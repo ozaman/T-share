@@ -65,7 +65,7 @@ function changeBankOften(id){
             console.log(res);
 
             ons.notification.alert({
-                    message: 'ใช้รถคันนี้ เป็นรถประจำแล้ว',
+                    message: 'ใช้บัญชีนี้ เป็นบัญชีประจำแล้ว',
                     title: "สำเร็จ",
                     buttonLabel: "ปิด"
                 })
@@ -388,6 +388,7 @@ function submitAddBank() {
 					            path: "bank/bank_view"
 					        }, function(ele) {
 					            $('#body_account_bank').html(ele);
+					            $('ons-back-button').click();
 					        });
                         
                     });
@@ -419,14 +420,16 @@ function readURL(input, id, type) {
 
             $('#pv_' + id).attr('src', e.target.result);
 
-            var data = new FormData($('#form_addbank')[0]);
-            data.append('fileUpload', $('#' + id)[0].files[0]);
+            
             if (type == "add") {
+            	 var data = new FormData($('#form_addbank')[0]);
                 var param_id = $('#rand').val();
             } else {
-                var param_id = $('#id_carall').val();
-                $('#' + id + '_check_upload_' + num).val(1);
+            	 var data = new FormData($('#form_editbank')[0]);
+                var param_id = $('#id_bank').val();
+//                $('#' + id + '_check_upload_' + num).val(1);
             }
+            data.append('fileUpload', $('#' + id)[0].files[0]);
             var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=book_bank_img";
             console.log(url_upload);
             $.ajax({
@@ -439,8 +442,9 @@ function readURL(input, id, type) {
                 type: 'post',
                 success: function(php_script_response) {
                     console.log(php_script_response);
-                    $('#box_img_' + id).fadeIn(200);
-
+                    $('#'+param_id+'_bookbank').attr('src','../data/pic/driver/book_bank/'+param_id+'.jpg?v=xxx');
+//                    console.log($('#'+param_id+'_bookbank'));
+					
                 },
                 error: function(e) {
                     console.log(e)

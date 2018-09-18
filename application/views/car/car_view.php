@@ -164,7 +164,7 @@
                               	<td class="font-16">
                               		<strong>เพิ่มเมื่อ</strong>
                               	</td>
-                              	<td class="font-16">
+                              	<td class="font-15">
                               		<?=date("Y-m-d h:i",$row->post_date);?>
                               	</td>
                               </tr>
