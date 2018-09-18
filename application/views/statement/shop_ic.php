@@ -16,7 +16,7 @@
 		    "12"=>"ธันวาคม"                 
 		);
 		
-		$select = "SELECT * FROM order_booking where drivername = '".$_COOKIE[detect_user]."' and MONTH(transfer_date) = '".date('m')."' order by transfer_date desc ";
+		$select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left join shopping_product as t2 on t1.program = t2.id where t1.drivername = '".$_COOKIE[detect_user]."' and MONTH(t1.transfer_date) = '".date('m')."' order by t1.transfer_date desc ";
 		$query = $this->db->query($select);
 		
 		 ?>
@@ -42,7 +42,6 @@
 		$befordate = '';
 		$i = 0;
 		foreach ($query->result() as $row){ 
-		
 			$tras_d_time = date_create($row->transfer_date);
 
 			if($befordate != $row->transfer_date){ 
@@ -53,9 +52,11 @@
 <?php			}
 
 ?>
-       	<ons-list-item style="padding-left: 16px;"><?=$row->id;?></ons-list-item>
+       <!--	<ons-list-item style="padding-left: 16px;"><?=$row->id;?></ons-list-item>-->
+       <div style="border-bottom: 0px solid #ccc; padding: 20px 5px;">
+       		<?=$row->id;?>&nbsp;&nbsp;<?=$row->product_name;?>
+       </div>
 			
-		
 <?php		}
 ?>
 </ons-list>
