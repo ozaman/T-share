@@ -1,6 +1,6 @@
 <!-- <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=th&v=<?= time(); ?>"></script> -->
-
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script> -->
     <style>
 	  .gmnoprint{
 	  	display: none !important;
@@ -195,18 +195,18 @@
   <div class="pin-effect"></div>
 </div>-->
 <div class="row" style="position: fixed; bottom: 0px;right: 0px;margin-bottom: 0px;" id="box_show_detail">
-    <div class="col s12 m6">
+    
       <div class="card blue-grey darken-2 " >
-        <div class="card-content white-text" style="padding: 10px; color: #fff">
-          <span class="card-title font-22" style="margin-bottom: 0px;">รายละเอียด</span>
-          <p class="font-20"><?php echo $driver->name." (".$driver->username.")"; ?><br>
+        <div class="card-content white-text" style=" color: #fff">
+          <span class="card-title font-18" style="">รายละเอียด</span>
+          <div class="font-16"><?php echo $driver->name." (".$driver->username.")"; ?><br>
           <?php echo "เวลา ".date("Y:m:d H:i:s",$book->$date)." น"; ?>
 
-          </p>
+          </div>
         </div>
        
       </div>
-    </div>
+    
   </div>
 
 <script>

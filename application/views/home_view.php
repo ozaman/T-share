@@ -55,6 +55,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <!--<script src="js/jquery.touchSwipe.min.js"></script>-->
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
+<!-- <script async defer   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>&v=<?= time(); ?>"></script> -->
 <ons-modal direction="up">
 	  <div style="text-align: center;">
 	    <p sty>
@@ -1138,7 +1139,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <div class="hiddendiv common"></div>
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
 <?php   $lng_map = $google_map_api_lng;?>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>&v=<?= time(); ?>"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
 <script>
     function sendTagIOS(classname, username) {
         var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
