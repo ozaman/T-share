@@ -389,6 +389,15 @@ function openPointMaps(type,id){
             success: function(res) {
                  // console.log(res);
                 $('#body_popup2').html(res);
+                var elem = document.getElementById("body_popup2");
+                elem.setAttribute("style","width: 100%;background-color: rgb(221, 221, 221);position: fixed;top: 0px; bottom: 0px; overflow: scroll;z-index: 100")
+   //              $('#body_popup2').css({'width: 100%',
+   //  'background-color: rgb(221, 221, 221)',
+   //  'position: fixed',
+   //  'top: 0px',
+   // ' bottom: 0px',
+   // ' overflow: scroll',
+   //  'z-index: 100'})
             }
         });
    

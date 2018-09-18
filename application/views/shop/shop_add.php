@@ -146,7 +146,50 @@ $data_place = $query_place->row();
                   ?>
 
                 </div>
-                <div class="form-group" id="nation_box">
+                
+
+           <!--  <div class="form-group">
+              <label class="font-18">เบอร์โทรศัพท์</label>
+              <ons-row>
+                <i class="material-icons res-input" onclick="$('#dri_phone').val('');
+                        $('#dri_phone_x').hide();" id="dri_phone_x" style="display: block;">close</i>
+                <ons-input id="dri_phone" name="dri_phone" type="number" pattern="\d*" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onkeyup="hideRes('dri_phone');" placeholder="" value="<?=$data_dv->phone; ?>"></ons-input>
+          </ons-row>
+        </div> -->
+      </div>
+      <style >
+        @-webkit-keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #FF5722    
+    }    
+}    
+@keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #FF5722    
+    }    
+}    
+.borderBlink{    
+    border: 1px solid #FF5722;
+    -webkit-animation: borderBlink 1s step-end infinite;    
+    animation: borderBlink 1s step-end infinite;
+    /* add 'border-color: transparent' if you wish no border to show initially */  
+}
+.borderBlink:hover {    
+    -webkit-animation: borderBlink 1s step-end infinite;    
+    animation: borderBlink 1s step-end infinite;    
+}
+      </style>
+      <script>
+        
+      </script>
+      <div class="card borderBlink" id="nation_box">
+        <div class="form-group">
                   <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
                   <!-- <span class="font-18"></span> -->
                   <ons-list-item tappable>
@@ -182,9 +225,12 @@ $data_place = $query_place->row();
 
               </div>
 
-              <div class="form-group">
+             
+      </div>
+      <div class="card" id="num_customer">
+         <div class="form-group">
                
-                <!-- <ons-list-header class="list-header "> เลือกรถส่งแขก</ons-list-header> -->
+                <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
                 <!-- <label class="font-18">จำนวนคน</label> -->
                 
                   <ons-row>
@@ -197,12 +243,11 @@ $data_place = $query_place->row();
                     <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
                   </ons-col>
                 </ons-row>
-              
-
               </div>
-
-              <div class="form-group">
-               
+      </div>
+      <div class="card" id="box_time">
+         <div class="form-group">
+               <ons-list-header class="list-header "> เลือกเวลา</ons-list-header>
                   <!-- <span class="list-header" style="background-image: none;"></span> -->
                  
                   <select class="select-input font-16" name="time_num" id="time_num" value="" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
@@ -239,25 +284,15 @@ $data_place = $query_place->row();
 
                     <?php foreach ($time as $key => $at) { ?>
                       <option value="<?=$key; ?>"><?=$at; ?></option>
-                    <?php	}
+                    <?php }
                     ?>
 
                   </select>
               
               </div>
-
-           <!--  <div class="form-group">
-              <label class="font-18">เบอร์โทรศัพท์</label>
-              <ons-row>
-                <i class="material-icons res-input" onclick="$('#dri_phone').val('');
-                        $('#dri_phone_x').hide();" id="dri_phone_x" style="display: block;">close</i>
-                <ons-input id="dri_phone" name="dri_phone" type="number" pattern="\d*" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onkeyup="hideRes('dri_phone');" placeholder="" value="<?=$data_dv->phone; ?>"></ons-input>
-          </ons-row>
-        </div> -->
       </div>
 
-
-      <div class="card">
+      <div class="card" id="box_com">
         <!-- Agent Issu -->  
         <div class="" id="show_payment_detail" style="">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
