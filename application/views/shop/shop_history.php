@@ -60,7 +60,7 @@
                     <span class="text-input__label">
                         วันหมดอายุ</span>
                 </ons-input>-->
-                 <ons-input id="idcard-input" float=""  name="ex_booking" style="width:100%;" value="<?=date('Y/m/d')?>" placeholder=""  >
+                 <ons-input id="ex_booking" float=""  name="ex_booking" style="width:100%;" value="<?=date('Y/m/d')?>" placeholder=""  onchange="ex_booking()">
                     <input type="date"  class="text-input"  name="ex_booking" id="ex_booking" value="<?=date('Y/m/d')?>">
                     <span class="text-input__label">
                         </span>
