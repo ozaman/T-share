@@ -184,11 +184,14 @@ $data_place = $query_place->row();
     -webkit-animation: borderBlink 1s step-end infinite;    
     animation: borderBlink 1s step-end infinite;    
 }
+.cus_focus{
+      background-color: #eeeeee7d;
+}
       </style>
       <script>
-        
+       
       </script>
-      <div class="card borderBlink" id="nation_box">
+      <div class="card borderBlink" id="nation_box" onclick="checformadd('nation_box')">
         <div class="form-group">
                   <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
                   <!-- <span class="font-18"></span> -->
@@ -227,7 +230,7 @@ $data_place = $query_place->row();
 
              
       </div>
-      <div class="card" id="num_customer">
+      <div class="card" id="num_customer" onclick="checformadd('num_customer')">
          <div class="form-group">
                
                 <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
@@ -245,7 +248,7 @@ $data_place = $query_place->row();
                 </ons-row>
               </div>
       </div>
-      <div class="card" id="box_time">
+      <div class="card" id="box_time" onclick="checformadd('box_time')">
          <div class="form-group">
                <ons-list-header class="list-header "> เลือกเวลา</ons-list-header>
                   <!-- <span class="list-header" style="background-image: none;"></span> -->
@@ -292,7 +295,7 @@ $data_place = $query_place->row();
               </div>
       </div>
 
-      <div class="card" id="box_com">
+      <div class="card" id="box_com" onclick="checformadd('box_com')">
         <!-- Agent Issu -->  
         <div class="" id="show_payment_detail" style="">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
