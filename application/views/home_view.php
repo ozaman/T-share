@@ -291,7 +291,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     <template id="home.html">
         <ons-page>
-            <?php include("application/views/main_body_view.php"); ?>
+            <?php 
+//            include("application/views/main_body_view.php"); 
+            $this->load->view('main_body_view');
+            ?>
+            
         </ons-page>
     </template>
 
@@ -684,7 +688,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <div class="center"></div>
             </ons-toolbar>
             <div id="body_qrcode">
-            	<?php include("application/views/page/qrcode_ref.php"); ?>
+            	<?php 
+//            	include("application/views/page/qrcode_ref.php"); 
+				$this->load->view('page/qrcode_ref');
+				?>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -705,7 +712,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <div class="center"></div>
             </ons-toolbar>
             <div id="body_line">
-                <?php include("application/views/page/line_noti.php"); ?>
+                <?php 
+//                include("application/views/page/line_noti.php"); 
+				  $this->load->view('page/line_noti');
+                ?>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -745,7 +755,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             <div id="body_transfer">
             	<ons-page>
 				  <ons-tabbar swipeable position="top">
-				    <ons-tab id="tab-trans_manage" page="shop_job.html" label="จัดการ" active  >
+				    <ons-tab id="tab-trans_manage" page="shop_job.html" label="ส่งแขก" active  >
 				    </ons-tab>
 				    <ons-tab id="tab-trans_job" page="transfer_job.html" label="ให้บริการรถ">
 				    </ons-tab>
@@ -756,7 +766,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
 				<template id="shop_job.html">
 				  <ons-page id="shop_job">
-				    
+				    	
 				  </ons-page>
 				</template>
 

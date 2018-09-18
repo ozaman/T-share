@@ -617,20 +617,6 @@ function tour() {
         'key': 'book_tour'
     })
 }
-function income() {
-    ons.notification.alert({
-        message: 'ยังไม่เปิดให้บริการ',
-        title: "ขอภัย",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {});
-    return;
-    fn.pushPage({
-        'id': 'popup1.html',
-        'title': 'จองทัวร์',
-        'key': 'shop'
-    })
-}
 
 
 function myCar(){
@@ -702,6 +688,9 @@ function reference(){
 }
 
 function income(){
-	fn.pushPage({'id': 'income.html', 'title': 'รายรับ'}, 'lift-ios');
+	 fn.pushPage({
+        'id': 'income.html',
+        'title': 'รายได้'
+    }, 'slide-ios');
 	
 }
