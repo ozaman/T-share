@@ -128,7 +128,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 <ons-tab label="Forms" icon="ion-edit" page="forms.html"></ons-tab>
                 <ons-tab label="Animations" icon="ion-film-marker" page="animations.html"></ons-tab>
             </ons-tabbar>
-
+			
             <script>
                 ons.getScriptPage().addEventListener('prechange', function(event) {
         if (event.target.matches('#appTabbar')) {
@@ -764,8 +764,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
 				    </ons-tab>-->
 				  </ons-tabbar>
+				  
 				</ons-page>
-
+				
 				<template id="shop_ic.html">
 				  <ons-page id="shop_ic">
 				    	
@@ -793,6 +794,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 					});
 				</script>
             </div>
+            <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;

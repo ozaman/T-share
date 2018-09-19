@@ -771,7 +771,7 @@ function reference() {
 function income() {
     fn.pushPage({
         'id': 'income.html',
-        'title': 'รายได้'
+        'title': 'รายรับ'
     }, 'slide-ios');
     
     $.post("page/call_page",{ path: "statement/shop_ic" },function(ele){

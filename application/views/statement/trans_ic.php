@@ -16,26 +16,21 @@
 		    "12"=>"ธันวาคม"                 
 		);
 		
-		$select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left join shopping_product as t2 on t1.program = t2.id where t1.drivername = '".$_COOKIE[detect_user]."' and MONTH(t1.transfer_date) = '".date('m')."' order by t1.transfer_date desc ";
+		$select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left join shopping_product as t2 on t1.program = t2.id where t1.drivername = '".$_COOKIE[detect_user]."' and (MONTH(t1.transfer_date) = '".date('m')."' and YEAR(t1.transfer_date) = '".date('Y')."') order by t1.transfer_date desc ";
 		$query = $this->db->query($select);
 		
 		 ?>
-
 <ons-card class="card" style="margin-bottom: 20px">
-  <ons-list-item class="input-items list-item p-l-0">
+  		<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
               <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
             </div>
             <div class="center list-item__center" style="background-image: none;">
-                 <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'เดือน', 'open':'month'}, 'lift-ios')">
-	                <span id="txt_user_province" style="color: #000;margin-left: 0px;" >เดือน <?=$thai_month_arr[date("n",time())]." "."พ.ศ.".(date("Yํ",time())+543);?></span>
-	                 <input type="hidden" name="province" id="province" value="" />
-	            </label>
-                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;">เลือกเดือน</span>  
+                 <input class="ap-date" type="month" id="month" name="month" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterMonth($(this).val());" />
             </div>
             
         </ons-list-item>
-<!-- <input type="date" class="form-control" value="" name="date_report" id="date_report" > -->
+
 </ons-card>	
 <ons-list>
 <?php	
@@ -49,24 +44,18 @@
 				
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
-<?php			}
-
-?>
-       <!--	<ons-list-item style="padding-left: 16px;"><?=$row->id;?></ons-list-item>-->
+<?php			}	?>
        <div style="border-bottom: 0px solid #ccc; padding: 20px 5px;">
        		<?=$row->id;?>&nbsp;&nbsp;<?=$row->product_name;?>
+       		<span><?=date('Y-m-d h:i',$row->post_date);?></span>
        </div>
 			
 <?php		}
 ?>
 </ons-list>
-<!-- <ons-list>
-			<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
-			<ons-list-item style="padding-left: 16px;">Item A</ons-list-item>
-			<ons-list-item style="padding-left: 16px;">Item B</ons-list-item>
-	</ons-list>-->
+
 <script>
-	function fileterDate(id){
-		console.log($('#'+id).val());
+	function filterMonth(val){
+		console.log(val);
 	}
 </script>
