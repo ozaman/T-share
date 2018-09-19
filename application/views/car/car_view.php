@@ -59,9 +59,9 @@
 				if($row->status==1){
 				?>
 				
-			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_car_open">0</span></p>	
+			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_car_open">0</span> คัน</p>	
 		<?		}else{ ?>
-			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_car_close">0</span></p>	
+			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_car_close">0</span> คัน</p>	
 	<?	}
 			}
 		
@@ -208,6 +208,3 @@
    </div>
 </div>
 <input type="hidden" value="<?=$num;?>" id="detect_num_car" />
-<script>
-	setnumcar();
-</script>

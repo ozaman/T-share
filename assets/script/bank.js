@@ -1,5 +1,7 @@
 console.log("Bank Page");
-setnumbank();
+setTimeout(function(){
+	setnumbank();
+}, 1000);
 function reloadPageBank(){
 	var url = "page/call_page";
     $.post(url, {

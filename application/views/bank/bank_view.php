@@ -40,9 +40,9 @@
 				if($row->status==1){
 				?>
 				
-			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_bank_open">0</span></p>	
+			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_bank_open">0</span> บัญชี</p>	
 		<?php		}else{ ?>
-			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_bank_close">0</span></p>	
+			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_bank_close">0</span> บัญชี</p>	
 	<?php	}
 			}
       	?>
