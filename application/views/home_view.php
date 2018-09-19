@@ -759,7 +759,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				  <ons-tabbar swipeable position="top">
 				    <ons-tab id="tab-shop_ic" page="shop_ic.html" label="ส่งแขก" active  >
 				    </ons-tab>
-				    <ons-tab id="tab-transfer_ic" page="transfer_ic.html" label="ให้บริการรถ">
+				    <ons-tab id="tab-trans_ic" page="trans_ic.html" label="ให้บริการรถ">
 				    </ons-tab>
 				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
 				    </ons-tab>-->
@@ -772,18 +772,25 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				  </ons-page>
 				</template>
 
-				<template id="transfer_ic.html">
-				  <ons-page id="transfer_ic">
+				<template id="trans_ic.html">
+				  <ons-page id="trans_ic">
 				   	
 				  </ons-page>
 				</template>
 			
 				<script>
+					var frist_ic = true;
 					document.addEventListener('prechange', function(event) {
-						
-				  document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');
-				});
+						var page = event.tabItem.getAttribute('page');
+						console.log(page);
+						if(page == "trans_ic.html" && frist_ic == true){
+							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+						    	$('#trans_ic').html(ele);
+						    });
+							frist_ic = false;
+						}
+					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+					});
 				</script>
             </div>
             <script>

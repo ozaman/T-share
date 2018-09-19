@@ -49,16 +49,22 @@
 				
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
-<?php			}	?>
+<?php			}
+
+?>
+       <!--	<ons-list-item style="padding-left: 16px;"><?=$row->id;?></ons-list-item>-->
        <div style="border-bottom: 0px solid #ccc; padding: 20px 5px;">
        		<?=$row->id;?>&nbsp;&nbsp;<?=$row->product_name;?>
-       		<span><?=date('Y-m-d h:i',$row->post_date);?></span>
        </div>
 			
 <?php		}
 ?>
 </ons-list>
-
+<!-- <ons-list>
+			<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
+			<ons-list-item style="padding-left: 16px;">Item A</ons-list-item>
+			<ons-list-item style="padding-left: 16px;">Item B</ons-list-item>
+	</ons-list>-->
 <script>
 	function fileterDate(id){
 		console.log($('#'+id).val());
