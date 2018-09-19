@@ -12,7 +12,6 @@ function performClick(elemId) {
     }
 }
 
-
 function checkImgProfile(username, pf) {
     console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
@@ -64,6 +63,67 @@ function checkTimeHome(i) {
 function use_often(id) {}
 
 function cancel_often(id) {}
+
+function sendTagIOS(classname, username) {
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (iOS == true) {
+            var url_xcode = "send://ios?class=" + classname + "&username=" + username + "&test=0";
+            console.log(url_xcode);
+            window.location = url_xcode;
+        }
+    }
+
+function deleteTagIOS(classname, username) {
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (iOS == true) {
+            var url_xcode = "delete://ios?class=" + classname + "&username=" + username + "&test=0";
+            console.log(url_xcode);
+            window.location = url_xcode;
+        }
+}
+
+function createSignOut(){
+		var dialog = document.getElementById('signout-alert-dialog');
+
+            if (dialog) {
+                dialog.show();
+            } else {
+                ons.createElement('signout-dialog.html', {
+                        append: true
+                    })
+                    .then(function(dialog) {
+                        dialog.show();
+                    });
+            }
+}
+    
+function logOut() {
+        		  $('#signout-alert-dialog').hide();
+//                $.post('signin/signout', function() {
+                
+                    $.cookie("detect_user", "", {
+                        path: '/'
+                    });
+                    $.cookie("detect_userclass", "", {
+                        path: '/'
+                    });
+                    $.cookie("detect_username", "", {
+                        path: '/'
+                    });
+                    ons.notification.alert({message: 'ออกจากระบบสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
+											  .then(function() {
+											   		
+											   		deleteTagOs("Test Text");
+                        							deleteTagIOS(class_user, username);
+                        							location.reload();
+                        							
+											  });       
+}
+
+function openNotifyline(){
+    location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
+}
+
 var userLang = navigator.language || navigator.userLanguage;
 userLang = userLang.split('-');
 var js_lng = userLang[0];
@@ -717,6 +777,22 @@ function income() {
     $.post("page/call_page",{ path: "statement/shop_ic" },function(ele){
     	$('#shop_ic').html(ele);
     });
-    
+}
 
+function language(lng) {
+        console.log(lng);
+        setCookie("lng", lng, 1);
+        window.location.reload();
+}
+
+function addCommas(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
 }

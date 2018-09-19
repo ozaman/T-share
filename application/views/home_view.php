@@ -281,7 +281,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
       .profile-pic > img {
         display: block;
         max-width: 100%;
-        max-height: 200px;
+        max-height: 170px;
       }
 
       ons-list-item {
@@ -1132,30 +1132,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         }
     };
 
-    function language(lng) {
-        console.log(lng);
-        setCookie("lng", lng, 1);
-        window.location.reload();
-    }
-
-    function GohomePage() {
-        $("#load_material").fadeIn();
-        console.log('GohomePage Run');
-        $('#load_mod_data').html(load_main_mod);
-        window.location = "index.php";
-    }
-
-    function addCommas(nStr) {
-        nStr += '';
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
-    }
+    
     var check_new_user = '<?=$_GET[check_new_user];?>';
     var regis_linenoti = '<?=$_GET[regis];?>';
 
@@ -1208,73 +1185,5 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
 <?php   $lng_map = $google_map_api_lng;?>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
-<script>
-    function sendTagIOS(classname, username) {
-        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (iOS == true) {
-            var url_xcode = "send://ios?class=" + classname + "&username=" + username + "&test=0";
-            console.log(url_xcode);
-            window.location = url_xcode;
-        }
-    }
 
-    function deleteTagIOS(classname, username) {
-        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (iOS == true) {
-            var url_xcode = "delete://ios?class=" + classname + "&username=" + username + "&test=0";
-            console.log(url_xcode);
-            window.location = url_xcode;
-        }
-    }
-
-	function createSignOut(){
-		var dialog = document.getElementById('signout-alert-dialog');
-
-            if (dialog) {
-                dialog.show();
-            } else {
-                ons.createElement('signout-dialog.html', {
-                        append: true
-                    })
-                    .then(function(dialog) {
-                        dialog.show();
-                    });
-            }
-	}
-    
-    function logOut() {
-        		  $('#signout-alert-dialog').hide();
-//                $.post('signin/signout', function() {
-                
-                    $.cookie("detect_user", "", {
-                        path: '/'
-                    });
-                    $.cookie("detect_userclass", "", {
-                        path: '/'
-                    });
-                    $.cookie("detect_username", "", {
-                        path: '/'
-                    });
-                    ons.notification.alert({message: 'ออกจากระบบสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
-											  .then(function() {
-											   		
-											   		deleteTagOs("Test Text");
-                        							deleteTagIOS(class_user, username);
-                        							location.reload();
-                        							
-											  });
-                    /*setTimeout(function() {
-
-                        deleteTagOs("Test Text");
-                        deleteTagIOS(class_user, username);
-                        window.location.href = "material/login/index.php";
-                        //						    window.location.href = "signin.php";
-                    }, 1000);*/
-//                });
-       
-    }
-    function openNotifyline(){
-    location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
-  }
-</script>
 <script src="assets/custom.js?<?=time();?>"></script>
