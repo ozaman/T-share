@@ -16,22 +16,20 @@
    	    box-shadow: 1px 1px 3px #cacaca;
    }
 </style>
+<?php 
+      	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc, status desc  ";
+      	$query_car = $this->db->query($sql);
+
+      ?>
 <div style="padding: 0px;">
    <div style="padding: 10px 10px;">
       <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();">เพิ่มข้อมูลรถ</ons-button>
+      	
    </div>
-   <?php 
-      //	$sql_car = "select * from web_car_all where drivername = '".$_COOKIE[detect_username]."' ";
-      	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc, status desc  ";
-      	$query_car = $this->db->query($sql);
-      	/*foreach ($query_car->result() as $row){
-      		$data[] = $row;
-      	}
-      	echo json_encode($data);*/
-      ?>
    <div style="margin-top: 10px;">
       <?php 
       	 $num = 0;
+      	 $before = '';
          foreach ($query_car->result()  as $row){
          	$num++;
 //         	echo $num;
@@ -45,14 +43,29 @@
 	  		$sql_pv = "SELECT name_th FROM web_province  WHERE id = ".$row->i_province." ";
 	  		$query_pv = $this->db->query($sql_pv);
 	  		$car_pv = $query_pv->row();
-	  		
+
 	  		if($row->status==1){
 				$txt_status = "เปิดใช้งาน";
 				$btn_use_often = "";
+				$num_open_car+=1;
 			}else{
 				$txt_status = "หยุดใช้งาน";
 				$btn_use_often = "display:none;";
+				$num_close_car+=1;
 			}
+			
+			if($before != $row->status){
+				$before = $row->status; 
+				if($row->status==1){
+				?>
+				
+			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_car_open">0</span></p>	
+		<?		}else{ ?>
+			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_car_close">0</span></p>	
+	<?	}
+			}
+		
+			
          ?>
          
       <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 10px;">
@@ -188,8 +201,13 @@
       <script>
          setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);
       </script>
-      <!--<input value="<?=$row->status;?>" id="check_status_<?=$row->id;?>" type="hidden" />-->
+
       <?php  }  ?>
+      <input type="hidden" value="<?=$num_open_car;?>" id="num_open_car" />
+      <input type="hidden" value="<?=$num_close_car;?>" id="num_close_car" />
    </div>
 </div>
 <input type="hidden" value="<?=$num;?>" id="detect_num_car" />
+<script>
+	setnumcar();
+</script>

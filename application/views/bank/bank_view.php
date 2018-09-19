@@ -29,9 +29,22 @@
       	$num+=1;
       	if($row->status==0){
       		$tr_often = "display:none;";
+      		$num_close_bank +=1;
       	}else{
 			$tr_often = "";
+			$num_open_bank +=1;
 		}
+		
+		if($before != $row->status){
+				$before = $row->status; 
+				if($row->status==1){
+				?>
+				
+			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_bank_open">0</span></p>	
+		<?php		}else{ ?>
+			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_bank_close">0</span></p>	
+	<?php	}
+			}
       	?>
 			<ons-card class="card">
 				<table width="100%">
@@ -144,6 +157,6 @@
 			</script>
 <?php		}
 ?>
+<input type="hidden" value="<?=$num_open_bank;?>" id="num_open_bank" />
+<input type="hidden" value="<?=$num_close_bank;?>" id="num_close_bank" />
 <input type="hidden" value="<?=$num;?>" id="detect_num_bank" />
-
-

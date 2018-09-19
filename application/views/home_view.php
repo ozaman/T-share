@@ -768,14 +768,40 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</ons-page>
 				
 				<template id="shop_ic.html">
-				  <ons-page id="shop_ic">
-				    	
+				  <ons-page >
+				  		<ons-card class="card" style="margin-bottom: 20px">
+						  		<ons-list-item class="input-items list-item p-l-0">
+						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+						            </div>
+						            <div class="center list-item__center" style="background-image: none;">
+						                 <input class="ap-date" type="month" id="date_shop_ic" name="date_shop_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateShop($(this).val());" />
+						            </div>
+						            
+						        </ons-list-item>
+						</ons-card>	
+				    	<div id="shop_ic">
+				    		
+				    	</div>
 				  </ons-page>
 				</template>
 
 				<template id="trans_ic.html">
-				  <ons-page id="trans_ic">
-				   	
+				  <ons-page>
+				   		<ons-card class="card" style="margin-bottom: 20px">
+						  		<ons-list-item class="input-items list-item p-l-0">
+						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+						            </div>
+						            <div class="center list-item__center" style="background-image: none;">
+						                 <input class="ap-date" type="month" id="date_shop_ic" name="date_shop_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateTrans($(this).val());" />
+						            </div>
+						            
+						        </ons-list-item>
+						</ons-card>	
+						<div id="trans_ic">
+							
+						</div>
 				  </ons-page>
 				</template>
 			

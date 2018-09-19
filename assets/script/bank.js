@@ -1,4 +1,14 @@
 console.log("Bank Page");
+setnumbank();
+function reloadPageBank(){
+	var url = "page/call_page";
+    $.post(url, {
+        path: "bank/bank_view"
+    }, function(ele) {
+        $('#body_account_bank').html(ele);
+        setnumbank();
+    });
+}
 function addBank(){
 	 fn.pushPage({
         'id': 'popup1.html',
@@ -12,8 +22,9 @@ function addBank(){
     });
 }
 
-function changeBankOften(){
-	
+function setnumbank(){
+	$('#txt_num_bank_open').text($('#num_open_bank').val());
+	$('#txt_num_bank_close').text($('#num_close_bank').val());
 }
 
 function editBank(id){
@@ -71,12 +82,7 @@ function changeBankOften(id){
                 })
                 .then(function() {
                     modal.hide();
-                     var url = "page/call_page";
-					 $.post(url, {
-							path: "bank/bank_view"
-					 }, function(ele) {
-						$('#body_account_bank').html(ele);
-					 });
+                     reloadPageBank();
                 });
 
         },
@@ -148,12 +154,7 @@ function changeBankStatus(id, status){
                                 driver_id: $.cookie("detect_user")
                             }, function(res) {
                                 console.log(res);
-                                var url = "page/call_page";
-							    $.post(url, {
-							        path: "bank/bank_view"
-							    }, function(ele) {
-							        $('#body_account_bank').html(ele);
-							    });
+                                reloadPageBank();
                             });
                         });
                 }
@@ -261,12 +262,7 @@ function submitEditBank(){
                     .then(function() {
                         modal.hide();
 
-                       var url = "page/call_page";
-					    $.post(url, {
-					            path: "bank/bank_view"
-					        }, function(ele) {
-					            $('#body_account_bank').html(ele);
-					        });
+                       reloadPageBank();
                         
                     });
 
@@ -382,14 +378,15 @@ function submitAddBank() {
                     })
                     .then(function() {
                         modal.hide();
-
-                       var url = "page/call_page";
+						reloadPageBank();
+						$('ons-back-button').click();
+                       /*var url = "page/call_page";
 					    $.post(url, {
 					            path: "bank/bank_view"
 					        }, function(ele) {
 					            $('#body_account_bank').html(ele);
 					            $('ons-back-button').click();
-					        });
+					        });*/
                         
                     });
 

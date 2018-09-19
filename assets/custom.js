@@ -720,7 +720,7 @@ function pay() {
 function myAccountBank() {
     fn.pushPage({
         'id': 'account_bank.html',
-        'title': 'บัญชีธนาคาร'
+        'title': 'ข้อมูลบัญชีธนาคาร'
     }, 'slide-ios');
     var url = "page/call_page";
     $.post(url, {

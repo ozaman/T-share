@@ -1,6 +1,7 @@
-/*$.post("car/check_num_car",{ driver_id : $.cookie("detect_user") },function(res){
-		console.log(res);
-});*/
+function setnumcar(){
+	$('#txt_num_car_open').text($('#num_open_car').val());
+	$('#txt_num_car_close').text($('#num_close_car').val());
+}
 function addCar() {
     fn.pushPage({
         'id': 'popup1.html',
