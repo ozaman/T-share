@@ -21,9 +21,23 @@ $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
 
-$sql_place = "SELECT * FROM shopping_product  WHERE id='".$_GET[place]."' ";
-$query_place = $this->db->query($sql_place);
-$data_place = $query_place->row();
+// $sql_place = "SELECT * FROM shopping_product  WHERE id=1 AND price_plan > 0";
+// $query_place = $this->db->query($sql_place);
+// $data_place = $query_place->row();
+
+// $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id= '"$data_place->main"' ";
+// $shopmain = $this->db->query($shopmain);
+// $data_shopmain = $shopmain->row();
+
+// $sql_shopmain_sub = "SELECT * FROM shopping_product_main_sub  WHERE id='"$data_shopmain->main"' ";
+// $shopmain_sub = $this->db->query($shopmain_sub);
+// $data_shopmain_sub = $shopmain_sub->row();
+
+
+
+
+
+// echo $data_place->topic_th;
 ?>
 <div style="height: 100%;">
   <form name="form_booking" id="form_booking">
@@ -81,7 +95,45 @@ $data_place = $query_place->row();
                 </tr>
               </table>
             </div>
-            <div class="card">
+             <style >
+      @keyframes border-pulsate {
+    0%   { border-color: rgba(0, 255, 255, 1); }
+    50% { border-color: rgba(0, 255, 255, 0); }
+    100%   { border-color: rgba(0, 255, 255, 1); }
+}
+       /* @-webkit-keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #FF5722    
+    }    
+}    
+@keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #FF5722    
+    }    
+}    */
+.borderBlink{   
+/*animation: border-pulsate 2s infinite; */
+    /*border: 1px solid;*/
+    border: 1px solid #FF5722;
+    /*-webkit-animation: borderBlink 1s step-end infinite;    */
+    /*animation: borderBlink 1s step-end infinite;*/
+    /* add 'border-color: transparent' if you wish no border to show initially */  
+}
+.borderBlink:hover {    
+    /*-webkit-animation: borderBlink 1s step-end infinite;    */
+    /*animation: borderBlink 1s step-end infinite;    */
+}
+.cus_focus{
+      background-color: #eeeeee7d;
+}
+      </style>
+            <div class="card borderBlink" onclick="checformadd('box_car')">
               <input type="hidden" name="" id="numcar" value="<?=count($val);?>">
               <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
               <!--<div></div>-->
@@ -117,9 +169,9 @@ $data_place = $query_place->row();
                               if($val->status_usecar == 1){
                                 ?>
                                 <script>
-                                  selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
+                                  // selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
                                 </script>
-                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1" checked  ></ons-radio>
+                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   ></ons-radio>
 
                               <?php }
                               else{
@@ -169,48 +221,11 @@ $data_place = $query_place->row();
           </ons-row>
         </div> -->
       </div>
-      <style >
-      @keyframes border-pulsate {
-    0%   { border-color: rgba(0, 255, 255, 1); }
-    50% { border-color: rgba(0, 255, 255, 0); }
-    100%   { border-color: rgba(0, 255, 255, 1); }
-}
-       /* @-webkit-keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #FF5722    
-    }    
-}    
-@keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #FF5722    
-    }    
-}    */
-.borderBlink{   
-/*animation: border-pulsate 2s infinite; */
-    /*border: 1px solid;*/
-    border: 1px solid #FF5722;
-    /*-webkit-animation: borderBlink 1s step-end infinite;    */
-    /*animation: borderBlink 1s step-end infinite;*/
-    /* add 'border-color: transparent' if you wish no border to show initially */  
-}
-.borderBlink:hover {    
-    /*-webkit-animation: borderBlink 1s step-end infinite;    */
-    /*animation: borderBlink 1s step-end infinite;    */
-}
-.cus_focus{
-      background-color: #eeeeee7d;
-}
-      </style>
+     
       <script>
        
       </script>
-      <div class="card borderBlink" id="nation_box" onclick="checformadd('nation_box')">
+      <div class="card" id="nation_box" onclick="checformadd('nation_box')">
          <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
         <div class="form-group">
                  
@@ -472,7 +487,7 @@ $data_place = $query_place->row();
               </div>
       </div>
       <div class="card" id="box_time" onclick="checformadd('box_time')">
-         <ons-list-header class="list-header ">เวลาถึงประมาณ </ons-list-header>
+         <ons-list-header class="list-header ">ใช้เวลาเดินทางถึงประมาณ </ons-list-header>
          <div class="form-group">
               
                   <!-- <span class="list-header" style="background-image: none;"></span> -->

@@ -618,6 +618,7 @@ setTimeout(function() {
 
 
         } else {
+            modal.hide();
             fn.pushPage({
                 'id': 'place_company.html',
                 'title': 'ส่งแขก'

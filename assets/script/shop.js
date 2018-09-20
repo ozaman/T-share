@@ -6,12 +6,68 @@ if (class_user == 'lab') {
 
 function checformadd(tax){
   var form = document.getElementById("form_booking");
+  if (tax == 'box_car') {
+     $('#'+tax).removeClass('borderBlink')
+     if(form.elements["nation"].value == 0){
+        $('#nation_box').addClass('borderBlink')
+        $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 500, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+      });
+     }
+     if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+        // $("#box_com").animate({scrollTop:50}, '500');
+        // $("#box_com").animate({top:'50'},1000,function(){
+       //      $('#shop_add').animate({
+       //                  location.href="#box_com";
+       // // window.location=$("#about").attr("href");
+       //    // window.location = "about.html";
+
+       //  },500);
+       console.log(this.hash)
+       $('.page').animate({scrollTop:$('.page').offset().top+600}, '500');
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 500, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#box_com";
+      });
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
+      $('#num_customer').addClass('borderBlink')
+  }
+}
   if (tax == 'nation_box') {
      $('#'+tax).removeClass('borderBlink')
      if(form.elements["adult"].value == 0){
      }
      if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
         $('#box_com').addClass('borderBlink')
+        // $("#box_com").animate({scrollTop:50}, '500');
+        // $("#box_com").animate({top:'50'},1000,function(){
+       //      $('#shop_add').animate({
+       //                  location.href="#box_com";
+       // // window.location=$("#about").attr("href");
+       //    // window.location = "about.html";
+
+       //  },500);
+       console.log(this.hash)
+       $('.page').animate({scrollTop:$('.page').offset().top+600}, '500');
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 500, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#box_com";
+      });
     }
     else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
       $('#num_customer').addClass('borderBlink')
@@ -27,22 +83,42 @@ if (tax == 'box_com') {
     }
     else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
         $('#num_customer').addClass('borderBlink')
+        $('html, body').animate({
+        scrollTop: $('#num_customer').offset().top
+      }, 500, function(){
+   // console.log( )
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#num_customer";
+      });
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value != 0 && form.elements["child"].value == 0) {
+        $('#num_customer').addClass('borderBlink')
     }
 }
 $("#adult").focusout(function(){
     // $(this).css("background-color", "#FFFFFF");
 });
-$("#child").focusout(function(){
-    $("#child").val()
-    console.log()
-    $('#num_customer').removeClass('borderBlink')
-    $('#box_time').addClass('borderBlink')
-});
+// $("#child").focusout(function(){
+//     $("#child").val()
+//     console.log()
+    
+// });
 $( document ).ready(function() {
 $("#child").on('change',function(){
         $("#child").val()
     console.log()
 })
+$("#child").keyup(function(){
+       var timer;
+       var form = document.getElementById("form_booking");
+   clearTimeout (timer);
+    timer = setTimeout(function(){
+       if(form.elements["adult"].value != 0 && form.elements["child"].value != 0){
+            $('#num_customer').removeClass('borderBlink')
+    $('#box_time').addClass('borderBlink')
+       } console.log(111)
+        }, 500);
+    })
 });
 
 // if (tax == 'box_time') {
@@ -67,6 +143,7 @@ $("#child").on('change',function(){
 //     }
 // }
 }
+
 function checktime(x){
     console.log(x)
      $('#box_time').removeClass('borderBlink')
@@ -228,6 +305,34 @@ if ( parseInt($('#adult').val()) <= 0) {
     })
     .then(function() {
      $('#adult').focus();
+ });
+
+    return false;
+}
+if ($('#child').val() == "" ) {
+    $('#child').focus();
+    ons.notification.alert({
+        message: 'กรุณาระบุจำนวนเด็ก่',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
+        $('#child').focus();
+    });
+
+    return false;
+}
+$('#child').val(parseInt($('#child').val()))
+console.log(parseInt($('#child').val()))
+if ( parseInt($('#child').val()) <= 0) {
+
+    ons.notification.alert({
+        message: 'กรุณาระบุจำนวนเด็กต้องมากว่า 0',
+        title: "ข้อมูลไม่ครบ",
+        buttonLabel: "ปิด"
+    })
+    .then(function() {
+     $('#child').focus();
  });
 
     return false;
