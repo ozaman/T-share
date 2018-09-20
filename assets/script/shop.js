@@ -10,46 +10,71 @@ function checformadd(tax){
      $('#'+tax).removeClass('borderBlink')
      if(form.elements["adult"].value == 0){
      }
-     if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
-        $('#num_customer').addClass('borderBlink')
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["adult"].value != 0 && form.elements["time_num"].value == 0) {
-      $('#box_time').addClass('borderBlink')
-  }
-}
-if (tax == 'num_customer') {
-    $('#'+tax).removeClass('borderBlink')
-    if (form.elements["nation"].value == 0) {
-        $('#nation_box').addClass('borderBlink')
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["time_num"].value == 0) {
-        $('#box_time').addClass('borderBlink')
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["time_num"].value != 0 && form.elements["price_plan"].value == 0) {
+     if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
         $('#box_com').addClass('borderBlink')
     }
-}
-if (tax == 'box_time') {
-   $('#'+tax).removeClass('borderBlink')
-   if (form.elements["nation"].value == 0) {
-    $('#nation_box').addClass('borderBlink')
-}
-else if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
-    $('#num_customer').addClass('borderBlink')
-}
-else if (form.elements["adult"].value == 0) {
-    $('#num_customer').addClass('borderBlink')
-}
+    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
+      $('#num_customer').addClass('borderBlink')
+  }
 }
 if (tax == 'box_com') {
     $('#'+tax).removeClass('borderBlink')
     if (form.elements["nation"].value == 0) {
         $('#nation_box').addClass('borderBlink')
     }
-    else if (form.elements["nation"].value != 0 && form.elements["adult"].value == 0) {
+    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+    }
+    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
         $('#num_customer').addClass('borderBlink')
     }
 }
+$("#adult").focusout(function(){
+    // $(this).css("background-color", "#FFFFFF");
+});
+$("#child").focusout(function(){
+    $("#child").val()
+    console.log()
+    $('#num_customer').removeClass('borderBlink')
+    $('#box_time').addClass('borderBlink')
+});
+$( document ).ready(function() {
+$("#child").on('change',function(){
+        $("#child").val()
+    console.log()
+})
+});
+
+// if (tax == 'box_time') {
+//    $('#'+tax).removeClass('borderBlink')
+//    if (form.elements["nation"].value == 0) {
+//     $('#nation_box').addClass('borderBlink')
+// }
+// else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+//     $('#num_customer').addClass('borderBlink')
+// }
+// else if (form.elements["nation"].value != 0 && form.elements["time_num"].value != 0 && form.elements["price_plan"].value == 0) {
+//         $('#box_com').addClass('borderBlink')
+//     }
+// }
+// if (tax == 'box_com') {
+//     $('#'+tax).removeClass('borderBlink')
+//     if (form.elements["nation"].value == 0) {
+//         $('#nation_box').addClass('borderBlink')
+//     }
+//     else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+//         $('#num_customer').addClass('borderBlink')
+//     }
+// }
+}
+function checktime(x){
+    console.log(x)
+     $('#box_time').removeClass('borderBlink')
+    
+
+}
+function checkchild(x){
+    console.log('dsdsdsd')
 }
 // var rad = document.form_booking.nation;
 function handleClick(tax,name){
@@ -61,16 +86,25 @@ function handleClick(tax,name){
             $('#'+tax+'_'+name).addClass('cus_focus')
             $('#'+tax+'_'+2).removeClass('cus_focus')
             $('#'+tax+'_'+3).removeClass('cus_focus')
+            $('.nation_order').hide()
+            $('.nation_china').show()
         }
         if (name == 2) {
             $('#'+tax+'_'+name).addClass('cus_focus')
             $('#'+tax+'_'+1).removeClass('cus_focus')
             $('#'+tax+'_'+3).removeClass('cus_focus')
+            $('.nation_order').show()
+            $('.nation_china').hide()
+
         }
         if (name == 3) {
             $('#'+tax+'_'+name).addClass('cus_focus')
             $('#'+tax+'_'+1).removeClass('cus_focus')
             $('#'+tax+'_'+2).removeClass('cus_focus')
+            $('.nation_order').show()
+            $('.nation_china').show()
+
+
         }
     }
     if (tax == 'car') {
