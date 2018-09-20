@@ -7,20 +7,20 @@ if (class_user == 'lab') {
 function checformadd(tax){
   var form = document.getElementById("form_booking");
   if (tax == 'box_car') {
-     $('#'+tax).removeClass('borderBlink')
-     if(form.elements["nation"].value == 0){
-        $('#nation_box').addClass('borderBlink')
-        $('html, body').animate({
+   $('#'+tax).removeClass('borderBlink')
+   if(form.elements["nation"].value == 0){
+    $('#nation_box').addClass('borderBlink')
+    $('html, body').animate({
         scrollTop: $('#box_com').offset().top
-      }, 500, function(){
+    }, 300, function(){
    // console.log( )
-    $("#box_com").focus()
+   $("#box_com").focus()
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.href = "#nation_box";
-      });
-     }
-     if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
+    });
+}
+if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+    $('#box_com').addClass('borderBlink')
         // $("#box_com").animate({scrollTop:50}, '500');
         // $("#box_com").animate({top:'50'},1000,function(){
        //      $('#shop_add').animate({
@@ -30,26 +30,27 @@ function checformadd(tax){
 
        //  },500);
        console.log(this.hash)
-       $('.page').animate({scrollTop:$('.page').offset().top+600}, '500');
-      $('html, body').animate({
+       
+       $('html, body').animate({
         scrollTop: $('#box_com').offset().top- $(window).height() - 100
-      }, 500, function(){
+    }, 300, function(){
    // console.log( )
-    $("#box_com").focus()
+   $("#box_com").focus()
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.href = "#box_com";
-      });
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
+    });
+   }
+   else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
       $('#num_customer').addClass('borderBlink')
   }
 }
-  if (tax == 'nation_box') {
-     $('#'+tax).removeClass('borderBlink')
-     if(form.elements["adult"].value == 0){
-     }
-     if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
+if (tax == 'nation_box') {
+   $('#'+tax).removeClass('borderBlink')
+   if(form.elements["plate_num_1"].value == 0){
+    $('#box_car').addClass('borderBlink')
+}
+if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+    $('#nation_box').addClass('borderBlink')
         // $("#box_com").animate({scrollTop:50}, '500');
         // $("#box_com").animate({top:'50'},1000,function(){
        //      $('#shop_add').animate({
@@ -59,40 +60,96 @@ function checformadd(tax){
 
        //  },500);
        console.log(this.hash)
-       $('.page').animate({scrollTop:$('.page').offset().top+600}, '500');
-      $('html, body').animate({
+      
+       $('html, body').animate({
         scrollTop: $('#box_com').offset().top- $(window).height() - 100
-      }, 500, function(){
+    }, 300, function(){
    // console.log( )
-    $("#box_com").focus()
+   $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+    });
+   }
+   if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0 && form.elements["price_plan"].value == 0) {
+    $('#box_com').addClass('borderBlink')
+    console.log(this.hash)
+   
+    $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+    }, 300, function(){
+   // console.log( )
+   $("#box_com").focus()
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.href = "#box_com";
-      });
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
-      $('#num_customer').addClass('borderBlink')
-  }
+    });
+}
+else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
+  $('#num_customer').addClass('borderBlink')
+  $('html, body').animate({
+    scrollTop: $('#num_customer').offset().top- $(window).height() - 100
+}, 300, function(){
+   // console.log( )
+   $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#num_customer";
+    });
+}
 }
 if (tax == 'box_com') {
     $('#'+tax).removeClass('borderBlink')
-    if (form.elements["nation"].value == 0) {
-        $('#nation_box').addClass('borderBlink')
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
-    }
-    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
-        $('#num_customer').addClass('borderBlink')
+    if(form.elements["plate_num_1"].value == 0){
+        $('#box_car').addClass('borderBlink')
         $('html, body').animate({
-        scrollTop: $('#num_customer').offset().top
-      }, 500, function(){
+            scrollTop: $('#box_com').offset().top
+        }, 300, function(){
    // console.log( )
+   $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+    });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+        console.log(this.hash)
+       
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top- $(window).height() - 100
+        }, 300, function(){
+   // console.log( )
+   $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+    });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+        console.log(this.hash)
+       
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top- $(window).height() - 100
+        }, 300, function(){
+   // console.log( )
+   $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#box_com";
+    });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["child"].value == 0) {
+        $('#num_customer').addClass('borderBlink')
+        console.log(this.hash)
+       
+        $('html, body').animate({
+            scrollTop: $('#num_customer').offset().top- $(window).height() - 100
+        }, 300, function(){
+   // console.log( )
+   $("#adult").focus()
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.href = "#num_customer";
-      });
+    });
     }
-    else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value != 0 && form.elements["child"].value == 0) {
-        $('#num_customer').addClass('borderBlink')
+    
+    else if ( form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["child"].value != 0) {
+        $('#box_time').addClass('borderBlink')
     }
 }
 $("#adult").focusout(function(){
@@ -101,24 +158,89 @@ $("#adult").focusout(function(){
 // $("#child").focusout(function(){
 //     $("#child").val()
 //     console.log()
-    
+
 // });
 $( document ).ready(function() {
-$("#child").on('change',function(){
+    $("#child").on('change',function(){
         $("#child").val()
-    console.log()
-})
-$("#child").keyup(function(){
-       var timer;
-       var form = document.getElementById("form_booking");
-   clearTimeout (timer);
-    timer = setTimeout(function(){
-       if(form.elements["adult"].value != 0 && form.elements["child"].value != 0){
-            $('#num_customer').removeClass('borderBlink')
-    $('#box_time').addClass('borderBlink')
-       } console.log(111)
-        }, 500);
+        console.log()
     })
+    $("#child").keyup(function(){
+     var timer;
+     var form = document.getElementById("form_booking");
+     clearTimeout (timer);
+     timer = setTimeout(function(){
+        $('#'+tax).removeClass('borderBlink')
+     if(form.elements["plate_num_1"].value == 0){
+        $('#box_car').addClass('borderBlink')
+        $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+      });
+     }
+     if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#box_com";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["child"].value == 0 && form.elements["adult"].value == 0) {
+        $('#num_customer').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#num_customer').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#adult").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#num_customer";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+        $('#num_customer').removeClass('borderBlink')
+        if (form.elements["time_num"].value == 0 ) {
+            $('#box_time').addClass('borderBlink')
+            $('#time_num').focus()
+        }
+        else{
+             $('#box_time').removeClass('borderBlink')
+
+            $('#child').focusout();
+        }
+            
+            
+    }
+        //  if(form.elements["adult"].value != 0 && form.elements["child"].value != 0){
+            
+        // }
+
+    }, 300);
+ })
 });
 
 // if (tax == 'box_time') {
@@ -146,7 +268,7 @@ $("#child").keyup(function(){
 
 function checktime(x){
     console.log(x)
-     $('#box_time').removeClass('borderBlink')
+    $('#box_time').removeClass('borderBlink')
     
 
 }
@@ -157,6 +279,7 @@ function checkchild(x){
 function handleClick(tax,name){
     console.log(tax)
     console.log(name)
+    var form = document.getElementById("form_booking");
     console.log('#'+tax+name)
     if (tax == 'nation') {
         if (name == 1) {
@@ -172,6 +295,66 @@ function handleClick(tax,name){
             $('#'+tax+'_'+3).removeClass('cus_focus')
             $('.nation_order').show()
             $('.nation_china').hide()
+
+            $('#price_plan_3').prop("checked", true);
+            if(form.elements["plate_num_1"].value == 0){
+        $('#box_car').addClass('borderBlink')
+        $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+      });
+     }
+     if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#nation_box";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#box_com").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#box_com";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["child"].value == 0 && form.elements["adult"].value == 0) {
+        $('#box_com').removeClass('borderBlink')
+        $('#num_customer').addClass('borderBlink')
+       console.log(this.hash)
+      
+      $('html, body').animate({
+        scrollTop: $('#num_customer').offset().top- $(window).height() - 100
+      }, 300, function(){
+   // console.log( )
+    $("#adult").focus()
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.href = "#num_customer";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["child"].value != 0 && form.elements["adult"].value != 0) {
+        $('#num_customer').removeClass('borderBlink')
+            $('#box_time').addClass('borderBlink')
+            $('#time_num').toggle()
+            $('#child').toggle();
+    }
+
 
         }
         if (name == 3) {
@@ -194,15 +377,15 @@ function handleClick(tax,name){
 // ons-tab[page="shop_history.html"]
 
 function editBook(x){
-   console.log(x)
-   $('#text_edit_persion').show()
+ console.log(x)
+ $('#text_edit_persion').show()
 
-   $('#btn_selectisedit').show()
-   $('#num_edit_persion').show()
-   $('#btn_isedit').hide()
-   $('#isedit').hide()
-   $('#num_edit_persion').css('display','inline-block')
-   $('#num_edit_persion').focus();
+ $('#btn_selectisedit').show()
+ $('#num_edit_persion').show()
+ $('#btn_isedit').hide()
+ $('#isedit').hide()
+ $('#num_edit_persion').css('display','inline-block')
+ $('#num_edit_persion').focus();
 }
 
 function saveeditBook(x){
@@ -242,6 +425,7 @@ var submitShop = function() {
         })
         .then(function() {
             $('#car_type').focus();
+            location.href = "#box_car";
         });
         return false;
     }
@@ -280,6 +464,25 @@ var submitShop = function() {
     // rate_value = document.getElementById('price_plan_1').value;
 
 }
+var price_plan = document.getElementById("form_booking");
+
+    // console.log(price_plan)
+    // var rate_value;
+    if(price_plan.elements["price_plan"].value == 0){
+        ons.notification.alert({
+            message: 'กรุณาเลือกค่าตอบแทน',
+            title: "ข้อมูลไม่ครบ",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {
+         window.location.href = "#box_com";
+            
+            //$('#time_num').focus();
+        });
+        return false;
+    // rate_value = document.getElementById('price_plan_1').value;
+
+}
 
 if ($('#adult').val() == "" ) {
     $('#adult').focus();
@@ -304,8 +507,8 @@ if ( parseInt($('#adult').val()) <= 0) {
         buttonLabel: "ปิด"
     })
     .then(function() {
-     $('#adult').focus();
- });
+       $('#adult').focus();
+   });
 
     return false;
 }
@@ -318,6 +521,7 @@ if ($('#child').val() == "" ) {
     })
     .then(function() {
         $('#child').focus();
+         window.location.href = "#castomer_box";
     });
 
     return false;
@@ -332,8 +536,8 @@ if ( parseInt($('#child').val()) <= 0) {
         buttonLabel: "ปิด"
     })
     .then(function() {
-     $('#child').focus();
- });
+       $('#child').focus();
+   });
 
     return false;
 }
@@ -347,6 +551,7 @@ if(time_num.elements["time_num"].value == 0){
     })
     .then(function() {
         $('#time_num').focus();
+         window.location.href = "#box_time";
     });
     return false;
     // rate_value = document.getElementById('price_plan_1').value;
@@ -363,23 +568,7 @@ if ($('#time_num').val() == '') {
     });
     return false;
 }
-var price_plan = document.getElementById("form_booking");
 
-    // console.log(price_plan)
-    // var rate_value;
-    if(price_plan.elements["price_plan"].value == ''){
-        ons.notification.alert({
-            message: 'กรุณาเลือกค่าตอบแทน',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            //$('#time_num').focus();
-        });
-        return false;
-    // rate_value = document.getElementById('price_plan_1').value;
-
-}
 var dialog = document.getElementById('shop_add-alert-dialog');
 if (dialog) {
     dialog.show();
@@ -525,10 +714,10 @@ checkPhotoCheckIn('driver_pay_report', obj.id);
                             data: param,
                             type: 'post',
                             success: function(res) {
-                               console.log(res);
-                               $('#body_popup1').html(res);
-                           }
-                       });
+                             console.log(res);
+                             $('#body_popup1').html(res);
+                         }
+                     });
     // $.post(url, function(data) {
     //     $('#body_popup1').html(data);
 //        var obj = JSON.parse('<?=json_encode($_POST);?>');
@@ -630,10 +819,10 @@ function checkPhotoCheckIn(type, id){
     $('#'+type+'_locat_on').hide();
 }
 $.ajax({
-   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
-   type:'HEAD',
-   error: function()
-   {
+ url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+ type:'HEAD',
+ error: function()
+ {
     console.log('Error file');
     $('#photo_'+type+'_no').show();
     $('#photo_'+type+'_yes').hide();
@@ -823,21 +1012,21 @@ if(type=="driver_topoint"){
 }else if(type=="guest_receive"){
     $('#step_guest_register').show();
 }else if(type=="guest_register"){
- $('#step_driver_pay_report').show();
+   $('#step_driver_pay_report').show();
 }else if(type=="driver_pay_report"){
 
 }
 $('#'+type+'_locat_off').hide();
 $('#'+type+'_locat_on').show();
 $.ajax({
-   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
-   type:'HEAD',
-   error: function()
-   {
-       console.log('Error file');
+ url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
+ type:'HEAD',
+ error: function()
+ {
+     console.log('Error file');
 
-       $('#photo_'+type+'_yes').hide();
-       $('#photo_'+type+'_no').show();
+     $('#photo_'+type+'_yes').hide();
+     $('#photo_'+type+'_no').show();
 
 //			   $('#'+type+'_locat_off').show();
 //			   $('#'+type+'_locat_on').hide();
@@ -873,9 +1062,9 @@ var url = "shop/checkin?type="+type+"&id="+id+"&lat="+lat+"&lng="+lng;
 console.log(url);
 
 $.post(url,function(res){
-   console.log(res);
-   modal.hide();
-   if(res.result==true){
+ console.log(res);
+ modal.hide();
+ if(res.result==true){
     $('#'+type+'_check_click').val(1)
     changeHtml(type,id,timestampToDate(res.time,"time"));
 
@@ -889,11 +1078,11 @@ sendSocket(id);
 		      /*	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
    					console.log(data);
    				});*/
-                 ons.notification.alert({message: 'ยืนยันแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
-                 .then(function() {
-                     $('ons-back-button').click();
-                 });
-             }else{
+                   ons.notification.alert({message: 'ยืนยันแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+                   .then(function() {
+                       $('ons-back-button').click();
+                   });
+               }else{
 //				swal("Error");
 }
 });
@@ -902,14 +1091,14 @@ sendSocket(id);
 
 function readURL(input, type, subtype, id) {
 
-   if (input.files && input.files[0]) {
-     var reader = new FileReader();
-     reader.onload = function(e) {
+ if (input.files && input.files[0]) {
+   var reader = new FileReader();
+   reader.onload = function(e) {
 
-        $('#pv_'+type).attr('src', e.target.result);
-        $('#pv_'+type).fadeIn(500);
-        var url = "page/upload_img?type="+type+"&action="+subtype+"&id="+id;
-        console.log(url);
+    $('#pv_'+type).attr('src', e.target.result);
+    $('#pv_'+type).fadeIn(500);
+    var url = "page/upload_img?type="+type+"&action="+subtype+"&id="+id;
+    console.log(url);
 //				return;
 var data = new FormData($('#form_checkin')[0]);
 data.append('fileUpload', $('#img_checkin')[0].files[0]);
@@ -924,11 +1113,11 @@ $.ajax({
    				                success: function(php_script_response){
                                       console.log(php_script_response);
                                       if(php_script_response.result==true){
-                                         $('#txt-img-nohas-checkin').hide();
-                                         $('#txt-img-has-checkin').show();
-                                     }
-                                 }
-                             });
+                                       $('#txt-img-nohas-checkin').hide();
+                                       $('#txt-img-has-checkin').show();
+                                   }
+                               }
+                           });
 }
 reader.readAsDataURL(input.files[0]);
 
@@ -949,8 +1138,8 @@ function btn_driver_topoint(id) {
   var url = "page/call_page?type=driver_topoint&id="+id;
   console.log(url);
   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
+   $('#body_shop_checkin').html(ele);
+});
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -960,24 +1149,24 @@ function btn_guest_receive(id) {
 		return;
 	}
     if(class_user=="taxi"){
-       ons.notification.alert({
+     ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
+     .then(function() {
+     });
+     return;
+ }
+ fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "พนักงานรับแขก"
 }, 'fade-ios');
-   var url = "page/call_page?type=guest_receive&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
+ var url = "page/call_page?type=guest_receive&id="+id;
+ console.log(url);
+ $.post(url,{ path : "shop/checkin_action" },function(ele){
+   $('#body_shop_checkin').html(ele);
+});
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -987,24 +1176,24 @@ function btn_guest_register(id) {
 		return;
 	}
     if(class_user=="taxi"){
-       ons.notification.alert({
+     ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
+     .then(function() {
+     });
+     return;
+ }
+ fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "แขกลงทะเบียน"
 }, 'fade-ios');
-   var url = "page/call_page?type=guest_register&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
+ var url = "page/call_page?type=guest_register&id="+id;
+ console.log(url);
+ $.post(url,{ path : "shop/checkin_action" },function(ele){
+   $('#body_shop_checkin').html(ele);
+});
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -1014,24 +1203,24 @@ function btn_driver_pay_report(id) {
 		return;
 	}
     if(class_user=="taxi"){
-       ons.notification.alert({
+     ons.notification.alert({
         message: 'พนักงานเป็นคนยืนยันเท่านั้น',
         title: "ไม่สามารถยืนยันได้",
         buttonLabel: "ปิด"
     })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
+     .then(function() {
+     });
+     return;
+ }
+ fn.pushPage({
     'id': 'popup_shop_checkin.html',
     'title': "แจ้งยอดรายได้แล้ว"
 }, 'fade-ios');
-   var url = "page/call_page?type=driver_pay_report&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
+ var url = "page/call_page?type=driver_pay_report&id="+id;
+ console.log(url);
+ $.post(url,{ path : "shop/checkin_action" },function(ele){
+   $('#body_shop_checkin').html(ele);
+});
 //    $('#type_checkin').val('topoint');
 //    alert($('#type_checkin').val());
 }
@@ -1102,10 +1291,10 @@ document.addEventListener('prechange', function(event) {
             data: pass,
             type: 'post',
             success: function(res) {
-               console.log(res);
-               $('#shop_history').html(res);
-           }
-       });
+             console.log(res);
+             $('#shop_history').html(res);
+         }
+     });
     }
     document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');
@@ -1118,18 +1307,18 @@ function timestampToDate(unix_timestamp,type){
   var day = date.getDate();
   var month = date.getMonth()+1;
   if(month<=10){
-   month = "0"+month;
-}
-if(day<=10){
-   day = "0"+day
-}
-var year = date.getFullYear();
-var txt_date = year+"-"+month+"-"+day;
+     month = "0"+month;
+ }
+ if(day<=10){
+     day = "0"+day
+ }
+ var year = date.getFullYear();
+ var txt_date = year+"-"+month+"-"+day;
 
-var hours = date.getHours();
-var minutes = "0" + date.getMinutes();
-var seconds = "0" + date.getSeconds();
-var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+ var hours = date.getHours();
+ var minutes = "0" + date.getMinutes();
+ var seconds = "0" + date.getSeconds();
+ var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 		//return formattedTime;
 		if(type=="date"){
 			return txt_date;
@@ -1139,21 +1328,21 @@ var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 			return txt_date+" "+formattedTime;
 		}
 		
-   }
-
-   /******* <!-------- function Income ------------> *******/
-   function openViewPrice(id){
-     fn.pushPage({
-        'id': 'popup_shop_checkin.html',
-        'title': "รายได้"
-    }, 'lift-ios');
-     var url = "page/call_page?&id="+id;
-     console.log(url);
-     $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
-         $('#body_shop_checkin').html(ele);
-     });
  }
- function ex_booking(){
+
+ /******* <!-------- function Income ------------> *******/
+ function openViewPrice(id){
+   fn.pushPage({
+    'id': 'popup_shop_checkin.html',
+    'title': "รายได้"
+}, 'lift-ios');
+   var url = "page/call_page?&id="+id;
+   console.log(url);
+   $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
+       $('#body_shop_checkin').html(ele);
+   });
+}
+function ex_booking(){
     var url = "shop/shop_history";
     console.log(moment().format('YYYY-MM-DD'))
     console.log($.cookie("detect_userclass"))
@@ -1168,10 +1357,10 @@ var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
         data: pass,
         type: 'post',
         success: function(res) {
-           console.log(res);
-           $('#shop_history').html(res);
-       }
-   });
+         console.log(res);
+         $('#shop_history').html(res);
+     }
+ });
     console.log($('#ex_booking').val())
 // dateInput.addEventListener('change', function(e) {
 //   console.log(e.target.value);

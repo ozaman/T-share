@@ -21,16 +21,16 @@ $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
 
-// $sql_place = "SELECT * FROM shopping_product  WHERE id=1 AND price_plan > 0";
-// $query_place = $this->db->query($sql_place);
-// $data_place = $query_place->row();
+$sql_place = "SELECT * FROM shopping_product  WHERE id=1 AND price_plan > 0";
+$query_place = $this->db->query($sql_place);
+$data_place = $query_place->row();
 
-// $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id= '"$data_place->main"' ";
-// $shopmain = $this->db->query($shopmain);
-// $data_shopmain = $shopmain->row();
+$sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->main";
+$shopmain = $this->db->query($sql_shopmain);
+$data_shopmain = $shopmain->row();
 
-// $sql_shopmain_sub = "SELECT * FROM shopping_product_main_sub  WHERE id='"$data_shopmain->main"' ";
-// $shopmain_sub = $this->db->query($shopmain_sub);
+// $sql_shopmain_sub = "SELECT * FROM shopping_product_sub  WHERE id= $data_shopmain->main ";
+// $shopmain_sub = $this->db->query($sql_shopmain_sub);
 // $data_shopmain_sub = $shopmain_sub->row();
 
 
@@ -133,8 +133,8 @@ $user_id = $_COOKIE['detect_user'];
       background-color: #eeeeee7d;
 }
       </style>
-            <div class="card borderBlink" onclick="checformadd('box_car')">
-              <input type="hidden" name="" id="numcar" value="<?=count($val);?>">
+            <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
+              <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
               <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
               <!--<div></div>-->
               <!--<span >เลือกรถส่งแขก</span>-->
@@ -149,6 +149,7 @@ $user_id = $_COOKIE['detect_user'];
                   $bg_plate_color = "background-color: ".$val->plate_color;
 //          $text_plate_color = "background-color: ".$val->txt_color;
                   ?>
+                  
 
                   <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
                     <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
@@ -166,12 +167,16 @@ $user_id = $_COOKIE['detect_user'];
                             <!--<label class="container">-->
                               <?php 
                               
-                              if($val->status_usecar == 1){
+                              if($val->status_usecar == 1 && count($query->result()) == 1){
                                 ?>
                                 <script>
-                                  // selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
+
+                    $('#box_car').removeClass('borderBlink')
+                    $('#nation_box').addClass('borderBlink')
+                  
+                                  selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
                                 </script>
-                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   ></ons-radio>
+                                <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   checked></ons-radio>
 
                               <?php }
                               else{
@@ -319,12 +324,12 @@ $user_id = $_COOKIE['detect_user'];
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                   <tbody>
                                     <tr>
-                                      <td width="75"> <img src="assets/images/flag/China.png" align="absmiddle" width="25" height="25" alt="" ><span class="font-14">&nbsp;จีน  </span></td>
+                                      <td width="85"> <img src="assets/images/flag/China.png" align="absmiddle" width="25" height="25" alt="" ><span class="">&nbsp;จีน  </span></td>
                                       <td>
                                         <span style="display:show">ค่าจอด  <b>1100</b>&nbsp;</span>
                                         <span style="display:show">ค่าหัว  <b>200</b>&nbsp;</span>
-                                        <span style="display:none">ค่าคอมมิชชั่น  <b>0 %</b>&nbsp;</span>
-                                        &nbsp;
+                                        <span style="display:none">ค่าคอม  <b>0 %</b>&nbsp;</span>
+                                       
                                       </td>
                                     </tr>
                                   </tbody>
@@ -419,14 +424,14 @@ $user_id = $_COOKIE['detect_user'];
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_china">
                                   <tbody>
                                     <tr>
-                                      <td width="75"> <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="">
-                                        <span class="font-14">&nbsp;จีน </span>
+                                      <td width="85"> <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="">
+                                        <span class="">&nbsp;จีน </span>
                                       </td>
                                       <td>
                                         <span style="display:noneshow">ค่าจอด  <b>600</b>&nbsp;</span>
                                         <span style="display:none">ค่าหัว  <b>0</b>&nbsp;</span>
-                                        <span style="display:noneshow">ค่าคอมมิชชั่น  <b>5 %</b></span>
-                                        &nbsp;
+                                        <span style="display:noneshow">ค่าคอม  <b>5 %</b></span>
+                                       
                                       </td>
                                     </tr>
                                   </tbody>
@@ -436,14 +441,14 @@ $user_id = $_COOKIE['detect_user'];
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_order">
                                   <tbody>
                                     <tr>
-                                      <td width="80">
-                                        <img src="assets/images/flag/Other.png" align="absmiddle" width="25" height="25" alt="" ><span class="font-14">&nbsp;ต่างชาติ</span>
+                                      <td width="85">
+                                        <img src="assets/images/flag/Other.png" align="absmiddle" width="25" height="25" alt="" ><span class="">&nbsp;ต่างชาติ</span>
                                       </td>
                                       <td>
                                         <span style="display:noneshow">ค่าจอด<b>&nbsp;200</b>&nbsp;</span>
                                         <span style="display:none">ค่าหัว<b>200</b>&nbsp;</span>
                                         <!-- <span style="display:noneshow">ค่าคอมมิชชั่น<b>5 %</b>&nbsp;</span> -->
-                                        &nbsp;
+                                       
                                       </td>
                                     </tr>
                                   </tbody>
