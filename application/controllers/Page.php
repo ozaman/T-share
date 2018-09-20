@@ -54,16 +54,18 @@ public function social(){
  public function view_photo(){
 		$this->load->view('page/photo_view');
    }
-   public function linenoti(){
+ public function linenoti(){
 		$this->load->view('page/line_noti',$data);
 	}
-    public function contrac_us(){
+public function contrac_us(){
         $data['contrac'] = $this->Main_model->contrac_us();
         //print_r(json_encode($data));
 		$this->load->view('page/contract_us',$data);
         
 	}
-   
+ public function icome_trans_list(){
+		$this->load->view('statement/trans_ic');
+   }   
    		
 }
 ?>
