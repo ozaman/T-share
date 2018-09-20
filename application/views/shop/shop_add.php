@@ -250,74 +250,8 @@ $data_place = $query_place->row();
 
              
       </div>
-      <div class="card" id="num_customer" onclick="checformadd('num_customer')">
-        <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
-         <div class="form-group">
-               
-                
-                <!-- <label class="font-18">จำนวนคน</label> -->
-                
-                  <ons-row>
-                  <ons-col>
-                    <ons-input id="adult" name="adult" type="number" pattern="\d*" placeholder="ผู้ใหญ่" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
-                  </ons-col>
-                  &nbsp;
-                  &nbsp;
-                  <ons-col>
-                    <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
-                  </ons-col>
-                </ons-row>
-              </div>
-      </div>
-      <div class="card" id="box_time" onclick="checformadd('box_time')">
-         <ons-list-header class="list-header "> เลือกเวลา</ons-list-header>
-         <div class="form-group">
-              
-                  <!-- <span class="list-header" style="background-image: none;"></span> -->
-                 
-                  <select class="select-input font-16" name="time_num" id="time_num" value="" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-                    <option value="0">-- เวลาถึงประมาณ --</option>
-                    <?php
-                    $time = array("5" => "5 นาที",
-                      "10" => "10 นาที",
-                      "15" => "15 นาที",
-                      "20" => "20 นาที",
-                      "25" => "25 นาที",
-                      "30" => "30 นาที",
-                      "35" => "35 นาที",
-                      "40" => "40 นาที",
-                      "45" => "45 นาที",
-                      "50" => "50 นาที",
-                      "55" => "55 นาที",
-                      "60" => "1 ชัวโมง.",
-                      "90" => "1 ชัวโมง 30 นาที",
-                      "120" => "2 ชัวโมง",
-                      "150" => "2 ชัวโมง 30 นาที",
-                      "180" => "3 ชัวโมง",
-                      "210" => "3 ชัวโมง 30 นาที",
-                      "240" => "4 ชัวโมง",
-                      "270" => "4 ชัวโมง 30 นาที",
-                      "300" => "5 ชัวโมง",
-                      "330" => "5 ชัวโมง 30 นาที",
-                      "360" => "6 ชัวโมง",
-                      "390" => "6 ชัวโมง 30 นาที",
-                      "420" => "7 ชัวโมง",
-                      "450" => "7 ชัวโมง 30 นาที",
-                      "490" => "8 ชัวโมง");
-                    $mm = 5;
-                    ?>
 
-                    <?php foreach ($time as $key => $at) { ?>
-                      <option value="<?=$key; ?>"><?=$at; ?></option>
-                    <?php }
-                    ?>
-
-                  </select>
-              
-              </div>
-      </div>
-
-      <div class="card" id="box_com" onclick="checformadd('box_com')">
+     <div class="card" id="box_com" onclick="checformadd('box_com')">
         <!-- Agent Issu -->  
         <div class="" id="show_payment_detail" style="">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -348,7 +282,7 @@ $data_place = $query_place->row();
                         $('#load_mod_popup_4').load(url_load_1);
                       });
                     </script>                    
-                    <div class=" " style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  >
+                    <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
                       <label class="center" for="price_plan_1">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                           <tbody>
@@ -467,7 +401,7 @@ $data_place = $query_place->row();
                             </tr>
                             <tr>
                               <td>
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_china">
                                   <tbody>
                                     <tr>
                                       <td width="75"> <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="">
@@ -484,7 +418,7 @@ $data_place = $query_place->row();
                                 </table>
 
 
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_order">
                                   <tbody>
                                     <tr>
                                       <td width="80">
@@ -514,6 +448,78 @@ $data_place = $query_place->row();
           </div>
         </div>
       </div>
+
+
+
+
+      <div class="card" id="num_customer" onclick="checformadd('num_customer')">
+        <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
+         <div class="form-group">
+               
+                
+                <!-- <label class="font-18">จำนวนคน</label> -->
+                
+                  <ons-row>
+                  <ons-col>
+                    <ons-input id="adult" name="adult" type="number" pattern="\d*" placeholder="ผู้ใหญ่" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+                  </ons-col>
+                  &nbsp;
+                  &nbsp;
+                  <ons-col>
+                    <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+                  </ons-col>
+                </ons-row>
+              </div>
+      </div>
+      <div class="card" id="box_time" onclick="checformadd('box_time')">
+         <ons-list-header class="list-header ">เวลาถึงประมาณ </ons-list-header>
+         <div class="form-group">
+              
+                  <!-- <span class="list-header" style="background-image: none;"></span> -->
+                 
+                  <select class="select-input font-16" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+                    <option value="0">-- เลือกเวลา --</option>
+                    <?php
+                    $time = array("5" => "5 นาที",
+                      "10" => "10 นาที",
+                      "15" => "15 นาที",
+                      "20" => "20 นาที",
+                      "25" => "25 นาที",
+                      "30" => "30 นาที",
+                      "35" => "35 นาที",
+                      "40" => "40 นาที",
+                      "45" => "45 นาที",
+                      "50" => "50 นาที",
+                      "55" => "55 นาที",
+                      "60" => "1 ชัวโมง.",
+                      "90" => "1 ชัวโมง 30 นาที",
+                      "120" => "2 ชัวโมง",
+                      "150" => "2 ชัวโมง 30 นาที",
+                      "180" => "3 ชัวโมง",
+                      "210" => "3 ชัวโมง 30 นาที",
+                      "240" => "4 ชัวโมง",
+                      "270" => "4 ชัวโมง 30 นาที",
+                      "300" => "5 ชัวโมง",
+                      "330" => "5 ชัวโมง 30 นาที",
+                      "360" => "6 ชัวโมง",
+                      "390" => "6 ชัวโมง 30 นาที",
+                      "420" => "7 ชัวโมง",
+                      "450" => "7 ชัวโมง 30 นาที",
+                      "490" => "8 ชัวโมง");
+                    $mm = 5;
+                    ?>
+
+                    <?php foreach ($time as $key => $at) { ?>
+                      <option value="<?=$key; ?>"><?=$at; ?></option>
+                    <?php }
+                    ?>
+
+                  </select>
+              
+              </div>
+      </div>
+
+     
     </div>
   </form>
   <div style="padding: 0px 10px;margin-bottom: 10px;">
