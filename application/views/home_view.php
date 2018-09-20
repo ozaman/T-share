@@ -794,7 +794,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
 						            </div>
 						            <div class="center list-item__center" style="background-image: none;">
-						                 <input class="ap-date" type="month" id="date_shop_ic" name="date_shop_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateTrans($(this).val());" />
+						                 <input class="ap-date" type="month" id="date_trans_ic" name="date_trans_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateTrans($(this).val());" />
 						            </div>
 						            
 						        </ons-list-item>
@@ -813,6 +813,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 						if(page == "trans_ic.html" && frist_ic == true){
 							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
 						    	$('#trans_ic').html(ele);
+						    	renderTransferJob();
 						    });
 							frist_ic = false;
 						}
