@@ -14,11 +14,7 @@ function filterDateShop(val) {
 function filterDateTrans(val) {
     console.log(val);
 
-    $.post("page/call_page?date=" + val, {
-        path: "statement/trans_ic"
-    }, function(ele) {
-        $('#trans_ic').html(ele);
-    });
+    renderTransferJob();
 
 }
 
@@ -38,11 +34,24 @@ function openDetailOrder(id, invoice) {
     });
 }
 
+function openDetailTrans(id, invoice) {
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': 'รายละเอียดรายการ'
+    }, 'lift-ios');
+
+    $.post("page/call_page?order_id=" + id, {
+        path: "statement/trans_ic_bill"
+    }, function(ele) {
+        $('#body_popup1').html(ele);
+    });
+}
+
 function renderTransferJob(){
 	var date = $('#date_trans_ic').val();
 	var param = {
     driver: $.cookie("detect_user"),
-    date: '2018-09-20',
+    date: $('#date_trans_ic').val(),
     driver_checkcar: 0
 };
 console.log(param);
