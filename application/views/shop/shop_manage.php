@@ -52,9 +52,9 @@
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 
     if($_GET[type]=="his"){
-      echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+      echo '<div class="font-17" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
     }else{
-      echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 15px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+      echo '<div class="font-17" style="color: #ff0000;text-align: center;padding: 15px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
     }
     //exit();
   }

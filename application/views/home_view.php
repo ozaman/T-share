@@ -45,6 +45,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
 
     <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -397,10 +398,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				    </ons-tab>
 				    <ons-tab  page="shop_add.html" label="ส่งแขก" active>
 				    </ons-tab>
-				    <ons-tab page="shop_history.html" label="ประวัติส่งแขก" >
+				    <ons-tab page="shop_history.html" label="ประวัติ" >
                         <span class="notification none" id="num_his" style="float: right;
     margin-top: 15px;
-    right: 10%;"></span>
+    right: 25%;"></span>
 				    </ons-tab>
 				  </ons-tabbar>
 				</ons-page>
