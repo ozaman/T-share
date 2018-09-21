@@ -48,17 +48,18 @@ if (tax == 'nation_box') {
  $('#'+tax).removeClass('borderBlink')
  if(form.elements["plate_num_1"].value == 0){
     $('#box_car').addClass('borderBlink')
+     $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+    }, 300, function(){
+
+       $("#box_com").focus()
+
+       window.location.href = "#box_car";
+   });
 }
 if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
     $('#nation_box').addClass('borderBlink')
-        // $("#box_com").animate({scrollTop:50}, '500');
-        // $("#box_com").animate({top:'50'},1000,function(){
-       //      $('#shop_add').animate({
-       //                  location.href="#box_com";
-       // // window.location=$("#about").attr("href");
-       //    // window.location = "about.html";
-
-       //  },500);
+       
        console.log(this.hash)
 
        $('html, body').animate({
@@ -70,30 +71,50 @@ if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0
        window.location.href = "#nation_box";
    });
    }
-   if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0 && form.elements["price_plan"].value == 0) {
-    $('#box_com').addClass('borderBlink')
-    console.log(this.hash)
+   if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+        console.log(this.hash)
 
-    $('html, body').animate({
-        scrollTop: $('#box_com').offset().top
-    }, 300, function(){
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top
+        }, 300, function(){
 
-       $("#box_com").focus()
+           $("#box_com").focus()
 
-       window.location.href = "#box_com";
-   });
-}
-else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
-  $('#num_customer').addClass('borderBlink')
-  $('html, body').animate({
-    scrollTop: $('#num_customer').offset().top
-}, 300, function(){
+           window.location.href = "#box_com";
+       });
+    }
+  if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+        $('#num_customer').addClass('borderBlink')
+        console.log(this.hash)
 
-   $("#box_com").focus()
+        $('html, body').animate({
+            scrollTop: $('#num_customer').offset().top
+        }, 300, function(){
 
-   window.location.href = "#num_customer";
-});
-}
+           $("#adult").focus()
+
+           window.location.href = "#num_customer";
+       });
+    }
+    
+    else if ( form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != ''  ) {
+        if (form.elements["time_num"].value == 0 ) {
+                $('#box_time').addClass('borderBlink')
+                $('#time_num').focus()
+            }
+            if (form.elements["time_num"].value != 0) {
+                $('#btn_submitadd').addClass('borderBlink')
+                window.location.href = "#btn_submitadd";
+
+            }
+            else{
+               $('#box_time').removeClass('borderBlink')
+
+               $('#child').focusout();
+           }
+
+    }
 }
 if (tax == 'box_com') {
     $('#'+tax).removeClass('borderBlink')
@@ -243,6 +264,7 @@ $( document ).ready(function() {
             }
             else{
                $('#box_time').removeClass('borderBlink')
+                $('#btn_submitadd').addClass('borderBlink')
 
                $('#child').focusout();
            }
@@ -595,7 +617,6 @@ $('#text_price_order').html('ไม่มีค่าตอบแทน')
             }
             else{
                $('#box_time').removeClass('borderBlink')
-
                $('#child').focusout();
            }
             }

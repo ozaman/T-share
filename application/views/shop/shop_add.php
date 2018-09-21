@@ -327,8 +327,8 @@ $data_shopmain = $shopmain->row();
                                       <td  class="font-17"> 
                                         <img src="assets/images/flag/China.png" align="absmiddle" width="25" height="25" alt="" >
                                         <span >&nbsp;จีน  </span>
-                                        <span style="display:show">ค่าจอด  1100&nbsp;</span>
-                                        <span style="display:show">ค่าหัว  200&nbsp;</span>
+                                        <span style="display:show">จอด  1100&nbsp;</span>
+                                        <span style="display:show">หัว  200&nbsp;</span>
                                         <!-- <span style="display:none">ค่าคอม  0 %&nbsp;</span> -->
 
                                       </td>
@@ -429,9 +429,9 @@ $data_shopmain = $shopmain->row();
                                         <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="" >
                                         <span >&nbsp;จีน </span>
 
-                                        <span style="display:noneshow">ค่าจอด  600&nbsp;</span>
+                                        <span style="display:noneshow">จอด  600&nbsp;</span>
                                         <!-- <span style="display:none">ค่าหัว  0&nbsp;</span> -->
-                                        <span style="display:noneshow">ค่าคอม  5 %</span>
+                                        <span style="display:noneshow">คอม  5 %</span>
 
                                       </td>
                                     </tr>
@@ -446,7 +446,7 @@ $data_shopmain = $shopmain->row();
                                         <img src="assets/images/flag/Other.png" align="absmiddle" width="25" height="25" alt="" >
                                         <span >&nbsp;ต่างชาติ</span>
 
-                                        <span style="display:noneshow" id="text_price_order">ค่าจอด&nbsp;200&nbsp;</span>
+                                        <span style="display:noneshow" id="text_price_order">จอด&nbsp;200&nbsp;</span>
                                         <!-- <span style="display:none">ค่าหัว200&nbsp;</span> -->
                                         <!-- <span style="display:noneshow">ค่าคอมมิชชั่น<b>5 %</b>&nbsp;</span> -->
 
