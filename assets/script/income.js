@@ -56,7 +56,7 @@ function renderTransferJob(){
 };
 console.log(param);
 $.ajax({
-    url: "api/transfer_hisorty", // point to server-side PHP script 
+    url: "api/transfer_booking", // point to server-side PHP script 
     dataType: 'json', // what to expect back from the PHP script, if anything
     data: param,
     type: 'post',

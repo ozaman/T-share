@@ -502,14 +502,12 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 							var url = "page/transfer_manage";
 				            $.post(url,function(html){
 				            	$('#transfer_manage').html(html);
+				            	callApiManage();
 				            });
 						}else if(page_trans=="transfer_income.html"){
 							
 						}else if(page_trans=="transfer_job.html"){
-							/*var url = "page/transfer";
-				            $.post(url,function(html){
-				            	$('#transfer_job').html(html);
-				            });*/
+
 						}
 						
 				  document.querySelector('ons-toolbar .center')
@@ -517,6 +515,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				});
 				</script>
             </div>
+            <script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;

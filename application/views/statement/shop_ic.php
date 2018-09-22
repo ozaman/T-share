@@ -26,7 +26,7 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
        <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailOrder('<?=$row->id;?>', '<?=$row->invoice;?>');">
        		<table width="100%">
        			<tr>
-       				<td width="70"><?=$row->invoice;?></td>
+       				<!--<td width="70"><?=$row->invoice;?></td>-->
        				<td>
        					<span><?=$row->product_name;?></span><br/>
        					<span class="font-14"><?=date('Y-m-d h:i',$row->post_date);?></span>

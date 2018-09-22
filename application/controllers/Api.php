@@ -47,22 +47,7 @@ public function get_my_transfer_job(){
 		echo json_encode($decode);
 	}
 	
-public function manage_booking(){
-		$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
-//		$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : 0 }';                            
-		$curl_post_data = '{"driver": 153,"date": "2018-09-16","driver_checkcar" : 0 }';                            
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$result = curl_exec($ch);
-		curl_close($ch);
-		$decode = 	json_decode($result);
-//		header('Content-Type: application/json');
-		echo json_encode($decode);
-	}
-
-public function transfer_hisorty(){
+public function transfer_booking(){
 	$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
 	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : '.$_POST[driver_checkcar].' }';                            
 //	$curl_post_data = '{"driver": 153,"date": "2018-09-20","driver_checkcar" : 1 }';                            

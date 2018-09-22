@@ -653,13 +653,13 @@ function profileInfo(animate) {
 }
 
 function sendTransfer() {
-    ons.notification.alert({
+    /*ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
             title: "ขอภัย",
             buttonLabel: "ปิด"
         })
         .then(function() {});
-    return;
+    return;*/
     fn.pushPage({
         'id': 'transfer.html',
         'title': 'ให้บริการรถ',
