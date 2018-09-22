@@ -34,13 +34,14 @@ function openDetailOrder(id, invoice) {
     });
 }
 
-function openDetailTrans(id, invoice) {
+function openDetailTrans(id, idorder) {
+	console.log(id);
     fn.pushPage({
         'id': 'popup1.html',
         'title': 'รายละเอียดรายการ'
     }, 'lift-ios');
 
-    $.post("page/call_page?order_id=" + id, {
+    $.post("page/call_page?idorder=" + idorder, {
         path: "statement/trans_ic_bill"
     }, function(ele) {
         $('#body_popup1').html(ele);

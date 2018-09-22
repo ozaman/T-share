@@ -20,7 +20,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$row[ondate];?></ons-list-header>
 <?php			}	?>
-       <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailTrans('<?=$row->id;?>');">
+       <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailTrans('<?=$row->id;?>','<?=$row->idorder;?>');">
        		<table width="100%">
        			<tr>
        				<td>
