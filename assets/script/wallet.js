@@ -20,6 +20,16 @@ function auto_money(){
     });
 }
 
+function history_wallet(){
+	$('#history').html(progress_circle);
+	var url = "page/call_page?date="+$('#date_his_wallet').val();
+        $.post(url, {
+            path: "wallet/history_wallet"
+    }, function(ele) {
+            $('#history').html(ele);
+    });
+}
+
 function selectBankCom(){
 	var number = $("#selectbank_tr option:selected").data('acc');
 	var name = $("#selectbank_tr option:selected").data('name');
@@ -131,3 +141,25 @@ function sendInformMoney(){
         }
     });
 }
+
+function openDetailHisWallet(id){
+	 var dialog = document.getElementById('custom-my-dialog');
+
+	  if (dialog) {
+	    dialog.show();
+	  } else {
+	    ons.createElement('custom-dialog.html', { append: true })
+	      .then(function(dialog) {
+
+	        dialog.show();
+	      });
+	  }
+	  $('#body_custom_dialog_content').html(progress_circle);
+			var url = "page/call_page?deposit_id="+id;
+		        $.post(url, {
+		            path: "wallet/detail_history"
+		}, function(ele) {
+		            $('#body_custom_dialog_content').html(ele);
+		});
+}
+
