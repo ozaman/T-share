@@ -907,7 +907,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				<template id="withdraw.html">
 				  <ons-page>
 						<div id="withdraw">
-							2
+							
 						</div>
 				  </ons-page>
 				</template>
