@@ -8,6 +8,11 @@
 		$befordate = '';
 		foreach ($_POST[data] as $row){ 
 			$total = intval($row[cost])-intval($row[s_cost]);
+			if($row->s_status_pay==0){
+				$type_pay_txt = "เงินสด";
+			}else{
+				$type_pay_txt = "โอนเข้าบัญชี";
+			}
 //			$tras_d_time = date_create($row->transfer_date);
 			if($befordate != $row[ondate]){ 
 				$befordate = $row[ondate];
@@ -18,13 +23,15 @@
        <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailTrans('<?=$row->id;?>');">
        		<table width="100%">
        			<tr>
-       				
        				<td>
        					<span class="font-16"><?=$row[pickup_place][topic];?></span><br/>
        					<span class="font-16"><?=$row[to_place][topic];?></span>
        				</td>
-       				<td align="right" width="80"><b><?="+ ".number_format($total,2);?></b></td>
+       				<td align="right" width="80"><b><?="+ ".number_format($total,2);?></b><br/><span class="font-16"><?=$type_pay_txt;?></span></td>
        			</tr>
+       			<!--<tr>
+       				<td></td>
+       			</tr>-->
        		</table>
        </div>
 			

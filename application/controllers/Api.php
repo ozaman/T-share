@@ -48,6 +48,8 @@ public function get_my_transfer_job(){
 	}
 	
 public function transfer_booking(){
+//	driver_checkcar : 0 = manage , 1 = history
+
 	$url = "http://www.welovetaxi.com:3000/getDriverlogsbyid";  
 	$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : '.$_POST[driver_checkcar].' }';                            
 //	$curl_post_data = '{"driver": 153,"date": "2018-09-20","driver_checkcar" : 1 }';                            

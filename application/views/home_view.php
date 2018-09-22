@@ -211,7 +211,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="icon-new-uniF121-10 list-item__icon "></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_acc');">
-                        บัญชี
+                        การเงิน
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
                     <div class="expandable-content" style="padding-left: 60px;">รายจ่าย</div>
@@ -219,9 +219,17 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
+                <ons-list-item onclick="wallet();">
+                    <div class="left" style="<?=$border_menu_color;?>">
+                        <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
+                    </div>
+                    <div class="center">
+                        กระเป๋าเงิน
+                    </div>
+                </ons-list-item>
                 <ons-list-item onclick="reference();">
                     <div class="left" style="<?=$border_menu_color;?>">
-                        <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;"></i></span>
+                        <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;margin-left: 2px;"></i></span>
                     </div>
                     <div class="center">
                         แนะนำเพื่อน
@@ -229,7 +237,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
                 </ons-list-item>
                 <ons-list-item onclick="fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')">
                     <div class="left" style="<?=$border_menu_color;?>">
-                        <ons-icon fixed-width class="list-item__icon " icon="fa-link"></ons-icon>
+                        <ons-icon fixed-width class="list-item__icon " icon="fa-link" style="margin-left: 2px;"></ons-icon>
                     </div>
                     <div class="center">
                         แจ้งเตือนผ่านไลน์
@@ -822,6 +830,78 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				</script>
             </div>
             <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>     
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+	
+	<template id="wallet.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button >กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_transfer">
+            	<?php 
+        $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
+		$query = $this->db->query($select);
+		$data_deposit = $query->row();
+            	?>
+            	<div id="show_blance" style="z-index: 1;
+    background-color: #ececec;
+    position: fixed;
+    padding: 5px;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;">
+				  		<span><i class="icon-new-uniF121-10"></i> <?=number_format($data_deposit->deposit,2);?> บาท</span>
+				  	</div>
+            	<ons-page>
+            	 
+				  <ons-tabbar swipeable position="top" style="margin-top: 35px;">
+				  	
+				    <ons-tab id="tab-shop_ic" page="add.html" label="เติมเงิน" active  >
+				    </ons-tab>
+				    <ons-tab id="tab-trans_ic" page="withdraw.html" label="โอนเงิน">
+				    </ons-tab>
+				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
+				    </ons-tab>-->
+				  </ons-tabbar>
+				  
+				</ons-page>
+				 
+				<template id="add.html">
+				  <ons-page >	
+				    	<div id="add">
+				    		1
+				    	</div>
+				  </ons-page>
+				</template>
+
+				<template id="withdraw.html">
+				  <ons-page>
+						<div id="withdraw">
+							2
+						</div>
+				  </ons-page>
+				</template>
+			
+				<script>
+					var frist_ic = true;
+					document.addEventListener('prechange', function(event) {
+						var page = event.tabItem.getAttribute('page');
+						console.log(page);
+						
+					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+					});
+				</script>
+            </div>
+            <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;

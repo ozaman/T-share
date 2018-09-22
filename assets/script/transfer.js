@@ -1,19 +1,19 @@
 	var dataHistoryA;
  	var manageObj = [];
-	var driver = $('#driver').val();
+	var driver = detect_user;
 //	$('#btn_manage').click();
 //	callApiManage();
 	function callApiManage(){
 		
     	var date = $('#date_report').val();
-    	var driver = $('#driver').val();
-    	console.log(date+" "+driver);
+    	
+//    	console.log(date+" "+driver);
 
 		
     	var url_action = "api/transfer_booking";
-    	var data_param = {driver:driver, date:date};
+    	var data_param = {driver:driver, date:date, driver_checkcar:0 };
 		console.log(data_param);
-		return;
+//		return;
 		$.post(url_action,data_param, function( data, textStatus, jQxhr ){
 			
 //			var data = JSON.parse(data);
