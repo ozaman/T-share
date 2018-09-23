@@ -493,7 +493,7 @@ $data_shopmain = $shopmain->row();
         </div>
       </div>
       <div class="card" id="box_time" onclick="checformadd('box_time')">
-       <ons-list-header class="list-header ">ใช้เวลาเดินทางถึงประมาณ </ons-list-header>
+       <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
        <div class="form-group">
 
         <!-- <span class="list-header" style="background-image: none;"></span> -->
