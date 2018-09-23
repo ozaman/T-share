@@ -84,7 +84,12 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  }else{
 	  		username = username.toUpperCase();
 	  }
-	</script>
+var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
+  +'<circle class="progress-circular__background"/>'
+  +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
+  +'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
++'</svg></div>';	  
+</script>
 
 
 
@@ -852,25 +857,25 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 		$query = $this->db->query($select);
 		$data_deposit = $query->row();
             	?>
-            	<div id="show_blance" style="z-index: 1;
+            	<div id="show_balance" style="z-index: 1;
     background-color: #ececec;
     position: fixed;
     padding: 5px;
     width: 100%;
     font-size: 18px;
     text-align: center;">
-				  		<span><i class="icon-new-uniF121-10"></i> <?=number_format($data_deposit->deposit,2);?> บาท</span>
+				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->deposit,2);?></span> บาท
 				  	</div>
             	<ons-page>
             	 
 				  <ons-tabbar swipeable position="top" style="margin-top: 35px;">
 				  	
-				    <ons-tab id="tab-shop_ic" page="add.html" label="เติมเงิน" active  >
+				    <ons-tab id="tab-add-wallet" page="add.html" label="เติมเงิน" active  >
 				    </ons-tab>
-				    <ons-tab id="tab-trans_ic" page="withdraw.html" label="โอนเงิน">
+				    <ons-tab id="tab-withdraw-wallet" page="withdraw.html" label="โอนเงิน">
 				    </ons-tab>
-				    <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
-				    </ons-tab>-->
+				    <ons-tab id="tab-history-wallet" page="history.html" label="ประวัติ" >
+				    </ons-tab>
 				  </ons-tabbar>
 				  
 				</ons-page>
@@ -878,7 +883,23 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				<template id="add.html">
 				  <ons-page >	
 				    	<div id="add">
-				    		1
+				    		<div align="center" style="padding: 15px;">
+				    			<div class="segment" style="width: 280px; margin: 0 auto;">
+								  
+								  <div class="segment__item">
+								    <input type="radio" class="segment__input" name="segment-a" checked onclick="inform_money();">
+								    <div class="segment__button">แจ้งโอน</div>
+								  </div>
+								  <div class="segment__item">
+								    <input type="radio" class="segment__input" name="segment-a" onclick="auto_money();">
+								    <div class="segment__button">ผ่านบัญชีธนาคาร</div>
+								  </div>
+								</div>
+				    		</div>
+				    		
+				    		<div id="body_add_content">
+				    			
+				    		</div>
 				    	</div>
 				  </ons-page>
 				</template>
@@ -886,17 +907,54 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 				<template id="withdraw.html">
 				  <ons-page>
 						<div id="withdraw">
-							2
+							
 						</div>
 				  </ons-page>
 				</template>
-			
+				
+				<template id="history.html">
+				  <ons-page>
+				  		<ons-card class="card" style="margin-bottom: 20px">
+						  		<ons-list-item class="input-items list-item p-l-0">
+						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+						            </div>
+						            <div class="center list-item__center" style="background-image: none;">
+						                 <input class="ap-date" type="month" id="date_his_wallet" name="date_his_wallet" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="history_wallet();" />
+						            </div>
+						            
+						        </ons-list-item>
+						</ons-card>	
+						<div id="history">
+							
+						</div>
+				  </ons-page>
+				</template>
+				
+				<template id="inform-confirm.html">
+				  <ons-alert-dialog id="inform-confirm-dialog" modifier="rowfooter">
+				    <div class="alert-dialog-title">ยืนยัน</div>
+				    <div class="alert-dialog-content" id="txt_content-wallet">
+				     <!-- -->
+				    </div>
+				    <div class="alert-dialog-footer">
+				      <ons-alert-dialog-button onclick="document.getElementById('inform-confirm-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+				      <ons-alert-dialog-button id="btn_wallet_ok" onclick="">ยืนยัน</ons-alert-dialog-button>
+				    </div>
+				  </ons-alert-dialog>
+				</template>
+
 				<script>
+					
 					var frist_ic = true;
 					document.addEventListener('prechange', function(event) {
 						var page = event.tabItem.getAttribute('page');
 						console.log(page);
-						
+						if(page=='add.html'){
+							console.log('add');
+						}else if(page=='history.html'){
+							history_wallet();
+						}
 					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
 					});
 				</script>
@@ -1056,11 +1114,31 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
       </ons-page>
     </ons-dialog>
     
+    <template id="custom-dialog.html">
+				  <ons-dialog id="custom-my-dialog">
+				    <div class="dialog-mask" style="background-color: rgba(0, 0, 0, 0.70);"></div>
+					<div class="dialog" style="top: 35%; min-height: auto;width: 95%;">
+					  <div class="dialog-container" id="body_custom_dialog_content">
+					    <p style="text-align:center;margin-top:40px;opacity:0.4;">Content</p>  
+					  </div>
+					  
+					</div>
+					<ons-button class="fab" onclick="hideCustomDialog('custom-my-dialog');" style="z-index: 99990;left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); margin: auto auto;  bottom: 0px;  position: fixed;width: 66px;height: 66px;">
+					<!--<i class="fa fa-times" style="margin: 12px;    margin-left: 13px; font-size: 36px;"></i>-->
+					<i class="material-icons" style="margin: 14px;    margin-left: 15px; font-size: 36px;">close</i>
+					</ons-button>
+				  </ons-dialog>
+				</template>
     
 </body>
 
 </html>
 <script>
+	var hideCustomDialog = function(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
         $(window).load(function() {
 //            $("#load_material").fadeOut(500);

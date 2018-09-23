@@ -754,6 +754,7 @@ function wallet(){
         'id': 'wallet.html',
         'title': 'กระเป๋าเงิน'
     }, 'slide-ios');
+    
 }
 
 function contrac_us() {
