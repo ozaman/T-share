@@ -262,6 +262,8 @@ function readURL(input, id_ele) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id_ele).fadeIn(200);
+                    $('#txt-img-has-'+id_ele).show();
+                    $('#txt-img-nohas-'+id_ele).hide();
 //                    $('.'+param_id+'_pic_car_'+num).attr('src', "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now());
 
                 },

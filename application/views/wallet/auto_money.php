@@ -1,6 +1,8 @@
-
-	<ons-card class="card">
-		<table width="100%" border="0" cellspacing="2" cellpadding="2">
+	
+	<div align="center"><h3 style="color: #f10;">ยังไม่เปิดให้บริการ</h3></div>
+	<ons-card class="card" style="display: none;">
+	
+		<table width="100%" border="0" cellspacing="2" cellpadding="2" >
            <tbody><tr>
           <td width="100%">
             <div style="padding: 0px 10px;">

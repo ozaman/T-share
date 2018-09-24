@@ -110,14 +110,14 @@
 			</div>
 			<span id="txt-img-has-img_slip" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_slip" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-	      <div class="box-preview-img" id="box_img_car_2" onclick="performClick('img_slip');" >
-	      	<img src="" style="" class="img-preview-show" id="pv_img_slip"  /> 
+	      <div class="box-preview-img" id="box_img_car_2" onclick="performClick('img_slip');" style="    height: 190px;" >
+	      	<img src="" class="img-preview-show" id="pv_img_slip" style="    max-height: 190px;"  /> 
 	      </div> 
 	      <span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card>  
