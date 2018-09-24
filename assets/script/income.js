@@ -40,12 +40,23 @@ function openDetailTrans(id, idorder) {
         'id': 'popup1.html',
         'title': 'รายละเอียดรายการ'
     }, 'lift-ios');
-
-    $.post("page/call_page?idorder=" + idorder, {
-        path: "statement/trans_ic_bill"
-    }, function(ele) {
-        $('#body_popup1').html(ele);
-    });
+	var param = {
+		id : idorder
+	}
+	$.ajax({
+    url: "api/transfer_booking_byid", // point to server-side PHP script 
+    dataType: 'json', // what to expect back from the PHP script, if anything
+    data: param,
+    type: 'post',
+    success: function(res) {
+	       console.log(res);
+	       if(res.status==200){
+		   		 $.post("page/icome_trans_detail", {data : res.data.result} , function(ele) {
+			        $('#body_popup1').html(ele);
+			    });
+		   }
+	    }
+	});
 }
 
 function renderTransferJob(){

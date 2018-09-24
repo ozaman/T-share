@@ -65,6 +65,20 @@ public function transfer_booking(){
 //	echo $curl_post_data;
 }
 
+public function transfer_booking_byid(){
+		$url = "http://www.welovetaxi.com:3000/";  
+		$curl_post_data = '{"id": '.$_POST[order_id].'}';                            
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		$decode = 	json_decode($result);
+//		header('Content-Type: application/json');
+		echo json_encode($decode);
+	}
+
 }
 
 ?>

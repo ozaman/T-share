@@ -57,7 +57,7 @@ public function social(){
  public function linenoti(){
 		$this->load->view('page/line_noti',$data);
 	}
-public function contrac_us(){
+ public function contrac_us(){
         $data['contrac'] = $this->Main_model->contrac_us();
         //print_r(json_encode($data));
 		$this->load->view('page/contract_us',$data);
@@ -65,6 +65,9 @@ public function contrac_us(){
 	}
  public function icome_trans_list(){
 		$this->load->view('statement/trans_ic');
+   }  
+ public function icome_trans_detail(){
+		$this->load->view('statement/trans_ic_bill');
    }   
    		
 }

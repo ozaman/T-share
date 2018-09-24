@@ -1,8 +1,5 @@
 <?php 
-	$data = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[order_id]), '');
-	$sql_ps = "SELECT topic_th ,id FROM shopping_product  WHERE id='".$data->program."' ";
- 	$query_ps = $this->db->query($sql_ps);
- 	$res_ps = $query_ps->row();
+	echo json_encode($_POST[data]);
 ?>
 <style>
 	.list-pd-r{
