@@ -8,7 +8,7 @@
 		$befordate = '';
 		foreach ($_POST[data] as $row){ 
 			$total = intval($row[cost])-intval($row[s_cost]);
-			if($row->s_status_pay==0){
+			if($row[s_status_pay]==0){
 				$type_pay_txt = "เงินสด";
 			}else{
 				$type_pay_txt = "โอนเข้าบัญชี";
@@ -20,7 +20,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$row[ondate];?></ons-list-header>
 <?php			}	?>
-       <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailTrans('<?=$row->id;?>','<?=$row->idorder;?>');">
+       <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailTrans('<?=$row[id];?>','<?=$row[idorder];?>');">
        		<table width="100%">
        			<tr>
        				<td>

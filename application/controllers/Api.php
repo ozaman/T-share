@@ -66,8 +66,8 @@ public function transfer_booking(){
 }
 
 public function transfer_booking_byid(){
-		$url = "http://www.welovetaxi.com:3000/";  
-		$curl_post_data = '{"id": '.$_POST[order_id].'}';                            
+		$url = "http://www.welovetaxi.com:3000/getOrderbookingbyid";  
+		$curl_post_data = '{"idorder": "'.$_POST[idorder].'"}';                            
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));

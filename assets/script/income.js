@@ -35,14 +35,14 @@ function openDetailOrder(id, invoice) {
 }
 
 function openDetailTrans(id, idorder) {
-	console.log(id);
+	console.log(id+" ||" +idorder);
     fn.pushPage({
         'id': 'popup1.html',
         'title': 'รายละเอียดรายการ'
     }, 'lift-ios');
 	var param = {
-		id : idorder
-	}
+		idorder : idorder
+	};
 	$.ajax({
     url: "api/transfer_booking_byid", // point to server-side PHP script 
     dataType: 'json', // what to expect back from the PHP script, if anything
@@ -50,11 +50,11 @@ function openDetailTrans(id, idorder) {
     type: 'post',
     success: function(res) {
 	       console.log(res);
-	       if(res.status==200){
+	      /* if(res.status==200){
 		   		 $.post("page/icome_trans_detail", {data : res.data.result} , function(ele) {
 			        $('#body_popup1').html(ele);
 			    });
-		   }
+		   }*/
 	    }
 	});
 }
