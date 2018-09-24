@@ -50,11 +50,11 @@ function openDetailTrans(id, idorder) {
     type: 'post',
     success: function(res) {
 	       console.log(res);
-	      /* if(res.status==200){
-		   		 $.post("page/icome_trans_detail", {data : res.data.result} , function(ele) {
+	       if(res.status==200){
+		   		 $.post("page/icome_trans_detail", {data : res.data.result[0]} , function(ele) {
 			        $('#body_popup1').html(ele);
 			    });
-		   }*/
+		   }
 	    }
 	});
 }
