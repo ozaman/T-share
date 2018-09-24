@@ -1,4 +1,18 @@
 inform_money();
+function checkPicWallet(path, id){
+	$.ajax({
+        url: path,
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
+//            $('#'+id).attr('src', path);
+        },
+        success: function() {
+            $('#'+id).attr('src', path+"?v="+$.now());
+        }
+    });
+}
+
 function inform_money(){
 	
 	 $('#body_add_content').html(progress_circle);

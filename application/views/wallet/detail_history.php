@@ -6,7 +6,7 @@
 		$img = "../data/fileupload/pay/slip_trans_".$_GET[deposit_id].".jpg";
 	}else if($data->type=="WITHDRAW"){
 		$text_type = "ถอนเงิน (แจ้งถอน)";
-		$img = "";
+		$img = "../data/fileupload/doc_pay_driver/transfer/slip_withdraw/".$_GET[deposit_id].".jpg";
 	}
 	
 	$txt_bank = $data->bank_number;
@@ -81,8 +81,11 @@
 	    	<tr>
 	    		<td colspan="2"><span class="font-14" style="color: #908e8e;">สลิป</span></td>
 	    	</tr>
-	    	<tr><td align="center"><img src="<?=$img."?v=".time();?>" style="width: 210px;" /></td>
+	    	<tr><td align="center"><img src="assets/images/nopic.png" style="width: 210px;" id="img_slip_preview" /></td>
 	    	</tr>
 	    </table>
 	</ons-list-item>
 </div>
+<script>
+	checkPicWallet('<?=$img;?>','img_slip_preview');
+</script>
