@@ -94,4 +94,13 @@ if($_GET[type]=="checkin"){
 	echo json_encode($return);
 //	echo $_FILES['fileUpload']['tmp_name'];
 }  	
+
+if($_GET[type]=="slipt_inform"){
+	$path = "../../../../data/fileupload/pay/".$_GET[id].".jpg";
+	$result = move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $path);
+	$return[result] = $result;
+	$return[path] = $path;
+	$return[tmp] = $_FILES["fileUpload"]["tmp_name"];
+	echo json_encode($return);
+}
 ?>

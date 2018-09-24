@@ -14,10 +14,10 @@ public function add_inform_money(){
 //  		echo json_encode($_POST);
 	}
 
-public function withdraw_money(){
-		/*$data['res'] = $this->Wallet_model->add_inform_money();
+public function withdraw_inform_money(){
+		$data['res'] = $this->Wallet_model->withdraw_inform_money();
   		header('Content-Type: application/json');
-  		echo json_encode($data['res']);*/
+  		echo json_encode($data['res']);
 
 	}
 	

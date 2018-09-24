@@ -1,22 +1,3 @@
-<style>
-.btn-action-bank{
-   	    border: 1px solid #ccc;
-   	    color: #000;
-   	    background-color: #fff;
-   	    box-shadow: 1px 1px 3px #cacaca;
-   }
-   .logo-bank{
-   	width: 50px; 
-   	box-shadow: 1px 2px 3px #9E9E9E; 
-   	border-radius: 10px;
-   }
-   .bookbank-img{
-   	height: 60px; 
-   	width: 100px; 
-   	border: 1px solid #eee; 
-   	box-shadow: 1px 1px 3px #ccc;
-   }
-</style>
 <div style="padding: 10px 10px;">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addBank();">เพิ่มข้อมูลบัญชี</ons-button>
 </div>

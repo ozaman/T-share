@@ -3,10 +3,20 @@
 	$bank_acc_number = "เลขบัญชี";
 	$txt_amount = "จำนวนเงิน";
 	$bank_name = "ชื่อบัญชี";
-	
+	$rand = time().generateRandomString();    	
+    	function generateRandomString($length = 10) {
+		    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		    $charactersLength = strlen($characters);
+		    $randomString = '';
+		    for ($i = 0; $i < $length; $i++) {
+		        $randomString .= $characters[rand(0, $charactersLength - 1)];
+		    }
+		    return $randomString;
+		}
 ?>
 <ons-card class="card">
 	<form name="inform_money_form" id="inform_money_form"  enctype="multipart/form-data">
+	<input type="hidden" value="<?=$rand;?>" id="rand_wallet" name="rand_wallet" />
 	<input type="hidden" value="<?=$_COOKIE['detect_user'];?>" name="driver" id="driver" />
 	<input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
 		<ons-list-header class="list-header"><b>รายละเอียดบัญชีรับโอน</b></ons-list-header>
@@ -79,7 +89,7 @@
         </ons-list-item>
         
         <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style=" width: 90px;">
+            <div class="left list-item__left" style=" width: 90px;" >
                  <span>จำนวนเงิน</span>
             </div>
             <label class="center list-item__center">
@@ -92,7 +102,25 @@
         </ons-list-item>
 	</form>
 </ons-card>
-
+<ons-card  class="card">
+      <ons-list-header class="list-header"><b>เอกสารการโอน</b></ons-list-header>
+      <div align="center" style="margin-top: 10px;">
+			<div >
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_slip"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_slip');">
+			</div>
+			<span id="txt-img-has-img_slip" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-img_slip" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_img_car_2" onclick="performClick('img_slip');" >
+	      	<img src="" style="" class="img-preview-show" id="pv_img_slip"  /> 
+	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    margin-top: -28px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    </div>
+</ons-card>  
 <div style="padding: 10px; margin-bottom: 10px;">
 	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="alertInform();" style="background-color: #fff;">แจ้งโอน</ons-button>
 </div>

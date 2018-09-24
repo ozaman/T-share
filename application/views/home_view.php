@@ -864,7 +864,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     width: 100%;
     font-size: 18px;
     text-align: center;">
-				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->deposit,2);?></span> บาท
+				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->balance,2);?></span> บาท
 				  	</div>
             	<ons-page>
             	 
@@ -872,7 +872,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  	
 				    <ons-tab id="tab-add-wallet" page="add.html" label="เติมเงิน" active  >
 				    </ons-tab>
-				    <ons-tab id="tab-withdraw-wallet" page="withdraw.html" label="โอนเงิน">
+				    <ons-tab id="tab-withdraw-wallet" page="withdraw.html" label="ถอนเงิน">
 				    </ons-tab>
 				    <ons-tab id="tab-history-wallet" page="history.html" label="ประวัติ" >
 				    </ons-tab>
@@ -954,6 +954,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 							console.log('add');
 						}else if(page=='history.html'){
 							history_wallet();
+						}else if(page=='withdraw.html'){
+							withdraw();
 						}
 					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
 					});

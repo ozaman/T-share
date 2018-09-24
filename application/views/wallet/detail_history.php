@@ -3,13 +3,38 @@
 	$data = $this->Main_model->rowdata('deposit_history', array('id' => $_GET[deposit_id]), '');
 	if($data->type=="ADD"){
 		$text_type = "เติมเงิน (แจ้งโอน)";
+		$img = "../data/fileupload/pay/slip_trans_".$_GET[deposit_id].".jpg";
 	}else if($data->type=="WITHDRAW"){
 		$text_type = "ถอนเงิน (แจ้งถอน)";
+		$img = "";
 	}
+	
 	$txt_bank = $data->bank_number;
+	if($data->status==0){
+		$txt_status = "รอยืนยัน";
+		$class_plate = "bg-wait";
+				
+	}else if($data->status==1){
+		$txt_status = "อนุมัติ";
+		$class_plate = "bg-approve";
+	}else{
+		$txt_status = "ถูกปฏิเสธ";
+		$class_plate = "bg-reject";
+	}
+	
 ?>
 
 <div style="padding: 0px 10px; background-color:#fff; ">
+	<ons-list-item>
+	    <table width="100%">
+	    	<tr>
+	    		<td><span class="font-14" style="color: #908e8e;">สถานะ</span></td>
+	    	</tr>
+	    	<tr>
+	    		<td><span class="font-18"><?=$txt_status;?></span></td>
+	    	</tr>
+	    </table>
+	</ons-list-item>
 	<ons-list-item>
 	    <table width="100%">
 	    	<tr>
@@ -56,7 +81,7 @@
 	    	<tr>
 	    		<td colspan="2"><span class="font-14" style="color: #908e8e;">สลิป</span></td>
 	    	</tr>
-	    	<tr><td><!--<img src="../data/fileupload/pay/slip_trans_76.jpg?v=1537616185" style="width: 200px;" />--><button class="button" onclick="reference()">open</button></td>
+	    	<tr><td align="center"><img src="<?=$img."?v=".time();?>" style="width: 210px;" /></td>
 	    	</tr>
 	    </table>
 	</ons-list-item>
