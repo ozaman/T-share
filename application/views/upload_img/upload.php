@@ -45,6 +45,16 @@ if($_GET[type]=="car_img"){
 	echo json_encode($return);
 	exit();
 }
+
+if($_GET[type]=="access_car"){
+	$path = "../../../../data/pic/".$_GET[cat]."/".$_GET[id].".jpg";
+	$result = move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $path);
+	$return[result] = $result;
+	$return[path] = $path;
+	$return[tmp] = $_FILES["fileUpload"]["tmp_name"];
+	echo json_encode($return);
+}
+
 if($_GET[type]=="book_bank_img"){
 	
 	include("class.resizepic.php");
@@ -103,4 +113,6 @@ if($_GET[type]=="slipt_inform"){
 	$return[tmp] = $_FILES["fileUpload"]["tmp_name"];
 	echo json_encode($return);
 }
+
+
 ?>

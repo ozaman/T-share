@@ -810,3 +810,15 @@ function addCommas(nStr) {
         }
         return x1 + x2;
 }
+
+function viewPhotoGlobal(path, time) {
+    fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'ภาพ'
+    }, 'fade-md');
+    
+    var url_load = "page/view_photo?time=" + time + "&path=" + path;
+    $.post(url_load, function(ele) {
+        $('#body_popup2').html(ele);
+    });
+}

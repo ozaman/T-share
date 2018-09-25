@@ -6,7 +6,7 @@
 <input type="hidden" value="<?=$_COOKIE['detect_user'];?>" name="driver" id="driver" />
 	<input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
 <ons-card class="card">
-<ons-list-header>เลือกธนาคารที่จะโอน</ons-list-header>
+<ons-list-header>เลือกบัญชีที่จะเงินถอน</ons-list-header>
 	<?php 
 		foreach ($query_bank->result()  as $row){ ?>
 			<ons-list-item tappable onclick="$('#box_submit').show();">

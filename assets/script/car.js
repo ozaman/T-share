@@ -539,7 +539,50 @@ function readURL(input, id, num, type) {
 
 }
 
+function readURLother(input, id, type, cat) {
+    console.log("read file : " + id);
+    console.log("rand : " + $('#rand').val());
 
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+
+            $('#pv_' + id).attr('src', e.target.result);
+
+            var data = new FormData($('#form_accescar')[0]);
+            data.append('fileUpload', $('#' + id)[0].files[0]);
+            if (type == "add") {
+                var param_id = $('#rand').val();
+            } else {
+                var param_id = $('#id_carall').val();
+//                $('#' + id + '_check_upload_' + num).val(1);
+            }
+            var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=access_car&cat="+cat;
+            console.log(url_upload);
+            $.ajax({
+                url: url_upload, // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: 'post',
+                success: function(php_script_response) {
+                    console.log(php_script_response);
+                    $('#box_img_' + id).fadeIn(200);
+                    
+                    iconsHasPic(1, "txt-img-has-"+id, "txt-img-nohas-"+id);
+                },
+                error: function(e) {
+                    console.log(e)
+                }
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
+
+    }
+
+}
 
 function checkPicCar(id, checkcalledit, icons) {
     console.log(id)
@@ -565,6 +608,10 @@ function checkPicCar(id, checkcalledit, icons) {
                 return;
             }
             $('#pv_img_car_1').attr('src', p1);
+            
+           $('.' + id + '_pic_car_1').attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")' );
+            
+            
         }
     });
     var src = p2;
@@ -585,6 +632,7 @@ function checkPicCar(id, checkcalledit, icons) {
                 return;
             }
             $('#pv_img_car_2').attr('src', p2);
+            $('.' + id + '_pic_car_2').attr('onclick', 'viewPhotoGlobal(\'' + p2 + '\', "")' );
         }
     });
     var src = '../data/pic/car/' + id + '_3.jpg';
@@ -605,6 +653,51 @@ function checkPicCar(id, checkcalledit, icons) {
                 return;
             }
             $('#pv_img_car_3').attr('src', p3);
+            $('.' + id + '_pic_car_3').attr('onclick', 'viewPhotoGlobal(\'' + p3 + '\', "")' );
+        }
+    });
+}
+
+function checkPicAccess(id){
+	var atc = "../data/pic/car_act/"+id+".jpg";
+	var tax = "../data/pic/car_tax/"+id+".jpg";
+	var insurance = "../data/pic/car_insurance/"+id+".jpg";
+	$.ajax({
+        url: atc,
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
+            //					$('#'+id+'_pic_car_1').hide();
+        },
+        success: function() {
+            $('.' + id + '_pic_atc').attr('src', atc);
+            $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "")' );
+        }
+    });
+    
+    $.ajax({
+        url: tax,
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
+            //					$('#'+id+'_pic_car_1').hide();
+        },
+        success: function() {
+            $('.' + id + '_pic_tax').attr('src', tax);
+            $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "")' );
+        }
+    });
+    
+    $.ajax({
+        url: insurance,
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
+            //					$('#'+id+'_pic_car_1').hide();
+        },
+        success: function() {
+            $('.' + id + '_pic_insurance').attr('src', insurance);
+            $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "")' );
         }
     });
 }

@@ -185,8 +185,23 @@
                         </table>
                      </td>
                   </tr>
+				  
                </tbody>
             </table>
+            
+			<table  width="100%" border="0" cellspacing="0" cellpadding="1">
+				  <tr>
+				  	<td  width="33%" align="center"><span class="font-16">พ.ร.บ.</span>&nbsp;<img src="assets/images/yes.png" /> </td>
+				  	<td  width="33%" align="center"><span class="font-16">ทะเบียนภาษี</span>&nbsp;<img src="assets/images/yes.png" /></td>
+				  	<td  width="33%" align="center"><span class="font-16">ประกัน</span>&nbsp;<img src="assets/images/yes.png" /></td>
+				  </tr>
+				   <tr>
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_atc img-car" src="assets/images/nopic.png"     border="0"      style="margin-top:0px;border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_tax img-car" src="assets/images/nopic.png"   border="0"      style="margin-top:0px;border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_insurance img-car" src="assets/images/nopic.png"    border="0"      style="margin-top:0px;border-radius:5px;" /></td>
+                  </tr>
+			</table>
+			
             <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-15px;">
                <tbody>
                   <tr style="display:nones">
@@ -199,7 +214,10 @@
          </ons-card>
       </div>
       <script>
-         setTimeout(function(){ checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); }, 500);
+         setTimeout(function(){ 
+         	checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); 
+         	checkPicAccess('<?=$row->id;?>');
+         }, 500);
       </script>
 
       <?php  }  ?>
@@ -208,3 +226,7 @@
    </div>
 </div>
 <input type="hidden" value="<?=$num;?>" id="detect_num_car" />
+<script>
+	setTimeout(function(){ setnumcar(); }, 500);
+	
+</script>

@@ -18,6 +18,15 @@ class Car_model extends CI_Model {
 		$car[status_usecar] = 0;
 		$car[post_date] = time();
 		$car[update_date] = time();
+		
+		$car[s_car_act] = $_POST[txt_car_act];
+		$car[s_car_tax] = $_POST[txt_car_tax];
+		$car[s_car_insurance] = $_POST[txt_car_insurance];
+		
+		$car[d_car_act_exp] = $_POST[ex_car_act];
+		$car[d_car_tax_exp] = $_POST[ex_car_tax];
+		$car[d_car_insurance_exp] = $_POST[ex_car_insurance];
+		
 		$car[result] = $this->db->insert('web_carall', $car);
 		$last_id_car = mysql_insert_id();
 		$return[last_id] = $last_id_car;
@@ -27,6 +36,16 @@ class Car_model extends CI_Model {
 		$return[p2] = rename("../data/pic/car/".$_POST[rand]."_2.jpg", "../data/pic/car/".$last_id_car."_2.jpg");
 		$return[p3] =  rename("../data/pic/car/".$_POST[rand]."_3.jpg", "../data/pic/car/".$last_id_car."_3.jpg");
 		
+		if($_POST[txt_car_act]!=""){
+			$p[car_act] =  rename("../data/pic/car_act/".$_POST[rand].".jpg", "../data/pic/car_act/".$last_id_car.".jpg");
+		}
+		if($_POST[txt_car_tax]!=""){
+			$p[car_tax] =  rename("../data/pic/car_tax/".$_POST[rand].".jpg", "../data/pic/car_tax/".$last_id_car.".jpg");
+		}
+		if($_POST[txt_car_insurance]!=""){
+			$p[car_insurance] =  rename("../data/pic/car_insurance/".$_POST[rand].".jpg", "../data/pic/car_insurance/".$last_id_car.".jpg");
+		}
+		$return[img_car_ass] = $p;
 		return $return;
   }
   
