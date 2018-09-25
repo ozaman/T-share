@@ -65,7 +65,23 @@
 	<?	}
 			}
 		
+			if($row->s_car_act!=""){
+				$icons_has_act = "assets/images/yes.png";
+			}else{
+				$icons_has_act = "assets/images/no.png";
+			}
 			
+			if($row->s_car_tax!=""){
+				$icons_has_tax = "assets/images/yes.png";
+			}else{
+				$icons_has_tax = "assets/images/no.png";
+			}
+			
+			if($row->s_car_insurance!=""){
+				$icons_has_insurance = "assets/images/yes.png";
+			}else{
+				$icons_has_insurance = "assets/images/no.png";
+			}
          ?>
          
       <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 10px;">
@@ -191,9 +207,9 @@
             
 			<table  width="100%" border="0" cellspacing="0" cellpadding="1">
 				  <tr>
-				  	<td  width="33%" align="center"><span class="font-16">พ.ร.บ.</span>&nbsp;<img src="assets/images/yes.png" /> </td>
-				  	<td  width="33%" align="center"><span class="font-16">ทะเบียนภาษี</span>&nbsp;<img src="assets/images/yes.png" /></td>
-				  	<td  width="33%" align="center"><span class="font-16">ประกัน</span>&nbsp;<img src="assets/images/yes.png" /></td>
+				  	<td  width="33%" align="center"><span class="font-16">พ.ร.บ.</span>&nbsp;<img src="<?=$icons_has_act;?>" /> </td>
+				  	<td  width="33%" align="center"><span class="font-16">ทะเบียนภาษี</span>&nbsp;<img src="<?=$icons_has_tax;?>" /></td>
+				  	<td  width="33%" align="center"><span class="font-16">ประกัน</span>&nbsp;<img src="<?=$icons_has_insurance;?>" /></td>
 				  </tr>
 				   <tr>
                      <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_atc img-car" src="assets/images/nopic.png"     border="0"      style="margin-top:0px;border-radius:5px;" /></td>
