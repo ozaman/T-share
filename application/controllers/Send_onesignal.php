@@ -18,6 +18,13 @@ public function cancel_shop(){
 		$data['res'] = $this->Send_onesignal_model->cancel_shop();
 //  		header('Content-Type: application/json');
   		echo json_encode($data['res']);
+	}
+	
+public function send_checkin(){
+		
+		$data['res'] = $this->Send_onesignal_model->$_GET[type]();
+//  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
 	}	
 }
 ?>

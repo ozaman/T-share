@@ -303,7 +303,8 @@ else if($book->status=='CONFIRM'){
 	<?php 
 	if($book->status!='CANCEL'){
 
-	include("application/views/shop/checkin.php"); 
+//	include("application/views/shop/checkin.php"); 
+	$this->load->view('shop/checkin');
 	
 	if($_COOKIE[detect_userclass]=="taxi"){
 		$txt_btn_pay = 'ยืนการการรับเงิน';

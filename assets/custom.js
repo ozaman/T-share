@@ -258,8 +258,8 @@ socket.on('notification', function(data) {
     }
 });
 var shop_frist_run = 0;
-var user_class = "<?=$data_user_class;?>";
 var frist_socket = true;
+
 socket.on('getbookinglab', function(data) {
     //console.log(data.booking)
     array_data = [];
@@ -269,7 +269,7 @@ socket.on('getbookinglab', function(data) {
         var current = formatDate(new Date());
         var db = formatDate(value.transfer_date);
         if (value.driver_complete == 0) {
-            if (user_class == "lab") {
+            if (class_user == "lab") {
                 if (db == current) {
                     done.push(value);
                 }
@@ -284,7 +284,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-    //        console.log(array_data);
+            console.log(array_data);
     if (done.length > 0) {
         $('#number_shop').show();
         //			$('#circle_icon_shop').addClass("pulse");
@@ -567,6 +567,8 @@ function sendShop2() {
 
 setTimeout(function() {
             $.post(url2, function(ele2) {
+            	if(class_user=="taxi"){
+					
                 $.post(urlcount, function(res) {
                     if (res == 0) {
 
@@ -587,6 +589,8 @@ setTimeout(function() {
 
                     }
                 });
+                
+				}
                 modal.hide();
                 
                 $('#shop_add').html(ele2);
@@ -617,7 +621,8 @@ setTimeout(function() {
  }, 700);
 
 
-        } else {
+        } 
+		else {
             modal.hide();
             fn.pushPage({
                 'id': 'place_company.html',

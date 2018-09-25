@@ -4,364 +4,99 @@ if (class_user == 'lab') {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
 
-function checformadd(tax){
-  var form = document.getElementById("form_booking");
-  if (tax == 'box_car') {
-     $('#'+tax).removeClass('borderBlink')
-     if(form.elements["nation"].value == 0){
-        $('#nation_box').addClass('borderBlink')
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#nation_box";
-       });
-    }
-    if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
-        // $("#box_com").animate({scrollTop:50}, '500');
-        // $("#box_com").animate({top:'50'},1000,function(){
-       //      $('#shop_add').animate({
-       //                  location.href="#box_com";
-       // // window.location=$("#about").attr("href");
-       //    // window.location = "about.html";
-
-       //  },500);
-       console.log(this.hash)
-       
-       $('html, body').animate({
-        scrollTop: $('#box_com').offset().top
-    }, 300, function(){
-
-       $("#box_com").focus()
-
-       window.location.href = "#box_com";
-   });
-   }
-   else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
-      $('#num_customer').addClass('borderBlink')
-  }
-}
-if (tax == 'nation_box') {
- $('#'+tax).removeClass('borderBlink')
- if(form.elements["plate_num_1"].value == 0){
-    $('#box_car').addClass('borderBlink')
-     $('html, body').animate({
-        scrollTop: $('#box_com').offset().top
-    }, 300, function(){
-
-       $("#box_com").focus()
-
-       window.location.href = "#box_car";
-   });
-}
-if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
-    $('#nation_box').addClass('borderBlink')
-       
-       console.log(this.hash)
-
-       $('html, body').animate({
-        scrollTop: $('#box_com').offset().top
-    }, 300, function(){
-
-       $("#box_com").focus()
-
-       window.location.href = "#nation_box";
-   });
-   }
-   if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#box_com";
-       });
-    }
-  if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
-        $('#num_customer').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#num_customer').offset().top
-        }, 300, function(){
-
-           $("#adult").focus()
-
-           window.location.href = "#num_customer";
-       });
-    }
-    
-    else if ( form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != ''  ) {
-        if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            if (form.elements["time_num"].value != 0) {
-                $('#btn_submitadd').addClass('borderBlink')
-                window.location.href = "#btn_submitadd";
-
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
-
-               $('#child').focusout();
-           }
-
-    }
-}
-if (tax == 'box_com') {
-    $('#'+tax).removeClass('borderBlink')
-    if(form.elements["plate_num_1"].value == 0){
-        $('#box_car').addClass('borderBlink')
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#nation_box";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
-        $('#nation_box').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#nation_box";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#box_com";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
-        $('#num_customer').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#num_customer').offset().top
-        }, 300, function(){
-
-           $("#adult").focus()
-
-           window.location.href = "#num_customer";
-       });
-    }
-    
-    else if ( form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != ''  ) {
-        if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            if (form.elements["time_num"].value != 0) {
-                $('#btn_submitadd').addClass('borderBlink')
-                window.location.href = "#btn_submitadd";
-
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
-
-               $('#child').focusout();
-           }
-
-    }
-}
-
-
-
-// $("#child").focusout(function(){
-//     $("#child").val()
-//     console.log()
-
-// });
-$( document ).ready(function() {
-    $("#child").on('change',function(){
-        $("#child").val()
-        console.log()
-    })
-    $("#child").keyup(function(){
-       var timer;
-       var form = document.getElementById("form_booking");
-       clearTimeout (timer);
-       timer = setTimeout(function(){
-        $('#'+tax).removeClass('borderBlink')
-        if(form.elements["plate_num_1"].value == 0){
-            $('#box_car').addClass('borderBlink')
+function checformadd(tax) {
+    var form = document.getElementById("form_booking");
+    if (tax == 'box_car') {
+        $('#' + tax).removeClass('borderBlink')
+        if (form.elements["nation"].value == 0) {
+            $('#nation_box').addClass('borderBlink')
             $('html, body').animate({
                 scrollTop: $('#box_com').offset().top
-            }, 300, function(){
+            }, 300, function() {
 
-               $("#box_com").focus()
+                $("#box_com").focus()
 
-               window.location.href = "#box_car";
-           });
+                window.location.href = "#nation_box";
+            });
         }
-        if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
-            $('#nation_box').addClass('borderBlink')
+        if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            $('#box_com').addClass('borderBlink')
+            // $("#box_com").animate({scrollTop:50}, '500');
+            // $("#box_com").animate({top:'50'},1000,function(){
+            //      $('#shop_add').animate({
+            //                  location.href="#box_com";
+            // // window.location=$("#about").attr("href");
+            //    // window.location = "about.html";
+
+            //  },500);
             console.log(this.hash)
 
             $('html, body').animate({
                 scrollTop: $('#box_com').offset().top
-            }, 300, function(){
+            }, 300, function() {
 
-               $("#box_com").focus()
+                $("#box_com").focus()
 
-               window.location.href = "#nation_box";
-           });
+                window.location.href = "#box_com";
+            });
+        } else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && form.elements["adult"].value == 0) {
+            $('#num_customer').addClass('borderBlink')
         }
-        if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+    }
+    if (tax == 'nation_box') {
+        $('#' + tax).removeClass('borderBlink')
+        if (form.elements["plate_num_1"].value == 0) {
+            $('#box_car').addClass('borderBlink')
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                $("#box_com").focus()
+
+                window.location.href = "#box_car";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+            $('#nation_box').addClass('borderBlink')
+
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                $("#box_com").focus()
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
             $('#box_com').addClass('borderBlink')
             console.log(this.hash)
 
             $('html, body').animate({
                 scrollTop: $('#box_com').offset().top
-            }, 300, function(){
+            }, 300, function() {
 
-               $("#box_com").focus()
+                $("#box_com").focus()
 
-               window.location.href = "#box_com";
-           });
+                window.location.href = "#box_com";
+            });
         }
-        if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
             $('#num_customer').addClass('borderBlink')
             console.log(this.hash)
 
             $('html, body').animate({
                 scrollTop: $('#num_customer').offset().top
-            }, 300, function(){
+            }, 300, function() {
 
-               $("#adult").focus()
+                $("#adult").focus()
 
-               window.location.href = "#num_customer";
-           });
-        }
-        if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
-            $('#num_customer').removeClass('borderBlink')
-            if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
-                $('#btn_submitadd').addClass('borderBlink')
-
-               $('#child').focusout();
-           }
-
-
-       }
-        //  if(form.elements["adult"].value != 0 && form.elements["child"].value != 0){
-
-        // }
-
-    }, 300);
-   })
-});
-
-// if (tax == 'box_time') {
-//    $('#'+tax).removeClass('borderBlink')
-//    if (form.elements["nation"].value == 0) {
-//     $('#nation_box').addClass('borderBlink')
-// }
-// else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-//     $('#num_customer').addClass('borderBlink')
-// }
-// else if (form.elements["nation"].value != 0 && form.elements["time_num"].value != 0 && form.elements["price_plan"].value == 0) {
-//         $('#box_com').addClass('borderBlink')
-//     }
-// }
-// if (tax == 'box_com') {
-//     $('#'+tax).removeClass('borderBlink')
-//     if (form.elements["nation"].value == 0) {
-//         $('#nation_box').addClass('borderBlink')
-//     }
-//     else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-//         $('#num_customer').addClass('borderBlink')
-//     }
-// }
-}
-
-function checktime(x){
-    console.log(x)
-    var form = document.getElementById("form_booking");
-    if ($('#child').val() != '') {
-        $('#box_time').removeClass('borderBlink')
-    }
-    
-    if(form.elements["plate_num_1"].value == 0){
-        $('#box_car').addClass('borderBlink')
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#box_car";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
-        $('#nation_box').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#nation_box";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function(){
-
-           $("#box_com").focus()
-
-           window.location.href = "#box_com";
-       });
-    }
-    if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
-        $('#num_customer').addClass('borderBlink')
-        console.log(this.hash)
-
-        $('html, body').animate({
-            scrollTop: $('#num_customer').offset().top
-        }, 300, function(){
-
-           $("#adult").focus()
-
-           window.location.href = "#num_customer";
-       });
-    }
-    
-    else if ( form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != ''  ) {
-        if (form.elements["time_num"].value == 0 ) {
+                window.location.href = "#num_customer";
+            });
+        } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["time_num"].value == 0) {
                 $('#box_time').addClass('borderBlink')
                 $('#time_num').focus()
             }
@@ -369,177 +104,429 @@ function checktime(x){
                 $('#btn_submitadd').addClass('borderBlink')
                 window.location.href = "#btn_submitadd";
 
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
+            } else {
+                $('#box_time').removeClass('borderBlink')
 
-               $('#child').focusout();
-           }
+                $('#child').focusout();
+            }
+
+        }
+    }
+    if (tax == 'box_com') {
+        $('#' + tax).removeClass('borderBlink')
+        if (form.elements["plate_num_1"].value == 0) {
+            $('#box_car').addClass('borderBlink')
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                $("#box_com").focus()
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+            $('#nation_box').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                $("#box_com").focus()
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            $('#box_com').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                $("#box_com").focus()
+
+                window.location.href = "#box_com";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            $('#num_customer').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#num_customer').offset().top
+            }, 300, function() {
+
+                $("#adult").focus()
+
+                window.location.href = "#num_customer";
+            });
+        } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["time_num"].value == 0) {
+                $('#box_time').addClass('borderBlink')
+                $('#time_num').focus()
+            }
+            if (form.elements["time_num"].value != 0) {
+                $('#btn_submitadd').addClass('borderBlink')
+                window.location.href = "#btn_submitadd";
+
+            } else {
+                $('#box_time').removeClass('borderBlink')
+
+                $('#child').focusout();
+            }
+
+        }
+    }
+
+
+
+    // $("#child").focusout(function(){
+    //     $("#child").val()
+    //     console.log()
+
+    // });
+    $(document).ready(function() {
+        $("#child").on('change', function() {
+            $("#child").val()
+            console.log()
+        })
+        $("#child").keyup(function() {
+            var timer;
+            var form = document.getElementById("form_booking");
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                $('#' + tax).removeClass('borderBlink')
+                if (form.elements["plate_num_1"].value == 0) {
+                    $('#box_car').addClass('borderBlink')
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#box_car";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+                    $('#nation_box').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#nation_box";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+                    $('#box_com').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#box_com";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+                    $('#num_customer').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#num_customer').offset().top
+                    }, 300, function() {
+
+                        $("#adult").focus()
+
+                        window.location.href = "#num_customer";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+                    $('#num_customer').removeClass('borderBlink')
+                    if (form.elements["time_num"].value == 0) {
+                        $('#box_time').addClass('borderBlink')
+                        $('#time_num').focus()
+                    } else {
+                        $('#box_time').removeClass('borderBlink')
+                        $('#btn_submitadd').addClass('borderBlink')
+
+                        $('#child').focusout();
+                    }
+
+
+                }
+                //  if(form.elements["adult"].value != 0 && form.elements["child"].value != 0){
+
+                // }
+
+            }, 300);
+        })
+    });
+
+    // if (tax == 'box_time') {
+    //    $('#'+tax).removeClass('borderBlink')
+    //    if (form.elements["nation"].value == 0) {
+    //     $('#nation_box').addClass('borderBlink')
+    // }
+    // else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+    //     $('#num_customer').addClass('borderBlink')
+    // }
+    // else if (form.elements["nation"].value != 0 && form.elements["time_num"].value != 0 && form.elements["price_plan"].value == 0) {
+    //         $('#box_com').addClass('borderBlink')
+    //     }
+    // }
+    // if (tax == 'box_com') {
+    //     $('#'+tax).removeClass('borderBlink')
+    //     if (form.elements["nation"].value == 0) {
+    //         $('#nation_box').addClass('borderBlink')
+    //     }
+    //     else if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+    //         $('#num_customer').addClass('borderBlink')
+    //     }
+    // }
+}
+
+function checktime(x) {
+    console.log(x)
+    var form = document.getElementById("form_booking");
+    if ($('#child').val() != '') {
+        $('#box_time').removeClass('borderBlink')
+    }
+
+    if (form.elements["plate_num_1"].value == 0) {
+        $('#box_car').addClass('borderBlink')
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top
+        }, 300, function() {
+
+            $("#box_com").focus()
+
+            window.location.href = "#box_car";
+        });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+        $('#nation_box').addClass('borderBlink')
+        console.log(this.hash)
+
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top
+        }, 300, function() {
+
+            $("#box_com").focus()
+
+            window.location.href = "#nation_box";
+        });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+        $('#box_com').addClass('borderBlink')
+        console.log(this.hash)
+
+        $('html, body').animate({
+            scrollTop: $('#box_com').offset().top
+        }, 300, function() {
+
+            $("#box_com").focus()
+
+            window.location.href = "#box_com";
+        });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+        $('#num_customer').addClass('borderBlink')
+        console.log(this.hash)
+
+        $('html, body').animate({
+            scrollTop: $('#num_customer').offset().top
+        }, 300, function() {
+
+            $("#adult").focus()
+
+            window.location.href = "#num_customer";
+        });
+    } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+        if (form.elements["time_num"].value == 0) {
+            $('#box_time').addClass('borderBlink')
+            $('#time_num').focus()
+        }
+        if (form.elements["time_num"].value != 0) {
+            $('#btn_submitadd').addClass('borderBlink')
+            window.location.href = "#btn_submitadd";
+
+        } else {
+            $('#box_time').removeClass('borderBlink')
+
+            $('#child').focusout();
+        }
 
     }
 }
 
-function checkchild(x){
+function checkchild(x) {
     console.log('dsdsdsd')
 }
 // var rad = document.form_booking.nation;
-function handleClick(tax,name){
+function handleClick(tax, name) {
     console.log(tax)
     console.log(name)
     var form = document.getElementById("form_booking");
-    console.log('#'+tax+name)
+    console.log('#' + tax + name)
     if (tax == 'nation') {
         if (name == 1) {
-            $('#'+tax+'_'+name).addClass('cus_focus')
-            $('#'+tax+'_'+2).removeClass('cus_focus')
-            $('#'+tax+'_'+3).removeClass('cus_focus')
-             $('#btn_submitadd').removeClass('borderBlink')
+            $('#' + tax + '_' + name).addClass('cus_focus')
+            $('#' + tax + '_' + 2).removeClass('cus_focus')
+            $('#' + tax + '_' + 3).removeClass('cus_focus')
+            $('#btn_submitadd').removeClass('borderBlink')
             $('.nation_order').hide()
             $('.nation_china').show()
 
             $('.radio-nation').prop("checked", false);
-                $('#text_price_order').html('ค่าจอด 200')
+            $('#text_price_order').html('ค่าจอด 200')
 
-            if(form.elements["plate_num_1"].value == 0){
+            if (form.elements["plate_num_1"].value == 0) {
                 $('#box_car').addClass('borderBlink')
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
                 $('#nation_box').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
                 $('#box_com').addClass('borderBlink')
                 $('#num_customer').removeClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#box_com";
-               });
+                    window.location.href = "#box_com";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
                 $('#box_com').removeClass('borderBlink')
                 $('#num_customer').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#num_customer').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#adult").focus()
+                    $("#adult").focus()
 
-                   window.location.href = "#num_customer";
-               });
+                    window.location.href = "#num_customer";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                 $('#num_customer').removeClass('borderBlink')
-                if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
+                if (form.elements["time_num"].value == 0) {
+                    $('#box_time').addClass('borderBlink')
+                    $('#time_num').focus()
+                } else {
+                    $('#box_time').removeClass('borderBlink')
 
-               $('#child').focusout();
-           }
+                    $('#child').focusout();
+                }
             }
 
 
 
         }
         if (name == 2) {
-            $('#'+tax+'_'+name).addClass('cus_focus')
-            $('#'+tax+'_'+1).removeClass('cus_focus')
-            $('#'+tax+'_'+3).removeClass('cus_focus')
+            $('#' + tax + '_' + name).addClass('cus_focus')
+            $('#' + tax + '_' + 1).removeClass('cus_focus')
+            $('#' + tax + '_' + 3).removeClass('cus_focus')
             $('.nation_order').show()
             $('.nation_china').hide()
 
 
             $('#price_plan_3').prop("checked", true);
             $('#text_price_order').html('ค่าจอด 200')
-            if(form.elements["plate_num_1"].value == 0){
+            if (form.elements["plate_num_1"].value == 0) {
                 $('#box_car').addClass('borderBlink')
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
                 $('#nation_box').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
                 $('#box_com').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#box_com";
-               });
+                    window.location.href = "#box_com";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
                 $('#box_com').removeClass('borderBlink')
                 $('#num_customer').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#num_customer').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#adult").focus()
+                    $("#adult").focus()
 
-                   window.location.href = "#num_customer";
-               });
+                    window.location.href = "#num_customer";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                 $('#num_customer').removeClass('borderBlink')
-                if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
+                if (form.elements["time_num"].value == 0) {
+                    $('#box_time').addClass('borderBlink')
+                    $('#time_num').focus()
+                } else {
+                    $('#box_time').removeClass('borderBlink')
 
-               $('#child').focusout();
-           }
+                    $('#child').focusout();
+                }
             }
 
 
@@ -547,78 +534,77 @@ function handleClick(tax,name){
         if (name == 3) {
 
             $('.radio-nation').prop("checked", false);
-                
-            $('#'+tax+'_'+name).addClass('cus_focus')
-            $('#'+tax+'_'+1).removeClass('cus_focus')
-            $('#'+tax+'_'+2).removeClass('cus_focus')
-             $('#btn_submitadd').removeClass('borderBlink')
+
+            $('#' + tax + '_' + name).addClass('cus_focus')
+            $('#' + tax + '_' + 1).removeClass('cus_focus')
+            $('#' + tax + '_' + 2).removeClass('cus_focus')
+            $('#btn_submitadd').removeClass('borderBlink')
 
             $('.nation_order').show()
             $('.nation_china').show()
-$('#text_price_order').html('ไม่มีค่าตอบแทน')
+            $('#text_price_order').html('ไม่มีค่าตอบแทน')
 
-            if(form.elements["plate_num_1"].value == 0){
+            if (form.elements["plate_num_1"].value == 0) {
                 $('#box_car').addClass('borderBlink')
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
                 $('#nation_box').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#nation_box";
-               });
+                    window.location.href = "#nation_box";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
                 $('#box_com').addClass('borderBlink')
                 $('#num_customer').removeClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#box_com').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#box_com").focus()
+                    $("#box_com").focus()
 
-                   window.location.href = "#box_com";
-               });
+                    window.location.href = "#box_com";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
                 $('#box_com').removeClass('borderBlink')
                 $('#num_customer').addClass('borderBlink')
                 console.log(this.hash)
 
                 $('html, body').animate({
                     scrollTop: $('#num_customer').offset().top
-                }, 300, function(){
+                }, 300, function() {
 
-                   $("#adult").focus()
+                    $("#adult").focus()
 
-                   window.location.href = "#num_customer";
-               });
+                    window.location.href = "#num_customer";
+                });
             }
-            if (form.elements["plate_num_1"].value != 0 &&form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                 $('#num_customer').removeClass('borderBlink')
-                if (form.elements["time_num"].value == 0 ) {
-                $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
-            }
-            else{
-               $('#box_time').removeClass('borderBlink')
-               $('#child').focusout();
-           }
+                if (form.elements["time_num"].value == 0) {
+                    $('#box_time').addClass('borderBlink')
+                    $('#time_num').focus()
+                } else {
+                    $('#box_time').removeClass('borderBlink')
+                    $('#child').focusout();
+                }
             }
 
 
@@ -626,76 +612,76 @@ $('#text_price_order').html('ไม่มีค่าตอบแทน')
     }
     if (tax == 'car') {
         $('.box_car').removeClass('cus_focus')
-        $('#div_car_'+name).addClass('cus_focus')
+        $('#div_car_' + name).addClass('cus_focus')
     }
-    
+
 
 }
 // ons-tab[page="shop_history.html"]
 
-function editBook(x){
-   console.log(x)
-   $('#text_edit_persion').show()
+function editBook(x) {
+    console.log(x)
+    $('#text_edit_persion').show()
 
-   $('#btn_selectisedit').show()
-   $('#num_edit_persion').show()
-   $('#btn_isedit').hide()
-   $('#isedit').hide()
-   $('#num_edit_persion').css('display','inline-block')
-   $('#num_edit_persion').focus();
+    $('#btn_selectisedit').show()
+    $('#num_edit_persion').show()
+    $('#btn_isedit').hide()
+    $('#isedit').hide()
+    $('#num_edit_persion').css('display', 'inline-block')
+    $('#num_edit_persion').focus();
 }
 
-function saveeditBook(x){
-//			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-var url_load= "shop/editadult"+"?num="+$('#num_edit_persion').val()+"&id="+x;
-console.log(url_load)
-$.post( url_load, function( data ) {
-               //$('#load_mod_popup').html(data);
-               console.log(data);
-           });
+function saveeditBook(x) {
+    //			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
+    var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
+    console.log(url_load)
+    $.post(url_load, function(data) {
+        //$('#load_mod_popup').html(data);
+        console.log(data);
+    });
 
-$('#text_edit_persion').hide()
-number_persion_new = $('#num_edit_persion').val()
-$('#num_final_edit').html(number_persion_new)
-console.log(x)
-$('#btn_selectisedit').hide()
-$('#num_edit_persion').hide()
-$('#btn_isedit').show()
-$('#isedit').show()
+    $('#text_edit_persion').hide()
+    number_persion_new = $('#num_edit_persion').val()
+    $('#num_final_edit').html(number_persion_new)
+    console.log(x)
+    $('#btn_selectisedit').hide()
+    $('#num_edit_persion').hide()
+    $('#btn_isedit').show()
+    $('#isedit').show()
 
 
 }
 
 var cancelShop = function() {
     document
-    .getElementById('shop_add-alert-dialog')
-    .hide();
+        .getElementById('shop_add-alert-dialog')
+        .hide();
 };
 var submitShop = function() {
     // var nation = document.getElementById("form_booking");
     // console.log(nation.elements["nation"].value)
     if ($('#car_type').val() == 0) {
         ons.notification.alert({
-            message: 'กรุณาเลือกประเภทรถ',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $('#car_type').focus();
-            location.href = "#box_car";
-        });
+                message: 'กรุณาเลือกประเภทรถ',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#car_type').focus();
+                location.href = "#box_car";
+            });
         return false;
     }
     if ($('#car_plate').val() == "") {
         ons.notification.alert({
-            message: 'กรุณาระบุป้ายทะเบียนรถ',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $('#car_plate').focus();
-            location.href = "#castomer_box";
-        });
+                message: 'กรุณาระบุป้ายทะเบียนรถ',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#car_plate').focus();
+                location.href = "#castomer_box";
+            });
         return false;
     }
     var nation = document.getElementById("form_booking");
@@ -704,139 +690,139 @@ var submitShop = function() {
     // console.log(nation)
     // console.log($("input[name='nation']").val())
     // console.log(document.querySelector('input[name=nation][checked]'))
-    
-    if(nation.elements["nation"].value == ''){
+
+    if (nation.elements["nation"].value == '') {
 
         ons.notification.alert({
-            message: 'กรุณาเลือกสัญชาติ',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-            $("#nation_box").focus();
-            location.href = "#nation_box";
-        });
+                message: 'กรุณาเลือกสัญชาติ',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $("#nation_box").focus();
+                location.href = "#nation_box";
+            });
         // $('#time_num').focus();
         return false;
-    // rate_value = document.getElementById('price_plan_1').value;
+        // rate_value = document.getElementById('price_plan_1').value;
 
-}
-var price_plan = document.getElementById("form_booking");
+    }
+    var price_plan = document.getElementById("form_booking");
 
     // console.log(price_plan)
     // var rate_value;
-    if(price_plan.elements["price_plan"].value == 0){
+    if (price_plan.elements["price_plan"].value == 0) {
         ons.notification.alert({
-            message: 'กรุณาเลือกค่าตอบแทน',
+                message: 'กรุณาเลือกค่าตอบแทน',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                window.location.href = "#box_com";
+
+                //$('#time_num').focus();
+            });
+        return false;
+        // rate_value = document.getElementById('price_plan_1').value;
+
+    }
+
+    if ($('#adult').val() == "") {
+        $('#adult').focus();
+        ons.notification.alert({
+                message: 'กรุณาระบุจำนวนผู้ใหญ่',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#adult').focus();
+            });
+
+        return false;
+    }
+    $('#adult').val(parseInt($('#adult').val()))
+    console.log(parseInt($('#adult').val()))
+    if (parseInt($('#adult').val()) <= 0) {
+
+        ons.notification.alert({
+                message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#adult').focus();
+            });
+
+        return false;
+    }
+    if ($('#child').val() == "") {
+        $('#child').focus();
+        ons.notification.alert({
+                message: 'กรุณาระบุจำนวนเด็ก่',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#child').focus();
+                window.location.href = "#castomer_box";
+            });
+
+        return false;
+    }
+    $('#child').val(parseInt($('#child').val()))
+    console.log(parseInt($('#child').val()))
+    /*if ( parseInt($('#child').val()) <= 0) {
+
+        ons.notification.alert({
+            message: 'กรุณาระบุจำนวนเด็กต้องมากว่า 0',
             title: "ข้อมูลไม่ครบ",
             buttonLabel: "ปิด"
         })
         .then(function() {
-           window.location.href = "#box_com";
+         $('#child').focus();
+     });
 
-            //$('#time_num').focus();
-        });
         return false;
-    // rate_value = document.getElementById('price_plan_1').value;
+    }*/
+    var time_num = document.getElementById("form_booking");
+    console.log(time_num.elements["time_num"].value)
+    if (time_num.elements["time_num"].value == 0) {
+        ons.notification.alert({
+                message: 'กรุณาเลือกเวลาโดยประมาณ',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#time_num').focus();
+                window.location.href = "#box_time";
+            });
+        return false;
+        // rate_value = document.getElementById('price_plan_1').value;
 
-}
+    }
+    if ($('#time_num').val() == '') {
+        ons.notification.alert({
+                message: 'กรุณาระบุเวลาถึงโดยประมาณ',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                $('#time_num').focus();
+            });
+        return false;
+    }
 
-if ($('#adult').val() == "" ) {
-    $('#adult').focus();
-    ons.notification.alert({
-        message: 'กรุณาระบุจำนวนผู้ใหญ่',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-        $('#adult').focus();
-    });
-
-    return false;
-}
-$('#adult').val(parseInt($('#adult').val()))
-console.log(parseInt($('#adult').val()))
-if ( parseInt($('#adult').val()) <= 0) {
-
-    ons.notification.alert({
-        message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-     $('#adult').focus();
- });
-
-    return false;
-}
-if ($('#child').val() == "" ) {
-    $('#child').focus();
-    ons.notification.alert({
-        message: 'กรุณาระบุจำนวนเด็ก่',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-        $('#child').focus();
-        window.location.href = "#castomer_box";
-    });
-
-    return false;
-}
-$('#child').val(parseInt($('#child').val()))
-console.log(parseInt($('#child').val()))
-if ( parseInt($('#child').val()) <= 0) {
-
-    ons.notification.alert({
-        message: 'กรุณาระบุจำนวนเด็กต้องมากว่า 0',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-     $('#child').focus();
- });
-
-    return false;
-}
-var time_num = document.getElementById("form_booking");
-console.log(time_num.elements["time_num"].value)
-if(time_num.elements["time_num"].value == 0){
-    ons.notification.alert({
-        message: 'กรุณาเลือกเวลาโดยประมาณ',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-        $('#time_num').focus();
-        window.location.href = "#box_time";
-    });
-    return false;
-    // rate_value = document.getElementById('price_plan_1').value;
-
-}
-if ($('#time_num').val() == '') {
-    ons.notification.alert({
-        message: 'กรุณาระบุเวลาถึงโดยประมาณ',
-        title: "ข้อมูลไม่ครบ",
-        buttonLabel: "ปิด"
-    })
-    .then(function() {
-        $('#time_num').focus();
-    });
-    return false;
-}
-
-var dialog = document.getElementById('shop_add-alert-dialog');
-if (dialog) {
-    dialog.show();
-} else {
-    ons.createElement('shop_add-dialog.html', {
-        append: true
-    })
-    .then(function(dialog) {
+    var dialog = document.getElementById('shop_add-alert-dialog');
+    if (dialog) {
         dialog.show();
-    });
-}
+    } else {
+        ons.createElement('shop_add-dialog.html', {
+                append: true
+            })
+            .then(function(dialog) {
+                dialog.show();
+            });
+    }
 };
 
 function saveShop() {
@@ -846,27 +832,27 @@ function saveShop() {
     $('#txt_car_type').val($("#car_type option:selected").text());
     //			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
     var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user");
-     // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
-                        // $('ons-tab[page="shop_manage.html"]').click();
-                        
-                        $.ajax({
-                            type: 'POST',
-                            data: $('#form_booking').serialize(),
-                            url: url,
-                            beforeSend: function() {},
-                            success: function(response) {
-                                console.log(response);
+    // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
+    // $('ons-tab[page="shop_manage.html"]').click();
 
-                                if (response.result == true) {
-                                    var url2 = "shop/shop_pageadd";
-                                    $.post(url2,function(ele2){
-                                        $('#shop_add').html(ele2);
+    $.ajax({
+        type: 'POST',
+        data: $('#form_booking').serialize(),
+        url: url,
+        beforeSend: function() {},
+        success: function(response) {
+            console.log(response);
 
-                                    });
-                                    setTimeout(function() {
-                                        modal.hide();
-                                        $('ons-tab[page="shop_manage.html"]').click();
-                                    }, 2000);
+            if (response.result == true) {
+                var url2 = "shop/shop_pageadd";
+                $.post(url2, function(ele2) {
+                    $('#shop_add').html(ele2);
+
+                });
+                setTimeout(function() {
+                    modal.hide();
+                    $('ons-tab[page="shop_manage.html"]').click();
+                }, 2000);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
                 //         title: "สำเร็จ",
@@ -890,144 +876,140 @@ function saveShop() {
                     console.log(data);
 
                 });
-                setTimeout(function() {
+                /*setTimeout(function() {
                     openOrderFromAndroid(response.last_id);
-                }, 1500);
+                }, 1500);*/
             } else {
                 ons.notification.alert({
-                    message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
-                    title: "ทำรายการไม่สำเร็จ",
-                    buttonLabel: "ปิด"
-                })
-                .then(function() {
-                });
+                        message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
+                        title: "ทำรายการไม่สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {});
             }
         },
         error: function(data) {
             console.log(data);
             ons.notification.alert({
-                message: 'กรุณาตรวจสอบข้อมูลของท่าน',
-                title: "ผิดพลาด",
-                buttonLabel: "ปิด"
-            })
-            .then(function() {
-            });
+                    message: 'กรุณาตรวจสอบข้อมูลของท่าน',
+                    title: "ผิดพลาด",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {});
         }
     });
-                    }
-                    function openDetailBooking(key, type) {
-                        var detailObj = array_data.manage[key];
-                        fn.pushPage({
-                            'id': 'popup1.html',
-                            'title': detailObj.invoice
-                        }, 'slide-ios');
-                        console.log(detailObj);
-                        var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
-                        $.post(url, detailObj, function(data) {
-                            $('#body_popup1').html(data);
-//        var obj = JSON.parse('<?=json_encode($_POST);?>');
-var obj = detailObj;
-console.log(obj);
-if(obj.check_driver_topoint==1){
-    console.log("driver_topoint");
-    changeHtml("driver_topoint",obj.id,timestampToDate(obj.driver_topoint_date,"time"));
 }
-if(obj.check_guest_receive==1){
-    console.log("guest_receive");
-    changeHtml("guest_receive",obj.id,timestampToDate(obj.guest_receive_date,"time"));
+
+function openDetailBooking(key, type) {
+    var detailObj = array_data.manage[key];
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': detailObj.invoice
+    }, 'slide-ios');
+    console.log(detailObj);
+    var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
+    $.post(url, detailObj, function(data) {
+        $('#body_popup1').html(data);
+        //        var obj = JSON.parse('<?=json_encode($_POST);?>');
+        var obj = detailObj;
+        console.log(obj);
+        if (obj.check_driver_topoint == 1) {
+            console.log("driver_topoint");
+            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+        }
+        if (obj.check_guest_receive == 1) {
+            console.log("guest_receive");
+            changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+        }
+        if (obj.check_guest_register == 1) {
+            console.log("guest_register");
+            changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+        }
+        if (obj.check_driver_pay_report == 1) {
+            console.log("driver_pay_report");
+            changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+        }
+        checkPhotoCheckIn('driver_topoint', obj.id);
+        checkPhotoCheckIn('guest_receive', obj.id);
+        checkPhotoCheckIn('guest_register', obj.id);
+        checkPhotoCheckIn('driver_pay_report', obj.id);
+    });
+    $('#check_open_shop_id').val(detailObj.id);
 }
-if(obj.check_guest_register==1){
-    console.log("guest_register");
-    changeHtml("guest_register",obj.id,timestampToDate(obj.guest_register_date,"time"));
-}
-if(obj.check_driver_pay_report==1){
-    console.log("driver_pay_report");
-    changeHtml("driver_pay_report",obj.id,timestampToDate(obj.driver_pay_report_date,"time"));
-}
-checkPhotoCheckIn('driver_topoint', obj.id);
-checkPhotoCheckIn('guest_receive', obj.id);
-checkPhotoCheckIn('guest_register', obj.id);
-checkPhotoCheckIn('driver_pay_report', obj.id);
-});
-                        $('#check_open_shop_id').val(detailObj.id);
-                    }
 
+function openDetailBookinghistory(key, type, invoice) {
 
-                    function openDetailBookinghistory(key, type,invoice) {
+    fn.pushPage({
+        'id': 'popup1.html',
+        'title': invoice
+    }, 'slide-ios');
 
-                        fn.pushPage({
-                            'id': 'popup1.html',
-                            'title': invoice
-                        }, 'slide-ios');
-
-                        var url = "shop/detail_shop_his";
-                        var param = {
-                            user_id: $.cookie("detect_user"),
-                            invoice : invoice,
-                        };
-                        console.log(param);
-                        $.ajax({
-                            url: url,
-                            data: param,
-                            type: 'post',
-                            success: function(res) {
-                               console.log(res);
-                               $('#body_popup1').html(res);
-                           }
-                       });
+    var url = "shop/detail_shop_his";
+    var param = {
+        user_id: $.cookie("detect_user"),
+        invoice: invoice,
+    };
+    console.log(param);
+    $.ajax({
+        url: url,
+        data: param,
+        type: 'post',
+        success: function(res) {
+            console.log(res);
+            $('#body_popup1').html(res);
+        }
+    });
     // $.post(url, function(data) {
     //     $('#body_popup1').html(data);
-//        var obj = JSON.parse('<?=json_encode($_POST);?>');
-// var obj = detailObj;
-// console.log(obj);
-// if(obj.check_driver_topoint==1){
-//     console.log("driver_topoint");
-//     changeHtml("driver_topoint",obj.id,timestampToDate(obj.driver_topoint_date,"time"));
-// }
-// if(obj.check_guest_receive==1){
-//     console.log("guest_receive");
-//     changeHtml("guest_receive",obj.id,timestampToDate(obj.guest_receive_date,"time"));
-// }
-// if(obj.check_guest_register==1){
-//     console.log("guest_register");
-//     changeHtml("guest_register",obj.id,timestampToDate(obj.guest_register_date,"time"));
-// }
-// if(obj.check_driver_pay_report==1){
-//     console.log("driver_pay_report");
-//     changeHtml("driver_pay_report",obj.id,timestampToDate(obj.driver_pay_report_date,"time"));
-// }
-// checkPhotoCheckIn('driver_topoint', obj.id);
-// checkPhotoCheckIn('guest_receive', obj.id);
-// checkPhotoCheckIn('guest_register', obj.id);
-// checkPhotoCheckIn('driver_pay_report', obj.id);
-// });
+    //        var obj = JSON.parse('<?=json_encode($_POST);?>');
+    // var obj = detailObj;
+    // console.log(obj);
+    // if(obj.check_driver_topoint==1){
+    //     console.log("driver_topoint");
+    //     changeHtml("driver_topoint",obj.id,timestampToDate(obj.driver_topoint_date,"time"));
+    // }
+    // if(obj.check_guest_receive==1){
+    //     console.log("guest_receive");
+    //     changeHtml("guest_receive",obj.id,timestampToDate(obj.guest_receive_date,"time"));
+    // }
+    // if(obj.check_guest_register==1){
+    //     console.log("guest_register");
+    //     changeHtml("guest_register",obj.id,timestampToDate(obj.guest_register_date,"time"));
+    // }
+    // if(obj.check_driver_pay_report==1){
+    //     console.log("driver_pay_report");
+    //     changeHtml("driver_pay_report",obj.id,timestampToDate(obj.driver_pay_report_date,"time"));
+    // }
+    // checkPhotoCheckIn('driver_topoint', obj.id);
+    // checkPhotoCheckIn('guest_receive', obj.id);
+    // checkPhotoCheckIn('guest_register', obj.id);
+    // checkPhotoCheckIn('driver_pay_report', obj.id);
+    // });
     // $('#check_open_shop_id').val(detailObj.id);
 }
 
-function viewPhotoShop(id,action, time){
-	fn.pushPage({
+function viewPhotoShop(id, action, time) {
+    fn.pushPage({
         'id': 'popup2.html',
         'title': 'ภาพ'
     }, 'fade-md');
-    var path = "../data/fileupload/store/"+action+"_"+id+".jpg";
-    var url_load = "page/view_photo?id=" + id +"&time="+time+"&path="+path;
+    var path = "../data/fileupload/store/" + action + "_" + id + ".jpg";
+    var url_load = "page/view_photo?id=" + id + "&time=" + time + "&path=" + path;
     $.post(url_load, function(ele) {
         $('#body_popup2').html(ele);
     });
 }
 
-function openPointMaps(type,id){
+function openPointMaps(type, id) {
     console.log(id)
     console.log(type)
     var title = '';
     if (type == 'driver_topoint') {
         title = 'ตำแหน่งถึงสถานที่ส่งแขก'
-    }
-    else if(type == 'guest_register'){
+    } else if (type == 'guest_register') {
         title = 'ตำแหน่งแขกลงทะเบียน'
 
-    }
-    else if(type == 'guest_receive'){
+    } else if (type == 'guest_receive') {
         title = 'ตำแหน่งพนักงานรับแขก'
 
     }
@@ -1041,8 +1023,8 @@ function openPointMaps(type,id){
     }, 'fade-md');
     var url = "maps/map_shop_checkin";
     var param = {
-        order_id : id,
-        type : type,
+        order_id: id,
+        type: type,
     };
     console.log(param);
     $.ajax({
@@ -1050,88 +1032,85 @@ function openPointMaps(type,id){
         data: param,
         type: 'post',
         success: function(res) {
-                 // console.log(res);
-                 $('#body_popup2').html(res);
-                 var elem = document.getElementById("body_popup2");
-                 elem.setAttribute("style","width: 100%;background-color: rgb(221, 221, 221);position: fixed;top: 0px; bottom: 0px; overflow: scroll;z-index: 100")
-   //              $('#body_popup2').css({'width: 100%',
-   //  'background-color: rgb(221, 221, 221)',
-   //  'position: fixed',
-   //  'top: 0px',
-   // ' bottom: 0px',
-   // ' overflow: scroll',
-   //  'z-index: 100'})
-}
-});
+            // console.log(res);
+            $('#body_popup2').html(res);
+            var elem = document.getElementById("body_popup2");
+            elem.setAttribute("style", "width: 100%;background-color: rgb(221, 221, 221);position: fixed;top: 0px; bottom: 0px; overflow: scroll;z-index: 100")
+            //              $('#body_popup2').css({'width: 100%',
+            //  'background-color: rgb(221, 221, 221)',
+            //  'position: fixed',
+            //  'top: 0px',
+            // ' bottom: 0px',
+            // ' overflow: scroll',
+            //  'z-index: 100'})
+        }
+    });
 
 }
 
-function checkPhotoCheckIn(type, id){
-  if($('#'+type+'_check_click').val()==1){
-    $('#'+type+'_locat_off').hide();
-    $('#'+type+'_locat_on').show();
+function checkPhotoCheckIn(type, id) {
+    if ($('#' + type + '_check_click').val() == 1) {
+        $('#' + type + '_locat_off').hide();
+        $('#' + type + '_locat_on').show();
 
-}else{
-    $('#'+type+'_locat_off').show();
-    $('#'+type+'_locat_on').hide();
-}
-$.ajax({
-   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
-   type:'HEAD',
-   error: function()
-   {
-    console.log('Error file');
-    $('#photo_'+type+'_no').show();
-    $('#photo_'+type+'_yes').hide();
-},
-success: function()
-{
-    console.log('Success file');
-    $('#photo_'+type+'_no').hide();
-    $('#photo_'+type+'_yes').show();
-}
-});
+    } else {
+        $('#' + type + '_locat_off').show();
+        $('#' + type + '_locat_on').hide();
+    }
+    $.ajax({
+        url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
+            $('#photo_' + type + '_no').show();
+            $('#photo_' + type + '_yes').hide();
+        },
+        success: function() {
+            console.log('Success file');
+            $('#photo_' + type + '_no').hide();
+            $('#photo_' + type + '_yes').show();
+        }
+    });
 }
 
 function submitCancel() {
     var order_id = $('#order_id_cancel').val();
     if (!$('input[name="type_cancel"]').is(':checked')) {
         ons.notification.alert({
-            message: 'กรุณาเลือกสาเหตุที่ยกเลิก',
-            title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {
-        });
+                message: 'กรุณาเลือกสาเหตุที่ยกเลิก',
+                title: "ข้อมูลไม่ครบ",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {});
     }
     console.log($('#form_type_cancel').serialize());
     // var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
     var url = "shop/cancel_shop";
     console.log(url + " ");
-     // ons.navigator.resetToPage('popup1.html')
-     $.post(url, $('#form_type_cancel').serialize(), function(data) {
+    // ons.navigator.resetToPage('popup1.html')
+    $.post(url, $('#form_type_cancel').serialize(), function(data) {
         console.log(data)
         var obj = data;
         console.log(obj);
         if (obj.result == true) {
             ons.notification.alert({
-                message: 'ยกเลิกสำเร็จ',
-                title: "สำเร็จ",
-                buttonLabel: "ปิด"
-            })
-            .then(function() {
-                fn.hideDialog('cancel-shop-dialog');
-                var urlx = "shop/shop_manage";
+                    message: 'ยกเลิกสำเร็จ',
+                    title: "สำเร็จ",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                    fn.hideDialog('cancel-shop-dialog');
+                    var urlx = "shop/shop_manage";
 
 
 
-                $.post(urlx, function(res) {
-            // this.popPage('popup1.html');
-            appNavigator.popPage()
-            $('#shop_manage').html(res);
-        });
+                    $.post(urlx, function(res) {
+                        // this.popPage('popup1.html');
+                        appNavigator.popPage()
+                        $('#shop_manage').html(res);
+                    });
 
-            });
+                });
             $('#btn_cancel_book_' + order_id).hide();
             /*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
             console.log(url_check_st);
@@ -1145,9 +1124,9 @@ function submitCancel() {
             });
         }
     });
- }
+}
 
- function js_yyyy_mm_dd_hh_mm_ss() {
+function js_yyyy_mm_dd_hh_mm_ss() {
     now = new Date();
     year = "" + now.getFullYear();
     month = "" + (now.getMonth() + 1);
@@ -1253,233 +1232,249 @@ function openMapsDistance(shop_id) {
 
 /******* <!-------- Change html CheckIn ------------> *******/
 
-function changeHtml(type,id,st){
-//			alert(type);
-//			var url_status = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=1&time="+status_time;
-//			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
-$('#status_'+type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา '+st+'</span></div>'); 
-$('#iconchk_'+type).attr("src", "assets/images/yes.png");  
-$("#number_"+type).removeClass('step-booking');
-$("#number_"+type).addClass('step-booking-active');
-//			$("#box_"+type).addClass('disabledbutton-checkin');
-$("#btn_"+type).css('background-color','#666666');
+function changeHtml(type, id, st) {
+    //			alert(type);
+    //			var url_status = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=1&time="+status_time;
+    //			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+    $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
+    $('#iconchk_' + type).attr("src", "assets/images/yes.png");
+    $("#number_" + type).removeClass('step-booking');
+    $("#number_" + type).addClass('step-booking-active');
+    //			$("#box_"+type).addClass('disabledbutton-checkin');
+    $("#btn_" + type).css('background-color', '#666666');
 
-if(type=="driver_topoint"){
-    $('#step_guest_receive').show();
-}else if(type=="guest_receive"){
-    $('#step_guest_register').show();
-}else if(type=="guest_register"){
- $('#step_driver_pay_report').show();
-}else if(type=="driver_pay_report"){
+    if (type == "driver_topoint") {
+        $('#step_guest_receive').show();
+    } else if (type == "guest_receive") {
+        $('#step_guest_register').show();
+    } else if (type == "guest_register") {
+        $('#step_driver_pay_report').show();
+    } else if (type == "driver_pay_report") {
 
-}
-$('#'+type+'_locat_off').hide();
-$('#'+type+'_locat_on').show();
-$.ajax({
-   url: '../data/fileupload/store/'+type+'_'+id+'.jpg',
-   type:'HEAD',
-   error: function()
-   {
-       console.log('Error file');
+    }
+    $('#' + type + '_locat_off').hide();
+    $('#' + type + '_locat_on').show();
+    $.ajax({
+        url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
+        type: 'HEAD',
+        error: function() {
+            console.log('Error file');
 
-       $('#photo_'+type+'_yes').hide();
-       $('#photo_'+type+'_no').show();
+            $('#photo_' + type + '_yes').hide();
+            $('#photo_' + type + '_no').show();
 
-//			   $('#'+type+'_locat_off').show();
-//			   $('#'+type+'_locat_on').hide();
-},
-success: function()
-{
-				//file exists
-				console.log('success file');
-				
-				$('#photo_'+type+'_yes').show();
-              $('#photo_'+type+'_no').hide();
+            //			   $('#'+type+'_locat_off').show();
+            //			   $('#'+type+'_locat_on').hide();
+        },
+        success: function() {
+            //file exists
+            console.log('success file');
 
-//			   $('#'+type+'_locat_off').hide();
-//			     $('#'+type+'_locat_on').show();
-}
-});
+            $('#photo_' + type + '_yes').show();
+            $('#photo_' + type + '_no').hide();
 
-$('#'+type+'_check_click').val(1);
-$("#box_"+type).removeClass('border-alert');
+            //			   $('#'+type+'_locat_off').hide();
+            //			     $('#'+type+'_locat_on').show();
+        }
+    });
+
+    $('#' + type + '_check_click').val(1);
+    $("#box_" + type).removeClass('border-alert');
 }
 /******* <!-------- End Change html CheckIn ------------> *******/
 
 
 /******* <!-------- function CheckIn ------------> *******/
-function sendCheckIn(id, type){
-	
-	modal.show();
-	
-	var lng = $('#lng').val();
-	var lat = $('#lat').val();
-//	var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
-var url = "shop/checkin?type="+type+"&id="+id+"&lat="+lat+"&lng="+lng;
-console.log(url);
+function sendCheckIn(id, type) {
 
-$.post(url,function(res){
-   console.log(res);
-   modal.hide();
-   if(res.result==true){
-    $('#'+type+'_check_click').val(1)
-    changeHtml(type,id,timestampToDate(res.time,"time"));
+    modal.show();
 
-//				 console.log(array_cdata);
-//   				 $('#json_shop').val(JSON.stringify(array_data));
-var message = "";
-socket.emit('sendchat', message);
-sendSocket(id);
-//				$( "#close_dialog_custom" ).click();
+    var lng = $('#lng').val();
+    var lat = $('#lat').val();
+    //	var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
+    var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+    console.log(url);
 
-		      /*	 $.post('send_messages/send_checkin.php?type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>',function(data){
+    $.post(url, function(res) {
+        console.log(res);
+        modal.hide();
+        if (res.result == true) {
+            $('#' + type + '_check_click').val(1)
+            changeHtml(type, id, timestampToDate(res.time, "time"));
+
+            //				 console.log(array_cdata);
+            //   				 $('#json_shop').val(JSON.stringify(array_data));
+            var message = "";
+            socket.emit('sendchat', message);
+            sendSocket(id);
+            //				$( "#close_dialog_custom" ).click();
+			var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
+            /*	 $.post(url_msg,function(data){
    					console.log(data);
    				});*/
-                 ons.notification.alert({message: 'ยืนยันแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
-                 .then(function() {
-                     $('ons-back-button').click();
-                 });
-             }else{
-//				swal("Error");
-}
-});
+   				$.ajax({
+                url: url_msg, // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+//                data: data,
+                type: 'post',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+            ons.notification.alert({
+                    message: 'ยืนยันแล้ว',
+                    title: "สำเร็จ",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                    $('ons-back-button').click();
+                });
+        } else {
+            //				swal("Error");
+        }
+    });
 
 }
 
 function readURL(input, type, subtype, id) {
 
-   if (input.files && input.files[0]) {
-     var reader = new FileReader();
-     reader.onload = function(e) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
 
-        $('#pv_'+type).attr('src', e.target.result);
-        $('#pv_'+type).fadeIn(500);
-        var url = "page/upload_img?type="+type+"&action="+subtype+"&id="+id;
-        console.log(url);
-//				return;
-var data = new FormData($('#form_checkin')[0]);
-data.append('fileUpload', $('#img_checkin')[0].files[0]);
-$.ajax({
-   				                url: url, // point to server-side PHP script 
-   				                dataType: 'json',  // what to expect back from the PHP script, if anything
-   				                cache: false,
-   				                contentType: false,
-   				                processData: false,
-   				                data: data,                         
-   				                type: 'post',
-   				                success: function(php_script_response){
-                                      console.log(php_script_response);
-                                      if(php_script_response.result==true){
-                                         $('#txt-img-nohas-checkin').hide();
-                                         $('#txt-img-has-checkin').show();
-                                     }
-                                 }
-                             });
-}
-reader.readAsDataURL(input.files[0]);
+            $('#pv_' + type).attr('src', e.target.result);
+            $('#pv_' + type).fadeIn(500);
+            var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
+            console.log(url);
+            //				return;
+            var data = new FormData($('#form_checkin')[0]);
+            data.append('fileUpload', $('#img_checkin')[0].files[0]);
+            $.ajax({
+                url: url, // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: 'post',
+                success: function(php_script_response) {
+                    console.log(php_script_response);
+                    if (php_script_response.result == true) {
+                        $('#txt-img-nohas-checkin').hide();
+                        $('#txt-img-has-checkin').show();
+                    }
+                }
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
 
-}
+    }
 
 }
 
 
 
 function btn_driver_topoint(id) {
-    if($('#driver_topoint_check_click').val()==1){
-      return;
-  }
-  fn.pushPage({
-    'id': 'popup_shop_checkin.html',
-    'title': "ถึงสถานที่ส่งแขก"
-}, 'fade-ios');
-  var url = "page/call_page?type=driver_topoint&id="+id;
-  console.log(url);
-  $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
-//    $('#type_checkin').val('topoint');
-//    alert($('#type_checkin').val());
+    if ($('#driver_topoint_check_click').val() == 1) {
+        return;
+    }
+    fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "ถึงสถานที่ส่งแขก"
+    }, 'fade-ios');
+    var url = "page/call_page?type=driver_topoint&id=" + id;
+    console.log(url);
+    $.post(url, {
+        path: "shop/checkin_action"
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
+    //    $('#type_checkin').val('topoint');
+    //    alert($('#type_checkin').val());
 }
 
 function btn_guest_receive(id) {
-	if($('#guest_receive_check_click').val()==1){
-		return;
-	}
-    if(class_user=="taxi"){
-       ons.notification.alert({
-        message: 'พนักงานเป็นคนยืนยันเท่านั้น',
-        title: "ไม่สามารถยืนยันได้",
-        buttonLabel: "ปิด"
-    })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
-    'id': 'popup_shop_checkin.html',
-    'title': "พนักงานรับแขก"
-}, 'fade-ios');
-   var url = "page/call_page?type=guest_receive&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
-//    $('#type_checkin').val('topoint');
-//    alert($('#type_checkin').val());
+    if ($('#guest_receive_check_click').val() == 1) {
+        return;
+    }
+    if (class_user == "taxi") {
+        ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {});
+        return;
+    }
+    fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "พนักงานรับแขก"
+    }, 'fade-ios');
+    var url = "page/call_page?type=guest_receive&id=" + id;
+    console.log(url);
+    $.post(url, {
+        path: "shop/checkin_action"
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
+    //    $('#type_checkin').val('topoint');
+    //    alert($('#type_checkin').val());
 }
 
 function btn_guest_register(id) {
-	if($('#guest_register_check_click').val()==1){
-		return;
-	}
-    if(class_user=="taxi"){
-       ons.notification.alert({
-        message: 'พนักงานเป็นคนยืนยันเท่านั้น',
-        title: "ไม่สามารถยืนยันได้",
-        buttonLabel: "ปิด"
-    })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
-    'id': 'popup_shop_checkin.html',
-    'title': "แขกลงทะเบียน"
-}, 'fade-ios');
-   var url = "page/call_page?type=guest_register&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
-//    $('#type_checkin').val('topoint');
-//    alert($('#type_checkin').val());
+    if ($('#guest_register_check_click').val() == 1) {
+        return;
+    }
+    if (class_user == "taxi") {
+        ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {});
+        return;
+    }
+    fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "แขกลงทะเบียน"
+    }, 'fade-ios');
+    var url = "page/call_page?type=guest_register&id=" + id;
+    console.log(url);
+    $.post(url, {
+        path: "shop/checkin_action"
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
+    //    $('#type_checkin').val('topoint');
+    //    alert($('#type_checkin').val());
 }
 
 function btn_driver_pay_report(id) {
-	if($('#driver_pay_report_check_click').val()==1){
-		return;
-	}
-    if(class_user=="taxi"){
-       ons.notification.alert({
-        message: 'พนักงานเป็นคนยืนยันเท่านั้น',
-        title: "ไม่สามารถยืนยันได้",
-        buttonLabel: "ปิด"
-    })
-       .then(function() {
-       });
-       return;
-   }
-   fn.pushPage({
-    'id': 'popup_shop_checkin.html',
-    'title': "แจ้งยอดรายได้แล้ว"
-}, 'fade-ios');
-   var url = "page/call_page?type=driver_pay_report&id="+id;
-   console.log(url);
-   $.post(url,{ path : "shop/checkin_action" },function(ele){
-     $('#body_shop_checkin').html(ele);
- });
-//    $('#type_checkin').val('topoint');
-//    alert($('#type_checkin').val());
+    if ($('#driver_pay_report_check_click').val() == 1) {
+        return;
+    }
+    if (class_user == "taxi") {
+        ons.notification.alert({
+                message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+                title: "ไม่สามารถยืนยันได้",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {});
+        return;
+    }
+    fn.pushPage({
+        'id': 'popup_shop_checkin.html',
+        'title': "แจ้งยอดรายได้แล้ว"
+    }, 'fade-ios');
+    var url = "page/call_page?type=driver_pay_report&id=" + id;
+    console.log(url);
+    $.post(url, {
+        path: "shop/checkin_action"
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
+    //    $('#type_checkin').val('topoint');
+    //    alert($('#type_checkin').val());
 }
 
 /******* <!-------- function run page ------------> *******/
@@ -1534,13 +1529,13 @@ document.addEventListener('prechange', function(event) {
         var obj = array_data;
         var url = "shop/shop_history";
         // $('#date_filter').hide();
-        
+
         console.log(moment().format('YYYY-MM-DD'))
         console.log($.cookie("detect_userclass"))
         var pass = {
             date: date,
-            driver : $.cookie("detect_user"),
-            type : 'his'
+            driver: $.cookie("detect_user"),
+            type: 'his'
         };
         console.log(pass);
         $.ajax({
@@ -1548,65 +1543,74 @@ document.addEventListener('prechange', function(event) {
             data: pass,
             type: 'post',
             success: function(res) {
-               console.log(res);
-               $('#shop_history').html(res);
-           }
-       });
+                console.log(res);
+                $('#shop_history').html(res);
+            }
+        });
     }
     document.querySelector('ons-toolbar .center')
-    .innerHTML = event.tabItem.getAttribute('label');
+        .innerHTML = event.tabItem.getAttribute('label');
 });
 
 /******* <!-------- end run page ------------> *******/
 
-function timestampToDate(unix_timestamp,type){
-  var date = new Date(unix_timestamp*1000);
-  var day = date.getDate();
-  var month = date.getMonth()+1;
-  if(month<=10){
-   month = "0"+month;
-}
-if(day<=10){
-   day = "0"+day
-}
-var year = date.getFullYear();
-var txt_date = year+"-"+month+"-"+day;
+function timestampToDate(unix_timestamp, type) {
+    var date = new Date(unix_timestamp * 1000);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    if (month <= 10) {
+        month = "0" + month;
+    }
+    if (day <= 10) {
+        day = "0" + day
+    }
+    var year = date.getFullYear();
+    var txt_date = year + "-" + month + "-" + day;
 
-var hours = date.getHours();
-var minutes = "0" + date.getMinutes();
-var seconds = "0" + date.getSeconds();
-var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-		//return formattedTime;
-		if(type=="date"){
-			return txt_date;
-		}else if(type=="time"){
-			return formattedTime;
-		}else{
-			return txt_date+" "+formattedTime;
-		}
-		
-   }
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    //return formattedTime;
+    if (type == "date") {
+        return txt_date;
+    } else if (type == "time") {
+        return formattedTime;
+    } else {
+        return txt_date + " " + formattedTime;
+    }
 
-   /******* <!-------- function Income ------------> *******/
-   function openViewPrice(id){
-     fn.pushPage({
+}
+
+/******* <!-------- function Income ------------> *******/
+function openViewPrice(id) {
+    fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "รายได้"
     }, 'lift-ios');
-     var url = "page/call_page?&id="+id;
-     console.log(url);
-     $.post(url,{ path : "shop/income_driver_taxi" },function(ele){
-         $('#body_shop_checkin').html(ele);
-     });
- }
- function ex_booking(){
+    var url = "page/call_page?&id=" + id;
+    console.log(url);
+    if(class_user=="taxi"){
+		var path = "shop/income_driver_taxi";
+	}else{
+		var path = "shop/income_driver_lab";
+	}
+    
+    $.post(url, {
+        path: path
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
+}
+
+function ex_booking() {
     var url = "shop/shop_history";
     console.log(moment().format('YYYY-MM-DD'))
     console.log($.cookie("detect_userclass"))
     var pass = {
         date: $('#ex_booking').val(),
-        driver : $.cookie("detect_user"),
-        type : 'his'
+        driver: $.cookie("detect_user"),
+        type: 'his'
     };
     console.log(pass);
     $.ajax({
@@ -1614,12 +1618,16 @@ var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
         data: pass,
         type: 'post',
         success: function(res) {
-           console.log(res);
-           $('#shop_history').html(res);
-       }
-   });
+            console.log(res);
+            $('#shop_history').html(res);
+        }
+    });
     console.log($('#ex_booking').val())
-// dateInput.addEventListener('change', function(e) {
-//   console.log(e.target.value);
-// }); 
+    // dateInput.addEventListener('change', function(e) {
+    //   console.log(e.target.value);
+    // }); 
+}
+
+function editTimeToPlace(){
+	
 }

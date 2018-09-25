@@ -38,7 +38,7 @@
     z-index: 1;
     left: 30px;
     background-color: #fff;
-    margin-top: -93px;
+    margin-top: -75px;
 }
 .box-shop{
   background-color: #fff;	
