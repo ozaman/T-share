@@ -115,7 +115,7 @@ function logOut() {
 											   		
 											   		deleteTagOs("Test Text");
                         							deleteTagIOS(class_user, username);
-                        							location.reload();
+                        							window.location = "../TShare_new/material/login/index.php";
                         							
 											  });       
 }

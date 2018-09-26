@@ -75,15 +75,16 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
    	  var class_user = $.cookie("detect_userclass");
       var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
-	/*  if(username=="" || typeof username == 'undefined'){
-//	  		window.location = "signin";
-			$.cookie("detect_user",'153');
+	  if(username=="" || typeof username == 'undefined'){
+//	  		window.location = "https://www.welovetaxi.com/app/TShare_new/material/login/index.php";
+			window.location = "../TShare_new/material/login/index.php";
+			/*$.cookie("detect_user",'153');
 			$.cookie("detect_userclass",'taxi');
 			$.cookie("detect_username",'HKT0153');
-			location.reload();
+			location.reload();*/
 	  }else{
 	  		username = username.toUpperCase();
-	  }*/
+	  }
 var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
   +'<circle class="progress-circular__background"/>'
   +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
@@ -131,8 +132,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <ons-tabbar swipeable id="appTabbar" position="auto">
                 <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
-                <ons-tab label="Forms" icon="ion-edit" page="forms.html"></ons-tab>
-                <ons-tab label="Animations" icon="ion-film-marker" page="animations.html"></ons-tab>
+                <!--<ons-tab label="รายชื่อ" icon="ion-edit" page="forms.html"></ons-tab>
+                <ons-tab label="บริการรถ" icon="ion-film-marker" page="animations.html"></ons-tab>-->
             </ons-tabbar>
 			
             <script>
