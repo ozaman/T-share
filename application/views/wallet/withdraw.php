@@ -29,7 +29,7 @@
 
 <ons-card class="card">
 <ons-list-header>รายละเอียด</ons-list-header>
-<div style="
+	<div style="
     text-align: left;
     margin-top: 10px;
     font-size: 19px;
@@ -39,9 +39,8 @@
             <li> ทุกการเบิกเงินจะดำเนินการภายใน 24 ชม</li>
             <li> ยอดเงินเข้าบัญชีไม่เกิน 6 โมงเย็น</li>
             <li> การทำรายการถอนเงินในวันหยุด เงินจะเข้าบัญชี ในวันที่ธนาคารเปิดทำการ</li>
-          </ul>
-          
-      <ons-list-item class="input-items">
+          </ul>       
+    <ons-list-item class="input-items">
         <div class="left">
           <span class="font-16">จำนวนเงิน</span>
         </div>

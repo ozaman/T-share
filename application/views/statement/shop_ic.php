@@ -28,10 +28,13 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
        			<tr>
        				<!--<td width="70"><?=$row->invoice;?></td>-->
        				<td>
-       					<span><?=$row->product_name;?></span><br/>
+       					<span class="font-16"><?=$row->product_name;?></span><br/>
        					<span class="font-14"><?=date('Y-m-d h:i',$row->post_date);?></span>
        				</td>
-       				<td align="right"><b><?="+ ".number_format($row->price_all_total,2);?></b></td>
+       				<td>
+       					<span class="font-16">รับเงินสด</span>
+       				</td>
+       				<td align="right"><b class="font-16"><?="+ ".number_format($row->price_all_total,2);?></b></td>
        			</tr>
        		</table>
        </div>

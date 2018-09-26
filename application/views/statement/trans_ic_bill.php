@@ -50,3 +50,15 @@
 	    </div>
 	</ons-list-item>
 </div>
+
+<div style="margin: 15px 0px; background-color:#fff; ">
+	<ons-list-item>
+	    <div class="center list-pd-r">
+	    	<span class="font-16 txt-center">ราคา</span>
+	    </div>
+	    <div class="right">
+	    	<span class="font-16"><?=number_format($data[cost],2)." บาท";?></span>
+	    </div>
+	</ons-list-item>
+</div>	
+	

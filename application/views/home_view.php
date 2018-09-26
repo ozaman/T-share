@@ -75,7 +75,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
    	  var class_user = $.cookie("detect_userclass");
       var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
-	  if(username=="" || typeof username == 'undefined'){
+	/*  if(username=="" || typeof username == 'undefined'){
 //	  		window.location = "signin";
 			$.cookie("detect_user",'153');
 			$.cookie("detect_userclass",'taxi');
@@ -83,7 +83,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 			location.reload();
 	  }else{
 	  		username = username.toUpperCase();
-	  }
+	  }*/
 var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
   +'<circle class="progress-circular__background"/>'
   +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
@@ -783,6 +783,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				<template id="shop_ic.html">
 				  <ons-page >
 				  		<ons-card class="card" style="margin-bottom: 20px">
+				  			<ons-list-header>รายรับส่งแขก</ons-list-header>
 						  		<ons-list-item class="input-items list-item p-l-0">
 						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
@@ -802,6 +803,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				<template id="trans_ic.html">
 				  <ons-page>
 				   		<ons-card class="card" style="margin-bottom: 20px">
+				   			<ons-list-header>รายรับบริการรถ</ons-list-header>
 						  		<ons-list-item class="input-items list-item p-l-0">
 						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
@@ -915,6 +917,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				<template id="history.html">
 				  <ons-page>
 				  		<ons-card class="card" style="margin-bottom: 20px">
+				  		<ons-list-header>ประวัติการเติมเงิน/ถอนเงิน</ons-list-header>
 						  		<ons-list-item class="input-items list-item p-l-0">
 						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
