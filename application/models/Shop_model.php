@@ -250,6 +250,7 @@ class Shop_model extends CI_Model {
 		
   		return $data;
   }
+
   public function place_companycount(){
   		$this->db->select('count(*)');
 $this->db->from(TBL_SHOPPING_PRODUCT);
@@ -259,7 +260,8 @@ $query = $this->db->get();
   return $query->num_rows();
   		// $this->load->view('shop/place_company',$data);
 	}
-	public function car_count(){
+
+  public function car_count(){
 		$login_id = $this->input->cookie('detect_user');
 		//echo $login_id;
   		// $this->db->select('count(*)');
@@ -270,7 +272,8 @@ $query = $this->db->get();
   		return $query->num_rows();
   		// $this->load->view('shop/place_company',$data);
 	}
-	public function car_counthis(){
+
+  public function car_counthis(){
 		$login_id = $this->input->cookie('detect_user');
 		//echo $login_id;
   		// $this->db->select('count(*)');
@@ -281,6 +284,16 @@ $query = $this->db->get();
   		return $query->num_rows();
   		// $this->load->view('shop/place_company',$data);
 	}
+
+  public function lab_acknowledge(){
+  	
+  		$data[lab_approve_job] = 1;
+		$data[lab_approve_job_date] = time();
+		$data[lab_approve_job_post] = $_POST[posted];
+		$this->db->where('id', $_POST[id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+  	    return $return;
+  }
   /**
   * 
   * driver_topoint

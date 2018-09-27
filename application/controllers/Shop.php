@@ -111,8 +111,12 @@ public function editadult()
 	 // $this->load->view('shop/shop_history',$decode);
 		 //echo json_encode($decode);
 	}
-
-
+	public function lab_acknowledge(){
+		$data['res'] = $this->Shop_model->lab_acknowledge();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
+	
 		
 }
 

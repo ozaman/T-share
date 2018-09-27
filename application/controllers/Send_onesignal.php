@@ -26,5 +26,15 @@ public function send_checkin(){
 //  		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}	
+
+
+public function acknowledge(){
+
+		$data['res'] = $this->Send_onesignal_model->acknowledge();
+//  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}	
+	
+	
 }
 ?>

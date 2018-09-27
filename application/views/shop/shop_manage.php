@@ -33,12 +33,12 @@
 .edit-post-shop {
        margin-right: 10px;
     border: 1px solid #3b5998 !important;
-    padding: 4px !important;
+    padding: 6px !important;
     position: absolute;
     z-index: 1;
-    left: 30px;
+    left: 20px;
     background-color: #fff;
-    margin-top: -75px;
+    margin-top: -28px;
 }
 .box-shop{
   background-color: #fff;	
@@ -95,6 +95,7 @@
   <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
+  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>
     <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
@@ -126,7 +127,7 @@
 //        echo $minutes_to_add." ++";
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
         $time = new DateTime($time_c);
-        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
         
         $stamp = $time->format('H:i');
 //        echo $stamp." +";
@@ -145,7 +146,7 @@
         ?>
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
-            <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
+            
             <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
        
             </td>
@@ -162,16 +163,16 @@
     border-radius: 8px;
     background-color: #F44336 ;
     margin-top: 10px;">
-    <span class="font-22 text-cap"><?=t_cancel;?></span>
+    <span class="font-20 text-cap"><?=t_cancel;?></span>
   </a>
   	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
 	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
 	    color: #fff;
 	    padding: 5px 20px;
-	    border-radius: 25px;
+	    border-radius: 8px;
 	    background-color: #4CAF50 !important;
 	    margin-top: 10px;">
-	    <span class="font-22 text-cap"><?=ยืนยัน;?></span>
+	    <span class="font-20 text-cap"><?=ยืนยัน;?></span>
 	  </a>
 	  <? } ?>
   <? } ?>

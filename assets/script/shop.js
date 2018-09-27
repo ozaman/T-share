@@ -1372,8 +1372,6 @@ function readURL(input, type, subtype, id) {
 
 }
 
-
-
 function btn_driver_topoint(id) {
     if ($('#driver_topoint_check_click').val() == 1) {
         return;
@@ -1478,17 +1476,11 @@ function btn_driver_pay_report(id) {
 }
 
 /******* <!-------- function run page ------------> *******/
-var array_ma = [];
-var array_his = [];
-var date = moment().format('YYYY-MM-DD');
-document.addEventListener('prechange', function(event) {
-    console.log(event);
-    var page = event.tabItem.getAttribute('page');
-    console.log(page)
-    if (page == "shop_manage.html") {
-        var obj = array_data;
+function shopManage(){
+	$('#shop_manage').html(progress_circle);
+	var obj = array_data;
         var url = "page/shop_manage";
-        $('#date_filter').hide();
+        
         array_ma = obj.manage;
         console.log(array_ma);
         var pass = {
@@ -1504,27 +1496,18 @@ document.addEventListener('prechange', function(event) {
                 $('#shop_manage').html(ele);
             }
         });
+}
+var array_ma = [];
+var array_his = [];
+var date = moment().format('YYYY-MM-DD');
+document.addEventListener('prechange', function(event) {
+    console.log(event);
+    var page = event.tabItem.getAttribute('page');
+    console.log(page)
+    if (page == "shop_manage.html") {
+        shopManage();
     }
-    // if (page == "shop_add.html") {
-    //     // var obj = array_data;
-    //     var url = "shop/shop_pageadd";
-    //     // $('#date_filter').hide();
-    //     // array_ma = obj.manage;
-    //     // console.log(array_ma);
-    //     // var pass = {
-    //         // data: array_ma
-    //     // };
-    //     // console.log(pass);
-    //     $.ajax({
-    //         url: url,
-    //         // data: pass,
-    //         type: 'post',
-    //         success: function(ele) {
-    //             //                              console.log(data);
-    //             $('#shop_add').html(ele);
-    //         }
-    //     });
-    // }
+
     if (page == "shop_history.html") {
         var obj = array_data;
         var url = "shop/shop_history";
@@ -1628,6 +1611,44 @@ function ex_booking() {
     // }); 
 }
 
-function editTimeToPlace(){
-	
+function editTimeToPlace(id){
+	ons
+	  .notification.prompt({message: 'What is your name?'})
+	  .then(function(name) {
+	    ons.notification.alert('Hello ' + name);
+	  });
+}
+
+function approveBook(id, invoice, driver_id){
+	var pass = {
+        id : id,
+        vc : invoice,
+        posted : $.cookie("detect_user")
+    };
+    console.log(pass);
+    var url = "shop/lab_acknowledge";
+    $.ajax({
+        url: url,
+        data: pass,
+        type: 'post',
+        dataType: 'json',
+        success: function(res) {
+            console.log(res);
+            	$.ajax({
+			        url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
+			        data: pass,
+			        type: 'post',
+			        dataType: 'json',
+			        success: function(res) {
+			            console.log(res);
+			            	ons.notification.alert({
+		                        message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
+		                        title: "สำเร็จ",
+		                        buttonLabel: "ปิด"
+		                    })
+		                    .then(function() {shopManage()});
+			        }
+			    });
+        }
+    });
 }
