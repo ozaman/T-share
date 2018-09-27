@@ -1612,13 +1612,58 @@ function ex_booking() {
 }
 
 function editTimeToPlace(id){
-	ons
-	  .notification.prompt({message: 'What is your name?'})
-	  .then(function(name) {
-	    ons.notification.alert('Hello ' + name);
-	  });
-}
+	 var dialog = document.getElementById('change-time-dialog');
 
+	  if (dialog) {
+	    dialog.show();
+	    $('#order_id_change_time').val(id);
+	  } else {
+	    ons.createElement('change-time.html', { append: true })
+	      .then(function(dialog) {
+	        dialog.show();
+	        $('#order_id_change_time').val(id);
+	      });
+	  }
+}
+function submitChangeTimeToPlace(){
+	var time = $('#time_num_change_time').val();
+	var id = $('#order_id_change_time').val();
+	var pass = { order_id:id, time:time };
+	console.log(pass);
+//	return;
+
+	$.ajax({
+			        url: "shop/update_time_toplace",
+			        data: pass,
+			        type: 'post',
+			        dataType: 'json',
+			        success: function(res) {
+			            console.log(res);
+			            	ons.notification.alert({
+		                        message: 'แก้ไขเวลาเรียบร้อย',
+		                        title: "สำเร็จ",
+		                        buttonLabel: "ปิด"
+		                    })
+		                    .then(function() {
+		                    	shopManage()
+		                    	document.getElementById('change-time-dialog').hide();
+		                    });
+			        }
+			    });
+}
+function calTime(val){
+	var m = val;
+    		if(m==""){
+				return;
+			}
+    		var d = new Date();
+    		var cur_m = d.getMinutes();
+    		 var dd = new Date();
+    		 var last = parseInt(cur_m) + parseInt(m);
+   		 	dd.setMinutes(last);
+    		console.log(dd);
+    		$('#show_to_time').text(formatTime(dd));
+}
 function approveBook(id, invoice, driver_id){
 	var pass = {
         id : id,

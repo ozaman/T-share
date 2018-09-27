@@ -292,7 +292,17 @@ $query = $this->db->get();
 		$data[lab_approve_job_post] = $_POST[posted];
 		$this->db->where('id', $_POST[id]);
 		$data[result] = $this->db->update('order_booking', $data); 
-  	    return $return;
+  	    return $data;
+  }
+  
+  public function update_time_toplace(){
+  	$id = $_POST[order_id];
+	$data[airout_m] = $_POST[time];
+	$data[update_date] = time();
+	
+	$this->db->where('id', $id);
+	$data[result] = $this->db->update('order_booking', $data); 
+	return $data;
   }
   /**
   * 

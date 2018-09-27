@@ -117,6 +117,12 @@ public function editadult()
   		echo json_encode($data['res']);
 	}
 	
+	public function update_time_toplace(){
+		$data['res'] = $this->Shop_model->update_time_toplace();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
+	
 		
 }
 

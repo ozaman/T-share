@@ -194,3 +194,55 @@
   </script>
 <?    
     } ?>
+    
+<template id="change-time.html">
+ <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">แก้ไขเวลา</div>
+    <div class="alert-dialog-content">
+    	<input type="hidden" value="0" id="order_id_change_time" />
+      	<div style="margin: 0px 5px;margin-bottom: 10px;">
+        <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+          <option value="0">-- เลือกเวลา --</option>
+          <?php
+          $time = array("5" => "5 นาที",
+            "10" => "10 นาที",
+            "15" => "15 นาที",
+            "20" => "20 นาที",
+            "25" => "25 นาที",
+            "30" => "30 นาที",
+            "35" => "35 นาที",
+            "40" => "40 นาที",
+            "45" => "45 นาที",
+            "50" => "50 นาที",
+            "55" => "55 นาที",
+            "60" => "1 ชัวโมง.",
+            "90" => "1 ชัวโมง 30 นาที",
+            "120" => "2 ชัวโมง",
+            "150" => "2 ชัวโมง 30 นาที",
+            "180" => "3 ชัวโมง",
+            "210" => "3 ชัวโมง 30 นาที",
+            "240" => "4 ชัวโมง",
+            "270" => "4 ชัวโมง 30 นาที",
+            "300" => "5 ชัวโมง",
+            "330" => "5 ชัวโมง 30 นาที",
+            "360" => "6 ชัวโมง",
+            "390" => "6 ชัวโมง 30 นาที",
+            "420" => "7 ชัวโมง",
+            "450" => "7 ชัวโมง 30 นาที",
+            "490" => "8 ชัวโมง");
+          $mm = 5;
+          ?>
+          <?php foreach ($time as $key => $at) { ?>
+            <option value="<?=$key; ?>"><?=$at; ?></option>
+          <?php }
+          ?>
+        </select>
+      </div>
+       <span class="font-16">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">แก้ไข</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+</template>
