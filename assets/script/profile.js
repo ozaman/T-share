@@ -1,5 +1,7 @@
-checkImgProfile($.cookie("detect_username"), 1); 
-	 $.ajax({
+
+	 
+	function checkPicDocProfile(){
+		$.ajax({
 			url: '../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg',
 			type:'HEAD',
 			error: function()
@@ -38,10 +40,10 @@ checkImgProfile($.cookie("detect_username"), 1);
 				$('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
 			}
 		});
-
+	}
 	
 	
-    function readURL(input,type) {
+    function readURLprofile(input,type) {
 //		alert(type);
 	  if (input.files && input.files[0]) {
 	    var reader = new FileReader();
@@ -102,24 +104,24 @@ checkImgProfile($.cookie("detect_username"), 1);
 	  
 	}
     
-	$("#img_id_card").change(function() {
-	  	 readURL(this,'id_card');
+	/*$("#img_id_card").change(function() {
+	  	 readURLprofile(this,'id_card');
 	});
 	
 	$("#img_id_driving").change(function() {
 //		 console.log('img_id_driving');
-	  	 readURL(this,'id_driving');
+	  	 readURLprofile(this,'id_driving');
 	});
 	
 	$("#img_car_img").change(function() {
-	  	 readURL(this,'car_img');
+	  	 readURLprofile(this,'car_img');
 	});
 	
 	$("#img_profile").change(function() {
-	  	 readURL(this,'profile');
+	  	 readURLprofile(this,'profile');
 		
  
-	});
+	});*/
 	
        
 	function selectGender(val){

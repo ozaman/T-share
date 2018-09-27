@@ -39,12 +39,12 @@ function editBank(id){
 	        path: "bank/bank_edit"
 	    }, function(ele) {
 	        $('#body_popup1').html(ele);
-			checkPicBank(id,'pv_img_book_bank');
+			checkPicBank(id,'pv_img_book_bank',0);
 	    });
 }
 
-function checkPicBank(id,img) {
-    console.log(id)
+function checkPicBank(id, img, view) {
+    console.log(id+" | "+ img+ " | "+view);
     var p1 = '../data/pic/driver/book_bank/' + id + '.jpg?v=' + $.now();
     $.ajax({
         url: p1,
@@ -54,8 +54,13 @@ function checkPicBank(id,img) {
             //					$('#'+id+'_pic_car_1').hide();
         },
         success: function() {
+
             $('#'+img).attr('src', p1);
             iconsHasPic(1, "txt-img-has-img_book_bank", "txt-img-nohas-img_book_bank");
+            if(view==1){
+				$('#'+img).attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")' );
+			}
+            
         }
     });
    

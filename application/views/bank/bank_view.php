@@ -1,7 +1,11 @@
 <div style="padding: 10px 10px;">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addBank();">เพิ่มข้อมูลบัญชี</ons-button>
 </div>
-
+<style>
+	span{
+		color : #000 !important;
+	}
+</style>
 <?php 
 		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
@@ -21,9 +25,9 @@
 				if($row->status==1){
 				?>
 				
-			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_bank_open">0</span> บัญชี</p>	
+			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_bank_open" style="color: #4CAF50;">0</span> บัญชี</p>	
 		<?php		}else{ ?>
-			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_bank_close">0</span> บัญชี</p>	
+			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_bank_close" style="color: #4CAF50;">0</span> บัญชี</p>	
 	<?php	}
 			}
       	?>
@@ -134,7 +138,7 @@
 				</table>
 			</ons-card>
 			<script>
-				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank'); }, 500);
+				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank',1); }, 500);
 			</script>
 <?php		}
 ?>

@@ -33,7 +33,8 @@ function checkImgProfile(username, pf) {
         }
     });
 }
-checkImgProfile($.cookie("detect_username"), 0);
+setTimeout(function(){ checkImgProfile($.cookie("detect_username"), 0); }, 1500);
+
 
 function iconsHasPic(icons, id1, id2) {
     if (icons >= 1) {
@@ -654,6 +655,9 @@ function profileInfo(animate) {
     var url = "page/profile_edit";
     $.post(url, function(html) {
         $('#body_profile_view').html(html);
+        
+        setTimeout(function(){ checkPicDocProfile(); }, 700);
+		checkImgProfile($.cookie("detect_username"), 1); 
     });
 }
 
@@ -822,3 +826,43 @@ function viewPhotoGlobal(path, time) {
         $('#body_popup2').html(ele);
     });
 }
+
+function readURLprofileHome(input,type) {
+
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    	reader.onload = function(e) {
+	    	
+				$('.profile-pic-big').attr('src', e.target.result);
+				$('.shotcut-profile').attr('src', e.target.result);
+				
+	      		var data = new FormData($('#upload_pf_home')[0]);
+      			data.append('imgInp', $('#img_profile_home')[0].files[0]);
+				var id = $.cookie("detect_username");
+      			var url_upload = "application/views/upload_img/upload.php?id="+id+"&type="+type;
+      			console.log(url_upload);
+   				  $.ajax({
+   				                url: url_upload, // point to server-side PHP script 
+   				                dataType: 'json',  // what to expect back from the PHP script, if anything
+   				                cache: false,
+   				                contentType: false,
+   				                processData: false,
+   				                data: data,                         
+   				                type: 'post',
+   				                success: function(php_script_response){
+   				                   console.log(php_script_response);
+
+   				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
+											  .then(function() {
+											  });
+   				                },
+						        error: function(e){
+						                console.log(e)
+						        }
+   				 	});
+	    }
+	    	reader.readAsDataURL(input.files[0]);
+	   		
+	  }
+	  
+	}

@@ -254,7 +254,7 @@
         <div align="center">
 			<div >
 			  
-			  <input type="file" class="cropit-image-input" id="img_profile" accept="image/*"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" id="img_profile" accept="image/*"  style="opacity: 0;position: absolute;" onchange="readURLprofile(this,'profile');">
 			</div>
 			<span id="txt-img-has-profile" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-profile" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -309,7 +309,7 @@
         <div align="center" style="margin: 10px;">
 			<div >
 			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_card"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_card"  style="opacity: 0;position: absolute;" onchange="readURLprofile(this,'id_card');">
 			</div>
 			<span id="txt-img-has-id_card" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-id_card" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -352,7 +352,7 @@
                     <input type="text"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label"><?=$txt_ex_iddriving;?></span>
                 </ons-input>-->
-                <ons-input id="idcard-input" float=""  name="ex_iddriving" style="width:100%;" value="<?=$driver->iddriving_finish;?>"  >
+                <ons-input id="iddriving-input" float=""  name="ex_iddriving" style="width:100%;" value="<?=$driver->iddriving_finish;?>"  >
                     <input type="date"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label"></span>
                 </ons-input>
@@ -362,7 +362,7 @@
       <div align="center" style="margin: 10px;">
 			<div >
 			  <!--<button class="btn-ip" type="button" onclick="$('#img_id_driving').click();" >เลือกภาพใบขับขี่</button>-->
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_driving"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_id_driving"  style="opacity: 0;position: absolute;" onchange="readURLprofile(this,'id_driving');">
 			</div>
 			<span id="txt-img-has-id_driving" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-id_driving" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -379,7 +379,7 @@
 	    </div>
 	</ons-card>
 </form>
-     <div style="margin: 0px 10px;">
+     <div style="margin: 0px 10px;margin-bottom: 25px;">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveDataPf();" style="background-color: #fff;" >แก้ไขข้อมูลส่วนตัว</ons-button>
     </div>
 	
@@ -396,5 +396,3 @@
 	    </div>
 	  </ons-alert-dialog>
 	</template>
-	
-	 <script src="<?=base_url();?>assets/script/profile.js"></script>   

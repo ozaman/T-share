@@ -105,7 +105,7 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card>   
@@ -125,7 +125,7 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card>  
@@ -145,7 +145,7 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card> 
@@ -191,7 +191,7 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card> 
@@ -239,7 +239,7 @@
     padding: 0px 10px;
     position: absolute;
     margin-left: -28px;
-    margin-top: -28px;
+    margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card> 

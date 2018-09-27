@@ -27,6 +27,8 @@ function editCar(id) {
         $('#body_popup1').html(ele);
         var icons = 1;
         checkPicCar(id, '', icons);
+        
+        checkPicAccess(id, 1);
     });
 }
 
@@ -237,6 +239,7 @@ function submitAddCar() {
                 buttonLabel: "ปิด"
             })
             .then(function() {
+            	 $('#img_car_1').focus();
                 modal.hide();
             });
         return;
@@ -249,6 +252,7 @@ function submitAddCar() {
                 buttonLabel: "ปิด"
             })
             .then(function() {
+            	$('#img_car_2').focus();
                 modal.hide();
             });
         return;
@@ -261,6 +265,7 @@ function submitAddCar() {
                 buttonLabel: "ปิด"
             })
             .then(function() {
+            	$('#img_car_3').focus();
                 modal.hide();
             });
         return;
@@ -420,6 +425,7 @@ function submitEditCar() {
                 buttonLabel: "ปิด"
             })
             .then(function() {
+            	
                 modal.hide();
             });
         return;
@@ -468,6 +474,7 @@ function submitEditCar() {
                         }, function(ele) {
                             $('#body_car_manage').html(ele);
                             console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
+                            $('ons-back-button').click();
                         });
                     });
                 //		    		modal.hide();
@@ -524,9 +531,13 @@ function readURL(input, id, num, type) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id).fadeIn(200);
+                    $('#' + $('#id_carall').val() + '_check_upload_'+num).val(1)
 //                    console.log('.'+param_id+'_pic_car_'+num);
-                    $('.'+param_id+'_pic_car_'+num).attr('src', "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now());
-//                    iconsHasPic(1, "txt-img-has-"+num, "txt-img-nohas-"+num);
+					var photo = "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now();
+                    $('.'+param_id+'_pic_car_'+num).attr('src',photo );
+                    $('.'+param_id+'_pic_car_'+num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
+                    iconsHasPic(1, "txt-img-has-"+id, "txt-img-nohas-"+id);
+                    
                 },
                 error: function(e) {
                     console.log(e)
@@ -540,6 +551,7 @@ function readURL(input, id, num, type) {
 }
 
 function readURLother(input, id, type, cat) {
+	var shot = cat.split("_");
     console.log("read file : " + id);
     console.log("rand : " + $('#rand').val());
 
@@ -570,7 +582,9 @@ function readURLother(input, id, type, cat) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id).fadeIn(200);
-                    
+                    var photo = "../data/pic/"+cat+"/"+$('#id_carall').val()+".jpg?v="+$.now();
+                    $('.'+$('#id_carall').val()+'_pic_'+shot[1]).attr('src',photo );
+                    $('.'+$('#id_carall').val()+'_pic_'+shot[1]).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
                     iconsHasPic(1, "txt-img-has-"+id, "txt-img-nohas-"+id);
                 },
                 error: function(e) {
@@ -658,7 +672,7 @@ function checkPicCar(id, checkcalledit, icons) {
     });
 }
 
-function checkPicAccess(id){
+function checkPicAccess(id, checkcalledit){
 	var atc = "../data/pic/car_act/"+id+".jpg";
 	var tax = "../data/pic/car_tax/"+id+".jpg";
 	var insurance = "../data/pic/car_insurance/"+id+".jpg";
@@ -670,8 +684,12 @@ function checkPicAccess(id){
             //					$('#'+id+'_pic_car_1').hide();
         },
         success: function() {
-            $('.' + id + '_pic_atc').attr('src', atc);
+        	iconsHasPic(1, "txt-img-has-img_car_act", "txt-img-nohas-img_car_act");
+            $('.' + id + '_pic_atc').attr('src', atc+"?v="+$.now());
             $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "")' );
+            if(checkcalledit==1){
+				$('#pv_img_car_act').attr('src', atc+"?v="+$.now());
+			}
         }
     });
     
@@ -683,8 +701,12 @@ function checkPicAccess(id){
             //					$('#'+id+'_pic_car_1').hide();
         },
         success: function() {
-            $('.' + id + '_pic_tax').attr('src', tax);
+        	iconsHasPic(1, "txt-img-has-img_car_tax", "txt-img-nohas-img_car_tax");
+            $('.' + id + '_pic_tax').attr('src', tax+"?v="+$.now());
             $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "")' );
+            if(checkcalledit==1){
+				$('#pv_img_car_tax').attr('src', tax+"?v="+$.now());
+			}
         }
     });
     
@@ -696,8 +718,12 @@ function checkPicAccess(id){
             //					$('#'+id+'_pic_car_1').hide();
         },
         success: function() {
-            $('.' + id + '_pic_insurance').attr('src', insurance);
+        	iconsHasPic(1, "txt-img-has-img_car_insurance", "txt-img-nohas-img_car_insurance");
+            $('.' + id + '_pic_insurance').attr('src', insurance+"?v="+$.now());
             $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "")' );
+            if(checkcalledit==1){
+				$('#pv_img_car_insurance').attr('src', insurance+"?v="+$.now());
+			}
         }
     });
 }

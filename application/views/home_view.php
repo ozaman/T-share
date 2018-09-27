@@ -150,9 +150,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         <?=$_COOKIE['detect_user'];?>
         <ons-page> 
             <div class="profile-pic" align="center">
-
-                <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big">
-
+            	<form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
+				<input type="file" class="cropit-image-input" id="img_profile_home" accept="image/*"  style="opacity: 0;position: absolute;" onchange="readURLprofileHome(this,'profile');">
+				</form>
+                <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="performClick('img_profile_home');" >
+				<span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -49px;
+    margin-top: -20px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
             <ons-list>
@@ -178,13 +186,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </ons-list-item>
                 
                 <ons-list-item onclick="myCar();">
-                <?php 
+                	<?php 
                     	$this->db->select('id');
 						$this->db->where('drivername = '.$_COOKIE['detect_user']);
 						$query = $this->db->get('web_carall');
 						$num = $query->num_rows();
                     ?>
-                    <div class="left" style="">
+                    <div class="left" style="border-bottom: 1px solid #ccc;">
                          <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
                     <div class="center" >
@@ -343,7 +351,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	            <div id="body_profile_view">
 	            	<?php //include("application/views/page/profile_view.php"); ?>
 	            </div>
-	       
+	        <script src="<?=base_url();?>assets/script/profile.js?v=<?=time();?>"></script>  
             <script>
                 ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
