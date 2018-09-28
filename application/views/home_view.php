@@ -196,7 +196,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                          <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
                     <div class="center" >
-                        ข้อมูลรถ (<?=$num;?> คัน)
+                        ข้อมูลรถ (<span id="num_car_home"><?=$num;?></span> คัน)
                     </div>
                    
                 </ons-list-item>

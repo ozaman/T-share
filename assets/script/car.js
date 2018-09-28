@@ -1,6 +1,8 @@
 function setnumcar(){
 	$('#txt_num_car_open').text($('#num_open_car').val());
 	$('#txt_num_car_close').text($('#num_close_car').val());
+	
+	$('#num_car_home').text($('#detect_num_car').val());
 }
 function addCar() {
     fn.pushPage({
@@ -12,6 +14,7 @@ function addCar() {
         path: "car/car_add"
     }, function(ele) {
         $('#body_popup1').html(ele);
+        focusBox();
     });
 }
 
@@ -151,6 +154,10 @@ function changeCarStatus(id, status) {
 
 }
 
+function gotoDiv(id){
+	 window.location.hash = '#'+id;
+	 window.location.hash = '';
+}
 function submitAddCar() {
     if ($('input[name="plate_num"]').val() == "") {
         ons
@@ -175,7 +182,8 @@ function submitAddCar() {
             })
             .then(function() {
                 modal.hide();
-                $('input[name="car_type"]').focus();
+                gotoDiv('car_type_box');
+                fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios');
             });
         return;
     }
@@ -188,23 +196,13 @@ function submitAddCar() {
             })
             .then(function() {
                 modal.hide();
-                $('input[name="car_brand"]').focus();
+
+				gotoDiv('car_brand_box');
+				fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios');
             });
         return;
     }
-    if ($('input[name="plate_color"]').val() == "") {
-        ons
-            .notification.alert({
-                message: 'กรุณาเลือกป้ายทะเบียน',
-                title: "ข้อมูลไม่สมบูรณ์",
-                buttonLabel: "ปิด"
-            })
-            .then(function() {
-                modal.hide();
-                $('input[name="plate_color"]').focus();
-            });
-        return;
-    }
+   
     if ($('input[name="car_color"]').val() == "") {
         ons
             .notification.alert({
@@ -214,7 +212,22 @@ function submitAddCar() {
             })
             .then(function() {
                 modal.hide();
-                $('input[name="car_color"]').focus();
+                gotoDiv('car_color_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios');
+            });
+        return;
+    }
+     if ($('input[name="plate_color"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกป้ายทะเบียน',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                gotoDiv('plate_color_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')
             });
         return;
     }
@@ -227,7 +240,8 @@ function submitAddCar() {
             })
             .then(function() {
                 modal.hide();
-                $('input[name="car_province"]').focus();
+                gotoDiv('car_province_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')
             });
         return;
     }
@@ -266,6 +280,100 @@ function submitAddCar() {
             })
             .then(function() {
             	$('#img_car_3').focus();
+                modal.hide();
+            });
+        return;
+    }
+    if ($('#img_car_3').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาอัพโหลดภาพในรถ',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('#img_car_3').focus();
+                modal.hide();
+            });
+        return;
+    }
+    
+    if ($('input[name="txt_car_act"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุ พ.ร.บ.',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="txt_car_act"]').focus();
+                modal.hide();
+            });
+        return;
+    }
+    if ($('input[name="ex_car_act"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุวันหมดอายุ พ.ร.บ.',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="ex_car_act"]').focus();
+                modal.hide();
+            });
+        return;
+    }
+    
+    if ($('input[name="txt_car_tax"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุทะเบียนภาษี',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="txt_car_tax"]').focus();
+                modal.hide();
+            });
+        return;
+    }
+    if ($('input[name="ex_car_act"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุวันหมดอายุทะเบียภาษี',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="ex_car_act"]').focus();
+                modal.hide();
+            });
+        return;
+    }
+    
+    if ($('input[name="txt_car_insurance"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุประกันรถยนต์',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="txt_car_insurance"]').focus();
+                modal.hide();
+            });
+        return;
+    }
+    if ($('input[name="ex_car_insurance"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาระบุวันหมดอายุประกันรถยนต์',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+            	$('input[type="ex_car_insurance"]').focus();
                 modal.hide();
             });
         return;
@@ -324,7 +432,13 @@ function submitAddCar() {
     });
 
 }
-
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
 function submitEditCar() {
     if ($('input[name="plate_num"]').val() == "") {
         ons
@@ -496,8 +610,11 @@ function submitEditCar() {
 
 }
 
-function validPlate(input) {
-
+function putNext() {
+//	setTimeout(function(){ focusBox(); }, 1500);
+	delay(function(){
+     	focusBox();
+    }, 1200 );
 }
 
 function readURL(input, id, num, type) {
@@ -516,7 +633,6 @@ function readURL(input, id, num, type) {
                 var param_id = $('#rand').val();
             } else {
                 var param_id = $('#id_carall').val();
-                $('#' + id + '_check_upload_' + num).val(1);
             }
             var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=car_img&num=" + num;
             console.log(url_upload);
@@ -531,8 +647,9 @@ function readURL(input, id, num, type) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id).fadeIn(200);
-                    $('#' + $('#id_carall').val() + '_check_upload_'+num).val(1)
-//                    console.log('.'+param_id+'_pic_car_'+num);
+                    
+                    $('#' + param_id + '_check_upload_'+num).val(1)
+					focusBox();
 					var photo = "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now();
                     $('.'+param_id+'_pic_car_'+num).attr('src',photo );
                     $('.'+param_id+'_pic_car_'+num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
@@ -582,6 +699,10 @@ function readURLother(input, id, type, cat) {
                 success: function(php_script_response) {
                     console.log(php_script_response);
                     $('#box_img_' + id).fadeIn(200);
+                    
+                    $('#' + param_id + '_'+cat).val(1)
+                    focusBox();
+                    
                     var photo = "../data/pic/"+cat+"/"+$('#id_carall').val()+".jpg?v="+$.now();
                     $('.'+$('#id_carall').val()+'_pic_'+shot[1]).attr('src',photo );
                     $('.'+$('#id_carall').val()+'_pic_'+shot[1]).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
@@ -687,6 +808,7 @@ function checkPicAccess(id, checkcalledit){
         	iconsHasPic(1, "txt-img-has-img_car_act", "txt-img-nohas-img_car_act");
             $('.' + id + '_pic_atc').attr('src', atc+"?v="+$.now());
             $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "")' );
+            $('#' + id + '_car_act').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_act').attr('src', atc+"?v="+$.now());
 			}
@@ -704,6 +826,7 @@ function checkPicAccess(id, checkcalledit){
         	iconsHasPic(1, "txt-img-has-img_car_tax", "txt-img-nohas-img_car_tax");
             $('.' + id + '_pic_tax').attr('src', tax+"?v="+$.now());
             $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "")' );
+            $('#' + id + '_car_tax').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_tax').attr('src', tax+"?v="+$.now());
 			}
@@ -721,6 +844,7 @@ function checkPicAccess(id, checkcalledit){
         	iconsHasPic(1, "txt-img-has-img_car_insurance", "txt-img-nohas-img_car_insurance");
             $('.' + id + '_pic_insurance').attr('src', insurance+"?v="+$.now());
             $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "")' );
+            $('#' + id + '_car_insurance').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_insurance').attr('src', insurance+"?v="+$.now());
 			}
@@ -735,6 +859,7 @@ function selectCarType(id) {
     $('#car_type').val(id);
     $('#txt_car_type').text(name);
     $('ons-back-button').click();
+    focusBox();
 }
 
 function selectCarBrand(id, ps) {
@@ -747,6 +872,7 @@ function selectCarBrand(id, ps) {
     $('ons-back-button').click();
     $('#img_car_brand_show').show();
     $('#img_car_brand_show').css('background-position', ps);
+    focusBox();
 
 }
 
@@ -757,6 +883,7 @@ function selectCarProvince(id) {
     $('#car_province').val(id);
     $('#txt_car_province').text(name);
     $('ons-back-button').click();
+    focusBox();
 }
 
 function selectCarColor(id, val) {
@@ -769,6 +896,7 @@ function selectCarColor(id, val) {
     $('#txt_car_color').text(val);
     $('#img_car_color_show').show();
     $('ons-back-button').click();
+    focusBox();
 }
 
 function selectPlateColor(id, val) {
@@ -782,4 +910,152 @@ function selectPlateColor(id, val) {
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();
     $('ons-back-button').click();
+    focusBox();
+}
+
+function focusBox(){
+	
+	if($('input[name="plate_num"]').val()==""){
+//		alert($('input[name="plate_num"]').val());
+		$('#plate_num_box').addClass('border-red');
+		return;
+	}else{
+		$('#plate_num_box').removeClass('border-red');
+	}
+	
+	if ($('input[name="car_type"]').val() == "") {
+       $('#car_type_box').addClass('border-red');
+       fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')
+       return;
+    }else{
+		$('#car_type_box').removeClass('border-red');
+	}
+	
+    if ($('input[name="car_brand"]').val() == "") {
+       $('#car_brand_box').addClass('border-red');
+       setTimeout(function(){ fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios'); }, 500);
+       
+       return;
+    }else{
+		$('#car_brand_box').removeClass('border-red');
+	}
+    
+    if ($('input[name="car_color"]').val() == "") {
+        $('#car_color_box').addClass('border-red');
+        
+        setTimeout(function(){ fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios'); }, 500);
+        return;
+    }else{
+		$('#car_color_box').removeClass('border-red');
+	}
+	
+	if ($('input[name="plate_color"]').val() == "") {
+       $('#plate_color_box').addClass('border-red');
+        setTimeout(function(){ fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios'); }, 500);
+        
+       return;
+    }else{
+		$('#plate_color_box').removeClass('border-red');
+	}
+    
+    if ($('input[name="car_province"]').val() == "") {
+       $('#car_province_box').addClass('border-red');
+       
+       setTimeout(function(){ fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'car_province'}, 'lift-ios'); }, 500);
+       return;
+    }else{
+		$('#car_province_box').removeClass('border-red');
+	}
+    
+    if ($('#' + $('#center_id').val() + '_check_upload_1').val() == 0) {
+	       $('#img_car_1_box').addClass('border-red');
+	       return;
+	}else{
+
+			$('#img_car_1_box').removeClass('border-red');
+	}
+	    
+	if ($('#' + $('#center_id').val() + '_check_upload_2').val() == 0) {
+	       $('#img_car_2_box').addClass('border-red');
+	       return;
+	}else{
+			$('#img_car_2_box').removeClass('border-red');
+	}
+	    
+	if ($('#' + $('#center_id').val() + '_check_upload_3').val() == 0) {
+	       $('#img_car_3_box').addClass('border-red');
+	       return;
+	}else{
+			$('#img_car_3_box').removeClass('border-red');
+	}
+    
+     /***************************************************/
+    if ($('input[name="txt_car_act"]').val() == "") {
+       $('#txt_car_act_box').addClass('border-red');
+        return;
+    }else{
+		$('#txt_car_act_box').removeClass('border-red');
+	}
+	
+    if ($('input[name="ex_car_act"]').val() == "") {
+        $('#ex_car_act_box').addClass('border-red');
+        return;
+    }else{
+		$('#ex_car_act_box').removeClass('border-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_act').val() == 0) {
+	       $('#img_car_act_box').addClass('border-red');
+	       return;
+	}else{
+		 $('#img_car_act_box').removeClass('border-red');
+	}
+    /***************************************************/
+    
+    
+     /***************************************************/
+    if ($('input[name="txt_car_tax"]').val() == "") {
+        $('#txt_car_tax_box').addClass('border-red');
+        return;
+    }else{
+		$('#txt_car_tax_box').removeClass('border-red');
+	}
+	
+    if ($('input[name="ex_car_tax"]').val() == "") {
+       $('#ex_car_tax_box').addClass('border-red');
+        return;
+    }else{
+		$('#ex_car_tax_box').removeClass('border-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_tax').val() == 0) {
+	       $('#img_car_tax_box').addClass('border-red');
+	       return;
+	}else{
+		 $('#img_car_tax_box').removeClass('border-red');
+	}
+     /***************************************************/
+    
+    
+     /***************************************************/
+    if ($('input[name="txt_car_insurance"]').val() == "") {
+        $('#txt_car_insurance_box').addClass('border-red');
+        return;
+    }else{
+		$('#txt_car_insurance_box').removeClass('border-red');
+	}
+	
+    if ($('input[name="ex_car_insurance"]').val() == "") {
+        $('#ex_car_insurance_box').addClass('border-red');
+        return;
+    }else{
+		$('#ex_car_insurance_box').removeClass('border-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_insurance').val() == 0) {
+	       $('#img_car_insurance_box').addClass('border-red');
+	       return;
+	}else{
+
+		 $('#img_car_insurance_box').removeClass('border-red');
+	}
+	 /***************************************************/
+    
 }

@@ -243,6 +243,10 @@
 </div>
 <input type="hidden" value="<?=$num;?>" id="detect_num_car" />
 <script>
-	setTimeout(function(){ setnumcar(); }, 500);
+	setTimeout(function(){ 
+	
+	setnumcar(); 
+	
+	}, 500);
 	
 </script>

@@ -8,16 +8,6 @@
 		$query = $this->db->query($select);
 		$data_car = $query->row();
 		
-		$rand = time().generateRandomString();    	
-    	function generateRandomString($length = 10) {
-		    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		    $charactersLength = strlen($characters);
-		    $randomString = '';
-		    for ($i = 0; $i < $length; $i++) {
-		        $randomString .= $characters[rand(0, $charactersLength - 1)];
-		    }
-		    return $randomString;
-		}
 		$select_brand = "SELECT img FROM web_car_brand where id = '".$data_car->i_car_brand."' ";
 		$query_brand = $this->db->query($select_brand);
 		$data_brand = $query_brand->row();
@@ -60,8 +50,8 @@
 ?>
 
 <form name="form_editcar" id="form_editcar"  enctype="multipart/form-data">
-<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
 <input type="hidden" value="<?=$_GET[id];?>" id="id_carall" name="id_carall" />
+<input type="hidden" value="<?=$_GET[id];?>" id="center_id" name="center_id" />
 <ons-card  class="card">
       <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
       <ons-list-item class="input-items list-item p-l-0">
@@ -342,6 +332,10 @@
 <input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_1" />  
 <input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_2" />  
 <input type="hidden" value="0" id="<?=$_GET[id];?>_check_upload_3" />  
+
+<input type="hidden" value="0" id="<?=$_GET[id];?>_car_act" />  
+<input type="hidden" value="0" id="<?=$_GET[id];?>_car_tax" />  
+<input type="hidden" value="0" id="<?=$_GET[id];?>_car_insurance" /> 
 
 <form name="form_accescar" id="form_accescar"  enctype="multipart/form-data">
 			<div >
