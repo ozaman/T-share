@@ -1,13 +1,10 @@
 <div style="padding: 10px 10px;">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addBank();">เพิ่มข้อมูลบัญชี</ons-button>
 </div>
-<style>
-	span{
-		color : #000 !important;
-	}
-</style>
+
 <?php 
-		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
+		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.driver_id = ".$_COOKIE[detect_user]." order by status_often desc, status desc ";
+//$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
       	$num = 0;
       	foreach($query_bank->result()  as $row){ 
@@ -56,7 +53,7 @@
 										<button type="button" class="button btn-action-bank" onclick="editBank('<?=$row->id;?>');" style="width:100%">
 	                                       <center>
 	                                          <div class="font-30"><i class="fa fa-edit" style="color:#3b5998"></i></div>
-	                                          <span style="padding-bottom:20px;" class="font-16"> แก้ไขข้อมูล </span>
+	                                          <span style="padding-bottom:20px;color: #000;" class="font-16"> แก้ไขข้อมูล </span>
 	                                       </center>
 	                                    </button>
 									</td>
@@ -68,14 +65,14 @@
 												<button type="button" class="button btn-action-bank" onclick="changeBankStatus('<?=$row->id;?>',0)" style="width:100%">
 			                                       <center>
 			                                          <div class="font-30"><i class="fa fa-check " style="color:#34cb4a;"></i></div>
-			                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
+			                                          <span style="padding-bottom:20px;color: #000;" class="font-16">  ใช้งาน  </span>
 			                                       </center>
 			                                    </button>
 										<?php	}else{ ?>
 												<button type="button" class="button btn-action-bank" onclick="changeBankStatus('<?=$row->id;?>',1)" style="width:100%">
 			                                       <center>
 			                                          <div class="font-30"><i class="fa fa-times " style="color:#ff0000;"></i></div>
-			                                          <span style="padding-bottom:20px;" class="font-16">  หยุดใช้งาน  </span>
+			                                          <span style="padding-bottom:20px;color: #000;" class="font-16">  หยุดใช้งาน  </span>
 			                                       </center>
 			                                    </button>
 										<?php }

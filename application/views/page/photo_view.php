@@ -20,10 +20,18 @@
 	}else{
 		$txt_date = "ไม่มีเวลาที่บันทึก";
 	}
+	
 ?>
 <div style="position: absolute; background-color: #000; width: 100%;  height: 100%;">
 	<div class="txt-caption font-24" align="center">
 		 <?=$txt_date;?>
 	</div>
 	<img src="<?=$_GET[path]."?v=".time();?>" width="100%;" class="photo-preview" />
+	<?php 
+		if($_GET[caption]!="undefined" && $_GET[caption]!=""){
+	?>
+	<div class="font-24" align="center" style="color: #fff;margin: 25px;">
+		<?=$_GET[caption];?>
+	</div>
+	<?php } ?>
 </div>

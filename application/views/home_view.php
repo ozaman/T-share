@@ -46,6 +46,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
     <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
+
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -104,7 +105,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     		padding-right: 20px;
 	}
 </style>
-<body style="">
+<body >
 
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
         <ons-page>
@@ -545,8 +546,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 
 						}
 						
-				  document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');
+				 /* document.querySelector('ons-toolbar .center')
+				    .innerHTML = event.tabItem.getAttribute('label');*/
 				});
 				</script>
             </div>
@@ -605,8 +606,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			
 				<script>
 					document.addEventListener('prechange', function(event) {
-				  document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');
+				  /*document.querySelector('ons-toolbar .center')
+				    .innerHTML = event.tabItem.getAttribute('label');*/
 				});
 				</script>
             </div>
@@ -663,8 +664,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				<script>
 					document.addEventListener('prechange', function(event) {
 						console.log(event.page)
-				  document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');
+				  /*document.querySelector('ons-toolbar .center')
+				    .innerHTML = event.tabItem.getAttribute('label');*/
 				});
 				 
 				</script>
@@ -854,7 +855,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						    });
 							frist_ic = false;
 						}
-					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
 					});
 				</script>
             </div>
@@ -982,7 +983,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						}else if(page=='withdraw.html'){
 							withdraw();
 						}
-					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+//					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
 					});
 				</script>
             </div>

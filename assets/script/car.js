@@ -792,6 +792,7 @@ function checkPicAccess(id, checkcalledit){
 	var atc = "../data/pic/car_act/"+id+".jpg";
 	var tax = "../data/pic/car_tax/"+id+".jpg";
 	var insurance = "../data/pic/car_insurance/"+id+".jpg";
+	var cap = "หมดอายุวันที่ ";
 	$.ajax({
         url: atc,
         type: 'HEAD',
@@ -802,7 +803,7 @@ function checkPicAccess(id, checkcalledit){
         success: function() {
         	iconsHasPic(1, "txt-img-has-img_car_act", "txt-img-nohas-img_car_act");
             $('.' + id + '_pic_atc').attr('src', atc+"?v="+$.now());
-            $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "")' );
+            $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "", \'' +cap+ $("#"+id+"_atc_exp").text() + '\')' );
             $('#' + id + '_car_act').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_act').attr('src', atc+"?v="+$.now());
@@ -820,7 +821,7 @@ function checkPicAccess(id, checkcalledit){
         success: function() {
         	iconsHasPic(1, "txt-img-has-img_car_tax", "txt-img-nohas-img_car_tax");
             $('.' + id + '_pic_tax').attr('src', tax+"?v="+$.now());
-            $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "")' );
+            $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "", \'' +cap+ $("#"+id+"_tax_exp").text() + '\')' );
             $('#' + id + '_car_tax').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_tax').attr('src', tax+"?v="+$.now());
@@ -838,7 +839,7 @@ function checkPicAccess(id, checkcalledit){
         success: function() {
         	iconsHasPic(1, "txt-img-has-img_car_insurance", "txt-img-nohas-img_car_insurance");
             $('.' + id + '_pic_insurance').attr('src', insurance+"?v="+$.now());
-            $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "")' );
+            $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "", \'' +cap+ $("#"+id+"_insurance_exp").text() + '\')' );
             $('#' + id + '_car_insurance').val(1);
             if(checkcalledit==1){
 				$('#pv_img_car_insurance').attr('src', insurance+"?v="+$.now());

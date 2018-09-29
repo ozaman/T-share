@@ -1511,8 +1511,8 @@ document.addEventListener('prechange', function(event) {
     if (page == "shop_history.html") {
         historyShop($('#date_shop_his').val());
     }
-    document.querySelector('ons-toolbar .center')
-        .innerHTML = event.tabItem.getAttribute('label');
+    /*document.querySelector('ons-toolbar .center')
+        .innerHTML = event.tabItem.getAttribute('label');*/
 });
 
 /******* <!-------- end run page ------------> *******/

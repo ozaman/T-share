@@ -82,6 +82,7 @@
 			}else{
 				$icons_has_insurance = "assets/images/no.png";
 			}
+			
          ?>
          
       <div class="col-md-6" style="padding-left: 0px;padding-right: 0px;padding-bottom: 10px;">
@@ -230,6 +231,17 @@
                      <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_tax img-car" src="assets/images/nopic.png"   border="0"      style="margin-top:0px;border-radius:5px;" /></td>
                      <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_insurance img-car" src="assets/images/nopic.png"    border="0"      style="margin-top:0px;border-radius:5px;" /></td>
                   </tr>
+                  <?php 
+                  	$date_atc_exp = date_create($row->d_car_act_exp);
+                  	$date_tax_exp = date_create($row->d_car_tax_exp);
+                  	$date_in_exp = date_create($row->d_car_insurance_exp);
+                  	
+                  ?>
+                   <tr>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_atc_exp"><?=date_format($date_atc_exp,"d/m/Y");?></span></td>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_tax_exp"><?=date_format($date_tax_exp,"d/m/Y");?></span></td>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_insurance_exp"><?=date_format($date_in_exp,"d/m/Y");?></span></td>
+				  </tr>
 			</table>
 			
             
