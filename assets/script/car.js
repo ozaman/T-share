@@ -154,10 +154,12 @@ function changeCarStatus(id, status) {
 
 }
 
-function gotoDiv(id){
-	 window.location.hash = '#'+id;
-	 window.location.hash = '';
+function checkCarNum(){
+	if($('#detect_num_car').val()==0){
+		addCar();
+	}
 }
+
 function submitAddCar() {
     if ($('input[name="plate_num"]').val() == "") {
         ons
@@ -432,13 +434,7 @@ function submitAddCar() {
     });
 
 }
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
-})();
+
 function submitEditCar() {
     if ($('input[name="plate_num"]').val() == "") {
         ons
@@ -730,9 +726,9 @@ function checkPicCar(id, checkcalledit, icons) {
         type: 'HEAD',
         error: function() {
             console.log('Error file');
-            //					$('#'+id+'_pic_car_1').hide();
         },
         success: function() {
+        	$('#'+id+'-car-has-view-1').attr('src', 'assets/images/yes.png');
             $('.' + id + '_pic_car_1').attr('src', p1);
             $('.' + id + '_pic_car_1').show();
             $('#' + id + '_check_upload_1').val(1);
@@ -755,10 +751,9 @@ function checkPicCar(id, checkcalledit, icons) {
         type: 'HEAD',
         error: function() {
             console.log('Error file');
-            //					$('#'+id+'_pic_car_2').hide();
         },
         success: function() {
-            //					$('#'+id+'_pic_car_2').show();
+            $('#'+id+'-car-has-view-2').attr('src', 'assets/images/yes.png');
             $('.' + id + '_pic_car_2').attr('src', p2);
             $('.' + id + '_pic_car_2').show();
             $('#' + id + '_check_upload_2').val(1);
@@ -779,7 +774,7 @@ function checkPicCar(id, checkcalledit, icons) {
             //					$('#'+id+'_pic_car_3').hide();
         },
         success: function() {
-            //					$('#'+id+'_pic_car_3').show();
+            $('#'+id+'-car-has-view-3').attr('src', 'assets/images/yes.png');
             $('.' + id + '_pic_car_3').attr('src', p3);
             $('.' + id + '_pic_car_3').show();
             $('#' + id + '_check_upload_3').val(1);

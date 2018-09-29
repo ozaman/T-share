@@ -48,43 +48,21 @@
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
 }
 </style>
-<div class="col-md-12" style="margin-bottom: 20px">
-  <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
-              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
-                <!--<b style="width: 100px;font-size: 14px;">หมดอายุ</b>-->
-            </div>
-            <div class="center list-item__center">
-                <!--<ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="วันหมดอายุ" >
-                    <input type="text"  class="text-input"  name="ex_idcard" id="ex_idcard">
-                    <span class="text-input__label">
-                        วันหมดอายุ</span>
-                </ons-input>-->
-                 <ons-input id="ex_booking" float=""  name="ex_booking" style="width:100%;" value="<?=date('Y/m/d')?>" placeholder=""  onchange="ex_booking()">
-                    <input type="date"  class="text-input"  name="ex_booking" id="ex_booking" value="<?=date('Y/m/d')?>">
-                    <span class="text-input__label">
-                        </span>
-                </ons-input>
-                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;">เลือกวันที่</span>  
-            </div>
-            
-        </ons-list-item>
-<!-- <input type="date" class="form-control" value="" name="date_report" id="date_report" > -->
-</div>
+
+
 <?php 
- $result = $his;
- // echo "<br/><br/><br/><br/>123<br/>";
- // echo print_r($result->status);
-  // echo "<br/>";
- // echo print_r($result->data);
-  // echo "<br/>"; echo "<br/>".count($result->data);
-   if(count($result->data)<=0){ 
+
+ 	$result = json_encode($_POST[data]);
+ 	$result = json_decode($result);
+
+   if(count($result)<=0){ 
    
       echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
    
     //exit();
   }
- foreach($result->data as $key=>$val){
+   foreach($result as $key=>$val){
+//   	echo $val->id."<br/>";
  	if($val->status=='CANCEL'){
 
        /*if($val[cancel_type]=='1'){

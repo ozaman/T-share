@@ -1,3 +1,10 @@
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
 var array_data = [];
 //startTimeHome();
 var clock_h;
@@ -11,7 +18,10 @@ function performClick(elemId) {
         elem.dispatchEvent(evt);
     }
 }
-
+function gotoDiv(id){
+	 window.location.hash = '#'+id;
+	 window.location.hash = '';
+}
 function checkImgProfile(username, pf) {
     console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
@@ -285,7 +295,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-            console.log(array_data);
+//            console.log(array_data);
     if (done.length > 0) {
         $('#number_shop').show();
         //			$('#circle_icon_shop').addClass("pulse");
@@ -564,32 +574,32 @@ function sendShop2() {
             //    $('#body_shop').html(ele);
             // });
             var url2 = "shop/shop_pageadd";
-            var urlcount = "shop/car_count"
+            var urlcount = "shop/car_count";
 
-setTimeout(function() {
+
             $.post(url2, function(ele2) {
             	if(class_user=="taxi"){
 					
-                $.post(urlcount, function(res) {
-                    if (res == 0) {
+	                $.post(urlcount, function(res) {
+	                    if (res == 0) {
 
-                        ons.notification.alert({
-                                message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
-                                title: "ไม่สามารถส่งแขกได้",
-                                buttonLabel: "ปิด"
-                            })
-                            .then(function() {
-                                // callpop();
-                                $('ons-back-button').click();
-                                setTimeout(function() {
-                                    myCar();
-                                }, 700);
+	                        ons.notification.alert({
+	                                message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+	                                title: "ไม่สามารถส่งแขกได้",
+	                                buttonLabel: "เพิ่มรถ"
+	                            })
+	                            .then(function() {
+	                                // callpop();
+	                                $('ons-back-button').click();
+	                                setTimeout(function() {
+	                                    myCar();
+	                                }, 700);
 
-                                return;
-                            });
+	                                return;
+	                            });
 
-                    }
-                });
+	                    }
+	                });
                 
 				}
                 modal.hide();
@@ -619,7 +629,7 @@ setTimeout(function() {
 
             });
             
- }, 700);
+
 
 
         } 

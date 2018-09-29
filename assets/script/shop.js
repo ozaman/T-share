@@ -955,7 +955,7 @@ function openDetailBookinghistory(key, type, invoice) {
         data: param,
         type: 'post',
         success: function(res) {
-            console.log(res);
+//            console.log(res);
             $('#body_popup1').html(res);
         }
     });
@@ -1509,27 +1509,7 @@ document.addEventListener('prechange', function(event) {
     }
 
     if (page == "shop_history.html") {
-        var obj = array_data;
-        var url = "shop/shop_history";
-        // $('#date_filter').hide();
-
-        console.log(moment().format('YYYY-MM-DD'))
-        console.log($.cookie("detect_userclass"))
-        var pass = {
-            date: date,
-            driver: $.cookie("detect_user"),
-            type: 'his'
-        };
-        console.log(pass);
-        $.ajax({
-            url: url,
-            data: pass,
-            type: 'post',
-            success: function(res) {
-                console.log(res);
-                $('#shop_history').html(res);
-            }
-        });
+        historyShop($('#date_shop_his').val());
     }
     document.querySelector('ons-toolbar .center')
         .innerHTML = event.tabItem.getAttribute('label');
@@ -1651,6 +1631,7 @@ function submitChangeTimeToPlace(){
 			        }
 			    });
 }
+
 function calTime(val){
 	var m = val;
     		if(m==""){
@@ -1664,6 +1645,7 @@ function calTime(val){
     		console.log(dd);
     		$('#show_to_time').text(formatTime(dd));
 }
+
 function approveBook(id, invoice, driver_id){
 	var pass = {
         id : id,
@@ -1696,4 +1678,35 @@ function approveBook(id, invoice, driver_id){
 			    });
         }
     });
+}
+
+function historyShop(date){
+//	console.log(date)
+//	return;
+	var date_rp = date.replace("-", "/");
+   		 date_rp = date_rp.replace("-", "/");
+   		 
+		if(class_user=="taxi"){
+			var url_his = 'api/shop_history_driver';
+//			var driver = detect_user;
+			var data = {
+				date : date_rp,
+				driver : detect_user
+			}
+		}
+		else{
+			var url_his = 'api/shop_history_lab';
+			var data = {
+				date : date_rp
+			}
+		}
+
+   		$.post(url_his,data,function(res){
+   			 console.log(res);
+   			 var url = "shop/shop_history";
+				  $.post(url,{ data : res.data },function(html){
+				  		$('#shop_history').html(html);
+				  });
+			 
+   		});
 }

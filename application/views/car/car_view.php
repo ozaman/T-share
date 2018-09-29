@@ -204,6 +204,20 @@
 				  
                </tbody>
             </table>
+            <table width="100%" border="0" cellspacing="1" cellpadding="5" >
+               <tbody>
+               	  <tr>
+				  	<td  width="33%" align="center"><span class="font-16">หน้ารถ</span>&nbsp;<img src="assets/images/no.png" id="<?=$row->id;?>-car-has-view-1" /> </td>
+				  	<td  width="33%" align="center"><span class="font-16">ข้างรถ</span>&nbsp;<img src="assets/images/no.png" id="<?=$row->id;?>-car-has-view-2" /></td>
+				  	<td  width="33%" align="center"><span class="font-16">ในรถ</span>&nbsp;<img src="assets/images/no.png" id="<?=$row->id;?>-car-has-view-3"  /></td>
+				  </tr>
+                  <tr style="display:nones">
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_1 img-car" src="assets/images/nopic.png"     border="0"      style="border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_2 img-car" src="assets/images/nopic.png"   border="0"      style="border-radius:5px;" /></td>
+                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_3 img-car" src="assets/images/nopic.png"    border="0"      style="border-radius:5px;" /></td>
+                  </tr>
+               </tbody>
+            </table>
             
 			<table  width="100%" border="0" cellspacing="0" cellpadding="1">
 				  <tr>
@@ -218,15 +232,7 @@
                   </tr>
 			</table>
 			
-            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="margin-top:-15px;">
-               <tbody>
-                  <tr style="display:nones">
-                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_1 img-car" src="assets/images/nopic.png"     border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_2 img-car" src="assets/images/nopic.png"   border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                     <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_car_3 img-car" src="assets/images/nopic.png"    border="0"      style="margin-top:15px;border-radius:5px;" /></td>
-                  </tr>
-               </tbody>
-            </table>
+            
          </ons-card>
       </div>
       <script>
@@ -246,6 +252,7 @@
 	setTimeout(function(){ 
 	
 	setnumcar(); 
+	checkCarNum();
 	
 	}, 500);
 	

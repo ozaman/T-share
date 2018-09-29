@@ -196,7 +196,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                          <i class="icon-new-uniF10A-9 list-item__icon"></i>
                     </div>
                     <div class="center" >
-                        ข้อมูลรถ (<span id="num_car_home"><?=$num;?></span> คัน)
+                        ข้อมูลรถ (<span id="num_car_home"><?=$num;?></span>&nbsp;คัน)
                     </div>
                    
                 </ons-list-item>
@@ -443,8 +443,21 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				</template>
 				
 				<template id="shop_history.html">
-				  <ons-page id="shop_history" style="overflow-y: scroll;">
-				    
+				  <ons-page  style="overflow-y: scroll;">
+				    	<ons-card class="card" style="margin-bottom: 20px">
+						  		<ons-list-item class="input-items list-item p-l-0">
+						            <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+						            </div>
+						            <div class="center list-item__center" style="background-image: none;">
+						                 <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" />
+						            </div>
+						            
+						        </ons-list-item>
+						</ons-card>	
+						<div id="shop_history">
+							
+						</div>
 				  </ons-page>
 				</template>
 			

@@ -79,6 +79,56 @@ public function transfer_booking_byid(){
 		echo json_encode($decode);
 	}
 
+public function shop_history_driver(){
+	$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";                              
+
+	//create a new cURL resource
+	$ch = curl_init($url);
+
+	//setup request to send json via POST
+
+	$curl_post_data2 = '{"driver": '.$_POST[driver].',"date":"'.$_POST[date].'"}';
+
+	//attach encoded JSON string to the POST fields
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+	//set the content type to application/json
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	//return response instead of outputting
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	//execute the POST request
+	$result = curl_exec($ch);
+	//close cURL resource
+	curl_close($ch);
+	$decode = 	json_decode($result);
+	header('Content-Type: application/json');
+	echo json_encode($decode);	
 }
 
+public function shop_history_lab(){
+	$url = "http://www.welovetaxi.com:3000/getOrderhislab";                              
+
+//create a new cURL resource
+$ch = curl_init($url);
+
+//setup request to send json via POST
+
+$curl_post_data2 = '{"date":"'.$_POST[date].'"}';
+
+//attach encoded JSON string to the POST fields
+curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
+//set the content type to application/json
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+//return response instead of outputting
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//execute the POST request
+$result = curl_exec($ch);
+//close cURL resource
+curl_close($ch);
+$decode = 	json_decode($result);
+header('Content-Type: application/json');
+echo json_encode($decode);	
+}
+
+
+}
 ?>

@@ -133,6 +133,10 @@ $data_shopmain = $shopmain->row();
       background-color: #eeeeee7d;
     }
   </style>
+  <?php 
+  		if($query->num_rows()>=1){
+			
+  ?>
   <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
     <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
     <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
@@ -215,17 +219,8 @@ $data_shopmain = $shopmain->row();
           ?>
 
         </div>
-
-
-           <!--  <div class="form-group">
-              <label class="font-17">เบอร์โทรศัพท์</label>
-              <ons-row>
-                <i class="material-icons res-input" onclick="$('#dri_phone').val('');
-                        $('#dri_phone_x').hide();" id="dri_phone_x" style="display: block;">close</i>
-                <ons-input id="dri_phone" name="dri_phone" type="number" pattern="\d*" maxlength="20" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onkeyup="hideRes('dri_phone');" placeholder="" value="<?=$data_dv->phone; ?>"></ons-input>
-          </ons-row>
-        </div> -->
       </div>
+<?php } ?> 
 
       <script>
 

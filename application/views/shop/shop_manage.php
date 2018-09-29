@@ -95,7 +95,12 @@
   <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
-  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>
+  	<?php 
+  		if($data_user_class == "lab"){ ?>
+  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
+  	<?	}
+  	?>
+  	
     <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
@@ -155,7 +160,6 @@
     </table>
         <?php 
         if($val[driver_complete]==0){
-      /*onclick="cancelBookAll('<?=$val[id];?>','<?=$val[invoice];?>');" */
         ?>
         <a class="btn waves-effect waves-light red lighten-3" align="center"  onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');"id="cancel_book_<?=$val[id];?>" style="
     color: #fff;margin-right: 15px;

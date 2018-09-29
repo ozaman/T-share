@@ -69,7 +69,7 @@ public function editadult()
 
 	public function shop_history()
 	{
-		$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";  
+		/*$url = "http://www.welovetaxi.com:3000/getOrderhisdriver";  
 		$curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'"}';
 		// $curl_post_data = '{"driver": 153,"date": "2018-09-17"}';
 		$ch = curl_init($url);
@@ -81,9 +81,9 @@ public function editadult()
 		 
 
 		 $decode['his'] = 	json_decode($data);
-		// header('Content-Type: application/json');
-	 $this->load->view('shop/shop_history',$decode);
-		 //echo json_encode($decode);
+	 	 $this->load->view('shop/shop_history',$decode);*/
+	 	 $this->load->view('shop/shop_history');
+
 	}
 	public function detail_shop_his(){
 		$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('invoice' => $_POST[invoice]), '');

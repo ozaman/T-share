@@ -141,7 +141,7 @@ class Car_model extends CI_Model {
 			$car[driver] = $_POST[driver_id];
 			$car[mg] = "More than 1";
 		}
-		
+		$car[num] = $check;
 	return $car;	
   }
   /**
