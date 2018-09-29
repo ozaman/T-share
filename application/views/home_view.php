@@ -133,8 +133,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <ons-tabbar swipeable id="appTabbar" position="auto">
                 <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
-                <!--<ons-tab label="รายชื่อ" icon="ion-edit" page="forms.html"></ons-tab>
-                <ons-tab label="บริการรถ" icon="ion-film-marker" page="animations.html"></ons-tab>-->
+                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="forms.html"></ons-tab>
+                <ons-tab label="แจ้งเตือน" icon="fa-bell" page="animations.html"></ons-tab>
             </ons-tabbar>
 			
             <script>
@@ -380,7 +380,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </script>
         </ons-page>
     </template>
-    
+
     <template id="car_manage.html">
         <ons-page>
             <ons-toolbar>
@@ -392,6 +392,14 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	            <div id="body_car_manage">
 	            	
 	            </div>
+	         <template id="action-sheet.html">
+			  <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
+			   
+			    <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
+			    <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
+			    <!--<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">Cancel</ons-action-sheet-button>-->
+			  </ons-action-sheet>
+			</template>  
 	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
             <script>
                 ons.getScriptPage().onInit = function () {

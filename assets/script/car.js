@@ -1,9 +1,90 @@
+var app = {};
+ons.ready(function () {
+	ons.createElement('action-sheet.html', { append: true })
+		.then(function (sheet) {
+		app.showFromTemplate = sheet.show.bind(sheet);
+		app.hideFromTemplate = sheet.hide.bind(sheet);
+	});
+});
+
+function createSheetOftenCar(){
+	$('ons-action-sheet-button').remove();
+
+	$('.id_car_each').each (function() {
+		var json = JSON.parse($(this).val());
+//	  	console.log(json.id +" || "+$('#select_before_off_car').val());
+	  	if($('#select_before_off_car').val()!=json.id){
+			var span = "<div style='background-color: "+json.plate_color+";color:"+json.txt_color+";border-radius: 5px;width:100%;border: 1px solid #fff;'>"+json.plate_num+"</div>";
+	  		$('.action-sheet').append('<ons-action-sheet-button style="padding: 0px 70px;" icon="md-square-o" onclick="app.hideFromTemplate();changeCarOftenAndCloseCar('+json.id+','+$('#select_before_off_car').val()+');">'
+	  	+span+'</ons-action-sheet-button>');
+		}
+	  	
+	});  
+	$('.action-sheet').append('<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>');
+}
+
+function changeCarOftenAndCloseCar(often_id, close_id){
+	modal.show();
+    console.log(often_id);
+    var data = {
+        car_id: often_id,
+        driver_id: $.cookie("detect_user")
+    };
+    var url = "car/change_car_often";
+    $.ajax({
+        url: url, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        data: data,
+        type: 'post',
+        success: function(res) {
+            console.log(res);
+			var url = "car/change_status_car";
+			var data_close = {
+		        car_id: close_id,
+		        status: 0,
+		        driver_id: $.cookie("detect_user")
+		    };		
+    		$.ajax({
+		        url: url, // point to server-side PHP script 
+		        dataType: 'json', // what to expect back from the PHP script, if anything
+		        data: data_close,
+		        type: 'post',
+		        success: function(res) {
+		           		if (res.res.data.result == true) {
+	                    ons.notification.alert({
+	                            message: "ปิดการใช้งาน และเปลี่ยนรถใช้ประจำแล้ว",
+	                            title: "สำเร็จ",
+	                            buttonLabel: "ปิด"
+	                        })
+	                        .then(function() {
+	                            modal.hide();
+	                            var url = "page/call_page?checkcalledit=1";
+	                                $.post(url, {
+	                                    path: "car/car_view"
+	                                }, function(ele) {
+	                                    $('#body_car_manage').html(ele);
+	                                    //location.reload()
+	                                    console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
+	                                });
+	                        });
+	                }
+		        }
+		    });
+        },
+        error: function(err) {
+            console.log(err);
+            //your code here
+        }
+    });
+}
+
 function setnumcar(){
 	$('#txt_num_car_open').text($('#num_open_car').val());
 	$('#txt_num_car_close').text($('#num_close_car').val());
 	
 	$('#num_car_home').text($('#detect_num_car').val());
 }
+
 function addCar() {
     fn.pushPage({
         'id': 'popup1.html',
@@ -75,24 +156,33 @@ function changeCarOften(id) {
     });
 }
 
-function changeCarStatus(id, status) {
-
+function changeCarStatus(id, status, often) {
+	if(often==1 && $('#num_open_car').val() >1){
+		$('#select_before_off_car').val(id);
+		
+		/*if ($('#num_open_car').val() == 2) {
+			
+			var dialog = document.getElementById('confirm-car-dialog');
+			  if (dialog) {
+			    dialog.show();
+			  } else {
+			    ons.createElement('confirm-car.html', { append: true })
+			      .then(function(dialog) {
+			      	$('#confirm_submit').attr('onclick','running_single_often_car();');
+			        dialog.show();
+			      });
+			  }
+			return;
+		}*/
+		
+		createSheetOftenCar();
+		app.showFromTemplate()
+		return;
+	}
     modal.show();
     console.log(id);
     if (status == 0) {
         var messages = "หยุดใช้งานรถคันนี้แล้ว";
-        if ($('#detect_num_car').val() == 1) {
-            alert($('#detect_num_car').val());
-            ons.notification.alert({
-                    message: "ไม่สารมารถยกเลิกใช้งานได้ เนื่องจากคุณมีรถคันเดียว",
-                    title: "ขออภัย",
-                    buttonLabel: "ปิด"
-                })
-                .then(function() {
-                    modal.hide();
-                });
-            return;
-        }
     } else {
         var messages = "เปิดใช้รถคันนี้แล้ว";
     }
@@ -152,6 +242,32 @@ function changeCarStatus(id, status) {
         }
     });
 
+}
+
+function running_single_often_car(){
+	document.getElementById('confirm-car-dialog').hide();
+	modal.show();
+	$.post("car/check_num_car", {
+        driver_id: $.cookie("detect_user")
+    }, function(res) {
+    	console.log(res);
+    	ons.notification.alert({
+                        message: "สำเร็จ",
+                        title: "สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                        modal.hide();
+                        var url = "page/call_page?checkcalledit=1";
+                                $.post(url, {
+                                    path: "car/car_view"
+                                }, function(ele) {
+                                    $('#body_car_manage').html(ele);
+                                    //location.reload()
+                                    console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
+                                });
+                    });
+    });
 }
 
 function checkCarNum(){

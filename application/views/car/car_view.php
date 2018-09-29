@@ -16,6 +16,7 @@
    	    box-shadow: 1px 1px 3px #cacaca;
    }
 </style>
+
 <?php 
       	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc, status desc  ";
       	$query_car = $this->db->query($sql);
@@ -125,14 +126,14 @@
                                  <td width="50%" height="50%" align="center" class="tool-td-chat">
                                  	<?php 
                                  		if($row->status==1){ ?>
-                                 			<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',0)" style="width:100%">
+                                 			<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',0,<?=$row->status_usecar;?>)" style="width:100%">
 		                                       <center>
 		                                          <div class="font-30"><i class="fa fa-car " style="color:#34cb4a;"></i></div>
 		                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
 		                                       </center>
 		                                    </button>
                                  		<? }else{ ?>
-											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',1)" style="width:100%">
+											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',1,<?=$row->status_usecar;?>)" style="width:100%">
 		                                       <center>
 		                                          <div class="font-30"><i class="fa fa-car " style="color:#FF0000"></i></div>
 		                                          <span style="padding-bottom:20px;" class="font-16">  หยุดใช้งาน  </span>
@@ -205,7 +206,7 @@
 				  
                </tbody>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="5" >
+            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="display: none;" >
                <tbody>
                	  <tr>
 				  	<td  width="33%" align="center"><span class="font-16">หน้ารถ</span>&nbsp;<img src="assets/images/no.png" id="<?=$row->id;?>-car-has-view-1" /> </td>
@@ -220,7 +221,7 @@
                </tbody>
             </table>
             
-			<table  width="100%" border="0" cellspacing="0" cellpadding="1">
+			<table  width="100%" border="0" cellspacing="0" cellpadding="1" style="display: none;" >
 				  <tr>
 				  	<td  width="33%" align="center"><span class="font-16">พ.ร.บ.</span>&nbsp;<img src="<?=$icons_has_act;?>" /> </td>
 				  	<td  width="33%" align="center"><span class="font-16">ทะเบียนภาษี</span>&nbsp;<img src="<?=$icons_has_tax;?>" /></td>
@@ -232,25 +233,50 @@
                      <td width="33%" align="center" ><img class="<?=$row->id;?>_pic_insurance img-car" src="assets/images/nopic.png"    border="0"      style="margin-top:0px;border-radius:5px;" /></td>
                   </tr>
                   <?php 
-                  	$date_atc_exp = date_create($row->d_car_act_exp);
-                  	$date_tax_exp = date_create($row->d_car_tax_exp);
-                  	$date_in_exp = date_create($row->d_car_insurance_exp);
+                  	if($row->d_car_act_exp!=""){
+						$date_atc_exp = date_create($row->d_car_act_exp);
+						$txt_date_atc_exp = date_format($date_atc_exp,"d/m/Y");
+					}else{
+						$txt_date_atc_exp = "-";
+					}
+                  	
+                  	if($row->d_car_tax_exp!=""){
+                  		$date_tax_exp = date_create($row->d_car_tax_exp);
+						$txt_date_tax_exp = date_format($date_tax_exp,"d/m/Y");
+					}else{
+						$txt_date_tax_exp = "-";
+					}
+
+					if($row->d_car_insurance_exp!=""){
+                  		$date_in_exp = date_create($row->d_car_insurance_exp);
+						$txt_date_in_exp = date_format($date_in_exp,"d/m/Y");
+					}else{
+						$txt_date_in_exp = "-";
+					}
+
                   	
                   ?>
                    <tr>
-				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_atc_exp"><?=date_format($date_atc_exp,"d/m/Y");?></span></td>
-				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_tax_exp"><?=date_format($date_tax_exp,"d/m/Y");?></span></td>
-				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_insurance_exp"><?=date_format($date_in_exp,"d/m/Y");?></span></td>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_atc_exp"><?=$txt_date_atc_exp;?></span></td>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_tax_exp"><?=$txt_date_tax_exp;?></span></td>
+				  	<td  width="33%" align="center"><span class="font-14" id="<?=$row->id;?>_insurance_exp"><?=$txt_date_in_exp;?></span></td>
 				  </tr>
 			</table>
 			
             
          </ons-card>
+		 <?php 
+		 if($row->status==1){
+		 ?>
+		 <input type='hidden' class='id_car_each' value='<?=json_encode($row);?>' data-id='<?=$row->id;?>' />
+		 <?php } ?>
+		 <input type="hidden" id="select_before_off_car" value="0" />
       </div>
       <script>
          setTimeout(function(){ 
          	checkPicCar('<?=$row->id;?>','<?=$_GET[checkcalledit];?>'); 
          	checkPicAccess('<?=$row->id;?>');
+
          }, 500);
       </script>
 
@@ -259,13 +285,27 @@
       <input type="hidden" value="<?=$num_close_car;?>" id="num_close_car" />
    </div>
 </div>
+ 
 <input type="hidden" value="<?=$num;?>" id="detect_num_car" />
+
 <script>
 	setTimeout(function(){ 
-	
-	setnumcar(); 
-	checkCarNum();
-	
+		setnumcar(); 
+		checkCarNum();
+//		createSheetOftenCar();
 	}, 500);
 	
 </script>
+
+<template id="confirm-car.html">
+  <ons-alert-dialog id="confirm-car-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">Alert</div>
+    <div class="alert-dialog-content">
+      This dialog was created from a template
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="document.getElementById('confirm-car-dialog').hide();">Cancel</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="" id="confirm_submit" >OK</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+</template>

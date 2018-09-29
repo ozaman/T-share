@@ -15,31 +15,31 @@
 <input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
 <ons-card class="card">
 	<ons-list-header class="list-header"><b>ข้อมูลบัญชี</b></ons-list-header>
-	<ons-list-item class="input-items list-item p-l-0">
+	<ons-list-item class="input-items list-item p-l-0" id="bank_name_box">
             <div class="left list-item__left">
                 <i class="material-icons">account_circle</i><!--<span class="txt-important">*</span>-->
             </div>
             <label class="center list-item__center">
-                <ons-input id="bank_name-input" float="" maxlength="30" placeholder="ชื่อบัญชี" name="bank_name" style="width:100%;" value="">
+                <ons-input id="bank_name-input" float="" maxlength="30" placeholder="ชื่อบัญชี" name="bank_name" style="width:100%;" value="" onkeyup="putNextBank();">
                     <input type="text" class="text-input" maxlength="30" placeholder="ชื่อบัญชี" name="bank_name" >
                     <span class="text-input__label">
                         ชื่อบัญชี</span>
                 </ons-input>
             </label>
         </ons-list-item>
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0"  id="bank_number_box">
             <div class="left list-item__left">
                 <i class="material-icons">account_balance_wallet</i><!--<span class="txt-important">*</span>-->
             </div>
             <label class="center list-item__center">
-                <ons-input id="bank_number-input" float="" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" style="width:100%;" value="">
+                <ons-input id="bank_number-input" float="" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" style="width:100%;" value=""  onkeyup="putNextBank();">
                     <input type="text" class="text-input" maxlength="30" placeholder="เลขที่บัญชี" name="bank_number" >
                     <span class="text-input__label">
                         เลขที่บัญชี</span>
                 </ons-input>
             </label>
         </ons-list-item>  
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" id="bank_box">
         	<div class="left list-item__left" >
                 <i class="material-icons">account_balance</i>
             </div>
@@ -48,12 +48,12 @@
                 <input type="hidden" name="bank" id="bank" value="" />
             </div>
       </ons-list-item>
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" id="bank_branch_box">
             <div class="left list-item__left">
                 <i class="fa fa-font-awesome" aria-hidden="true" style=" font-size: 24px;  margin-left: 3px;"></i>
             </div>
             <label class="center list-item__center">
-                <ons-input id="branch_bank-input" float="" maxlength="30" placeholder="สาขาธนาคาร" name="bank_branch" style="width:100%;" value="">
+                <ons-input id="branch_bank-input" float="" maxlength="30" placeholder="สาขาธนาคาร" name="bank_branch" style="width:100%;" value=""  onkeyup="putNextBank();">
                     <input type="text" class="text-input" maxlength="30" placeholder="สาขาธนาคาร" name="bank_branch" >
                     <span class="text-input__label">
                         สาขาธนาคาร</span>
@@ -62,7 +62,7 @@
         </ons-list-item>
         
 </ons-card>
-<ons-card  class="card">
+<ons-card  class="card" id="img_book_bank_box">
       <ons-list-header class="list-header"><b>ภาพสมุดบัญชีธนาคาร</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
