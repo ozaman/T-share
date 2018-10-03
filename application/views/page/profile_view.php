@@ -15,8 +15,9 @@
 			$txt_ex_iddriving = "วันหมดอายุ";
 			$username = "ชื่อผู้ใช้งาน";
 			$password = "รหัสผ่าน";
-			
-		$sql = "SELECT * FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
+//			echo $_COOKIE['detect_username'];
+//		$sql = "SELECT * FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
+		$sql = "SELECT * FROM web_driver  WHERE username = '".$_COOKIE['detect_username']."' ";
 	  	$query = $this->db->query($sql);
 	  	$driver = $query->row();
 	  	
@@ -143,9 +144,12 @@
 		      </ons-list-item>
 		    
             <input type="hidden" value="<?=$driver->i_gender;?>" id="gender" value="" name="gender"/>
-        </ons-list-item>
-
-        <ons-list-item class="input-items list-item p-l-0">
+        </ons-list-item>	
+    </ons-card>
+    
+    <ons-card class="card">
+		<ons-list-header class="list-header"><b>ข้อมูลที่อยู่</b></ons-list-header>
+		<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-home" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
@@ -157,8 +161,24 @@
                 </ons-input>
             </label>
         </ons-list-item>
-
+        
         <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left" style="padding-right: 20px;">
+                <!--<ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon>-->
+                <i class="material-icons">location_on</i>
+                <span class="txt-important">*</span>
+            </div>
+            <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
+                <span id="txt_user_province" style="color: #000;margin-left: 0px;" ><?=$txt_pv;?></span>
+                 <input type="hidden" name="province" id="province" value="<?=$driver->province;?>" />
+            </label>
+            
+        </ons-list-item>
+	</ons-card>
+
+	<ons-card class="card">
+		<ons-list-header class="list-header"><b>ข้อมูลติดต่อ</b></ons-list-header>
+		<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
             </div>
@@ -220,20 +240,7 @@
 				</ons-select>
             </div>
         </ons-list-item>
-		
-        <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left" style="padding-right: 20px;">
-                <!--<ons-icon icon="fa-location-arrow" class="list-item__icon ons-icon"></ons-icon>-->
-                <i class="material-icons">location_on</i>
-                <span class="txt-important">*</span>
-            </div>
-            <label class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'user_province'}, 'lift-ios')">
-                <span id="txt_user_province" style="color: #000;margin-left: 0px;" ><?=$txt_pv;?></span>
-                 <input type="hidden" name="province" id="province" value="<?=$driver->province;?>" />
-            </label>
-            
-        </ons-list-item>
-             
+		             
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left">
                 <ons-icon icon="fa-at" class="list-item__icon ons-icon"></ons-icon>
@@ -242,15 +249,43 @@
                 <ons-input id="email-input" float="" placeholder="<?=$email;?>" name="email" style="width:100%;" value="<?=$driver->email;?>">
                     <input type="email" class="text-input"  placeholder="<?=$email;?>" name="email" id="email" onkeyup="validEmail($(this).val());">
                     <span class="text-input__label">
-                        <?=$phone;?></span>
+                        <?=$email;?></span>
                 </ons-input>
                 <i id="corrent-email" class="fa fa-check-circle pass checking-mail" aria-hidden="true" style="display: none;"></i>
                 <i id="incorrent-email" class="fa fa-times-circle no-pass checking-mail" aria-hidden="true" style="display: none;"></i>
             </label>
         </ons-list-item>
-		
- 		
-		<ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>        
+        
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <img src="assets/images/social_icon/line.png" style="width: 31px;" />
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="line-input" float="" placeholder="Line" name="line" style="width:100%;" value="<?=$driver->line_id;?>">
+                    <input type="text" class="text-input"  placeholder="Line" name="line" id="line">
+                    <span class="text-input__label">
+                        Line</span>
+                </ons-input>
+              
+            </label>
+        </ons-list-item>
+        
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <img src="assets/images/social_icon/wechat.png" style="width: 31px;" />
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="wechat-input" float="" placeholder="Wechat" name="wechat" style="width:100%;" value="<?=$driver->wechat_id;?>">
+                    <input type="text" class="text-input"  placeholder="Wechat" name="wechat" id="wechat">
+                    <span class="text-input__label">
+                        Wechat</span>
+                </ons-input>
+            </label>
+        </ons-list-item>
+	</ons-card>
+    
+    <ons-card class="card">
+    	<ons-list-header class="list-header"><b>ภาพประจำตัว</b></ons-list-header>        
         <div align="center">
 			<div >
 			  
@@ -263,8 +298,6 @@
 	      	<span class="txt-upload-profile" style="margin-left: -42px;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; แก้ไขรูปภาพ</span>
 	      </div> 
 	    </div>
-	   
-
     </ons-card>
     
     <ons-card  class="card">
@@ -327,7 +360,7 @@
         
  	</ons-card>
 
-   <ons-card  class="card">
+   	<ons-card  class="card">
 	<ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>  
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" >
