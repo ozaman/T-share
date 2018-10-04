@@ -4,14 +4,15 @@
 ?>
 <form id="withdraw_money_form" name="withdraw_money_form" enctype="multipart/form-data">
 <input type="hidden" value="<?=$_COOKIE['detect_user'];?>" name="driver" id="driver" />
-	<input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
+<input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
+<input type="hidden" value="" name="bank_user" id="bank_user"/>
 <ons-card class="card">
-<ons-list-header>เลือกบัญชีที่จะเงินถอน</ons-list-header>
+<ons-list-header>เลือกบัญชีที่จะรับเงิน</ons-list-header>
 	<?php 
 		foreach ($query_bank->result()  as $row){ ?>
-			<ons-list-item tappable onclick="$('#box_submit').show();">
+			<ons-list-item tappable onclick="$('#bank_user').val('<?=$row->id;?>')">
 	        <label class="left">
-	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user"></ons-radio>
+	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
 	        </label>
 	        <label for="radio-<?=$row->id;?>" class="center">
 	        <table>
@@ -53,7 +54,7 @@
       </ons-list-item>     
 </ons-card>
 </form>
-<div style="padding: 10px 10px;display: none;" id="box_submit">
+<div style="padding: 10px 10px;display: nones;" id="box_submit">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="alertWithdraw();">ถอนเงิน</ons-button>
 </div>
 

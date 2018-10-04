@@ -69,6 +69,7 @@ class Car_model extends CI_Model {
 		$car[s_car_act] = $_POST[txt_car_act];
 		$car[s_car_tax] = $_POST[txt_car_tax];
 		$car[s_car_insurance] = $_POST[txt_car_insurance];
+		$car[s_car_insurance_com] = $_POST[car_ins_com_txt_put];
 		
 		$car[d_car_act_exp] = $_POST[ex_car_act];
 		$car[d_car_tax_exp] = $_POST[ex_car_tax];

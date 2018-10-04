@@ -43,7 +43,7 @@ function checkImgProfile(username, pf) {
         }
     });
 }
-setTimeout(function(){ checkImgProfile($.cookie("detect_username"), 0); }, 1500);
+setTimeout(function(){ checkImgProfile($.cookie("detect_username"), 0); }, 500);
 
 
 function iconsHasPic(icons, id1, id2) {

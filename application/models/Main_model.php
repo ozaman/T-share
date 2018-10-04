@@ -123,7 +123,7 @@ class Main_model extends CI_Model {
   }
 
   function query_car_ins_list(){
-	  	$sql = "SELECT * FROM web_car_insurance where status = 1 ORDER BY id ";
+	  	$sql = "SELECT * FROM web_car_insurance where status = 1 ORDER BY name_th asc ";
 		$query = $this->db->query($sql);
 		foreach($query->result() as $key=>$val)
 	    {

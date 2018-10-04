@@ -898,6 +898,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     font-size: 18px;
     text-align: center;">
 				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->balance,2);?></span> บาท
+				  		<input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val" name="balance_val" />
 				  	</div>
             	<ons-page>
             	 
@@ -918,14 +919,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				    	<div id="add">
 				    		<div align="center" style="padding: 15px;">
 				    			<div class="segment" style="width: 280px; margin: 0 auto;">
-								  
 								  <div class="segment__item">
-								    <input type="radio" class="segment__input" name="segment-a" checked onclick="inform_money();">
-								    <div class="segment__button">แจ้งโอน</div>
+								    <input type="radio" class="segment__input" name="segment-a" checked onclick="auto_money();">
+								    <div class="segment__button">ผ่านบัญชีธนาคาร</div>
 								  </div>
 								  <div class="segment__item">
-								    <input type="radio" class="segment__input" name="segment-a" onclick="auto_money();">
-								    <div class="segment__button">ผ่านบัญชีธนาคาร</div>
+								    <input type="radio" class="segment__input" name="segment-a"  onclick="inform_money();">
+								    <div class="segment__button">แจ้งโอน</div>
 								  </div>
 								</div>
 				    		</div>

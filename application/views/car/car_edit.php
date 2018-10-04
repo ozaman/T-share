@@ -74,7 +74,7 @@
         	<div class="left list-item__left"  style="width: 110px;">
                 <span>ประเภทรถ</span>
             </div>
-            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
                 <span id="txt_car_type" ><?=$txt_type;?></span>
                 <input type="hidden" name="car_type" id="car_type" value="<?=$data_car->car_type;?>" />
             </div>
@@ -83,7 +83,7 @@
         	<div class="left list-item__left" style="width: 110px;">
                 <span>ยี่ห้อ</span>
             </div>
-            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios')">
                 
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;<?=$brand_ds_none;?><?=$img_brand;?>"  ></span>
                 <span id="txt_car_brand" ><?=$txt_brand;?></span>
@@ -95,7 +95,7 @@
         	<div class="left list-item__left" style="width: 110px;">
                 <span>สีรถ</span>
             </div>
-            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios')">
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios')">
              	<img src="<?=$img_car_color;?>" style="width: 30px; margin-right: 15px;border: 1px solid #eee;<?=$color_ds_none;?>" id="img_car_color_show"  />
                 <span id="txt_car_color" ><?=$txt_car_color;?></span>
                 <input type="hidden" name="car_color" id="car_color" value="<?=$data_car->i_car_color;?>" />
@@ -106,7 +106,7 @@
         	<div class="left list-item__left" style="width: 110px;">
                 <span>สีป้ายทะเบียน</span>
             </div>
-            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')">
             	<img src="<?=$plate_img;?>" style="width: 50px; margin-right: 0px;<?=$plate_ds_none;?>" id="img_plate_color_show"  />
                 <span id="txt_plate_color" ><?=$txt_plate_color;?></span>
                 <input type="hidden" name="plate_color" id="plate_color" value="<?=$data_car->i_plate_color;?>" />
@@ -118,7 +118,7 @@
         	<div class="left list-item__left" style="width: 110px;">
                 <span>จังหวัด</span>
             </div>
-            <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'car_province'}, 'lift-ios')">
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'จังหวัด', 'open':'car_province'}, 'lift-ios')">
             	<span id="txt_car_province" ><?=$data_car->pv_name;?></span>
                 <input type="hidden" name="car_province" id="car_province" value="<?=$data_car->i_province;?>" />
             </div>
@@ -191,7 +191,7 @@
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left"  style="width: 70px;">
                 <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
-                <span>พ.ร.บ.</span>
+                <span>เลขกรมธรรม์</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="txt_car_act-input" float="" maxlength="30" placeholder="" name="txt_car_act" style="width:100%;" value="<?=$data_car->s_car_act;?>">
@@ -227,6 +227,7 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_act_ex.jpg', '', '')">ตัวอย่าง</button>
 	    </div>
 </ons-card> 
 
@@ -234,9 +235,8 @@
 	    
 <ons-card class="card"> 
 	    <ons-list-header class="list-header"><b>ทะเบียนภาษี</b></ons-list-header>
-	    <ons-list-item class="input-items list-item p-l-0">
+	    <!--<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left"  style="width: 70px;">
-                <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
                 <span>ทะเบียน</span>
             </div>
             <label class="center list-item__center">
@@ -249,7 +249,7 @@
                 <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>
                 <i id="incorrent-plate" class="fa fa-times-circle no-pass checking-plate" aria-hidden="true" style="display: none;"></i>
             </label>
-        </ons-list-item>
+        </ons-list-item>-->
       <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style="padding-right: 18px;width: 70px;">
             	<img src="assets/images/ex_card/crd.png" width="25px;" />
@@ -275,22 +275,36 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_tax_ex.jpg', '', '')">ตัวอย่าง</button>
 	    </div>
+	    
 </ons-card> 
 
 
 <ons-card class="card"> 
 	    <ons-list-header class="list-header"><b>ประกันรถยนต์</b></ons-list-header>
+	    <ons-list-item class="input-items list-item p-l-0" >
+        	<div class="left list-item__left" style="width: 110px;" id="car_ins_com_txt">
+                <span>บริษัทประกัน</span>
+            </div>
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'บริษัทประกันรถยนต์', 'open':'car_ins'}, 'lift-ios')" id="car_ins_com_box">
+                
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"  ></span>
+                <span id="txt_car_ins" ><?=$data_car->s_car_insurance_com;?></span>
+                <input type="hidden" name="car_ins" id="car_ins" value="0" />
+                <input type="hidden" name="car_ins_com_txt_put" id="car_ins_com_txt_put" value="<?=$data_car->s_car_insurance_com;?>" />
+            </div>
+        </ons-list-item>
 	    <ons-list-item class="input-items list-item p-l-0">
-            <div class="left list-item__left"  style="width: 70px;">
+            <div class="left list-item__left"  style="width: 110px;">
                 <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
-                <span>ประกัน</span>
+                <span>เลขกรมธรรม์</span>
             </div>
             <label class="center list-item__center">
                 <ons-input id="txt_car_insurance-input" float="" maxlength="30" placeholder="" name="txt_car_insurance" style="width:100%;" value="<?=$data_car->s_car_insurance;?>">
                     <input type="text" class="text-input" maxlength="30" placeholder="" name="txt_car_insurance" >
                     <span class="text-input__label">
-                        ประกัน</span>
+                        เลขกรมธรรม์</span>
                 </ons-input>
                 <input type="hidden" value="0" id="valid_type_plate" />
                 <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>
@@ -322,6 +336,7 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_ins_ex.png', '', '')">ตัวอย่าง</button>
 	    </div>
 </ons-card> 
 

@@ -166,13 +166,13 @@
       <ons-list-item class="input-items list-item p-l-0"   onclick="focusEle('#car_act_input');">
             <div class="left list-item__left"  style="width: 70px;" id="txt_car_act_txt">
                 <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
-                <span>พ.ร.บ.</span>
+                <span>เลขกรมธรรม์</span>
             </div>
             <label class="center list-item__center" id="txt_car_act_box">
                 <ons-input id="txt_car_act-input" float="" maxlength="30" placeholder="" name="txt_car_act" style="width:100%;"  onkeyup="putNext();">
                     <input type="text" class="text-input" maxlength="30" placeholder="" name="txt_car_act" id="car_act_input">
                     <span class="text-input__label">
-                        ป้ายทะเบียน</span>
+                        เลขกรมธรรม์</span>
                 </ons-input>
                 <input type="hidden" value="0" id="valid_type_plate" />
                 <i id="corrent-plate" class="fa fa-check-circle pass checking-plate" aria-hidden="true" style="display: none;"></i>

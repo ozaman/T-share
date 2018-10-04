@@ -1,4 +1,4 @@
-inform_money();
+auto_money();
 function checkPicWallet(path, id){
 	$.ajax({
         url: path,
@@ -201,7 +201,7 @@ function sendWithdraw(){
 				ons.notification.alert({
                     message: 'ทำการแจ้งถอนสำเร็จ รอการยืนยัน',
                     title: "สำเร็จ",
-                    buttonLabel: "ปิด"
+                    buttonLabel: "รับทราบ"
                 })
                 .then(function() {
                     $('#tab-history-wallet').click();
@@ -217,6 +217,41 @@ function sendWithdraw(){
 }
 
 function alertWithdraw(){
+	console.log($('#balance_val').val());
+	console.log($('input[name="amount_wd"]').val());
+	if($('input[name="bank_user"]').val()==""){
+		ons.notification.alert({
+                    message: 'กรุณาเลือกธนาคารที่จะรับเงิน',
+                    title: "ขออภัย",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                    
+                });
+		return;
+	}
+	if($('input[name="amount_wd"]').val()=="" || $('input[name="amount_wd"]').val()<=0){
+		ons.notification.alert({
+                    message: 'กรุณาระบุจำนวนเงินที่ถูกต้อง',
+                    title: "ขออภัย",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                    
+                });
+		return;
+	}
+	if($('#balance_val').val()<$('input[name="amount_wd"]').val()){
+		ons.notification.alert({
+                    message: 'ไม่สามารถทำการถอนเงินได้ เนื่องจากยอดในระบบไม่เพียงพอ',
+                    title: "ขออภัย",
+                    buttonLabel: "ปิด"
+                })
+                .then(function() {
+                    
+                });
+		return;
+	}
 	var dialog = document.getElementById('inform-confirm-dialog');
 	var amount = $('input[name="amount_wd"]').val();
 	
