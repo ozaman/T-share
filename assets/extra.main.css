@@ -1,6 +1,11 @@
+.custom-sl-pd{
+		 padding: 18px 6px 18px 0 !important;
+}
 .border-red{
-	border: 1px solid #F44336;
-	border-radius: 10px;
+	border: 1px solid #F44336 !important;
+}
+.border-bottom-red{
+	border-bottom: 1px solid #F44336 !important;
 }
 .plate-approve{
     padding: 5px 3px;

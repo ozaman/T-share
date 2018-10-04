@@ -180,7 +180,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						$query = $this->db->get('web_bank_driver');
 						$num_bank = $query->num_rows();
                     ?>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร (<?=$num_bank." บัญชี";?>)</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();" >บัญชีธนาคาร (<span id="num_bank_home"><?=$num_bank;?></span> บัญชี)</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -1332,6 +1332,21 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					var param = { data : res };
 					console.log(param);
 	                $.post("component/cpn_bank_list",param,function(el){
+						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+			else if(page.open=="car_ins"){
+				$.ajax({
+	            url: "main/data_car_ins_list", // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_car_ins",param,function(el){
 						$('#body_option').html(el);
 					});
 	             }

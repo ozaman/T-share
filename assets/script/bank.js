@@ -13,6 +13,7 @@ function reloadPageBank(){
     }, function(ele) {
         $('#body_account_bank').html(ele);
         setnumbank();
+        
     });
 }
 function addBank(){
@@ -32,6 +33,7 @@ function addBank(){
 function setnumbank(){
 	$('#txt_num_bank_open').text($('#num_open_bank').val());
 	$('#txt_num_bank_close').text($('#num_close_bank').val());
+	$('#num_bank_home').text($('#detect_num_bank').val());
 }
 
 function editBank(id){

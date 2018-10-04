@@ -95,7 +95,7 @@ function addCar() {
         path: "car/car_add"
     }, function(ele) {
         $('#body_popup1').html(ele);
-        focusBox();
+//        focusBox();
     });
 }
 
@@ -277,6 +277,8 @@ function checkCarNum(){
 }
 
 function submitAddCar() {
+	$('#check_submit_add_car').val(1);
+	focusBoxCar2();
     if ($('input[name="plate_num"]').val() == "") {
         ons
             .notification.alert({
@@ -725,7 +727,7 @@ function submitEditCar() {
 function putNext() {
 //	setTimeout(function(){ focusBox(); }, 1500);
 	delay(function(){
-     	focusBox();
+     	focusBoxCar2();
     }, 1200 );
 }
 
@@ -761,7 +763,7 @@ function readURL(input, id, num, type) {
                     $('#box_img_' + id).fadeIn(200);
                     
                     $('#' + param_id + '_check_upload_'+num).val(1)
-					focusBox();
+					focusBoxCar2();
 					var photo = "../data/pic/car/"+param_id+"_"+num+".jpg?v="+$.now();
                     $('.'+param_id+'_pic_car_'+num).attr('src',photo );
                     $('.'+param_id+'_pic_car_'+num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
@@ -813,7 +815,7 @@ function readURLother(input, id, type, cat) {
                     $('#box_img_' + id).fadeIn(200);
                     
                     $('#' + param_id + '_'+cat).val(1)
-                    focusBox();
+                    focusBoxCar2();
                     
                     var photo = "../data/pic/"+cat+"/"+$('#id_carall').val()+".jpg?v="+$.now();
                     $('.'+$('#id_carall').val()+'_pic_'+shot[1]).attr('src',photo );
@@ -971,7 +973,7 @@ function selectCarType(id) {
     $('#car_type').val(id);
     $('#txt_car_type').text(name);
     $('ons-back-button').click();
-    focusBox();
+    focusBoxCar2();
 }
 
 function selectCarBrand(id, ps) {
@@ -984,7 +986,7 @@ function selectCarBrand(id, ps) {
     $('ons-back-button').click();
     $('#img_car_brand_show').show();
     $('#img_car_brand_show').css('background-position', ps);
-    focusBox();
+    focusBoxCar2();
 
 }
 
@@ -995,7 +997,7 @@ function selectCarProvince(id) {
     $('#car_province').val(id);
     $('#txt_car_province').text(name);
     $('ons-back-button').click();
-    focusBox();
+    focusBoxCar2();
 }
 
 function selectCarColor(id, val) {
@@ -1008,7 +1010,7 @@ function selectCarColor(id, val) {
     $('#txt_car_color').text(val);
     $('#img_car_color_show').show();
     $('ons-back-button').click();
-    focusBox();
+    focusBoxCar2();
 }
 
 function selectPlateColor(id, val) {
@@ -1022,11 +1024,36 @@ function selectPlateColor(id, val) {
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();
     $('ons-back-button').click();
-    focusBox();
+    focusBoxCar2();
+}
+
+function selectCarIns(id, val) {
+    console.log(id + " " + val);
+    $('#car_ins').val(id);
+	if(id==0){
+		var btn = ["ยกเลิก", "ตกลง"];
+
+		ons.notification.prompt({message: 'กรอกชื่อริษัทประกันภัย',title: "บริษัทประกันภัย",buttonLabel: btn})
+	  .then(function(txt) {
+	  		console.log(txt);
+	  		if(txt){
+				$('#car_ins_com_txt_put').val(txt);
+	    		$('#txt_car_ins').text(txt);
+		    	$('ons-back-button').click();
+		    	focusBoxCar2();
+			}
+	    	
+	  });
+	  return;
+	}
+    $('#car_ins_com_txt_put').val(val);
+    $('#txt_car_ins').text(val);
+
+    $('ons-back-button').click();
+    focusBoxCar2();
 }
 
 function focusBox(){
-	
 	if($('input[name="plate_num"]').val()==""){
 //		alert($('input[name="plate_num"]').val());
 		$('#plate_num_box').addClass('border-red');
@@ -1170,4 +1197,168 @@ function focusBox(){
 	}
 	 /***************************************************/
     
+}
+
+function focusBoxCar2(){
+	if($('#check_submit_add_car').val()!=1){
+		return;
+	}
+	if($('input[name="plate_num"]').val()==""){
+
+		$('#plate_num_box').addClass('border-bottom-red');
+		$('#plate_num_txt').addClass('txt-red');
+
+	}else{
+		$('#plate_num_box').removeClass('border-bottom-red');
+		$('#plate_num_txt').removeClass('txt-red');
+	}
+	
+	if ($('input[name="car_type"]').val() == "") {
+       $('#car_type_box').addClass('border-bottom-red');
+       $('#car_type_txt').addClass('txt-red');
+
+    }else{
+		$('#car_type_box').removeClass('border-bottom-red');
+		$('#car_type_txt').removeClass('txt-red');
+	}
+	
+    if ($('input[name="car_brand"]').val() == "") {
+       $('#car_brand_box').addClass('border-bottom-red');
+        $('#car_brand_txt').addClass('txt-red');
+
+    }else{
+		$('#car_brand_box').removeClass('border-bottom-red');
+		 $('#car_brand_txt').removeClass('txt-red');
+	}
+    
+    if ($('input[name="car_color"]').val() == "") {
+        $('#car_color_box').addClass('border-bottom-red');
+        $('#car_color_txt').addClass('txt-red');
+    }else{
+		$('#car_color_box').removeClass('border-bottom-red');
+		 $('#car_color_txt').removeClass('txt-red');
+	}
+	
+	if ($('input[name="plate_color"]').val() == "") {
+       $('#plate_color_box').addClass('border-bottom-red');
+       $('#plate_color_txt').addClass('txt-red');
+    }else{
+		$('#plate_color_box').removeClass('border-bottom-red');
+		 $('#plate_color_txt').removeClass('txt-red');
+	}
+    
+    if ($('input[name="car_province"]').val() == "") {
+       $('#car_province_box').addClass('border-bottom-red');
+   		$('#car_province_txt').addClass('txt-red');
+    }else{
+		$('#car_province_box').removeClass('border-bottom-red');
+		$('#car_province_txt').removeClass('txt-red');
+	}
+    
+    if ($('#' + $('#center_id').val() + '_check_upload_1').val() == 0) {
+	       $('#img_car_1_box').addClass('border-red');
+
+	}else{
+
+			$('#img_car_1_box').removeClass('border-red');
+	}
+	    
+	if ($('#' + $('#center_id').val() + '_check_upload_2').val() == 0) {
+	       $('#img_car_2_box').addClass('border-red');
+
+	}else{
+			$('#img_car_2_box').removeClass('border-red');
+	}
+	    
+	if ($('#' + $('#center_id').val() + '_check_upload_3').val() == 0) {
+	       $('#img_car_3_box').addClass('border-red');
+
+	}else{
+			$('#img_car_3_box').removeClass('border-red');
+	}
+    
+     /***************************************************/
+    if ($('input[name="txt_car_act"]').val() == "") {
+       $('#txt_car_act_box').addClass('border-bottom-red');
+		$('#txt_car_act_txt').addClass('txt-red');
+    }else{
+		$('#txt_car_act_box').removeClass('border-bottom-red');
+		$('#txt_car_act_txt').removeClass('txt-red');
+	}
+	
+    if ($('input[name="ex_car_act"]').val() == "") {
+        $('#ex_car_act_box').addClass('border-bottom-red');
+		$('#ex_car_act_txt').addClass('txt-red');
+    }else{
+		$('#ex_car_act_box').removeClass('border-bottom-red');
+		$('#ex_car_act_txt').removeClass('txt-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_act').val() == 0) {
+	       $('#img_car_act_box').addClass('border-red');
+
+	}else{
+		 $('#img_car_act_box').removeClass('border-red');
+	}
+    /***************************************************/
+    
+    
+     /***************************************************/
+    if ($('input[name="txt_car_tax"]').val() == "") {
+        $('#txt_car_tax_box').addClass('border-bottom-red');
+		$('#txt_car_tax_txt').addClass('txt-red');
+    }else{
+		$('#txt_car_tax_box').removeClass('border-bottom-red');
+		$('#txt_car_tax_txt').removeClass('txt-red');
+	}
+	
+    if ($('input[name="ex_car_tax"]').val() == "") {
+       $('#ex_car_tax_box').addClass('border-bottom-red');
+		$('#ex_car_tax_txt').addClass('txt-red');
+    }else{
+		$('#ex_car_tax_box').removeClass('border-bottom-red');
+		$('#ex_car_tax_txt').removeClass('txt-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_tax').val() == 0) {
+	       $('#img_car_tax_box').addClass('border-red');
+
+	}else{
+		 $('#img_car_tax_box').removeClass('border-red');
+	}
+     /***************************************************/
+    
+    
+     /***************************************************/
+     if ($('input[name="car_ins_com_txt_put"]').val() == "") {
+        $('#car_ins_com_box').addClass('border-bottom-red');
+		$('#car_ins_com_txt').addClass('txt-red');
+    }else{
+		$('#car_ins_com_box').removeClass('border-bottom-red');
+		$('#car_ins_com_txt').removeClass('txt-red');
+	}
+	
+    if ($('input[name="txt_car_insurance"]').val() == "") {
+        $('#txt_car_insurance_box').addClass('border-bottom-red');
+		$('#txt_car_insurance_txt').addClass('txt-red');
+    }else{
+		$('#txt_car_insurance_box').removeClass('border-bottom-red');
+		$('#txt_car_insurance_txt').removeClass('txt-red');
+	}
+	
+    if ($('input[name="ex_car_insurance"]').val() == "") {
+        $('#ex_car_insurance_box').addClass('border-bottom-red');
+		$('#ex_car_insurance_txt').addClass('txt-red');
+    }else{
+		$('#ex_car_insurance_box').removeClass('border-bottom-red');
+		$('#ex_car_insurance_txt').removeClass('txt-red');
+	}
+	if ($('#' + $('#center_id').val() + '_car_insurance').val() == 0) {
+	       $('#img_car_insurance_box').addClass('border-red');
+
+	}else{
+
+		 $('#img_car_insurance_box').removeClass('border-red');
+	}
+	 /***************************************************/
+    
+
 }

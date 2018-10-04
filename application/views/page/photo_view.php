@@ -14,18 +14,18 @@
 	margin: 20px;
 }
 </style>
-<?php 
+
+<div style="position: absolute; background-color: #000; width: 100%;  height: 100%;">
+	
+	<?php 
 	if($_GET[time]!=""){
 		$txt_date = "ถ่ายเวลา ".date('Y-m-d h:i',$_GET[time])." น.";
-	}else{
-		$txt_date = "ไม่มีเวลาที่บันทึก";
-	}
-	
-?>
-<div style="position: absolute; background-color: #000; width: 100%;  height: 100%;">
-	<div class="txt-caption font-24" align="center">
+		?>
+		<div class="txt-caption font-24" align="center">
 		 <?=$txt_date;?>
-	</div>
+		</div>
+		<?
+	}?>
 	<img src="<?=$_GET[path]."?v=".time();?>" width="100%;" class="photo-preview" />
 	<?php 
 		if($_GET[caption]!="undefined" && $_GET[caption]!=""){

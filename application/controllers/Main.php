@@ -87,6 +87,11 @@ class Main extends CI_Controller {
   	header('Content-Type: application/json');
   	echo json_encode($data['res']);
   }
+  public function data_car_ins_list(){
+  	$data['res'] = $this->Main_model->query_car_ins_list();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
   /**
   * *end
   */

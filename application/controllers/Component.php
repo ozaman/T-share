@@ -48,5 +48,12 @@ public function cpn_car_type()
 		
 	}
 	
+	public function cpn_car_ins()
+	{
+//		$data['data'] = $this->Main_model->query_province();
+		$this->load->view('component/car_ins');
+		
+	}
+	
 }
 ?>

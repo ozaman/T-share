@@ -121,6 +121,16 @@ class Main_model extends CI_Model {
     }
 	return $data;
   }
+
+  function query_car_ins_list(){
+	  	$sql = "SELECT * FROM web_car_insurance where status = 1 ORDER BY id ";
+		$query = $this->db->query($sql);
+		foreach($query->result() as $key=>$val)
+	    {
+	        $data[] = $val;
+	    }
+		return $data;
+  }
   
   function register(){
   

@@ -206,7 +206,7 @@
 				  
                </tbody>
             </table>
-            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="display: none;" >
+            <table width="100%" border="0" cellspacing="1" cellpadding="5" style="display: nones;" >
                <tbody>
                	  <tr>
 				  	<td  width="33%" align="center"><span class="font-16">หน้ารถ</span>&nbsp;<img src="assets/images/no.png" id="<?=$row->id;?>-car-has-view-1" /> </td>
@@ -221,7 +221,7 @@
                </tbody>
             </table>
             
-			<table  width="100%" border="0" cellspacing="0" cellpadding="1" style="display: none;" >
+			<table  width="100%" border="0" cellspacing="0" cellpadding="1" style="display: nones;" >
 				  <tr>
 				  	<td  width="33%" align="center"><span class="font-16">พ.ร.บ.</span>&nbsp;<img src="<?=$icons_has_act;?>" /> </td>
 				  	<td  width="33%" align="center"><span class="font-16">ทะเบียนภาษี</span>&nbsp;<img src="<?=$icons_has_tax;?>" /></td>
