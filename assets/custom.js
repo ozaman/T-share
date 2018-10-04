@@ -110,9 +110,8 @@ function createSignOut(){
     
 function logOut() {
         		  $('#signout-alert-dialog').hide();
-//                $.post('signin/signout', function() {
-                
-                    $.cookie("detect_user", "", {
+//                	console.log($.removeCookie('detect_user'));
+                   /* $.cookie("detect_user", "", {
                         path: '/'
                     });
                     $.cookie("detect_userclass", "", {
@@ -120,7 +119,11 @@ function logOut() {
                     });
                     $.cookie("detect_username", "", {
                         path: '/'
-                    });
+                    });*/
+                    $.removeCookie('detect_user', { path: '/' });
+                    $.removeCookie('detect_userclass', { path: '/' });
+                    $.removeCookie('detect_username', { path: '/' });
+//                    clearCookieAll();
                     ons.notification.alert({message: 'ออกจากระบบสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
 											  .then(function() {
 											   		
@@ -877,4 +880,18 @@ function readURLprofileHome(input,type) {
 	   		
 	  }
 	  
+}
+	
+function focusEle(ele){
+	console.log(ele);
+	$( ele ).focus();
+}	
+
+function clearCookieAll(){
+	var cookies = $.cookie();
+	for(var cookie in cookies) {
+		console.log(cookie);
+//	   $.removeCookie(cookie);
+		$.removeCookie(cookie, { path: '/' });
 	}
+}
