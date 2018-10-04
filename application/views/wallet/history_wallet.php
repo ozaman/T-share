@@ -15,11 +15,11 @@ $select = "select * from deposit_history where driver = '".$_COOKIE[detect_user]
 			$tras_d_time = date_create($row->deposit_date);
 			if($row->type=="ADD"){
 				$type_txt = "เติมเงิน (แจ้งโอน)";
-				$icons = "+";
+//				$icons = "+";
 				
 			}else if($row->type=="WITHDRAW"){
 				$type_txt = "ถอนเงิน (แจ้งถอน)";
-				$icons = "-";
+//				$icons = "-";
 			}
 			if($row->status==0){
 				$txt_status = "รอยืนยัน";

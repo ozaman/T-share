@@ -78,15 +78,14 @@
             </label>
         </ons-list-item>
         
-        <ons-list-item class="input-items list-item p-l-0">
+        <!--<ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style=" width: 90px;">
                  <span>เวลาโอน</span>
             </div>
             <label class="center list-item__center">
                 <input class="ap-date" type="time" id="time_money" name="time_money" value="" style="color: #F44336;width: 100%;border: none; padding: 5px; background-color: #fff; font-size: 16px;" />
-                <!--<span style="color: #afafaf;position: absolute;right: 45px;" class="font-14">เวลาโอน</span>-->
             </label>
-        </ons-list-item>
+        </ons-list-item>-->
         
         <ons-list-item class="input-items list-item p-l-0">
             <div class="left list-item__left" style=" width: 90px;" >

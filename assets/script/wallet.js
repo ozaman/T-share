@@ -93,7 +93,7 @@ function alertInform(){
             });
         return;
 	}
-	if($('#time_money').val()==""){
+	/*if($('#time_money').val()==""){
 		ons.notification.alert({
                 message: 'กรุณาเลือกวันที่โอน',
                 title: "ข้อมูลไม่สมบูรณ์",
@@ -104,7 +104,7 @@ function alertInform(){
                 $('#selectbank_tr').focus();
             });
         return;
-	}
+	}*/
 	if($('input[name="amount"]').val()==""){
 		ons.notification.alert({
                 message: 'กรุณาระบุจำนวนเงินที่โอน',
