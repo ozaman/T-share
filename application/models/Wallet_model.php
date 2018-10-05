@@ -11,7 +11,7 @@ class Wallet_model extends CI_Model {
 	 	$deposit[bank_account] = $_POST[bank_account];
 	 	$deposit[bank_number] = $_POST[bank_number];
 	 	$deposit[deposit_date] = $_POST[date_money];
-	 	$deposit[deposit_time] = $_POST[time_money];
+//	 	$deposit[deposit_time] = $_POST[time_money];
 	 	$deposit[status] = 0;
 	 	$deposit[type] = "ADD";
 	 	$deposit[post_date] = time();
