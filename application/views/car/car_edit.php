@@ -46,7 +46,11 @@
 			$plate_ds_none = "display:none;";
 		}
 		
-		
+		if($data_car->s_car_insurance_com!=""){
+			$val_car_ins = $data_car->s_car_insurance_com;
+		}else{
+			$val_car_ins = "เลือก";
+		}
 ?>
 
 <form name="form_editcar" id="form_editcar"  enctype="multipart/form-data">
@@ -227,7 +231,10 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_act_ex.jpg', '', '')">ตัวอย่าง</button>
+    
+	    </div>
+	    <div align="center">
+	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_act_ex.jpg', '', '')">ตัวอย่าง</button>
 	    </div>
 </ons-card> 
 
@@ -275,9 +282,11 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_tax_ex.jpg', '', '')">ตัวอย่าง</button>
+    
 	    </div>
-	    
+	    <div align="center">
+	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_tax_ex.jpg', '', '')">ตัวอย่าง</button>
+	    </div>
 </ons-card> 
 
 
@@ -290,7 +299,7 @@
             <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'บริษัทประกันรถยนต์', 'open':'car_ins'}, 'lift-ios')" id="car_ins_com_box">
                 
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"  ></span>
-                <span id="txt_car_ins" ><?=$data_car->s_car_insurance_com;?></span>
+                <span id="txt_car_ins" ><?=$val_car_ins;?></span>
                 <input type="hidden" name="car_ins" id="car_ins" value="0" />
                 <input type="hidden" name="car_ins_com_txt_put" id="car_ins_com_txt_put" value="<?=$data_car->s_car_insurance_com;?>" />
             </div>
@@ -336,7 +345,10 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-    <button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_ins_ex.png', '', '')">ตัวอย่าง</button>
+    
+	    </div>
+	    <div align="center">
+	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_ins_ex.png', '', '')">ตัวอย่าง</button>
 	    </div>
 </ons-card> 
 

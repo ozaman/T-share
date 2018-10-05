@@ -204,9 +204,9 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-  
+	    </div>
+	    <div align="center">
 	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_act_ex.jpg', '', '')">ตัวอย่าง</button>
-	
 	    </div>
 </ons-card> 
 
@@ -255,9 +255,11 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_tax_ex.jpg', '', '')">ตัวอย่าง</button>
+    	
 	    </div>
-
+		<div align="center">
+	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_tax_ex.jpg', '', '')">ตัวอย่าง</button>
+	    </div>
 </ons-card> 
 
 <!----*****************************************************************************************************************************************--->
@@ -317,7 +319,10 @@
     margin-left: -28px;
     margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
-    		<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_ins_ex.png', '', '')">ตัวอย่าง</button>
+    		
+	    </div>
+	    <div align="center">
+	    	<button class="button button--material"type="button" onclick="viewPhotoGlobal('assets/images/car/ex/car_ins_ex.png', '', '')">ตัวอย่าง</button>
 	    </div>
 </ons-card> 
 

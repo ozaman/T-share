@@ -40,6 +40,7 @@ function checkImgProfile(username, pf) {
             }
             $('.shotcut-profile').attr('src', url);
             $('.profile-pic-big').attr('src', url);
+            $('.profile-pic-big').attr('onclick', 'viewPhotoGlobal(\'' + url + '\', "", "");');
         }
     });
 }
@@ -831,15 +832,31 @@ function addCommas(nStr) {
 }
 
 function viewPhotoGlobal(path, time, caption) {
+    
     fn.pushPage({
         'id': 'popup2.html',
         'title': 'ภาพ'
     }, 'fade-md');
-    
     var url_load = "page/view_photo?time=" + time + "&path=" + path+"&caption="+caption;
     $.post(url_load, function(ele) {
         $('#body_popup2').html(ele);
     });
+    
+   /* var dialog = document.getElementById('photo-view-dialog');
+
+		  if (dialog) {
+		    dialog.show();
+		  } else {
+		    ons.createElement('photo-dialog.html', { append: true })
+		      .then(function(dialog) {
+		        dialog.show();
+		      });
+		  }
+    var url_load = "page/view_photo?time=" + time + "&path=" + path+"&caption="+caption;
+    $.post(url_load, function(ele) {
+        $('#body-photo-view').html(ele);
+    });*/
+    
 }
 
 function readURLprofileHome(input,type) {

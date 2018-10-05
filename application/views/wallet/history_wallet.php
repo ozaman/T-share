@@ -42,14 +42,14 @@ $select = "select * from deposit_history where driver = '".$_COOKIE[detect_user]
        		<table width="100%">
        			<tr>
        				<!--<td width="70"><?=$row->invoice;?></td>-->
-       				<td>
+       				<td width="170">
        					<span><?=$type_txt;?></span><br/>
        					<span class="font-14"><?=date('Y-m-d h:i',$row->post_date);?></span>
        				</td>
        				<td>
        					<div class="plate-approve <?=$class_plate;?>"><?=$txt_status;?></div>
        				</td>
-       				<td align="right"><b><?=$icons." ".number_format($row->deposit,2);?></b></td>
+       				<td align="right" width="80"><b><?=$icons." ".number_format($row->deposit,2);?></b></td>
        			</tr>
        		</table>
        </div>

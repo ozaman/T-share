@@ -152,15 +152,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         <ons-page> 
             <div class="profile-pic" align="center">
             	<form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
-				<input type="file" class="cropit-image-input" id="img_profile_home" accept="image/*"  style="opacity: 0;position: absolute;" onchange="readURLprofileHome(this,'profile');">
+				<input type="file" class="cropit-image-input" id="img_profile_home" accept="image/*"  style="opacity: 0;position: absolute;left: 0px;width: 0px;display: none;" onchange="readURLprofileHome(this,'profile');">
 				</form>
-                <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="performClick('img_profile_home');" >
+                <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="" >
 				<span style="background-color: #f4f4f4;
     padding: 0px 10px;
     position: absolute;
     margin-left: -49px;
     margin-top: -20px;
-    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+    border-top-left-radius: 5px;/* pointer-events: none;*/" onclick="performClick('img_profile_home');" ><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    
             </div>
             <!--<ons-list-title>เมนู</ons-list-title>-->
@@ -298,7 +298,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         width: 200px;
         background-color: #fff;
         margin: 20px auto 10px;
-        border: 1px solid #999;
+/*        border: 1px solid #999;*/
         border-radius: 4px;
       }
 
@@ -897,7 +897,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     width: 100%;
     font-size: 18px;
     text-align: center;">
-				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->balance,2);?></span> บาท
+				  		<i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"><?=number_format($data_deposit->balance,2);?></span>
 				  		<input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val" name="balance_val" />
 				  	</div>
             	<ons-page>

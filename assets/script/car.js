@@ -1033,7 +1033,7 @@ function selectCarIns(id, val) {
 	if(id==0){
 		var btn = ["ยกเลิก", "ตกลง"];
 
-		ons.notification.prompt({message: 'กรอกชื่อริษัทประกันภัย',title: "บริษัทประกันภัย",buttonLabel: btn})
+		ons.notification.prompt({message: 'กรอกชื่อบริษัทประกันภัย',title: "บริษัทประกันภัย",buttonLabel: btn})
 	  .then(function(txt) {
 	  		console.log(txt);
 	  		if(txt){
