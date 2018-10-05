@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" class="ui-mobile landscape min-width-320px min-width-480px min-width-768px min-width-1024px">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <?php 
 
 if($this->Mobile_model->version('iPad')){
@@ -779,7 +778,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
             </ons-toolbar>
-            <div id="body_contrac">
+            <div id="body_contract">
                
             </div>
             <script>

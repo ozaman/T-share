@@ -1,55 +1,3 @@
-<style>
-  .lab-active-shop {
-    position: absolute;
-    z-index: 1;
-/*    right: 30px;*/
-/*    margin-top: 90px;*/
-    margin-top: -13px;
-    margin-left: 5px;
-    background-color: #fff;
-    color: #4CAF50;
-}
-.lab-none-active-shop {
-    position: absolute;
-    z-index: 1;
-/*    right: 15px;*/
-/*    margin-top: 90px;*/
-   	margin-top: -10px;
-    margin-left: -0px;
-/*    background-color: #fff;*/
-    color: #fb0006;
-}
-.time-post-shop-his {
-       border-radius: 8px 8px 0 8px;
-    margin-right: 10px;
-    border: 1px solid #333;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    right: 0px;
-    background-color: #fff;
-    margin-top: -108px;
-}
-.edit-post-shop {
-       margin-right: 10px;
-    border: 1px solid #3b5998 !important;
-    padding: 4px !important;
-    position: absolute;
-    z-index: 1;
-    left: 30px;
-    background-color: #fff;
-    margin-top: -93px;
-}
-.box-shop{
-  background-color: #fff;	
-  padding: 17px 10px;
-  border-radius:10px;
-  border: 1px solid #3b5998;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
-}
-</style>
-
-
 <?php 
 
  	$result = json_encode($_POST[data]);
@@ -57,7 +5,7 @@
 
    if(count($result)<=0){ 
    
-      echo '<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+      echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
    
     //exit();
   }

@@ -60,6 +60,7 @@ public function social(){
  public function contrac_us(){
         $data['contrac'] = $this->Main_model->contrac_us();
         //print_r(json_encode($data));
+//        echo json_encode($data['contrac']);
 		$this->load->view('page/contract_us',$data);
         
 	}

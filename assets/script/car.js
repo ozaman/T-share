@@ -768,7 +768,7 @@ function readURL(input, id, num, type) {
                     $('.'+param_id+'_pic_car_'+num).attr('src',photo );
                     $('.'+param_id+'_pic_car_'+num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")' );
                     iconsHasPic(1, "txt-img-has-"+id, "txt-img-nohas-"+id);
-                    
+                    $('#'+$('#id_carall').val()+'-car-has-view-'+num).attr('src', 'assets/images/yes.png');
                 },
                 error: function(e) {
                     console.log(e)
@@ -844,6 +844,7 @@ function checkPicCar(id, checkcalledit, icons) {
         type: 'HEAD',
         error: function() {
             console.log('Error file');
+//            $('#pv_img_car_1').hide();
         },
         success: function() {
         	$('#'+id+'-car-has-view-1').attr('src', 'assets/images/yes.png');
@@ -869,6 +870,7 @@ function checkPicCar(id, checkcalledit, icons) {
         type: 'HEAD',
         error: function() {
             console.log('Error file');
+//             $('#pv_img_car_2').hide();
         },
         success: function() {
             $('#'+id+'-car-has-view-2').attr('src', 'assets/images/yes.png');
@@ -889,6 +891,7 @@ function checkPicCar(id, checkcalledit, icons) {
         type: 'HEAD',
         error: function() {
             console.log('Error file');
+//             $('#pv_img_car_3').hide();
             //					$('#'+id+'_pic_car_3').hide();
         },
         success: function() {
@@ -981,7 +984,7 @@ function selectCarBrand(id, ps) {
     console.log(name + " " + id);
 
     $('#car_brand').val(id);
-    $('#car_brand_txt').val(name);
+    $('#car_brand_txt_input').val(name);
     $('#txt_car_brand').text(name);
     $('ons-back-button').click();
     $('#img_car_brand_show').show();
@@ -1006,7 +1009,7 @@ function selectCarColor(id, val) {
     $('#img_car_color_show').attr('src', "assets/images/car/" + img);
 
     $('#car_color').val(id);
-    $('#car_color_txt').val(val);
+    $('#car_color_txt_input').val(val);
     $('#txt_car_color').text(val);
     $('#img_car_color_show').show();
     $('ons-back-button').click();
@@ -1020,7 +1023,7 @@ function selectPlateColor(id, val) {
 
     $('#plate_color').val(id);
 
-    $('#plate_color_txt').val(val);
+    $('#plate_color_txt_input').val(val);
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();
     $('ons-back-button').click();

@@ -58,7 +58,7 @@
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"  ></span>
                 <span id="txt_car_brand" >เลือก</span>
                 <input type="hidden" name="car_brand" id="car_brand" value="" />
-                <input type="hidden" name="car_brand_txt" id="car_brand_txt" value="" />
+                <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value="" />
             </div>
         </ons-list-item>
         
@@ -70,7 +70,7 @@
              	<img src="" style="width: 30px; margin-right: 15px;display: none;border: 1px solid #eee;" id="img_car_color_show"  />
                 <span id="txt_car_color" >เลือก</span>
                 <input type="hidden" name="car_color" id="car_color" value="" />
-                <input type="hidden" name="car_color_txt" id="car_color_txt" value="" />
+                <input type="hidden" name="car_color_txt" id="car_color_txt_input" value="" />
             </div>
         </ons-list-item>
 
@@ -82,7 +82,7 @@
             	<img src="" style="width: 50px; margin-right: 0px;display: none;" id="img_plate_color_show"  />
                 <span id="txt_plate_color" >เลือก</span>
                 <input type="hidden" name="plate_color" id="plate_color" />
-                <input type="hidden" name="plate_color_txt" id="plate_color_txt" />
+                <input type="hidden" name="plate_color_txt" id="plate_color_txt_input" />
             </div>
         </ons-list-item>
 

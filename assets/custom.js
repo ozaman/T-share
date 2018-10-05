@@ -760,10 +760,10 @@ function myCar() {
         'title': 'ข้อมูลรถ'
     }, 'slide-ios');
     
-    /*$.post("car/check_num_car", {
+    $.post("car/check_num_car", {
         driver_id: $.cookie("detect_user")
-    }, function(res) {*/
-//        console.log(res);
+    }, function(res) {
+    	console.log(res);
         var url = "page/call_page";
         $.post(url, {
             path: "car/car_view"
@@ -771,7 +771,7 @@ function myCar() {
             $('#body_car_manage').html(ele);
             
         });
-//    });
+    });
 }
 
 function wallet(){
@@ -790,7 +790,7 @@ function contrac_us() {
     var url = "page/contrac_us";
     $.post(url, function(html) {
         console.log(html)
-        $('#body_contrac').html(html);
+        $('#body_contract').html(html);
     });
 }
 

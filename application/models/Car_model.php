@@ -20,7 +20,7 @@ class Car_model extends CI_Model {
 		$car[update_date] = time();
 		
 		$car[s_car_act] = $_POST[txt_car_act];
-		$car[s_car_tax] = $_POST[txt_car_tax];
+//		$car[s_car_tax] = $_POST[txt_car_tax];
 		$car[s_car_insurance] = $_POST[txt_car_insurance];
 		$car[s_car_insurance_com] = $_POST[car_ins_com_txt_put];
 		
@@ -37,15 +37,15 @@ class Car_model extends CI_Model {
 		$return[p2] = rename("../data/pic/car/".$_POST[rand]."_2.jpg", "../data/pic/car/".$last_id_car."_2.jpg");
 		$return[p3] =  rename("../data/pic/car/".$_POST[rand]."_3.jpg", "../data/pic/car/".$last_id_car."_3.jpg");
 		
-		if($_POST[txt_car_act]!=""){
+//		if($_POST[txt_car_act]!=""){
 			$p[car_act] =  rename("../data/pic/car_act/".$_POST[rand].".jpg", "../data/pic/car_act/".$last_id_car.".jpg");
-		}
-		if($_POST[txt_car_tax]!=""){
+//		}
+//		if($_POST[txt_car_tax]!=""){
 			$p[car_tax] =  rename("../data/pic/car_tax/".$_POST[rand].".jpg", "../data/pic/car_tax/".$last_id_car.".jpg");
-		}
-		if($_POST[txt_car_insurance]!=""){
+//		}
+//		if($_POST[txt_car_insurance]!=""){
 			$p[car_insurance] =  rename("../data/pic/car_insurance/".$_POST[rand].".jpg", "../data/pic/car_insurance/".$last_id_car.".jpg");
-		}
+//		}
 		$return[img_car_ass] = $p;
 		return $return;
   }
@@ -67,7 +67,7 @@ class Car_model extends CI_Model {
 		$car[update_date] = time();
 		
 		$car[s_car_act] = $_POST[txt_car_act];
-		$car[s_car_tax] = $_POST[txt_car_tax];
+//		$car[s_car_tax] = $_POST[txt_car_tax];
 		$car[s_car_insurance] = $_POST[txt_car_insurance];
 		$car[s_car_insurance_com] = $_POST[car_ins_com_txt_put];
 		
@@ -125,6 +125,13 @@ class Car_model extends CI_Model {
   }
 
   public function running_single_often_car(){
+  	
+  	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" and status_usecar = 1 ');
+	$check_often_car = $query->num_rows();
+  	if($check_often_car>0){
+  		$car[num_often] = $check_often_car;
+		return $car;
+	}
   	$query = $this->db->query('SELECT id FROM web_carall where drivername = "'.$_POST[driver_id].'" and status = 1 ');
 	$check = $query->num_rows();
 		if($check>=1){
@@ -144,6 +151,7 @@ class Car_model extends CI_Model {
 			$car[mg] = "More than 1";
 		}
 		$car[num] = $check;
+		$car[num_often] = $check_often_car;
 	return $car;	
   }
   /**

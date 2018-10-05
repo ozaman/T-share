@@ -92,7 +92,7 @@
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;<?=$brand_ds_none;?><?=$img_brand;?>"  ></span>
                 <span id="txt_car_brand" ><?=$txt_brand;?></span>
                 <input type="hidden" name="car_brand" id="car_brand" value="<?=$data_car->i_car_brand;?>" />
-                <input type="hidden" name="car_brand_txt" id="car_brand_txt" value="<?=$data_car->car_brand;?>" />
+                <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value="<?=$data_car->car_brand;?>" />
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
@@ -103,7 +103,7 @@
              	<img src="<?=$img_car_color;?>" style="width: 30px; margin-right: 15px;border: 1px solid #eee;<?=$color_ds_none;?>" id="img_car_color_show"  />
                 <span id="txt_car_color" ><?=$txt_car_color;?></span>
                 <input type="hidden" name="car_color" id="car_color" value="<?=$data_car->i_car_color;?>" />
-                <input type="hidden" name="car_color_txt" id="car_color_txt" value="<?=$data_car->car_color;?>" />
+                <input type="hidden" name="car_color_txt" id="car_color_txt_input" value="<?=$data_car->car_color;?>" />
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">
@@ -114,7 +114,7 @@
             	<img src="<?=$plate_img;?>" style="width: 50px; margin-right: 0px;<?=$plate_ds_none;?>" id="img_plate_color_show"  />
                 <span id="txt_plate_color" ><?=$txt_plate_color;?></span>
                 <input type="hidden" name="plate_color" id="plate_color" value="<?=$data_car->i_plate_color;?>" />
-                <input type="hidden" name="plate_color_txt" id="plate_color_txt" value="<?=$data_car->plate_color;?>" />
+                <input type="hidden" name="plate_color_txt" id="plate_color_txt_input" value="<?=$data_car->plate_color;?>" />
             </div>
         </ons-list-item>
 
