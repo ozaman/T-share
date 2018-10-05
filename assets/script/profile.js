@@ -138,7 +138,8 @@ function selectUserProvince(id,code){
 	$('#province').val(id);
 	$('#txt_user_province').text(name);
 	$('#code_privince').val(code);
-	$('ons-back-button').click();
+//	$('ons-back-button').click();
+	callpop();
 }
 
 

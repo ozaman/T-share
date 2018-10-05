@@ -191,7 +191,8 @@ function selectBankList(id) {
     /*$('#plate_color_txt').val(val);
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();*/
-    $('ons-back-button').click();
+//    $('ons-back-button').click();
+	callpop();
     putNextBank();
 }
 
@@ -394,7 +395,8 @@ function submitAddBank() {
                     .then(function() {
                         modal.hide();
 						reloadPageBank();
-						$('ons-back-button').click();
+//						$('ons-back-button').click();
+						callpop();
                        /*var url = "page/call_page";
 					    $.post(url, {
 					            path: "bank/bank_view"

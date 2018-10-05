@@ -1327,7 +1327,8 @@ function sendCheckIn(id, type) {
                     buttonLabel: "ปิด"
                 })
                 .then(function() {
-                    $('ons-back-button').click();
+//                    $('ons-back-button').click();
+                    callpop();
                 });
         } else {
             //				swal("Error");

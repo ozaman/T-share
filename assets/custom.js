@@ -594,7 +594,7 @@ function sendShop2() {
 	                            })
 	                            .then(function() {
 	                                // callpop();
-	                                $('ons-back-button').click();
+	                                callpop();
 	                                setTimeout(function() {
 	                                    myCar();
 	                                }, 700);

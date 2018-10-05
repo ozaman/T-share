@@ -530,7 +530,8 @@ function submitAddCar() {
                             path: "car/car_view"
                         }, function(ele) {
                             $('#body_car_manage').html(ele);
-                            $('ons-back-button').click();
+//                            $('ons-back-button').click();
+								callpop();
                         });
                     });
 
@@ -702,7 +703,8 @@ function submitEditCar() {
                         }, function(ele) {
                             $('#body_car_manage').html(ele);
                             console.log("++++++++++++++++++++++++++++++++------------------------------------------------------------------------------");
-                            $('ons-back-button').click();
+//                            $('ons-back-button').click();
+							  callpop();
                         });
                     });
                 //		    		modal.hide();
@@ -975,7 +977,7 @@ function selectCarType(id) {
 
     $('#car_type').val(id);
     $('#txt_car_type').text(name);
-    $('ons-back-button').click();
+   	callpop();
     focusBoxCar2();
 }
 
@@ -986,7 +988,7 @@ function selectCarBrand(id, ps) {
     $('#car_brand').val(id);
     $('#car_brand_txt_input').val(name);
     $('#txt_car_brand').text(name);
-    $('ons-back-button').click();
+    callpop();
     $('#img_car_brand_show').show();
     $('#img_car_brand_show').css('background-position', ps);
     focusBoxCar2();
@@ -999,7 +1001,7 @@ function selectCarProvince(id) {
 
     $('#car_province').val(id);
     $('#txt_car_province').text(name);
-    $('ons-back-button').click();
+    callpop();
     focusBoxCar2();
 }
 
@@ -1012,7 +1014,7 @@ function selectCarColor(id, val) {
     $('#car_color_txt_input').val(val);
     $('#txt_car_color').text(val);
     $('#img_car_color_show').show();
-    $('ons-back-button').click();
+    callpop();
     focusBoxCar2();
 }
 
@@ -1026,7 +1028,7 @@ function selectPlateColor(id, val) {
     $('#plate_color_txt_input').val(val);
     $('#txt_plate_color').text(val);
     $('#img_plate_color_show').show();
-    $('ons-back-button').click();
+    callpop();
     focusBoxCar2();
 }
 
@@ -1042,7 +1044,7 @@ function selectCarIns(id, val) {
 	  		if(txt){
 				$('#car_ins_com_txt_put').val(txt);
 	    		$('#txt_car_ins').text(txt);
-		    	$('ons-back-button').click();
+		    	callpop();
 		    	focusBoxCar2();
 			}
 	    	
@@ -1052,7 +1054,7 @@ function selectCarIns(id, val) {
     $('#car_ins_com_txt_put').val(val);
     $('#txt_car_ins').text(val);
 
-    $('ons-back-button').click();
+    callpop();
     focusBoxCar2();
 }
 
