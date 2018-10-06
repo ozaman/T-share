@@ -5,9 +5,9 @@
    		box-shadow: 0px 1px 5px #DADADA;  }
    .tdtable  td {height:26px;}
    .img-car{
-   		height: 60px;
+   		height: 45px;
 /*   		width: auto;*/
-		max-width: 85px;
+		max-width: 75px;
    }
    .btn-action-car{
    	    border: 1px solid #ccc;

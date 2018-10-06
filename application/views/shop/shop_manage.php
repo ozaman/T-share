@@ -1,4 +1,4 @@
-
+<input type="hidden" id="open_shop_manage" value="1" />
 <?php 
 	$data_user_class = $_COOKIE[detect_userclass];
   if(count($_POST[data])<=0){ 

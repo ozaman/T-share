@@ -228,7 +228,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         การเงิน
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
-                    <div class="expandable-content" style="padding-left: 60px;">รายจ่าย</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="expenditure();">รายจ่าย</div>
                     <div class="right arr" id="list_acc">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
@@ -437,6 +437,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				</ons-page>
 				
 				<template id="shop_manage.html">
+				
 				  <ons-page id="shop_manage">
 				    
 				  </ons-page>
@@ -819,7 +820,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
 						            </div>
 						            <div class="center list-item__center" style="background-image: none;">
-						                 <input class="ap-date" type="month" id="date_shop_ic" name="date_shop_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateShop($(this).val());" />
+						                 <input class="ap-date" type="month" id="date_shop_ic" name="date_shop_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateShop($(this).val());" max="<?=date('Y-m',time());?>" />
 						            </div>
 						            
 						        </ons-list-item>
@@ -839,7 +840,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
 						            </div>
 						            <div class="center list-item__center" style="background-image: none;">
-						                 <input class="ap-date" type="month" id="date_trans_ic" name="date_trans_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateTrans($(this).val());" />
+						                 <input class="ap-date" type="month" id="date_trans_ic" name="date_trans_ic" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="filterDateTrans($(this).val());" max="<?=date('Y-m',time());?>" />
 						            </div>
 						            
 						        </ons-list-item>
@@ -862,6 +863,73 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						    });
 							frist_ic = false;
 						}
+					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
+					});
+				</script>
+            </div>
+            <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>     
+            <script>
+                ons.getScriptPage().onInit = function () {
+        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+      }
+    </script>
+        </ons-page>
+    </template>
+	
+	<template id="expenditure.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button >กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+            </ons-toolbar>
+            <div id="body_transfer">
+            	<ons-page>
+				  <ons-tabbar swipeable position="top">
+				    <ons-tab id="tab-booktran" page="booktran.html" label="จองรถ" active  >
+				    </ons-tab>
+				    <ons-tab id="tab-booktour" page="booktour.html" label="จองทัวร์">
+				    </ons-tab>
+				  </ons-tabbar>
+				  
+				</ons-page>
+				
+				<template id="booktran.html">
+				  <ons-page >
+				  		<ons-card class="card" style="margin-bottom: 20px">
+				  			<ons-list-header>รายการจองรถของคุณ</ons-list-header>
+						  		
+						</ons-card>	
+				    	<div id="booktran_body">
+				    		
+				    	</div>
+				  </ons-page>
+				</template>
+
+				<template id="booktour.html">
+				  <ons-page>
+				   		<ons-card class="card" style="margin-bottom: 20px">
+				   			<ons-list-header>รายการจองทัวร์ของคุณ</ons-list-header>
+						  		
+						</ons-card>	
+						<div id="booktran_body">
+							
+						</div>
+				  </ons-page>
+				</template>
+			
+				<script>
+					document.addEventListener('prechange', function(event) {
+						var page = event.tabItem.getAttribute('page');
+						console.log(page);
+						/*if(page == "trans_ic.html" && frist_ic == true){
+							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+						    	$('#trans_ic').html(ele);
+						    	renderTransferJob();
+						    });
+							frist_ic = false;
+						}*/
 					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
 					});
 				</script>
@@ -953,7 +1021,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
 						            </div>
 						            <div class="center list-item__center" style="background-image: none;">
-						                 <input class="ap-date" type="month" id="date_his_wallet" name="date_his_wallet" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="history_wallet();" />
+						                 <input class="ap-date" type="month" id="date_his_wallet" name="date_his_wallet" value="<?=date('Y-m',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="history_wallet();" max="<?=date('Y-m',time());?>"/>
 						            </div>
 						            
 						        </ons-list-item>
@@ -1422,5 +1490,5 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
 <?php   $lng_map = $google_map_api_lng;?>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
-
+<input type="hidden" value="0" id="check_custome_js" />
 <script src="assets/custom.js?<?=time();?>"></script>
