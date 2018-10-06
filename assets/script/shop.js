@@ -372,7 +372,7 @@ function checkchild(x) {
     console.log('dsdsdsd')
 }
 // var rad = document.form_booking.nation;
-function shandleClick(tax,country) {
+function shandleClicks(tax,country) {
     console.log(tax)
     console.log(country)
     var url = "shop/box_price_plan" + "?i_country=" + country;
@@ -383,7 +383,7 @@ function shandleClick(tax,country) {
     });
     // body...
 }
-function handleClicks(tax, name) {
+function handleClick(tax, name) {
     console.log(tax)
     console.log(name)
     var url = "shop/box_price_plan" + "?i_country=" + name;
