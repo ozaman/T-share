@@ -118,3 +118,13 @@
     </label>
   </div>
 <?php } ?>
+
+
+<script >
+   setTimeout(function() {
+  var chk = '<?=count($data['list_price']);?>';
+  if ( chk == 1 ) {
+    $('#box_com').removeClass('borderBlink');
+  }
+   }, 1000);
+</script>

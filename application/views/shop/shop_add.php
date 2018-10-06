@@ -318,6 +318,8 @@ $data_shopmain = $shopmain->row();
             </tr>
           </tbody>
         </table>
+                <input type="hidden" value="" name="price_plan" ></ons-radio>
+
         <div id="box_price_plan">
           
 
