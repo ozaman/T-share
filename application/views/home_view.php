@@ -459,7 +459,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						              <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
 						            </div>
 						            <div class="center list-item__center" style="background-image: none;">
-						                 <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" />
+						                 <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" max="<?=date('Y-m',time());?>" />
 						            </div>
 						            
 						        </ons-list-item>
