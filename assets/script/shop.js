@@ -1226,13 +1226,18 @@ function openZello(shop_id) {
 }
 
 function openMapsDistance(shop_id) {
-    //		 $( "#main_load_mod_popup_map" ).toggle();
-    $('#map_side_popup').fadeIn();
-    $('#map_side_popup_body').html(load_main_mod);
-    //	  	var url_load= "load_page_map.php?name=map_api&file=map_place&shop_id="+shop_id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val();
-    var url_load = "mod/map_api/map_place.php?shop_id=" + shop_id + "&lat=" + $('#lat').val() + "&lng=" + $('#lng').val();
-    //  	  	$('#load_mod_popup_map').html(load_main_mod);
-    $('#map_side_popup_body').load(url_load);
+  
+   fn.pushPage({
+        'id': 'popup2.html',
+        'title': ''
+    }, 'fade-md');
+    var url = "page/call_page?id="+shop_id;
+    $.post(url, {
+        path: "map/map_place"
+    }, function(ele) {
+//    	console.log(ele)
+        $('#body_popup2').html(ele);
+    });
 }
 
 /******* <!-------- Change html CheckIn ------------> *******/
@@ -1482,6 +1487,7 @@ function btn_driver_pay_report(id) {
 }
 
 /******* <!-------- function run page ------------> *******/
+
 function shopManage(){
 	$('#shop_manage').html(progress_circle);
 	var obj = array_data;
@@ -1653,6 +1659,8 @@ function calTime(val){
 }
 
 function approveBook(id, invoice, driver_id){
+	
+//	return;
 	var pass = {
         id : id,
         vc : invoice,
@@ -1674,12 +1682,17 @@ function approveBook(id, invoice, driver_id){
 			        dataType: 'json',
 			        success: function(res) {
 			            console.log(res);
+			            sendSocket(id);
 			            	ons.notification.alert({
 		                        message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
 		                        title: "สำเร็จ",
 		                        buttonLabel: "ปิด"
 		                    })
-		                    .then(function() {shopManage()});
+		                    .then(function() {
+		                    	
+		                    	shopManage();
+		                    
+		                    });
 			        }
 			    });
         }
@@ -1715,4 +1728,8 @@ function historyShop(date){
 				  });
 			 
    		});
+}
+
+function approvePayDriver(){
+	
 }

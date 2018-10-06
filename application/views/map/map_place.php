@@ -1,11 +1,13 @@
 <?php 
-
 $google_api="AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90";
- 
- if($_POST[lat]>0 and $_POST[lng]>0){
- 	$url = "https://www.google.com/maps/embed/v1/directions?key=".$google_api."&destination=".$arr[shop][address]."&origin=".$_GET[lat].",".$_GET[lng]."&center=".$_GET[lat].",".$_GET[lng]."&avoid=tolls|highways&zoom=12";
+$query = $this->db->query("select * from shopping_product where id = '".$_GET[id]."' ");
+$row_product = $query->row();
+/*echo json_encode($row_product);
+exit;*/
+ if($row_product->lat>0 and $row_product->lng>0){
+ 	$url = "https://www.google.com/maps/embed/v1/directions?key=".$google_api."&destination=".$row_product->address."&origin=".$row_product->lat.",".$row_product->lng."&center=".$row_product->lat.",".$row_product->lng."&avoid=tolls|highways&zoom=14";
  }else{
- 	$url = "https://www.google.com/maps/embed/v1/place?key=".$google_api."&q=".$arr[shop][address]."&zoom=16";
+ 	$url = "https://www.google.com/maps/embed/v1/place?key=".$google_api."&q=".$row_product->address."&zoom=16";
  }
 ?>
 
@@ -16,7 +18,8 @@ $google_api="AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90";
 	width: 100%;
 	height: 100%;
 	 overflow:hidden;
-	background: url('images/loading.gif') 50% 50% no-repeat rgb(249,249,249); background-color:#FFFFFF
+/*	background: url('images/loading.gif') 50% 50% no-repeat rgb(249,249,249); */
+	background-color:#FFFFFF
 }
 </style>
  

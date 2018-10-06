@@ -367,10 +367,12 @@ socket.on('updaterooms', function(rooms, current_room) {
     array_rooms = rooms;
     console.log(current_room)
 });
+
 socket.on('datalab', function(username, data) {
     console.log('***********************datalab***************************')
     console.log(username)
     console.log(data)
+    
     //console.log(data[0].id);
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
@@ -405,12 +407,15 @@ socket.on('datalab', function(username, data) {
         });
     }
 });
+
 socket.on('updatedriver', function(username, data) {
+	
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
     console.log(data)
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
+    	
         if (data.id == check_open) {
             console.log(data)
             console.log(data.id);
@@ -434,6 +439,11 @@ socket.on('updatedriver', function(username, data) {
             }
         }
     }
+    console.log($('#open_shop_manage').val());
+    if($('#open_shop_manage').val()==1){
+		shopManage();
+	}
+    
 });
 
 function formatDate(date) {
@@ -911,4 +921,11 @@ function clearCookieAll(){
 //	   $.removeCookie(cookie);
 		$.removeCookie(cookie, { path: '/' });
 	}
+}
+
+function expenditure(){
+	fn.pushPage({
+        'id': 'expenditure.html',
+        'title': 'รายจ่าย'
+    }, 'slide-ios');
 }
