@@ -1,4 +1,5 @@
 <?php
+
 foreach ($place_company as $data){
     ?>
     <div class="card" onclick="sendShop('<?=$data->id;?>')">

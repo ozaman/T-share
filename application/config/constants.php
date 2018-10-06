@@ -82,7 +82,22 @@ define('TBL_PRODUCT_PRICE_LIST_ALL', 'product_price_list_all');
 define('TBL_ORDER_BOOKING', 'order_booking');
 define('TBL_WEB_CARALL', 'web_carall');
 define('TBL_WEB_DRIVER', 'web_driver');
-
+define('TBL_SHOPPING_OPEN_TIME', 'shopping_open_time');
+define('TBL_SHOPPING_CONTACT', 'shopping_contact');
+define('TBL_SHOPPING_CONTACT_TYPE', 'shopping_contact_type');
+define('TBL_SHOPPING_PRODUCT_SUB', 'shopping_product_sub');
+define('TBL_WEB_AREA', 'web_area');
+define('TBL_WEB_REGION', 'web_region');
+define('TBL_WEB_PROVINCE', 'web_province');
+define('TBL_WEB_AMPHUR', 'web_amphur');
+define('TBL_WEB_COUNTRY', 'web_country');
+define('TBL_SHOP_COUNTRY', 'shop_country');
+define('TBL_SHOP_COUNTRY_COM', 'shop_country_com');
+define('TBL_SHOP_COUNTRY_COM_LIST', 'shop_country_com_list');
+define('TBL_SHOP_COUNTRY_COM_LIST_PRICE', '	shop_country_com_list_price');
+define('TBL_SHOP_COUNTRY_ICON', 'shop_country_icon');
+define('TBL_SHOP_PLAN_COM', 'shop_plan_com');
+define('TBL_SHOP_PAYMENT_CHANNEL','shop_payment_channel');
 
 
 

@@ -577,7 +577,7 @@ function sendShop2() {
             //   $.post(url,{ path : "car/car_view" },function(ele){
             //    $('#body_shop').html(ele);
             // });
-            var url2 = "shop/shop_pageadd";
+            var url2 = "shop/shop_pageadd?shop_id=1";
             var urlcount = "shop/car_count";
 
 

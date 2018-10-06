@@ -134,115 +134,154 @@ $data_shopmain = $shopmain->row();
     }
   </style>
   <?php 
-  		if($query->num_rows()>=1){
-			
-  ?>
-  <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
-    <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
-    <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
-    <!--<div></div>-->
-    <!--<span >เลือกรถส่งแขก</span>-->
-    <div style="padding: 0px;margin-top: 0px;" >
-      <?php
+  if($query->num_rows()>=1){
+
+    ?>
+    <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
+      <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
+      <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
+      <!--<div></div>-->
+      <!--<span >เลือกรถส่งแขก</span>-->
+      <div style="padding: 0px;margin-top: 0px;" >
+        <?php
 
           // echo json_encode($query->result());
-      $i =1;
-      foreach ($query->result() as $key=>$val) {
+        $i =1;
+        foreach ($query->result() as $key=>$val) {
 
 
-        $bg_plate_color = "background-color: ".$val->plate_color;
+          $bg_plate_color = "background-color: ".$val->plate_color;
 //          $text_plate_color = "background-color: ".$val->txt_color;
-        ?>
-
-
-        <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
-          <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
-          <?php if($val->status_usecar == 1){
-            $calss_box = 'cus_focus';
-          }
-          else{
-            $calss_box = '';
-          }
           ?>
-          <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
-            <tbody>
-              <tr>
-                <td width="30">
-                  <!--<label class="container">-->
-                    <?php 
 
-                    if($val->status_usecar == 1 && count($query->result()) == 1){
+
+          <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
+            <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
+            <?php if($val->status_usecar == 1){
+              $calss_box = 'cus_focus';
+            }
+            else{
+              $calss_box = '';
+            }
+            ?>
+            <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
+              <tbody>
+                <tr>
+                  <td width="30">
+                    <!--<label class="container">-->
+                      <?php 
+
+                      if($val->status_usecar == 1 && count($query->result()) == 1){
+                        ?>
+                        <script>
+
+                          $('#box_car').removeClass('borderBlink')
+                          $('#nation_box').addClass('borderBlink')
+
+                          selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
+                        </script>
+                        <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   checked></ons-radio>
+
+                      <?php }
+                      else{
+                        ?>
+                        <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"  ></ons-radio>
+
+
+                      <?php }
                       ?>
-                      <script>
 
-                        $('#box_car').removeClass('borderBlink')
-                        $('#nation_box').addClass('borderBlink')
-
-                        selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
-                      </script>
-                      <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   checked></ons-radio>
-
-                    <?php }
-                    else{
-                      ?>
-                      <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"  ></ons-radio>
-
-
-                    <?php }
-                    ?>
-
-                    <!--<input type="checkbox" name="car"  value="1">-->
-                    <!--<span class="checkmark"></span>-->
-                    <!--</label>-->
-                  </td>
-                  <td>
-                    <table width="100%" cellpadding="1" cellspacing="2">
-                      <tbody>
-                        <tr>
-                          <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color; ?>">
-                            <div style="border-radius:5px;border: 1px solid <?=$val->txt_color; ?>;"><font color="<?=$val->txt_color; ?>" class="font-17"><b><?=$val->plate_num; ?></font><br>
-                              <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font></div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
+                      <!--<input type="checkbox" name="car"  value="1">-->
+                      <!--<span class="checkmark"></span>-->
+                      <!--</label>-->
                     </td>
+                    <td>
+                      <table width="100%" cellpadding="1" cellspacing="2">
+                        <tbody>
+                          <tr>
+                            <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color; ?>">
+                              <div style="border-radius:5px;border: 1px solid <?=$val->txt_color; ?>;"><font color="<?=$val->txt_color; ?>" class="font-17"><b><?=$val->plate_num; ?></font><br>
+                                <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font></div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
 
-                  </tr>
-                </tbody>
-              </table>
-            </a>    
-            <?php  
-            $i++;
-          }
-          ?>
+                      </td>
 
+                    </tr>
+                  </tbody>
+                </table>
+              </a>    
+              <?php  
+              $i++;
+            }
+            ?>
+
+          </div>
         </div>
-      </div>
-<?php } ?> 
+      <?php } ?> 
 
-      <script>
+      <?php  
+      $_where = array();
+      $_where['i_shop'] = $_GET[shop_id];
+    // echo $_GET[shop_id].'************';
+        // $_where['i_shop'] = 1;
+        // $_where['i_status'] = 1;
+      $_select = array('*');
 
-      </script>
-      <div class="card" id="nation_box" onclick="checformadd('nation_box')">
+      $_order = array();
+      $_order['id'] = 'asc';
+      $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY,$_where,$_select,$_order);
+
+
+
+
+
+      ?>
+      <div class="card" id="nation_box" onclick="//checformadd('nation_box')">
        <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
        <div class="form-group">
+        <?php 
+        foreach($data['region'] as $key=>$val){
 
-        <!-- <span class="font-17"></span> -->
-        <ons-list-item tappable id="nation_1">
-         <label class=" left">
-          <!--<ons-checkbox class="checkbox-color" name="persion_china" input-id="persion_china" value="0" onclick="selectnation(1)"></ons-checkbox>-->
-          <ons-radio class="radio-fruit " input-id="radio-nation1" value="1" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
-        </label>
-        <label class="center" for="radio-nation1">
-          <img src="assets/images/flag/China.png" width="25" height="25" alt="">&nbsp; <span class=" font-17">แขกจีน</span>
-        </label>
+          $_where = array();
+          $_where['i_shop_country'] = $val->id; 
+          $_select = array('*');
+          $_order = array();
+          $_order['id'] = 'asc';
+          $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON,$_where,$_select,$_order);
+          ?>
+          <ons-list-item tappable id="nation_<?=$key+1;?>">
+            <label class=" left">
+            <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
+          </label>
+          <?php
+
+          foreach($arr[region_icon] as $key2=>$val2){
+
+            ?>
+            <!-- <span class="font-17"></span> -->
+
+            
+              <label class="" for="radio-nation<?=$key+1;?>">
+                <div class="col-md-3">
+                <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
+                </div>
+              </label>
+            
+
+
+          <?php }?>
+        
       </ons-list-item>
+    <?php }?>
 
-      <ons-list-item tappable id="nation_2">
+  </div>
+<!-- </div> -->
+<!--  <ons-list-item tappable id="nation_2">
         <label class="left">
-          <!--<ons-checkbox class="checkbox-color" name="persion_other" input-id="persion_other" value="0" onclick="selectnation2(1)"></ons-checkbox>-->
+          
           <ons-radio class="radio-fruit " input-id="radio-nation2" value="2" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
         </label>
         <label class="center" for="radio-nation2">
@@ -252,43 +291,40 @@ $data_shopmain = $shopmain->row();
 
       <ons-list-item tappable id="nation_3">
         <label class="left">
-          <!--<ons-checkbox class="checkbox-color" name="persion_other" input-id="persion_other" value="0" onclick="selectnation2(1)"></ons-checkbox>-->
+         
           <ons-radio class="radio-fruit " input-id="radio-nation3" value="3" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
         </label>
         <label class="center" for="radio-nation3">
           <img src="assets/images/flag/China.png" width="25" height="25" alt=""> + <img src="assets/images/flag/Other.png" width="25" height="25" alt="">&nbsp;
           <span class=" font-17">จีน + ต่างชาติ</span>
         </label>
-      </ons-list-item>
+      </ons-list-item> -->
 
     </div>
 
-
-  </div>
-
-  <div class="card" id="box_com" onclick="checformadd('box_com')">
-    <!-- Agent Issu -->  
-    <div class="" id="show_payment_detail" style="">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td>
-              <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
-              <!-- <div class="font-22" style="color:#3b5998"><b></b></div> -->
-            </td>
-            <td width="50" style="display: none;" id="row_accept_payment">
-              <!-- <img src="images/checked.png" width="35px"> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
+    <div class="card" id="box_com" onclick="checformadd('box_com')">
+      <!-- Agent Issu -->  
+      <div class="" id="show_payment_detail" style="">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tbody>
             <tr>
-              <td width="100%">
-                <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
-                <script>
+              <td>
+                <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
+                <!-- <div class="font-22" style="color:#3b5998"><b></b></div> -->
+              </td>
+              <td width="50" style="display: none;" id="row_accept_payment">
+                <!-- <img src="images/checked.png" width="35px"> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
+            <tbody>
+              <tr>
+                <td width="100%">
+                  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
+                  <script>
                       ///
                       $('#show_price_plan_1').click(function () {
                         $("#main_load_mod_popup_4").toggle();

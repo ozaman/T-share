@@ -4,7 +4,7 @@ if (class_user == 'lab') {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
 
-function checformadd(tax) {
+function _checformadd(tax) {
     var form = document.getElementById("form_booking");
     if (tax == 'box_car') {
         $('#' + tax).removeClass('borderBlink')
@@ -373,6 +373,11 @@ function checkchild(x) {
 }
 // var rad = document.form_booking.nation;
 function handleClick(tax, name) {
+    console.log(tax)
+    console.log(name)
+    // body...
+}
+function handleClicks(tax, name) {
     console.log(tax)
     console.log(name)
     var form = document.getElementById("form_booking");
