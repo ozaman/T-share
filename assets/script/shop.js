@@ -4,7 +4,7 @@ if (class_user == 'lab') {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
 
-function _checformadd(tax) {
+function checformadd(tax) {
     var form = document.getElementById("form_booking");
     if (tax == 'box_car') {
         $('#' + tax).removeClass('borderBlink')
@@ -372,9 +372,9 @@ function checkchild(x) {
     console.log('dsdsdsd')
 }
 // var rad = document.form_booking.nation;
-function handleClick(tax,country) {
+function shandleClick(tax,country) {
     console.log(tax)
-    console.log(name)
+    console.log(country)
     var url = "shop/box_price_plan" + "?i_country=" + country;
    
     $.post(url, function(res) {
@@ -384,6 +384,14 @@ function handleClick(tax,country) {
     // body...
 }
 function handleClicks(tax, name) {
+    console.log(tax)
+    console.log(name)
+    var url = "shop/box_price_plan" + "?i_country=" + name;
+   
+    $.post(url, function(res) {
+        $('#box_price_plan').html(res);
+        // console.log(data);
+    });
     console.log(tax)
     console.log(name)
     var form = document.getElementById("form_booking");

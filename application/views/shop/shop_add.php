@@ -239,7 +239,7 @@ $data_shopmain = $shopmain->row();
 
 
       ?>
-      <div class="card" id="nation_box" onclick="//checformadd('nation_box')">
+      <div class="card" id="nation_box" onclick="checformadd('nation_box')">
        <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
        <div class="form-group">
         <?php 
