@@ -122,6 +122,9 @@ public function editadult()
   		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}
+	public function box_price_plan(){
+		$this->load->view('shop/box_price_plan');
+	}
 	
 		
 }

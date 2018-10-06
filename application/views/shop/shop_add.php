@@ -254,31 +254,31 @@ $data_shopmain = $shopmain->row();
           ?>
           <ons-list-item tappable id="nation_<?=$key+1;?>">
             <label class=" left">
-            <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
-          </label>
-          <?php
+              <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
+            </label>
+            <?php
 
-          foreach($arr[region_icon] as $key2=>$val2){
+            foreach($arr[region_icon] as $key2=>$val2){
 
-            ?>
-            <!-- <span class="font-17"></span> -->
+              ?>
+              <!-- <span class="font-17"></span> -->
 
-            
+
               <label class="" for="radio-nation<?=$key+1;?>">
                 <div class="col-md-3">
-                <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
+                  <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
                 </div>
               </label>
-            
 
 
-          <?php }?>
-        
-      </ons-list-item>
-    <?php }?>
 
-  </div>
-<!-- </div> -->
+            <?php }?>
+
+          </ons-list-item>
+        <?php }?>
+
+      </div>
+      <!-- </div> -->
 <!--  <ons-list-item tappable id="nation_2">
         <label class="left">
           
@@ -310,269 +310,139 @@ $data_shopmain = $shopmain->row();
             <tr>
               <td>
                 <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
-                <!-- <div class="font-22" style="color:#3b5998"><b></b></div> -->
+
               </td>
               <td width="50" style="display: none;" id="row_accept_payment">
-                <!-- <img src="images/checked.png" width="35px"> -->
+
               </td>
             </tr>
           </tbody>
         </table>
-        <div>
-          <table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
-            <tbody>
-              <tr>
-                <td width="100%">
-                  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="0">
-                  <script>
-                      ///
-                      $('#show_price_plan_1').click(function () {
-                        $("#main_load_mod_popup_4").toggle();
-                        var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=1&lat=7.872888&lng=98.360599&type=stop";
-                        $('#load_mod_popup_4').html(load_main_mod);
-                        $('#load_mod_popup_4').load(url_load_1);
-                      });
-                    </script>                    
-                    <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
-                      <label class="center" for="price_plan_1">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tbody>
-                            <tr>
-                              <td width="30" rowspan="2" align="center" style="display: nones;">
-                                <label class="left list-item__left">
-                                  <!--<ons-checkbox class="checkbox-color" name="persion_china" input-id="persion_china" value="0" onclick="selectnation(1)"></ons-checkbox>-->
-                                  <ons-radio class="radio-fruit radio-nation" input-id="price_plan_1" value="1" name="price_plan" ></ons-radio>
+        <div id="box_price_plan">
+          
 
-                                </label>
-
-                                <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="1" id="" /> -->
-                              </td>
-                              <td class="font-17"> ค่าจอด + ค่าหัว </td>
-                              <!--<td width="35" rowspan="2" valign="middle"><a id="show_price_plan_1"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
-                            </tr>
-                            <tr>
-                              <td>
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                  <tbody>
-                                    <tr>
-                                      <td  class="font-17"> 
-                                        <img src="assets/images/flag/China.png" align="absmiddle" width="25" height="25" alt="" >
-                                        <span >&nbsp;จีน  </span>
-                                        <span style="display:show">จอด  1100&nbsp;</span>
-                                        <span style="display:show">หัว  200&nbsp;</span>
-                                        <!-- <span style="display:none">ค่าคอม  0 %&nbsp;</span> -->
-
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-
-                                         <!-- <table width="100%" border="0" cellspacing="1" cellpadding="1" >
-  <tbody>
-     <tr>
-        <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/><span class="font-14">&nbsp;ต่างชาติ</td>
-        <td>
-           <span style="display:noneshow">ค่าจอด  <b>200</b>&nbsp;</span>
-           <span style="display:noneshow">ค่าหัว  <b>0</b>&nbsp;</span>
-           <span style="display:none">ค่าคอมมิชชั่น  <b>0 %</b>&nbsp;</span>
-           &nbsp;
-        </td>
-     </tr>
-  </tbody>
-</table> -->
-
-</td>
-</tr>
-</tbody>
-</table>
-</label>
-</div>
-<script>
-                      ///
-                      $('#show_price_plan_2').click(function () {
-                        $("#main_load_mod_popup_4").toggle();
-                        var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=2&lat=7.872888&lng=98.360599&type=stop";
-                        $('#load_mod_popup_4').html(load_main_mod);
-                        $('#load_mod_popup_4').load(url_load_1);
-                      });
-                    </script>                    
-                    <!--  <div class=" " style="margin-left:-5px; border-bottom: dotted #999999 1px;padding: 10px 0px;" >
-                        <table width="100%" border="0" cellspacing="1" cellpadding="3" >
-                           <tbody>
-                              <tr>
-                                 <td width="30" rowspan="2" align="center">
-                                   
-                                 <td class="font-16"><b> ค่าคอมมิชชั่น</b> </td>
-                                 <td width="35" rowspan="2"><a id="show_price_plan_2"><i class="fa fa-search" style=" color:#666666;font-size:18px;"  > </i></a></td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                                                               
-                                                                              <table width="100%" border="0" cellspacing="1" cellpadding="1">
-                                       <tbody>
-                                          <tr>
-                                             <td width="80"><img src="images/flag/Other.png" width="25" height="25" alt="" style="margin-top:-5px;"/>
-                                                <span class="font-14">ต่างชาติ</span>
-                                             </td>
-                                             <td>
-                                                <span style="display:none">ค่าจอด  <b>200</b>&nbsp;</span>
-                                                <span style="display:none">ค่าหัว   <b>0</b>&nbsp;</span>
-                                                <span style="display:noneshow">ค่าคอมมิชชั่น   <b>5 %</b>&nbsp;</span>
-                                                &nbsp;
-                                             </td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                     
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                      </div> -->
-                      <script>
-                      ///
-                      $('#show_price_plan_3').click(function () {
-                        $("#main_load_mod_popup_4").toggle();
-                        var url_load_1 = "load_page_mod_4.php?name=booking/popup&file=price&shop_id=1&plan=25&lat=7.872888&lng=98.360599&type=stop";
-                        $('#load_mod_popup_4').html(load_main_mod);
-                        $('#load_mod_popup_4').load(url_load_1);
-                      });
-                    </script>                    
-                    <div class=" " style="border-bottom: dotted #999999 0px;padding: 10px 0px;" >
-                      <label class="center" for="price_plan_3">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tbody>
-                            <tr>
-                              <td width="30" rowspan="2" align="center" style="display: nones;">
-                                <label class="left list-item__left">
-                                  <ons-radio class="radio-fruit radio-nation" input-id="price_plan_3" value="3" name="price_plan"></ons-radio>
-                                </label>
-                                <!-- <input type="radio" name="price_plan" class="price_plan_select genaral" value="2" id="price_plan_3" /></td> -->
-                              </td><td class="font-17"> ค่าจอด + ค่าคอม </td>
-                              <!--<td width="35" rowspan="2"><a id="show_price_plan_3"><i class="fa fa-search" style=" color:#666666;font-size:18px;"> </i></a></td>-->
-                            </tr>
-                            <tr>
-                              <td>
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_china">
-                                  <tbody>
-                                    <tr>
-                                      <td class="font-17"> 
-                                        <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="" >
-                                        <span >&nbsp;จีน </span>
-
-                                        <span style="display:noneshow">จอด  600&nbsp;</span>
-                                        <!-- <span style="display:none">ค่าหัว  0&nbsp;</span> -->
-                                        <span style="display:noneshow">คอม  5 %</span>
-
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-
-
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_order">
-                                  <tbody>
-                                    <tr>
-                                      <td class="font-17">
-                                        <img src="assets/images/flag/Other.png" align="absmiddle" width="25" height="25" alt="" >
-                                        <span >&nbsp;ต่างชาติ</span>
-
-                                        <span style="display:noneshow" id="text_price_order">จอด&nbsp;200&nbsp;</span>
-                                        <!-- <span style="display:none">ค่าหัว200&nbsp;</span> -->
-                                        <!-- <span style="display:noneshow">ค่าคอมมิชชั่น<b>5 %</b>&nbsp;</span> -->
-
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+          <!-- <div class=" " style="border-bottom: dotted #999999 0px;padding: 10px 0px;" >
+            <label class="center" for="price_plan_3">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                  <tr>
+                    <td width="30" rowspan="2" align="center" style="display: nones;">
+                      <label class="left list-item__left">
+                        <ons-radio class="radio-fruit radio-nation" input-id="price_plan_3" value="3" name="price_plan"></ons-radio>
                       </label>
-                    </div>
-                    <!--</select>-->
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    </td><td class="font-17"> ค่าจอด + ค่าคอม </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_china">
+                        <tbody>
+                          <tr>
+                            <td class="font-17"> 
+                              <img align="absmiddle" src="assets/images/flag/China.png" width="25" height="25" alt="" >
+                              <span >&nbsp;จีน </span>
+
+                              <span style="display:noneshow">จอด  600&nbsp;</span>
+                              <span style="display:noneshow">คอม  5 %</span>
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="nation_order">
+                        <tbody>
+                          <tr>
+                            <td class="font-17">
+                              <img src="assets/images/flag/Other.png" align="absmiddle" width="25" height="25" alt="" >
+                              <span >&nbsp;ต่างชาติ</span>
+                              <span style="display:noneshow" id="text_price_order">จอด&nbsp;200&nbsp;</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </label>
+          </div> -->
+
         </div>
-      </div>
-
-
-
-
-      <div class="card" id="num_customer" onclick="checformadd('num_customer')">
-        <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
-        <div class="form-group">
-
-
-          <!-- <label class="font-17">จำนวนคน</label> -->
-
-          <ons-row>
-            <ons-col>
-              <ons-input id="adult" name="adult" type="number" pattern="\d*" placeholder="ผู้ใหญ่" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
-            </ons-col>
-            &nbsp;
-            &nbsp;
-            <ons-col>
-              <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
-            </ons-col>
-          </ons-row>
-        </div>
-      </div>
-      <div class="card" id="box_time" onclick="checformadd('box_time')">
-       <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
-       <div class="form-group">
-
-        <!-- <span class="list-header" style="background-image: none;"></span> -->
-
-        <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-          <option value="0">-- เลือกเวลา --</option>
-          <?php
-          $time = array("5" => "5 นาที",
-            "10" => "10 นาที",
-            "15" => "15 นาที",
-            "20" => "20 นาที",
-            "25" => "25 นาที",
-            "30" => "30 นาที",
-            "35" => "35 นาที",
-            "40" => "40 นาที",
-            "45" => "45 นาที",
-            "50" => "50 นาที",
-            "55" => "55 นาที",
-            "60" => "1 ชัวโมง.",
-            "90" => "1 ชัวโมง 30 นาที",
-            "120" => "2 ชัวโมง",
-            "150" => "2 ชัวโมง 30 นาที",
-            "180" => "3 ชัวโมง",
-            "210" => "3 ชัวโมง 30 นาที",
-            "240" => "4 ชัวโมง",
-            "270" => "4 ชัวโมง 30 นาที",
-            "300" => "5 ชัวโมง",
-            "330" => "5 ชัวโมง 30 นาที",
-            "360" => "6 ชัวโมง",
-            "390" => "6 ชัวโมง 30 นาที",
-            "420" => "7 ชัวโมง",
-            "450" => "7 ชัวโมง 30 นาที",
-            "490" => "8 ชัวโมง");
-          $mm = 5;
-          ?>
-
-          <?php foreach ($time as $key => $at) { ?>
-            <option value="<?=$key; ?>"><?=$at; ?></option>
-          <?php }
-          ?>
-
-        </select>
-
       </div>
     </div>
 
 
+
+
+    <div class="card" id="num_customer" onclick="checformadd('num_customer')">
+      <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
+      <div class="form-group">
+
+
+        <!-- <label class="font-17">จำนวนคน</label> -->
+
+        <ons-row>
+          <ons-col>
+            <ons-input id="adult" name="adult" type="number" pattern="\d*" placeholder="ผู้ใหญ่" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+          </ons-col>
+          &nbsp;
+          &nbsp;
+          <ons-col>
+            <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+          </ons-col>
+        </ons-row>
+      </div>
+    </div>
+    <div class="card" id="box_time" onclick="checformadd('box_time')">
+     <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
+     <div class="form-group">
+
+      <!-- <span class="list-header" style="background-image: none;"></span> -->
+
+      <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+        <option value="0">-- เลือกเวลา --</option>
+        <?php
+        $time = array("5" => "5 นาที",
+          "10" => "10 นาที",
+          "15" => "15 นาที",
+          "20" => "20 นาที",
+          "25" => "25 นาที",
+          "30" => "30 นาที",
+          "35" => "35 นาที",
+          "40" => "40 นาที",
+          "45" => "45 นาที",
+          "50" => "50 นาที",
+          "55" => "55 นาที",
+          "60" => "1 ชัวโมง.",
+          "90" => "1 ชัวโมง 30 นาที",
+          "120" => "2 ชัวโมง",
+          "150" => "2 ชัวโมง 30 นาที",
+          "180" => "3 ชัวโมง",
+          "210" => "3 ชัวโมง 30 นาที",
+          "240" => "4 ชัวโมง",
+          "270" => "4 ชัวโมง 30 นาที",
+          "300" => "5 ชัวโมง",
+          "330" => "5 ชัวโมง 30 นาที",
+          "360" => "6 ชัวโมง",
+          "390" => "6 ชัวโมง 30 นาที",
+          "420" => "7 ชัวโมง",
+          "450" => "7 ชัวโมง 30 นาที",
+          "490" => "8 ชัวโมง");
+        $mm = 5;
+        ?>
+
+        <?php foreach ($time as $key => $at) { ?>
+          <option value="<?=$key; ?>"><?=$at; ?></option>
+        <?php }
+        ?>
+
+      </select>
+
+    </div>
   </div>
+
+
+</div>
 </form>
 <div style="padding: 0px 10px;margin-bottom: 10px;">
   <?php 

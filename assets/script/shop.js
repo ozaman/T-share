@@ -372,9 +372,15 @@ function checkchild(x) {
     console.log('dsdsdsd')
 }
 // var rad = document.form_booking.nation;
-function handleClick(tax, name) {
+function handleClick(tax,country) {
     console.log(tax)
     console.log(name)
+    var url = "shop/box_price_plan" + "?i_country=" + country;
+   
+    $.post(url, function(res) {
+        $('#box_price_plan').html(res);
+        // console.log(data);
+    });
     // body...
 }
 function handleClicks(tax, name) {
