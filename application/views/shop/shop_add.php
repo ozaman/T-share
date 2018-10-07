@@ -21,7 +21,7 @@ $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
 
-$sql_place = "SELECT * FROM shopping_product  WHERE id=1 AND price_plan > 0";
+$sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]." AND price_plan > 0";
 $query_place = $this->db->query($sql_place);
 $data_place = $query_place->row();
 
@@ -41,7 +41,7 @@ $data_shopmain = $shopmain->row();
 ?>
 <div style="height: 100%;">
   <form name="form_booking" id="form_booking">
-    <input type="hidden" value="1" name="program" id="program" />
+    <input type="hidden" value="<?=$_GET[shop_id];?>" name="program" id="program" />
     <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
     <input type="hidden" value="" name="car_type" id="car_type" />
     <input type="hidden" value="" name="car_plate" id="car_plate" />
@@ -79,7 +79,7 @@ $data_shopmain = $shopmain->row();
               <td>
                 <div class="element_to_find">
                   <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span><br>
-                  <span class="font-17" style="color:#333333"><b> คิงส์ พาวเวอร์ (ภูเก็ต) </b></span>
+                  <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span>
 
                   <input type="hidden" value=" " id="1">
 
@@ -446,12 +446,12 @@ $data_shopmain = $shopmain->row();
 
 </div>
 </form>
-<div style="padding: 0px 10px;margin-bottom: 10px;">
+<div  style="padding: 0px 10px;margin-bottom: 10px;">
   <?php 
   if(count($val) != 0){
       // echo count($val);
     ?>
-    <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
+    <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
 
   <?php } ?>
 </div>

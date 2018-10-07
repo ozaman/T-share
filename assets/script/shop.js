@@ -6,8 +6,9 @@ if (class_user == 'lab') {
 
 function checformadd(tax) {
     var form = document.getElementById("form_booking");
-    $('.card').removeClass('borderBlink')
+
     if (tax == 'box_car') {
+        $('.card').removeClass('borderBlink')
         $('#' + tax).removeClass('borderBlink')
         if (form.elements["nation"].value == 0) {
             $('#nation_box').addClass('borderBlink')
@@ -21,6 +22,7 @@ function checformadd(tax) {
             });
         }
         if (form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            $('.card').removeClass('borderBlink')
             $('#box_com').addClass('borderBlink')
             // $("#box_com").animate({scrollTop:50}, '500');
             // $("#box_com").animate({top:'50'},1000,function(){
@@ -45,6 +47,7 @@ function checformadd(tax) {
         }
     }
     if (tax == 'nation_box') {
+        $('.card').removeClass('borderBlink')
         $('#' + tax).removeClass('borderBlink')
         // if (form.elements["plate_num_1"].value == 0) {
         //     $('#box_car').addClass('borderBlink')
@@ -114,6 +117,7 @@ function checformadd(tax) {
         // }
     }
     if (tax == 'box_com') {
+        $('.card').removeClass('borderBlink')
         $('#' + tax).removeClass('borderBlink')
         if (form.elements["plate_num_1"].value == 0) {
             $('#box_car').addClass('borderBlink')

@@ -570,14 +570,79 @@ function hideRes(id) {
     }
 }
 /*************************** Menu function *********************************/
-function sendShop(company) {}
+function sendShop(company) {
+    fn.pushPage({
+                'id': 'shopping.html',
+                'title': 'ส่งแขก',
+                'key': 'shop'
+            })
+            //                       var url = "page/call_page";
+            //   $.post(url,{ path : "car/car_view" },function(ele){
+            //    $('#body_shop').html(ele);
+            // });
+            var url2 = "shop/shop_pageadd?shop_id="+company;
+            var urlcount = "shop/car_count";
+
+
+            $.post(url2, function(ele2) {
+                if(class_user=="taxi"){
+                    
+                    $.post(urlcount, function(res) {
+                        if (res == 0) {
+
+                            ons.notification.alert({
+                                    message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+                                    title: "ไม่สามารถส่งแขกได้",
+                                    buttonLabel: "เพิ่มรถ"
+                                })
+                                .then(function() {
+                                    // callpop();
+                                    callpop();
+                                    setTimeout(function() {
+                                        myCar();
+                                    }, 700);
+
+                                    return;
+                                });
+
+                        }
+                    });
+                
+                }
+                modal.hide();
+                
+                $('#shop_add').html(ele2);
+                var pass = {
+                    date: moment().format('YYYY-MM-DD'),
+                    driver: $.cookie("detect_user"),
+                    type: 'his'
+                };
+                // console.log(pass);
+                var urlcounthis = "shop/count_his"
+                $.ajax({
+                    url: urlcounthis,
+                    data: pass,
+                    type: 'post',
+                    success: function(res) {
+                        // console.log(res);
+                        if (res != 0) {
+                            $('#num_his').show();
+                            $('#num_his').html(res);
+                        }
+                        // $('ons-tab[page="shop_history.html"]').attr('badge', res);
+                    }
+                });
+
+
+            });
+}
 
 function sendShop2() {
     modal.show();
     var urlo = 'shop/place_companycount';
     $.post(urlo, function(res) {
-        console.log(res)
-        if (res == 1) {
+         console.log(res)
+        if (res.count == 1) {
             fn.pushPage({
                 'id': 'shopping.html',
                 'title': 'ส่งแขก',
@@ -587,7 +652,7 @@ function sendShop2() {
             //   $.post(url,{ path : "car/car_view" },function(ele){
             //    $('#body_shop').html(ele);
             // });
-            var url2 = "shop/shop_pageadd?shop_id=1";
+            var url2 = "shop/shop_pageadd?shop_id="+res.shop_id;
             var urlcount = "shop/car_count";
 
 
@@ -631,7 +696,7 @@ function sendShop2() {
                     data: pass,
                     type: 'post',
                     success: function(res) {
-                        console.log(res);
+                        // console.log(res);
                         if (res != 0) {
                             $('#num_his').show();
                             $('#num_his').html(res);
@@ -655,7 +720,7 @@ function sendShop2() {
             }, 'slide-ios')
             var url = "shop/place_company";
             $.post(url, function(res) {
-                console.log(res)
+                // console.log(res)
                 $('#body_place_company').html(res);
             });
         }

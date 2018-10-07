@@ -49,11 +49,35 @@ public function editadult()
   		// echo json_encode($data);
   		$this->load->view('shop/place_company',$data);
 	}
-	public function place_companycount(){	
-    $data = $this->Shop_model->place_companycount();
+	public function place_companycount(){
+		header('Content-Type: application/json');
+		$_where = array();
+    // $_where['product_id'] = $_GET[id];
+    $_where['status'] = 1;
+    // $_where['time_other_number'] = 2;
+    
+   
+    
+
+    $data = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+    if ($data == 1) {
+    	$data_res = array();
+    	$data_res[count] = 1;
+    	$arr_where = array();
+	$arr_where['status'] = 1;
+    $arr_select = array('id');
+    //$arr_order = array();
+   
+    $data2 = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT, $arr_where, $arr_select,'');
+    $data_res[shop_id] = $data2[0]->id;
+    }
+    else{
+    	$data_res[count] = 2;
+    }
+    // $data = $this->Shop_model->place_companycount();
 		// $data['place_company'] = $this->Shop_model->place_company();
   		// header('Content-Type: application/json');
-  		echo json_encode($data);
+  		echo json_encode($data_res);
   		
   		// $this->load->view('shop/place_company',$data);
 	}

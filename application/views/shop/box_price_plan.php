@@ -159,7 +159,10 @@
                     });
                 }
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 2) {
-                    $('#box_com').addClass('borderBlink')
+                    $('#btn_submitadd').removeClass('borderBlink')
+                   
+                    $('.card').removeClass('borderBlink')
+                     $('#box_com').addClass('borderBlink')
                     console.log(this.hash)
 
                     $('html, body').animate({

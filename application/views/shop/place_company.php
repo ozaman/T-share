@@ -3,9 +3,9 @@
 foreach ($place_company as $data){
     ?>
     <div class="card" onclick="sendShop('<?=$data->id;?>')">
-        <table width="100%" border="0" cellspacing="4" cellpadding="4" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
+        <table width="100%" border="0" cellspacing="" cellpadding="" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
-                <td width="110">
+                <td width="110" valign="top">
                     <img src="../data/pic/place/1_logo.jpg" width="100px" alt="" style=" border-radius:  15px; border: 1px solid #ddd; margin-bottom:5px;">
                 </td>
                 <td>
