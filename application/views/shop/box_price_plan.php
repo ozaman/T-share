@@ -20,13 +20,13 @@
   $data['list_price'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE,$_where,$_select,$_order);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
-    <label class="center" for="price_plan_<?=$val->id;?>">
+    <label class="center" for="price_plan_<?=$key+1;?>">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="1" name="price_plan" ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="1" name="price_plan" ></ons-radio>
               </label>
             </td>
             <td class="font-17">
@@ -122,9 +122,83 @@
 
 <script >
    setTimeout(function() {
-  var chk = '<?=count($data['list_price']);?>';
+    var form = document.getElementById("form_booking");
+  var chk = '<?=count($data['list_plan']);?>';
   if ( chk == 1 ) {
     $('#box_com').removeClass('borderBlink');
+    $('#price_plan_1').prop('checked',true);
+    
   }
+  // else{
+  // // $('#price_plan').val('');
+  //    $('#box_com').addClass('borderBlink');
+  // }
+  // $('#' + tax).removeClass('borderBlink')
+                if (form.elements["plate_num_1"].value == 0) {
+                    $('#box_car').addClass('borderBlink')
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#box_car";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+                    $('#nation_box').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#nation_box";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 2) {
+                    $('#box_com').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#box_com').offset().top
+                    }, 300, function() {
+
+                        $("#box_com").focus()
+
+                        window.location.href = "#box_com";
+                    });
+                    return false;
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 1 && $('#child').val() == '' && $('#adult').val() == '') {
+                    $('#num_customer').addClass('borderBlink')
+                    console.log(this.hash)
+
+                    $('html, body').animate({
+                        scrollTop: $('#num_customer').offset().top
+                    }, 300, function() {
+
+                        $("#adult").focus()
+
+                        window.location.href = "#num_customer";
+                    });
+                }
+                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+                    $('#num_customer').removeClass('borderBlink')
+                    if (form.elements["time_num"].value == 0) {
+                        $('#box_time').addClass('borderBlink')
+                        $('#time_num').focus()
+                    } else {
+                        $('#box_time').removeClass('borderBlink')
+                        $('#btn_submitadd').addClass('borderBlink')
+
+                        $('#child').focusout();
+                    }
+
+
+                }
+  console.log(chk)
    }, 1000);
 </script>
