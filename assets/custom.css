@@ -21,6 +21,17 @@ img[src=""] {
 /*    background-color: #fff;*/
     color: #fb0006;
 }
+.time-post-shop-his {
+    border-radius: 10px;
+    margin-right: 10px;
+    border: 1px solid #333;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    background-color: #fff;
+    margin-top: -105px;
+}
 .time-post-shop {
     border-radius: 10px;
     margin-right: 10px;
