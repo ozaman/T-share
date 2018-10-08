@@ -1,4 +1,8 @@
 <style>
+	.box-img-product{
+		width: 100%;
+	    box-shadow: 1px 1px 3px #9E9E9E;
+	}
 	.list-pd-r{
 		padding-left: 15px;
 	}
@@ -6,6 +10,10 @@
 		color: #afafaf;
 	}
 </style>
+<div align="center">
+		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />
+		<div style="margin: 5px;"><span class="font-16" style="color: #868383;"><?=$row_product->topic_th;?></span></div>
+	</div>
 <div style="padding: 10px 0px;">
 	<p class="intro">
 		<span class="font-22" style="color: #110000;"><b>ค่าหัว + ค่าจอด</b></span><br/>

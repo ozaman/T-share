@@ -1,8 +1,5 @@
 <style>
 	.box-img-product{
-/*		max-width: 250px;*/
-/*		max-height: 90px;*/
-/*	    border-radius: 10px;*/
 		width: 100%;
 	    box-shadow: 1px 1px 3px #9E9E9E;
 	}
