@@ -396,11 +396,12 @@ socket.on('datalab', function(username, data) {
                     console.log("driver_pay_report");
                     changeHtml("driver_pay_report", value.id, value.driver_pay_report_date)
                 }
-                var check_open_incom = $('#check_id_income_lab').val();
+                var check_open_incom = $('#check_id_income').val();
                 if (typeof check_open_incom != 'undefined') {
                     if (check_open_incom == check_open) {
                         console.log("Refresh Incom = " + check_open_incom + " | " + check_open);
-                        openViewPrice()
+//                        openViewPrice()
+						reloadIncomeShop(value.id);
                     }
                 }
             }

@@ -316,6 +316,24 @@ $query = $this->db->get();
 	$data[result] = $this->db->update('order_booking', $data); 
 	return $data;
   }
+  
+  public function lab_approved_pay(){
+  	$id = $_POST[order_id];
+  	$data_ob[driver_payment_date] = time();
+	$data_ob[check_lab_pay] = 1;
+  	$this->db->where('id', $id);
+	$data[result] = $this->db->update('order_booking', $data_ob); 
+	return $data;
+  }
+  
+  public function driver_approved_pay(){
+  	
+  	$id = $_POST[order_id];
+  	$data_ob[check_driver_pay] = 1;
+  	$this->db->where('id', $id);
+	$data[result] = $this->db->update('order_booking', $data_ob); 
+	return $data;
+  }
   /**
   * 
   * driver_topoint

@@ -1767,19 +1767,23 @@ function openViewPrice(id) {
         'id': 'popup_shop_checkin.html',
         'title': "รายได้"
     }, 'lift-ios');
-    var url = "page/call_page?&id=" + id;
+  	reloadIncomeShop(id);
+}
+
+function reloadIncomeShop(id){
+	  var url = "page/call_page?&id=" + id;
     console.log(url);
     if(class_user=="taxi"){
       var path = "shop/income_driver_taxi";
-  }else{
-      var path = "shop/income_driver_lab";
-  }
+	  }else{
+	      var path = "shop/income_driver_lab";
+	  }
 
-  $.post(url, {
-    path: path
-}, function(ele) {
-    $('#body_shop_checkin').html(ele);
-});
+	  $.post(url, {
+	    path: path
+	}, function(ele) {
+	    $('#body_shop_checkin').html(ele);
+	});
 }
 
 function ex_booking() {
@@ -1934,6 +1938,76 @@ $.post(url_his,data,function(res){
 });
 }
 
-function approvePayDriver(){
+function approvePayDriverByLab(id, invoice, driver){
+	console.log("Lab approved pay");
+	 sendSocket(id);
+	 return;
+	var param = {
+		order_id : id
+	}
 	
+	$.ajax({
+           url: "shop/lab_approved_pay",
+           data: param,
+           type: 'post',
+           dataType: 'json',
+           success: function(res) {
+               console.log(res);
+//              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
+               $.ajax({
+			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+			           type: 'post',
+			           dataType: 'json',
+			           success: function(res) {
+			               console.log(res);
+			                sendSocket(id);
+			               ons.notification.alert({
+			                  message: 'ยืนยันการจ่ายเงินแล้ว',
+			                  title: "สำเร็จ",
+			                  buttonLabel: "ปิด"
+			             	 })
+			               .then(function() {
+			               	
+			               		 reloadIncomeShop(id);
+			               });
+			           }
+			       });
+           }
+       });
+}
+
+function approvePayDriverByTaxi(id, invoice, driver){
+	console.log("Driver approved pay");
+	 sendSocket(id);
+	 return;
+	var param = {
+		order_id : id
+	}
+	
+	$.ajax({
+           url: "shop/driver_approved_pay",
+           data: param,
+           type: 'post',
+           dataType: 'json',
+           success: function(res) {
+               console.log(res);
+               $.ajax({
+			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+			           type: 'post',
+			           dataType: 'json',
+			           success: function(res) {
+			               console.log(res);
+			                sendSocket(id);
+			               ons.notification.alert({
+			                  message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+			                  title: "สำเร็จ",
+			                  buttonLabel: "ปิด"
+			             	 })
+			               .then(function() {
+								reloadIncomeShop(id);
+			               });
+			           }
+			       });
+           }
+       });
 }

@@ -363,3 +363,4 @@ else if($book->status=='CONFIRM'){
 
 </ons-card>
 <input type="hidden" id="check_cause" value="0"/>
+<input type="hidden" id="check_id_income" value="<?=$book->id;?>"/>
