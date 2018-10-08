@@ -63,4 +63,12 @@
 	    	<span class="font-16 txt-red">ยังไม่จ่ายเงิน</span>
 	    </div>
 	</ons-list-item>
+	<ons-list-item>
+	    <div class="center list-pd-r">
+	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 95%; margin: 0 auto;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
+	    </div>
+	    <!--<div class="right">
+	    	<span class="font-16 txt-red">ยังไม่จ่ายเงิน</span>
+	    </div>-->
+	</ons-list-item>
 </div>

@@ -1983,6 +1983,8 @@ function approvePayDriverByLab(id, invoice, driver){
 
 function approvePayDriverByTaxi(id, invoice, driver){
 	console.log("Driver approved pay");
+	 sendSocket(id);
+	 return;
 	var param = {
 		order_id : id
 	}
