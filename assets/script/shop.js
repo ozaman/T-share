@@ -1934,26 +1934,71 @@ $.post(url_his,data,function(res){
 });
 }
 
-function approvePayDriver(){
+function approvePayDriverByLab(id, invoice, driver){
 	console.log("Lab approved pay");
+	var param = {
+		order_id : id
+	}
+	
 	$.ajax({
            url: "shop/lab_approved_pay",
-           data: pass,
+           data: param,
            type: 'post',
            dataType: 'json',
            success: function(res) {
                console.log(res);
-               sendSocket(id);
-               ons.notification.alert({
-                  message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
-                  title: "สำเร็จ",
-                  buttonLabel: "ปิด"
-              })
-               .then(function() {
+//              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
+               $.ajax({
+			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+			           type: 'post',
+			           dataType: 'json',
+			           success: function(res) {
+			               console.log(res);
+			                sendSocket(id);
+			               ons.notification.alert({
+			                  message: 'ยืนยันการจ่ายเงินแล้ว',
+			                  title: "สำเร็จ",
+			                  buttonLabel: "ปิด"
+			             	 })
+			               .then(function() {
+								
+			               });
+			           }
+			       });
+           }
+       });
+}
 
-                   shopManage();
-
-               });
+function approvePayDriverByTaxi(id, invoice, driver){
+	console.log("Driver approved pay");
+	var param = {
+		order_id : id
+	}
+	
+	$.ajax({
+           url: "shop/driver_approved_pay",
+           data: param,
+           type: 'post',
+           dataType: 'json',
+           success: function(res) {
+               console.log(res);
+               $.ajax({
+			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+			           type: 'post',
+			           dataType: 'json',
+			           success: function(res) {
+			               console.log(res);
+			                sendSocket(id);
+			               ons.notification.alert({
+			                  message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+			                  title: "สำเร็จ",
+			                  buttonLabel: "ปิด"
+			             	 })
+			               .then(function() {
+								
+			               });
+			           }
+			       });
            }
        });
 }

@@ -34,7 +34,13 @@ public function acknowledge(){
 //  		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}	
-	
+
+public function send_msg_pay_shop(){
+		
+		$data['res'] = $this->Send_onesignal_model->$_GET[type]();
+//  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}	
 	
 }
 ?>

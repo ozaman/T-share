@@ -51,6 +51,22 @@
 	}
 	
 	$total = intval($row->price_person_total) + intval($row->price_park_total);
+	
+	if($row->check_lab_pay==1){
+		if($row->check_driver_pay==1){
+			$status_txt = '<span class="font-16 txt-green"><img src="assets/images/yes.png" style="width:30px;" /><span>แท็กซี่ยืนยันแล้ว</span></span>';
+		}else{
+			$status_txt = '<span class="font-16 txt-warning"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอแท็กซี่ยืนยันรับเงิน</span></span>';
+		}
+		$btn_approved = "disabled";
+		$txt_btn_app = "ทำการยืนยันแล้ว";
+		$show_after_approve = "";
+	}else{
+		$show_after_approve = "style='display:none;' ";
+		$txt_btn_app = "ยืนยันการจ่ายเงิน";
+		$btn_approved = "";
+		$status_txt = '<span class="font-16 txt-red"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอดำเนินการ</span></span>';
+	}
 ?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />
@@ -106,13 +122,21 @@
 	    	<span class="font-16 txt-center">สถานะ</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16 txt-red"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอดำเนินการ</span></span>
+	    	<?=$status_txt;?>
 	    </div>
 	</ons-list-item>
-
+	
+	<ons-list-item <?=$show_after_approve;?>>
+	    <div class="center list-pd-r">
+	    	<span class="font-16 txt-center">ยืนยันเวลา</span>
+	    </div>
+	    <div class="right">
+	    	<?=date('Y-m-d H:i:s',$row->driver_payment_date)." น.";?>
+	    </div>
+	</ons-list-item>
 	<ons-list-item>
 	    <div class="center list-pd-r">
-	    	<button type="button" class="button--large--cta" style="width: 95%; margin: 0 auto;" onclick="approvePayDriver();">ยืนยันการจ่ายเงิน</button>
+	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 95%; margin: 0 auto;" onclick="approvePayDriverByLab('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
 	    </div>
 	    <!--<div class="right">
 	    	<span class="font-16 txt-red">ยังไม่จ่ายเงิน</span>

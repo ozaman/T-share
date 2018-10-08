@@ -1015,11 +1015,17 @@ border:  1px solid #ddd;*/
     }
 
 /********** text color **********/
+.txt-warning{
+	color: #FF9800;
+}
+.txt-green{
+	color: #4caf50;
+}
 .txt-red{
-	color:#FF0000;
+	color: #FF0000;
 }
 .txt-dark{
-	color:#000000;
+	color: #000000;
 }
 .txt-white{
 	color: #ffffff;

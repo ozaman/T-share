@@ -160,8 +160,16 @@ class Shop extends CI_Controller {
 			$data = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 			echo json_encode($data);
 		}
-
-		
+		public function lab_approved_pay(){
+			$data['res'] = $this->Shop_model->lab_approved_pay();
+//			header('Content-Type: application/json');
+			echo json_encode($data['res']);
+		}
+		public function driver_approved_pay(){
+			$data['res'] = $this->Shop_model->driver_approved_pay();
+//			header('Content-Type: application/json');
+			echo json_encode($data['res']);
+		}
 	}
 
 
