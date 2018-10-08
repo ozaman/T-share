@@ -17,6 +17,8 @@
 	
 	$query = $this->db->query("select * from shopping_product where id = '".$row->program."' ");
 	$row_product = $query->row();
+	
+	$txt_btn_app = "ยืนยันการรับเงิน";
 ?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />

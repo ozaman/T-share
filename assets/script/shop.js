@@ -1767,19 +1767,23 @@ function openViewPrice(id) {
         'id': 'popup_shop_checkin.html',
         'title': "รายได้"
     }, 'lift-ios');
-    var url = "page/call_page?&id=" + id;
+  	reloadIncomeShop(id);
+}
+
+function reloadIncomeShop(id){
+	  var url = "page/call_page?&id=" + id;
     console.log(url);
     if(class_user=="taxi"){
       var path = "shop/income_driver_taxi";
-  }else{
-      var path = "shop/income_driver_lab";
-  }
+	  }else{
+	      var path = "shop/income_driver_lab";
+	  }
 
-  $.post(url, {
-    path: path
-}, function(ele) {
-    $('#body_shop_checkin').html(ele);
-});
+	  $.post(url, {
+	    path: path
+	}, function(ele) {
+	    $('#body_shop_checkin').html(ele);
+	});
 }
 
 function ex_booking() {
@@ -1936,6 +1940,8 @@ $.post(url_his,data,function(res){
 
 function approvePayDriverByLab(id, invoice, driver){
 	console.log("Lab approved pay");
+	 sendSocket(id);
+	 return;
 	var param = {
 		order_id : id
 	}
@@ -1962,18 +1968,7 @@ function approvePayDriverByLab(id, invoice, driver){
 			             	 })
 			               .then(function() {
 			               	
-			               		 var url = "page/call_page?&id=" + id;
-								    console.log(url);
-								    if(class_user=="taxi"){
-								      var path = "shop/income_driver_taxi";
-								  }else{
-								      var path = "shop/income_driver_lab";
-								  }
-								  $.post(url, {
-								    path: path
-								}, function(ele) {
-								    $('#body_shop_checkin').html(ele);
-								});
+			               		 reloadIncomeShop(id);
 			               });
 			           }
 			       });
@@ -2009,18 +2004,7 @@ function approvePayDriverByTaxi(id, invoice, driver){
 			                  buttonLabel: "ปิด"
 			             	 })
 			               .then(function() {
-								var url = "page/call_page?&id=" + id;
-								    console.log(url);
-								    if(class_user=="taxi"){
-								      var path = "shop/income_driver_taxi";
-								  }else{
-								      var path = "shop/income_driver_lab";
-								  }
-								  $.post(url, {
-								    path: path
-								}, function(ele) {
-								    $('#body_shop_checkin').html(ele);
-								});
+								reloadIncomeShop(id);
 			               });
 			           }
 			       });
