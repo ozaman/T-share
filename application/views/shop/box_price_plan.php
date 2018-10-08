@@ -7,7 +7,7 @@
  $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST,$_where,$_select,$_order);
 
  ?>
- <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_country];?>">
+ <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_country];?>" />
  <?php
 
  foreach($data['list_plan'] as $key=>$val){

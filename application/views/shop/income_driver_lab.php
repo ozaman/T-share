@@ -10,6 +10,14 @@
 		color: #afafaf;
 	}
 </style>
+<?php 
+	$query = $this->db->query("select * from order_booking where id = '".$_GET[id]."' ");
+	$row = $query->row();
+	
+	
+	$query = $this->db->query("select * from shopping_product where id = '".$row->program."' ");
+	$row_product = $query->row();
+?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />
 		<div style="margin: 5px;"><span class="font-16" style="color: #868383;"><?=$row_product->topic_th;?></span></div>
