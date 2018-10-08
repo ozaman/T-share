@@ -1935,5 +1935,25 @@ $.post(url_his,data,function(res){
 }
 
 function approvePayDriver(){
-	
+	console.log("Lab approved pay");
+	$.ajax({
+           url: "shop/lab_approved_pay",
+           data: pass,
+           type: 'post',
+           dataType: 'json',
+           success: function(res) {
+               console.log(res);
+               sendSocket(id);
+               ons.notification.alert({
+                  message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
+                  title: "สำเร็จ",
+                  buttonLabel: "ปิด"
+              })
+               .then(function() {
+
+                   shopManage();
+
+               });
+           }
+       });
 }
