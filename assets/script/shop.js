@@ -845,7 +845,7 @@ var submitShop = function() {
     var x = time_num/60;
     var chek_x;
     if (parseInt(time_num) < 60) {
-        chek_x =  '0'+parseInt(time_num);
+        chek_x =  '0'+'.'+parseInt(time_num);
     }
     else if (parseInt(time_num) == 60) {
          chek_x = 1+'.'+'0';
@@ -858,7 +858,7 @@ var submitShop = function() {
             chek_x = x;
         }
     }
-    
+    console.log(chek_x)
     console.log(time_num%60)
 
     console.log(x.toString())
