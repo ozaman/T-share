@@ -26,8 +26,18 @@ class Shop_model extends CI_Model {
 		$data["price_extra_park"] = $price_extra_park;
 		$data["price_extra_person"] = $price_extra_park;
 		$data["income_price_park"] = $income_price_park;*/
+		$price_person_total = (1*$_POST[price_person_unit]) * (1*$_POST[adult]);
+		$data["price_park_unit"] = $_POST[price_park_unit];
+		$data["price_person_unit"] = $_POST[price_person_unit];
+		$data["price_person_total"] = $price_person_total;
+		// $data["price_all_total"] = $price_park_driver + $all_price_person_driver;
+		$data["commission_persent"] = $_POST[commission_persent];
+
+
+
+
 		$data["plan_setting"] = $_POST[plan_setting];
-		
+
 		$data["plan_id"] = $_POST[price_plan];
 		$data["pax"] = $_POST[adult];
 		$data["program"] = $_POST[program];

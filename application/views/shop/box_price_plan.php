@@ -26,7 +26,7 @@
           <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="<?=$data['list_price'];?>" name="price_plan" ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="<?=$val->id;?>" name="price_plan" ></ons-radio>
               </label>
             </td>
             <td class="font-17">
@@ -45,7 +45,31 @@
                   $count = '';
 
                 }
+                if ($val2->s_topic_en == 'park') {
+                  $price_park_unit = $val2->i_price;
+                  $price_person_unit = '';
+                  $commission_persent = '';
+
+                  # code...
+                }
+                if ($val2->s_topic_en == 'person') {
+                  $price_park_unit = '';
+                  $price_person_unit = $val2->i_price;
+                  $commission_persent = '';
+                  # code...
+                }
+                if ($val2->s_topic_en == 'comision') {
+                  $price_park_unit = '';
+                  $price_person_unit = '';
+                  $commission_persent = $val2->i_price;
+
+                  # code...
+                }
                 ?>
+                <input type="hiddens" name="price_park_unit" value="<?=$price_park_unit;?>">
+                <input type="hiddens" name="price_person_unit" value="<?=$price_person_unit;?>">
+                <!-- <input type="hiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
+                <input type="hiddens" name="commission_persent" value="<?=$commission_persent;?>">
                 <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
                 <!-- <span style="display:show">หัว  200&nbsp;</span> -->
               <?php }?>
