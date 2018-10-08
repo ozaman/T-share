@@ -441,6 +441,7 @@ socket.on('updatedriver', function(username, data) {
     }
     console.log($('#open_shop_manage').val());
     if($('#open_shop_manage').val()==1){
+    	console.log("*************************************");
 		shopManage();
 	}
     

@@ -30,6 +30,7 @@ $border_menu_color = "#ccc";
 }
 $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 ?>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>T-Share</title>
@@ -58,53 +59,53 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
 <!-- <script async defer   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>&v=<?= time(); ?>"></script> -->
 <ons-modal direction="up">
-	  <div style="text-align: center;">
-	    <p sty>
-	      <ons-icon icon="md-spinner" size="25px" spin></ons-icon> <span size="18px">Loading...</span>
-	    </p>
-	  </div>
+    <div style="text-align: center;">
+        <p sty>
+            <ons-icon icon="md-spinner" size="25px" spin></ons-icon> <span size="18px">Loading...</span>
+        </p>
+    </div>
 </ons-modal>
 <script>
-	
-//	alert('<?=$detectname;?>');
-	var modal = document.querySelector('ons-modal');
-		modal.show();
-	var today = "<?=date('Y-m-d');?>";
-    var detect_mb = "<?=$detectname;?>";
-    var detect_user = $.cookie("detect_user");
-   	  var class_user = $.cookie("detect_userclass");
-      var username = $.cookie("detect_username");
-      console.log(detect_mb+" : "+class_user+" : "+username);
-	  if(username=="" || typeof username == 'undefined'){
-//	  		window.location = "https://www.welovetaxi.com/app/TShare_new/material/login/index.php";
-			window.location = "../TShare_new/material/login/index.php";
-			/*$.cookie("detect_user",'153');
-			$.cookie("detect_userclass",'taxi');
-			$.cookie("detect_username",'HKT0153');
-			location.reload();*/
-	  }else{
-	  		username = username.toUpperCase();
-	  }
-var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
-  +'<circle class="progress-circular__background"/>'
-  +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
-  +'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
-+'</svg></div>';	  
+    //	alert('<?=$detectname;?>');
+    	var modal = document.querySelector('ons-modal');
+    		modal.show();
+    	var today = "<?=date('Y-m-d');?>";
+        var detect_mb = "<?=$detectname;?>";
+        var detect_user = $.cookie("detect_user");
+       	  var class_user = $.cookie("detect_userclass");
+          var username = $.cookie("detect_username");
+          console.log(detect_mb+" : "+class_user+" : "+username);
+    	  if(username=="" || typeof username == 'undefined'){
+    //	  		window.location = "https://www.welovetaxi.com/app/TShare_new/material/login/index.php";
+    			window.location = "../TShare_new/material/login/index.php";
+    			/*$.cookie("detect_user",'153');
+    			$.cookie("detect_userclass",'taxi');
+    			$.cookie("detect_username",'HKT0153');
+    			location.reload();*/
+    	  }else{
+    	  		username = username.toUpperCase();
+    	  }
+    var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
+      +'<circle class="progress-circular__background"/>'
+      +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
+      +'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
+    +'</svg></div>';
 </script>
 
 
 
 <style>
-	.icon-menu-ios{
-		    margin-left: 7px;
-    		padding-right: 10px;
-	}
-	.icon-menu-android{
-		    margin-left: 7px;
-    		padding-right: 20px;
-	}
+    .icon-menu-ios{
+    		    margin-left: 7px;
+        		padding-right: 10px;
+    	}
+    	.icon-menu-android{
+    		    margin-left: 7px;
+        		padding-right: 20px;
+    	}
 </style>
-<body >
+
+<body>
 
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
         <ons-page>
@@ -359,7 +360,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </script>
         </ons-page>
     </template>
-    
+
     <template id="account_bank.html">
         <ons-page>
             <ons-toolbar>
@@ -398,14 +399,14 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			    <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
 			    <!--<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">Cancel</ons-action-sheet-button>-->
 			  </ons-action-sheet>
-			</template>  
-	       <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>     
-            <script>
-                ons.getScriptPage().onInit = function () {
+			</template>
+    <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
 
     <template id="shopping.html">
@@ -443,15 +444,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="shop_add.html">
+    <template id="shop_add.html">
 				  <ons-page id="shop_add">
 				   <div>
 				   		<!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
 				   </div>
 				  </ons-page>
 				</template>
-				
-				<template id="shop_history.html">
+
+    <template id="shop_history.html">
 				  <ons-page  style="overflow-y: scroll;">
 				    	<ons-card class="card" style="margin-bottom: 20px">
 						  		<ons-list-item class="input-items list-item p-l-0">
@@ -469,10 +470,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						</div>
 				  </ons-page>
 				</template>
-			
-            </div>
-            <script>
-                ons.getScriptPage().onInit = function() {
+
+    </div>
+    <script>
+        ons.getScriptPage().onInit = function() {
                     console.log($('#number_shop').text())
 			    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
 			    window.fn.showDialog = function(id) {
@@ -495,10 +496,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			    this.querySelector('ons-toolbar div.center').textContent = this.data.title;
 			}
     </script>
-    	<script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
-        </ons-page>
+    <script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
+    </ons-page>
     </template>
-    
+
     <template id="transfer.html">
         <ons-page>
             <ons-toolbar>
@@ -525,49 +526,49 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="transfer_job.html">
+    <template id="transfer_job.html">
 				  <ons-page id="transfer_job">
 				   	
 				  </ons-page>
 				</template>
-				
-				<template id="transfer_income.html">
+
+    <template id="transfer_income.html">
 				  <ons-page id="transfer_income">
 				    <p style="text-align: center;">
 				      This is the second page 3.
 				    </p>
 				  </ons-page>
 				</template>
-			
-				<script>
-					document.addEventListener('prechange', function(event) {
-						var page_trans = event.tabItem.getAttribute('page');
-						if(page_trans=="transfer_manage.html"){
-							var url = "page/transfer_manage";
-				            $.post(url,function(html){
-				            	$('#transfer_manage').html(html);
-				            	callApiManage();
-				            });
-						}else if(page_trans=="transfer_income.html"){
-							
-						}else if(page_trans=="transfer_job.html"){
 
-						}
-						
-				 /* document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				</script>
-            </div>
-            <script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
-            <script>
-                ons.getScriptPage().onInit = function () {
+    <script>
+        document.addEventListener('prechange', function(event) {
+        						var page_trans = event.tabItem.getAttribute('page');
+        						if(page_trans=="transfer_manage.html"){
+        							var url = "page/transfer_manage";
+        				            $.post(url,function(html){
+        				            	$('#transfer_manage').html(html);
+        				            	callApiManage();
+        				            });
+        						}else if(page_trans=="transfer_income.html"){
+        							
+        						}else if(page_trans=="transfer_job.html"){
+        
+        						}
+        						
+        				 /* document.querySelector('ons-toolbar .center')
+        				    .innerHTML = event.tabItem.getAttribute('label');*/
+        				});
+    </script>
+    </div>
+    <script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-    
+
     <template id="book_tour.html">
         <ons-page>
             <ons-toolbar>
@@ -596,37 +597,37 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="tab2.html">
+    <template id="tab2.html">
 				  <ons-page id="Tab2">
 				    <p style="text-align: center;">
 				      This is the second page 2.
 				    </p>
 				  </ons-page>
 				</template>
-				
-				<template id="tab3.html">
+
+    <template id="tab3.html">
 				  <ons-page id="Tab3">
 				    <p style="text-align: center;">
 				      This is the second page 3.
 				    </p>
 				  </ons-page>
 				</template>
-			
-				<script>
-					document.addEventListener('prechange', function(event) {
-				  /*document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				</script>
-            </div>
-            <script>
-                ons.getScriptPage().onInit = function () {
+
+    <script>
+        document.addEventListener('prechange', function(event) {
+        				  /*document.querySelector('ons-toolbar .center')
+        				    .innerHTML = event.tabItem.getAttribute('label');*/
+        				});
+    </script>
+    </div>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-    
+
     <template id="book_trans.html">
         <ons-page>
             <ons-toolbar>
@@ -655,38 +656,37 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="tab2.html">
+    <template id="tab2.html">
 				  <ons-page id="Tab2">
 				    <div></div>
 				  </ons-page>
 				</template>
-				
-				<template id="tab3.html">
+
+    <template id="tab3.html">
 				  <ons-page id="Tab3">
 				    <p style="text-align: center;">
 				      This is the second page 3.
 				    </p>
 				  </ons-page>
 				</template>
-			
-				<script>
-					document.addEventListener('prechange', function(event) {
-						console.log(event.page)
-				  /*document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				 
-				</script>
-            </div>
-            
-            <script>
-                ons.getScriptPage().onInit = function () {
+
+    <script>
+        document.addEventListener('prechange', function(event) {
+        						console.log(event.page)
+        				  /*document.querySelector('ons-toolbar .center')
+        				    .innerHTML = event.tabItem.getAttribute('label');*/
+        				});
+    </script>
+    </div>
+
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-    
+
     <template id="popup1.html">
         <ons-page>
             <ons-toolbar>
@@ -705,7 +705,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </script>
         </ons-page>
     </template>
-    
+
     <template id="popup2.html">
         <ons-page>
             <ons-toolbar>
@@ -725,7 +725,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         </ons-page>
     </template>
 
-	<template id="qrcode_ref.html">
+    <template id="qrcode_ref.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -771,7 +771,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         </ons-page>
     </template>
 
-  	<template id="contract_us.html">
+    <template id="contract_us.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -790,7 +790,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         </ons-page>
     </template>
 
-	<template id="income.html">
+    <template id="income.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -831,7 +831,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="trans_ic.html">
+    <template id="trans_ic.html">
 				  <ons-page>
 				   		<ons-card class="card" style="margin-bottom: 20px">
 				   			<ons-list-header>รายรับบริการรถ</ons-list-header>
@@ -850,33 +850,33 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						</div>
 				  </ons-page>
 				</template>
-			
-				<script>
-					var frist_ic = true;
-					document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						if(page == "trans_ic.html" && frist_ic == true){
-							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
-						    	$('#trans_ic').html(ele);
-						    	renderTransferJob();
-						    });
-							frist_ic = false;
-						}
-					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
-					});
-				</script>
-            </div>
-            <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>     
-            <script>
-                ons.getScriptPage().onInit = function () {
+
+    <script>
+        var frist_ic = true;
+        					document.addEventListener('prechange', function(event) {
+        						var page = event.tabItem.getAttribute('page');
+        						console.log(page);
+        						if(page == "trans_ic.html" && frist_ic == true){
+        							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+        						    	$('#trans_ic').html(ele);
+        						    	renderTransferJob();
+        						    });
+        							frist_ic = false;
+        						}
+        					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
+        					});
+    </script>
+    </div>
+    <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-	
-	<template id="expenditure.html">
+
+    <template id="expenditure.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -907,7 +907,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="booktour.html">
+    <template id="booktour.html">
 				  <ons-page>
 				   		<ons-card class="card" style="margin-bottom: 20px">
 				   			<ons-list-header>รายการจองทัวร์ของคุณ</ons-list-header>
@@ -918,32 +918,32 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						</div>
 				  </ons-page>
 				</template>
-			
-				<script>
-					document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						/*if(page == "trans_ic.html" && frist_ic == true){
-							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
-						    	$('#trans_ic').html(ele);
-						    	renderTransferJob();
-						    });
-							frist_ic = false;
-						}*/
-					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
-					});
-				</script>
-            </div>
-            <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>     
-            <script>
-                ons.getScriptPage().onInit = function () {
+
+    <script>
+        document.addEventListener('prechange', function(event) {
+        						var page = event.tabItem.getAttribute('page');
+        						console.log(page);
+        						/*if(page == "trans_ic.html" && frist_ic == true){
+        							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+        						    	$('#trans_ic').html(ele);
+        						    	renderTransferJob();
+        						    });
+        							frist_ic = false;
+        						}*/
+        					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
+        					});
+    </script>
+    </div>
+    <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-	
-	<template id="wallet.html">
+
+    <template id="wallet.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1004,15 +1004,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-page>
 				</template>
 
-				<template id="withdraw.html">
+    <template id="withdraw.html">
 				  <ons-page>
 						<div id="withdraw">
 							
 						</div>
 				  </ons-page>
 				</template>
-				
-				<template id="history.html">
+
+    <template id="history.html">
 				  <ons-page>
 				  		<ons-card class="card" style="margin-bottom: 20px">
 				  		<ons-list-header>ประวัติการเติมเงิน/ถอนเงิน</ons-list-header>
@@ -1031,8 +1031,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						</div>
 				  </ons-page>
 				</template>
-				
-				<template id="inform-confirm.html">
+
+    <template id="inform-confirm.html">
 				  <ons-alert-dialog id="inform-confirm-dialog" modifier="rowfooter">
 				    <div class="alert-dialog-title">ยืนยัน</div>
 				    <div class="alert-dialog-content" id="txt_content-wallet">
@@ -1045,32 +1045,31 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				  </ons-alert-dialog>
 				</template>
 
-				<script>
-					
-					var frist_ic = true;
-					document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						if(page=='add.html'){
-							console.log('add');
-						}else if(page=='history.html'){
-							history_wallet();
-						}else if(page=='withdraw.html'){
-							withdraw();
-						}
-//					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-					});
-				</script>
-            </div>
-            <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>     
-            <script>
-                ons.getScriptPage().onInit = function () {
+    <script>
+        var frist_ic = true;
+        					document.addEventListener('prechange', function(event) {
+        						var page = event.tabItem.getAttribute('page');
+        						console.log(page);
+        						if(page=='add.html'){
+        							console.log('add');
+        						}else if(page=='history.html'){
+        							history_wallet();
+        						}else if(page=='withdraw.html'){
+        							withdraw();
+        						}
+        //					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+        					});
+    </script>
+    </div>
+    <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
+    <script>
+        ons.getScriptPage().onInit = function () {
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
       }
     </script>
-        </ons-page>
+    </ons-page>
     </template>
-	
+
     <template id="place_company.html">
         <ons-page>
             <ons-toolbar>
@@ -1093,15 +1092,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         ons-splitter-side[animation=overlay] {
     border-left: 1px solid #bbb;
   }
-</style>
+    </style>
 
     <input type="hidden" id="set_lng_cookies" value="th" />
     <input type="hidden" id="check_open_worktbooking" value="0" />
     <input type="hidden" id="check_open_shop_id" value="0" />
-    
+
     <input type="hidden" id="lat" value="0" />
     <input type="hidden" id="lng" value="0" />
-    
+
     <template id="shop_add-dialog.html">
 	  <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -1114,8 +1113,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    </div>
 	  </ons-alert-dialog>
 	</template>
-	
-	<template id="signout-dialog.html">
+
+    <template id="signout-dialog.html">
 	  <ons-alert-dialog id="signout-alert-dialog" modifier="rowfooter">
 	    <div class="alert-dialog-title" id="signout-submit-dialog-title">คุณแน่ใจหรือไม่</div>
 	    <div class="alert-dialog-content">
@@ -1127,7 +1126,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    </div>
 	  </ons-alert-dialog>
 	</template>
-    
+
     <template id="option.html">
 	  <ons-page>
 	    <ons-toolbar>
@@ -1146,7 +1145,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    </script>
 	  </ons-page>
 </template>
-    
+
     <template id="popup_shop_checkin.html">
 	  <ons-page>
 	    <ons-toolbar>
@@ -1167,56 +1166,56 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    </script>
 	  </ons-page>
     </template>
-    
-    <ons-dialog id="cancel-shop-dialog" cancelable>
-      <!-- Optional page. This could contain a Navigator as well. -->
-      <ons-page>
-        <ons-toolbar>
-          <div class="center">ยกเลิกรายการ</div>
-        </ons-toolbar>
-        <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
-        <form   enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
-        <input type="hidden" value="" id="order_id_cancel" name="order_id"/>
-        <!-- <input type="hiddens" value="" id="order_id_cancel" name="username"/> -->
-        <input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="order_id_cancel" name="username"/>
 
-        	<div>
-			  <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
+    <ons-dialog id="cancel-shop-dialog" cancelable>
+        <!-- Optional page. This could contain a Navigator as well. -->
+        <ons-page>
+            <ons-toolbar>
+                <div class="center">ยกเลิกรายการ</div>
+            </ons-toolbar>
+            <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
+            <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
+                <input type="hidden" value="" id="order_id_cancel" name="order_id" />
+                <!-- <input type="hiddens" value="" id="order_id_cancel" name="username"/> -->
+                <input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="order_id_cancel" name="username" />
+
+                <div>
+                    <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
 			   <input type="hidden" value="แขกลงทะเบียนไม่ได้" name="typname_1">
 			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test2" value="2"><label for="test2">แขกไม่ไป</label></p>
 			   <input type="hidden" value="แขกไม่ไป" name="typname_2">
 			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test3" value="3"><label for="test3">เลือกสถานที่ผิด</label></p>-->
-			   <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
-			   <input type="hidden" name="typname_2"  value="แขกไม่ไป" />
-			   <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
-			   <ons-list-item tappable>
-		        <label class="left">
+                    <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
+                    <input type="hidden" name="typname_2" value="แขกไม่ไป" />
+                    <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
+                    <ons-list-item tappable>
+                        <label class="left">
 		          <ons-radio class="radio-fruit" input-id="test1" value="1" name="type_cancel"></ons-radio>
 		        </label>
-		        <label for="test1" class="center">แขกลงทะเบียนไม่ได้</label>
-		      </ons-list-item>
-		      <ons-list-item tappable>
-		        <label class="left">
+                        <label for="test1" class="center">แขกลงทะเบียนไม่ได้</label>
+                    </ons-list-item>
+                    <ons-list-item tappable>
+                        <label class="left">
 		          <ons-radio class="radio-fruit" input-id="test2" value="2" name="type_cancel"></ons-radio>
 		        </label>
-		        <label for="test2" class="center">แขกไม่ไป</label>
-		      </ons-list-item>
-		      <ons-list-item tappable modifier="longdivider">
-		        <label class="left">
+                        <label for="test2" class="center">แขกไม่ไป</label>
+                    </ons-list-item>
+                    <ons-list-item tappable modifier="longdivider">
+                        <label class="left">
 		          <ons-radio class="radio-fruit" input-id="test3" value="3" name="type_cancel"></ons-radio>
 		        </label>
-		        <label for="test3" class="center">เลือกสถานที่ผิด</label>
-		      </ons-list-item>
-			   <!--<input type="hidden" value="เลือกสถานที่ผิด" name="typname_3">-->
-		    </div>
-		</form>
-        <p style="text-align: center">
-          <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog')">ปิด</ons-button>
-          <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
-        </p>
-      </ons-page>
+                        <label for="test3" class="center">เลือกสถานที่ผิด</label>
+                    </ons-list-item>
+                    <!--<input type="hidden" value="เลือกสถานที่ผิด" name="typname_3">-->
+                </div>
+            </form>
+            <p style="text-align: center">
+                <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog')">ปิด</ons-button>
+                <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
+            </p>
+        </ons-page>
     </ons-dialog>
-    
+
     <template id="custom-dialog.html">
 				  <ons-dialog id="custom-my-dialog">
 				    <div class="dialog-mask" style="background-color: rgba(0, 0, 0, 0.70);"></div>
@@ -1232,26 +1231,26 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					</ons-button>
 				  </ons-dialog>
 				</template>
-    
+
 </body>
 
 </html>
 <script>
-	var hideCustomDialog = function(id) {
-  document
-    .getElementById(id)
-    .hide();
-};
-    if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
-        $(window).load(function() {
-//            $("#load_material").fadeOut(500);
-			modal.hide();
-            setTimeout(function() {
-//            	alert(class_user);
-                sendTagIOS(class_user, username);
-            }, 1500);
-        });
-    }
+    var hideCustomDialog = function(id) {
+      document
+        .getElementById(id)
+        .hide();
+    };
+        if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
+            $(window).load(function() {
+    //            $("#load_material").fadeOut(500);
+    			modal.hide();
+                setTimeout(function() {
+    //            	alert(class_user);
+                    sendTagIOS(class_user, username);
+                }, 1500);
+            });
+        }
 </script>
 <script>
     if (detect_mb == "Android") {
