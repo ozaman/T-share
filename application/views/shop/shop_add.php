@@ -463,28 +463,53 @@ $data_shopmain = $shopmain->row();
 </div>
 <script type="text/javascript">
   function_name();
-   function function_name() {
-              var weekdays = new Array(7);
-              weekdays[0] = "Sun";
-              weekdays[1] = "Mon";
-              weekdays[2] = "Tue";
-              weekdays[3] = "Wed";
-              weekdays[4] = "Thu";
-              weekdays[5] = "Fri";
-              weekdays[6] = "Sat";
+  function function_name() {
+    var weekdays = new Array(7);
+    weekdays[0] = "Sun";
+    weekdays[1] = "Mon";
+    weekdays[2] = "Tue";
+    weekdays[3] = "Wed";
+    weekdays[4] = "Thu";
+    weekdays[5] = "Fri";
+    weekdays[6] = "Sat";
 
-              var current_date = new Date();
+    var current_date = new Date();
 
-              weekday_value = current_date.getDay();
-              console.log(weekdays[weekday_value])
-              var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
-              $.ajax({
-                url: url_chk_time,
-                type: 'post',
-                success: function(res) {
-                 console.log(res);
-                 $('#time_open').html(res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m);
-               }
-             });
-            }
+    weekday_value = current_date.getDay();
+    console.log(weekdays[weekday_value])
+    var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
+    $.ajax({
+      url: url_chk_time,
+      type: 'post',
+      success: function(res) {
+       console.log(res);
+       //<?=$arr_time;?> = res[0];
+       $('#time_open').html(res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m);
+     }
+   });
+    var test, parts, hours, minutes, date,
+    d = (new Date()).getTime(),
+    tests = ['01.25 PM', '11.35 PM', '12.45 PM', '01.25 AM', '11.35 AM', '12.45 AM'],
+    i = tests.length,
+    timeReg = /(\d+)\.(\d+) (\w+)/;
+
+for(; i-- > 0;) {
+    test = tests[i];
+    
+    parts = test.match(timeReg);
+    
+    hours = /am/i.test(parts[3]) ?
+        function(am) {return am < 12 ? am : 0}(parseInt(parts[1], 10)) :
+        function(pm) {return pm < 12 ? pm + 12 : 12}(parseInt(parts[1], 10));
+    
+    minutes = parseInt(parts[2], 10);
+    
+    date = new Date(d);
+    
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    
+    console.log(test + ' => ' + date);
+}
+  }
 </script>
