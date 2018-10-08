@@ -26,7 +26,7 @@
           <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="1" name="price_plan" ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="<?=$data['list_price'];?>" name="price_plan" ></ons-radio>
               </label>
             </td>
             <td class="font-17">
