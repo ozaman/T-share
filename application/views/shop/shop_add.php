@@ -68,6 +68,8 @@ $data_shopmain = $shopmain->row();
               $('#car_id').val(id);
               $('#txt_car_type').val(car_type_txt);
             }
+
+
           </script>
           <input value="" id="car_id" name="check_use_car_id" type="hidden" />
           <!-- </div> -->
@@ -78,15 +80,17 @@ $data_shopmain = $shopmain->row();
               </td>
               <td>
                 <div class="element_to_find">
+                  <input type="hidden" name="" id="shop_topic_th" value="<?=$data_place->topic_th;?>">
                   <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span><br>
                   <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span>
+                  <span class="font-17" style="color:red">วันนี้เปิด <span id="time_open"></span> </span>
 
                   <input type="hidden" value=" " id="1">
 
                 </div>
 
                 <a class="font-17" style="display: none;">
-                  <strong id="txt_sh_1">แสดงรายละเอียด</strong>
+                  <strong id="txt_sh_1">ละเอียด</strong>
                   <span id="icon_sh_1"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
                 </a>
                 <input type="hidden" id="check_click_1" value="0">
@@ -318,10 +322,10 @@ $data_shopmain = $shopmain->row();
             </tr>
           </tbody>
         </table>
-                <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
+        <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
 
         <div id="box_price_plan">
-          
+
 
           <!-- <div class=" " style="border-bottom: dotted #999999 0px;padding: 10px 0px;" >
             <label class="center" for="price_plan_3">
@@ -457,3 +461,30 @@ $data_shopmain = $shopmain->row();
 </div>
 
 </div>
+<script type="text/javascript">
+  function_name();
+   function function_name() {
+              var weekdays = new Array(7);
+              weekdays[0] = "Sun";
+              weekdays[1] = "Mon";
+              weekdays[2] = "Tue";
+              weekdays[3] = "Wed";
+              weekdays[4] = "Thu";
+              weekdays[5] = "Fri";
+              weekdays[6] = "Sat";
+
+              var current_date = new Date();
+
+              weekday_value = current_date.getDay();
+              console.log(weekdays[weekday_value])
+              var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
+              $.ajax({
+                url: url_chk_time,
+                type: 'post',
+                success: function(res) {
+                 console.log(res);
+                 $('#time_open').html(res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m);
+               }
+             });
+            }
+</script>

@@ -6,7 +6,7 @@ foreach ($place_company as $data){
         <table width="100%" border="0" cellspacing="" cellpadding="" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
                 <td width="110" valign="top">
-                    <img src="../data/pic/place/1_logo.jpg" width="100px" alt="" style=" border-radius:  15px; border: 1px solid #ddd; margin-bottom:5px;">
+                    <img src="../data/pic/place/<?=$data->id;?>_logo.jpg" width="100px" alt="" style=" border-radius:  15px; border: 1px solid #ddd; margin-bottom:5px;">
                 </td>
                 <td>
                     <div class="element_to_find">
