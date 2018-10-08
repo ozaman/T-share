@@ -1961,7 +1961,19 @@ function approvePayDriverByLab(id, invoice, driver){
 			                  buttonLabel: "ปิด"
 			             	 })
 			               .then(function() {
-								
+			               	
+			               		 var url = "page/call_page?&id=" + id;
+								    console.log(url);
+								    if(class_user=="taxi"){
+								      var path = "shop/income_driver_taxi";
+								  }else{
+								      var path = "shop/income_driver_lab";
+								  }
+								  $.post(url, {
+								    path: path
+								}, function(ele) {
+								    $('#body_shop_checkin').html(ele);
+								});
 			               });
 			           }
 			       });
@@ -1995,7 +2007,18 @@ function approvePayDriverByTaxi(id, invoice, driver){
 			                  buttonLabel: "ปิด"
 			             	 })
 			               .then(function() {
-								
+								var url = "page/call_page?&id=" + id;
+								    console.log(url);
+								    if(class_user=="taxi"){
+								      var path = "shop/income_driver_taxi";
+								  }else{
+								      var path = "shop/income_driver_lab";
+								  }
+								  $.post(url, {
+								    path: path
+								}, function(ele) {
+								    $('#body_shop_checkin').html(ele);
+								});
 			               });
 			           }
 			       });
