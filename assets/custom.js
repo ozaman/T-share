@@ -1,13 +1,138 @@
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
+function setCountActivity(){
+	$.ajax({
+			        url: "activity/count_activity?id_user="+$.cookie("detect_user"), // point to server-side PHP script 
+			        dataType: 'json', // what to expect back from the PHP script, if anything
+			        type: 'post',
+			        success: function(num) {
+			        	console.log(num);
+//			        	num = 0;
+			        	if(num>0){
+							$('.fa-bell').addClass('bell');		    
+							$('#tab_activity').attr('badge', num);
+						}else{
+							$('.fa-bell').removeClass('bell');		    
+							$('#tab_activity').attr('badge', '');
+						}
+						
+			        }
+			    });
+	
+}
+
+function loadActivityPage(){
+	$('#body_load_activity').html(progress_circle);
+	var url = "page/activity";
+    $.post(url, function(html) {
+        $('#body_load_activity').html(html);
+    });
+}
+
+var delay = (function() {
+    var timer = 0;
+    return function(callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+    };
 })();
+
 var array_data = [];
 //startTimeHome();
 var clock_h;
+
+function js_yyyy_mm_dd_hh_mm_ss() {
+    now = new Date();
+    year = "" + now.getFullYear();
+    month = "" + (now.getMonth() + 1);
+    if (month.length == 1) {
+        month = "0" + month;
+    }
+    day = "" + now.getDate();
+    if (day.length == 1) {
+        day = "0" + day;
+    }
+    hour = "" + now.getHours();
+    if (hour.length == 1) {
+        hour = "0" + hour;
+    }
+    minute = "" + now.getMinutes();
+    if (minute.length == 1) {
+        minute = "0" + minute;
+    }
+    second = "" + now.getSeconds();
+    if (second.length == 1) {
+        second = "0" + second;
+    }
+    return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+}
+
+/*function findDiffDynamic(d1, d2, type){
+	datetime1 = d1;
+    datetime2 = d2;
+    //Set date time format
+    var startDate = new Date(datetime1);
+    var endDate = new Date(datetime2);
+    var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    //Calculate time
+    var days = Math.floor(seconds / (3600 * 24));
+    var hrs_d = Math.floor((seconds - (days * (3600 * 24))) / 3600);
+    var hrs = Math.floor(seconds / 3600);
+    var mnts = Math.floor((seconds - (hrs * 3600)) / 60);
+    var secs = seconds - (hrs * 3600) - (mnts * 60);
+    //old
+    var hrs_d_bc = hrs_d;
+    var mnts_bc = mnts;
+    var secs_bc = secs;
+    //Add 0 if one digit
+    if(type=="H"){
+		return hrs_d_bc;
+	}
+}*/
+
+function CheckTime(d1, d2) {
+    //      console.log(d1+" = "+d2);
+    datetime1 = d1;
+    datetime2 = d2;
+    //Set date time format
+    var startDate = new Date(datetime1);
+    var endDate = new Date(datetime2);
+    var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    //Calculate time
+    var days = Math.floor(seconds / (3600 * 24));
+    var hrs_d = Math.floor((seconds - (days * (3600 * 24))) / 3600);
+    var hrs = Math.floor(seconds / 3600);
+    var mnts = Math.floor((seconds - (hrs * 3600)) / 60);
+    var secs = seconds - (hrs * 3600) - (mnts * 60);
+    //old
+    var hrs_d_bc = hrs_d;
+    var mnts_bc = mnts;
+    var secs_bc = secs;
+    //Add 0 if one digit
+    if (hrs_d < 10) hrs_d = "0" + hrs_d;
+    if (mnts < 10) mnts = "0" + mnts;
+    if (secs < 10) secs = "0" + secs;
+    var final_txt, day_txt, h_txy, m_txt, old_txt;
+    if (days == 0) {
+        day_txt = '';
+    } else {
+        day_txt = days + ' วัน';
+    }
+    if (hrs_d_bc == 0) {
+        h_txy = '';
+    } else {
+        h_txy = ' ' + hrs_d_bc + ' ชั่วโมง.';
+    }
+    if (mnts_bc == 0) {
+        m_txt = '';
+    } else {
+        m_txt = ' ' + mnts_bc + ' นาที';
+    }
+    final_txt = day_txt + h_txy + m_txt
+    old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
+    if (days <= 0 && hrs_d_bc <= 0 && mnts_bc <= 0) {
+        return "ไม่กี่วินาทีที่ผ่านมา";
+    }
+    return final_txt + "ที่ผ่านมา";
+}
 
 function performClick(elemId) {
     console.log(elemId);
@@ -18,10 +143,12 @@ function performClick(elemId) {
         elem.dispatchEvent(evt);
     }
 }
-function gotoDiv(id){
-	 window.location.hash = '#'+id;
-	 window.location.hash = '';
+
+function gotoDiv(id) {
+    window.location.hash = '#' + id;
+    window.location.hash = '';
 }
+
 function checkImgProfile(username, pf) {
     console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
@@ -44,7 +171,9 @@ function checkImgProfile(username, pf) {
         }
     });
 }
-setTimeout(function(){ checkImgProfile($.cookie("detect_username"), 0); }, 500);
+setTimeout(function() {
+    checkImgProfile($.cookie("detect_username"), 0);
+}, 500);
 
 
 function iconsHasPic(icons, id1, id2) {
@@ -77,66 +206,76 @@ function use_often(id) {}
 function cancel_often(id) {}
 
 function sendTagIOS(classname, username) {
-        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (iOS == true) {
-            var url_xcode = "send://ios?class=" + classname + "&username=" + username + "&test=0";
-            console.log(url_xcode);
-            window.location = url_xcode;
-        }
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (iOS == true) {
+        var url_xcode = "send://ios?class=" + classname + "&username=" + username + "&test=0";
+        console.log(url_xcode);
+        window.location = url_xcode;
     }
+}
 
 function deleteTagIOS(classname, username) {
-        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (iOS == true) {
-            var url_xcode = "delete://ios?class=" + classname + "&username=" + username + "&test=0";
-            console.log(url_xcode);
-            window.location = url_xcode;
-        }
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (iOS == true) {
+        var url_xcode = "delete://ios?class=" + classname + "&username=" + username + "&test=0";
+        console.log(url_xcode);
+        window.location = url_xcode;
+    }
 }
 
-function createSignOut(){
-		var dialog = document.getElementById('signout-alert-dialog');
+function createSignOut() {
+    var dialog = document.getElementById('signout-alert-dialog');
 
-            if (dialog) {
+    if (dialog) {
+        dialog.show();
+    } else {
+        ons.createElement('signout-dialog.html', {
+                append: true
+            })
+            .then(function(dialog) {
                 dialog.show();
-            } else {
-                ons.createElement('signout-dialog.html', {
-                        append: true
-                    })
-                    .then(function(dialog) {
-                        dialog.show();
-                    });
-            }
-}
-    
-function logOut() {
-        		  $('#signout-alert-dialog').hide();
-//                	console.log($.removeCookie('detect_user'));
-                   /* $.cookie("detect_user", "", {
-                        path: '/'
-                    });
-                    $.cookie("detect_userclass", "", {
-                        path: '/'
-                    });
-                    $.cookie("detect_username", "", {
-                        path: '/'
-                    });*/
-                    $.removeCookie('detect_user', { path: '/' });
-                    $.removeCookie('detect_userclass', { path: '/' });
-                    $.removeCookie('detect_username', { path: '/' });
-//                    clearCookieAll();
-                    ons.notification.alert({message: 'ออกจากระบบสำเร็จ',title:"สำเร็จ",buttonLabel:"ปิด"})
-											  .then(function() {
-											   		
-											   		deleteTagOs("Test Text");
-                        							deleteTagIOS(class_user, username);
-                        							window.location = "../TShare_new/material/login/index.php";
-                        							
-											  });       
+            });
+    }
 }
 
-function openNotifyline(){
-    location.href="https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
+function logOut() {
+    $('#signout-alert-dialog').hide();
+    //                	console.log($.removeCookie('detect_user'));
+    /* $.cookie("detect_user", "", {
+         path: '/'
+     });
+     $.cookie("detect_userclass", "", {
+         path: '/'
+     });
+     $.cookie("detect_username", "", {
+         path: '/'
+     });*/
+    $.removeCookie('detect_user', {
+        path: '/'
+    });
+    $.removeCookie('detect_userclass', {
+        path: '/'
+    });
+    $.removeCookie('detect_username', {
+        path: '/'
+    });
+    //                    clearCookieAll();
+    ons.notification.alert({
+            message: 'ออกจากระบบสำเร็จ',
+            title: "สำเร็จ",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {
+
+            deleteTagOs("Test Text");
+            deleteTagIOS(class_user, username);
+            window.location = "../TShare_new/material/login/index.php";
+
+        });
+}
+
+function openNotifyline() {
+    location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
 }
 
 var userLang = navigator.language || navigator.userLanguage;
@@ -299,7 +438,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-//            console.log(array_data);
+    //            console.log(array_data);
     if (done.length > 0) {
         $('#number_shop').show();
         //			$('#circle_icon_shop').addClass("pulse");
@@ -372,7 +511,7 @@ socket.on('datalab', function(username, data) {
     console.log('***********************datalab***************************')
     console.log(username)
     console.log(data)
-    
+
     //console.log(data[0].id);
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
@@ -400,8 +539,8 @@ socket.on('datalab', function(username, data) {
                 if (typeof check_open_incom != 'undefined') {
                     if (check_open_incom == check_open) {
                         console.log("Refresh Incom = " + check_open_incom + " | " + check_open);
-//                        openViewPrice()
-						reloadIncomeShop(value.id);
+                        //                        openViewPrice()
+                        reloadIncomeShop(value.id);
                     }
                 }
             }
@@ -410,13 +549,13 @@ socket.on('datalab', function(username, data) {
 });
 
 socket.on('updatedriver', function(username, data) {
-	
+
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
     console.log(data)
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
-    	
+
         if (data.id == check_open) {
             console.log(data)
             console.log(data.id);
@@ -441,11 +580,11 @@ socket.on('updatedriver', function(username, data) {
         }
     }
     console.log($('#open_shop_manage').val());
-    if($('#open_shop_manage').val()==1){
-    	console.log("*************************************");
-		shopManage();
-	}
-    
+    if ($('#open_shop_manage').val() == 1) {
+        console.log("*************************************");
+        shopManage();
+    }
+
 });
 
 function formatDate(date) {
@@ -574,6 +713,78 @@ function hideRes(id) {
 /*************************** Menu function *********************************/
 function sendShop(company) {
     fn.pushPage({
+        'id': 'shopping.html',
+        'title': 'ส่งแขก',
+        'key': 'shop'
+    })
+    //                       var url = "page/call_page";
+    //   $.post(url,{ path : "car/car_view" },function(ele){
+    //    $('#body_shop').html(ele);
+    // });
+    var url2 = "shop/shop_pageadd?shop_id=" + company;
+    var urlcount = "shop/car_count";
+
+
+    $.post(url2, function(ele2) {
+        if (class_user == "taxi") {
+
+            $.post(urlcount, function(res) {
+                if (res == 0) {
+
+                    ons.notification.alert({
+                            message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+                            title: "ไม่สามารถส่งแขกได้",
+                            buttonLabel: "เพิ่มรถ"
+                        })
+                        .then(function() {
+                            // callpop();
+                            callpop();
+                            setTimeout(function() {
+                                myCar();
+                            }, 700);
+
+                            return;
+                        });
+
+                }
+            });
+
+        }
+        modal.hide();
+
+        $('#shop_add').html(ele2);
+        var pass = {
+            date: moment().format('YYYY-MM-DD'),
+            driver: $.cookie("detect_user"),
+            type: 'his'
+        };
+        // console.log(pass);
+        var urlcounthis = "shop/count_his"
+        $.ajax({
+            url: urlcounthis,
+            data: pass,
+            type: 'post',
+            success: function(res) {
+                // console.log(res);
+                if (res != 0) {
+                    $('#num_his').show();
+                    $('#num_his').html(res);
+                }
+                // $('ons-tab[page="shop_history.html"]').attr('badge', res);
+            }
+        });
+
+
+    });
+}
+
+function sendShop2() {
+    modal.show();
+    var urlo = 'shop/place_companycount';
+    $.post(urlo, function(res) {
+        console.log(res)
+        if (res.count == 1) {
+            fn.pushPage({
                 'id': 'shopping.html',
                 'title': 'ส่งแขก',
                 'key': 'shop'
@@ -582,13 +793,13 @@ function sendShop(company) {
             //   $.post(url,{ path : "car/car_view" },function(ele){
             //    $('#body_shop').html(ele);
             // });
-            var url2 = "shop/shop_pageadd?shop_id="+company;
+            var url2 = "shop/shop_pageadd?shop_id=" + res.shop_id;
             var urlcount = "shop/car_count";
 
 
             $.post(url2, function(ele2) {
-                if(class_user=="taxi"){
-                    
+                if (class_user == "taxi") {
+
                     $.post(urlcount, function(res) {
                         if (res == 0) {
 
@@ -609,82 +820,10 @@ function sendShop(company) {
 
                         }
                     });
-                
+
                 }
                 modal.hide();
-                
-                $('#shop_add').html(ele2);
-                var pass = {
-                    date: moment().format('YYYY-MM-DD'),
-                    driver: $.cookie("detect_user"),
-                    type: 'his'
-                };
-                // console.log(pass);
-                var urlcounthis = "shop/count_his"
-                $.ajax({
-                    url: urlcounthis,
-                    data: pass,
-                    type: 'post',
-                    success: function(res) {
-                        // console.log(res);
-                        if (res != 0) {
-                            $('#num_his').show();
-                            $('#num_his').html(res);
-                        }
-                        // $('ons-tab[page="shop_history.html"]').attr('badge', res);
-                    }
-                });
 
-
-            });
-}
-
-function sendShop2() {
-    modal.show();
-    var urlo = 'shop/place_companycount';
-    $.post(urlo, function(res) {
-         console.log(res)
-        if (res.count == 1) {
-            fn.pushPage({
-                'id': 'shopping.html',
-                'title': 'ส่งแขก',
-                'key': 'shop'
-            })
-            //                       var url = "page/call_page";
-            //   $.post(url,{ path : "car/car_view" },function(ele){
-            //    $('#body_shop').html(ele);
-            // });
-            var url2 = "shop/shop_pageadd?shop_id="+res.shop_id;
-            var urlcount = "shop/car_count";
-
-
-            $.post(url2, function(ele2) {
-            	if(class_user=="taxi"){
-					
-	                $.post(urlcount, function(res) {
-	                    if (res == 0) {
-
-	                        ons.notification.alert({
-	                                message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
-	                                title: "ไม่สามารถส่งแขกได้",
-	                                buttonLabel: "เพิ่มรถ"
-	                            })
-	                            .then(function() {
-	                                // callpop();
-	                                callpop();
-	                                setTimeout(function() {
-	                                    myCar();
-	                                }, 700);
-
-	                                return;
-	                            });
-
-	                    }
-	                });
-                
-				}
-                modal.hide();
-                
                 $('#shop_add').html(ele2);
                 var pass = {
                     date: moment().format('YYYY-MM-DD'),
@@ -709,12 +848,11 @@ function sendShop2() {
 
 
             });
-            
 
 
 
-        } 
-		else {
+
+        } else {
             modal.hide();
             fn.pushPage({
                 'id': 'place_company.html',
@@ -746,9 +884,11 @@ function profileInfo(animate) {
     var url = "page/profile_edit";
     $.post(url, function(html) {
         $('#body_profile_view').html(html);
-        
-        setTimeout(function(){ checkPicDocProfile(); }, 700);
-		checkImgProfile($.cookie("detect_username"), 1); 
+
+        setTimeout(function() {
+            checkPicDocProfile();
+        }, 700);
+        checkImgProfile($.cookie("detect_username"), 1);
     });
 }
 
@@ -836,27 +976,27 @@ function myCar() {
         'id': 'car_manage.html',
         'title': 'ข้อมูลรถ'
     }, 'slide-ios');
-    
+
     $.post("car/check_num_car", {
         driver_id: $.cookie("detect_user")
     }, function(res) {
-    	console.log(res);
+        console.log(res);
         var url = "page/call_page";
         $.post(url, {
             path: "car/car_view"
         }, function(ele) {
             $('#body_car_manage').html(ele);
-            
+
         });
     });
 }
 
-function wallet(){
-	 fn.pushPage({
+function wallet() {
+    fn.pushPage({
         'id': 'wallet.html',
         'title': 'กระเป๋าเงิน'
     }, 'slide-ios');
-    
+
 }
 
 function contrac_us() {
@@ -884,42 +1024,44 @@ function income() {
         'id': 'income.html',
         'title': 'รายรับ'
     }, 'slide-ios');
-    
-    $.post("page/call_page",{ path: "statement/shop_ic" },function(ele){
-    	$('#shop_ic').html(ele);
+
+    $.post("page/call_page", {
+        path: "statement/shop_ic"
+    }, function(ele) {
+        $('#shop_ic').html(ele);
     });
 }
 
 function language(lng) {
-        console.log(lng);
-        setCookie("lng", lng, 1);
-        window.location.reload();
+    console.log(lng);
+    setCookie("lng", lng, 1);
+    window.location.reload();
 }
 
 function addCommas(nStr) {
-        nStr += '';
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
 }
 
 function viewPhotoGlobal(path, time, caption) {
-    
+
     fn.pushPage({
         'id': 'popup2.html',
         'title': 'ภาพ'
     }, 'fade-md');
-    var url_load = "page/view_photo?time=" + time + "&path=" + path+"&caption="+caption;
+    var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
     $.post(url_load, function(ele) {
         $('#body_popup2').html(ele);
     });
-    
-   /* var dialog = document.getElementById('photo-view-dialog');
+
+    /* var dialog = document.getElementById('photo-view-dialog');
 
 		  if (dialog) {
 		    dialog.show();
@@ -933,65 +1075,70 @@ function viewPhotoGlobal(path, time, caption) {
     $.post(url_load, function(ele) {
         $('#body-photo-view').html(ele);
     });*/
-    
+
 }
 
-function readURLprofileHome(input,type) {
+function readURLprofileHome(input, type) {
 
-	  if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    	reader.onload = function(e) {
-	    	
-				$('.profile-pic-big').attr('src', e.target.result);
-				$('.shotcut-profile').attr('src', e.target.result);
-				
-	      		var data = new FormData($('#upload_pf_home')[0]);
-      			data.append('imgInp', $('#img_profile_home')[0].files[0]);
-				var id = $.cookie("detect_username");
-      			var url_upload = "application/views/upload_img/upload.php?id="+id+"&type="+type;
-      			console.log(url_upload);
-   				  $.ajax({
-   				                url: url_upload, // point to server-side PHP script 
-   				                dataType: 'json',  // what to expect back from the PHP script, if anything
-   				                cache: false,
-   				                contentType: false,
-   				                processData: false,
-   				                data: data,                         
-   				                type: 'post',
-   				                success: function(php_script_response){
-   				                   console.log(php_script_response);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
 
-   				                   ons.notification.alert({message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',title:"สำเร็จ",buttonLabel:"ปิด"})
-											  .then(function() {
-											  });
-   				                },
-						        error: function(e){
-						                console.log(e)
-						        }
-   				 	});
-	    }
-	    	reader.readAsDataURL(input.files[0]);
-	   		
-	  }
-	  
-}
-	
-function focusEle(ele){
-	console.log(ele);
-	$( ele ).focus();
-}	
+            $('.profile-pic-big').attr('src', e.target.result);
+            $('.shotcut-profile').attr('src', e.target.result);
 
-function clearCookieAll(){
-	var cookies = $.cookie();
-	for(var cookie in cookies) {
-		console.log(cookie);
-//	   $.removeCookie(cookie);
-		$.removeCookie(cookie, { path: '/' });
-	}
+            var data = new FormData($('#upload_pf_home')[0]);
+            data.append('imgInp', $('#img_profile_home')[0].files[0]);
+            var id = $.cookie("detect_username");
+            var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
+            console.log(url_upload);
+            $.ajax({
+                url: url_upload, // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: data,
+                type: 'post',
+                success: function(php_script_response) {
+                    console.log(php_script_response);
+
+                    ons.notification.alert({
+                            message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',
+                            title: "สำเร็จ",
+                            buttonLabel: "ปิด"
+                        })
+                        .then(function() {});
+                },
+                error: function(e) {
+                    console.log(e)
+                }
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
+
+    }
+
 }
 
-function expenditure(){
-	fn.pushPage({
+function focusEle(ele) {
+    console.log(ele);
+    $(ele).focus();
+}
+
+function clearCookieAll() {
+    var cookies = $.cookie();
+    for (var cookie in cookies) {
+        console.log(cookie);
+        //	   $.removeCookie(cookie);
+        $.removeCookie(cookie, {
+            path: '/'
+        });
+    }
+}
+
+function expenditure() {
+    fn.pushPage({
         'id': 'expenditure.html',
         'title': 'รายจ่าย'
     }, 'slide-ios');

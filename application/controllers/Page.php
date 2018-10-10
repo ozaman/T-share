@@ -16,6 +16,10 @@ public function shop(){
 		$this->load->view('page/shop_view',$data);
 	}
 	
+public function activity(){
+		$this->load->view('activity_view');
+	}
+		
 public function transfer(){
 		$username = $_COOKIE[detect_username];
 		$result = $this->Transfer_model->driver_deposit($username);

@@ -132,17 +132,21 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <ons-tabbar swipeable id="appTabbar" position="auto">
                 <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
-                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="forms.html"></ons-tab>
-                <ons-tab label="แจ้งเตือน" icon="fa-bell" page="animations.html"></ons-tab>
+                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
+                <ons-tab id="tab_activity" label="แจ้งเตือน" icon="fa-bell" page="activity.html" badge=""></ons-tab>
             </ons-tabbar>
 			
             <script>
                 ons.getScriptPage().addEventListener('prechange', function(event) {
-        if (event.target.matches('#appTabbar')) {
-          event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-        }
-      });
-    </script>
+			        if (event.target.matches('#appTabbar')) {
+			        	var page_main = event.tabItem.getAttribute('page');
+			        	if(page_main == "activity.html"){
+							loadActivityPage();
+						}
+			          event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+			        }
+		       });
+		    </script>
         </ons-page>
     </template>
 
@@ -324,22 +328,31 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         </ons-page>
     </template>
 
-    <template id="forms.html">
+    <template id="information.html">
         <ons-page id="forms-page">
-            <ons-list>
-            	<header>Page 2</header>
-            </ons-list>
+            <?php $this->load->view('information_view'); ?>
         </ons-page>
     </template>
-
-    <template id="animations.html">
+    
+    <template id="activity.html">
         <ons-page>
-            <ons-list>
-            	<header>Page 3</header>
-            </ons-list>
+        	<div id="body_load_activity">
+        		 <?php //$this->load->view('activity_view'); ?>
+        	</div>
+            <script src="<?=base_url();?>assets/script/activity.js?v=<?=time()?>"></script>
         </ons-page>
     </template>
-
+	
+	<template id="action-sheet.html">
+	  <ons-action-sheet id="sheet" cancelable >
+	  	
+	  	<ons-action-sheet-button icon="md-square-o" onclick="">ซ่อน</ons-action-sheet-button>
+	    <ons-action-sheet-button icon="md-square-o" onclick="makeUnReadActivity();">ทำเครื่องหมายยังไม่ได้อ่าน</ons-action-sheet-button>
+	    <ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive">ลบ</ons-action-sheet-button>
+	    <ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>
+	  </ons-action-sheet>
+	</template>
+	
     <template id="pf.html">
         <ons-page>
             <ons-toolbar>
@@ -1249,6 +1262,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             setTimeout(function() {
 //            	alert(class_user);
                 sendTagIOS(class_user, username);
+                setCountActivity();
             }, 1500);
         });
     }

@@ -1,5 +1,5 @@
 <div style="margin-top: 10px;padding: 5px;" >
-<ons-row>
+<ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
 	  <center>
 	  	<div onclick="sendShop2();" class="circle-menu" style="    background-color: #34A0E7;" >
@@ -25,7 +25,7 @@
 </ons-col>
 </ons-row>
 
-<ons-row>
+<ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
 	  <center>
 	  	<div onclick="booking();" class="circle-menu" style="    background-color: #1CC1A4;" >
@@ -50,7 +50,7 @@
 </ons-col>
 </ons-row>
 
-<ons-row>
+<ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
 	  <center>
 	  	<div onclick="income();" class="circle-menu" style="    background-color: #3b5998;" >

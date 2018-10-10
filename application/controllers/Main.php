@@ -101,6 +101,7 @@ class Main extends CI_Controller {
 //  	header('Content-Type: application/json');
   	echo json_encode($data['res']);
   }
+
   public function rowdata($table,$arr_where,$arr_select) {
     $chk = explode('_',$table);
     $table = ($chk[0] == 'tbl' ? $table : 'tbl_'.$table);
