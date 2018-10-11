@@ -7,6 +7,7 @@ class Notification_model extends CI_Model {
   		$data[i_type] = $_POST[i_type];
   		$data[i_event] = $_POST[i_event];
   		$data[i_driver] = $_POST[i_driver];
+  		$data[s_class_user] = $_POST[s_class_user];
   		$data[s_topic] = $_POST[s_topic];
   		$data[s_message] = $_POST[s_message];
   		$data[i_active] = 0;

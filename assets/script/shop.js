@@ -1099,7 +1099,8 @@ function saveShop() {
 				 var nc = {
 					i_type : 1,
 					i_event :	response.last_id,
-					i_driver :	detect_user,
+					i_driver :	0,
+					s_class_user :	"lab",
 					s_topic : "งานส่งแขก",
 					s_sub_topic : "เช็คอิน",
 					s_message :	txt_long_nc,
