@@ -19,7 +19,11 @@ public function shop(){
 public function activity(){
 		$this->load->view('activity_view');
 	}
-		
+	
+public function notification(){
+		$this->load->view('notification_view');
+	}
+			
 public function transfer(){
 		$username = $_COOKIE[detect_username];
 		$result = $this->Transfer_model->driver_deposit($username);

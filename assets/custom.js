@@ -1,6 +1,6 @@
-function setCountActivity(){
+function setCountNotification(){
 	$.ajax({
-			        url: "activity/count_activity?id_user="+$.cookie("detect_user"), // point to server-side PHP script 
+			        url: "notification/count_notification?id_user="+$.cookie("detect_user"), // point to server-side PHP script 
 			        dataType: 'json', // what to expect back from the PHP script, if anything
 			        type: 'post',
 			        success: function(num) {
@@ -8,10 +8,10 @@ function setCountActivity(){
 //			        	num = 0;
 			        	if(num>0){
 							$('.fa-bell').addClass('bell');		    
-							$('#tab_activity').attr('badge', num);
+							$('#tab_notification').attr('badge', num);
 						}else{
 							$('.fa-bell').removeClass('bell');		    
-							$('#tab_activity').attr('badge', '');
+							$('#tab_notification').attr('badge', '');
 						}
 						
 			        }
@@ -19,11 +19,11 @@ function setCountActivity(){
 	
 }
 
-function loadActivityPage(){
-	$('#body_load_activity').html(progress_circle);
-	var url = "page/activity";
+function loadNotificationPage(){
+	$('#body_load_notification').html(progress_circle);
+	var url = "page/notification";
     $.post(url, function(html) {
-        $('#body_load_activity').html(html);
+        $('#body_load_notification').html(html);
     });
 }
 

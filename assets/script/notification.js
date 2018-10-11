@@ -10,49 +10,49 @@ ons.ready(function () {
 
 
 
-function hiddenActivity(id){
+function hiddenNotification(id){
 	console.log("+"+id);
 }
 
-function deletedActivity(id){
+function deletedNotification(id){
 	console.log("+"+id);
 }
 
-function openActivity(id, type, txt_type, i_event){
+function openNotification(id, type, txt_type, i_event){
 	console.log(id+" : "+type+ " || "+i_event);
 	fn.pushPage({
         'id': 'popup1.html',
         'title': txt_type
     }, 'lift-ios');
-    makeReadActivity(id);
+    makeReadNotification(id);
     
 	if(type==1){
-		openShopActivity(i_event);
+		openShopNotification(i_event);
 	}
 	else if(type==2){
-		openTransferActivity(i_event);
+		openTransferNotification(i_event);
 	}
 	else if(type==3){
-		openIncomeActivity(i_event);
+		openIncomeNotification(i_event);
 	}
 	else if(type==4){
-		openPayActivity(i_event);
+		openPayNotification(i_event);
 	}
 	else if(type==5){
-		openInformMoneyActivity(i_event);
+		openInformMoneyNotification(i_event);
 	}
 	else if(type==6){
-		openWithdrawMoneyActivity(i_event);
+		openWithdrawMoneyNotification(i_event);
 	}
     
 }
 
-function openWithdrawMoneyActivity(i_event){
+function openWithdrawMoneyNotification(i_event){
 	
     
 }
 
-function openInformMoneyActivity(i_event){
+function openInformMoneyNotification(i_event){
 	$('#body_popup1').html(progress_circle);
 	var url = "page/call_page?deposit_id="+i_event;
     $.post(url,{ path: "wallet/detail_history" },function(ele){
@@ -60,19 +60,19 @@ function openInformMoneyActivity(i_event){
     });
 }
 
-function openPayActivity(i_event){
+function openPayNotification(i_event){
 
 }	
 
-function openIncomeActivity(i_event){
+function openIncomeNotification(i_event){
 	
 }
 
-function openTransferActivity(i_event){
+function openTransferNotification(i_event){
 	
 }
 
-function openShopActivity(i_event){
+function openShopNotification(i_event){
 	var data = {
 		id : i_event
 	}
@@ -115,39 +115,39 @@ function openShopActivity(i_event){
 	});
 }
 
-function makeReadActivity(id){
+function makeReadNotification(id){
 	var data = {
 		i_active : 1
 	};
 	$.ajax({
-			url: "activity/read_activity?id="+id, // point to server-side PHP script 
+			url: "notification/read_notification?id="+id, // point to server-side PHP script 
 			dataType: 'json', // what to expect back from the PHP script, if anything
 			type: 'post',
 			data: data,
 			success: function(res) {
 				console.log(res);
 				if(res.result==true){
-					setCountActivity();
+					setCountNotification();
 					$('#card-ac_'+id).css('background-color','#fff');
 				}
 			}
 	});
 }
 
-function makeUnReadActivity(){
-	var id = $('#id_activity_select').val();
+function makeUnReadNotification(){
+	var id = $('#id_notification_select').val();
 	var data = {
 		i_active : 0
 	};
 	$.ajax({
-			url: "activity/read_activity?id="+id, // point to server-side PHP script 
+			url: "notification/read_notification?id="+id, // point to server-side PHP script 
 			dataType: 'json', // what to expect back from the PHP script, if anything
 			type: 'post',
 			data: data,
 			success: function(res) {
 				console.log(res);
 				if(res.result==true){
-					setCountActivity();
+					setCountNotification();
 					$('#card-ac_'+id).css('background-color','#edf2fa');
 					app.hideFromTemplate();
 				}
@@ -155,22 +155,22 @@ function makeUnReadActivity(){
 	});
 }
 
-function deleteActivity(){
+function deleteNotification(){
 	modal.show();
-	var id = $('#id_activity_select').val();
+	var id = $('#id_notification_select').val();
 	var data = {
 		id : id
 	};
 	$.ajax({
-			url: "activity/delete_activity", // point to server-side PHP script 
+			url: "notification/delete_notification", // point to server-side PHP script 
 			dataType: 'json', // what to expect back from the PHP script, if anything
 			type: 'post',
 			data: data,
 			success: function(res) {
 				console.log(res);
 				if(res.deleted==true){
-					loadActivityPage();
-					setCountActivity();
+					loadNotificationPage();
+					setCountNotification();
 //					$('#card-ac_'+id).remove();
 					app.hideFromTemplate();
 					modal.hide();
@@ -179,22 +179,22 @@ function deleteActivity(){
 	});
 }
 
-function changeStatusActivity(status){
-	var id = $('#id_activity_select').val();
+function changeStatusNotification(status){
+	var id = $('#id_notification_select').val();
 	var data = {
 		i_status : status
 	};
 	$.ajax({
-			url: "activity/change_status_activity?id="+id, // point to server-side PHP script 
+			url: "notification/change_status_notification?id="+id, // point to server-side PHP script 
 			dataType: 'json', // what to expect back from the PHP script, if anything
 			type: 'post',
 			data: data,
 			success: function(res) {
 				console.log(res);
 				if(res.result==true){
-//					loadActivityPage();
+//					loadNotificationPage();
 					$('#card-ac_'+id).fadeOut(1000);
-					setCountActivity();
+					setCountNotification();
 					app.hideFromTemplate();
 				}
 			}

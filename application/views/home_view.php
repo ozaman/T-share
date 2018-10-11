@@ -113,29 +113,67 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="profileInfo('lift-ios')">
+                    <ons-toolbar-button onclick="profileInfo('lift-ios')" id="side_pf">
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
+                    </ons-toolbar-button>
+                    <ons-toolbar-button  onclick="showPopover(this,'popover-noti')" id="side_more" style="display: none;">
+                         <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
             <ons-tabbar swipeable id="appTabbar" position="auto">
                 <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
                 <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
-                <ons-tab id="tab_activity" label="แจ้งเตือน" icon="fa-bell" page="activity.html" badge=""></ons-tab>
+                <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
             </ons-tabbar>
             <script>
                 ons.getScriptPage().addEventListener('prechange', function(event) {
 			        if (event.target.matches('#appTabbar')) {
 			        	var page_main = event.tabItem.getAttribute('page');
-			        	if(page_main == "activity.html"){
-							loadActivityPage();
+			        	if(page_main == "notification.html"){
+							loadNotificationPage();
+							$('#side_pf').hide();
+							$('#side_more').show();
+							
+						}else{
+							$('#side_pf').show();
+							$('#side_more').hide();
 						}
 			          event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+			          
 			        }
+			       
 		       });
+		       var showPopover = function(target, id) {
+				  document
+				    .getElementById(id)
+				    .show(target);
+				};
+
+				var hidePopover = function() {
+						  document
+						    .getElementById(id)
+						    .hide();
+				};
 		    </script>
         </ons-page>
     </template>
+    
+	<ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
+      <ons-list id="popover-list">
+        <ons-list-item class="more-options" tappable onclick="hidePopover('popover-noti');">
+          <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
+        </ons-list-item>
+        <ons-list-item class="more-options" tappable onclick="hidePopover('popover-noti');">
+          <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
+        </ons-list-item>
+        <ons-list-item class="more-options" tappable onclick="hidePopover();">
+          <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
+        </ons-list-item>
+      </ons-list>
+    </ons-popover>
+    
     <template id="sidemenu.html">
         <?=$_COOKIE['detect_user'];?>
         <ons-page>
@@ -304,24 +342,33 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="information.html">
         <ons-page id="forms-page">
-            <?php $this->load->view('information_view'); ?>
+            <?php //$this->load->view('information_view'); ?>
         </ons-page>
     </template>
-    <template id="activity.html">
+    <template id="notification.html">	
         <ons-page>
-            <div id="body_load_activity">
-                <?php //$this->load->view('activity_view'); ?>
+            <div id="body_load_notification">
+                
             </div>
         </ons-page>
     </template>
     <template id="action-sheet.html">
         <ons-action-sheet id="sheet" cancelable>
-            <ons-action-sheet-button icon="md-square-o" onclick="">ซ่อน</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-square-o" onclick="makeUnReadActivity();">ทำเครื่องหมายยังไม่ได้อ่าน</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive">ลบ</ons-action-sheet-button>
+            <ons-action-sheet-button icon="md-square-o" onclick="changeStatusNotification(0);">ซ่อน</ons-action-sheet-button>
+            <ons-action-sheet-button icon="md-square-o" onclick="makeUnReadNotification();">ทำเครื่องหมายยังไม่ได้อ่าน</ons-action-sheet-button>
+            <ons-action-sheet-button icon="md-square-o" onclick="deleteNotification();" modifier="destructive">ลบ</ons-action-sheet-button>
             <ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>
         </ons-action-sheet>
     </template>
+    
+    <template id="activity.html">	
+        <ons-page>
+            <div id="body_load_activity">
+                
+            </div>
+        </ons-page>
+    </template>
+    
     <template id="pf.html">
         <ons-page>
             <ons-toolbar>
@@ -1127,7 +1174,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             setTimeout(function() {
 //            	alert(class_user);
                 sendTagIOS(class_user, username);
-                setCountActivity();
+                setCountNotification();
             }, 1500);
         });
     }
@@ -1340,6 +1387,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				$(this).find('i').addClass('fa-chevron-down');
 			}
 		}); 
+		
 //		$( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
 //		$( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
 	}
@@ -1351,7 +1399,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
 <input type="hidden" value="0" id="check_custome_js" />
 <script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/activity.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
 <script src="<?=base_url();?>assets/script/profile.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>

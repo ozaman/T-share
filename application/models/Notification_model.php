@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Activity_model extends CI_Model {
+class Notification_model extends CI_Model {
 
-  public function add_activity(){
+  public function add_notification(){
   		
   		$data[i_type] = $_POST[i_type];
   		$data[i_event] = $_POST[i_event];
@@ -15,26 +15,26 @@ class Activity_model extends CI_Model {
   		$data[s_post_date] = time();
   		$data[s_last_update] = time();
   		
-  		$result = $this->db->insert('activity_event', $data);
+  		$result = $this->db->insert('notification_event', $data);
   		$data[result] = $result;
   		
   		return $data;
   		
   }
   
-  public function read_activity() {
+  public function read_notification() {
    	$id = $_GET[id];
    	$ac[i_active] = $_POST[i_active];
    	
 	$this->db->where('id', $id);
-	$ac[result] = $this->db->update('activity_event', $ac); 
+	$ac[result] = $this->db->update('notification_event', $ac); 
 	$ac[id] = $id;
     return $ac;
   }
   
-  public function delete_activity(){
+  public function delete_notification(){
   	
-  		$query = $this->db->query("select * from activity_event where id = ".$_POST[id]);
+  		$query = $this->db->query("select * from notification_event where id = ".$_POST[id]);
 		$row = $query->row();
 		
 	       foreach($row as $key=>$val){        
@@ -43,13 +43,13 @@ class Activity_model extends CI_Model {
 	          $this->db->set($key, $val);               
 	          }
 	          else{
-			  	 $this->db->set("i_activity_event", $val);
+			  	 $this->db->set("i_notification_event", $val);
 			  }          
 	       }
      
-		$backup = $this->db->insert('activity_event_logs'); 
+		$backup = $this->db->insert('notification_event_logs'); 
 		if($backup){
-			$delete = $this->db->delete('activity_event', array('id' => $_POST[id])); 
+			$delete = $this->db->delete('notification_event', array('id' => $_POST[id])); 
 		}
 		$return[backup] = $backup;
 		$return[deleted] = $delete;
@@ -58,12 +58,12 @@ class Activity_model extends CI_Model {
 		
   }
   
-  public function change_status_activity(){
+  public function change_status_notification(){
   	$id = $_GET[id];
    	$ac[i_status] = $_POST[i_status];
    	
 	$this->db->where('id', $id);
-	$cs[result] = $this->db->update('activity_event', $ac); 
+	$cs[result] = $this->db->update('notification_event', $ac); 
 	$cs[id] = $id;
     return $cs;
   }	
