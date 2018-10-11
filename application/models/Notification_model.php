@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Notification_model extends CI_Model {
 
-  public function add_notification(){
-  		$_POST = $_POST[notification];
+  public function add_notification($data){
+  		$_POST = $data;
   		$data[i_type] = $_POST[i_type];
   		$data[i_event] = $_POST[i_event];
   		$data[i_driver] = $_POST[i_driver];
@@ -13,8 +13,7 @@ class Notification_model extends CI_Model {
   		$data[i_status] = 1;
   		$data[s_posted] = $_POST[s_posted];
   		$data[s_post_date] = time();
-  		$data[s_last_update] = time();
-  		
+  		$data[s_last_update] = time();  		
   		$result = $this->db->insert('notification_event', $data);
   		$data[result] = $result;
   		

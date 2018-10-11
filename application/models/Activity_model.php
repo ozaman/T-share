@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Activity_model extends CI_Model {
 
-  public function add_activity(){
-  		$_POST = $_POST[activity];
+  public function add_activity($data){
+  		$_POST = $data;
   		$data[i_type] = $_POST[i_type];
   		$data[i_sub_type] = $_POST[i_sub_type];
   		$data[i_event] = $_POST[i_event];

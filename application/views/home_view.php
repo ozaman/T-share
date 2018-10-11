@@ -1410,6 +1410,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
+<!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>

@@ -1170,6 +1170,7 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 						data: param_all,
 						success: function(res) {
 							console.log(res);
+							setCountNotification();
 //							return res;
 						}
 				});

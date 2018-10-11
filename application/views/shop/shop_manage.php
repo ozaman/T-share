@@ -79,7 +79,7 @@
 //        echo $minutes_to_add." ++";
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
         $time = new DateTime($time_c);
-        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
         
         $stamp = $time->format('H:i');
 //        echo $stamp." +";

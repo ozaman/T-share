@@ -908,22 +908,22 @@ var submitShop = function() {
     var current_date = new Date();
 
     weekday_value = current_date.getDay();
-    console.log(weekdays[weekday_value])
+//    console.log(weekdays[weekday_value])
     var url_chk_time = "shop/chk_time?shop_id="+shop_id+"&day=" +weekdays[weekday_value];
-    console.log(url_chk_time)
+    /*console.log(url_chk_time)*/
     $.ajax({
         url: url_chk_time,
         //data: param,
         type: 'post',
         success: function(res) {
-           console.log(res);
+//           console.log(res);
            var gtimeH = parseInt(res[0].finish_h);
            var gtimeM = parseInt(res[0].finish_m);
-           console.log(gtimeH)
+          /* console.log(gtimeH)
            console.log(gtimeM)
            console.log('---------------')
            console.log(ftimeH)
-           console.log(ftimeM)
+           console.log(ftimeM)*/
            if (parseInt(ftimeH) < parseInt(gtimeH)) {
             var dialog = document.getElementById('shop_add-alert-dialog');
             if (dialog) {
@@ -1053,11 +1053,10 @@ function saveShop() {
             console.log(response);
 
             if (response.result == true) {
-                var url2 = "shop/shop_pageadd";
+               /* var url2 = "shop/shop_pageadd";
                 $.post(url2, function(ele2) {
                     $('#shop_add').html(ele2);
-
-                });
+                });*/
                 setTimeout(function() {
                     modal.hide();
                     $('ons-tab[page="shop_manage.html"]').click();
@@ -1073,7 +1072,7 @@ function saveShop() {
 
 
                 //     });
-                $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
+                $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.update.invoice + '&m=' + response.airout_m, {
                     driver: $.cookie("detect_user"),
                     //                    nickname: "<?=$arr[driver][nickname]?>",
                     car_plate: $('#car_plate').val()
@@ -1082,10 +1081,10 @@ function saveShop() {
                 });
                 var url_mail = "../TShare_new/mail.php?key=new_shop&driver=" + $.cookie("detect_user");
                 $.post(url_mail, $('#form_booking').serialize(), function(data) {
-                    console.log(data);
+//                    console.log(data);
 
                 });
-                var txt_long_ac = response.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+                var txt_long_ac = response.update.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
                 var ac = {
 					i_type : 1,
 					i_sub_type : 1,
@@ -1096,7 +1095,7 @@ function saveShop() {
 					s_posted : username
 				};
 				
-				 var txt_long_nc = response.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+				 var txt_long_nc = response.update.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
 				 var nc = {
 					i_type : 1,
 					i_event :	response.last_id,

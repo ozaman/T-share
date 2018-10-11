@@ -125,11 +125,14 @@ class Main extends CI_Controller {
   }
  
   public function recordActivityAndNoti(){
-  		if(isset($_POST[activity])){
-			$data['activity'] = $this->Activity_model->add_activity();
+  		$param = $_POST;
+  		if(isset($param[activity])){
+			$data['activity'] = $this->Activity_model->add_activity($param[activity]);
 		}
-  		if(isset($_POST[notification])){
-			$data['notification'] = $this->Notification_model->add_notification();
+		
+  		if(isset($param[notification])){
+  		
+			$data['notification'] = $this->Notification_model->add_notification($param[notification]);
 		}
   	 	echo json_encode($data);
   }
