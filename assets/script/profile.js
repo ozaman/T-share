@@ -164,7 +164,7 @@ function saveDataPf(){
     var id = $.cookie("detect_user");
 //    var url = 'mod/material/user/php_user.php?action=edit&id='+id;
     var url = 'main/update_user?id='+id;
-   				    $.ajax({
+   	$.ajax({
    				                url: url, // point to server-side PHP script 
    				                dataType: 'text',  // what to expect back from the PHP script, if anything
 /*   				            cache: false,
@@ -191,6 +191,18 @@ function saveDataPf(){
    									   }
    				                }
    				     });
+
+	var ac = {
+		i_type : 8,
+		i_sub_type : 4,
+		i_event : 0,
+		i_driver : detect_user,
+		s_topic : "แก้ไขข้อมูลส่วนตัว",
+		s_message : username+" ทำการแก้ไขข้อมูลส่วนตัว",
+		s_posted : username
+	};
+	var nc = {};
+	apiRecordActivityAndNotification(ac, nc)
 }
 
 function validEmail(email){

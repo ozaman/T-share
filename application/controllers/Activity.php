@@ -14,7 +14,7 @@ class Activity extends CI_Controller {
   	echo json_encode($data['res']);
   }
   
-  public function count_activity(){
+ /* public function count_activity(){
   		$this->db->select('id');
 		$this->db->where('i_driver = '.$_GET[id_user].' and i_active = 0 ');
 		$query = $this->db->get('activity_event');
@@ -35,6 +35,6 @@ class Activity extends CI_Controller {
   public function change_status_activity(){
   		$data['res'] = $this->Activity_model->change_status_activity();
   		echo json_encode($data['res']);
-  }
+  }*/
   
 }

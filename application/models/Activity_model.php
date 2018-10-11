@@ -3,26 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Activity_model extends CI_Model {
 
   public function add_activity(){
-  		
+  		$_POST = $_POST[activity];
   		$data[i_type] = $_POST[i_type];
+  		$data[i_sub_type] = $_POST[i_sub_type];
   		$data[i_event] = $_POST[i_event];
   		$data[i_driver] = $_POST[i_driver];
   		$data[s_topic] = $_POST[s_topic];
   		$data[s_message] = $_POST[s_message];
-  		$data[i_active] = 0;
+//  		$data[i_active] = 0;
   		$data[i_status] = 1;
   		$data[s_posted] = $_POST[s_posted];
   		$data[s_post_date] = time();
   		$data[s_last_update] = time();
-  		
   		$result = $this->db->insert('activity_event', $data);
   		$data[result] = $result;
   		
   		return $data;
-  		
   }
   
-  public function read_activity() {
+  /*public function read_activity() {
    	$id = $_GET[id];
    	$ac[i_active] = $_POST[i_active];
    	
@@ -66,7 +65,7 @@ class Activity_model extends CI_Model {
 	$cs[result] = $this->db->update('activity_event', $ac); 
 	$cs[id] = $id;
     return $cs;
-  }	
+  }	*/
   /**
   * *********** End
   */

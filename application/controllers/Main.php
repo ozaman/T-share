@@ -4,6 +4,8 @@ class Main extends CI_Controller {
   public function __construct() {
     parent::__construct();
 	$this->load->model('Main_model');
+	$this->load->model('Notification_model');
+	$this->load->model('Activity_model');
 	$this->load->model('Mobile_model');
   }
   public function index() {
@@ -122,6 +124,15 @@ class Main extends CI_Controller {
     return $query;
   }
  
+  public function recordActivityAndNoti(){
+  		if(isset($_POST[activity])){
+			$data['activity'] = $this->Activity_model->add_activity();
+		}
+  		if(isset($_POST[notification])){
+			$data['notification'] = $this->Notification_model->add_notification();
+		}
+  	 	echo json_encode($data);
+  }
 // public function detect
 //////////////////////////// End
 }

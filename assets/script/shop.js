@@ -1003,7 +1003,7 @@ var submitShop = function() {
         }
         
     }
-});
+	});
     
 };
 // function getDayName(dateStr, locale)
@@ -1076,7 +1076,7 @@ function saveShop() {
                 $.post('Send_onesignal/new_shop?order_id=' + response.last_id + '&vc=' + response.invoice + '&m=' + response.airout_m, {
                     driver: $.cookie("detect_user"),
                     //                    nickname: "<?=$arr[driver][nickname]?>",
-                    car_plate: place_num
+                    car_plate: $('#car_plate').val()
                 }, function(data) {
                     console.log(data);
                 });
@@ -1085,6 +1085,29 @@ function saveShop() {
                     console.log(data);
 
                 });
+                var txt_long_ac = response.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+                var ac = {
+					i_type : 1,
+					i_sub_type : 1,
+					i_event : response.last_id,
+					i_driver : detect_user,
+					s_topic : "งานส่งแขก",
+					s_message : txt_long_ac,
+					s_posted : username
+				};
+				
+				 var txt_long_nc = response.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+				 var nc = {
+					i_type : 1,
+					i_event :	response.last_id,
+					i_driver :	detect_user,
+					s_topic : "งานส่งแขก",
+					s_sub_topic : "เช็คอิน",
+					s_message :	txt_long_nc,
+					s_posted :	username
+				 };
+				apiRecordActivityAndNotification(ac, nc);
+                
                 /*setTimeout(function() {
                     openOrderFromAndroid(response.last_id);
                 }, 1500);*/
@@ -1109,7 +1132,7 @@ function saveShop() {
     });
 }
 
-function openDetailBooking(key, type) {
+function openDetailShop(key, type) {
     var detailObj = array_data.manage[key];
     fn.pushPage({
         'id': 'popup1.html',

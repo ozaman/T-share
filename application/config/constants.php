@@ -91,11 +91,11 @@ define('TBL_WEB_REGION', 'web_region');
 define('TBL_WEB_PROVINCE', 'web_province');
 define('TBL_WEB_AMPHUR', 'web_amphur');
 define('TBL_WEB_COUNTRY', 'web_country');
-define('TBL_SHOP_COUNTRY', 'shop_country');
-define('TBL_SHOP_COUNTRY_COM', 'shop_country_com');
-define('TBL_SHOP_COUNTRY_COM_LIST', 'shop_country_com_list');
-define('TBL_SHOP_COUNTRY_COM_LIST_PRICE', '	shop_country_com_list_price');
-define('TBL_SHOP_COUNTRY_ICON', 'shop_country_icon');
+define('TBL_SHOP_COUNTRY_TAXI', 'shop_country_taxi');
+define('TBL_SHOP_COUNTRY_COM', 'shop_country_com_taxi');
+define('TBL_SHOP_COUNTRY_COM_LIST_TAXI', 'shop_country_com_list_price_taxi');
+define('TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI', 'shop_country_com_list_price_taxi');
+define('TBL_SHOP_COUNTRY_ICON_TAXI', 'shop_country_icon_taxi');
 define('TBL_SHOP_PLAN_COM', 'shop_plan_com');
 define('TBL_SHOP_PAYMENT_CHANNEL','shop_payment_channel');
 

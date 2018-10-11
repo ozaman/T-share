@@ -1,6 +1,6 @@
 <div style="padding: 0px;background-color:#fff;height: 100%;">
 <?php 
-	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join activity_menu as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
 	$check_before = '';
 	$check_now = '';
 	foreach ($query->result() as $row){ 
@@ -51,7 +51,7 @@
 	    				</div>
 				      	<div class="font-14" style="margin: 0;line-height: 1.4;color: #030303;"><?=$row->s_message;?></div>
 					    <div style="margin: 5px 0px;">
-					    	<?=$icons;?><span id="txt_date_diff_ac_<?=$row->id;?>" class="font-13"></span>
+					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$row->id;?>" class="font-13"></span>
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">
@@ -65,7 +65,7 @@
 	console.log("<?=$row->id;?>");
 	var d1 = "<?=date('Y/m/d H:i:s',$row->s_post_date);?>";
 	var d2 = js_yyyy_mm_dd_hh_mm_ss();
-	$('#txt_date_diff_ac_<?=$row->id;?>').text(CheckTime(d1,d2));
+	$('#txt_date_diff_nt_<?=$row->id;?>').text(CheckTime(d1,d2));
 	
 </script>	   
 <?	}	?>

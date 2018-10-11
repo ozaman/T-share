@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Notification_model extends CI_Model {
 
   public function add_notification(){
-  		
+  		$_POST = $_POST[notification];
   		$data[i_type] = $_POST[i_type];
   		$data[i_event] = $_POST[i_event];
   		$data[i_driver] = $_POST[i_driver];

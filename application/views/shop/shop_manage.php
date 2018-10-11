@@ -48,7 +48,7 @@
   	<?	}
   	?>
   	
-    <table width="100%"  onclick="openDetailBooking('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
+    <table width="100%"  onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
             <td width="20%" align="center" rowspan="2">

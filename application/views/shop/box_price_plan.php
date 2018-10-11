@@ -4,7 +4,7 @@
  $_select = array('*');
  $_order = array();
  $_order['id'] = 'asc';
- $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST,$_where,$_select,$_order);
+ $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_TAXI,$_where,$_select,$_order);
 
  ?>
  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_country];?>" />
@@ -17,7 +17,7 @@
   $_select = array('*');
   $_order = array();
   $_order['id'] = 'asc';
-  $data['list_price'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE,$_where,$_select,$_order);
+  $data['list_price'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
     <label class="center" for="price_plan_<?=$key+1;?>">
@@ -85,7 +85,7 @@
                       $_where = array();
                       $_where['i_shop_country'] = $_GET[i_country]; 
                       $_select = array('*');
-                      $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON,$_where);
+                      $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
                        $_where = array();
                       $_where['id'] = $arr[region_icon]->i_country; 
                       $_select = array('name_th');

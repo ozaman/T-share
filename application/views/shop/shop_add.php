@@ -40,6 +40,7 @@ $data_shopmain = $shopmain->row();
 // echo $data_place->topic_th;
 ?>
 <div style="height: 100%;">
+	<input type="hidden" value="<?=$data_place->topic_th;?>" id="place_name_select" />
   <form name="form_booking" id="form_booking">
     <input type="hidden" value="<?=$_GET[shop_id];?>" name="program" id="program" />
     <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
@@ -236,7 +237,7 @@ $data_shopmain = $shopmain->row();
 
       $_order = array();
       $_order['id'] = 'asc';
-      $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY,$_where,$_select,$_order);
+      $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
 
 
 
@@ -254,7 +255,7 @@ $data_shopmain = $shopmain->row();
           $_select = array('*');
           $_order = array();
           $_order['id'] = 'asc';
-          $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON,$_where,$_select,$_order);
+          $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
           ?>
           <ons-list-item tappable id="nation_<?=$key+1;?>">
             <label class=" left">

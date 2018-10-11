@@ -27,6 +27,14 @@ function loadNotificationPage(){
     });
 }
 
+function loadActivityPage(){
+	$('#body_load_activity').html(progress_circle);
+	var url = "page/activity";
+    $.post(url, function(html) {
+        $('#body_load_activity').html(html);
+    });
+}
+
 var delay = (function() {
     var timer = 0;
     return function(callback, ms) {
@@ -1146,4 +1154,24 @@ function expenditure() {
         'id': 'expenditure.html',
         'title': 'รายจ่าย'
     }, 'slide-ios');
+}
+
+function apiRecordActivityAndNotification(param_aan, param_aan2){
+
+				var param_all = {
+					activity : param_aan,
+					notification : param_aan2
+				};
+				console.log(param_all);
+                $.ajax({
+						url: "main/recordActivityAndNoti", // point to server-side PHP script 
+						dataType: 'json', // what to expect back from the PHP script, if anything
+						type: 'post',
+						data: param_all,
+						success: function(res) {
+							console.log(res);
+//							return res;
+						}
+				});
+                
 }

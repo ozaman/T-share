@@ -136,7 +136,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 							$('#side_pf').hide();
 							$('#side_more').show();
 							
-						}else{
+						}
+						else if(page_main == "activity.html"){
+							loadActivityPage();
+							$('#side_pf').show();
+							$('#side_more').hide();
+						}
+						else{
 							$('#side_pf').show();
 							$('#side_more').hide();
 						}
