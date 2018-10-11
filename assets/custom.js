@@ -332,6 +332,7 @@ function success(pos) {
 function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
 }
+var run_num_place = true;
 id = navigator.geolocation.watchPosition(success, error, options);
 
 function showPosition(position) {
@@ -365,7 +366,10 @@ function showPosition(position) {
             var province = data.results[data.results.length - 2].address_components[0].long_name;
             $('#province_text').text(province);
             $('#now_province').val(province);
-            updatePlaceNum(province);
+            if(run_num_place==true){
+				updatePlaceNum(province);
+				run_num_place = false;
+			}
         }
     });
 }
@@ -384,7 +388,7 @@ function updatePlaceNum(province) {
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
-            console.log(data2);
+//            console.log(data2);
         });
     });
 }

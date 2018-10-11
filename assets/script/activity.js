@@ -19,16 +19,64 @@ function deletedActivity(id){
 }
 
 function openActivity(id, type, txt_type, i_event){
-	console.log(id+" : "+type);
+	console.log(id+" : "+type+ " || "+i_event);
 	fn.pushPage({
         'id': 'popup1.html',
         'title': txt_type
     }, 'lift-ios');
     makeReadActivity(id);
-    var data = {
+    
+	if(type==1){
+		openShopActivity(i_event);
+	}
+	else if(type==2){
+		openTransferActivity(i_event);
+	}
+	else if(type==3){
+		openIncomeActivity(i_event);
+	}
+	else if(type==4){
+		openPayActivity(i_event);
+	}
+	else if(type==5){
+		openInformMoneyActivity(i_event);
+	}
+	else if(type==6){
+		openWithdrawMoneyActivity(i_event);
+	}
+    
+}
+
+function openWithdrawMoneyActivity(i_event){
+	
+    
+}
+
+function openInformMoneyActivity(i_event){
+	$('#body_popup1').html(progress_circle);
+	var url = "page/call_page?deposit_id="+i_event;
+    $.post(url,{ path: "wallet/detail_history" },function(ele){
+    	$('#body_popup1').html(ele);
+    });
+}
+
+function openPayActivity(i_event){
+
+}	
+
+function openIncomeActivity(i_event){
+	
+}
+
+function openTransferActivity(i_event){
+	
+}
+
+function openShopActivity(i_event){
+	var data = {
 		id : i_event
 	}
-    $.ajax({
+	$.ajax({
 			url: "shop/get_data_shop", // point to server-side PHP script 
 			dataType: 'json', // what to expect back from the PHP script, if anything
 			type: 'post',
