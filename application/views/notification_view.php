@@ -46,7 +46,9 @@
 	    	<table width="100%">
 	    		<tr>
 	    			<td onclick="openNotification('<?=$row->id;?>', '<?=$row->i_type;?>', '<?=$row->ac_topic;?>', '<?=$row->i_event;?>');">
-	    				<div class="font-20" style="-webkit-font-smoothing: antialiased;font-weight: 400; margin: 0px 0 8px;  padding: 0;"><?=$row->s_topic;?></div>
+	    				<div class="font-20" style="-webkit-font-smoothing: antialiased;font-weight: 400; margin: 0px 0 8px;  padding: 0;"><?=$row->s_topic;?>
+	    					<span class="font-16" style="font-weight: blod;"><?=$row->s_sub_topic;?></span>
+	    				</div>
 				      	<div class="font-14" style="margin: 0;line-height: 1.4;color: #030303;"><?=$row->s_message;?></div>
 					    <div style="margin: 5px 0px;">
 					    	<?=$icons;?><span id="txt_date_diff_ac_<?=$row->id;?>" class="font-13"></span>

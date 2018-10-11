@@ -61,7 +61,7 @@ function openInformMoneyNotification(i_event){
 }
 
 function openPayNotification(i_event){
-
+	
 }	
 
 function openIncomeNotification(i_event){
