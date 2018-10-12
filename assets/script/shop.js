@@ -1,6 +1,7 @@
 if (class_user == 'lab') {
     var url_load = "go.php?name=shop/shop_new&file=booking_lab&driver=153&place=1";
-} else {
+} 
+else {
     var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
 }
 
@@ -1084,7 +1085,7 @@ function saveShop() {
 //                    console.log(data);
 
                 });
-                var txt_long_ac = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+                var txt_long_ac = response.update.invoice+" : "+"เพิ่มรายการส่งแขก " + $('#place_name_select').val();
                 var ac = {
 					i_type : 1,
 					i_sub_type : 1,
@@ -1099,7 +1100,7 @@ function saveShop() {
 				 var nc = {
 					i_type : 1,
 					i_event :	response.last_id,
-					i_driver :	0,
+					i_user :	0,
 					s_class_user :	"lab",
 					s_topic : "งานส่งแขก",
 					s_sub_topic : "เช็คอิน",
@@ -1467,42 +1468,80 @@ function sendCheckIn(id, type) {
             $('#' + type + '_check_click').val(1)
             changeHtml(type, id, timestampToDate(res.time, "time"));
 
-            //				 console.log(array_cdata);
-            //   				 $('#json_shop').val(JSON.stringify(array_data));
             var message = "";
             socket.emit('sendchat', message);
             sendSocket(id);
-            //				$( "#close_dialog_custom" ).click();
+            
             var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
-            /*	 $.post(url_msg,function(data){
-   					console.log(data);
-   				});*/
+
    				$.ajax({
                 url: url_msg, // point to server-side PHP script 
                 dataType: 'json', // what to expect back from the PHP script, if anything
 //                data: data,
-type: 'post',
-success: function(data) {
-    console.log(data);
-}
-});
+				type: 'post',
+				success: function(data) {
+				    console.log(data);
+				}
+				});
                 ons.notification.alert({
                     message: 'ยืนยันแล้ว',
                     title: "สำเร็จ",
                     buttonLabel: "ปิด"
                 })
                 .then(function() {
-//                    $('ons-back-button').click();
-callpop();
-});
-            } else {
-            //				swal("Error");
-        }
+					callpop();
+				});
+
+			shopFuncNotiActi(id, type, response);
+
+            } else {  }
     });
 
 }
 
-function readURL(input, type, subtype, id) {
+function shopFuncNotiActi(id, type, response){
+			if(type=='driver_topoint'){		
+		      	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันถึงสถานที่ส่งแขก";
+		      	var txt_long_nc = response.update.invoice+" : "+username+" ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
+		    }
+		    else if(type=='guest_receive'){		
+		      	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันรับแขกแล้ว";
+		      	var txt_long_nc = response.update.invoice+" : "+"พนักงานต้อนรับ รับแขกเรียบร้อยแล้ว";
+		    } 
+		    else if(type=='guest_register'){		
+				var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันแขกลงทะเบียนแล้ว";
+		      	var txt_long_nc = response.update.invoice+" : "+"แขกทำการลงทะเบียนแล้ว";
+		    } 
+		    else if(type=='driver_pay_report'){		
+		     	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
+		      	var txt_long_nc = response.update.invoice+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
+		    }
+			
+                var ac = {
+					i_type : 1,
+					i_sub_type : 1,
+					i_event : response.last_id,
+					i_driver : detect_user,
+					s_topic : "งานส่งแขก",
+					s_message : txt_long_ac,
+					s_posted : username
+				};
+				
+				
+				 var nc = {
+					i_type : 1,
+					i_event :	response.last_id,
+					i_user :	0,
+					s_class_user :	"lab",
+					s_topic : "งานส่งแขก",
+					s_sub_topic : "เช็คอิน",
+					s_message :	txt_long_nc,
+					s_posted :	username
+				 };
+				apiRecordActivityAndNotification(ac, nc);
+}
+
+function readURLcheckIn(input, type, subtype, id) {
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();

@@ -10,18 +10,21 @@ class Notification extends CI_Controller {
   }
   
   public function add_notification(){
-  	$data['res'] = $this->Notification_model->add_notification();
+  	
+  	if($_COOKIE[detect_userclass]=="taxi"){
+			$data['res'] = $this->Notification_model->add_notification_lab();
+	}else{
+			$data['res'] = $this->Notification_model->add_notification_taxi();
+	}
   	echo json_encode($data['res']);
   }
   
   public function count_notification(){
   		$this->db->select('id');
-  		if($_COOKIE[detect_userclass]=="taxi"){
-			$this->db->where('i_driver = '.$_GET[id_user].' and i_active = 0 ');
-		}else{
-			$this->db->where('s_class_user = "lab" and i_active = 0 ');
-		}
-		$query = $this->db->get('notification_event');
+
+		$this->db->where('i_user = '.$_GET[id_user].' and i_active = 0 ');
+
+		$query = $this->db->get('notification_event_'.$_COOKIE[detect_userclass]);
 		$num = $query->num_rows();
 	echo json_encode($num);	
   }

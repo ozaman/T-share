@@ -132,7 +132,12 @@ class Main extends CI_Controller {
 		
   		if(isset($param[notification])){
   		
-			$data['notification'] = $this->Notification_model->add_notification($param[notification]);
+//			$data['notification'] = $this->Notification_model->add_notification($param[notification]);
+			if($_COOKIE[detect_userclass]=="taxi"){
+				$data['notification'] = $this->Notification_model->add_notification_lab($param[notification]);
+			}else{
+				$data['notification'] = $this->Notification_model->add_notification_taxi($param[notification]);
+			}
 		}
   	 	echo json_encode($data);
   }

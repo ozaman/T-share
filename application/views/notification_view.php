@@ -1,13 +1,17 @@
 <div style="padding: 0px;background-color:#fff;height: 100%;">
 <?php 
 	if($_COOKIE[detect_userclass]=="taxi"){
-		$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+		$table = "notification_event_taxi";
 	}else{
-		$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.s_class_user = 'lab' and t1.i_status = 1 order by t1.s_post_date desc ");
+		$table = "notification_event_lab";
 	}
-	
+	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM ".$table." as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
 	$check_before = '';
 	$check_now = '';
+	$num = $query->num_rows();
+	if($num<=0){ ?>
+		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีการแจ้งเตือน</strong></div>
+	<? }
 	foreach ($query->result() as $row){ 
 //		$hours = date('H',$row->s_post_date);
 		

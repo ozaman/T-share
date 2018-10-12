@@ -105,7 +105,7 @@
       <ons-list-header class="list-header"><b>เอกสารการโอน</b></ons-list-header>
       <div align="center" style="margin-top: 10px;">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_slip"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_slip');">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_slip"  style="opacity: 0;position: absolute;" onchange="readURLwallet(this,'img_slip');">
 			</div>
 			<span id="txt-img-has-img_slip" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_slip" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>

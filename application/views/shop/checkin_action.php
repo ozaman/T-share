@@ -45,7 +45,7 @@
 			<div>
 			  <!--<button class="btn-ip" type="button">เลือกภาพบัตรประจำตัวประชาชน</button>-->
 			  <input type="file" class="cropit-image-input" accept="image/*" id="img_checkin" name="img_checkin" style="opacity: 0;position: absolute;" 
-			  onchange="readURL(this,'checkin','<?=$_GET[type];?>', '<?=$_GET[id];?>');">
+			  onchange="readURLcheckIn(this,'checkin','<?=$_GET[type];?>', '<?=$_GET[id];?>');">
 			</div>
 			<span id="txt-img-has-checkin" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-checkin" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>

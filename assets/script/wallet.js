@@ -270,7 +270,7 @@ function alertWithdraw(){
 	  
 }
 
-function readURL(input, id_ele) {
+function readURLwallet(input, id_ele) {
    
 
     if (input.files && input.files[0]) {
