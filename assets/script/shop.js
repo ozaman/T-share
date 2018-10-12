@@ -1084,7 +1084,7 @@ function saveShop() {
 //                    console.log(data);
 
                 });
-                var txt_long_ac = response.update.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+                var txt_long_ac = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
                 var ac = {
 					i_type : 1,
 					i_sub_type : 1,
@@ -1095,7 +1095,7 @@ function saveShop() {
 					s_posted : username
 				};
 				
-				 var txt_long_nc = response.update.invoice+" : เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+				 var txt_long_nc = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
 				 var nc = {
 					i_type : 1,
 					i_event :	response.last_id,

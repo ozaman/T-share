@@ -16,7 +16,11 @@ class Notification extends CI_Controller {
   
   public function count_notification(){
   		$this->db->select('id');
-		$this->db->where('i_driver = '.$_GET[id_user].' and i_active = 0 ');
+  		if($_COOKIE[detect_userclass]=="taxi"){
+			$this->db->where('i_driver = '.$_GET[id_user].' and i_active = 0 ');
+		}else{
+			$this->db->where('s_class_user = "lab" and i_active = 0 ');
+		}
 		$query = $this->db->get('notification_event');
 		$num = $query->num_rows();
 	echo json_encode($num);	

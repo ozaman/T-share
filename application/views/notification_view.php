@@ -1,6 +1,11 @@
 <div style="padding: 0px;background-color:#fff;height: 100%;">
 <?php 
-	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+	if($_COOKIE[detect_userclass]=="taxi"){
+		$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+	}else{
+		$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.s_class_user = 'lab' and t1.i_status = 1 order by t1.s_post_date desc ");
+	}
+	
 	$check_before = '';
 	$check_now = '';
 	foreach ($query->result() as $row){ 
