@@ -283,7 +283,7 @@ function CheckTimeNotification(d1, d2) {
     if (hrs_d_bc == 0) {
         h_txy = '';
     } else {
-        h_txy = ' ' + hrs_d_bc + ' ชั่วโมง.';
+        h_txy = ' ' + hrs_d_bc + ' ชั่วโมง';
     }
     if (mnts_bc == 0) {
         m_txt = '';

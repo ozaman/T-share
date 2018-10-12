@@ -1,6 +1,6 @@
 <div style="padding: 0px;background-color:#fff;height: auto;" id="list_noti_data">
 <?php 
-	$limit = 5;
+	$limit = 14;
 	$start = 0;
 	if($_COOKIE[detect_userclass]=="taxi"){
 		$table = "notification_event_taxi";
