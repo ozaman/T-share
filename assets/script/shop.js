@@ -1468,8 +1468,8 @@ function sendCheckIn(id, type) {
             $('#' + type + '_check_click').val(1)
             changeHtml(type, id, timestampToDate(res.time, "time"));
 
-            var message = "";
-            socket.emit('sendchat', message);
+//            var message = "";
+//            socket.emit('sendchat', message);
             sendSocket(id);
             
             var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
@@ -1492,52 +1492,55 @@ function sendCheckIn(id, type) {
 					callpop();
 				});
 
-			shopFuncNotiActi(id, type, response);
+			shopFuncNotiActi(id, type);
 
             } else {  }
     });
 
 }
 
-function shopFuncNotiActi(id, type, response){
+function shopFuncNotiActi(id, type){
 			if(type=='driver_topoint'){		
-		      	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันถึงสถานที่ส่งแขก";
-		      	var txt_long_nc = response.update.invoice+" : "+username+" ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
+		      	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันถึงสถานที่ส่งแขก";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+username+" ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
 		    }
 		    else if(type=='guest_receive'){		
-		      	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันรับแขกแล้ว";
-		      	var txt_long_nc = response.update.invoice+" : "+"พนักงานต้อนรับ รับแขกเรียบร้อยแล้ว";
+		      	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันรับแขกแล้ว";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานต้อนรับ รับแขกเรียบร้อยแล้ว";
 		    } 
 		    else if(type=='guest_register'){		
-				var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันแขกลงทะเบียนแล้ว";
-		      	var txt_long_nc = response.update.invoice+" : "+"แขกทำการลงทะเบียนแล้ว";
+				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแขกลงทะเบียนแล้ว";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แขกทำการลงทะเบียนแล้ว";
 		    } 
 		    else if(type=='driver_pay_report'){		
-		     	var txt_long_ac = response.update.invoice+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
-		      	var txt_long_nc = response.update.invoice+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
-		    }
+		     	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
+		    }else if(type=='lab_pay'){
+				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันการจ่ายเงินคนขับ";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว";
+			}
 			
                 var ac = {
 					i_type : 1,
 					i_sub_type : 1,
-					i_event : response.last_id,
+					i_event : id,
 					i_driver : detect_user,
 					s_topic : "งานส่งแขก",
 					s_message : txt_long_ac,
 					s_posted : username
 				};
 				
-				
-				 var nc = {
+					var nc = {
 					i_type : 1,
-					i_event :	response.last_id,
-					i_user :	0,
-					s_class_user :	"lab",
+					i_event : id,
+					i_user :  $('#id_driver_order').val(),
+					s_class_user :	class_user,
 					s_topic : "งานส่งแขก",
 					s_sub_topic : "เช็คอิน",
 					s_message :	txt_long_nc,
 					s_posted :	username
-				 };
+					};
+				 
 				apiRecordActivityAndNotification(ac, nc);
 }
 
@@ -1930,8 +1933,8 @@ $.post(url_his,data,function(res){
 
 function approvePayDriverByLab(id, invoice, driver){
 	console.log("Lab approved pay");
-	 sendSocket(id);
-	 return;
+/*	 sendSocket(id);
+	 return;*/
 	var param = {
 		order_id : id
 	}
@@ -1943,6 +1946,7 @@ function approvePayDriverByLab(id, invoice, driver){
            dataType: 'json',
            success: function(res) {
                console.log(res);
+               shopFuncNotiActi(id, "lab_pay");
 //              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
                $.ajax({
 			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
@@ -1968,8 +1972,8 @@ function approvePayDriverByLab(id, invoice, driver){
 
 function approvePayDriverByTaxi(id, invoice, driver){
 	console.log("Driver approved pay");
-	 sendSocket(id);
-	 return;
+	 /*sendSocket(id);
+	 return;*/
 	var param = {
 		order_id : id
 	}
@@ -1981,6 +1985,15 @@ function approvePayDriverByTaxi(id, invoice, driver){
            dataType: 'json',
            success: function(res) {
                console.log(res);
+               $.ajax({
+		           url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
+//		           data: param,
+		           type: 'post',
+		           dataType: 'json',
+		           success: function(com) { 
+		           		console.log(com);
+		           }
+		       });
                $.ajax({
 			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
 			           type: 'post',

@@ -1359,7 +1359,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     };
     var check_new_user = '<?=$_GET[check_new_user];?>';
     var regis_linenoti = '<?=$_GET[regis];?>';
-    console.log(regis_linenoti)
+//    console.log(regis_linenoti)
     console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
     //                                                alert(check_new_user);
     if (check_new_user != "") {

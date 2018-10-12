@@ -5,6 +5,10 @@
 	/*$check_before = '';
 	$check_now = '';*/
 	$befordate = '';
+	$num = $query->num_rows();
+	if($num<=0){ ?>
+		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีบันทึกกิจกรรม</strong></div>
+	<? }
 	foreach ($query->result() as $row){ 
 		
 		
@@ -28,6 +32,9 @@
 <?php			}	?>
 	    <div style="border-bottom: 1px solid #ccc; padding: 5px 5px;" onclick="openDetailHisWallet('<?=$row->id;?>');">
        		<table width="100%">
+       			<tr>
+       				<td><?=$row->s_topic;?></td>
+       			</tr>
        			<tr>
        				<td>
        					<span><?=$row->s_message;?></span>

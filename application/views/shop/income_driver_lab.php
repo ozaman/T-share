@@ -11,6 +11,7 @@
 	}
 </style>
 <?php 
+
 	$query = $this->db->query("select * from order_booking where id = '".$_GET[id]."' ");
 	$row = $query->row();
 	
@@ -25,7 +26,7 @@
 	$show_park = "display:none;";
 	$show_person = "display:none;";
 	$show_com = "display:none;";
-	$query_price = $this->db->query("select * from shop_country_com_list_price where i_shop_country_com_list = '".$row->plan_id."' ");
+	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$row->plan_id."' ");
 	$num = 0;
 	foreach ($query_price->result() as $row_price){
 			if($num>=1){
@@ -54,19 +55,21 @@
 	
 	if($row->check_lab_pay==1){
 		if($row->check_driver_pay==1){
-			$status_txt = '<span class="font-16 txt-green"><img src="assets/images/yes.png" style="width:30px;" /><span>แท็กซี่ยืนยันแล้ว</span></span>';
+			$status_txt = '<span class="font-16 txt-green"><img src="assets/images/yes.png"  style=" position: absolute;margin-left: -20px; margin-top: 1px;" /><span>แท็กซี่ยืนยันแล้ว</span></span>';
 		}else{
 			$status_txt = '<span class="font-16 txt-warning"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอแท็กซี่ยืนยันรับเงิน</span></span>';
 		}
 		$btn_approved = "disabled";
 		$txt_btn_app = "ทำการยืนยันแล้ว";
 		$show_after_approve = "";
-	}else{
+	}
+	else{
 		$show_after_approve = "style='display:none;' ";
 		$txt_btn_app = "ยืนยันการจ่ายเงิน";
 		$btn_approved = "";
 		$status_txt = '<span class="font-16 txt-red"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอดำเนินการ</span></span>';
 	}
+	
 ?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />

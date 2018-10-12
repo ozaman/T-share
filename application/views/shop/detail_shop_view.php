@@ -92,6 +92,7 @@ else if($arr[book][status]=='CONFIRM'){
 </script>
 
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
+<input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
 	<!--<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="position: absolute;
     right: 10px;
@@ -170,7 +171,7 @@ else if($arr[book][status]=='CONFIRM'){
    		<tbody>
    		<tr>
 	      <td width="100" class="font-16 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-	      <td class="font-16"><?=$arr[book][invoice];?></td>
+	      <td class="font-16"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
    		</tr>
    		</tbody>
 		<tbody>

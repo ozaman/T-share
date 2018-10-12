@@ -1,11 +1,16 @@
 <?php	
-$date = $_GET[date];
+if($_GET[date]==""){
+	$date = date('Y-m-d');
+}else{
+	$date = $_GET[date];
+}
+
 $date = explode("-",$date);
 $year = $date[0];
 $month = $date[1];
 //echo $year." ".$month;
 $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left join shopping_product as t2 on t1.program = t2.id where t1.status LIKE 'COMPLETED' and t1.drivername = '".$_COOKIE[detect_user]."' and (MONTH(t1.transfer_date) = '".$month."' and YEAR(t1.transfer_date) = '".$year."')  order by t1.transfer_date desc  ";
-
+//		echo $select;
 		$query = $this->db->query($select);
 		$befordate = '';
 		$i = 0;

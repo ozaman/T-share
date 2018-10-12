@@ -30,7 +30,7 @@ function setCountNotification(){
 			        dataType: 'json', // what to expect back from the PHP script, if anything
 			        type: 'post',
 			        success: function(num) {
-			        	console.log(num);
+//			        	console.log(num);
 //			        	num = 0;
 			        	if(num>0){
 							$('.fa-bell').addClass('bell');		    
@@ -184,7 +184,7 @@ function gotoDiv(id) {
 }
 
 function checkImgProfile(username, pf) {
-    console.log(username);
+//    console.log(username);
     var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
     $.ajax({
         url: url,
@@ -381,13 +381,13 @@ function showPosition(position) {
     } else {
         lng = "th";
     }
-    console.log('Php Browser lng : ' + lng);
+//    console.log('Php Browser lng : ' + lng);
     var url = 'https://maps.google.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false&language=' + lng + '&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
-    console.log(url);
-    console.log(position.coords);
+//    console.log(url);
+//    console.log(position.coords);
     $('#lat').val(position.coords.latitude);
     $('#lng').val(position.coords.longitude);
-    console.log($('#lat').val() + " ...");
+//    console.log($('#lat').val() + " ...");
     //console.log(position.coords.latitude+" : "+position.coords.longitude);
     $.post(url, function(data) {
         //   console.log(data);
@@ -409,7 +409,7 @@ function showPosition(position) {
 }
 
 function updatePlaceNum(province) {
-    console.log(province)
+//    console.log(province)
     //    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
     var url = "main/get_id_province";
     $.post(url, {
@@ -488,7 +488,9 @@ socket.on('getbookinglab', function(data) {
     if ($('#number_shop').text() != 0) {
         $('#num_manage').show();
         $('#num_manage').html($('#number_shop').text());
-    }
+    }else{
+		$('#num_manage').hide();
+	}
 
 
     // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
@@ -513,8 +515,8 @@ socket.on('getbookinglab', function(data) {
             if (status == "his") {
                 openOrderFromAndroidHistory(get_order_id, status, open_ic);
             } else {
-                console.log("order id : " + get_order_id);
-                console.log(array_data);
+//                console.log("order id : " + get_order_id);
+//                console.log(array_data);
                 $.each(array_data.manage, function(index, value) {
                     if (value.id == get_order_id) {
                         console.log(value.id + " : " + index);
@@ -624,6 +626,9 @@ socket.on('updatedriver', function(username, data) {
         setTimeout(function(){  shopManage(); }, 1500);
     }
 	setCountNotification();
+	if($('#check_open_noti_menu').val()==1){
+		loadNotificationPage();
+	}
 });
 
 function formatDate(date) {
@@ -719,7 +724,7 @@ function getTansferJobNumber(driver, date) {
         //    	console.log(res)
         var res = JSON.parse(res);
         var num = res.data.result;
-        console.log(num + " +++")
+//        console.log(num + " +++")
         if (num > 0) {
             $('#number_tbooking_history').show();
             //			alert(32);

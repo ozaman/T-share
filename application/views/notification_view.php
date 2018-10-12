@@ -80,3 +80,4 @@
 <?	}	?>
 </div>
 <input type="hidden" id="id_notification_select" value="0" />
+<input type="hidden" id="check_open_noti_menu" value="1" />
