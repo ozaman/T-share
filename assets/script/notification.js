@@ -200,3 +200,100 @@ function changeStatusNotification(status){
 			}
 	});
 }
+
+function loadMoreNoti(){
+//	modal.show();
+	/*$('#btn_load_more_noti').hide();
+	$('#progress_load_more_noti').show();*/
+	
+//	$('#txt_load_more_noti').hide();
+	$('#icons_load_more_noti').show();
+	$('#btn_load_more_noti').attr('disabled','disabled');
+//	$("#card-ac_1").clone().insertAfter("div.card-activity:last");
+	
+	var start = $('#check_data_load_start').val();
+//	console.log(start);
+	var limit = $('#check_data_load_limit').val();
+//	var end;
+	$.ajax({
+			url: "notification/load_more_noti?start="+start+"&limit="+limit, 
+			dataType: 'json',
+			type: 'get',
+//			data: data,
+			success: function(res) {
+				modal.hide();
+				console.log(res);
+				
+				if(res.numrow<=0){
+					return;
+				}
+				$.each(res.data, function( index, value ) {
+//					console.log(value.id);
+					$.post("component/list_notification",value,function(cpn){
+				    	$("#list_noti_data").append(cpn);
+				    });
+				});
+				$('#check_data_load_start').val(parseInt(start) + parseInt(limit));
+				if(res.rest<=0){
+					$('#box_load_more_noti').fadeOut(700);
+				}
+				/*$('#btn_load_more_noti').show();
+				$('#progress_load_more_noti').hide();*/
+//				$('#txt_load_more_noti').show();
+				$('#icons_load_more_noti').hide();
+				$("#btn_load_more_noti").removeAttr("disabled");
+			}
+	});
+}
+
+function CheckTimeNotification(d1, d2) {
+    //      console.log(d1+" = "+d2);
+    datetime1 = d1;
+    datetime2 = d2;
+    //Set date time format
+    var startDate = new Date(datetime1);
+    var endDate = new Date(datetime2);
+    var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    //Calculate time
+    var days = Math.floor(seconds / (3600 * 24));
+    var hrs_d = Math.floor((seconds - (days * (3600 * 24))) / 3600);
+    var hrs = Math.floor(seconds / 3600);
+    var mnts = Math.floor((seconds - (hrs * 3600)) / 60);
+    var secs = seconds - (hrs * 3600) - (mnts * 60);
+    //old
+    var hrs_d_bc = hrs_d;
+    var mnts_bc = mnts;
+    var secs_bc = secs;
+    //Add 0 if one digit
+    if (hrs_d < 10) hrs_d = "0" + hrs_d;
+    if (mnts < 10) mnts = "0" + mnts;
+    if (secs < 10) secs = "0" + secs;
+    var final_txt, day_txt, h_txy, m_txt, old_txt;
+    
+    if (days == 0) {
+        day_txt = '';
+    } else {
+        day_txt = days + ' วัน';
+    }
+    
+    if(days>=1){
+		return day_txt+"ที่แล้ว";
+	}
+	
+    if (hrs_d_bc == 0) {
+        h_txy = '';
+    } else {
+        h_txy = ' ' + hrs_d_bc + ' ชั่วโมง.';
+    }
+    if (mnts_bc == 0) {
+        m_txt = '';
+    } else {
+        m_txt = ' ' + mnts_bc + ' นาที';
+    }
+    final_txt = day_txt + h_txy + m_txt
+    old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
+    if (days <= 0 && hrs_d_bc <= 0 && mnts_bc <= 0) {
+        return "ไม่กี่วินาทีที่ผ่านมา";
+    }
+    return final_txt + "ที่ผ่านมา";
+}

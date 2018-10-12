@@ -382,6 +382,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center">ข้อมูลบัญชี</div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_profile_view">
                 <?php //include("application/views/page/profile_view.php"); ?>
@@ -400,6 +405,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center">ข้อมูลรถ</div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_account_bank">
             </div>
@@ -417,6 +427,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center">ข้อมูลรถ</div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_car_manage">
             </div>
@@ -434,6 +449,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </script>
         </ons-page>
     </template>
+	
     <template id="shopping.html">
         <ons-page>
             <ons-toolbar>
@@ -441,6 +457,12 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			        	<!--<i class="fa fa-home" style="font-size:26px;" aria-hidden="true"></i>-->
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_shop">
                 <ons-page>
@@ -520,6 +542,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button onclick="$('#check_open_worktbooking').val(0);">กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -578,6 +605,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -632,6 +664,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -685,6 +722,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_popup1">
             </div>
@@ -702,6 +744,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_popup2">
             </div>
@@ -719,6 +766,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_qrcode">
                 <?php 
@@ -741,6 +793,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_line">
                 <?php 
@@ -762,6 +819,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_contract">
             </div>
@@ -779,6 +841,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -855,6 +922,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -912,6 +984,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <?php 
@@ -1025,6 +1102,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_place_company">
             </div>
@@ -1076,6 +1158,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button class="option-back">กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <div id="body_option">
             </div>
@@ -1093,6 +1180,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-back-button class="option-back">กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
             </ons-toolbar>
             <input type="hidden" id="type_checkin" value="xx" />
             <div id="body_shop_checkin">
@@ -1360,7 +1452,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     var check_new_user = '<?=$_GET[check_new_user];?>';
     var regis_linenoti = '<?=$_GET[regis];?>';
 //    console.log(regis_linenoti)
-    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+//    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
     //                                                alert(check_new_user);
     if (check_new_user != "") {
         $("#main_load_mod_popup").toggle();

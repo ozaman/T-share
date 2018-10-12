@@ -138,7 +138,7 @@
 	    	<?=date('Y-m-d H:i:s',$row->driver_payment_date)." น.";?>
 	    </div>
 	</ons-list-item>
-	<ons-list-item>
+	<ons-list-item <?=$show_after_approve;?>>
 	    <div class="center list-pd-r">
 	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 95%; margin: 0 auto;background-color: #26b06c;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
 	    </div>

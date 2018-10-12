@@ -1,14 +1,24 @@
-<div style="padding: 0px;background-color:#fff;height: 100%;">
+<div style="padding: 0px;background-color:#fff;height: auto;" id="list_noti_data">
 <?php 
+	$limit = 5;
+	$start = 0;
 	if($_COOKIE[detect_userclass]=="taxi"){
 		$table = "notification_event_taxi";
 	}else{
 		$table = "notification_event_lab";
 	}
-	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM ".$table." as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM ".$table." as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit ".$start.",".$limit);
 	$check_before = '';
 	$check_now = '';
+	$befordate = '';
 	$num = $query->num_rows();
+	
+	$query_all = $this->db->query("SELECT id FROM ".$table." where i_user = ".$_COOKIE[detect_user]." and i_status = 1");
+  	$num_all = $query_all->num_rows();
+	$rest = intval($num_all) - (intval($start) + intval($limit));
+	if($rest<=0){
+		$display_box_load_more_noti = "display:none";
+	}
 	if($num<=0){ ?>
 		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีการแจ้งเตือน</strong></div>
 	<? }
@@ -29,12 +39,22 @@
 				<?php
 			}
 		}else{ 
-			if($check_before != 1){
-				$check_before = 1;
-				?>
-				<ons-list-header class="list-header" style="font-weight: unset;font-size: 13px;">ก่อนหน้านี้</ons-list-header>
-				<?php
+			if($hours>24){
+				$date_row = date('Y-m-d',$row->s_post_date);
+				if($befordate != $date_row){ 
+					$befordate = $date_row;
+					?>
+					<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
+	<?php			}
+			}else{
+				if($check_before != 1){
+					$check_before = 1;
+					?>
+					<ons-list-header class="list-header" style="font-weight: unset;font-size: 13px;">ก่อนหน้านี้</ons-list-header>
+					<?php
+				}
 			}
+			
 		 }
 		
 		
@@ -68,16 +88,26 @@
 	    			</td>
 	    		</tr>
 	    	</table>
-	      	
 	    </div>
 <script>
 	console.log("<?=$row->id;?>");
 	var d1 = "<?=date('Y/m/d H:i:s',$row->s_post_date);?>";
 	var d2 = js_yyyy_mm_dd_hh_mm_ss();
-	$('#txt_date_diff_nt_<?=$row->id;?>').text(CheckTime(d1,d2));
+	$('#txt_date_diff_nt_<?=$row->id;?>').text(CheckTimeNotification(d1,d2));
 	
 </script>	   
 <?	}	?>
+
 </div>
+<div style="<?=$display_box_load_more_noti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_noti">
+	<!--<ons-progress-bar indeterminate id="progress_load_more_noti" style="display: none;"></ons-progress-bar>-->
+	<ons-button style="background-color: #fff; width: 100%;color: #0076ff;" align="center" onclick="loadMoreNoti();" id="btn_load_more_noti">
+		<ons-icon icon="ion-load-c" spin size="26px" id="icons_load_more_noti" style="display: none;"></ons-icon>
+		<span id="txt_load_more_noti">Load More</span>
+	</ons-button>
+</div>
+
 <input type="hidden" id="id_notification_select" value="0" />
 <input type="hidden" id="check_open_noti_menu" value="1" />
+<input type="hidden" id="check_data_load_start" value="<?=$limit;?>" />
+<input type="hidden" id="check_data_load_limit" value="<?=$limit;?>" />

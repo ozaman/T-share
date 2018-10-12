@@ -198,7 +198,7 @@ function saveDataPf(){
 		i_event : 0,
 		i_driver : detect_user,
 		s_topic : "แก้ไขข้อมูลส่วนตัว",
-		s_message : username+" ทำการแก้ไขข้อมูลส่วนตัว",
+		s_message : "คุณทำการแก้ไขข้อมูลส่วนตัว",
 		s_posted : username
 	};
 	var nc = {};

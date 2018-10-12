@@ -1515,9 +1515,12 @@ function shopFuncNotiActi(id, type){
 		    else if(type=='driver_pay_report'){		
 		     	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
 		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
-		    }else if(type=='lab_pay'){
+		    }else if(type=='lab_pay_approve'){
 				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันการจ่ายเงินคนขับ";
 		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว";
+			}else if(type=='driver_pay_approve'){
+				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณได้ยืนยันการรับเงินแล้ว";
+		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แท็กซี่ทำการยืนยันการรับเงินแล้ว";
 			}
 			
                 var ac = {
@@ -1946,7 +1949,7 @@ function approvePayDriverByLab(id, invoice, driver){
            dataType: 'json',
            success: function(res) {
                console.log(res);
-               shopFuncNotiActi(id, "lab_pay");
+               shopFuncNotiActi(id, "lab_pay_approve");
 //              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
                $.ajax({
 			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
@@ -1994,6 +1997,7 @@ function approvePayDriverByTaxi(id, invoice, driver){
 		           		console.log(com);
 		           }
 		       });
+		       shopFuncNotiActi(id, "driver_pay_approve");
                $.ajax({
 			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
 			           type: 'post',

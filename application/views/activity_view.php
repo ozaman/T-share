@@ -1,7 +1,7 @@
 <div style="padding: 0px;background-color:#fff;height: 100%;">
 <ons-list>	 
 <?php 
-	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc ");
+	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit 10 ");
 	/*$check_before = '';
 	$check_now = '';*/
 	$befordate = '';
@@ -30,7 +30,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
-	    <div style="border-bottom: 1px solid #ccc; padding: 5px 5px;" onclick="openDetailHisWallet('<?=$row->id;?>');">
+	    <div style="border-bottom: 1px solid #ccc; padding: 5px 5px;">
        		<table width="100%">
        			<tr>
        				<td><?=$row->s_topic;?></td>
@@ -57,4 +57,5 @@
 <?	}	?>
 </ons-list>	
 </div>
+
 <input type="hidden" id="id_activity_select" value="0" />

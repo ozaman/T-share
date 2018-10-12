@@ -44,4 +44,9 @@ class Notification extends CI_Controller {
   		echo json_encode($data['res']);
   }
   
+  public function load_more_noti(){
+  		$data['res'] = $this->Notification_model->query_data_noti();
+  		echo json_encode($data['res']);
+  }
+  
 }

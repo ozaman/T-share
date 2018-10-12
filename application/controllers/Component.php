@@ -55,5 +55,11 @@ public function cpn_car_type()
 		
 	}
 	
+	public function list_notification()
+	{
+//		$data['data'] = $this->Main_model->query_province();
+		$this->load->view('component/list_notification');
+		
+	}
 }
 ?>

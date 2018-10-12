@@ -24,6 +24,13 @@ function testNotiSend(){
 				apiRecordActivityAndNotification(ac, nc);
 }
 
+function reloadApp(){
+	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
+	console.log(newURL);
+//	location.replace(reloadApp)
+	window.location = newURL;
+}
+
 function setCountNotification(){
 	$.ajax({
 			        url: "notification/count_notification?id_user="+$.cookie("detect_user"), // point to server-side PHP script 
@@ -1202,7 +1209,7 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 						data: param_all,
 						success: function(res) {
 							console.log(res);
-							setCountNotification();
+							setTimeout(function(){ setCountNotification(); }, 1500);
 //							return res;
 						}
 				});

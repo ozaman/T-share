@@ -100,10 +100,27 @@ class Notification_model extends CI_Model {
    	$ac[i_status] = $_POST[i_status];
    	
 	$this->db->where('id', $id);
-	$cs[result] = $this->db->update('notification_event', $ac); 
+	$cs[result] = $this->db->update('notification_event_'.$_COOKIE[detect_userclass], $ac); 
 	$cs[id] = $id;
     return $cs;
   }	
+  
+  public function query_data_noti(){
+  	$limit = $_GET[limit];
+  	$start = $_GET[start];
+  	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM notification_event_".$_COOKIE[detect_userclass]." as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit ".$start.",".$limit);
+  	$num = $query->num_rows();
+	foreach ($query->result() as $row){
+	       $data[] = $row;
+	}
+	$return[data] = $data;
+	$return[numrow] = $num;
+	
+	$query_all = $this->db->query("SELECT id FROM notification_event_".$_COOKIE[detect_userclass]." where i_user = ".$_COOKIE[detect_user]." and i_status = 1");
+  	$num_all = $query_all->num_rows();
+	$return[rest] = intval($num_all) - (intval($start) + intval($limit));
+	return $return;
+  }
   /**
   * *********** End
   */
