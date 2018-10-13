@@ -5,10 +5,8 @@
 .res-input {
   position: absolute;
   right: 30px;
-  /*    margin-top: 10px;*/
   font-size: 28px;
   z-index: 2;
-  /* display: block !important; */
 }
 </style>
 <?php
@@ -28,16 +26,6 @@ $data_place = $query_place->row();
 $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->main";
 $shopmain = $this->db->query($sql_shopmain);
 $data_shopmain = $shopmain->row();
-
-// $sql_shopmain_sub = "SELECT * FROM shopping_product_sub  WHERE id= $data_shopmain->main ";
-// $shopmain_sub = $this->db->query($sql_shopmain_sub);
-// $data_shopmain_sub = $shopmain_sub->row();
-
-
-
-
-
-// echo $data_place->topic_th;
 ?>
 <div style="height: 100%;">
 	<input type="hidden" value="<?=$data_place->topic_th;?>" id="place_name_select" />
@@ -52,9 +40,6 @@ $data_shopmain = $shopmain->row();
     <input id="dri_name" name="dri_name" type="hidden" value="<?=$data_dv->name; ?>">
     <div>
       <div class="card">
-        <!-- <div class="form-group "> -->
-
-
           <script>
             function selectCarShops(id, cartype, car_type_txt) {
               console.log('--------------------------')
@@ -73,7 +58,6 @@ $data_shopmain = $shopmain->row();
 
           </script>
           <input value="" id="car_id" name="check_use_car_id" type="hidden" />
-          <!-- </div> -->
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
               <td width="110">
@@ -106,33 +90,11 @@ $data_shopmain = $shopmain->row();
         50% { border-color: rgba(0, 255, 255, 0); }
         100%   { border-color: rgba(0, 255, 255, 1); }
       }
-       /* @-webkit-keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #FF5722    
-    }    
-}    
-@keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #FF5722    
-    }    
-    }    */
+     
     .borderBlink{   
-      /*animation: border-pulsate 2s infinite; */
-      /*border: 1px solid;*/
-      border: 1px solid #FF5722;
-      /*-webkit-animation: borderBlink 1s step-end infinite;    */
-      /*animation: borderBlink 1s step-end infinite;*/
-      /* add 'border-color: transparent' if you wish no border to show initially */  
+      border: 1px solid #FF5722; 
     }
     .borderBlink:hover {    
-      /*-webkit-animation: borderBlink 1s step-end infinite;    */
-      /*animation: borderBlink 1s step-end infinite;    */
     }
     .cus_focus{
       background-color: #eeeeee7d;
@@ -145,21 +107,13 @@ $data_shopmain = $shopmain->row();
     <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
       <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
       <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
-      <!--<div></div>-->
-      <!--<span >เลือกรถส่งแขก</span>-->
       <div style="padding: 0px;margin-top: 0px;" >
         <?php
-
-          // echo json_encode($query->result());
         $i =1;
         foreach ($query->result() as $key=>$val) {
 
-
           $bg_plate_color = "background-color: ".$val->plate_color;
-//          $text_plate_color = "background-color: ".$val->txt_color;
           ?>
-
-
           <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
             <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
             <?php if($val->status_usecar == 1){
@@ -173,7 +127,6 @@ $data_shopmain = $shopmain->row();
               <tbody>
                 <tr>
                   <td width="30">
-                    <!--<label class="container">-->
                       <?php 
 
                       if($val->status_usecar == 1 && count($query->result()) == 1){
@@ -195,10 +148,6 @@ $data_shopmain = $shopmain->row();
 
                       <?php }
                       ?>
-
-                      <!--<input type="checkbox" name="car"  value="1">-->
-                      <!--<span class="checkmark"></span>-->
-                      <!--</label>-->
                     </td>
                     <td>
                       <table width="100%" cellpadding="1" cellspacing="2">
@@ -230,9 +179,7 @@ $data_shopmain = $shopmain->row();
       <?php  
       $_where = array();
       $_where['i_shop'] = $_GET[shop_id];
-    // echo $_GET[shop_id].'************';
-        // $_where['i_shop'] = 1;
-        // $_where['i_status'] = 1;
+
       $_select = array('*');
 
       $_order = array();
@@ -267,10 +214,6 @@ $data_shopmain = $shopmain->row();
             foreach($arr[region_icon] as $key2=>$val2){
 
               ?>
-              <!-- <span class="font-17"></span> -->
-
-
-              
                 <div class="col-md-3">
                   <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
                 </div>
@@ -285,28 +228,7 @@ $data_shopmain = $shopmain->row();
         <?php }?>
 
       </div>
-      <!-- </div> -->
-<!--  <ons-list-item tappable id="nation_2">
-        <label class="left">
-          
-          <ons-radio class="radio-fruit " input-id="radio-nation2" value="2" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
-        </label>
-        <label class="center" for="radio-nation2">
-          <img src="assets/images/flag/Other.png" width="25" height="25" alt="">&nbsp; <span class=" font-17">ต่างชาติ</span>
-        </label>
-      </ons-list-item>
-
-      <ons-list-item tappable id="nation_3">
-        <label class="left">
-         
-          <ons-radio class="radio-fruit " input-id="radio-nation3" value="3" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
-        </label>
-        <label class="center" for="radio-nation3">
-          <img src="assets/images/flag/China.png" width="25" height="25" alt=""> + <img src="assets/images/flag/Other.png" width="25" height="25" alt="">&nbsp;
-          <span class=" font-17">จีน + ต่างชาติ</span>
-        </label>
-      </ons-list-item> -->
-
+   
     </div>
 
     <div class="card" id="box_com" onclick="checformadd('box_com')">
