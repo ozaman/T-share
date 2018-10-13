@@ -157,10 +157,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				    .show(target);
 				};
 
-				var hidePopover = function() {
-						  document
-						    .getElementById(id)
-						    .hide();
+				var hidePopover = function(id) {
+						  document.getElementById(id).hide();
 				};
 		    </script>
         </ons-page>
@@ -168,13 +166,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     
 	<ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
       <ons-list id="popover-list">
-        <ons-list-item class="more-options" tappable onclick="hidePopover('popover-noti');">
+        <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
           <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
         </ons-list-item>
-        <ons-list-item class="more-options" tappable onclick="hidePopover('popover-noti');">
+        <ons-list-item class="more-options" tappable onclick="hiddenNotiAll();hidePopover('popover-noti');">
           <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
         </ons-list-item>
-        <ons-list-item class="more-options" tappable onclick="hidePopover();">
+        <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
           <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
         </ons-list-item>
       </ons-list>
@@ -1498,6 +1496,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <input type="hidden" value="0" id="check_custome_js" />
 <script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/script/activity.js?v=<?=time()?>"></script>
 <script src="<?=base_url();?>assets/script/profile.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>

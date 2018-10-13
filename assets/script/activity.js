@@ -200,3 +200,39 @@ function changeStatusActivity(status){
 			}
 	});
 }
+
+function loadMoreActivity(){
+	$('#icons_load_more_acti').show();
+	$('#btn_load_more_acti').attr('disabled','disabled');
+
+	var start = $('#check_data_load_start_acti').val();
+
+	var limit = $('#check_data_load_limit_acti').val();
+
+	$.ajax({
+			url: "activity/load_more_acti?start="+start+"&limit="+limit, 
+			dataType: 'json',
+			type: 'get',
+//			data: data,
+			success: function(res) {
+				console.log(res);
+				
+				if(res.numrow<=0){
+					return;
+				}
+				$.each(res.data, function( index, value ) {
+//					console.log(value.id);
+					$.post("component/list_activity",value,function(cpn){
+				    	$("#list_acti_data").append(cpn);
+				    });
+				});
+				$('#check_data_load_start_acti').val(parseInt(start) + parseInt(limit));
+				if(res.rest<=0){
+					$('#box_load_more_acti').fadeOut(700);
+				}
+
+				$('#icons_load_more_acti').hide();
+				$("#btn_load_more_acti").removeAttr("disabled");
+			}
+	});
+}

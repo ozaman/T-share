@@ -7,7 +7,7 @@ class Activity_model extends CI_Model {
   		$data[i_type] = $_POST[i_type];
   		$data[i_sub_type] = $_POST[i_sub_type];
   		$data[i_event] = $_POST[i_event];
-  		$data[i_driver] = $_POST[i_driver];
+  		$data[i_user] = $_POST[i_user];
   		$data[s_topic] = $_POST[s_topic];
   		$data[s_message] = $_POST[s_message];
 //  		$data[i_active] = 0;
@@ -19,6 +19,23 @@ class Activity_model extends CI_Model {
   		$data[result] = $result;
   		
   		return $data;
+  }
+  
+  public function query_data_acti(){
+  	$limit = $_GET[limit];
+  	$start = $_GET[start];
+  	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit ".$start.",".$limit);
+  	$num = $query->num_rows();
+	foreach ($query->result() as $row){
+	       $data[] = $row;
+	}
+	$return[data] = $data;
+	$return[numrow] = $num;
+	
+	$query_all = $this->db->query("SELECT id FROM activity_event where i_user = ".$_COOKIE[detect_user]." and i_status = 1");
+  	$num_all = $query_all->num_rows();
+	$return[rest] = intval($num_all) - (intval($start) + intval($limit));
+	return $return;
   }
   
   /*public function read_activity() {

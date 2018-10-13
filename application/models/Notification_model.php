@@ -121,6 +121,30 @@ class Notification_model extends CI_Model {
 	$return[rest] = intval($num_all) - (intval($start) + intval($limit));
 	return $return;
   }
+
+  public function hide_noti_all(){
+  		$id = $_GET[user_id];
+  		
+  		$update[i_active] = 1;
+  		$update[s_last_update] = time();
+  		$this->db->where('i_user', $id);
+		$update[result] = $this->db->update('notification_event_'.$_COOKIE[detect_userclass], $update); 
+		$update[i_user] = $id;
+		$update[tb] = 'notification_event_'.$_COOKIE[detect_userclass];
+    	return $update;
+  }
+  
+  public function show_notification_hide(){
+  		$id = $_GET[user_id];
+  		
+  		$update[i_status] = 1;
+  		$update[s_last_update] = time();
+  		$this->db->where('i_user', $id);
+		$update[result] = $this->db->update('notification_event_'.$_COOKIE[detect_userclass], $update); 
+		$update[i_user] = $id;
+		$update[tb] = 'notification_event_'.$_COOKIE[detect_userclass];
+    	return $update;
+  }
   /**
   * *********** End
   */

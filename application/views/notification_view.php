@@ -1,6 +1,6 @@
 <div style="padding: 0px;background-color:#fff;height: auto;" id="list_noti_data">
 <?php 
-	$limit = 14;
+	$limit = 10;
 	$start = 0;
 	if($_COOKIE[detect_userclass]=="taxi"){
 		$table = "notification_event_taxi";
@@ -90,7 +90,7 @@
 	    	</table>
 	    </div>
 <script>
-	console.log("<?=$row->id;?>");
+//	console.log("<?=$row->id;?>");
 	var d1 = "<?=date('Y/m/d H:i:s',$row->s_post_date);?>";
 	var d2 = js_yyyy_mm_dd_hh_mm_ss();
 	$('#txt_date_diff_nt_<?=$row->id;?>').text(CheckTimeNotification(d1,d2));

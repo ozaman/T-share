@@ -8,7 +8,44 @@ ons.ready(function () {
     });
 });
 
+function showNotiHidden(){
+	$.ajax({
+			url: "notification/show_notification_hide?user_id="+detect_user, // point to server-side PHP script 
+			dataType: 'json', // what to expect back from the PHP script, if anything
+			type: 'post',
+//			data: data,
+			success: function(res) {
+				console.log(res);
+				loadNotificationPage();
+			}
+	});
+}
 
+function settingNoti(){
+	fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'ตั้งค่าการแจ้งเตือน'
+    }, 'lift-ios');
+    $.post("page/call_page", {
+        path: "page/setting_notification"
+    }, function(ele) {
+        $('#body_popup2').html(ele);
+    });
+}
+
+function hiddenNotiAll(){
+	$.ajax({
+			url: "notification/hide_notification_all?user_id="+detect_user, // point to server-side PHP script 
+			dataType: 'json', // what to expect back from the PHP script, if anything
+			type: 'post',
+//			data: data,
+			success: function(res) {
+				console.log(res);
+				$('.card-activity').css('background-color','#fff');
+				setCountNotification();
+			}
+	});
+}
 
 function hiddenNotification(id){
 	console.log("+"+id);
@@ -202,26 +239,20 @@ function changeStatusNotification(status){
 }
 
 function loadMoreNoti(){
-//	modal.show();
-	/*$('#btn_load_more_noti').hide();
-	$('#progress_load_more_noti').show();*/
-	
-//	$('#txt_load_more_noti').hide();
+
 	$('#icons_load_more_noti').show();
 	$('#btn_load_more_noti').attr('disabled','disabled');
-//	$("#card-ac_1").clone().insertAfter("div.card-activity:last");
-	
+
 	var start = $('#check_data_load_start').val();
-//	console.log(start);
+
 	var limit = $('#check_data_load_limit').val();
-//	var end;
+
 	$.ajax({
 			url: "notification/load_more_noti?start="+start+"&limit="+limit, 
 			dataType: 'json',
 			type: 'get',
 //			data: data,
 			success: function(res) {
-				modal.hide();
 				console.log(res);
 				
 				if(res.numrow<=0){

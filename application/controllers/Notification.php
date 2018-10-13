@@ -48,5 +48,13 @@ class Notification extends CI_Controller {
   		$data['res'] = $this->Notification_model->query_data_noti();
   		echo json_encode($data['res']);
   }
+  public function hide_notification_all(){
+  		$data['res'] = $this->Notification_model->hide_noti_all();
+  		echo json_encode($data['res']);
+  }
+  public function show_notification_hide(){
+  		$data['res'] = $this->Notification_model->show_notification_hide();
+  		echo json_encode($data['res']);
+  }
   
 }

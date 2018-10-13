@@ -196,7 +196,7 @@ function saveDataPf(){
 		i_type : 8,
 		i_sub_type : 4,
 		i_event : 0,
-		i_driver : detect_user,
+		i_user : detect_user,
 		s_topic : "แก้ไขข้อมูลส่วนตัว",
 		s_message : "คุณทำการแก้ไขข้อมูลส่วนตัว",
 		s_posted : username

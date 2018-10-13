@@ -14,6 +14,11 @@ class Activity extends CI_Controller {
   	echo json_encode($data['res']);
   }
   
+  public function load_more_acti(){
+  	$data['res'] = $this->Activity_model->query_data_acti();
+  	echo json_encode($data['res']);
+  }
+  
  /* public function count_activity(){
   		$this->db->select('id');
 		$this->db->where('i_driver = '.$_GET[id_user].' and i_active = 0 ');

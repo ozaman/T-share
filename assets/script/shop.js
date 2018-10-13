@@ -1090,7 +1090,7 @@ function saveShop() {
 					i_type : 1,
 					i_sub_type : 1,
 					i_event : response.last_id,
-					i_driver : detect_user,
+					i_user : detect_user,
 					s_topic : "งานส่งแขก",
 					s_message : txt_long_ac,
 					s_posted : username
@@ -1527,7 +1527,7 @@ function shopFuncNotiActi(id, type){
 					i_type : 1,
 					i_sub_type : 1,
 					i_event : id,
-					i_driver : detect_user,
+					i_user : detect_user,
 					s_topic : "งานส่งแขก",
 					s_message : txt_long_ac,
 					s_posted : username

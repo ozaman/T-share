@@ -53,7 +53,7 @@ function setCountNotification(){
 }
 
 function loadNotificationPage(){
-	$('#body_load_notification').html(progress_circle);
+//	$('#body_load_notification').html(progress_circle);
 	var url = "page/notification";
     $.post(url, function(html) {
         $('#body_load_notification').html(html);
@@ -61,7 +61,7 @@ function loadNotificationPage(){
 }
 
 function loadActivityPage(){
-	$('#body_load_activity').html(progress_circle);
+//	$('#body_load_activity').html(progress_circle);
 	var url = "page/activity";
     $.post(url, function(html) {
         $('#body_load_activity').html(html);
@@ -401,8 +401,8 @@ function showPosition(position) {
         if (data.status == "OVER_QUERY_LIMIT") {
             console.log('OVER_QUERY_LIMIT');
         } else {
-            /*console.log(data.results);
-            console.log(data.results.length-2);
+//            console.log(data.results);
+            /*console.log(data.results.length-2);
             console.log(data.results[data.results.length-2].address_components[0].long_name);*/
             var province = data.results[data.results.length - 2].address_components[0].long_name;
             $('#province_text').text(province);
@@ -416,14 +416,14 @@ function showPosition(position) {
 }
 
 function updatePlaceNum(province) {
-//    console.log(province)
+//    console.log("++++"+province)
     //    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
     var url = "main/get_id_province";
     $.post(url, {
         txt_pv: province
     }, function(obj) {
         //        var obj = JSON.parse(data);
-        //      console.log(obj);
+              console.log(obj);
         var province = obj[0].id;
         var area = obj[0].area;
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;

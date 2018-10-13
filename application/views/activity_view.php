@@ -1,7 +1,9 @@
-<div style="padding: 0px;background-color:#fff;height: 100%;">
-<ons-list>	 
+<div style="padding: 0px;background-color:#fff;height: auto;">
+<ons-list id="list_acti_data">	 
 <?php 
-	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_driver = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit 10 ");
+	$limit = 5;
+	$start = 0;
+	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit ".$start.",".$limit);
 	/*$check_before = '';
 	$check_now = '';*/
 	$befordate = '';
@@ -57,5 +59,15 @@
 <?	}	?>
 </ons-list>	
 </div>
+<div style="<?=$display_box_load_more_noti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_acti">
+	<!--<ons-progress-bar indeterminate id="progress_load_more_noti" style="display: none;"></ons-progress-bar>-->
+	<ons-button style="background-color: #fff; width: 100%;color: #0076ff;" align="center" onclick="loadMoreActivity();" id="btn_load_more_acti">
+		<ons-icon icon="ion-load-c" spin size="26px" id="icons_load_more_acti" style="display: none;"></ons-icon>
+		<span id="txt_load_more_acti">Load More</span>
+	</ons-button>
+</div>
+
+<input type="hidden" id="check_data_load_start_acti" value="<?=$limit;?>" />
+<input type="hidden" id="check_data_load_limit_acti" value="<?=$limit;?>" />
 
 <input type="hidden" id="id_activity_select" value="0" />
