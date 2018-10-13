@@ -39,9 +39,10 @@
 				};
 
 				$item.data('listSwipe', data);
-			}).on('touchmove', settings.itemSelector, function (e) {
+			})
+			.on('touchmove', settings.itemSelector, function (e) {
 				
-				$('.page__content').css('overflow','hidden');
+//				$('.page__content').css('overflow','hidden');
 				
 				var $item = $(this);
 				console.log($item);
@@ -71,7 +72,10 @@
 
 				$item.data('listSwipe', data);
 
-			}).on('touchend', settings.itemSelector, function (e) {
+			})
+			.on('touchend', settings.itemSelector, function (e) {
+				console.log('--------++++++++++++++******************------------+++++++++++++++')
+				$('.page__content').css('overflow','auto');
 				var $item = $(this);
 				var data = $item.data('listSwipe');
 				var touch = getTouchPosition(e);

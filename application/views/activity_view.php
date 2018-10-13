@@ -1,5 +1,5 @@
 <div style="padding: 0px;background-color:#fff;height: auto;" >
-<ons-list id="list_acti_data" class="item-list swp-1">	 
+<ons-list id="list_acti_data">	 
 <?php 
 	$limit = 10;
 	$start = 0;
@@ -40,7 +40,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
-	    <ons-list-item class="item" style="" id="list_activity_<?=$row->id;?>">
+	    <ons-list-item  id="list_activity_<?=$row->id;?>">
        		<table width="100%">
        			<tr>
        				<td><?=$row->s_topic;?></td>
@@ -56,16 +56,7 @@
        				</td>
        			</tr>
        		</table>
-       		
-       		<button class="action" onclick="alertDelAc(<?=$row->id;?>);"><span class="font-16">ลบ</span></button>
        </ons-list-item>
-<script>
-	/*console.log("<?=$row->id;?>");
-	var d1 = "<?=date('Y/m/d H:i:s',$row->s_post_date);?>";
-	var d2 = js_yyyy_mm_dd_hh_mm_ss();
-	$('#txt_date_diff_ac_<?=$row->id;?>').text(CheckTime(d1,d2));
-	*/
-</script>	   
 <?	}	?>
 </ons-list>	
 </div>

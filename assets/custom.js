@@ -72,13 +72,7 @@ function loadActivityPage(){
 	var url = "page/activity";
     $.post(url, function(html) {
         $('#body_load_activity').html(html);
-//        $('.example-1').listSwipe();
-			$('.swp-1').listSwipe({
-				rightAction: true,
-				leftAction: false,
-				closeOnOpen: true,
-//				itemActionWidth: 80,
-			});
+
     });
 }
 
@@ -917,7 +911,8 @@ function sendShop2() {
 
 
 
-        } else {
+        } 
+		else {
             modal.hide();
             fn.pushPage({
                 'id': 'place_company.html',

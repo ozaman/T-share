@@ -401,13 +401,13 @@ $data_shopmain = $shopmain->row();
     var current_date = new Date();
 
     weekday_value = current_date.getDay();
-    console.log(weekdays[weekday_value])
+//    console.log(weekdays[weekday_value])
     var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
     $.ajax({
       url: url_chk_time,
       type: 'post',
       success: function(res) {
-       console.log(res);
+//       console.log(res);
        //<?=$arr_time;?> = res[0];
        $('#time_open').html(res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m);
      }
@@ -434,7 +434,7 @@ for(; i-- > 0;) {
     date.setHours(hours);
     date.setMinutes(minutes);
     
-    console.log(test + ' => ' + date);
+//    console.log(test + ' => ' + date);
 }
   }
 </script>

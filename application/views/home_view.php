@@ -52,7 +52,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
-<script type="text/javascript" src="<?=base_url();?>assets/plugin/jquery-listswipe.js"></script>
+
 <ons-modal direction="up">
     <div style="text-align: center;">
         <p sty>
@@ -90,60 +90,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     		padding-right: 20px;
 	}
 </style>
-<style type="text/css">
-		/* jQuery List Swipe Example CSS */
-		.item-list { overflow: hidden; }
 
-		.item-list .item {
-		 /* position: relative;
-		  display: table;
-		  width: 100%;
-		  background: #FFF;
-		  margin-top: 5px;*/
-		}
-
-		.item-list .item > div {
-		  padding: 10px;
-		}
-
-		.item-list .item .action {
-		  position: absolute;
-		  width: 80px;
-		  height: 100%;
-		  top: 0;
-		  border: 0;
-		  color: #FFF;
-		  outline: none;
-		}
-
-		.item-list .item .action:first-child::before, .item-list .item .action:last-child::before {
-		  position: absolute;
-		  top: 0;
-		  content: '';
-		  width: 2000px;
-		  height: 100%;
-		}
-
-		.item-list .item .action:first-child { left: -80px; }
-
-		.item-list .item .action:first-child::before { right: 80px; }
-
-		.item-list .item .action:last-child { right: -80px; }
-
-		.item-list .item .action:last-child::before { left: 80px; }
-
-		.item-list .item .action, .item-list .item .action::before { background: #f44336; }
-
-		.item-list.example-3 .action { width: 140px; }
-
-		.item-list.example-3 .item .action:first-child { left: -140px; }
-
-		.item-list.example-3 .item .action:first-child::before { right: 140px; }
-
-		.item-list.example-3 .item .action:last-child { right: -140px; }
-
-		.item-list.example-3 .item .action:last-child::before { left: 140px; }
-		</style>
 <body>
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
         <ons-page>
@@ -1315,30 +1262,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			      </ons-toolbar-button>
 			    </div>
             </ons-toolbar>
-            <div>
-            
-            	<ons-list class="item-list example-1">
-            		<ons-list-item class="item"><button class="action">Left Button</button>Item A<button class="action">Right Button</button></ons-list-item>
-            		<ons-list-item class="item"><button class="action">Left Button</button>Item B<button class="action">Right Button</button></ons-list-item>
-            		<ons-list-item class="item"><button class="action">Left Button</button>Item C<button class="action">Right Button</button></ons-list-item>
-            		<ons-list-item class="item"><button class="action">Left Button</button>Item <button class="action">Right Button</button></ons-list-item>
-            		<ons-list-item class="item"><button class="action">Left Button</button>Item <button class="action">Right Button</button></ons-list-item>
-            	</ons-list>
-			</div>
+          
 	
             <script>
                 ons.getScriptPage().onInit = function () {
-                $('.example-1').listSwipe();
-
-			$('.example-2').listSwipe({
-				rightAction: false,
-				closeOnOpen: false
-			});
-
-			$('.example-3').listSwipe({
-				itemActionWidth: 140,
-				snapDuration: 1000
-			});
+             
 		        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
 		      }
     </script>
