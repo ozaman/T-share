@@ -1,13 +1,21 @@
 <div style="padding: 0px;background-color:#fff;height: auto;">
 <ons-list id="list_acti_data">	 
 <?php 
-	$limit = 5;
+	$limit = 10;
 	$start = 0;
 	$query = $this->db->query("SELECT t1.*,t2.s_topic as ac_topic, t2.s_icons, t2.s_material_icons, t2.s_color FROM activity_event as t1 left join menu_list as t2 on t1.i_type = t2.id where t1.i_user = ".$_COOKIE[detect_user]." and t1.i_status = 1 order by t1.s_post_date desc limit ".$start.",".$limit);
 	/*$check_before = '';
 	$check_now = '';*/
 	$befordate = '';
 	$num = $query->num_rows();
+	
+	$query_all = $this->db->query("SELECT id FROM activity_event where i_user = ".$_COOKIE[detect_user]." and i_status = 1");
+  	$num_all = $query_all->num_rows();
+	$rest = intval($num_all) - (intval($start) + intval($limit));
+	if($rest<=0){
+		$display_box_load_more_acti = "display:none";
+	}
+	
 	if($num<=0){ ?>
 		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีบันทึกกิจกรรม</strong></div>
 	<? }
@@ -59,9 +67,9 @@
 <?	}	?>
 </ons-list>	
 </div>
-<div style="<?=$display_box_load_more_noti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_acti">
+<div style="<?=$display_box_load_more_acti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_acti">
 	<!--<ons-progress-bar indeterminate id="progress_load_more_noti" style="display: none;"></ons-progress-bar>-->
-	<ons-button style="background-color: #fff; width: 100%;color: #0076ff;" align="center" onclick="loadMoreActivity();" id="btn_load_more_acti">
+	<ons-button style="background-color: #fff; width: 100%;color: #0076ff;" align="center" onclick="loadMoreActivity('<?=$befordate;?>');" id="btn_load_more_acti">
 		<ons-icon icon="ion-load-c" spin size="26px" id="icons_load_more_acti" style="display: none;"></ons-icon>
 		<span id="txt_load_more_acti">Load More</span>
 	</ons-button>
@@ -69,5 +77,6 @@
 
 <input type="hidden" id="check_data_load_start_acti" value="<?=$limit;?>" />
 <input type="hidden" id="check_data_load_limit_acti" value="<?=$limit;?>" />
+<input type="hidden" id="h" value="0" />
 
 <input type="hidden" id="id_activity_select" value="0" />

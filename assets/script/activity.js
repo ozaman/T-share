@@ -201,7 +201,7 @@ function changeStatusActivity(status){
 	});
 }
 
-function loadMoreActivity(){
+function loadMoreActivity(last_date){
 	$('#icons_load_more_acti').show();
 	$('#btn_load_more_acti').attr('disabled','disabled');
 
@@ -220,12 +220,12 @@ function loadMoreActivity(){
 				if(res.numrow<=0){
 					return;
 				}
-				$.each(res.data, function( index, value ) {
+//				$.each(res.data, function( index, value ) {
 //					console.log(value.id);
-					$.post("component/list_activity",value,function(cpn){
+					$.post("component/list_activity?last_date="+last_date,{ data : res.data},function(cpn){
 				    	$("#list_acti_data").append(cpn);
 				    });
-				});
+//				});
 				$('#check_data_load_start_acti').val(parseInt(start) + parseInt(limit));
 				if(res.rest<=0){
 					$('#box_load_more_acti').fadeOut(700);
