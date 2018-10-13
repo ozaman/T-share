@@ -24,6 +24,13 @@ function testNotiSend(){
 				apiRecordActivityAndNotification(ac, nc);
 }
 
+function testSwp(){
+	fn.pushPage({
+        'id': 'test_swp.html',
+        'title': 'Test'
+    }, 'slide-ios');
+}
+
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
 	console.log(newURL);
@@ -65,6 +72,13 @@ function loadActivityPage(){
 	var url = "page/activity";
     $.post(url, function(html) {
         $('#body_load_activity').html(html);
+//        $('.example-1').listSwipe();
+			$('.swp-1').listSwipe({
+				rightAction: true,
+				leftAction: false,
+				closeOnOpen: true,
+//				itemActionWidth: 80,
+			});
     });
 }
 

@@ -534,7 +534,18 @@ function submitAddCar() {
 								callpop();
                         });
                     });
-
+					var ac = {
+						i_type : 9, // ข้อมูลรถ
+						i_sub_type : 1, // เพิ่ม
+						i_event : res.last_id,
+						i_user : detect_user,
+						s_topic : "ข้อมูลรถ",
+						s_message : "คุณทำการเพิ่มข้อมูลรถ ทะเบียน "+res.data.plate_num,
+						s_posted : username
+					};
+					var nc = {};
+					apiRecordActivityAndNotification(ac, nc);
+					
             } else {
                 ons
                     .notification.alert({
@@ -688,7 +699,17 @@ function submitEditCar() {
         success: function(res) {
             console.log(res);
             if (res.data.result == true) {
-
+				var ac = {
+						i_type : 9, // ข้อมูลรถ
+						i_sub_type : 4, // อัพเดท
+						i_event : $('#id_carall').val(),
+						i_user : detect_user,
+						s_topic : "ข้อมูลรถ",
+						s_message : "คุณทำการแก้ไขข้อมูลรถ ทะเบียน "+res.data.plate_num,
+						s_posted : username
+					};
+					var nc = {};
+					apiRecordActivityAndNotification(ac, nc);
                 ons
                     .notification.alert({
                         message: 'แก้ไขข้อมูลรถสำเร็จ',

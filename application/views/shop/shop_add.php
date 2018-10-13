@@ -257,6 +257,7 @@ $data_shopmain = $shopmain->row();
           $_order['id'] = 'asc';
           $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
           ?>
+          <label class="" for="radio-nation<?=$key+1;?>">
           <ons-list-item tappable id="nation_<?=$key+1;?>">
             <label class=" left">
               <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
@@ -269,17 +270,18 @@ $data_shopmain = $shopmain->row();
               <!-- <span class="font-17"></span> -->
 
 
-              <label class="" for="radio-nation<?=$key+1;?>">
+              
                 <div class="col-md-3">
                   <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
                 </div>
-              </label>
+              
 
 
 
             <?php }?>
 
           </ons-list-item>
+          </label>
         <?php }?>
 
       </div>

@@ -38,7 +38,7 @@ class Activity_model extends CI_Model {
 	return $return;
   }
   
-  /*public function read_activity() {
+  public function read_activity() {
    	$id = $_GET[id];
    	$ac[i_active] = $_POST[i_active];
    	
@@ -82,7 +82,7 @@ class Activity_model extends CI_Model {
 	$cs[result] = $this->db->update('activity_event', $ac); 
 	$cs[id] = $id;
     return $cs;
-  }	*/
+  }	
   /**
   * *********** End
   */

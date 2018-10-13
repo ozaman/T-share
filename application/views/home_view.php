@@ -43,14 +43,16 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head> 
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css?v=<?=time()?>">
 <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css?v=<?=time()?>">
 <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
+<script type="text/javascript" src="<?=base_url();?>assets/plugin/jquery-listswipe.js"></script>
 <ons-modal direction="up">
     <div style="text-align: center;">
         <p sty>
@@ -59,7 +61,6 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </div>
 </ons-modal>
 <script>
-    //	alert('<?=$detectname;?>');
 	var modal = document.querySelector('ons-modal');
 		modal.show();
 	var today = "<?=date('Y-m-d');?>";
@@ -69,12 +70,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
       var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
 	  if(username=="" || typeof username == 'undefined'){
-//	  		window.location = "https://www.welovetaxi.com/app/TShare_new/material/login/index.php";
 			window.location = "../TShare_new/material/login/index.php";
-			/*$.cookie("detect_user",'153');
-			$.cookie("detect_userclass",'taxi');
-			$.cookie("detect_username",'HKT0153');
-			location.reload();*/
 	  }else{
 	  		username = username.toUpperCase();
 	  }
@@ -94,6 +90,60 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     		padding-right: 20px;
 	}
 </style>
+<style type="text/css">
+		/* jQuery List Swipe Example CSS */
+		.item-list { overflow: hidden; }
+
+		.item-list .item {
+		 /* position: relative;
+		  display: table;
+		  width: 100%;
+		  background: #FFF;
+		  margin-top: 5px;*/
+		}
+
+		.item-list .item > div {
+		  padding: 10px;
+		}
+
+		.item-list .item .action {
+		  position: absolute;
+		  width: 80px;
+		  height: 100%;
+		  top: 0;
+		  border: 0;
+		  color: #FFF;
+		  outline: none;
+		}
+
+		.item-list .item .action:first-child::before, .item-list .item .action:last-child::before {
+		  position: absolute;
+		  top: 0;
+		  content: '';
+		  width: 2000px;
+		  height: 100%;
+		}
+
+		.item-list .item .action:first-child { left: -80px; }
+
+		.item-list .item .action:first-child::before { right: 80px; }
+
+		.item-list .item .action:last-child { right: -80px; }
+
+		.item-list .item .action:last-child::before { left: 80px; }
+
+		.item-list .item .action, .item-list .item .action::before { background: #f44336; }
+
+		.item-list.example-3 .action { width: 140px; }
+
+		.item-list.example-3 .item .action:first-child { left: -140px; }
+
+		.item-list.example-3 .item .action:first-child::before { right: 140px; }
+
+		.item-list.example-3 .item .action:last-child { right: -140px; }
+
+		.item-list.example-3 .item .action:last-child::before { left: 140px; }
+		</style>
 <body>
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
         <ons-page>
@@ -346,7 +396,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="information.html">
         <ons-page id="forms-page">
-            <?php //$this->load->view('information_view'); ?>
+            <?php $this->load->view('information_view'); ?>
         </ons-page>
     </template>
     <template id="notification.html">	
@@ -1120,11 +1170,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     border-left: 1px solid #bbb;
   }
 </style>
-    <input type="hidden" id="set_lng_cookies" value="th" />
-    <input type="hidden" id="check_open_worktbooking" value="0" />
-    <input type="hidden" id="check_open_shop_id" value="0" />
-    <input type="hidden" id="lat" value="0" />
-    <input type="hidden" id="lng" value="0" />
+    
     <template id="shop_add-dialog.html">
         <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
             <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -1255,6 +1301,54 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-button>
         </ons-dialog>
     </template>
+
+	<template id="test_swp.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button>
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
+            </ons-toolbar>
+            <div>
+            
+            	<ons-list class="item-list example-1">
+            		<ons-list-item class="item"><button class="action">Left Button</button>Item A<button class="action">Right Button</button></ons-list-item>
+            		<ons-list-item class="item"><button class="action">Left Button</button>Item B<button class="action">Right Button</button></ons-list-item>
+            		<ons-list-item class="item"><button class="action">Left Button</button>Item C<button class="action">Right Button</button></ons-list-item>
+            		<ons-list-item class="item"><button class="action">Left Button</button>Item <button class="action">Right Button</button></ons-list-item>
+            		<ons-list-item class="item"><button class="action">Left Button</button>Item <button class="action">Right Button</button></ons-list-item>
+            	</ons-list>
+			</div>
+	
+            <script>
+                ons.getScriptPage().onInit = function () {
+                $('.example-1').listSwipe();
+
+			$('.example-2').listSwipe({
+				rightAction: false,
+				closeOnOpen: false
+			});
+
+			$('.example-3').listSwipe({
+				itemActionWidth: 140,
+				snapDuration: 1000
+			});
+		        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+		      }
+    </script>
+        </ons-page>
+    </template>
+    <input type="hidden" id="set_lng_cookies" value="th" />
+    <input type="hidden" id="check_open_worktbooking" value="0" />
+    <input type="hidden" id="check_open_shop_id" value="0" />
+    <input type="hidden" id="lat" value="0" />
+    <input type="hidden" id="lng" value="0" />
 </body>
 </html>
 <script>
@@ -1264,8 +1358,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     .hide();
 };
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
-        $(window).load(function() {
+       /* $(window).load(function() {
 //            $("#load_material").fadeOut(500);
+			modal.hide();
+            setTimeout(function() {
+//            	alert(class_user);
+                sendTagIOS(class_user, username);
+                setCountNotification();
+            }, 1500);
+        });*/
+        $(window).on('load', function(){ 
+        	 $("#load_material").fadeOut(500);
 			modal.hide();
             setTimeout(function() {
 //            	alert(class_user);
@@ -1490,7 +1593,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 </script>
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
-<div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;"></div>
+<div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;">
+</div>
 <?php   $lng_map = $google_map_api_lng;?>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
 <input type="hidden" value="0" id="check_custome_js" />

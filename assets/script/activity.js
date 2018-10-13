@@ -12,10 +12,48 @@ ons.ready(function () {
 
 function hiddenActivity(id){
 	console.log("+"+id);
+	
+}
+
+function alertDelAc(id){
+	var dialog = document.getElementById('del_ac_dialog_id');
+
+	  if (dialog) {
+	    dialog.show();
+	  } else {
+	    ons.createElement('del_ac_dialog.html', { append: true })
+	      .then(function(dialog) {
+	        dialog.show();
+	        $('#btn_ok_del').attr('onclick','deletedActivity('+id+')');
+	      });
+	  }
 }
 
 function deletedActivity(id){
+
 	console.log("+"+id);
+	modal.show();
+
+	var data = {
+		id : id
+	};
+	$.ajax({
+			url: "activity/delete_activity", // point to server-side PHP script 
+			dataType: 'json', // what to expect back from the PHP script, if anything
+			type: 'post',
+			data: data,
+			success: function(res) {
+				console.log(res);
+				if(res.deleted==true){
+//					$('#list_activity_'+id).fadeOut(1000);
+					$( "#list_activity_"+id ).fadeOut( "slow", function() {
+				    	$('#list_activity_'+id).remove();
+				    });
+					
+					modal.hide();
+				}
+			}
+	});
 }
 
 function openActivity(id, type, txt_type, i_event){

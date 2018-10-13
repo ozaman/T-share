@@ -1,5 +1,5 @@
-<div style="padding: 0px;background-color:#fff;height: auto;">
-<ons-list id="list_acti_data">	 
+<div style="padding: 0px;background-color:#fff;height: auto;" >
+<ons-list id="list_acti_data" class="item-list swp-1">	 
 <?php 
 	$limit = 10;
 	$start = 0;
@@ -40,7 +40,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
-	    <div style="border-bottom: 1px solid #ccc; padding: 5px 5px;">
+	    <ons-list-item class="item" style="" id="list_activity_<?=$row->id;?>">
        		<table width="100%">
        			<tr>
        				<td><?=$row->s_topic;?></td>
@@ -56,7 +56,9 @@
        				</td>
        			</tr>
        		</table>
-       </div>
+       		
+       		<button class="action" onclick="alertDelAc(<?=$row->id;?>);"><span class="font-16">ลบ</span></button>
+       </ons-list-item>
 <script>
 	/*console.log("<?=$row->id;?>");
 	var d1 = "<?=date('Y/m/d H:i:s',$row->s_post_date);?>";
@@ -80,3 +82,16 @@
 <input type="hidden" id="h" value="0" />
 
 <input type="hidden" id="id_activity_select" value="0" />
+
+<template id="del_ac_dialog.html">
+  <ons-alert-dialog id="del_ac_dialog_id" modifier="rowfooter">
+    <div class="alert-dialog-title"></div>
+    <div class="alert-dialog-content">
+      ต้องการลบกิจกรรมนี้หรือไม่
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick=" document.getElementById('del_ac_dialog_id').hide();"><b>ยกเลิก</b></ons-alert-dialog-button>
+      <ons-alert-dialog-button id="btn_ok_del"><span style="color: #ff0000;">ลบ</span></ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+</template>

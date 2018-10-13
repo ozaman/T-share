@@ -72,6 +72,7 @@
 //		echo date('Y/m/d H:i:s',$row->s_post_date);
 	?>
 	    <div class="card-activity" id="card-ac_<?=$row->id;?>" <?=$bg;?> >
+	    	
 	    	<table width="100%">
 	    		<tr>
 	    			<td onclick="openNotification('<?=$row->id;?>', '<?=$row->i_type;?>', '<?=$row->ac_topic;?>', '<?=$row->i_event;?>');">
@@ -88,6 +89,7 @@
 	    			</td>
 	    		</tr>
 	    	</table>
+	    	
 	    </div>
 <script>
 //	console.log("<?=$row->id;?>");
@@ -111,3 +113,4 @@
 <input type="hidden" id="check_open_noti_menu" value="1" />
 <input type="hidden" id="check_data_load_start" value="<?=$limit;?>" />
 <input type="hidden" id="check_data_load_limit" value="<?=$limit;?>" />
+
