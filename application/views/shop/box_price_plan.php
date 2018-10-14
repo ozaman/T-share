@@ -11,13 +11,14 @@
  <?php
 
  foreach($data['list_plan'] as $key=>$val){
-
+  // print_r(TBL_SHOP_COUNTRY_COM_LIST_TAXI);
   $_where = array();
   $_where['i_shop_country_com_list'] = $val->id;
   $_select = array('*');
   $_order = array();
   $_order['id'] = 'asc';
   $data['list_price'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
+  // print_r( $data['list_price']);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
     <label class="center" for="price_plan_<?=$key+1;?>">
@@ -86,6 +87,7 @@
                       $_where['i_shop_country'] = $_GET[i_country]; 
                       $_select = array('*');
                       $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
+                      // print_r(TBL_SHOP_COUNTRY_ICON_TAXI);
                        $_where = array();
                       $_where['id'] = $arr[region_icon]->i_country; 
                       $_select = array('name_th');
