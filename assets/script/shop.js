@@ -1910,7 +1910,7 @@ $.ajax({
 							 var nc = {
 								i_type : 1,
 								i_event : id,
-								i_user : driver,
+								i_user : driver_id,
 								s_class_user : "taxi",
 								s_topic : "งานส่งแขก",
 								s_sub_topic : "ยืนยันงาน",
