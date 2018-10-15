@@ -644,8 +644,10 @@ function handleClick(tax, name) {
         $('#div_car_' + name).addClass('cus_focus')
     }
     if (tax == 'box_com') {
+
          $('#price_plan_'+name).prop('checked',true);
-         checformadd('box_com')
+         $('#box_com').removeClass('borderBlink')
+         // checformadd('box_com')
 
     }
 
