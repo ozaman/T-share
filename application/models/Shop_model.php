@@ -122,11 +122,11 @@ class Shop_model extends CI_Model {
 // 	$data[result] = $db->update_db('order_booking',$data," id='".$_GET[id]."' ");
 	$this->db->where('id', $_POST[order_id]);
 	$data[result] = $this->db->update('order_booking', $data); 
+	$data[order_id] = $_POST[order_id];
 
-
-	$typname = "typname_".$_POST[type_cancel];
+//	$typname = "typname_".$_POST[type_cancel];
 	$data_his[order_id] = $_POST[order_id];
-	$data_his[type] = $typname;
+	$data_his[type] = $_POST[type_cancel];
 	$data_his[status] = "CANCEL";
 	$data_his[type] = $_POST[type];
 	$data_his[posted] = $_POST[username];
