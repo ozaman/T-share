@@ -46,6 +46,7 @@
                   $count = '';
 
                 }
+                echo $val2->s_topic_en;
                 if ($val2->s_topic_en == 'park') {
                   $price_park_unit = $val2->i_price;
                   $price_person_unit = '';
@@ -67,10 +68,10 @@
                   # code...
                 }
                 ?>
-                <input type="hidden" name="price_park_unit" value="<?=$price_park_unit;?>">
-                <input type="hidden" name="price_person_unit" value="<?=$price_person_unit;?>">
-                <!-- <input type="hiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
-                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
+                <input type="hiddens" name="price_park_unit" value="<?=$price_park_unit;?>">
+                <input type="hiddens" name="price_person_unit" value="<?=$price_person_unit;?>">
+                <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
+                <input type="hiddens" name="commission_persent" value="<?=$commission_persent;?>">
                 <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
                 <!-- <span style="display:show">หัว  200&nbsp;</span> -->
               <?php }?>
