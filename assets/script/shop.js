@@ -913,6 +913,7 @@ var submitShop = function() {
     weekdays[4] = "Thu";
     weekdays[5] = "Fri";
     weekdays[6] = "Sat";
+   
 
     var current_date = new Date();
 

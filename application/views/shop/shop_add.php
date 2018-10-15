@@ -40,10 +40,10 @@ $data_shopmain = $shopmain->row();
     <input id="dri_name" name="dri_name" type="hidden" value="<?=$data_dv->name; ?>">
     <div>
       <div class="card">
-          <script>
-            function selectCarShops(id, cartype, car_type_txt) {
-              console.log('--------------------------')
-              console.log(id+'-'+cartype+'-'+car_type_txt)
+        <script>
+          function selectCarShops(id, cartype, car_type_txt) {
+            console.log('--------------------------')
+            console.log(id+'-'+cartype+'-'+car_type_txt)
               $('input[type="checkbox"]').prop('checked', false); // Unchecks it
               $('#car_use_' + id).prop('checked', true); // Checks it
               var plate_num = $('#value_car_' + id).data('plate_num');
@@ -68,7 +68,6 @@ $data_shopmain = $shopmain->row();
                   <input type="hidden" name="" id="shop_topic_th" value="<?=$data_place->topic_th;?>">
                   <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span><br>
                   <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span>
-                  <span class="font-17" style="color:red">วันนี้เปิด <span id="time_open"></span> </span>
 
                   <input type="hidden" value=" " id="1">
 
@@ -76,180 +75,196 @@ $data_shopmain = $shopmain->row();
 
                 <a class="font-17" style="display: none;">
                   <strong id="txt_sh_1">ละเอียด</strong>
-                  <span id="icon_sh_1"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                  <span id="icon_sh_1"><i class="fa fa-chevron-down"></i></span>
                 </a>
                 <input type="hidden" id="check_click_1" value="0">
-              </b>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <style >
-      @keyframes border-pulsate {
-        0%   { border-color: rgba(0, 255, 255, 1); }
-        50% { border-color: rgba(0, 255, 255, 0); }
-        100%   { border-color: rgba(0, 255, 255, 1); }
-      }
-     
-    .borderBlink{   
-      border: 1px solid #FF5722; 
-    }
-    .borderBlink:hover {    
-    }
-    .cus_focus{
-      background-color: #eeeeee7d;
-    }
-  </style>
-  <?php 
-  if($query->num_rows()>=1){
-
-    ?>
-    <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
-      <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
-      <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
-      <div style="padding: 0px;margin-top: 0px;" >
-        <?php
-        $i =1;
-        foreach ($query->result() as $key=>$val) {
-
-          $bg_plate_color = "background-color: ".$val->plate_color;
-          ?>
-          <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
-            <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
-            <?php if($val->status_usecar == 1){
-              $calss_box = 'cus_focus';
-            }
-            else{
-              $calss_box = '';
-            }
-            ?>
-            <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
-              <tbody>
-                <tr>
-                  <td width="30">
-                      <?php 
-
-                      if($val->status_usecar == 1 && count($query->result()) == 1){
-                        ?>
-                        <script>
-
-                          $('#box_car').removeClass('borderBlink')
-                          $('#nation_box').addClass('borderBlink')
-
-                          selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
-                        </script>
-                        <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   checked></ons-radio>
-
-                      <?php }
-                      else{
-                        ?>
-                        <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"  ></ons-radio>
-
-
-                      <?php }
-                      ?>
-                    </td>
-                    <td>
-                      <table width="100%" cellpadding="1" cellspacing="2">
-                        <tbody>
-                          <tr>
-                            <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color; ?>">
-                              <div style="border-radius:5px;border: 1px solid <?=$val->txt_color; ?>;"><font color="<?=$val->txt_color; ?>" class="font-17"><b><?=$val->plate_num; ?></font><br>
-                                <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font></div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-                      </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-              </a>    
-              <?php  
-              $i++;
-            }
-            ?>
-
-          </div>
-        </div>
-      <?php } ?> 
-
-      <?php  
-      $_where = array();
-      $_where['i_shop'] = $_GET[shop_id];
-
-      $_select = array('*');
-
-      $_order = array();
-      $_order['id'] = 'asc';
-      $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
-
-
-
-
-
-      ?>
-      <div class="card" id="nation_box">
-       <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
-       <div class="form-group">
-        <?php 
-        foreach($data['region'] as $key=>$val){
-
-          $_where = array();
-          $_where['i_shop_country'] = $val->id; 
-          $_select = array('*');
-          $_order = array();
-          $_order['id'] = 'asc';
-          $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
-          ?>
-          <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box');handleClick('nation','<?=$val->id;?>');">
-          <ons-list-item tappable id="nation_<?=$key+1;?>">
-            <label class=" left">
-              <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
-            </label>
-            <?php
-
-            foreach($arr[region_icon] as $key2=>$val2){
-
-              ?>
-                <div class="col-md-3">
-                  <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
-                </div>
-              
-
-
-
-            <?php }?>
-
-          </ons-list-item>
-          </label>
-        <?php }?>
-
-      </div>
-   
-    </div>
-
-    <div class="card" id="box_com">
-      <!-- Agent Issu -->  
-      <div class="" id="show_payment_detail" style="">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-            <tr>
-              <td>
-                <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
-
-              </td>
-              <td width="50" style="display: none;" id="row_accept_payment">
 
               </td>
             </tr>
-          </tbody>
-        </table>
-        <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
+            <tr>
+              <td colspan="2" align="center">
+              <span class="font-17" style="color: #2b2828;">วันนี้  
+                  <span id="date_open"></span> 
+                <span id="time_open" style="color: #24b968;">  </span>
+                <span id="time_close" style="color: #ca1a1a;"> </span> 
+              </span>
 
-        <div id="box_price_plan">
+
+              </td>
+             <!--  <td colspan="2">
+                <span class="font-17" style="color:red">วันนี้เปิด <span id="time_open"></span> </span>
+
+
+              </td> -->
+            </tr>
+          </table>
+        </div>
+        <style >
+        @keyframes border-pulsate {
+          0%   { border-color: rgba(0, 255, 255, 1); }
+          50% { border-color: rgba(0, 255, 255, 0); }
+          100%   { border-color: rgba(0, 255, 255, 1); }
+        }
+
+        .borderBlink{   
+          border: 1px solid #FF5722; 
+        }
+        .borderBlink:hover {    
+        }
+        .cus_focus{
+          background-color: #eeeeee7d;
+        }
+      </style>
+      <?php 
+      if($query->num_rows()>=1){
+
+        ?>
+        <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
+          <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
+          <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
+          <div style="padding: 0px;margin-top: 0px;" >
+            <?php
+            $i =1;
+            foreach ($query->result() as $key=>$val) {
+
+              $bg_plate_color = "background-color: ".$val->plate_color;
+              ?>
+              <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
+                <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
+                <?php if($val->status_usecar == 1){
+                  $calss_box = 'cus_focus';
+                }
+                else{
+                  $calss_box = '';
+                }
+                ?>
+                <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
+                  <tbody>
+                    <tr>
+                      <td width="30">
+                        <?php 
+
+                        if($val->status_usecar == 1 && count($query->result()) == 1){
+                          ?>
+                          <script>
+
+                            $('#box_car').removeClass('borderBlink')
+                            $('#nation_box').addClass('borderBlink')
+
+                            selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');
+                          </script>
+                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"   checked></ons-radio>
+
+                        <?php }
+                        else{
+                          ?>
+                          <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id; ?>" id="car_use_<?=$val->id; ?>" value="<?=$val->id; ?>" name="plate_num_1"  ></ons-radio>
+
+
+                        <?php }
+                        ?>
+                      </td>
+                      <td>
+                        <table width="100%" cellpadding="1" cellspacing="2">
+                          <tbody>
+                            <tr>
+                              <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color; ?>">
+                                <div style="border-radius:5px;border: 1px solid <?=$val->txt_color; ?>;"><font color="<?=$val->txt_color; ?>" class="font-17"><b><?=$val->plate_num; ?></font><br>
+                                  <font class="font-14" style="color: <?=$val->txt_color; ?>"><?=$val->tb_pro_name_th; ?></font></b></font></div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </a>    
+                <?php  
+                $i++;
+              }
+              ?>
+
+            </div>
+          </div>
+        <?php } ?> 
+
+        <?php  
+        $_where = array();
+        $_where['i_shop'] = $_GET[shop_id];
+
+        $_select = array('*');
+
+        $_order = array();
+        $_order['id'] = 'asc';
+        $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
+
+
+
+
+
+        ?>
+        <div class="card" id="nation_box">
+         <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
+         <div class="form-group">
+          <?php 
+          foreach($data['region'] as $key=>$val){
+
+            $_where = array();
+            $_where['i_shop_country'] = $val->id; 
+            $_select = array('*');
+            $_order = array();
+            $_order['id'] = 'asc';
+            $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
+            ?>
+            <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box');handleClick('nation','<?=$val->id;?>');">
+              <ons-list-item tappable id="nation_<?=$key+1;?>">
+                <label class=" left">
+                  <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
+                </label>
+                <?php
+
+                foreach($arr[region_icon] as $key2=>$val2){
+
+                  ?>
+                  <div class="col-md-3">
+                    <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
+                  </div>
+
+
+
+
+                <?php }?>
+
+              </ons-list-item>
+            </label>
+          <?php }?>
+
+        </div>
+
+      </div>
+
+      <div class="card" id="box_com">
+        <!-- Agent Issu -->  
+        <div class="" id="show_payment_detail" style="">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+              <tr>
+                <td>
+                  <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
+
+                </td>
+                <td width="50" style="display: none;" id="row_accept_payment">
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
+
+          <div id="box_price_plan">
 
 
           <!-- <div class=" " style="border-bottom: dotted #999999 0px;padding: 10px 0px;" >
@@ -397,44 +412,54 @@ $data_shopmain = $shopmain->row();
     weekdays[4] = "Thu";
     weekdays[5] = "Fri";
     weekdays[6] = "Sat";
-
+ var weekdays2 = new Array(7);
+    weekdays2[0] = "วันอาทิตย์";
+    weekdays2[1] = "วันจันทร์";
+    weekdays2[2] = "วันอังคาร";
+    weekdays2[3] = "วันพุธ";
+    weekdays2[4] = "วันพฤหัส";
+    weekdays2[5] = "วันศุกร์";
+    weekdays2[6] = "วันเสาร์";
     var current_date = new Date();
 
     weekday_value = current_date.getDay();
 //    console.log(weekdays[weekday_value])
-    var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
-    $.ajax({
-      url: url_chk_time,
-      type: 'post',
-      success: function(res) {
+var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
+$.ajax({
+  url: url_chk_time,
+  type: 'post',
+  success: function(res) {
 //       console.log(res);
        //<?=$arr_time;?> = res[0];
-       $('#time_open').html(res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m);
+       $('#time_open').html('เวลาเปิด'+res[0].start_h+':'+res[0].start_m);
+       $('#time_close').html('เวลาปิด'+res[0].finish_h+':'+res[0].finish_m);
+       $('#date_open').html(weekdays2[weekday_value]);
+       
      }
    });
-    var test, parts, hours, minutes, date,
-    d = (new Date()).getTime(),
-    tests = ['01.25 PM', '11.35 PM', '12.45 PM', '01.25 AM', '11.35 AM', '12.45 AM'],
-    i = tests.length,
-    timeReg = /(\d+)\.(\d+) (\w+)/;
+var test, parts, hours, minutes, date,
+d = (new Date()).getTime(),
+tests = ['01.25 PM', '11.35 PM', '12.45 PM', '01.25 AM', '11.35 AM', '12.45 AM'],
+i = tests.length,
+timeReg = /(\d+)\.(\d+) (\w+)/;
 
 for(; i-- > 0;) {
-    test = tests[i];
-    
-    parts = test.match(timeReg);
-    
-    hours = /am/i.test(parts[3]) ?
-        function(am) {return am < 12 ? am : 0}(parseInt(parts[1], 10)) :
-        function(pm) {return pm < 12 ? pm + 12 : 12}(parseInt(parts[1], 10));
-    
-    minutes = parseInt(parts[2], 10);
-    
-    date = new Date(d);
-    
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    
+  test = tests[i];
+
+  parts = test.match(timeReg);
+
+  hours = /am/i.test(parts[3]) ?
+  function(am) {return am < 12 ? am : 0}(parseInt(parts[1], 10)) :
+  function(pm) {return pm < 12 ? pm + 12 : 12}(parseInt(parts[1], 10));
+
+  minutes = parseInt(parts[2], 10);
+
+  date = new Date(d);
+
+  date.setHours(hours);
+  date.setMinutes(minutes);
+
 //    console.log(test + ' => ' + date);
 }
-  }
+}
 </script>
