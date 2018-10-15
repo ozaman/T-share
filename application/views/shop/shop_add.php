@@ -83,11 +83,11 @@ $data_shopmain = $shopmain->row();
             </tr>
             <tr>
               <td colspan="2" align="center">
-              <span class="font-17" style="color: #2b2828;">วันนี้  
+                <span class="font-17" style="color: #2b2828;">วันนี้  
                   <span id="date_open"></span> 
-                <span id="time_open" style="color: #24b968;">  </span>
-                <span id="time_close" style="color: #ca1a1a;"> </span> 
-              </span>
+                  <span id="time_open" style="color: #24b968;">  </span>
+                  <span id="time_close" style="color: #ca1a1a;"> </span> 
+                </span>
 
 
               </td>
@@ -339,66 +339,101 @@ $data_shopmain = $shopmain->row();
         </ons-row>
       </div>
     </div>
-    <div class="card" id="box_time" onclick="checformadd('box_time')">
-     <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
-     <div class="form-group">
+   
+    <script>
+</script>
 
-      <!-- <span class="list-header" style="background-image: none;"></span> -->
+<?php 
+$weekdays = Array();
+$weekdays[0] = "Sun";
+$weekdays[1] = "Mon";
+$weekdays[2] = "Tue";
+$weekdays[3] = "Wed";
+$weekdays[4] = "Thu";
+$weekdays[5] = "Fri";
+$weekdays[6] = "Sat";
+$arr_where = array();
+$arr_where['status'] = 1;
+$arr_where['product_id'] = $_GET[shop_id];
+$arr_where['product_day'] =  $weekdays[date('w')];
+$arr_select = array('finish_h','finish_m');
 
-      <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-        <option value="0">-- เลือกเวลา --</option>
-        <?php
-        $time = array("5" => "5 นาที",
-          "10" => "10 นาที",
-          "15" => "15 นาที",
-          "20" => "20 นาที",
-          "25" => "25 นาที",
-          "30" => "30 นาที",
-          "35" => "35 นาที",
-          "40" => "40 นาที",
-          "45" => "45 นาที",
-          "50" => "50 นาที",
-          "55" => "55 นาที",
-          "60" => "1 ชัวโมง.",
-          "90" => "1 ชัวโมง 30 นาที",
-          "120" => "2 ชัวโมง",
-          "150" => "2 ชัวโมง 30 นาที",
-          "180" => "3 ชัวโมง",
-          "210" => "3 ชัวโมง 30 นาที",
-          "240" => "4 ชัวโมง",
-          "270" => "4 ชัวโมง 30 นาที",
-          "300" => "5 ชัวโมง",
-          "330" => "5 ชัวโมง 30 นาที",
-          "360" => "6 ชัวโมง",
-          "390" => "6 ชัวโมง 30 นาที",
-          "420" => "7 ชัวโมง",
-          "450" => "7 ชัวโมง 30 นาที",
-          "490" => "8 ชัวโมง");
-        $mm = 5;
+$datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
+//print_r(json_encode($datatime));
+$datenow = strtotime(date('Y-m-d H:i:s'));
+// echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
+$dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
+$i_time_balance = ($dateclose - $datenow)/60;
+// echo $dateclose.'*****'.$i_time_balance;
+
+
+?>
+
+<div class="card" id="box_time" onclick="checformadd('box_time')">
+ <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
+ <div class="form-group">
+
+  <!-- <span class="list-header" style="background-image: none;"></span> -->
+
+  <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+    <option value="0">-- เลือกเวลา --</option>
+    <?php
+    $time = array("5" => "5 นาที",
+      "10" => "10 นาที",
+      "15" => "15 นาที",
+      "20" => "20 นาที",
+      "25" => "25 นาที",
+      "30" => "30 นาที",
+      "35" => "35 นาที",
+      "40" => "40 นาที",
+      "45" => "45 นาที",
+      "50" => "50 นาที",
+      "55" => "55 นาที",
+      "60" => "1 ชัวโมง.",
+      "90" => "1 ชัวโมง 30 นาที",
+      "120" => "2 ชัวโมง",
+      "150" => "2 ชัวโมง 30 นาที",
+      "180" => "3 ชัวโมง",
+      "210" => "3 ชัวโมง 30 นาที",
+      "240" => "4 ชัวโมง",
+      "270" => "4 ชัวโมง 30 นาที",
+      "300" => "5 ชัวโมง",
+      "330" => "5 ชัวโมง 30 นาที",
+      "360" => "6 ชัวโมง",
+      "390" => "6 ชัวโมง 30 นาที",
+      "420" => "7 ชัวโมง",
+      "450" => "7 ชัวโมง 30 นาที",
+      "490" => "8 ชัวโมง");
+    $mm = 5;
+    ?>
+
+    <?php foreach ($time as $key => $at) { 
+      if ($i_time_balance >= $key ) {
+        # code...
+      
         ?>
+      <option value="<?=$key; ?>"><?=$at; ?></option>
+    <?php }
+  }
+    ?>
 
-        <?php foreach ($time as $key => $at) { ?>
-          <option value="<?=$key; ?>"><?=$at; ?></option>
-        <?php }
-        ?>
+  </select>
 
-      </select>
+</div>
+</div>
+<div class="card" id="num_customer" >
+  <ons-list-header class="list-header "> ข้อเสนอแนะ</ons-list-header>
+  <div class="form-group">
 
-    </div>
+
+    <!-- <label class="font-17">จำนวนคน</label> -->
+
+    <ons-row>
+      <textarea class="textarea" rows="3" placeholder="ข้อเสนอแนะ" id="remark" name="remark" type="number" cols="100" ></textarea>
+
+    </ons-row>
   </div>
-   <div class="card" id="num_customer" >
-      <ons-list-header class="list-header "> ข้อเสนอแนะ</ons-list-header>
-      <div class="form-group">
-
-
-        <!-- <label class="font-17">จำนวนคน</label> -->
-
-        <ons-row>
-          <textarea class="textarea" rows="3" placeholder="ข้อเสนอแนะ" id="remark" name="remark" type="number" cols="100" ></textarea>
-          
-        </ons-row>
-      </div>
-    </div>
+</div>
 
 
 </div>
@@ -425,7 +460,7 @@ $data_shopmain = $shopmain->row();
     weekdays[4] = "Thu";
     weekdays[5] = "Fri";
     weekdays[6] = "Sat";
- var weekdays2 = new Array(7);
+    var weekdays2 = new Array(7);
     weekdays2[0] = "วันอาทิตย์";
     weekdays2[1] = "วันจันทร์";
     weekdays2[2] = "วันอังคาร";
