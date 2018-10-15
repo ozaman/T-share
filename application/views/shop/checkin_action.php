@@ -40,7 +40,7 @@
          <td align="center" class="font-22" style="text-align: center;"> <?=$type;?></td>
       </tr>
       <tr>
-      	<span>กรุณาถ่ายภาพ <?=$type;?></span>
+      	<td align="center"><span>กรุณาถ่ายภาพ <?=$type;?></span></td>
       </tr>
       <tr>
       	<td>
