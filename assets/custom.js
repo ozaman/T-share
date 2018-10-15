@@ -834,6 +834,7 @@ function sendShop2() {
     $.post(urlo, function(res) {
         console.log(res)
         if (res.count == 1) {
+              setTimeout(function() {
             fn.pushPage({
                 'id': 'shopping.html',
                 'title': 'ส่งแขก',
@@ -901,7 +902,7 @@ function sendShop2() {
 
 
 
-
+  }, 700);
         } 
 		else {
             modal.hide();
