@@ -470,9 +470,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         <ons-tab page="shop_add.html" label="ส่งแขก" active>
                         </ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
-                            <span class="notification none" id="num_his" style="float: right;
+                            <!--<span class="notification none" id="num_his" style="float: right;
     margin-top: 15px;
-    right: 25%;"></span>
+    right: 25%;"></span>-->
                         </ons-tab>
                     </ons-tabbar>
                 </ons-page>

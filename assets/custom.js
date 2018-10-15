@@ -1025,6 +1025,12 @@ function myAccountBank() {
         path: "bank/bank_view"
     }, function(ele) {
         $('#body_account_bank').html(ele);
+        setTimeout(function(){
+			setnumbank();
+			if($('#detect_num_bank').val()==0){
+				addBank();
+			}
+		}, 500);
     });
 }
 
