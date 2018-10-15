@@ -37,7 +37,9 @@
 			$txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
 		}
 	}
-	
+	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+ 	$query_ps = $this->db->query($sql_ps);
+ 	$res_ps = $query_ps->row();
   ?>
    <?php 
         $minutes_to_add = $val[airout_m];
@@ -70,10 +72,10 @@
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
   	<?	}
   	?>
-  	
+  	 <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
     <table width="100%"  >
           <tr>
-            <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
+            <td width="80%" ><span class="font-16"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="2">
             <div class="font-18" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
     margin-left: -85px;
@@ -86,7 +88,7 @@
           <?php 
       if($data_user_class == "lab"){ ?>
    <tr>
-            <td colspan="2" style="padding: 10px 0px;">
+            <td colspan="2" style="padding: 0px 0px;">
             <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
             </div>
            
@@ -97,7 +99,7 @@
     <?  }
     ?>
     <tr>
-            <td colspan="2" style="padding: 10px 0px;">
+            <td colspan="2" style="padding: 0px 0px;">
             <div class="font-14">จำนวนคน&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
             </div>
            
@@ -115,7 +117,7 @@
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             
-            <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+           
        
             </td>
             
@@ -123,10 +125,10 @@
           <tr>
             <td colspan="2">
               <table width="100%">
-               
+               <tr>
                   <td width="35%">
               
-             <ons-button onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+             <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>'););" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
@@ -141,39 +143,21 @@
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap">จัดการ</span> </ons-button>
          
             </td>
-                
+                </tr>
+                <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
+                <tr>
+                	<td colspan="2">
+                		<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
+                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-20 text-cap">รับทราบ</span> </ons-button>
+                	</td>
+                </tr>
+                 <? } ?>
               </table>
               
             </td>
           </tr>
     </table>
-        <?php 
-        if($val[driver_complete]==0){
-        ?>
-          
-          
-        
 
-
-     <!--    <a class="btn waves-effect waves-light red lighten-3" align="center"   style="
-    color: #fff;margin-right: 15px;
-    padding: 5px 20px;
-    border-radius: 8px;
-    background-color: #F44336 ;
-    margin-top: 10px;">
-   
-  </a> -->
-  	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
-	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
-	    color: #fff;
-	    padding: 5px 20px;
-	    border-radius: 8px;
-	    background-color: #4CAF50 !important;
-	    margin-top: 10px;">
-	    <span class="font-20 text-cap"><?=ยืนยัน;?></span>
-	  </a>
-	  <? } ?>
-  <? } ?>
  
   </div>
   </div>

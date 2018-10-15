@@ -148,18 +148,20 @@ class Shop_model extends CI_Model {
 		$data[driver_complete] = 1;
 		$data[update_date] = time();
 // 	$data[result] = $db->update_db('order_booking',$data," id='".$_GET[id]."' ");
-		$this->db->where('id', $_POST[order_id]);
-		$data[result] = $this->db->update('order_booking', $data); 
 
+	$this->db->where('id', $_POST[order_id]);
+	$data[result] = $this->db->update('order_booking', $data); 
+	$data[order_id] = $_POST[order_id];
 
-		$typname = "typname_".$_POST[type_cancel];
-		$data_his[order_id] = $_POST[order_id];
-		$data_his[type] = $typname;
-		$data_his[status] = "CANCEL";
-		$data_his[type] = $_POST[type];
-		$data_his[posted] = $_POST[username];
-		$data_his[post_date] = time();
-		$data_his[update_date] = time();
+//	$typname = "typname_".$_POST[type_cancel];
+	$data_his[order_id] = $_POST[order_id];
+	$data_his[type] = $_POST[type_cancel];
+	$data_his[status] = "CANCEL";
+	$data_his[type] = $_POST[type];
+	$data_his[posted] = $_POST[username];
+	$data_his[post_date] = time();
+	$data_his[update_date] = time();
+
 //	$data_his[result] = $db->add_db('history_del_order_booking', $data_his);
 		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
 //	$data_his[result] = true;

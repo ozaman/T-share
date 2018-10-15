@@ -1418,13 +1418,11 @@ function submitCancel() {
             })
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
-                var urlx = "shop/shop_manage";
-                $.post(urlx, function(res) {
-                        // this.popPage('popup1.html');
-//                        appNavigator.popPage()
-                        $('#shop_manage').html(res);
-                    });
-
+                	
+					setTimeout(function(){ var urlx = "shop/shop_manage";
+                		appNavigator.popPage();
+                		shopManage();
+                	 }, 1000);
             });
             $('#btn_cancel_book_' + order_id).hide();
 
@@ -1433,6 +1431,7 @@ function submitCancel() {
                 console.log(res)
             });
         }
+
     });
 }
 

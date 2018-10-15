@@ -1195,9 +1195,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <p style="text-align: center">กรุณาเลือกเหตุผลที่จะยกเลิก</p>
             <input type="hidden" value="" id="invoice_cancel_select" />
+            <input type="hidden" value="" id="driver_id_cancel"/>
             <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
                 <input type="hidden" value="" id="order_id_cancel" name="order_id" />
-                <input type="hidden" value="" id="driver_id_cancel" name="order_id" />
+                
                 <!-- <input type="hiddens" value="" id="order_id_cancel" name="username"/> -->
                 <input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="order_id_cancel" name="username" />
                 <div>
