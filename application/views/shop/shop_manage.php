@@ -36,6 +36,9 @@
 		}else{
 			$txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
 		}
+		$tr_lab_ap = '';
+	}else{
+		$tr_lab_ap = 'display:none;';
 	}
 	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
  	$query_ps = $this->db->query($sql_ps);
@@ -66,7 +69,7 @@
   <div style="padding: 5px 0px;margin: 12px 10px;" >
     <!-- <span id="date_book_<?=$val[id];?>">-</span> -->
   <div class="box-shop">
-  	<?=$txt_lab_ap;?>
+  	
   	<?php 
   		if($data_user_class == "lab"){ ?>
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
@@ -74,6 +77,10 @@
   	?>
   	 <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
     <table width="100%"  >
+    	  <tr style="<?=$tr_lab_ap;?>">
+    	  	<td><?=$txt_lab_ap;?></td>
+    	  	<td></td>
+    	  </tr>
           <tr>
             <td width="80%" ><span class="font-16"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="2">
@@ -100,7 +107,7 @@
     ?>
     <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-14">จำนวนคน&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
+            <div class="font-14">จำนวนแขก&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
             </div>
            
 
@@ -110,11 +117,11 @@
           
           <tr>
             <td colspan="2">
-            <span class="font-16" ><?=$val[invoice];?>&nbsp;:&nbsp;
+            <span class="font-16" ><?=$val[invoice];?>
             
-            <!--<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
+           <!-- <font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
        
-        <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
+        <font color="#ff0000;"  style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             
            
