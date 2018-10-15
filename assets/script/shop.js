@@ -1344,23 +1344,16 @@ function submitCancel() {
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
                 var urlx = "shop/shop_manage";
-
-
-
+				
                 $.post(urlx, function(res) {
                         // this.popPage('popup1.html');
-                        appNavigator.popPage()
+//                        appNavigator.popPage()
                         $('#shop_manage').html(res);
                     });
 
             });
             $('#btn_cancel_book_' + order_id).hide();
-            /*var url_check_st = "mod/booking/shop_history/load/component_shop.php?request=check_status_shop&status="+data.status;
-            console.log(url_check_st);
-            $.post( url_check_st,$('#form_type_cancel' ).serialize(), function( com ) {
-            	$('#status_booking_detail').html(com);
-            	swal("<?=t_success;?>", "", "success");
-            });*/
+
             var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id;
             $.post(url_messages, function(res) {
                 console.log(res)
