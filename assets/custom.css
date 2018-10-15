@@ -2,23 +2,18 @@ img[src=""] {
    display: none;
 }
   .lab-active-shop {
-    position: absolute;
+    /*position: absolute;
     z-index: 1;
-/*    right: 30px;*/
-/*    margin-top: 90px;*/
     margin-top: -13px;
     margin-left: 5px;
-    background-color: #fff;
+    background-color: #fff;*/
     color: #4CAF50;
 }
 .lab-none-active-shop {
-    position: absolute;
+   /* position: absolute;
     z-index: 1;
-/*    right: 15px;*/
-/*    margin-top: 90px;*/
    	margin-top: -10px;
-    margin-left: -0px;
-/*    background-color: #fff;*/
+    margin-left: -0px;*/
     color: #fb0006;
 }
 .time-post-shop-his {
