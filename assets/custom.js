@@ -830,7 +830,7 @@ function sendShop(company) {
 
 function sendShop2() {
     modal.show();
-    setTimeout(function() {
+    
     var urlo = 'shop/place_companycount';
     $.post(urlo, function(res) {
         console.log(res)
@@ -875,6 +875,7 @@ function sendShop2() {
 
                 }
                 modal.hide();
+                setTimeout(function() {
 
                 $('#shop_add').html(ele2);
                 var pass = {
@@ -897,14 +898,15 @@ function sendShop2() {
                         // $('ons-tab[page="shop_history.html"]').attr('badge', res);
                     }
                 });
+                }, 1000);
 
 
             });
 
 
 
- 
-        } 
+
+        }
 		else {
             modal.hide();
             fn.pushPage({
@@ -920,7 +922,7 @@ function sendShop2() {
         // $('#body_place_company').html(res);
     });
 
- }, 1000);
+ // }, 1000);
 
 }
 
