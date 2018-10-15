@@ -29,6 +29,8 @@ class Notification_model extends CI_Model {
   		$key = 0;
 		foreach ($query->result() as $row)
 		{
+			if($_POST[i_user]!=$row->id){
+				
 		        $data[i_type] = $_POST[i_type];
 		  		$data[i_event] = $_POST[i_event];
 		  		$data[i_user] = $row->id;
@@ -45,10 +47,13 @@ class Notification_model extends CI_Model {
 		  		$return[$key][result] = $result;
 		  		$return[$key][data] = $data;
 		  		$key++;
+		  		
+			}
 		}
 
   		return $return;
   } 
+
   public function read_notification() {
    	$id = $_GET[id];
    	$ac[i_active] = $_POST[i_active];

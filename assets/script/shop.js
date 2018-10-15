@@ -1344,11 +1344,12 @@ function checkPhotoCheckIn(type, id) {
     });
 }
 
-function cancelShopSelect(id, invoice){
+function cancelShopSelect(id, invoice, dv){
 	console.log('cancel')
 	fn.showDialog('cancel-shop-dialog');
 	$('#order_id_cancel').val(id);
 	$('#invoice_cancel_select').val(invoice);
+	$('#driver_id_cancel').val(dv);
 }
 
 function submitCancel() {
@@ -1372,8 +1373,9 @@ function submitCancel() {
         console.log(obj);
         var invoice_cancel = $('#invoice_cancel_select').val();
         var order_id_calcel = $('#order_id_cancel').val();
+        var dv = $('#driver_id_cancel').val();
          var txt_long_cancel_shop = invoice_cancel+" : "+"คุณทำการยกเลิกรายการส่งแขกนี้";
-                var ac = {
+                var ac_1 = {
 					i_type : 1,
 					i_sub_type : 6,
 					i_event : order_id_calcel,
@@ -1383,18 +1385,31 @@ function submitCancel() {
 					s_posted : username
 				};
 				
-				 var txt_long_nc_cancel_shop = invoice_cancel+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
-				 var nc = {
+				 var txt_long_nc_cancel_shop = invoice_cancel+" : พนักงานทำการยกเลิกรายการส่งแขก";
+				 var nc_to_taxi = {
 					i_type : 1,
 					i_event :	order_id_calcel,
-					i_user :	0,
+					i_user :	dv,
 					s_class_user :	"taxi",
 					s_topic : "งานส่งแขก",
 					s_sub_topic : "ยกเลิก",
 					s_message :	txt_long_nc_cancel_shop,
 					s_posted :	username
 				 };
-				apiRecordActivityAndNotification(ac, nc);
+				apiRecordActivityAndNotification(ac_1, nc_to_taxi);
+				var ac_2 = {};
+				 var nc_to_lab = {
+					i_type : 1,
+					i_event :	order_id_calcel,
+					i_user :	detect_user, // กรณียกเว้นของ lab
+					s_class_user :	"lab",
+					s_topic : "งานส่งแขก",
+					s_sub_topic : "ยกเลิก",
+					s_message :	txt_long_nc_cancel_shop,
+					s_posted :	username
+				 };
+				apiRecordActivityAndNotification(ac_2, nc_to_lab);
+				
         if (obj.result == true) {
             ons.notification.alert({
                 message: 'ยกเลิกสำเร็จ',

@@ -125,7 +125,7 @@ else if($arr[book][status]=='CONFIRM'){
 		<span class="font-22 text-cap"><?=t_cancel;?></span>
 	</button>-->
 	
-	<button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>');" style="    float: right;
+	<button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
     border: 1px solid #F44336;

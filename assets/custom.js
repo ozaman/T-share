@@ -743,7 +743,7 @@ function getTansferJobNumber(driver, date) {
 }
 
 function sendSocket(id) {
-    console.log('Click');
+    console.log('Click '+id );
     //   var message = "";
     var dataorder = {
         order: parseInt(id),
