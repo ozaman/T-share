@@ -38,6 +38,12 @@
       $txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
     }
   }
+  if($_COOKIE[detect_userclass]=="taxi"){
+  	$hide_plate = "display:none;";
+  	$time_post_ps = "margin-top: -85px;";
+  }else{
+  	$time_post_ps = "margin-top: -105px;";
+  }
   ?>
    <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop" >
@@ -54,14 +60,16 @@
             <?=$status_txt;?></div>
             </td>
           </tr>
-          <tr>
-            <td colspan="2" style="padding: 10px 0px;">
+          <tr style="<?=$hide_plate;?>">
+            <td colspan="2" style="padding: 2px 0px;">
             <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val->car_plate." ";?></a>
             </div>
-           
-
             </td>
-            
+          </tr>
+          <tr>
+          	<td colspan="2" style="padding: 2px 0px;">
+          		<span class="font-14">จำนวนคน : <?=$val->pax;?> คน</span>
+          	</td>
           </tr>
           <tr>
             <td colspan="2">
@@ -85,7 +93,7 @@
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val->id;?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val->id;?>" onclick="editTimeToPlace('<?=$val->id;?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
-            <span class="font-14 time-post-shop-his" id="txt_date_diff_<?=$val->id;?>">-</span>
+            <span class="font-14 time-post-shop-his" style="<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
        
             </td>
             

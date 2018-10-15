@@ -1,43 +1,19 @@
 <?php 
-function checkTypePay($id){
-      if($id==1){
-      		$name_type = t_parking_fee." + ".t_person_fee;
-      }
-      else if($id==2){
-      		$name_type = t_parking_fee." + ".t_com_fee;
-      }
-      else if($id==3){
-      		$name_type = t_person_fee." + ".t_com_fee;
-      } 
-      else if($id==4){
-      		$name_type = t_parking_fee." + ".t_person_fee." + ".t_com_fee;
-      }
-      else if($id==5){
-      		$name_type = t_parking_fee;
-      }
-      else if($id==6){
-      		$name_type = t_person_fee;
-      }
-      else if($id==7){
-      		$name_type = t_com_fee;
-      }
-      return $name_type;
- }
-$place_shopping = "topic_th";
-$data_user_class = $_COOKIE[detect_userclass];
- $main_color = "#3b5998";
-  // echo print_r($book);
 
- // exit();
- $sql_od = "SELECT car_plate, car_type FROM  order_booking  where id = '".$book->id."'  ";
+ $place_shopping = "topic_th";
+ $data_user_class = $_COOKIE[detect_userclass];
+ $main_color = "#3b5998";
+  $arr[book] = $_POST ;
+ 
+ $sql_od = "SELECT car_plate, car_type FROM  order_booking  where id = '".$arr[book][id]."'  ";
  $query_od = $this->db->query($sql_od);
  $res_od = $query_od->row();
  
-  $sql_ps = "SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$book->program."' ";
+  $sql_ps = "SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ";
  $query_ps = $this->db->query($sql_ps);
  $res_ps = $query_ps->row();
 
- $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$book->drivername."'    ";
+ $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
  $query_dv = $this->db->query($sql_dv);
  $res_dv = $query_dv->row();
 
@@ -50,54 +26,82 @@ $data_user_class = $_COOKIE[detect_userclass];
  }
  $full_name_driver = $res_dv->name." (".$res_dv->nickname.")";
 
- if($book->status=='CANCEL'){
-			 if($book->cancel_type=='1'){
+ if($arr[book][status]=='CANCEL'){
+			 if($arr[book][cancel_type]=='1'){
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
 			}
-			else if($book->cancel_type=='2'){
+			else if($arr[book][cancel_type]=='2'){
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_not_go.'</font>';
 			}
-			else if($book->cancel_type=='3'){
+			else if($arr[book][cancel_type]=='3'){
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_wrong_selected_place.'</font>';
 			}else{
 				$status_txt = '<font color="#ff0000">ยกเลิก ไม่ระบุ</font>';
 			}
 }
-else if($book->status=='NEW'){
+else if($arr[book][status]=='NEW'){
 			$status_txt = '<font color="#3b5998">'.t_new.'</font>';
 		}
-else if($book->status=='CONFIRM'){
+else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
-
-	if($book->driver_complete==1){
+	if($arr[book][driver_complete]==1){
 		$cancel_shop = 'display:none;';
 	}
 	
 //	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 //  	$check_pay_dv = $db->num_rows("pay_history_driver_shopping","id","order_id=".$_POST[id]." and status = 1"); 
-	$query = $this->db->query("SELECT id FROM pay_history_driver_shopping where order_id=".$book->id." and status = 1");
+/*	$query = $this->db->query("SELECT id FROM pay_history_driver_shopping where order_id=".$_POST[id]." and status = 1");
 	$check_pay_dv = $query->num_rows();
   	if($check_pay_dv>0){
 		$show_alert = "";
 	}else{
 		$show_alert = "display:none;";
 	}
+	*/
+	if($arr[book][price_park_total] != 0){
+		$park_total = number_format($arr[book][price_park_total],2);
+		$display_park = "";
+	}else{
+		$display_park = "display:none";
+	}
 	
+	if($arr[book][price_person_unit] != 0){
+		$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),2);
+		$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
+		$display_person = "";
+	}else{
+		$display_person = "display:none";
+	}
+	
+	if($arr[book][commission_persent] != 0){
+		$display_com = "";
+		$com_persent = $arr[book][commission_persent];
+	}else{
+		$display_com = "display:none";
+	}
 ?>
 
 <script>
-	$('#date_trans').text(formatDate('<?=$book->transfer_date;?>'));
-	$('#header_clean').text('<?=$book->invoice;?>');
+	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
+	$('#header_clean').text('<?=$_POST[invoice];?>');
 	console.log('IOS : <?=$_GET[ios];?>');
 </script>
 
-<input type="hidden" value="<?=$book->id;?>" id="id_order" />
-<ons-card class="assas_<?=$book->id;?>" style=" padding:10px 12px;" >
+<input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
+<input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
+<ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
+	<!--<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="position: absolute;
+    right: 10px;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 0;
+    top: 0px;
+    margin: 15px;<?=$cancel_shop;?>">
+		<span class="font-22 text-cap"><?=t_cancel;?></span>
+	</button>-->
 	
-	
-	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=
-    $book->id;?>');" style="    float: right;
+	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
     border: 1px solid #F44336;
@@ -164,7 +168,7 @@ else if($book->status=='CONFIRM'){
    		<tbody>
    		<tr>
 	      <td width="100" class="font-16 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-	      <td class="font-16"><?=$book->invoice;?></td>
+	      <td class="font-16"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
    		</tr>
    		</tbody>
 		<tbody>
@@ -174,24 +178,40 @@ else if($book->status=='CONFIRM'){
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
-         <td class="font-16"> <?=$book->airout_h;?>:<?=str_pad($book->airout_m, 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
+         <td class="font-16"> <?=$arr[book][airout_h];?>:<?=str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font></td>
         <td class="font-16" style="padding: 0 !important;" >
             <table width="100%">
-            	
+            	<!-- <tr>
+            		<td width="100%" colspan="2">
+            			<span class="font-16">
+            				<?
+				            if($arr[book][adult]>0){ ?>
+				            <?=t_adult;?> :
+				            <?=$arr[book][adult];?>
+				            &nbsp;
+				            <? } ?>
+				            <? if($arr[book][child]>0){ ?>
+				            <?=t_child;?> :
+				            <?=$arr[book][child];?>
+				            <? } ?>
+            			</span>
+            		</td>
+            		
+            	</tr> -->
             	<tr>
         			<td>	
         				<span id="isedit"><?
-            if($book->adult>0){ ?>
+            if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
             
             &nbsp;
             <? } ?>
-            <span id="num_final_edit"><?=$book->adult;?> </span></span>
+            <span id="num_final_edit"><?=$arr[book][adult];?> </span></span>
             <span id="text_edit_persion" style="display: none;"><?
-        			 if($book->adult>0){ ?>
+        			 if($arr[book][adult]>0){ ?>
             <?=t_adult;?> :
            
             &nbsp;
@@ -203,46 +223,21 @@ else if($book->status=='CONFIRM'){
     padding: 0px;
     font-size: 16px;
     margin: auto;
-    display: none;" value="<?=$book->adult;?>" >
+    display: none;" value="<?=$arr[book][adult];?>" >
         				
         			</td>
 
-             
-
         			<td>
-                 <?php
-              if($book->status!='CANCEL'){
-                ?>
-        				<span  class="button " align="center" onclick="editBook('$book->id;?>');"  style="    background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 8px;display: inline-block;" id="btn_isedit">
-		<span class="font-18 text-cap">แก้ไข</span>
-	</span>
-	<span class="button " align="center" onclick="saveeditBook('<?=$book->id;?>');"  style="    background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 8px;display: none;" id="btn_selectisedit">
-		<span class="font-24 text-cap">บันทึก</span>
-	</span>
-  <?}?>
-        			</td>
-
-        		</tr>
-        		<tr>
-        			<td>
-        				<? if($book->child>0){ ?>
+        				<? if($arr[book][child]>0){ ?>
             <?=t_child;?> :
-            <?=$book->child;?>
+            <?=$arr[book][child];?>
             <? } ?>
         			</td>
         		</tr>
      	
             	<tr>
             	<?php 
-            		if($book->num_ch>0){ ?>
+            		if($arr[book][num_ch]>0){ ?>
 						<td style="padding: 0 !important;">
 		            		<table>
 		            			<tr>
@@ -253,7 +248,7 @@ else if($book->status=='CONFIRM'){
 	            		</td>
 				<? } ?>
 				<?php 
-            		if($book->num_other>0){ ?>
+            		if($arr[book][num_other]>0){ ?>
 						<td style="padding: 0 !important;">
 		            		<table>
 		            			<tr>
@@ -271,7 +266,36 @@ else if($book->status=='CONFIRM'){
          </tbody>
 </table>
 	</div>
-
+	
+	<div style="padding: 5px 0px;">
+     	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
+     	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
+     		<tr>
+     			<td width="100"><span class="font-16">ประเภท</span></td>
+     			<td><span class="font-16">ค่าหัว + ค่าจอด</span></td>
+     		</tr>
+     		<tr style="<?=$display_park;?>">
+     			<td width="100"><span class="font-16">ค่าจอด</span></td>
+     			<td align=""><span class="font-16"><?=$park_total;?> บาท</span></td>
+     		</tr>
+     		<tr style="<?=$display_person;?>">
+     			<td width="100"><span class="font-16">ค่าหัว</span></td>
+     			<td align=""><span class="font-16"><?=$cal_person;?> = <?=$person_total;?> บาท</span></td>
+     		</tr>
+     		<tr style="<?=$display_com;?>">
+     			<td width="100"><span class="font-16">ค่าคอม</span></td>
+     			<td align=""><span class="font-16"><?=$com_persent;?> %</span>
+                </td>
+     		</tr>
+     		<tr>
+     			<td  width="100">รวม</td>
+     			<td><span class="16">
+     				<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
+     			</span></td>
+     		</tr>
+     	</table>
+    </div>
+    
 	<div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
@@ -283,84 +307,37 @@ else if($book->status=='CONFIRM'){
 			<?=$full_name_driver;?></td>
 		  </tr>
 		  <tbody>
-		    <tr>
+		    <!-- <tr>
 		      <td  width="100" class="font-16"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
 		      <td class="font-16"><? echo $res_od->car_type; ?></td>
-		     <!-- <td width="30" class="font-16"><font color="#333333"><?=t_car_coloring;?></font></td>
-		      <td class="font-16"><?=$car_color;?></td>-->
-		    </tr>
+		    
+		      <td class="font-16"><?=$car_color;?></td>
+		    </tr> -->
 		    <tr>
 		      <td   width="100"  class="font-16"><font color="#333333"><?=t_car_registration_number;?></font></td>
 		      <td colspan="3" class="font-16"><?=$res_od->car_plate;?></td>
 		    </tr>
-		     <!-- <tr>
+		     <tr>
 		      <td   width="100"  class="font-16"><font color="#333333"><?=t_call;?></font></td>
-		      <td colspan="3" class="font-16"><a href="tel:<?=$res_od->phone;?>" ><?=$res_od->phone;?></a></td>
-		    </tr> -->
+		      <td colspan="3" class="font-16"><a href="tel:<?=$res_od->phone;?>" ><?=$arr[book][phone];?></a></td>
+		    </tr>
 		  </tbody>
 		</table>
 	</div>
 	<?php 
-	if($book->status!='CANCEL'){
-
-//	include("application/views/shop/checkin.php"); 
-	$this->load->view('shop/checkin');
+	if($arr[book][status]!='CANCEL'){ ?>
 	
-	if($_COOKIE[detect_userclass]=="taxi"){
-		$txt_btn_pay = 'ยืนการการรับเงิน';
-	}else{
-		$txt_btn_pay = 'แจ้งยอดรายได้';
-	}
-	?>
-
-	<div style="padding: 5px 0px;display: nones;">
-     <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
-
-	 <span class="text-cap font-22"><?=t_income;?></span>
-	  <ons-button onclick="openViewPrice('<?=$book->id;?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16"><?=$txt_btn_pay;?></span> </ons-button>
-	</div>
-	
-	<div style="padding: 5px 0px;display: none;">
-		<span class="text-cap font-22"><?=โค้ดและเอกสาร;?></span>
-	<? if($data_user_class=='lab' and $book->program==1){ ?>
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
+	<div style="padding: 5px 0px;">
+		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5">
 			<tr>
-				<td width="60" valign="middle"><span class="font-16">Code</span></td>
-				<td width="150">
-				<input type="text" class="form-control font-16" id="code_order" name="code_order" value="<?=$book->code;?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
-				<td><span class="btn" align="center" onclick="updateCode('<?=$book->program;?>','<?=$book->id;?>');" style="background: #3b5998;
-    color: #fff;
-    padding: 0px 10px;
-    font-size: 3px !important;
-    border-radius: 8px;">
-		<span class="font-24 text-cap">บันทึก</span>
-	</span></td>
-			</tr>
-			<tr>
-				<td width="60"><span class="font-16">อัพโหลด</span></td>
-				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff !important;border-radius: 10px;" onclick="uploadCodeFile('<?=$book->program;?>','<?=-$book->id;?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</table>
-	<? }
-	else if($data_user_class=='taxi' and $book->program==1){ ?>
-	
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
-			<tr>
-				<td width="60" valign="middle"><span class="font-16">Code</span></td>
-				<td width="150">
-				<input type="text" class="form-control font-16" readonly="readonly" value="<?=$book->code;?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
-			</tr>
-			<tr>
-				<td width="60">
-				<span class="font-16">อัพโหลด</span></td>
-				<td>
-				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 8px;" onclick="uploadCodeFile('<?=$book->program;?>','<?=$book->id;?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
-			</tr>
-		</table>
-<?	} ?>
 	</div>
-<? } ?>
+	
+ <? } ?>
 
 </ons-card>
 <input type="hidden" id="check_cause" value="0"/>
-<input type="hidden" id="check_id_income" value="<?=$book->id;?>"/>
+<input type="hidden" id="check_id_income" value="<?=$arr[book][id];?>"/>
