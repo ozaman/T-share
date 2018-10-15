@@ -40,7 +40,7 @@
 				?>
 		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
-	    <ons-list-item  id="list_activity_<?=$row->id;?>">
+	    <ons-list-item  id="list_activity_<?=$row->id;?>" style=" margin-left: 10px;">
        		<table width="100%">
        			<tr>
        				<td><?=$row->s_topic;?></td>

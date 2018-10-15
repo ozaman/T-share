@@ -1889,13 +1889,14 @@ $.ajax({
            success: function(res) {
                console.log(res);
                sendSocket(id);
+               
                ons.notification.alert({
                   message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
                   title: "สำเร็จ",
                   buttonLabel: "ปิด"
               })
                .then(function() {
-
+				   
                    shopManage();
 
                });
@@ -1958,15 +1959,39 @@ function approvePayDriverByLab(id, invoice, driver){
 			           type: 'post',
 			           dataType: 'json',
 			           success: function(res) {
-			               console.log(res);
+			                console.log(res);
 			                sendSocket(id);
+			                
+			                var txt_long_ac = response.update.invoice+" : "+"เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+			                var ac = {
+								i_type : 1,
+								i_sub_type : 1,
+								i_event : response.last_id,
+								i_user : detect_user,
+								s_topic : "งานส่งแขก",
+								s_message : txt_long_ac,
+								s_posted : username
+							};
+							
+							 var txt_long_nc = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+							 var nc = {
+								i_type : 1,
+								i_event :	response.last_id,
+								i_user :	0,
+								s_class_user :	"lab",
+								s_topic : "งานส่งแขก",
+								s_sub_topic : "เช็คอิน",
+								s_message :	txt_long_nc,
+								s_posted :	username
+							 };
+							apiRecordActivityAndNotification(ac, nc);
 			               ons.notification.alert({
 			                  message: 'ยืนยันการจ่ายเงินแล้ว',
 			                  title: "สำเร็จ",
 			                  buttonLabel: "ปิด"
 			             	 })
 			               .then(function() {
-			               	
+			               		
 			               		 reloadIncomeShop(id);
 			               });
 			           }
