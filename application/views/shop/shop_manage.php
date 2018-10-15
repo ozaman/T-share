@@ -123,7 +123,7 @@
           <tr>
             <td colspan="2">
               <table width="100%">
-               
+               <tr>
                   <td width="35%">
               
              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>'););" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
@@ -141,39 +141,21 @@
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap">จัดการ</span> </ons-button>
          
             </td>
-                
+                </tr>
+                <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
+                <tr>
+                	<td colspan="2">
+                		<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
+                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-20 text-cap">ยืนยัน</span> </ons-button>
+                	</td>
+                </tr>
+                 <? } ?>
               </table>
               
             </td>
           </tr>
     </table>
-        <?php 
-        if($val[driver_complete]==0){
-        ?>
-          
-          
-        
 
-
-     <!--    <a class="btn waves-effect waves-light red lighten-3" align="center"   style="
-    color: #fff;margin-right: 15px;
-    padding: 5px 20px;
-    border-radius: 8px;
-    background-color: #F44336 ;
-    margin-top: 10px;">
-   
-  </a> -->
-  	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
-	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
-	    color: #fff;
-	    padding: 5px 20px;
-	    border-radius: 8px;
-	    background-color: #4CAF50 !important;
-	    margin-top: 10px;">
-	    <span class="font-20 text-cap"><?=ยืนยัน;?></span>
-	  </a>
-	  <? } ?>
-  <? } ?>
  
   </div>
   </div>
