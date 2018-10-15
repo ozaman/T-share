@@ -62,13 +62,12 @@
 
         ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" >
-    <span id="date_book_<?=$val[id];?>">-</span>
+    <!-- <span id="date_book_<?=$val[id];?>">-</span> -->
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
   	<?php 
   		if($data_user_class == "lab"){ ?>
-        <ons-button onclick="editTimeToPlace('<?=$val[id];?>');"  id="btn_edit_time_<?=$val[id];?>" style="<?=$display_time_none;?> background-color: #fff;margin: 10px 0px;"modifier="outline" class="button-margin button button--outline button--large"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16">แก้ไขเวลา</span> </ons-button>
-  	<!-- <button class="btn btn-xs edit-post-shop" onclick="" ><span class="font-14"></span></button>		 -->
+  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
   	<?	}
   	?>
   	
@@ -121,18 +120,49 @@
             </td>
             
           </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+               
+                  <td width="35%">
+              
+             <ons-button onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+    border-radius: 5px;
+    line-height: 0;
+    border: 1px solid #fe3824;
+    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap"><?=t_cancel;?></span> </ons-button>
+        
+            </td>
+            <td width="65%">
+             
+             <ons-button style="padding: 15px;
+    border-radius: 5px;
+    line-height: 0;
+    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap">จัดการ</span> </ons-button>
+         
+            </td>
+                
+              </table>
+              
+            </td>
+          </tr>
     </table>
         <?php 
         if($val[driver_complete]==0){
         ?>
-        <a class="btn waves-effect waves-light red lighten-3" align="center"  onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$val[id];?>');"id="cancel_book_<?=$val[id];?>" style="
+          
+          
+        
+
+
+     <!--    <a class="btn waves-effect waves-light red lighten-3" align="center"   style="
     color: #fff;margin-right: 15px;
     padding: 5px 20px;
     border-radius: 8px;
     background-color: #F44336 ;
     margin-top: 10px;">
-    <span class="font-20 text-cap"><?=t_cancel;?></span>
-  </a>
+   
+  </a> -->
   	   <?php if($val[lab_approve_job]==0 and $data_user_class == "lab"){ ?>
 	   <a class="btn waves-effect waves-light green lighten-3" align="center" onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" id="apporve_book_<?=$val[id];?>" style="
 	    color: #fff;
