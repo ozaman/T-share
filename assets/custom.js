@@ -800,6 +800,7 @@ function sendShop(company) {
             });
 
         }
+         setTimeout(function() {
         modal.hide();
 
         $('#shop_add').html(ele2);
@@ -823,6 +824,7 @@ function sendShop(company) {
                 // $('ons-tab[page="shop_history.html"]').attr('badge', res);
             }
         });
+        }, 1000);
 
 
     });
@@ -874,9 +876,9 @@ function sendShop2() {
                     });
 
                 }
-                modal.hide();
+                
                 setTimeout(function() {
-
+            modal.hide();
                 $('#shop_add').html(ele2);
                 var pass = {
                     date: moment().format('YYYY-MM-DD'),
