@@ -645,6 +645,7 @@ function handleClick(tax, name) {
     }
     if (tax == 'box_com') {
          $('#price_plan_'+name).prop('checked',true);
+         checformadd('box_com')
 
     }
 

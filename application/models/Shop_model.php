@@ -59,7 +59,7 @@ class Shop_model extends CI_Model {
 		$data["booking_by"] = $_GET[driver];
 //		$data["payment_type"] = $_POST[payment_type];
 		$data["drivername"] = $_GET[driver];
-//		$data["namedriver"] = $_POST[namedriver];
+	$data["driver_remark"] = $_POST[remark];
 //		$data["ondate_time"] = $_POST[ondate_time];
 //		"posted" = "$_SESSION[data_user_driver]";
 		$data["post_date"] = time();

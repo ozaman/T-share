@@ -386,6 +386,19 @@ $data_shopmain = $shopmain->row();
 
     </div>
   </div>
+   <div class="card" id="num_customer" onclick="checformadd('num_customer')">
+      <ons-list-header class="list-header "> ข้อเสนอแนะ</ons-list-header>
+      <div class="form-group">
+
+
+        <!-- <label class="font-17">จำนวนคน</label> -->
+
+        <ons-row>
+          <textarea class="textarea" rows="3" placeholder="ข้อเสนอแนะ" id="remark" name="remark" type="number" cols="100" ></textarea>
+          
+        </ons-row>
+      </div>
+    </div>
 
 
 </div>
