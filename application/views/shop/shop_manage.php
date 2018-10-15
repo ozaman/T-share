@@ -71,7 +71,7 @@
   	<?	}
   	?>
   	
-    <table width="100%"  onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');">
+    <table width="100%"  >
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
             <td width="20%" align="center" rowspan="2">
@@ -135,7 +135,7 @@
             </td>
             <td width="65%">
              
-             <ons-button style="padding: 15px;
+             <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap">จัดการ</span> </ons-button>
