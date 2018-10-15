@@ -1,3 +1,28 @@
+<?php 
+$weekdays = Array();
+$weekdays[0] = "Sun";
+$weekdays[1] = "Mon";
+$weekdays[2] = "Tue";
+$weekdays[3] = "Wed";
+$weekdays[4] = "Thu";
+$weekdays[5] = "Fri";
+$weekdays[6] = "Sat";
+$arr_where = array();
+$arr_where['status'] = 1;
+$arr_where['product_id'] = $_GET[shop_id];
+$arr_where['product_day'] =  $weekdays[date('w')];
+$arr_select = array('finish_h','finish_m');
+
+$datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
+//print_r(json_encode($datatime));
+$datenow = strtotime(date('Y-m-d H:i:s'));
+// echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
+$dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
+$i_time_balance = ($dateclose - $datenow)/60;
+// echo $dateclose.'*****'.$i_time_balance;
+
+
+?>
 <style>
 .text-input--material{
   background-image : none;
@@ -99,6 +124,13 @@ $data_shopmain = $shopmain->row();
             </tr>
           </table>
         </div>
+<?php 
+if ($i_time_balance > 0) {
+ 
+
+?>
+
+
         <style >
         @keyframes border-pulsate {
           0%   { border-color: rgba(0, 255, 255, 1); }
@@ -343,31 +375,7 @@ $data_shopmain = $shopmain->row();
     <script>
 </script>
 
-<?php 
-$weekdays = Array();
-$weekdays[0] = "Sun";
-$weekdays[1] = "Mon";
-$weekdays[2] = "Tue";
-$weekdays[3] = "Wed";
-$weekdays[4] = "Thu";
-$weekdays[5] = "Fri";
-$weekdays[6] = "Sat";
-$arr_where = array();
-$arr_where['status'] = 1;
-$arr_where['product_id'] = $_GET[shop_id];
-$arr_where['product_day'] =  $weekdays[date('w')];
-$arr_select = array('finish_h','finish_m');
 
-$datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
-//print_r(json_encode($datatime));
-$datenow = strtotime(date('Y-m-d H:i:s'));
-// echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
-$dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
-$i_time_balance = ($dateclose - $datenow)/60;
-// echo $dateclose.'*****'.$i_time_balance;
-
-
-?>
 
 <div class="card" id="box_time" onclick="checformadd('box_time')">
  <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
@@ -447,8 +455,20 @@ $i_time_balance = ($dateclose - $datenow)/60;
 
   <?php } ?>
 </div>
+<?php 
+}
+else{
+  ?>
+  <div class="card" align="center">
+    <h1 >ขณะนี้ปิดให้บริการ</h1>
+  </div>
 
+  <?php
+}
+
+?>
 </div>
+
 <script type="text/javascript">
   function_name();
   function function_name() {

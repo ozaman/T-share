@@ -485,7 +485,7 @@ function handleClick(tax, name) {
 
 
         }
-        if (name == 2) {
+        if (name == 2222) {
             $('#' + tax + '_' + name).addClass('cus_focus')
             $('#' + tax + '_' + 1).removeClass('cus_focus')
             $('#' + tax + '_' + 3).removeClass('cus_focus')
@@ -646,7 +646,69 @@ function handleClick(tax, name) {
     if (tax == 'box_com') {
 
          $('#price_plan_'+name).prop('checked',true);
-         $('#box_com').removeClass('borderBlink')
+         // $('#box_com').removeClass('borderBlink')
+         if (form.elements["plate_num_1"].value == 0) {
+                $('#box_car').addClass('borderBlink')
+                $('html, body').animate({
+                    scrollTop: $('#box_com').offset().top
+                }, 300, function() {
+
+                    $("#box_com").focus()
+
+                    window.location.href = "#nation_box";
+                });
+            }
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+                $('#nation_box').addClass('borderBlink')
+                console.log(this.hash)
+
+                $('html, body').animate({
+                    scrollTop: $('#box_com').offset().top
+                }, 300, function() {
+
+                    $("#box_com").focus()
+
+                    window.location.href = "#nation_box";
+                });
+            }
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+                $('#box_com').addClass('borderBlink')
+                $('#num_customer').removeClass('borderBlink')
+                console.log(this.hash)
+
+                $('html, body').animate({
+                    scrollTop: $('#box_com').offset().top
+                }, 300, function() {
+
+                    $("#box_com").focus()
+
+                    window.location.href = "#box_com";
+                });
+            }
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+                $('#box_com').removeClass('borderBlink')
+                $('#num_customer').addClass('borderBlink')
+                console.log(this.hash)
+
+                $('html, body').animate({
+                    scrollTop: $('#num_customer').offset().top
+                }, 300, function() {
+
+                    $("#adult").focus()
+
+                    window.location.href = "#num_customer";
+                });
+            }
+            if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+                $('#num_customer').removeClass('borderBlink')
+                if (form.elements["time_num"].value == 0) {
+                    $('#box_time').addClass('borderBlink')
+                    $('#time_num').focus()
+                } else {
+                    $('#box_time').removeClass('borderBlink')
+                    $('#child').focusout();
+                }
+            }
          // checformadd('box_com')
 
     }
