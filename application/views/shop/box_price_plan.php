@@ -5,6 +5,10 @@
  $_order = array();
  $_order['id'] = 'asc';
  $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_TAXI,$_where,$_select,$_order);
+ // echo '<pre>';
+ // print_r($data['list_plan']);
+ // echo '</pre>';
+
 
  ?>
  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_country];?>" />
@@ -51,27 +55,32 @@
                   $price_park_unit = $val2->i_price;
                   $price_person_unit = '';
                   $commission_persent = '';
+                  ?>
+                <input type="hidden" name="price_park_unit" value="<?=$price_park_unit;?>">
 
+<?php
                   # code...
                 }
                 if ($val2->s_topic_en == 'person') {
                   $price_park_unit = '';
                   $price_person_unit = $val2->i_price;
                   $commission_persent = '';
+                  ?>
+                <input type="hidden" name="price_person_unit" value="<?=$price_person_unit;?>">
+                <?php
                   # code...
                 }
                 if ($val2->s_topic_en == 'comision') {
                   $price_park_unit = '';
                   $price_person_unit = '';
                   $commission_persent = $val2->i_price;
-
+                  ?>
+                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
+<?php
                   # code...
                 }
                 ?>
-                <input type="hidden" name="price_park_unit" value="<?=$price_park_unit;?>">
-                <input type="hidden" name="price_person_unit" value="<?=$price_person_unit;?>">
                 <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
-                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
                 <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
                 <!-- <span style="display:show">หัว  200&nbsp;</span> -->
               <?php }?>
