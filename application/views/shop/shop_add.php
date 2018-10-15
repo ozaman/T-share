@@ -231,7 +231,7 @@ $data_shopmain = $shopmain->row();
    
     </div>
 
-    <div class="card" id="box_com" onclick="checformadd('box_com')">
+    <div class="card" id="box_com">
       <!-- Agent Issu -->  
       <div class="" id="show_payment_detail" style="">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">

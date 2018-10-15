@@ -21,7 +21,7 @@
   // print_r( $data['list_price']);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
-    <label class="center" for="price_plan_<?=$key+1;?>">
+    <label class="center" for="price_plan_<?=$key+1;?>" onclick="checformadd('box_com')">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
