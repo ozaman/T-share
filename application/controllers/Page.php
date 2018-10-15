@@ -45,6 +45,10 @@ public function shop_view(){
 		
 public function shop_manage(){
 		$this->load->view('shop/shop_manage',$data);
+	}
+	
+public function shop_detail_his(){
+		$this->load->view('shop/detail_shop_his');
 	}	
 	
 public function profile_edit(){

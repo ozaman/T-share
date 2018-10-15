@@ -1195,13 +1195,19 @@ function openDetailBookinghistory(key, type, invoice) {
     console.log(param);
     $.ajax({
         url: url,
+        dataType: 'json',
         data: param,
         type: 'post',
         success: function(res) {
-//            console.log(res);
-$('#body_popup1').html(res);
-}
-});
+            console.log(res);
+            	var url = "page/shop_detail_his";
+		        $.post(url,res,function(ele) {
+//		        	console.log(ele);
+		            $('#body_popup1').html(ele);
+		        });
+//			$('#body_popup1').html(res);
+			}
+		});
     // $.post(url, function(data) {
     //     $('#body_popup1').html(data);
     //        var obj = JSON.parse('<?=json_encode($_POST);?>');

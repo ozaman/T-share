@@ -111,7 +111,8 @@ class Shop extends CI_Controller {
 		}
 		public function detail_shop_his(){
 			$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('invoice' => $_POST[invoice]), '');
-			$this->load->view('shop/detail_shop_his',$data);
+//			$this->load->view('shop/detail_shop_his',$data);
+			echo json_encode($data['book']);
 		}
 		public function get_data_shop(){
 			$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_POST[id]), '');
