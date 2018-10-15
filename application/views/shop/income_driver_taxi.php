@@ -16,7 +16,7 @@
 	$row = $query->row();
 	
 	
-	$query = $this->db->query("select * from shopping_product where id = '".$row->program."' ");
+	$query = $this->db->query("select topic_th,id from shopping_product where id = '".$row->program."' ");
 	$row_product = $query->row();
 	
 	/*$query_price = $this->db->query("select * from shop_country_com_list where i_shop_country_icon = '".$row->plan_setting."' ");

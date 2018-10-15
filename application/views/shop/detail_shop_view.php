@@ -69,21 +69,41 @@ else if($arr[book][status]=='NEW'){
 else if($arr[book][status]=='CONFIRM'){
 			$status_txt = '<font color="#54c23d">'.t_success.'</font>';
 		}
-
 	if($arr[book][driver_complete]==1){
 		$cancel_shop = 'display:none;';
 	}
 	
 //	$db->connectdb(DB_NAME_APP, DB_USERNAME, DB_PASSWORD);
 //  	$check_pay_dv = $db->num_rows("pay_history_driver_shopping","id","order_id=".$_POST[id]." and status = 1"); 
-	$query = $this->db->query("SELECT id FROM pay_history_driver_shopping where order_id=".$_POST[id]." and status = 1");
+/*	$query = $this->db->query("SELECT id FROM pay_history_driver_shopping where order_id=".$_POST[id]." and status = 1");
 	$check_pay_dv = $query->num_rows();
   	if($check_pay_dv>0){
 		$show_alert = "";
 	}else{
 		$show_alert = "display:none;";
 	}
+	*/
+	if($arr[book][price_park_total] != 0){
+		$park_total = number_format($arr[book][price_park_total],2);
+		$display_park = "";
+	}else{
+		$display_park = "display:none";
+	}
 	
+	if($arr[book][price_person_unit] != 0){
+		$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),2);
+		$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
+		$display_person = "";
+	}else{
+		$display_person = "display:none";
+	}
+	
+	if($arr[book][commission_persent] != 0){
+		$display_com = "";
+		$com_persent = $arr[book][commission_persent];
+	}else{
+		$display_com = "display:none";
+	}
 ?>
 
 <script>
@@ -293,8 +313,22 @@ else if($arr[book][status]=='CONFIRM'){
      	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr>
-     			<td>ประเภท</td>
-     			<td></td>
+     			<td width="100"><span class="font-16">ประเภท</span></td>
+     			<td><span class="font-16">ค่าหัว + ค่าจอด</span></td>
+     		</tr>
+     		<tr style="<?=$display_park;?>">
+     			<td width="100"><span class="font-16">ค่าจอด</span></td>
+     			<td align=""><span class="font-16"><?=$park_total;?> บาท</span></td>
+     		</tr>
+     		<tr style="<?=$display_person;?>">
+     			<td width="100"><span class="font-16">ค่าหัว</span></td>
+     			<td align=""><span class="font-16"><?=$cal_person;?> = <?=$person_total;?> บาท</span></td>
+     		</tr>
+     		<tr style="<?=$display_com;?>">
+     			<td width="100"><span class="font-16">ค่าคอม</span></td>
+     			<td align=""><span class="font-16"><?=$com_persent;?> %</span>
+     				 <span style="padding-left: 15px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
+                </td>
      		</tr>
      	</table>
     </div>
