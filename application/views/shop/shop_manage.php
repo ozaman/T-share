@@ -70,7 +70,7 @@
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
   	<?	}
   	?>
-  	
+  	 <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
     <table width="100%"  >
           <tr>
             <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
@@ -115,7 +115,7 @@
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             
-            <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+           
        
             </td>
             
