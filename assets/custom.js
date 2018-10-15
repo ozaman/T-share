@@ -920,7 +920,7 @@ function sendShop2() {
         // $('#body_place_company').html(res);
     });
 
- }, 700);
+ }, 1000);
 
 }
 
