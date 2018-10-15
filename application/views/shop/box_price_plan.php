@@ -21,7 +21,7 @@
   // print_r( $data['list_price']);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
-    <label class="center" for="price_plan_<?=$key+1;?>" onclick="checformadd('box_com');handleClick('box_com','<?=$val->id;?>')">
+    <label class="center" for="price_plan_<?=$val->id;?>" onclick="checformadd('box_com');handleClick('box_com','<?=$val->id;?>')">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
@@ -152,7 +152,7 @@
   var chk = '<?=count($data['list_plan']);?>';
   if ( chk == 1 ) {
     $('#box_com').removeClass('borderBlink');
-    $('#price_plan_1').prop('checked',true);
+    $('#price_plan_<?=$data['list_plan'][0]->id;?>').prop('checked',true);
     
   }
   // else{
