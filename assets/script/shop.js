@@ -1829,6 +1829,7 @@ function editTimeToPlace(id){
      });
  }
 }
+
 function submitChangeTimeToPlace(){
 	var time = $('#time_num_change_time').val();
 	var id = $('#order_id_change_time').val();
