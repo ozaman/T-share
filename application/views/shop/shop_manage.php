@@ -39,12 +39,36 @@
 	}
 	
   ?>
-  <div style="padding: 5px 0px;margin: 12px 10px;">
+   <?php 
+        $minutes_to_add = $val[airout_m];
+//        echo $minutes_to_add." ++";
+        $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+        $time = new DateTime($time_c);
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+        
+        $stamp = $time->format('H:i');
+//        echo $stamp." +";
+        $current_time = date('H:i');
+        
+        $datetime1 = new DateTime($current_time);
+        $datetime2 = new DateTime($stamp);
+        
+        if($datetime1>$datetime2 and $data_user_class == "lab"){
+          $display_time_none = "";
+        }else{
+          $display_time_none = "display:none;";
+        }
+//        echo $data_user_class." +".$stamp;
+
+        ?>
+  <div style="padding: 5px 0px;margin: 12px 10px;" >
+    <span id="date_book_<?=$val[id];?>">-</span>
   <div class="box-shop">
   	<?=$txt_lab_ap;?>
   	<?php 
   		if($data_user_class == "lab"){ ?>
-  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
+        <ons-button onclick="editTimeToPlace('<?=$val[id];?>');"  id="btn_edit_time_<?=$val[id];?>" style="<?=$display_time_none;?> background-color: #fff;margin: 10px 0px;"modifier="outline" class="button-margin button button--outline button--large"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16">แก้ไขเวลา</span> </ons-button>
+  	<!-- <button class="btn btn-xs edit-post-shop" onclick="" ><span class="font-14"></span></button>		 -->
   	<?	}
   	?>
   	
@@ -86,30 +110,9 @@
           <tr>
             <td colspan="2">
             <span class="font-16" ><?=$val[invoice];?>&nbsp;:&nbsp;
-            <span id="date_book_<?=$val[id];?>">-</span>
+            
             <!--<font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
-        <?php 
-        $minutes_to_add = $val[airout_m];
-//        echo $minutes_to_add." ++";
-        $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
-        $time = new DateTime($time_c);
-//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-        
-        $stamp = $time->format('H:i');
-//        echo $stamp." +";
-        $current_time = date('H:i');
-        
-        $datetime1 = new DateTime($current_time);
-        $datetime2 = new DateTime($stamp);
-        
-        if($datetime1>$datetime2 and $data_user_class == "lab"){
-          $display_time_none = "";
-        }else{
-          $display_time_none = "display:none;";
-        }
-//        echo $data_user_class." +".$stamp;
-
-        ?>
+       
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             
