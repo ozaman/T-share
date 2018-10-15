@@ -1968,28 +1968,29 @@ function approvePayDriverByLab(id, invoice, driver){
 			                console.log(res);
 			                sendSocket(id);
 			                
-			                var txt_long_ac = response.update.invoice+" : "+"เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+			                var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
 			                var ac = {
 								i_type : 1,
-								i_sub_type : 1,
-								i_event : response.last_id,
+								i_sub_type : 4,
+								i_event : id,
 								i_user : detect_user,
 								s_topic : "งานส่งแขก",
 								s_message : txt_long_ac,
 								s_posted : username
 							};
 							
-							 var txt_long_nc = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+							 var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
 							 var nc = {
 								i_type : 1,
-								i_event :	response.last_id,
-								i_user :	0,
-								s_class_user :	"lab",
+								i_event : id,
+								i_user : driver,
+								s_class_user : "taxi",
 								s_topic : "งานส่งแขก",
-								s_sub_topic : "เช็คอิน",
+								s_sub_topic : "ยืนยันงาน",
 								s_message :	txt_long_nc,
 								s_posted :	username
 							 };
+							 
 							apiRecordActivityAndNotification(ac, nc);
 			               ons.notification.alert({
 			                  message: 'ยืนยันการจ่ายเงินแล้ว',
