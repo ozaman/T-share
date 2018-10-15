@@ -32,19 +32,19 @@
     }
     if($data_user_class == "taxi"){
 	    if($val[lab_approve_job]==1){
-			$txt_lab_ap = '<span class="font-16 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
+			$txt_lab_ap = '<span class="font-17 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
 		}else{
-			$txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
+			$txt_lab_ap = '<span class="font-17 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
 		}
 		$tr_lab_ap = '';
-	}else{
+	}
+	else{
 		$tr_lab_ap = 'display:none;';
 	}
 	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
  	$query_ps = $this->db->query($sql_ps);
  	$res_ps = $query_ps->row();
-  ?>
-   <?php 
+
         $minutes_to_add = $val[airout_m];
 //        echo $minutes_to_add." ++";
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
@@ -75,14 +75,14 @@
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
   	<?	}
   	?>
-  	 <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
+  	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
     	  <tr style="<?=$tr_lab_ap;?>">
     	  	<td><?=$txt_lab_ap;?></td>
     	  	<td></td>
     	  </tr>
           <tr>
-            <td width="80%" ><span class="font-16"><?=$res_ps->topic_th;?></span></td>
+            <td width="80%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="2">
             <div class="font-18" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
     margin-left: -85px;
@@ -96,7 +96,7 @@
       if($data_user_class == "lab"){ ?>
    <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
+            <div class="font-17">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
             </div>
            
 
@@ -107,7 +107,7 @@
     ?>
     <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-14">จำนวนแขก&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
+            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
             </div>
            
 
@@ -117,11 +117,11 @@
           
           <tr>
             <td colspan="2">
-            <span class="font-16" ><?=$val[invoice];?>
+            <span class="font-17" ><?=$val[invoice];?>
             
            <!-- <font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
        
-        <font color="#ff0000;"  style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
+        <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             
            
@@ -139,7 +139,7 @@
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
-    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap"><?=t_cancel;?></span> </ons-button>
+    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap"><?=t_cancel;?></span> </ons-button>
         
             </td>
             <td width="65%">
@@ -147,7 +147,7 @@
              <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
-    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-20 text-cap">จัดการ</span> </ons-button>
+    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
          
             </td>
                 </tr>
@@ -155,7 +155,7 @@
                 <tr>
                 	<td colspan="2">
                 		<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
-                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-20 text-cap">รับทราบ</span> </ons-button>
+                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
                 	</td>
                 </tr>
                  <? } ?>
@@ -227,7 +227,7 @@
           ?>
         </select>
       </div>
-       <span class="font-16">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
+       <span class="font-17">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
     </div>
     <div class="alert-dialog-footer">
       <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
