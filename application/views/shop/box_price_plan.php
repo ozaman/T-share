@@ -21,13 +21,13 @@
   // print_r( $data['list_price']);
   ?>
   <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china">
-    <label class="center" for="price_plan_<?=$key+1;?>" onclick="checformadd('box_com')">
+    <label class="center" for="price_plan_<?=$key+1;?>" onclick="checformadd('box_com');handleClick('box_com','<?=$val->id;?>')">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$key+1;?>" value="<?=$val->id;?>" name="price_plan" ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" ></ons-radio>
               </label>
             </td>
             <td class="font-17">
