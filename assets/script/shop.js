@@ -1716,9 +1716,9 @@ var array_ma = [];
 var array_his = [];
 var date = moment().format('YYYY-MM-DD');
 document.addEventListener('prechange', function(event) {
-    console.log(event);
+//    console.log(event);
     var page = event.tabItem.getAttribute('page');
-    console.log(page)
+//    console.log(page)
     if (page == "shop_manage.html") {
         shopManage();
     }

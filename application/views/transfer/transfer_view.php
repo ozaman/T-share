@@ -4,7 +4,7 @@
 </div>
 
 <template id="alert-no-deposit-transfer.html">
-  <ons-alert-dialog modifier="rowfooter">
+  <ons-alert-dialog modifier="rowfooter" id="transfer-alert-dialog">
     <div class="alert-dialog-title">ขอภัย</div>
     <div class="alert-dialog-content">
       <span class="font-14">
@@ -13,14 +13,14 @@
       </span>
     </div>
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideAlertDeposit()">ปิด</ons-alert-dialog-button>
-      <ons-alert-dialog-button onclick="hideAlertDeposit()">เติมเงิน</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="hideAlertDeposit();">ปิด</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="hideAlertDeposit();">เติมเงิน</ons-alert-dialog-button>
     </div>
   </ons-alert-dialog>
 </template>
 <script>
 	 var alertDeposit = function() {
-	  var dialog = document.getElementById('alert-no-deposit-transfer');
+	  var dialog = document.getElementById('transfer-alert-dialog');
 
 	  if (dialog) {
 	    dialog.show();
@@ -34,9 +34,10 @@
 
 	var hideAlertDeposit = function() {
 	  document
-	    .getElementById('alert-no-deposit-transfer')
+	    .getElementById('transfer-alert-dialog')
 	    .hide();
 	};
+	
 </script>
 <script>
  var dataHistoryA;
