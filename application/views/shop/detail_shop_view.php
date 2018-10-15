@@ -327,8 +327,13 @@ else if($arr[book][status]=='CONFIRM'){
      		<tr style="<?=$display_com;?>">
      			<td width="100"><span class="font-16">ค่าคอม</span></td>
      			<td align=""><span class="font-16"><?=$com_persent;?> %</span>
-     				 <span style="padding-left: 15px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
                 </td>
+     		</tr>
+     		<tr>
+     			<td  width="100">รวม</td>
+     			<td><span class="16">
+     				<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
+     			</span></td>
      		</tr>
      	</table>
     </div>
