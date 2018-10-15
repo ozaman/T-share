@@ -1196,8 +1196,10 @@ a {
 	
 }
 .font-16 {
-	font-size: 16px !important;
-	
+	font-size: 16px !important;	
+}
+.font-17 {
+	font-size: 17px !important;	
 }
 .font-18 {
 	font-size: 18px !important;
@@ -1252,6 +1254,9 @@ a {
 		font-size: 14px !important;
 		
 	}
+	.font-17 {
+	font-size: 15px !important;	
+}
 	.font-18 {
 		font-size: 16px !important;
 		
