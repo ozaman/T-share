@@ -1344,6 +1344,13 @@ function checkPhotoCheckIn(type, id) {
     });
 }
 
+function cancelShopSelect(id, invoice){
+	console.log('cancel')
+	fn.showDialog('cancel-shop-dialog');
+	$('#order_id_cancel').val(id);
+	$('#invoice_cancel_select').val(invoice);
+}
+
 function submitCancel() {
     var order_id = $('#order_id_cancel').val();
     if (!$('input[name="type_cancel"]').is(':checked')) {
@@ -1363,6 +1370,31 @@ function submitCancel() {
         console.log(data)
         var obj = data;
         console.log(obj);
+        var invoice_cancel = $('#invoice_cancel_select').val();
+        var order_id_calcel = $('#order_id_cancel').val();
+         var txt_long_cancel_shop = invoice_cancel+" : "+"คุณทำการยกเลิกรายการส่งแขกนี้";
+                var ac = {
+					i_type : 1,
+					i_sub_type : 6,
+					i_event : order_id_calcel,
+					i_user : detect_user,
+					s_topic : "งานส่งแขก",
+					s_message : txt_long_cancel_shop,
+					s_posted : username
+				};
+				
+				 var txt_long_nc_cancel_shop = invoice_cancel+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+				 var nc = {
+					i_type : 1,
+					i_event :	order_id_calcel,
+					i_user :	0,
+					s_class_user :	"taxi",
+					s_topic : "งานส่งแขก",
+					s_sub_topic : "ยกเลิก",
+					s_message :	txt_long_nc_cancel_shop,
+					s_posted :	username
+				 };
+				apiRecordActivityAndNotification(ac, nc);
         if (obj.result == true) {
             ons.notification.alert({
                 message: 'ยกเลิกสำเร็จ',
@@ -1372,7 +1404,6 @@ function submitCancel() {
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
                 var urlx = "shop/shop_manage";
-				
                 $.post(urlx, function(res) {
                         // this.popPage('popup1.html');
 //                        appNavigator.popPage()
