@@ -381,7 +381,7 @@ class Send_onesignal_model extends CI_Model {
  		
 	$invoice = $_GET[vc];
 	$order_id = $_GET[order_id];
-	$type_txt = $arr[book][car_plate]." พนักงานรับทราบงานของคุณแล้ว";
+	$type_txt = "พนักงานรับทราบงานของคุณแล้ว";
     	$tag = array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);
