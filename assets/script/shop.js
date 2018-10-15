@@ -1062,7 +1062,7 @@ function saveShop() {
         beforeSend: function() {},
         success: function(response) {
             console.log(response);
-
+            return false;
             if (response.result == true) {
                /* var url2 = "shop/shop_pageadd";
                 $.post(url2, function(ele2) {
