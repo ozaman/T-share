@@ -289,17 +289,7 @@ function createSignOut() {
 
 function logOut() {
     $('#signout-alert-dialog').hide();
-    //                	console.log($.removeCookie('detect_user'));
-    /* $.cookie("detect_user", "", {
-         path: '/'
-     });
-     $.cookie("detect_userclass", "", {
-         path: '/'
-     });
-     $.cookie("detect_username", "", {
-         path: '/'
-     });*/
-    $.removeCookie('detect_user', {
+    /*$.removeCookie('detect_user', {
         path: '/'
     });
     $.removeCookie('detect_userclass', {
@@ -307,20 +297,21 @@ function logOut() {
     });
     $.removeCookie('detect_username', {
         path: '/'
-    });
+    });*/
     //                    clearCookieAll();
-    ons.notification.alert({
+    /*ons.notification.alert({
             message: 'ออกจากระบบสำเร็จ',
             title: "สำเร็จ",
             buttonLabel: "ปิด"
         })
         .then(function() {
+			
 
-            deleteTagOs("Test Text");
-            deleteTagIOS(class_user, username);
-            window.location = "../TShare_new/material/login/index.php";
-
-        });
+        });*/
+    clearCookieAll();
+    deleteTagOs("Test Text");
+    deleteTagIOS(class_user, username);
+    window.location = "../TShare_new/material/login/index.php";    
 }
 
 function openNotifyline() {
@@ -1190,10 +1181,13 @@ function clearCookieAll() {
     var cookies = $.cookie();
     for (var cookie in cookies) {
         console.log(cookie);
+        if(cookie != "app_remember_user" && cookie!= "app_remember_pass"){
+			$.removeCookie(cookie, {
+	            path: '/'
+	        });
+		}
         //	   $.removeCookie(cookie);
-        $.removeCookie(cookie, {
-            path: '/'
-        });
+        
     }
 }
 
