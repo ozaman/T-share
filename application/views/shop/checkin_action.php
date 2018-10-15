@@ -40,6 +40,9 @@
          <td align="center" class="font-22" style="text-align: center;"> <?=$type;?></td>
       </tr>
       <tr>
+      	<span>กรุณาถ่ายภาพ <?=$type;?></span>
+      </tr>
+      <tr>
       	<td>
       		<div align="center" style="margin: 10px;">
 			<div>
