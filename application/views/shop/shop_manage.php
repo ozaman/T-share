@@ -37,7 +37,9 @@
 			$txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
 		}
 	}
-	
+	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+ 	$query_ps = $this->db->query($sql_ps);
+ 	$res_ps = $query_ps->row();
   ?>
    <?php 
         $minutes_to_add = $val[airout_m];
@@ -73,7 +75,7 @@
   	 <span class="font-14 time-post-shop" id="txt_date_diff_<?=$val[id];?>">-</span>
     <table width="100%"  >
           <tr>
-            <td width="80%" ><span class="font-24"><?=$arr[shop][topic_th];?></span></td>
+            <td width="80%" ><span class="font-16"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="2">
             <div class="font-18" id="status_book_<?=$val[id];?>" style="margin-top: -20px;
     margin-left: -85px;
@@ -86,7 +88,7 @@
           <?php 
       if($data_user_class == "lab"){ ?>
    <tr>
-            <td colspan="2" style="padding: 10px 0px;">
+            <td colspan="2" style="padding: 0px 0px;">
             <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
             </div>
            
@@ -97,7 +99,7 @@
     <?  }
     ?>
     <tr>
-            <td colspan="2" style="padding: 10px 0px;">
+            <td colspan="2" style="padding: 0px 0px;">
             <div class="font-14">จำนวนคน&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
             </div>
            
@@ -146,7 +148,7 @@
                 <tr>
                 	<td colspan="2">
                 		<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
-                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-20 text-cap">ยืนยัน</span> </ons-button>
+                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-20 text-cap">รับทราบ</span> </ons-button>
                 	</td>
                 </tr>
                  <? } ?>
