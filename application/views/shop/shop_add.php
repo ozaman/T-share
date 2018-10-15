@@ -204,10 +204,10 @@ $data_shopmain = $shopmain->row();
           $_order['id'] = 'asc';
           $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
           ?>
-          <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box')">
+          <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box');handleClick('nation','<?=$val->id;?>');">
           <ons-list-item tappable id="nation_<?=$key+1;?>">
             <label class=" left">
-              <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
+              <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
             </label>
             <?php
 

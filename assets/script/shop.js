@@ -391,6 +391,8 @@ function shandleClicks(tax,country) {
 }
 function handleClick(tax, name) {
     console.log(tax)
+    // alert()
+    $('#radio-nation'+name).prop('checked',true);
     console.log(name)
     var url = "shop/box_price_plan" + "?i_country=" + name;
 
