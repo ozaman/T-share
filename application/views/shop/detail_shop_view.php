@@ -288,7 +288,17 @@ else if($arr[book][status]=='CONFIRM'){
          </tbody>
 </table>
 	</div>
-
+	
+	<div style="padding: 5px 0px;">
+     	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
+     	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
+     		<tr>
+     			<td>ประเภท</td>
+     			<td></td>
+     		</tr>
+     	</table>
+    </div>
+    
 	<div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
@@ -318,7 +328,7 @@ else if($arr[book][status]=='CONFIRM'){
 		</table>
 	</div>
 	<?php 
-	if($arr[book][status]!='CANCELs'){
+	if($arr[book][status]!='CANCEL'){
 
 	include("application/views/shop/checkin.php"); 
 	
