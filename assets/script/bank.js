@@ -1,11 +1,6 @@
 console.log("Bank Page");
 
-setTimeout(function(){
-	setnumbank();
-	if($('#detect_num_bank').val()==0){
-		addBank();
-	}
-}, 500);
+
 function reloadPageBank(){
 	var url = "page/call_page";
     $.post(url, {
@@ -26,7 +21,7 @@ function addBank(){
         path: "bank/bank_add"
     }, function(ele) {
         $('#body_popup1').html(ele);
-        focusBoxBank();
+//        focusBoxBank();
     });
 }
 
@@ -301,6 +296,7 @@ function submitEditBank(){
 }
 
 function submitAddBank() {
+	focusBoxBank();
     if ($('input[name="bank_name"]').val() == "") {
         ons
             .notification.alert({
@@ -426,7 +422,7 @@ function submitAddBank() {
 
 }
 
-function readURL(input, id, type) {
+function readURLbank(input, id, type) {
    
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -456,9 +452,11 @@ function readURL(input, id, type) {
                 type: 'post',
                 success: function(php_script_response) {
                     console.log(php_script_response);
-                    $('#'+param_id+'_bookbank').attr('src','../data/pic/driver/book_bank/'+param_id+'.jpg?v=xxx');
+                    $('#img_book_bank_check').val(1);
+                    $('#'+param_id+'_bookbank').attr('src','../data/pic/driver/book_bank/'+param_id+'.jpg?v='+$.now());
 //                    console.log($('#'+param_id+'_bookbank'));
 					
+					focusBoxBank();
                 },
                 error: function(e) {
                     console.log(e)
@@ -474,37 +472,45 @@ function readURL(input, id, type) {
 function focusBoxBank(){
 	console.log('focus box');
 	if($('input[name="bank_name"]').val()==""){
-		$('#bank_name_box').addClass('border-red');
-		return;
+		$('#bank_name_box').addClass('border-bottom-red');
+		$('#icon_bank_name').addClass('txt-red');
+//		return;
 	}else{
-		$('#bank_name_box').removeClass('border-red');
+		$('#bank_name_box').removeClass('border-bottom-red');
+		$('#icon_bank_name').removeClass('txt-red');
 	}
 	
 	if($('input[name="bank_number"]').val()==""){
-		$('#bank_number_box').addClass('border-red');
-		return;
+		$('#bank_number_box').addClass('border-bottom-red');
+		$('#icon_bank_number').addClass('txt-red');
+//		return;
 	}else{
-		$('#bank_number_box').removeClass('border-red');
+		$('#bank_number_box').removeClass('border-bottom-red');
+		$('#icon_bank_number').removeClass('txt-red');
 	}
 	
 	if($('input[name="bank"]').val()==""){
-		$('#bank_box').addClass('border-red');
-		fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open':'bank_list'}, 'lift-ios')
-		return;
+		$('#bank_box').addClass('border-bottom-red');
+		$('#icon_bank_list').addClass('txt-red');
+//		fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open':'bank_list'}, 'lift-ios')
+//		return;
 	}else{
-		$('#bank_box').removeClass('border-red');
+		$('#bank_box').removeClass('border-bottom-red');
+		$('#icon_bank_list').removeClass('txt-red');
 	}
 	
 	if($('input[name="bank_branch"]').val()==""){
-		$('#bank_branch_box').addClass('border-red');
-		return;
+		$('#bank_branch_box').addClass('border-bottom-red');
+		$('#icon_bank_branch').addClass('txt-red');
+//		return;
 	}else{
-		$('#bank_branch_box').removeClass('border-red');
+		$('#bank_branch_box').removeClass('border-bottom-red');
+		$('#icon_bank_branch').removeClass('txt-red');
 	}
 	
-	if($('#img_book_bank').val()==""){
+	if($('#img_book_bank_check').val()==0){
 		$('#img_book_bank_box').addClass('border-red');
-		return;
+//		return;
 	}else{
 		$('#img_book_bank_box').removeClass('border-red');
 	}

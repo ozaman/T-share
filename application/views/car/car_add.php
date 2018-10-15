@@ -102,7 +102,7 @@
       <ons-list-header class="list-header"><b>ภาพหน้ารถ</b></ons-list-header>
       <div align="center" style="margin-top: 10px;"  class="">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1" onchange="readURL(this,'img_car_1',1,'add');"  style="opacity: 0;position: absolute;">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_1" onchange="readURLcar(this,'img_car_1',1,'add');"  style="opacity: 0;position: absolute;">
 			</div>
 			<span id="txt-img-has-img_car_1" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_1" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -122,7 +122,7 @@
       <ons-list-header class="list-header"><b>ภาพข้างรถ</b></ons-list-header>
       <div align="center" style="margin-top: 10px;"  class="">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_2"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_2',2,'add');">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_2"  style="opacity: 0;position: absolute;" onchange="readURLcar(this,'img_car_2',2,'add');">
 			</div>
 			<span id="txt-img-has-img_car_2" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_2" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
@@ -142,7 +142,7 @@
       <ons-list-header class="list-header"><b>ภาพในรถ</b></ons-list-header>
       <div align="center" style="margin-top: 10px;"  class="">
 			<div >
-			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_3"  style="opacity: 0;position: absolute;" onchange="readURL(this,'img_car_3',3,'add');">
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_3"  style="opacity: 0;position: absolute;" onchange="readURLcar(this,'img_car_3',3,'add');">
 			</div>
 			<span id="txt-img-has-img_car_3" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
 			<span id="txt-img-nohas-img_car_3" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>

@@ -754,7 +754,7 @@ function putNext() {
     }, 1200 );
 }
 
-function readURL(input, id, num, type) {
+function readURLcar(input, id, num, type) {
     console.log("read file : " + id);
     console.log("rand : " + $('#rand').val());
     //	  return;
