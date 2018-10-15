@@ -23,8 +23,9 @@ function checkTypePay($id){
       }
       return $name_type;
  }
-$place_shopping = "topic_th";
-$data_user_class = $_COOKIE[detect_userclass];
+
+ $place_shopping = "topic_th";
+ $data_user_class = $_COOKIE[detect_userclass];
  $main_color = "#3b5998";
   $arr[book] = $_POST ;
  
