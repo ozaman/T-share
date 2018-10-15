@@ -60,7 +60,9 @@
             <?=$status_txt;?></div>
             </td>
           </tr>
-          <tr>
+          <?php 
+      if($data_user_class == "lab"){ ?>
+   <tr>
             <td colspan="2" style="padding: 10px 0px;">
             <div class="font-14">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>
             </div>
@@ -68,7 +70,10 @@
 
             </td>
             
-          </tr>
+          </tr>   
+    <?  }
+    ?>
+          
           <tr>
             <td colspan="2">
             <span class="font-16" ><?=$val[invoice];?>&nbsp;:&nbsp;
