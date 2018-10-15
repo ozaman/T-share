@@ -191,7 +191,7 @@ $data_shopmain = $shopmain->row();
 
 
       ?>
-      <div class="card" id="nation_box" onclick="checformadd('nation_box')">
+      <div class="card" id="nation_box">
        <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
        <div class="form-group">
         <?php 
@@ -204,7 +204,7 @@ $data_shopmain = $shopmain->row();
           $_order['id'] = 'asc';
           $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
           ?>
-          <label class="" for="radio-nation<?=$key+1;?>">
+          <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box')">
           <ons-list-item tappable id="nation_<?=$key+1;?>">
             <label class=" left">
               <ons-radio class="radio-fruit " input-id="radio-nation<?=$key+1;?>" value="<?=$val->id;?>" name="nation" onclick="handleClick('nation',this.value);"></ons-radio>
