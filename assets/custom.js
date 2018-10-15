@@ -830,11 +830,12 @@ function sendShop(company) {
 
 function sendShop2() {
     modal.show();
+    setTimeout(function() {
     var urlo = 'shop/place_companycount';
     $.post(urlo, function(res) {
         console.log(res)
         if (res.count == 1) {
-              setTimeout(function() {
+
             fn.pushPage({
                 'id': 'shopping.html',
                 'title': 'ส่งแขก',
@@ -902,7 +903,7 @@ function sendShop2() {
 
 
 
-  }, 700);
+ 
         } 
 		else {
             modal.hide();
@@ -919,7 +920,7 @@ function sendShop2() {
         // $('#body_place_company').html(res);
     });
 
-
+ }, 700);
 
 }
 

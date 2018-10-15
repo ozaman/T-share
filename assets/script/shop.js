@@ -392,19 +392,21 @@ function shandleClicks(tax,country) {
 function handleClick(tax, name) {
     console.log(tax)
     // alert()
-    $('#radio-nation'+name).prop('checked',true);
+   
     console.log(name)
-    var url = "shop/box_price_plan" + "?i_country=" + name;
-
-    $.post(url, function(res) {
-        $('#box_price_plan').html(res);
-        // console.log(data);
-    });
+    
     console.log(tax)
     console.log(name)
     var form = document.getElementById("form_booking");
     console.log('#' + tax + name)
     if (tax == 'nation') {
+        var url = "shop/box_price_plan" + "?i_country=" + name;
+
+    $.post(url, function(res) {
+        $('#box_price_plan').html(res);
+        // console.log(data);
+    });
+         $('#radio-nation'+name).prop('checked',true);
         if (name == 1) {
             $('#' + tax + '_' + name).addClass('cus_focus')
             $('#' + tax + '_' + 2).removeClass('cus_focus')
@@ -640,6 +642,10 @@ function handleClick(tax, name) {
     if (tax == 'car') {
         $('.box_car').removeClass('cus_focus')
         $('#div_car_' + name).addClass('cus_focus')
+    }
+    if (tax == 'box_com') {
+         $('#price_plan_'+name).prop('checked',true);
+
     }
 
 
