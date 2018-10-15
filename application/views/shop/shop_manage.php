@@ -73,6 +73,15 @@
           </tr>   
     <?  }
     ?>
+    <tr>
+            <td colspan="2" style="padding: 10px 0px;">
+            <div class="font-14">จำนวนคน&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
+            </div>
+           
+
+            </td>
+            
+          </tr>
           
           <tr>
             <td colspan="2">
