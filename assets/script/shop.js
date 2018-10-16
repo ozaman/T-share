@@ -495,37 +495,77 @@ $('#'+tax).removeClass('borderBlink')
  }
 // ons-tab[page="shop_history.html"]
 
-function editBook(x) {
+function editBook(x, type) {
     console.log(x)
-    $('#text_edit_persion').show()
-
-    $('#btn_selectisedit').show()
-    $('#num_edit_persion').show()
-    $('#btn_isedit').hide()
-    $('#isedit').hide()
-    $('#num_edit_persion').css('display', 'inline-block')
-    $('#num_edit_persion').focus();
+    
+    if(type=="adult"){
+		$('#text_edit_persion').show();
+	    $('#btn_selectisedit').show();
+	    $('#num_edit_persion').show();
+	    $('#btn_isedit').hide();
+	    $('#isedit').hide();
+	    $('#num_edit_persion').css('display', 'inline-block');
+	    $('#num_edit_persion').focus();
+	}else{
+//		$('#text_edit_persion').show()
+	    $('#num_edit_child').show();
+	    $('#num_edit_child').focus();
+	    $('#num_final_edit_child').hide();
+	    $('#btn_isedit_child').hide();
+	    
+	    $('#btn_selectisedit_child').show();
+//	    $('#num_edit_child').val($('#num_final_edit_child').text());
+	    
+	}
+    
 }
 
-function saveeditBook(x) {
+function saveeditBook(x, type) {
     //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-    var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
-    console.log(url_load)
-    $.post(url_load, function(data) {
-        //$('#load_mod_popup').html(data);
-        console.log(data);
-    });
+    if(type=="child"){
+		$('#num_edit_child').hide();
+		$('#num_final_edit_child').show();
+		$('#btn_selectisedit_child').hide();
+		$('#btn_isedit_child').show();
+		
+		var num_child = $('#num_edit_child').val();
+		$('#num_final_edit_child').text(num_child);
+		var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
+	    console.log(url_load)
+	    $.post(url_load, function(data) {
+	        console.log(data);
+	    });
+	    
+	}else{
+		var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
+	    console.log(url_load)
+	    $.post(url_load, function(data) {
+	        //$('#load_mod_popup').html(data);
+	        console.log(data);
+	    });
 
-    $('#text_edit_persion').hide()
-    number_persion_new = $('#num_edit_persion').val()
-    $('#num_final_edit').html(number_persion_new)
-    console.log(x)
-    $('#btn_selectisedit').hide()
-    $('#num_edit_persion').hide()
-    $('#btn_isedit').show()
-    $('#isedit').show()
+	    $('#text_edit_persion').hide()
+	    number_persion_new = $('#num_edit_persion').val()
+	    $('#num_final_edit').html(number_persion_new)
+	    console.log(x)
+	    $('#btn_selectisedit').hide()
+	    $('#num_edit_persion').hide()
+	    $('#btn_isedit').show()
+	    $('#isedit').show()
 
-
+		if($('#check_type_person').val()>=1){
+			var unit_person = $('#val_person_unit').val();
+			var total_new_price = parseInt(unit_person) * number_persion_new;
+			var full_txt_person_total = ""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2));
+		//	console.log(""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2)));
+			$('#txt_person_total').text(full_txt_person_total);
+			
+			var park = $('#val_park_unit').val();
+			var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
+			$('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
+		}
+	}
+    
 }
 
 var cancelShop = function() {
@@ -1457,7 +1497,7 @@ function shopFuncNotiActi(id, type){
         var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
     }else if(type=='lab_pay_approve'){
         var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันการจ่ายเงินคนขับ";
-        var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว";
+        var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว กรุณายืนยันการรับเงิน";
     }else if(type=='driver_pay_approve'){
         var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณได้ยืนยันการรับเงินแล้ว";
         var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แท็กซี่ทำการยืนยันการรับเงินแล้ว";

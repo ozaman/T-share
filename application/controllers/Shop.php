@@ -37,6 +37,12 @@ class Shop extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($data['res']);
 	}
+	public function editchild()
+	{
+		$data['res'] = $this->Shop_model->editchild();
+		header('Content-Type: application/json');
+		echo json_encode($data['res']);
+	}
 	public function place_company(){
 		$arr_where = array();
 		$arr_where['status'] = 1;

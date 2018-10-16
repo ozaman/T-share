@@ -291,6 +291,15 @@ public function editadult(){
 	return $data;
 }
 
+public function editchild(){
+	$data['child'] = $_GET[num];
+
+	$this->db->where('id', $_GET[id]);
+	$data[result] = $this->db->update('order_booking', $data); 
+
+	return $data;
+}
+
 public function place_companycount(){
 	$this->db->select('count(*)');
 	$this->db->from(TBL_SHOPPING_PRODUCT);
