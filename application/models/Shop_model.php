@@ -184,8 +184,13 @@ class Shop_model extends CI_Model {
 		$txt_short2 .= 'ทำรายการเวลา '.$time_post.'  น. ';
 		$txt_short2 .= 'จะถึงสถานที่ในอีก '.$mm.' นาที ';
 		$txt_short2 .= 'จำนวนแขก '.$_POST[adult].' คน';
+		
+		if ($_POST[remark] != '') {
+			$txt_short2 .= "\n".'หมายเหตุ '.$_POST[remark];
+			# code...
+		}
 
-		$str  = $title.$txt_short."\n".$txt_short2."\n\nรายละเอียดคนขับ\n"."ชื่อ-สกุล : ".$_POST[dri_name]."\n เบอร์โทร".$_POST[dri_phone];
+		$str  = $title.$txt_short."\n".$txt_short2."\n\nรายละเอียดคนขับ\n"."ชื่อ-สกุล : ".$_POST[dri_name]."\nเบอร์โทร".' '. $_POST[dri_phone] ."\n".'' ;
 		define('LINE_API',"https://notify-api.line.me/api/notify");
 	$token = "NKtM17mRVqSAoIraJJyKbNkloWrF7QCM2kZCTsXvLXb"; //ใส่Token ที่copy เอาไว้
 	$res = $this->notify_message($str,$token);
