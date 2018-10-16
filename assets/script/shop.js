@@ -1225,6 +1225,7 @@ function openDetailShop(key, type) {
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
         console.log(obj);
+        changeApprovedIncome(obj.check_lab_pay);
         if (obj.check_driver_topoint == 1) {
             console.log("driver_topoint");
             changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
@@ -1489,7 +1490,7 @@ function submitCancel() {
                 fn.hideDialog('cancel-shop-dialog');
                 	
 					setTimeout(function(){ var urlx = "shop/shop_manage";
-                		appNavigator.popPage();
+//                		appNavigator.popPage();
                 		shopManage();
                 	 }, 1000);
             });
@@ -1544,14 +1545,12 @@ $('#body_popup2').html(ele);
 /******* <!-------- Change html CheckIn ------------> *******/
 
 function changeHtml(type, id, st) {
-    //			alert(type);
-    //			var url_status = "mod/booking/shop_history/load/component_shop.php?request=check_status_checkin&status=1&time="+status_time;
-    //			$('#status_'+type).html('<b><i class="fa  fa-refresh fa-spin 2x" style="color:#000000"></i> โหลดข้อมูล');
+
     $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
     $('#iconchk_' + type).attr("src", "assets/images/yes.png");
     $("#number_" + type).removeClass('step-booking');
     $("#number_" + type).addClass('step-booking-active');
-    //			$("#box_"+type).addClass('disabledbutton-checkin');
+
     $("#btn_" + type).css('background-color', '#666666');
 
     if (type == "driver_topoint") {
@@ -1591,6 +1590,19 @@ function changeHtml(type, id, st) {
 
     $('#' + type + '_check_click').val(1);
     $("#box_" + type).removeClass('border-alert');
+}
+
+function changeApprovedIncome(check_lab_pay){
+	
+	if(class_user=="taxi"){
+		if(check_lab_pay==1){
+			$('#box_approved_income').show();
+		}
+	}else{
+		$('#box_approved_income').show();
+	}
+	
+	
 }
 /******* <!-------- End Change html CheckIn ------------> *******/
 
@@ -2189,6 +2201,7 @@ function approvePayDriverByTaxi(id, invoice, driver){
            }
        });
 }
+
 function _calltest (event){
    var el = $('ons-tab[page="shop_manage.html"]');
    performClick('tab_shop_mn')

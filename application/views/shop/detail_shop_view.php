@@ -400,7 +400,7 @@ else if($arr[book][status]=='CONFIRM'){
 	}
 	?>
 
-	<div style="padding: 5px 0px;display: nones;">
+	<div style="padding: 5px 0px;display: none;" id="box_approved_income">
      <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
 
 	 <span class="text-cap font-22"><?=t_income;?></span>
@@ -420,7 +420,7 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;">
-		<span class="font-24 text-cap">บันทึก</span>
+		<span class="font-18 text-cap">บันทึก</span>
 	</span></td>
 			</tr>
 			<tr>
