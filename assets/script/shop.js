@@ -213,7 +213,10 @@ function checformadd(tax) {
             var form = document.getElementById("form_booking");
             clearTimeout(timer);
             timer = setTimeout(function() {
-                $('#' + tax).removeClass('borderBlink')
+                if ($('#adult').val() != '') {
+                    $('#' + tax).removeClass('borderBlink')
+                }
+                
                 if (form.elements["plate_num_1"].value == 0) {
                     $('#box_car').addClass('borderBlink')
                     $('html, body').animate({
