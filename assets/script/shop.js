@@ -268,8 +268,8 @@ function checformadd(tax) {
                     });
                 }
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
-                    if ($('#adult').val() != '') {
-                    $('#num_customer').addClass('borderBlink')
+                    if ($('#adult').val() != '' && $('#child').val() != '') {
+                    $('#num_customer').removeClass('borderBlink')
 
                     }
                     // alert('')
