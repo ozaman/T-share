@@ -30,8 +30,16 @@ class Shop extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($data['res']);
 	}
-
-	public function editadult()
+	
+	public function editpax()
+	{	
+		$data['res'] = $this->Shop_model->editpax();
+		
+		header('Content-Type: application/json');
+		echo json_encode($data['res']);
+	}
+	
+	/*public function editadult()
 	{
 		$data['res'] = $this->Shop_model->editadult();
 		header('Content-Type: application/json');
@@ -42,7 +50,7 @@ class Shop extends CI_Controller {
 		$data['res'] = $this->Shop_model->editchild();
 		header('Content-Type: application/json');
 		echo json_encode($data['res']);
-	}
+	}*/
 	public function place_company(){
 		$arr_where = array();
 		$arr_where['status'] = 1;

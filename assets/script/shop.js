@@ -529,22 +529,25 @@ function saveeditBook(x) {
 		
 		var num_child = $('#num_edit_child').val();
 		$('#num_final_edit_child').text(num_child);
-		var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
+		/*var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
 	        console.log(data);
-	    });
+	    });*/
 	    
-
-		var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
+		/*var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
 	        //$('#load_mod_popup').html(data);
 	        console.log(data);
+	    });*/
+	     number_persion_new = $('#num_edit_persion').val()
+	    var url_load = "shop/editpax" + "?adult=" + number_persion_new + "&id=" + x+"&child="+num_child;
+		$.post(url_load, function(data) {
+	        console.log(data);
 	    });
-
 	    $('#text_edit_persion').hide()
-	    number_persion_new = $('#num_edit_persion').val()
+	   
 	    $('#num_final_edit').html(number_persion_new)
 	    console.log(x)
 	    $('#btn_selectisedit').hide()
