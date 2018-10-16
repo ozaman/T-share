@@ -505,11 +505,11 @@ function editBook(x) {
 	    $('#btn_isedit').hide();
 	    $('#isedit').hide();
 	    $('#num_edit_persion').css('display', 'inline-block');
-//	    $('#num_edit_persion').focus();
+	    $('#num_edit_persion').focus();
 	
 //		$('#text_edit_persion').show()
 	    $('#num_edit_child').show();
-	    $('#num_edit_child').focus();
+//	    $('#num_edit_child').focus();
 	    $('#num_final_edit_child').hide();
 	    $('#btn_isedit_child').hide();
 	    
