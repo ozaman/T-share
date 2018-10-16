@@ -499,7 +499,7 @@ $data_shopmain = $shopmain->row();
 
               <!-- </div> -->
             </div>
-            <div class="card" id="num_customer" >
+            <div class="card"  >
               <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
               <!-- <div class="form-group"> -->
 
@@ -507,7 +507,7 @@ $data_shopmain = $shopmain->row();
                 <!-- <label class="font-17">จำนวนคน</label> -->
 
               <ons-row>
-                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark" type="number" cols="100" ></textarea>
+                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark"  cols="100" ></textarea>
 
                 </ons-row> 
                   <!-- </div> -->

@@ -258,7 +258,8 @@ function checformadd(tax) {
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                     $('#num_customer').removeClass('borderBlink')
                     if (form.elements["time_num"].value == 0) {
-                        $('#child').focusout();
+                        $('#child').blur();
+                         // this.blur();
                         $('#box_time').addClass('borderBlink')
                         // $('#time_num').focus()
                     } else {
@@ -644,10 +645,10 @@ function handleClick(tax, name) {
         $('#div_car_' + name).addClass('cus_focus')
     }
     if (tax == 'box_com') {
-
+console.log('55555555555555555555555555')
+console.log(form.elements["price_plan"].value)
        $('#price_plan_'+name).prop('checked',true);
-
-         $('#box_com').removeClass('borderBlink')
+         $('#'+tax).removeClass('borderBlink')
          if (form.elements["plate_num_1"].value == 0) {
             $('#box_car').addClass('borderBlink')
             $('html, body').animate({
