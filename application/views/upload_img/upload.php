@@ -1,14 +1,15 @@
 <?php 
 if($_GET[type]=="id_card"){
 	
-	include("class.resizepic.php");
+	/*include("class.resizepic.php");
 	$original_image = $_FILES['idcard_upload']['tmp_name'] ;
 	$desired_width = 600;
 	$desired_height = _INEWS_H ;
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-	$result = $image->output_resized("../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg","JPG");
+	$result = $image->output_resized("../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg","JPG");*/
+	$result = move_uploaded_file($_FILES["idcard_upload"]["tmp_name"], "../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg");
 	$return[result] = $result;
 	$return[path] = "../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg";
 	echo json_encode($return);
@@ -17,14 +18,15 @@ if($_GET[type]=="id_card"){
 }
 if($_GET[type]=="id_driving"){
 	
-	include("class.resizepic.php");
+	/*include("class.resizepic.php");
 	$original_image = $_FILES['iddriving_upload']['tmp_name'] ;
 	$desired_width = 600;
 	$desired_height = _INEWS_H ;
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-	$result = $image->output_resized("../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg","JPG");
+	$result = $image->output_resized("../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg","JPG");*/
+	$result = move_uploaded_file($_FILES["iddriving_upload"]["tmp_name"], "../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg");
 	$return[result] = $result;
 	$return[path] = "../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg";
 	echo json_encode($return);
