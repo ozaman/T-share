@@ -400,7 +400,7 @@ else if($arr[book][status]=='CONFIRM'){
 	}
 	?>
 
-	<div style="padding: 5px 0px;display: nones;">
+	<div style="padding: 5px 0px;display: none;" id="box_approved_income">
      <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
 
 	 <span class="text-cap font-22"><?=t_income;?></span>

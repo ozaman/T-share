@@ -565,6 +565,7 @@ socket.on('datalab', function(username, data) {
             console.log(data)
             if (value.id == check_open) {
                 console.log(value);
+                changeApprovedIncome(value.check_lab_pay);
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
                     changeHtml("driver_topoint", value.id, value.driver_topoint_date)
@@ -605,6 +606,7 @@ socket.on('updatedriver', function(username, data) {
         if (data.id == check_open) {
             console.log(data)
             console.log(data.id);
+            changeApprovedIncome(data.check_lab_pay);
             if (data.check_driver_topoint == 1) {
                 console.log("driver_topoint");
                 changeHtml("driver_topoint", data.id, data.driver_topoint_date)
