@@ -930,6 +930,7 @@ function sendShop2() {
 }
 
 function callpop() {
+	console.log(appNavigator)
     appNavigator.popPage()
 }
 
