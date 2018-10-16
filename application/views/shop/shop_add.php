@@ -207,7 +207,7 @@ $data_shopmain = $shopmain->row();
 
                 $bg_plate_color = "background-color: ".$val->plate_color;
                 ?>
-                <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick('car','<?=$val->id; ?>');">
+                <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick_s('car','<?=$val->id; ?>');">
                   <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
                   <?php if($val->status_usecar == 1){
                     $calss_box = 'cus_focus';
@@ -297,7 +297,7 @@ $data_shopmain = $shopmain->row();
               $_order['id'] = 'asc';
               $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
               ?>
-              <label class="" for="radio-nation<?=$key+1;?>" onclick="handleClick('nation','<?=$val->id;?>');">
+              <label class="" for="radio-nation<?=$key+1;?>" onclick="handleClick_s('nation','<?=$val->id;?>');">
                 <ons-list-item tappable id="nation_<?=$key+1;?>">
                   <label class=" left">
                     <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
