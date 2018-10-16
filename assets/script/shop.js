@@ -165,14 +165,14 @@ function checformadd(tax) {
                 scrollTop: $('#num_customer').offset().top
             }, 300, function() {
 
-                $("#adult").focus()
+                // $("#adult").focus()
 
                 window.location.href = "#num_customer";
             });
         } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
             if (form.elements["time_num"].value == 0) {
                 $('#box_time').addClass('borderBlink')
-                $('#time_num').focus()
+                // $('#time_num').focus()
             }
             if (form.elements["time_num"].value != 0) {
                 $('#btn_submitadd').addClass('borderBlink')
@@ -259,7 +259,7 @@ function checformadd(tax) {
                     $('#num_customer').removeClass('borderBlink')
                     if (form.elements["time_num"].value == 0) {
                         $('#box_time').addClass('borderBlink')
-                        $('#time_num').focus()
+                        // $('#time_num').focus()
                     } else {
                         $('#box_time').removeClass('borderBlink')
                         $('#btn_submitadd').addClass('borderBlink')
@@ -2187,6 +2187,7 @@ function approvePayDriverByTaxi(id, invoice, driver){
 }
 function _calltest (event){
    var el = $('ons-tab[page="shop_manage.html"]');
+   performClick('tab_shop_mn')
    el.click();
    // console.log(el.click());
    // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
@@ -2194,3 +2195,7 @@ function _calltest (event){
     // $('ons-tab[page="shop_manage.html"]').click();
     // console.log( document.addEventListener('prechange'))
 }
+
+// myEl.addEventListener('click', function() {
+//     alert('Hello world');
+// }, false);
