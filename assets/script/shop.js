@@ -358,6 +358,7 @@ function checktime(x) {
         });
     } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
         if (form.elements["time_num"].value == 0) {
+             $('#child').focusout();
             $('#box_time').addClass('borderBlink')
             $('#time_num').focus()
         }
@@ -730,7 +731,7 @@ function editBook(x) {
 }
 
 function saveeditBook(x) {
-    //			var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
+    //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
     var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
     console.log(url_load)
     $.post(url_load, function(data) {
@@ -1078,7 +1079,7 @@ var submitShop = function() {
         }
         
     }
-	});
+    });
     
 };
 // function getDayName(dateStr, locale)
@@ -1111,7 +1112,7 @@ function saveShop() {
 
    $('#shop_add-alert-dialog').hide();
    $('#txt_car_type').val($("#car_type option:selected").text());
-    //			var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
+    //          var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
     var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user");
     
     // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
@@ -1162,27 +1163,27 @@ function saveShop() {
                 });
                 var txt_long_ac = response.update.invoice+" : "+"เพิ่มรายการส่งแขก " + $('#place_name_select').val();
                 var ac = {
-					i_type : 1,
-					i_sub_type : 1,
-					i_event : response.last_id,
-					i_user : detect_user,
-					s_topic : "งานส่งแขก",
-					s_message : txt_long_ac,
-					s_posted : username
-				};
-				
-				 var txt_long_nc = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
-				 var nc = {
-					i_type : 1,
-					i_event :	response.last_id,
-					i_user :	0,
-					s_class_user :	"lab",
-					s_topic : "งานส่งแขก",
-					s_sub_topic : "เช็คอิน",
-					s_message :	txt_long_nc,
-					s_posted :	username
-				 };
-				apiRecordActivityAndNotification(ac, nc);
+                    i_type : 1,
+                    i_sub_type : 1,
+                    i_event : response.last_id,
+                    i_user : detect_user,
+                    s_topic : "งานส่งแขก",
+                    s_message : txt_long_ac,
+                    s_posted : username
+                };
+                
+                 var txt_long_nc = response.update.invoice+" : "+username+" เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+                 var nc = {
+                    i_type : 1,
+                    i_event :   response.last_id,
+                    i_user :    0,
+                    s_class_user :  "lab",
+                    s_topic : "งานส่งแขก",
+                    s_sub_topic : "เช็คอิน",
+                    s_message : txt_long_nc,
+                    s_posted :  username
+                 };
+                apiRecordActivityAndNotification(ac, nc);
                 
                 /*setTimeout(function() {
                     openOrderFromAndroid(response.last_id);
@@ -1266,36 +1267,36 @@ function openDetailBookinghistory(key, type, invoice) {
         type: 'post',
         success: function(res) {
             console.log(res);
-            	var url = "page/shop_detail_his";
-		        $.post(url,res,function(ele) {
-//		        	console.log(ele);
-		            $('#body_popup1').html(ele);
-		            var obj = res;
-			        console.log(obj);
-			        if (obj.check_driver_topoint == 1) {
-			            console.log("driver_topoint");
-			            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
-			        }
-			        if (obj.check_guest_receive == 1) {
-			            console.log("guest_receive");
-			            changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
-			        }
-			        if (obj.check_guest_register == 1) {
-			            console.log("guest_register");
-			            changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
-			        }
-			        if (obj.check_driver_pay_report == 1) {
-			            console.log("driver_pay_report");
-			            changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
-			        }
-			        checkPhotoCheckIn('driver_topoint', obj.id);
-			        checkPhotoCheckIn('guest_receive', obj.id);
-			        checkPhotoCheckIn('guest_register', obj.id);
-			        checkPhotoCheckIn('driver_pay_report', obj.id);
-		        });
-//			$('#body_popup1').html(res);
-			}
-		});
+                var url = "page/shop_detail_his";
+                $.post(url,res,function(ele) {
+//                  console.log(ele);
+                    $('#body_popup1').html(ele);
+                    var obj = res;
+                    console.log(obj);
+                    if (obj.check_driver_topoint == 1) {
+                        console.log("driver_topoint");
+                        changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+                    }
+                    if (obj.check_guest_receive == 1) {
+                        console.log("guest_receive");
+                        changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+                    }
+                    if (obj.check_guest_register == 1) {
+                        console.log("guest_register");
+                        changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+                    }
+                    if (obj.check_driver_pay_report == 1) {
+                        console.log("driver_pay_report");
+                        changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+                    }
+                    checkPhotoCheckIn('driver_topoint', obj.id);
+                    checkPhotoCheckIn('guest_receive', obj.id);
+                    checkPhotoCheckIn('guest_register', obj.id);
+                    checkPhotoCheckIn('driver_pay_report', obj.id);
+                });
+//          $('#body_popup1').html(res);
+            }
+        });
     // $.post(url, function(data) {
     //     $('#body_popup1').html(data);
     //        var obj = JSON.parse('<?=json_encode($_POST);?>');
@@ -1411,11 +1412,11 @@ function checkPhotoCheckIn(type, id) {
 }
 
 function cancelShopSelect(id, invoice, dv){
-	console.log('cancel')
-	fn.showDialog('cancel-shop-dialog');
-	$('#order_id_cancel').val(id);
-	$('#invoice_cancel_select').val(invoice);
-	$('#driver_id_cancel').val(dv);
+    console.log('cancel')
+    fn.showDialog('cancel-shop-dialog');
+    $('#order_id_cancel').val(id);
+    $('#invoice_cancel_select').val(invoice);
+    $('#driver_id_cancel').val(dv);
 }
 
 function submitCancel() {
@@ -1442,40 +1443,40 @@ function submitCancel() {
         var dv = $('#driver_id_cancel').val();
          var txt_long_cancel_shop = invoice_cancel+" : "+"คุณทำการยกเลิกรายการส่งแขกนี้";
                 var ac_1 = {
-					i_type : 1,
-					i_sub_type : 6,
-					i_event : order_id_calcel,
-					i_user : detect_user,
-					s_topic : "งานส่งแขก",
-					s_message : txt_long_cancel_shop,
-					s_posted : username
-				};
-				
-				 var txt_long_nc_cancel_shop = invoice_cancel+" : พนักงานทำการยกเลิกรายการส่งแขก";
-				 var nc_to_taxi = {
-					i_type : 1,
-					i_event :	order_id_calcel,
-					i_user :	dv,
-					s_class_user :	"taxi",
-					s_topic : "งานส่งแขก",
-					s_sub_topic : "ยกเลิก",
-					s_message :	txt_long_nc_cancel_shop,
-					s_posted :	username
-				 };
-				apiRecordActivityAndNotification(ac_1, nc_to_taxi);
-				var ac_2 = {};
-				 var nc_to_lab = {
-					i_type : 1,
-					i_event :	order_id_calcel,
-					i_user :	detect_user, // กรณียกเว้นของ lab
-					s_class_user :	"lab",
-					s_topic : "งานส่งแขก",
-					s_sub_topic : "ยกเลิก",
-					s_message :	txt_long_nc_cancel_shop,
-					s_posted :	username
-				 };
-				apiRecordActivityAndNotification(ac_2, nc_to_lab);
-				
+                    i_type : 1,
+                    i_sub_type : 6,
+                    i_event : order_id_calcel,
+                    i_user : detect_user,
+                    s_topic : "งานส่งแขก",
+                    s_message : txt_long_cancel_shop,
+                    s_posted : username
+                };
+                
+                 var txt_long_nc_cancel_shop = invoice_cancel+" : พนักงานทำการยกเลิกรายการส่งแขก";
+                 var nc_to_taxi = {
+                    i_type : 1,
+                    i_event :   order_id_calcel,
+                    i_user :    dv,
+                    s_class_user :  "taxi",
+                    s_topic : "งานส่งแขก",
+                    s_sub_topic : "ยกเลิก",
+                    s_message : txt_long_nc_cancel_shop,
+                    s_posted :  username
+                 };
+                apiRecordActivityAndNotification(ac_1, nc_to_taxi);
+                var ac_2 = {};
+                 var nc_to_lab = {
+                    i_type : 1,
+                    i_event :   order_id_calcel,
+                    i_user :    detect_user, // กรณียกเว้นของ lab
+                    s_class_user :  "lab",
+                    s_topic : "งานส่งแขก",
+                    s_sub_topic : "ยกเลิก",
+                    s_message : txt_long_nc_cancel_shop,
+                    s_posted :  username
+                 };
+                apiRecordActivityAndNotification(ac_2, nc_to_lab);
+                
         if (obj.result == true) {
             ons.notification.alert({
                 message: 'ยกเลิกสำเร็จ',
@@ -1484,11 +1485,13 @@ function submitCancel() {
             })
             .then(function() {
                 fn.hideDialog('cancel-shop-dialog');
-                	
-					setTimeout(function(){ var urlx = "shop/shop_manage";
-//                		appNavigator.popPage();
-                		shopManage();
-                	 }, 1000);
+                    
+                    setTimeout(function(){ var urlx = "shop/shop_manage";
+//                      appNavigator.popPage();
+                        
+                        resetFormCancel();
+                        shopManage();
+                     }, 1000);
             });
             $('#btn_cancel_book_' + order_id).hide();
 
@@ -1499,6 +1502,13 @@ function submitCancel() {
         }
 
     });
+}
+
+function resetFormCancel(){
+    $('#invoice_cancel_select').val('');
+    $('#driver_id_cancel').val('');
+    $('#order_id_cancel').val('');
+    $('#form_type_cancel').find('input[type="radio"]').prop('checked', false);
 }
 
 function openContact(shop_id) {
@@ -1533,7 +1543,7 @@ function openMapsDistance(shop_id) {
    $.post(url, {
     path: "map/map_place"
 }, function(ele) {
-//    	console.log(ele)
+//      console.log(ele)
 $('#body_popup2').html(ele);
 });
 }
@@ -1569,8 +1579,8 @@ function changeHtml(type, id, st) {
             $('#photo_' + type + '_yes').hide();
             $('#photo_' + type + '_no').show();
 
-            //			   $('#'+type+'_locat_off').show();
-            //			   $('#'+type+'_locat_on').hide();
+            //             $('#'+type+'_locat_off').show();
+            //             $('#'+type+'_locat_on').hide();
         },
         success: function() {
             //file exists
@@ -1579,8 +1589,8 @@ function changeHtml(type, id, st) {
             $('#photo_' + type + '_yes').show();
             $('#photo_' + type + '_no').hide();
 
-            //			   $('#'+type+'_locat_off').hide();
-            //			     $('#'+type+'_locat_on').show();
+            //             $('#'+type+'_locat_off').hide();
+            //               $('#'+type+'_locat_on').show();
         }
     });
 
@@ -1589,16 +1599,16 @@ function changeHtml(type, id, st) {
 }
 
 function changeApprovedIncome(check_lab_pay){
-	
-	if(class_user=="taxi"){
-		if(check_lab_pay==1){
-			$('#box_approved_income').show();
-		}
-	}else{
-		$('#box_approved_income').show();
-	}
-	
-	
+    
+    if(class_user=="taxi"){
+        if(check_lab_pay==1){
+            $('#box_approved_income').show();
+        }
+    }else{
+        $('#box_approved_income').show();
+    }
+    
+    
 }
 /******* <!-------- End Change html CheckIn ------------> *******/
 
@@ -1610,7 +1620,7 @@ function sendCheckIn(id, type) {
 
     var lng = $('#lng').val();
     var lat = $('#lat').val();
-    //	var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
+    //  var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
     var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     console.log(url);
 
@@ -1627,25 +1637,25 @@ function sendCheckIn(id, type) {
             
             var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
 
-   				$.ajax({
+                $.ajax({
                 url: url_msg, // point to server-side PHP script 
                 dataType: 'json', // what to expect back from the PHP script, if anything
 //                data: data,
-				type: 'post',
-				success: function(data) {
-				    console.log(data);
-				}
-				});
+                type: 'post',
+                success: function(data) {
+                    console.log(data);
+                }
+                });
                 ons.notification.alert({
                     message: 'ยืนยันแล้ว',
                     title: "สำเร็จ",
                     buttonLabel: "ปิด"
                 })
                 .then(function() {
-					callpop();
-				});
+                    callpop();
+                });
 
-			shopFuncNotiActi(id, type);
+            shopFuncNotiActi(id, type);
 
             } else {  }
     });
@@ -1653,51 +1663,51 @@ function sendCheckIn(id, type) {
 }
 
 function shopFuncNotiActi(id, type){
-			if(type=='driver_topoint'){		
-		      	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันถึงสถานที่ส่งแขก";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+username+" ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
-		    }
-		    else if(type=='guest_receive'){		
-		      	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันรับแขกแล้ว";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานต้อนรับ รับแขกเรียบร้อยแล้ว";
-		    } 
-		    else if(type=='guest_register'){		
-				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแขกลงทะเบียนแล้ว";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แขกทำการลงทะเบียนแล้ว";
-		    } 
-		    else if(type=='driver_pay_report'){		
-		     	var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
-		    }else if(type=='lab_pay_approve'){
-				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันการจ่ายเงินคนขับ";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว";
-			}else if(type=='driver_pay_approve'){
-				var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณได้ยืนยันการรับเงินแล้ว";
-		      	var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แท็กซี่ทำการยืนยันการรับเงินแล้ว";
-			}
-			
+            if(type=='driver_topoint'){     
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันถึงสถานที่ส่งแขก";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+username+" ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
+            }
+            else if(type=='guest_receive'){     
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันรับแขกแล้ว";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานต้อนรับ รับแขกเรียบร้อยแล้ว";
+            } 
+            else if(type=='guest_register'){        
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแขกลงทะเบียนแล้ว";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แขกทำการลงทะเบียนแล้ว";
+            } 
+            else if(type=='driver_pay_report'){     
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันแจ้งยอดคนขับ";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการแจ้งยอดรายได้แล้ว";
+            }else if(type=='lab_pay_approve'){
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณทำการยืนยันการจ่ายเงินคนขับ";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"พนักงานได้ยืนยันการจ่ายเงินแล้ว";
+            }else if(type=='driver_pay_approve'){
+                var txt_long_ac = $('#txt_invoice_shop_detail').text()+" : "+"คุณได้ยืนยันการรับเงินแล้ว";
+                var txt_long_nc = $('#txt_invoice_shop_detail').text()+" : "+"แท็กซี่ทำการยืนยันการรับเงินแล้ว";
+            }
+            
                 var ac = {
-					i_type : 1,
-					i_sub_type : 1,
-					i_event : id,
-					i_user : detect_user,
-					s_topic : "งานส่งแขก",
-					s_message : txt_long_ac,
-					s_posted : username
-				};
-				
-					var nc = {
-					i_type : 1,
-					i_event : id,
-					i_user :  $('#id_driver_order').val(),
-					s_class_user :	class_user,
-					s_topic : "งานส่งแขก",
-					s_sub_topic : "เช็คอิน",
-					s_message :	txt_long_nc,
-					s_posted :	username
-					};
-				 
-				apiRecordActivityAndNotification(ac, nc);
+                    i_type : 1,
+                    i_sub_type : 1,
+                    i_event : id,
+                    i_user : detect_user,
+                    s_topic : "งานส่งแขก",
+                    s_message : txt_long_ac,
+                    s_posted : username
+                };
+                
+                    var nc = {
+                    i_type : 1,
+                    i_event : id,
+                    i_user :  $('#id_driver_order').val(),
+                    s_class_user :  class_user,
+                    s_topic : "งานส่งแขก",
+                    s_sub_topic : "เช็คอิน",
+                    s_message : txt_long_nc,
+                    s_posted :  username
+                    };
+                 
+                apiRecordActivityAndNotification(ac, nc);
 }
 
 function readURLcheckIn(input, type, subtype, id) {
@@ -1710,7 +1720,7 @@ function readURLcheckIn(input, type, subtype, id) {
             $('#pv_' + type).fadeIn(500);
             var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
             console.log(url);
-            //				return;
+            //              return;
             var data = new FormData($('#form_checkin')[0]);
             data.append('fileUpload', $('#img_checkin')[0].files[0]);
             $.ajax({
@@ -1842,8 +1852,8 @@ function btn_driver_pay_report(id) {
 /******* <!-------- function run page ------------> *******/
 
 function shopManage(){
-	$('#shop_manage').html(progress_circle);
-	var obj = array_data;
+    $('#shop_manage').html(progress_circle);
+    var obj = array_data;
     var url = "page/shop_manage";
 
     array_ma = obj.manage;
@@ -1857,7 +1867,7 @@ function shopManage(){
         data: pass,
         type: 'post',
         success: function(ele) {
-                //							  	console.log(data);
+                //                              console.log(data);
                 $('#shop_manage').html(ele);
             }
         });
@@ -1872,7 +1882,7 @@ document.addEventListener('prechange', function(event) {
     if (page == "shop_manage.html") {
         shopManage();
     }
-	
+    
     if (page == "shop_history.html") {
         historyShop($('#date_shop_his').val());
     }
@@ -1916,23 +1926,23 @@ function openViewPrice(id) {
         'id': 'popup_shop_checkin.html',
         'title': "รายได้"
     }, 'lift-ios');
-  	reloadIncomeShop(id);
+    reloadIncomeShop(id);
 }
 
 function reloadIncomeShop(id){
-	  var url = "page/call_page?&id=" + id;
+      var url = "page/call_page?&id=" + id;
     console.log(url);
     if(class_user=="taxi"){
       var path = "shop/income_driver_taxi";
-	  }else{
-	      var path = "shop/income_driver_lab";
-	  }
+      }else{
+          var path = "shop/income_driver_lab";
+      }
 
-	  $.post(url, {
-	    path: path
-	}, function(ele) {
-	    $('#body_shop_checkin').html(ele);
-	});
+      $.post(url, {
+        path: path
+    }, function(ele) {
+        $('#body_shop_checkin').html(ele);
+    });
 }
 
 function ex_booking() {
@@ -1976,11 +1986,11 @@ function editTimeToPlace(id){
 }
 
 function submitChangeTimeToPlace(){
-	var time = $('#time_num_change_time').val();
-	var id = $('#order_id_change_time').val();
-	var pass = { order_id:id, time:time };
-	console.log(pass);
-//	return;
+    var time = $('#time_num_change_time').val();
+    var id = $('#order_id_change_time').val();
+    var pass = { order_id:id, time:time };
+    console.log(pass);
+//  return;
 
 $.ajax({
    url: "shop/update_time_toplace",
@@ -2003,7 +2013,7 @@ $.ajax({
 }
 
 function calTime(val){
-	var m = val;
+    var m = val;
   if(m==""){
     return;
 }
@@ -2017,8 +2027,8 @@ $('#show_to_time').text(formatTime(dd));
 }
 
 function approveBook(id, invoice, driver_id){
-	
-//	return;
+    
+//  return;
 var pass = {
     id : id,
     vc : invoice,
@@ -2042,36 +2052,36 @@ $.ajax({
                console.log(res);
                sendSocket(id);
                var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
-			                var ac = {
-								i_type : 1,
-								i_sub_type : 4,
-								i_event : id,
-								i_user : detect_user,
-								s_topic : "งานส่งแขก",
-								s_message : txt_long_ac,
-								s_posted : username
-							};
-							
-							 var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
-							 var nc = {
-								i_type : 1,
-								i_event : id,
-								i_user : driver_id,
-								s_class_user : "taxi",
-								s_topic : "งานส่งแขก",
-								s_sub_topic : "ยืนยันงาน",
-								s_message :	txt_long_nc,
-								s_posted :	username
-							 };
-							 
-							apiRecordActivityAndNotification(ac, nc);
+                            var ac = {
+                                i_type : 1,
+                                i_sub_type : 4,
+                                i_event : id,
+                                i_user : detect_user,
+                                s_topic : "งานส่งแขก",
+                                s_message : txt_long_ac,
+                                s_posted : username
+                            };
+                            
+                             var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
+                             var nc = {
+                                i_type : 1,
+                                i_event : id,
+                                i_user : driver_id,
+                                s_class_user : "taxi",
+                                s_topic : "งานส่งแขก",
+                                s_sub_topic : "ยืนยันงาน",
+                                s_message : txt_long_nc,
+                                s_posted :  username
+                             };
+                             
+                            apiRecordActivityAndNotification(ac, nc);
                ons.notification.alert({
                   message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
                   title: "สำเร็จ",
                   buttonLabel: "ปิด"
               })
                .then(function() {
-				   
+                   
                    shopManage();
 
                });
@@ -2082,14 +2092,14 @@ $.ajax({
 }
 
 function historyShop(date){
-//	console.log(date)
-//	return;
+//  console.log(date)
+//  return;
 var date_rp = date.replace("-", "/");
 date_rp = date_rp.replace("-", "/");
 
 if(class_user=="taxi"){
    var url_his = 'api/shop_history_driver';
-//			var driver = detect_user;
+//          var driver = detect_user;
 var data = {
     date : date_rp,
     driver : detect_user
@@ -2113,14 +2123,14 @@ $.post(url_his,data,function(res){
 }
 
 function approvePayDriverByLab(id, invoice, driver){
-	console.log("Lab approved pay");
-/*	 sendSocket(id);
-	 return;*/
-	var param = {
-		order_id : id
-	}
-	
-	$.ajax({
+    console.log("Lab approved pay");
+/*   sendSocket(id);
+     return;*/
+    var param = {
+        order_id : id
+    }
+    
+    $.ajax({
            url: "shop/lab_approved_pay",
            data: param,
            type: 'post',
@@ -2130,37 +2140,37 @@ function approvePayDriverByLab(id, invoice, driver){
                shopFuncNotiActi(id, "lab_pay_approve");
 //              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
                $.ajax({
-			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
-			           type: 'post',
-			           dataType: 'json',
-			           success: function(res) {
-			                console.log(res);
-			                sendSocket(id);
-			                  
-			               ons.notification.alert({
-			                  message: 'ยืนยันการจ่ายเงินแล้ว',
-			                  title: "สำเร็จ",
-			                  buttonLabel: "ปิด"
-			             	 })
-			               .then(function() {
-			               		
-			               		 reloadIncomeShop(id);
-			               });
-			           }
-			       });
+                       url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+                       type: 'post',
+                       dataType: 'json',
+                       success: function(res) {
+                            console.log(res);
+                            sendSocket(id);
+                              
+                           ons.notification.alert({
+                              message: 'ยืนยันการจ่ายเงินแล้ว',
+                              title: "สำเร็จ",
+                              buttonLabel: "ปิด"
+                             })
+                           .then(function() {
+                                
+                                 reloadIncomeShop(id);
+                           });
+                       }
+                   });
            }
        });
 }
 
 function approvePayDriverByTaxi(id, invoice, driver){
-	console.log("Driver approved pay");
-	 /*sendSocket(id);
-	 return;*/
-	var param = {
-		order_id : id
-	}
-	
-	$.ajax({
+    console.log("Driver approved pay");
+     /*sendSocket(id);
+     return;*/
+    var param = {
+        order_id : id
+    }
+    
+    $.ajax({
            url: "shop/driver_approved_pay",
            data: param,
            type: 'post',
@@ -2168,32 +2178,32 @@ function approvePayDriverByTaxi(id, invoice, driver){
            success: function(res) {
                console.log(res);
                $.ajax({
-		           url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
-//		           data: param,
-		           type: 'post',
-		           dataType: 'json',
-		           success: function(com) { 
-		           		console.log(com);
-		           }
-		       });
-		       shopFuncNotiActi(id, "driver_pay_approve");
+                   url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
+//                 data: param,
+                   type: 'post',
+                   dataType: 'json',
+                   success: function(com) { 
+                        console.log(com);
+                   }
+               });
+               shopFuncNotiActi(id, "driver_pay_approve");
                $.ajax({
-			           url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
-			           type: 'post',
-			           dataType: 'json',
-			           success: function(res) {
-			               console.log(res);
-			                sendSocket(id);
-			               ons.notification.alert({
-			                  message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
-			                  title: "สำเร็จ",
-			                  buttonLabel: "ปิด"
-			             	 })
-			               .then(function() {
-								reloadIncomeShop(id);
-			               });
-			           }
-			       });
+                       url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+                       type: 'post',
+                       dataType: 'json',
+                       success: function(res) {
+                           console.log(res);
+                            sendSocket(id);
+                           ons.notification.alert({
+                              message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+                              title: "สำเร็จ",
+                              buttonLabel: "ปิด"
+                             })
+                           .then(function() {
+                                reloadIncomeShop(id);
+                           });
+                       }
+                   });
            }
        });
 }
