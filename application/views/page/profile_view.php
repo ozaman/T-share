@@ -429,9 +429,19 @@
 	    </div>
 	  </ons-alert-dialog>
 	</template>
+
 <script>
 //	console.log(new Date());
 //	console.log(formatDate('<?=$driver->iddriving_finish;?>'));
 //	document.getElementById('ex_iddriving').value = ISO8601('<?=$driver->iddriving_finish;?>');
-	document.getElementById('ex_iddriving').value = ISO8601(new Date('<?=$driver->iddriving_finish;?>'));
+//	document.getElementById('ex_iddriving').value = ISO8601(new Date('<?=$driver->iddriving_finish;?>'));
+	var finish = '<?=$driver->iddriving_finish;?>';
+	var res = finish.split("-");
+//	console.log(res);
+//	console.log(ISO8601(new Date(res[0],res[1],res[2])));
+	document.getElementById('ex_iddriving').value = ISO8601(new Date(res[0],res[1],res[2]));
+	
+	var idcard = '<?=$driver->iddriving;?>';
+	var res_idcard = idcard.split("-");
+	document.getElementById('ex_idcard').value = ISO8601(new Date(res_idcard[0],res_idcard[1],res_idcard[2]));
 </script>
