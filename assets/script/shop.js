@@ -339,8 +339,15 @@ function handleClick_s(tax, name) {
 if (tax == 'box_com') {
     console.log('55555555555555555555555555')
     console.log(form.elements["price_plan"].value)
+    if (form.elements["price_plan"].value > 0) {
+$('#'+tax).removeClass('borderBlink')
+    }
+        else{
+         $('#box_com').removeClass('borderBlink')
+
+     }
     $('#price_plan_'+name).prop('checked',true);
-    $('#'+tax).removeClass('borderBlink')
+    
     if (form.elements["plate_num_1"].value == 0) {
         $('#box_car').addClass('borderBlink')
         $('html, body').animate({
@@ -407,6 +414,7 @@ if (tax == 'box_com') {
          // checformadd('box_com')
 
      }
+
 
 
  }
