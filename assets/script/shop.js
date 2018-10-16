@@ -119,7 +119,7 @@ function checformadd(tax) {
     }
     if (tax == 'box_com') {
         $('.card').removeClass('borderBlink')
-        $('#' + tax).removeClass('borderBlink')
+        $('#box_com').removeClass('borderBlink')
         if (form.elements["plate_num_1"].value == 0) {
             $('#box_car').addClass('borderBlink')
             $('html, body').animate({
@@ -145,7 +145,7 @@ function checformadd(tax) {
             });
         }
         if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-            $('#box_com').addClass('borderBlink')
+            // $('#box_com').addClass('borderBlink')
             console.log(this.hash)
 
             $('html, body').animate({
@@ -185,6 +185,10 @@ function checformadd(tax) {
             }
 
         }
+    }
+    if (tax = 'box_time') {
+        performClick('time_num')
+        // $('time_num').prop('selected', true);
     }
 
 
