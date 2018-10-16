@@ -123,9 +123,10 @@ function openShopNotification(i_event){
 				var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
 			    $.post(url, detailObj, function(data) {
 			        $('#body_popup1').html(data);
-			        //        var obj = JSON.parse('<?=json_encode($_POST);?>');
+			        
 			        var obj = detailObj;
 			        console.log(obj);
+			        changeApprovedIncome(obj.check_lab_pay);
 			        if (obj.check_driver_topoint == 1) {
 			            console.log("driver_topoint");
 			            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));

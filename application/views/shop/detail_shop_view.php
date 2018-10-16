@@ -143,7 +143,7 @@ else if($arr[book][status]=='CONFIRM'){
 
 <script>
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
-	$('#header_clean').text('<?=$_POST[invoice];?>');
+//	$('#header_clean').text('<?=$_POST[invoice];?>');
 	console.log('IOS : <?=$_GET[ios];?>');
 </script>
 <input type="hidden" value="<?=$check_type_person;?>" id="check_type_person" />
@@ -236,23 +236,6 @@ else if($arr[book][status]=='CONFIRM'){
          <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font></td>
         <td class="font-16" style="padding: 0 !important;" >
             <table width="100%">
-            	<!-- <tr>
-            		<td width="100%" colspan="2">
-            			<span class="font-16">
-            				<?
-				            if($arr[book][adult]>0){ ?>
-				            <?=t_adult;?> :
-				            <?=$arr[book][adult];?>
-				            &nbsp;
-				            <? } ?>
-				            <? if($arr[book][child]>0){ ?>
-				            <?=t_child;?> :
-				            <?=$arr[book][child];?>
-				            <? } ?>
-            			</span>
-            		</td>
-            		
-            	</tr> -->
             	<tr>
         			<td>	
         				<span id="isedit"><?
@@ -280,7 +263,7 @@ else if($arr[book][status]=='CONFIRM'){
         			</td>
         			
         			<td>
-        				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+        				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>','adult');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
@@ -296,12 +279,33 @@ else if($arr[book][status]=='CONFIRM'){
 	</span>
         			</td>
         		</tr>
+
         		<tr>
         			<td>
-        				<? if($arr[book][child]>0){ ?>
-            <?=t_child;?> :
-            <?=$arr[book][child];?>
-            <? } ?>
+
+            <?=t_child;?> :  <span id="num_final_edit_child"><?=$arr[book][child];?></span>
+			<input type="number" name="" id="num_edit_child" pattern="\d*" style="height: 30px;margin-top: -25px;margin-left: 40px;
+    width: 50px;
+    padding: 0px;
+    font-size: 16px;
+/*    margin: auto;*/
+    display: none;" value="<?=$arr[book][child];?>" >	
+        			</td>
+        			<td width="60">
+        				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>','child');" style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 10px;
+    font-size: 3px !important;
+    border-radius: 8px;display: inline-block;" id="btn_isedit_child">
+		<span class="font-16 text-cap">แก้ไข</span>
+	</span>
+	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>','child');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 10px;
+    font-size: 3px !important;
+    border-radius: 8px;display: none;" id="btn_selectisedit_child">
+		<span class="font-16 text-cap">บันทึก</span>
+	</span>
         			</td>
         		</tr>
      	
