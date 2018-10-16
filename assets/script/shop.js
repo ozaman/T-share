@@ -1486,7 +1486,7 @@ function submitCancel() {
                 fn.hideDialog('cancel-shop-dialog');
                 	
 					setTimeout(function(){ var urlx = "shop/shop_manage";
-                		appNavigator.popPage();
+//                		appNavigator.popPage();
                 		shopManage();
                 	 }, 1000);
             });

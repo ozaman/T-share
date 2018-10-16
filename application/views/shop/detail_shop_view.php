@@ -420,7 +420,7 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;">
-		<span class="font-24 text-cap">บันทึก</span>
+		<span class="font-18 text-cap">บันทึก</span>
 	</span></td>
 			</tr>
 			<tr>
