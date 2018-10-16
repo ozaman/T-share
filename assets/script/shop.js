@@ -262,7 +262,7 @@ function checformadd(tax) {
                         scrollTop: $('#num_customer').offset().top
                     }, 300, function() {
 
-                        $("#adult").focus()
+                       
 
                         window.location.href = "#num_customer";
                     });
@@ -350,7 +350,7 @@ function checktime(x) {
             scrollTop: $('#num_customer').offset().top
         }, 300, function() {
 
-            $("#adult").focus()
+            // $("#adult").focus()
 
             window.location.href = "#num_customer";
         });
@@ -359,7 +359,7 @@ function checktime(x) {
 
            $('#child').focusout();
            $('#box_time').addClass('borderBlink')
-           $('#time_num').focus()
+           // $('#time_num').focus()
        }
        if (form.elements["time_num"].value != 0) {
         $('#btn_submitadd').addClass('borderBlink')
