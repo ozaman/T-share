@@ -1999,7 +1999,9 @@ function maxLengthCheck(object) {
     if (object.value.length > 3)
       object.value = object.value.slice(0, 3)
 }
-
+function area_remark() {
+    $('#remark').focus();
+}
 
 // myEl.addEventListener('click', function() {
 //     alert('Hello world');
