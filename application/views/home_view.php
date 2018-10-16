@@ -1199,15 +1199,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <input type="hidden" value="" id="driver_id_cancel"/>
             <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
                 <input type="hidden" value="" id="order_id_cancel" name="order_id" />
-                
-                <!-- <input type="hiddens" value="" id="order_id_cancel" name="username"/> -->
-                <input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="order_id_cancel" name="username" />
+                <!--<input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="username_order_cancel" name="username" />-->
                 <div>
-                    <!-- <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test1" value="1"><label for="test1">แขกลงทะเบียนไม่ได้</label></p>
-			   <input type="hidden" value="แขกลงทะเบียนไม่ได้" name="typname_1">
-			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test2" value="2"><label for="test2">แขกไม่ไป</label></p>
-			   <input type="hidden" value="แขกไม่ไป" name="typname_2">
-			   <p class="checkradio"><input class="with-gap" name="type" type="radio" id="test3" value="3"><label for="test3">เลือกสถานที่ผิด</label></p>-->
                     <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
                     <input type="hidden" name="typname_2" value="แขกไม่ไป" />
                     <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
@@ -1233,7 +1226,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
             </form>
             <p style="text-align: center">
-                <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog')">ปิด</ons-button>
+                <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog');resetFormCancel();">ปิด</ons-button>
                 <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
             </p>
         </ons-page>

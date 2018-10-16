@@ -358,13 +358,15 @@ function checktime(x) {
         });
     } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
         if (form.elements["time_num"].value == 0) {
-         $('#child').focusout();
-         $('#box_time').addClass('borderBlink')
-         $('#time_num').focus()
-     }
-     if (form.elements["time_num"].value != 0) {
+
+           $('#child').focusout();
+           $('#box_time').addClass('borderBlink')
+           $('#time_num').focus()
+       }
+       if (form.elements["time_num"].value != 0) {
         $('#btn_submitadd').addClass('borderBlink')
         window.location.href = "#btn_submitadd";
+
 
     } else {
         $('#box_time').removeClass('borderBlink')
@@ -401,7 +403,7 @@ function handleClick(tax, name) {
         $.post(url, function(res) {
             $('#box_price_plan').html(res);
         // console.log(data);
-            });
+    });
         $('#radio-nation'+name).prop('checked',true);
         if (name == 1) {
             $('#' + tax + '_' + name).addClass('cus_focus')
@@ -641,7 +643,7 @@ function handleClick(tax, name) {
     }
     if (tax == 'box_com') {
 
-     $('#price_plan_'+name).prop('checked',true);
+       $('#price_plan_'+name).prop('checked',true);
          // $('#box_com').removeClass('borderBlink')
          if (form.elements["plate_num_1"].value == 0) {
             $('#box_car').addClass('borderBlink')
@@ -919,9 +921,9 @@ var submitShop = function() {
         chek_x =  '0'+'.'+parseInt(time_num);
     }
     else if (parseInt(time_num) == 60) {
-     chek_x = 1+'.'+'0';
- }
- else{
+       chek_x = 1+'.'+'0';
+   }
+   else{
     if (chk_time == 0) {
         chek_x = x+'.'+'0';
     }
@@ -1531,12 +1533,12 @@ function openZello(shop_id) {
 
 function openMapsDistance(shop_id) {
 
-   fn.pushPage({
+ fn.pushPage({
     'id': 'popup2.html',
     'title': ''
 }, 'fade-md');
-   var url = "page/call_page?id="+shop_id;
-   $.post(url, {
+ var url = "page/call_page?id="+shop_id;
+ $.post(url, {
     path: "map/map_place"
 }, function(ele) {
 //      console.log(ele)
@@ -1970,15 +1972,15 @@ function editTimeToPlace(id){
   var dialog = document.getElementById('change-time-dialog');
 
   if (dialog) {
-     dialog.show();
-     $('#order_id_change_time').val(id);
- } else {
-     ons.createElement('change-time.html', { append: true })
-     .then(function(dialog) {
-         dialog.show();
-         $('#order_id_change_time').val(id);
-     });
- }
+   dialog.show();
+   $('#order_id_change_time').val(id);
+} else {
+   ons.createElement('change-time.html', { append: true })
+   .then(function(dialog) {
+       dialog.show();
+       $('#order_id_change_time').val(id);
+   });
+}
 }
 
 function submitChangeTimeToPlace(){
@@ -1989,22 +1991,22 @@ function submitChangeTimeToPlace(){
 //  return;
 
 $.ajax({
-   url: "shop/update_time_toplace",
-   data: pass,
-   type: 'post',
-   dataType: 'json',
-   success: function(res) {
-       console.log(res);
-       ons.notification.alert({
-          message: 'แก้ไขเวลาเรียบร้อย',
-          title: "สำเร็จ",
-          buttonLabel: "ปิด"
-      })
-       .then(function() {
-           shopManage()
-           document.getElementById('change-time-dialog').hide();
-       });
-   }
+ url: "shop/update_time_toplace",
+ data: pass,
+ type: 'post',
+ dataType: 'json',
+ success: function(res) {
+     console.log(res);
+     ons.notification.alert({
+      message: 'แก้ไขเวลาเรียบร้อย',
+      title: "สำเร็จ",
+      buttonLabel: "ปิด"
+  })
+     .then(function() {
+         shopManage()
+         document.getElementById('change-time-dialog').hide();
+     });
+ }
 });
 }
 
@@ -2040,15 +2042,15 @@ $.ajax({
     success: function(res) {
         console.log(res);
         $.ajax({
-           url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
-           data: pass,
-           type: 'post',
-           dataType: 'json',
-           success: function(res) {
-               console.log(res);
-               sendSocket(id);
-               var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
-               var ac = {
+         url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
+         data: pass,
+         type: 'post',
+         dataType: 'json',
+         success: function(res) {
+             console.log(res);
+             sendSocket(id);
+             var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
+             var ac = {
                 i_type : 1,
                 i_sub_type : 4,
                 i_event : id,
@@ -2078,9 +2080,9 @@ $.ajax({
           })
             .then(function() {
 
-               shopManage();
+             shopManage();
 
-           });
+         });
         }
     });
     }
@@ -2094,7 +2096,7 @@ var date_rp = date.replace("-", "/");
 date_rp = date_rp.replace("-", "/");
 
 if(class_user=="taxi"){
-   var url_his = 'api/shop_history_driver';
+ var url_his = 'api/shop_history_driver';
 //          var driver = detect_user;
 var data = {
     date : date_rp,
@@ -2102,16 +2104,16 @@ var data = {
 }
 }
 else{
-   var url_his = 'api/shop_history_lab';
-   var data = {
+ var url_his = 'api/shop_history_lab';
+ var data = {
     date : date_rp
 }
 }
 
 $.post(url_his,data,function(res){
-   console.log(res);
-   var url = "shop/shop_history";
-   $.post(url,{ data : res.data },function(html){
+ console.log(res);
+ var url = "shop/shop_history";
+ $.post(url,{ data : res.data },function(html){
     $('#shop_history').html(html);
 });
 
@@ -2127,19 +2129,19 @@ var param = {
 }
 
 $.ajax({
-   url: "shop/lab_approved_pay",
-   data: param,
-   type: 'post',
-   dataType: 'json',
-   success: function(res) {
-       console.log(res);
-       shopFuncNotiActi(id, "lab_pay_approve");
+ url: "shop/lab_approved_pay",
+ data: param,
+ type: 'post',
+ dataType: 'json',
+ success: function(res) {
+     console.log(res);
+     shopFuncNotiActi(id, "lab_pay_approve");
 //              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
 $.ajax({
-   url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
-   type: 'post',
-   dataType: 'json',
-   success: function(res) {
+ url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+ type: 'post',
+ dataType: 'json',
+ success: function(res) {
     console.log(res);
     sendSocket(id);
 
@@ -2150,8 +2152,8 @@ $.ajax({
   })
     .then(function() {
 
-     reloadIncomeShop(id);
- });
+       reloadIncomeShop(id);
+   });
 }
 });
 }
@@ -2167,14 +2169,14 @@ function approvePayDriverByTaxi(id, invoice, driver){
     }
     
     $.ajax({
-       url: "shop/driver_approved_pay",
-       data: param,
-       type: 'post',
-       dataType: 'json',
-       success: function(res) {
-           console.log(res);
-           $.ajax({
-               url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
+     url: "shop/driver_approved_pay",
+     data: param,
+     type: 'post',
+     dataType: 'json',
+     success: function(res) {
+         console.log(res);
+         $.ajax({
+             url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
 //                 data: param,
 type: 'post',
 dataType: 'json',
@@ -2182,32 +2184,32 @@ success: function(com) {
     console.log(com);
 }
 });
-           shopFuncNotiActi(id, "driver_pay_approve");
-           $.ajax({
-               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
-               type: 'post',
-               dataType: 'json',
-               success: function(res) {
-                   console.log(res);
-                   sendSocket(id);
-                   ons.notification.alert({
-                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
-                      title: "สำเร็จ",
-                      buttonLabel: "ปิด"
-                  })
-                   .then(function() {
+         shopFuncNotiActi(id, "driver_pay_approve");
+         $.ajax({
+             url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+             type: 'post',
+             dataType: 'json',
+             success: function(res) {
+                 console.log(res);
+                 sendSocket(id);
+                 ons.notification.alert({
+                  message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+                  title: "สำเร็จ",
+                  buttonLabel: "ปิด"
+              })
+                 .then(function() {
                     reloadIncomeShop(id);
                 });
-               }
-           });
-       }
-   });
+             }
+         });
+     }
+ });
 }
 
 function _calltest (event){
-   var el = $('ons-tab[page="shop_manage.html"]');
-   performClick('tab_shop_mn')
-   el.click();
+ var el = $('ons-tab[page="shop_manage.html"]');
+ performClick('tab_shop_mn')
+ el.click();
    // console.log(el.click());
    // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
 // el.addEventListener("click"
@@ -2215,9 +2217,9 @@ function _calltest (event){
     // console.log( document.addEventListener('prechange'))
 }
 function maxLengthCheck(object) {
-            if (object.value.length > 3)
-              object.value = object.value.slice(0, 3)
-            }
+    if (object.value.length > 3)
+      object.value = object.value.slice(0, 3)
+}
 
 
 // myEl.addEventListener('click', function() {

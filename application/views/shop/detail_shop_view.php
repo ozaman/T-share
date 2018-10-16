@@ -275,14 +275,14 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: inline-block;" id="btn_isedit">
-		<span class="font-18 text-cap">แก้ไข</span>
+		<span class="font-16 text-cap">แก้ไข</span>
 	</span>
 	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: none;" id="btn_selectisedit">
-		<span class="font-24 text-cap">บันทึก</span>
+		<span class="font-16 text-cap">บันทึก</span>
 	</span>
         			</td>
         		</tr>
@@ -420,7 +420,7 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;">
-		<span class="font-18 text-cap">บันทึก</span>
+		<span class="font-16 text-cap">บันทึก</span>
 	</span></td>
 			</tr>
 			<tr>
