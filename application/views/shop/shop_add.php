@@ -68,42 +68,42 @@ $data_shopmain = $shopmain->row();
 
       <?php 
       if ($i_time_balance < 0) {
-      $i_d_next = date('w')+1;
-      $weekdays = Array();
-      $weekdays[0] = "Sun";
-      $weekdays[1] = "Mon";
-      $weekdays[2] = "Tue";
-      $weekdays[3] = "Wed";
-      $weekdays[4] = "Thu";
-      $weekdays[5] = "Fri";
-      $weekdays[6] = "Sat";
-      $arr_where = array();
-      $arr_where['status'] = 1;
-      $arr_where['product_id'] = $_GET[shop_id];
-      $arr_where['product_day'] =  $weekdays[$i_d_next];
-      $arr_select = array('start_h','start_m','finish_h','finish_m');
-      $weekdays2 = Array();
-      $weekdays2[0] = "วันอาทิตย์";
-      $weekdays2[1] = "วันจันทร์";
-      $weekdays2[2] = "วันอังคาร";
-      $weekdays2[3] = "วันพุธ";
-      $weekdays2[4] = "วันพฤหัส";
-      $weekdays2[5] = "วันศุกร์";
-      $weekdays2[6] = "วันเสาร์";
+        $i_d_next = date('w')+1;
+        $weekdays = Array();
+        $weekdays[0] = "Sun";
+        $weekdays[1] = "Mon";
+        $weekdays[2] = "Tue";
+        $weekdays[3] = "Wed";
+        $weekdays[4] = "Thu";
+        $weekdays[5] = "Fri";
+        $weekdays[6] = "Sat";
+        $arr_where = array();
+        $arr_where['status'] = 1;
+        $arr_where['product_id'] = $_GET[shop_id];
+        $arr_where['product_day'] =  $weekdays[$i_d_next];
+        $arr_select = array('start_h','start_m','finish_h','finish_m');
+        $weekdays2 = Array();
+        $weekdays2[0] = "วันอาทิตย์";
+        $weekdays2[1] = "วันจันทร์";
+        $weekdays2[2] = "วันอังคาร";
+        $weekdays2[3] = "วันพุธ";
+        $weekdays2[4] = "วันพฤหัส";
+        $weekdays2[5] = "วันศุกร์";
+        $weekdays2[6] = "วันเสาร์";
 
-      $datatime_next = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
+        $datatime_next = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 
-      ?>
-      <div class="card" align="center">
-        <h1 style="color: red" align="center">ขณะนี้ปิดให้บริการ</h1>
-        <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ ในวันถัดไป</h2>
-        <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span> 
-          <h3 style="color: #24b968" align="center"><span style="color: #24b968;">เวลาเปิด <?=$datatime_next[0]->start_h.':'.$datatime_next[0]->start_m;?></span> ปิด <?=$datatime_next[0]->finish_h.':'.$datatime_next[0]->finish_m;?></span> น.</h3>
+        ?>
+        <div class="card" align="center">
+          <h1 style="color: red" align="center">ขณะนี้ปิดให้บริการ</h1>
+          <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ ในวันถัดไป</h2>
+          <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span> 
+            <h3 style="color: #24b968" align="center"><span style="color: #24b968;">เวลาเปิด <?=$datatime_next[0]->start_h.':'.$datatime_next[0]->start_m;?></span> ปิด <?=$datatime_next[0]->finish_h.':'.$datatime_next[0]->finish_m;?></span> น.</h3>
 
-        </div>
+          </div>
 
 
-<?php }?>
+        <?php }?>
 
 
 
@@ -400,140 +400,164 @@ $data_shopmain = $shopmain->row();
 
     <div class="card" id="num_customer" onclick="checformadd('num_customer')">
       <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
-      <div class="form-group">
+      <!-- <div class="form-group"> -->
+        <table width="100%">
+          <tr>
+            <td>
+              <table width="100%">
+                <tr>
+                  <td width="45">ผู้ใหญ่</td>
+                  <td>
+                    <ons-input id="adult" name="adult" type="number" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table width="100%">
+                <tr>
+                  <td width="45">เด็ก</td>
+                  <td>
+                    <ons-input id="child" name="child" type="number" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
 
         <!-- <label class="font-17">จำนวนคน</label> -->
 
-        <ons-row>
-          <ons-col>
-            <ons-input id="adult" name="adult" type="number" pattern="\d*" placeholder="ผู้ใหญ่" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
-          </ons-col>
-          &nbsp;
-          &nbsp;
-          <ons-col>
-            <ons-input id="child" name="child" type="number" pattern="\d*" placeholder="เด็ก" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
-          </ons-col>
-        </ons-row>
-      </div>
-    </div>
+        <!-- <ons-row> -->
+          <!-- <ons-col> -->
 
-    <script>
-    </script>
+            <!-- </ons-col> -->
+          
+            <!-- <ons-col> -->
 
+              <!-- </ons-col> -->
+              <!-- </ons-row> -->
+              <!-- </div> -->
+            </div>
+
+            <script>
+            </script>
 
 
-    <div class="card" id="box_time" onclick="checformadd('box_time')">
-     <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
-     <!-- <div class="form-group"> -->
 
-      <!-- <span class="list-header" style="background-image: none;"></span> -->
+            <div class="card" id="box_time" onclick="checformadd('box_time')">
+             <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
+             <!-- <div class="form-group"> -->
 
-      <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-        <option value="0">-- เลือกเวลา --</option>
-        <?php
-        $time = array("5" => "5 นาที",
-          "10" => "10 นาที",
-          "15" => "15 นาที",
-          "20" => "20 นาที",
-          "25" => "25 นาที",
-          "30" => "30 นาที",
-          "35" => "35 นาที",
-          "40" => "40 นาที",
-          "45" => "45 นาที",
-          "50" => "50 นาที",
-          "55" => "55 นาที",
-          "60" => "1 ชัวโมง.",
-          "90" => "1 ชัวโมง 30 นาที",
-          "120" => "2 ชัวโมง",
-          "150" => "2 ชัวโมง 30 นาที",
-          "180" => "3 ชัวโมง",
-          "210" => "3 ชัวโมง 30 นาที",
-          "240" => "4 ชัวโมง",
-          "270" => "4 ชัวโมง 30 นาที",
-          "300" => "5 ชัวโมง",
-          "330" => "5 ชัวโมง 30 นาที",
-          "360" => "6 ชัวโมง",
-          "390" => "6 ชัวโมง 30 นาที",
-          "420" => "7 ชัวโมง",
-          "450" => "7 ชัวโมง 30 นาที",
-          "490" => "8 ชัวโมง");
-        $mm = 5;
-        ?>
+              <!-- <span class="list-header" style="background-image: none;"></span> -->
 
-        <?php foreach ($time as $key => $at) { 
-          if ($i_time_balance >= $key ) {
+              <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+                <option value="0">-- เลือกเวลา --</option>
+                <?php
+                $time = array("5" => "5 นาที",
+                  "10" => "10 นาที",
+                  "15" => "15 นาที",
+                  "20" => "20 นาที",
+                  "25" => "25 นาที",
+                  "30" => "30 นาที",
+                  "35" => "35 นาที",
+                  "40" => "40 นาที",
+                  "45" => "45 นาที",
+                  "50" => "50 นาที",
+                  "55" => "55 นาที",
+                  "60" => "1 ชัวโมง.",
+                  "90" => "1 ชัวโมง 30 นาที",
+                  "120" => "2 ชัวโมง",
+                  "150" => "2 ชัวโมง 30 นาที",
+                  "180" => "3 ชัวโมง",
+                  "210" => "3 ชัวโมง 30 นาที",
+                  "240" => "4 ชัวโมง",
+                  "270" => "4 ชัวโมง 30 นาที",
+                  "300" => "5 ชัวโมง",
+                  "330" => "5 ชัวโมง 30 นาที",
+                  "360" => "6 ชัวโมง",
+                  "390" => "6 ชัวโมง 30 นาที",
+                  "420" => "7 ชัวโมง",
+                  "450" => "7 ชัวโมง 30 นาที",
+                  "490" => "8 ชัวโมง");
+                $mm = 5;
+                ?>
+
+                <?php foreach ($time as $key => $at) { 
+                  if ($i_time_balance >= $key ) {
         # code...
 
-            ?>
-            <option value="<?=$key; ?>"><?=$at; ?></option>
-          <?php }
-        }
-        ?>
+                    ?>
+                    <option value="<?=$key; ?>"><?=$at; ?></option>
+                  <?php }
+                }
+                ?>
 
-      </select>
+              </select>
 
-    <!-- </div> -->
-  </div>
-  <div class="card" id="num_customer" >
-    <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
-    <div class="form-group">
-
-
-      <!-- <label class="font-17">จำนวนคน</label> -->
-
-      <!-- <ons-row> -->
-        <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark" type="number" cols="100" ></textarea>
-
-      <!-- </ons-row> -->
-    </div>
-  </div>
+              <!-- </div> -->
+            </div>
+            <div class="card" id="num_customer" >
+              <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
+              <!-- <div class="form-group"> -->
 
 
-</div>
-</form>
-<div  style="padding: 0px 10px;margin-bottom: 10px;">
-  <?php 
-  if(count($val) != 0){
+                <!-- <label class="font-17">จำนวนคน</label> -->
+
+              <ons-row>
+                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark" type="number" cols="100" ></textarea>
+
+                </ons-row> 
+                  <!-- </div> -->
+                </div>
+
+
+              </div>
+            </form>
+            <div  style="padding: 0px 10px;margin-bottom: 10px;">
+              <?php 
+              if(count($val) != 0){
       // echo count($val);
-    ?>
-    <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
+                ?>
+                <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
 
-  <?php } ?>
-</div>
-<?php 
-}
-else{
+              <?php } ?>
+            </div>
+            <?php 
+          }
+          else{
 
 
-  
-}
 
-?>
-</div>
+          }
 
-<script type="text/javascript">
-  function_name();
-  function function_name() {
-    var weekdays = new Array(7);
-    weekdays[0] = "Sun";
-    weekdays[1] = "Mon";
-    weekdays[2] = "Tue";
-    weekdays[3] = "Wed";
-    weekdays[4] = "Thu";
-    weekdays[5] = "Fri";
-    weekdays[6] = "Sat";
-    var weekdays2 = new Array(7);
-    weekdays2[0] = "วันอาทิตย์";
-    weekdays2[1] = "วันจันทร์";
-    weekdays2[2] = "วันอังคาร";
-    weekdays2[3] = "วันพุธ";
-    weekdays2[4] = "วันพฤหัส";
-    weekdays2[5] = "วันศุกร์";
-    weekdays2[6] = "วันเสาร์";
-    var current_date = new Date();
+          ?>
+        </div>
+        <!-- <button onclick="_calltest()">dsadsdsd</button> -->
 
-    weekday_value = current_date.getDay();
+        <script type="text/javascript">
+          function_name();
+          function function_name() {
+            var weekdays = new Array(7);
+            weekdays[0] = "Sun";
+            weekdays[1] = "Mon";
+            weekdays[2] = "Tue";
+            weekdays[3] = "Wed";
+            weekdays[4] = "Thu";
+            weekdays[5] = "Fri";
+            weekdays[6] = "Sat";
+            var weekdays2 = new Array(7);
+            weekdays2[0] = "วันอาทิตย์";
+            weekdays2[1] = "วันจันทร์";
+            weekdays2[2] = "วันอังคาร";
+            weekdays2[3] = "วันพุธ";
+            weekdays2[4] = "วันพฤหัส";
+            weekdays2[5] = "วันศุกร์";
+            weekdays2[6] = "วันเสาร์";
+            var current_date = new Date();
+
+            weekday_value = current_date.getDay();
 //    console.log(weekdays[weekday_value])
 var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
 $.ajax({

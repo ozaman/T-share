@@ -51,6 +51,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
+<!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
 
 <ons-modal direction="up">

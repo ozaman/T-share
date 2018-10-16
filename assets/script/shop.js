@@ -1134,7 +1134,8 @@ function saveShop() {
                 });*/
                 setTimeout(function() {
                     modal.hide();
-                    $('ons-tab[page="shop_manage.html"]').click();
+                    _calltest();
+                    // $('ons-tab[page="shop_manage.html"]').click();
                 }, 2000);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
@@ -2183,4 +2184,13 @@ function approvePayDriverByTaxi(id, invoice, driver){
 			       });
            }
        });
+}
+function _calltest (event){
+   var el = $('ons-tab[page="shop_manage.html"]');
+   el.click();
+   // console.log(el.click());
+   // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
+// el.addEventListener("click"
+    // $('ons-tab[page="shop_manage.html"]').click();
+    // console.log( document.addEventListener('prechange'))
 }
