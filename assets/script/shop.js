@@ -258,6 +258,7 @@ function checformadd(tax) {
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                     $('#num_customer').removeClass('borderBlink')
                     if (form.elements["time_num"].value == 0) {
+                        $('#child').focusout();
                         $('#box_time').addClass('borderBlink')
                         // $('#time_num').focus()
                     } else {
@@ -627,7 +628,8 @@ function handleClick(tax, name) {
                 $('#num_customer').removeClass('borderBlink')
                 if (form.elements["time_num"].value == 0) {
                     $('#box_time').addClass('borderBlink')
-                    $('#time_num').focus()
+                    $('#child').focusout();
+                    // $('#time_num').focus()
                 } else {
                     $('#box_time').removeClass('borderBlink')
                     $('#child').focusout();
@@ -644,7 +646,8 @@ function handleClick(tax, name) {
     if (tax == 'box_com') {
 
        $('#price_plan_'+name).prop('checked',true);
-         // $('#box_com').removeClass('borderBlink')
+
+         $('#box_com').removeClass('borderBlink')
          if (form.elements["plate_num_1"].value == 0) {
             $('#box_car').addClass('borderBlink')
             $('html, body').animate({
