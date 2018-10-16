@@ -408,7 +408,7 @@ $data_shopmain = $shopmain->row();
                 <tr>
                   <td width="45">ผู้ใหญ่</td>
                   <td>
-                    <ons-input id="adult" name="adult" type="number" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+                    <ons-input id="adult" name="adult" type="number" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1"  class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
                   </td>
                 </tr>
               </table>
@@ -418,13 +418,14 @@ $data_shopmain = $shopmain->row();
                 <tr>
                   <td width="45">เด็ก</td>
                   <td>
-                    <ons-input id="child" name="child" type="number" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+                    <ons-input id="child" name="child" type="number" oninput="maxLengthCheck(this)" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
+        
 
 
         <!-- <label class="font-17">จำนวนคน</label> -->
@@ -498,7 +499,7 @@ $data_shopmain = $shopmain->row();
 
               <!-- </div> -->
             </div>
-            <div class="card" id="num_customer" >
+            <div class="card"  >
               <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
               <!-- <div class="form-group"> -->
 
@@ -506,7 +507,7 @@ $data_shopmain = $shopmain->row();
                 <!-- <label class="font-17">จำนวนคน</label> -->
 
               <ons-row>
-                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark" type="number" cols="100" ></textarea>
+                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark"  cols="100" ></textarea>
 
                 </ons-row> 
                   <!-- </div> -->
