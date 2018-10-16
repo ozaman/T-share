@@ -17,7 +17,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -39,7 +39,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#box_com";
             });
@@ -63,7 +63,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -76,7 +76,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -89,7 +89,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#box_com";
             });
@@ -125,7 +125,75 @@ function checformadd(tax) {
     }
     if (tax == 'box_time') {
         performClick('time_num')
-        // $('time_num').prop('selected', true);
+        if (form.elements["price_plan"].value > 0) {
+            $('#box_com').removeClass('borderBlink')
+        }
+        
+        if (form.elements["plate_num_1"].value == 0) {
+            $('#box_car').addClass('borderBlink')
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+            $('#nation_box').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            // $('#box_com').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#box_com";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            $('#num_customer').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#num_customer').offset().top
+            }, 300, function() {
+
+                // $("#adult").focus()
+
+                window.location.href = "#num_customer";
+            });
+        } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["time_num"].value == 0) {
+                $('#box_time').addClass('borderBlink')
+                // $('#time_num').focus()
+            }
+            if (form.elements["time_num"].value != 0) {
+                $('#btn_submitadd').addClass('borderBlink')
+                window.location.href = "#btn_submitadd";
+
+            } else {
+                $('#box_time').removeClass('borderBlink')
+
+                $('#child').focusout();
+            }
+
+        }
     }
 
 
@@ -145,14 +213,17 @@ function checformadd(tax) {
             var form = document.getElementById("form_booking");
             clearTimeout(timer);
             timer = setTimeout(function() {
-                $('#' + tax).removeClass('borderBlink')
+                if ($('#adult').val() != '' && $('#child').val() != '') {
+                    $('#' + tax).removeClass('borderBlink')
+                }
+                
                 if (form.elements["plate_num_1"].value == 0) {
                     $('#box_car').addClass('borderBlink')
                     $('html, body').animate({
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#box_car";
                     });
@@ -165,7 +236,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#nation_box";
                     });
@@ -178,7 +249,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#box_com";
                     });
@@ -191,16 +262,18 @@ function checformadd(tax) {
                         scrollTop: $('#num_customer').offset().top
                     }, 300, function() {
 
-                        $("#adult").focus()
+                       
 
                         window.location.href = "#num_customer";
                     });
                 }
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+                    if ($('#adult').val() != '' && $('#child').val() != '') {
                     $('#num_customer').removeClass('borderBlink')
-                    if (form.elements["time_num"].value == 0) {
 
-                        console.log('99999999999999')
+                    }
+                    // alert('')
+                    if (form.elements["time_num"].value == 0) {
                         $('#child input').blur()
                         // $('#child').trigger('input');
                        // $('#child').blur();
@@ -238,7 +311,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_car";
         });
@@ -251,7 +324,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#nation_box";
         });
@@ -264,7 +337,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_com";
         });
@@ -277,7 +350,7 @@ function checktime(x) {
             scrollTop: $('#num_customer').offset().top
         }, 300, function() {
 
-            $("#adult").focus()
+            // $("#adult").focus()
 
             window.location.href = "#num_customer";
         });
@@ -286,7 +359,7 @@ function checktime(x) {
 
            $('#child').focusout();
            $('#box_time').addClass('borderBlink')
-           $('#time_num').focus()
+           // $('#time_num').focus()
        }
        if (form.elements["time_num"].value != 0) {
         $('#btn_submitadd').addClass('borderBlink')
@@ -329,7 +402,7 @@ function handleClick_s(tax, name) {
      $.post(url, function(res) {
         $('#box_price_plan').html(res);
         // console.log(data);
-        // $('#radio-nation'+name).prop('checked',true);
+        $('#radio-nation'+name).prop('checked',true);
     });
 
 
@@ -341,15 +414,22 @@ function handleClick_s(tax, name) {
 if (tax == 'box_com') {
     console.log('55555555555555555555555555')
     console.log(form.elements["price_plan"].value)
+    if (form.elements["price_plan"].value > 0) {
+$('#'+tax).removeClass('borderBlink')
+    }
+        else{
+         $('#box_com').removeClass('borderBlink')
+
+     }
     $('#price_plan_'+name).prop('checked',true);
-    $('#'+tax).removeClass('borderBlink')
+    
     if (form.elements["plate_num_1"].value == 0) {
         $('#box_car').addClass('borderBlink')
         $('html, body').animate({
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#nation_box";
         });
@@ -362,13 +442,13 @@ if (tax == 'box_com') {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            // 
 
             window.location.href = "#nation_box";
         });
     }
     if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
+        // $('#box_com').addClass('borderBlink')
         $('#num_customer').removeClass('borderBlink')
         console.log(this.hash)
 
@@ -376,7 +456,7 @@ if (tax == 'box_com') {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_com";
         });
@@ -409,6 +489,7 @@ if (tax == 'box_com') {
          // checformadd('box_com')
 
      }
+
 
 
  }
@@ -1958,7 +2039,9 @@ function maxLengthCheck(object) {
     if (object.value.length > 3)
       object.value = object.value.slice(0, 3)
 }
-
+function area_remark() {
+    $('#remark').focus();
+}
 
 // myEl.addEventListener('click', function() {
 //     alert('Hello world');
