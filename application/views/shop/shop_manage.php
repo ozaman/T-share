@@ -135,7 +135,7 @@
                <tr>
                   <td width="35%">
               
-             <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>'););" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+             <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
@@ -170,15 +170,10 @@
   </div>
   
   <script>
-//    console.log("เวลาจอง : <?=$time_c;?> || <?=$minutes_to_add;?> นาที || ")
-    console.log("<?=$stamp;?> || <?=$current_time;?>")
+//    console.log("<?=$stamp;?> || <?=$current_time;?>")
     var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
-//    console.log(d1);
     var d2 = js_yyyy_mm_dd_hh_mm_ss();
-//    console.log("<?=$val[invoice];?> : "+d1+" = "+d2);
     $('#txt_date_diff_<?=$val[id];?>').text(CheckTime(d1,d2));
-//    console.log(formatDate('<?=$val[transfer_date];?>'));
-
     $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
   </script>
 <?    

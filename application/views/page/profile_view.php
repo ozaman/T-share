@@ -335,7 +335,7 @@
                     <span class="text-input__label">
                         </span>
                 </ons-input>
-                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_idcard;?></span>  
+                <!--<span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_idcard;?></span>  -->
             </div>
             
         </ons-list-item>
@@ -389,7 +389,7 @@
                     <input type="date"  class="text-input"  name="ex_iddriving" id="ex_iddriving">
                     <span class="text-input__label"></span>
                 </ons-input>
-                <span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_iddriving;?></span>
+                <!--<span style="color: #afafaf;  font-size: 13px;   position: absolute;  right: 45px;"><?=$txt_ex_iddriving;?></span>-->
             </div>
         </ons-list-item>
       <div align="center" style="margin: 10px;">
@@ -429,3 +429,9 @@
 	    </div>
 	  </ons-alert-dialog>
 	</template>
+<script>
+//	console.log(new Date());
+	console.log(formatDate('<?=$driver->iddriving_finish;?>'));
+//	document.getElementById('ex_iddriving').value = ISO8601('<?=$driver->iddriving_finish;?>');
+//	document.getElementById('ex_iddriving').value = ISO8601(new Date());
+</script>

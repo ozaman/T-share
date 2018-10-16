@@ -242,7 +242,7 @@ else if($arr[book][status]=='CONFIRM'){
             <? } ?>
            </span>
         			
-        			<input type="number" name="" id="num_edit_persion" style="height: 30px;
+        			<input type="number" name="" id="num_edit_persion" pattern="\d*" style="height: 30px;
     width: 50px;
     padding: 0px;
     font-size: 16px;

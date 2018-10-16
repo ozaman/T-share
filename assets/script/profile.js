@@ -1,4 +1,10 @@
-
+	function ISO8601(date) {
+	  var d = date.getDate();
+	  if(d < 10) d = '0' + d;
+	  var m = date.getMonth() + 1;
+	  if(m < 10) m = '0' + m;
+	  return date.getFullYear() + '-' + m + '-' + d;
+	}
 	 
 	function checkPicDocProfile(){
 		$.ajax({
