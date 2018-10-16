@@ -83,8 +83,8 @@ else if($arr[book][status]=='CONFIRM'){
 		$show_alert = "display:none;";
 	}
 	*/
-	if($arr[book][price_park_total] != 0){
-		$park_total = number_format($arr[book][price_park_total],2);
+	if($arr[book][price_park_unit] != 0){
+		$park_total = number_format($arr[book][price_park_unit],2);
 		$display_park = "";
 	}else{
 		$display_park = "display:none";
@@ -97,12 +97,40 @@ else if($arr[book][status]=='CONFIRM'){
 	}else{
 		$display_person = "display:none";
 	}
-	
+	$total_price_all = number_format($arr[book][price_park_unit] + $person_total,2);
 	if($arr[book][commission_persent] != 0){
 		$display_com = "";
 		$com_persent = $arr[book][commission_persent];
+		$total_price_all = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
 	}else{
 		$display_com = "display:none";
+		
+	}
+	
+	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$arr[book][plan_id]."' ");
+	$num = 0;
+	foreach ($query_price->result() as $row_price){
+			if($num>=1){
+				$push = " + ";
+			}else{
+				$push = "";
+			}
+	       $plan .= $push.$row_price->s_topic_th;
+	       $num++;
+	       
+		   if($row_price->s_topic_en=="park"){
+				
+		   }
+		   
+		   if($row_price->s_topic_en=="person"){
+				
+		   }	
+		   
+		   if($row_price->s_topic_en=="comision"){
+				if($arr[book][total_commission]>0){
+					
+				}
+		   }	
 	}
 ?>
 
@@ -115,16 +143,6 @@ else if($arr[book][status]=='CONFIRM'){
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
-	<!--<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="position: absolute;
-    right: 10px;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 0;
-    top: 0px;
-    margin: 15px;<?=$cancel_shop;?>">
-		<span class="font-22 text-cap"><?=t_cancel;?></span>
-	</button>-->
-	
 	<button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
@@ -314,26 +332,36 @@ else if($arr[book][status]=='CONFIRM'){
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr>
      			<td width="100"><span class="font-16">ประเภท</span></td>
-     			<td><span class="font-16">ค่าหัว + ค่าจอด</span></td>
+     			<td colspan="2"><span class="font-16"><?=$plan;?></span></td>
      		</tr>
      		<tr style="<?=$display_park;?>">
      			<td width="100"><span class="font-16">ค่าจอด</span></td>
-     			<td align=""><span class="font-16"><?=$park_total;?> บาท</span></td>
+     			<td align="right"><span class="font-16"><?=$park_total;?></span></td>
+     			<td width="105"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
      			<td width="100"><span class="font-16">ค่าหัว</span></td>
-     			<td align=""><span class="font-16"><?=$cal_person;?> = <?=$person_total;?> บาท</span></td>
+     			<td align="right" =><span class="font-16"><?=$cal_person;?> = <?=$person_total;?></span></td>
+     			<td width="105"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="100"><span class="font-16">ค่าคอม</span></td>
-     			<td align=""><span class="font-16"><?=$com_persent;?> %</span>
+     			<td align="right"><span class="font-16"><?=$com_persent;?> %</span>
+                </td>
+                <td width="105">
+                	
                 </td>
      		</tr>
      		<tr>
      			<td  width="100">รวม</td>
-     			<td><span class="16">
-     				<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
-     			</span></td>
+     			<td align="right">
+	     			<span class="16">
+	     				<?=$total_price_all;?>
+	     			</span>
+     			</td>
+     			 <td width="105">
+     			 	<span class="font-16">บาท</span>
+     			 </td>
      		</tr>
      	</table>
     </div>
@@ -349,12 +377,6 @@ else if($arr[book][status]=='CONFIRM'){
 			<?=$full_name_driver;?></td>
 		  </tr>
 		  <tbody>
-		    <!-- <tr>
-		      <td  width="100" class="font-16"><font color="#333333"><?=t_type_of_vehicle;?></font></td>
-		      <td class="font-16"><? echo $res_od->car_type; ?></td>
-		    
-		      <td class="font-16"><?=$car_color;?></td>
-		    </tr> -->
 		    <tr>
 		      <td   width="100"  class="font-16"><font color="#333333"><?=t_car_registration_number;?></font></td>
 		      <td colspan="3" class="font-16"><?=$res_od->car_plate;?></td>

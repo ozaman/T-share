@@ -19,9 +19,6 @@
 	$query = $this->db->query("select topic_th,id from shopping_product where id = '".$row->program."' ");
 	$row_product = $query->row();
 	
-	/*$query_price = $this->db->query("select * from shop_country_com_list where i_shop_country_icon = '".$row->plan_setting."' ");
-	$row_price = $query_price->row();
-	echo $row_price->id;*/
 	
 	$show_park = "display:none;";
 	$show_person = "display:none;";
@@ -48,7 +45,6 @@
 		   if($row_price->s_topic_en=="comision"){
 		   		$show_com = "";
 		   }	
-//		echo $row_price->s_topic_en;
 	}
 	
 	$total = intval($row->price_person_total) + intval($row->price_park_total);

@@ -1104,7 +1104,8 @@ var submitShop = function() {
 //     return weekDays;
 // }
 function saveShop() {
-
+	$('ons-tab[page="shop_manage.html"]').click();
+	return;
 // var weekDays = getWeekDays('en-US'); // Gives back { 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'} which are the days of the week in Dutch.
    // console.log(weekDays)
 
@@ -1853,13 +1854,13 @@ var array_ma = [];
 var array_his = [];
 var date = moment().format('YYYY-MM-DD');
 document.addEventListener('prechange', function(event) {
-//    console.log(event);
+    console.log(event);
     var page = event.tabItem.getAttribute('page');
 //    console.log(page)
     if (page == "shop_manage.html") {
         shopManage();
     }
-
+	
     if (page == "shop_history.html") {
         historyShop($('#date_shop_his').val());
     }
