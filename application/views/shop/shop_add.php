@@ -297,7 +297,7 @@ $data_shopmain = $shopmain->row();
               $_order['id'] = 'asc';
               $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
               ?>
-              <label class="" for="radio-nation<?=$key+1;?>"  onclick="checformadd('nation_box');handleClick('nation','<?=$val->id;?>');">
+              <label class="" for="radio-nation<?=$key+1;?>" onclick="handleClick('nation','<?=$val->id;?>');">
                 <ons-list-item tappable id="nation_<?=$key+1;?>">
                   <label class=" left">
                     <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
@@ -324,7 +324,7 @@ $data_shopmain = $shopmain->row();
 
         </div>
 
-        <div class="card" id="box_com" onclick="//checformadd('box_com')">
+        <div class="card" id="box_com" >
           <!-- Agent Issu -->  
           <div class="" id="show_payment_detail" style="">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">

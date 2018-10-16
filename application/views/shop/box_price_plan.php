@@ -165,11 +165,6 @@
     $('#price_plan_<?=$data['list_plan'][0]->id;?>').prop('checked',true);
     
   }
-  // else{
-  // // $('#price_plan').val('');
-  //    $('#box_com').addClass('borderBlink');
-  // }
-  // $('#' + tax).removeClass('borderBlink')
                 if (form.elements["plate_num_1"].value == 0) {
                     $('#box_car').addClass('borderBlink')
                     $('html, body').animate({
@@ -239,5 +234,5 @@
 
                 }
   console.log(chk)
-   }, 1000);
+   }, 700);
 </script>
