@@ -17,7 +17,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -39,7 +39,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#box_com";
             });
@@ -63,7 +63,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -76,7 +76,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#nation_box";
             });
@@ -89,7 +89,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                $("#box_com").focus()
+                
 
                 window.location.href = "#box_com";
             });
@@ -123,10 +123,10 @@ function checformadd(tax) {
 
         }
     }
-    if (tax == 'box_time') {
-        performClick('time_num')
-        // $('time_num').prop('selected', true);
-    }
+    // if (tax == 'box_time') {
+    //     performClick('time_num')
+    //     // $('time_num').prop('selected', true);
+    // }
 
 
 
@@ -152,7 +152,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#box_car";
                     });
@@ -165,7 +165,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#nation_box";
                     });
@@ -178,7 +178,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        $("#box_com").focus()
+                        
 
                         window.location.href = "#box_com";
                     });
@@ -199,8 +199,6 @@ function checformadd(tax) {
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                     $('#num_customer').removeClass('borderBlink')
                     if (form.elements["time_num"].value == 0) {
-
-                        console.log('99999999999999')
                         $('#child input').blur()
                         // $('#child').trigger('input');
                        // $('#child').blur();
@@ -238,7 +236,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_car";
         });
@@ -251,7 +249,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#nation_box";
         });
@@ -264,7 +262,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_com";
         });
@@ -329,7 +327,7 @@ function handleClick_s(tax, name) {
      $.post(url, function(res) {
         $('#box_price_plan').html(res);
         // console.log(data);
-        // $('#radio-nation'+name).prop('checked',true);
+        $('#radio-nation'+name).prop('checked',true);
     });
 
 
@@ -349,7 +347,7 @@ if (tax == 'box_com') {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#nation_box";
         });
@@ -362,13 +360,13 @@ if (tax == 'box_com') {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            // 
 
             window.location.href = "#nation_box";
         });
     }
     if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-        $('#box_com').addClass('borderBlink')
+        // $('#box_com').addClass('borderBlink')
         $('#num_customer').removeClass('borderBlink')
         console.log(this.hash)
 
@@ -376,7 +374,7 @@ if (tax == 'box_com') {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            $("#box_com").focus()
+            
 
             window.location.href = "#box_com";
         });
