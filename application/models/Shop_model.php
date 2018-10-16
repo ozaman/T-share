@@ -186,7 +186,7 @@ class Shop_model extends CI_Model {
 		$txt_short2 .= 'จำนวนแขก '.$_POST[adult].' คน';
 		
 		if ($_POST[remark] != '') {
-			$txt_short2 .= "\n".'หมายเหตุ '.$_POST[remark];
+			$txt_short2 .= "\n\n".'หมายเหตุ '.$_POST[remark];
 			# code...
 		}
 
