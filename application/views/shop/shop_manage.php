@@ -107,7 +107,7 @@
     ?>
     <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><?=$val[pax]." ";?><span>คน</span></a>
+            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=$val[pax]." ";?></span> คน</a>
             </div>
            
 

@@ -495,18 +495,18 @@ $('#'+tax).removeClass('borderBlink')
  }
 // ons-tab[page="shop_history.html"]
 
-function editBook(x, type) {
+function editBook(x) {
     console.log(x)
     
-    if(type=="adult"){
+   
 		$('#text_edit_persion').show();
 	    $('#btn_selectisedit').show();
 	    $('#num_edit_persion').show();
 	    $('#btn_isedit').hide();
 	    $('#isedit').hide();
 	    $('#num_edit_persion').css('display', 'inline-block');
-	    $('#num_edit_persion').focus();
-	}else{
+//	    $('#num_edit_persion').focus();
+	
 //		$('#text_edit_persion').show()
 	    $('#num_edit_child').show();
 	    $('#num_edit_child').focus();
@@ -516,13 +516,12 @@ function editBook(x, type) {
 	    $('#btn_selectisedit_child').show();
 //	    $('#num_edit_child').val($('#num_final_edit_child').text());
 	    
-	}
-    
+	
 }
 
-function saveeditBook(x, type) {
+function saveeditBook(x) {
     //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-    if(type=="child"){
+
 		$('#num_edit_child').hide();
 		$('#num_final_edit_child').show();
 		$('#btn_selectisedit_child').hide();
@@ -536,7 +535,7 @@ function saveeditBook(x, type) {
 	        console.log(data);
 	    });
 	    
-	}else{
+
 		var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
@@ -564,8 +563,9 @@ function saveeditBook(x, type) {
 			var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
 			$('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
 		}
-	}
-    
+
+    var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
+    $('#txt_mn_pax_'+x).text(pax_all);
 }
 
 var cancelShop = function() {
@@ -1588,7 +1588,7 @@ function btn_guest_receive(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
@@ -1616,7 +1616,7 @@ function btn_guest_register(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
@@ -1644,7 +1644,7 @@ function btn_driver_pay_report(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
