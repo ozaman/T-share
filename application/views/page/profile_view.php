@@ -431,7 +431,7 @@
 	</template>
 <script>
 //	console.log(new Date());
-	console.log(formatDate('<?=$driver->iddriving_finish;?>'));
+//	console.log(formatDate('<?=$driver->iddriving_finish;?>'));
 //	document.getElementById('ex_iddriving').value = ISO8601('<?=$driver->iddriving_finish;?>');
-//	document.getElementById('ex_iddriving').value = ISO8601(new Date());
+	document.getElementById('ex_iddriving').value = ISO8601(new Date('<?=$driver->iddriving_finish;?>'));
 </script>
