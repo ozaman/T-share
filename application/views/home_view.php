@@ -1277,33 +1277,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 </body>
 </html>
 <script>
-    var hideCustomDialog = function(id) {
-  document
-    .getElementById(id)
-    .hide();
-};
-    if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
-       /* $(window).load(function() {
-//            $("#load_material").fadeOut(500);
-			modal.hide();
-            setTimeout(function() {
-//            	alert(class_user);
-                sendTagIOS(class_user, username);
-                setCountNotification();
-            }, 1500);
-        });*/
-        $(window).on('load', function(){ 
-        	 $("#load_material").fadeOut(500);
-			modal.hide();
-            setTimeout(function() {
-//            	alert(class_user);
-                sendTagIOS(class_user, username);
-                setCountNotification();
-            }, 1500);
-        });
-    }
-</script>
-<script>
     if (detect_mb == "Android") {
         sendTagOs(class_user, username);
     }
@@ -1319,6 +1292,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     }
 </script>
 <script>
+	  var hideCustomDialog = function(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
     window.fn = {};
     window.fn.toggleMenu = function() {
         document.getElementById('appSplitter').left.toggle();
@@ -1475,23 +1453,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             });
         }
     };
-    var check_new_user = '<?=$_GET[check_new_user];?>';
-    var regis_linenoti = '<?=$_GET[regis];?>';
-//    console.log(regis_linenoti)
-//    console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-    //                                                alert(check_new_user);
-    if (check_new_user != "") {
-        $("#main_load_mod_popup").toggle();
-        var url_load = "load_page_mod.php?name=user&file=index&check_new_user=" + check_new_user;
-        $('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load);
-    }
-    if (regis_linenoti != "") {
-        $("#main_load_mod_popup").toggle();
-        var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
-        $('#load_mod_popup').html(load_main_mod);
-        $('#load_mod_popup').load(url_load);
-    }
+    
     function arrowChange(id){
     	var check = $('#'+id+' i').hasClass('fa-chevron-down');
     	console.log(id+' : '+check);
@@ -1533,3 +1495,39 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
+<script>
+	if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
+       /* $(window).load(function() {
+//            $("#load_material").fadeOut(500);
+			modal.hide();
+            setTimeout(function() {
+//            	alert(class_user);
+                sendTagIOS(class_user, username);
+                setCountNotification();
+            }, 1500);
+        });*/
+        $(window).on('load', function(){ 
+        	 $("#load_material").fadeOut(500);
+			modal.hide();
+            setTimeout(function() {
+//            	alert(class_user);
+                sendTagIOS(class_user, username);
+                setCountNotification();
+                
+                var check_new_user = '<?=$_GET[check_new_user];?>';
+			    var regis_linenoti = '<?=$_GET[regis];?>';
+				
+			    if (check_new_user != "") {
+			       profileInfo('lift-ios');
+			    }
+			    /*if (regis_linenoti != "") {
+			        $("#main_load_mod_popup").toggle();
+			        var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
+			        $('#load_mod_popup').html(load_main_mod);
+			        $('#load_mod_popup').load(url_load);
+			    }*/
+                
+            }, 1500);
+        });
+    }
+</script>
