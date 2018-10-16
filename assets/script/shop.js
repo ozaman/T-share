@@ -123,10 +123,78 @@ function checformadd(tax) {
 
         }
     }
-    // if (tax == 'box_time') {
-    //     performClick('time_num')
-    //     // $('time_num').prop('selected', true);
-    // }
+    if (tax == 'box_time') {
+        performClick('time_num')
+        if (form.elements["price_plan"].value > 0) {
+            $('#box_com').removeClass('borderBlink')
+        }
+        
+        if (form.elements["plate_num_1"].value == 0) {
+            $('#box_car').addClass('borderBlink')
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+            $('#nation_box').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#nation_box";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+            // $('#box_com').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#box_com').offset().top
+            }, 300, function() {
+
+                
+
+                window.location.href = "#box_com";
+            });
+        }
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+            $('#num_customer').addClass('borderBlink')
+            console.log(this.hash)
+
+            $('html, body').animate({
+                scrollTop: $('#num_customer').offset().top
+            }, 300, function() {
+
+                // $("#adult").focus()
+
+                window.location.href = "#num_customer";
+            });
+        } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+            if (form.elements["time_num"].value == 0) {
+                $('#box_time').addClass('borderBlink')
+                // $('#time_num').focus()
+            }
+            if (form.elements["time_num"].value != 0) {
+                $('#btn_submitadd').addClass('borderBlink')
+                window.location.href = "#btn_submitadd";
+
+            } else {
+                $('#box_time').removeClass('borderBlink')
+
+                $('#child').focusout();
+            }
+
+        }
+    }
 
 
 
