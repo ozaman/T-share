@@ -124,7 +124,7 @@ function checformadd(tax) {
         }
     }
     if (tax == 'box_time') {
-        performClick('time_num')
+        // performClick('time_num')
         if (form.elements["price_plan"].value > 0) {
             $('#box_com').removeClass('borderBlink')
         }
