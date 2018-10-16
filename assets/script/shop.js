@@ -1104,8 +1104,7 @@ var submitShop = function() {
 //     return weekDays;
 // }
 function saveShop() {
-	$('ons-tab[page="shop_manage.html"]').click();
-	return;
+
 // var weekDays = getWeekDays('en-US'); // Gives back { 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'} which are the days of the week in Dutch.
    // console.log(weekDays)
 
