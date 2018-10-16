@@ -184,7 +184,7 @@
   	?>
     <div id="map" ></div>
 	<div style="position: fixed;bottom: 15px;right: 0px;width:  auto;">
-	<div id="current_location" display="hidden" class="marker" style="display: nones;">
+	<div id="current_location" display="hidden" class="marker" style="display: none;">
 	  <div class="pin"></div>
 	  <div class="pin-effect"></div>
 	</div>
