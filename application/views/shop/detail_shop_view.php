@@ -97,7 +97,8 @@ else if($arr[book][status]=='CONFIRM'){
 	}else{
 		$display_person = "display:none";
 	}
-	$total_price_all = number_format($arr[book][price_park_unit] + $person_total,2);
+	$total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),2);
+	
 	if($arr[book][commission_persent] != 0){
 		$display_com = "";
 		$com_persent = $arr[book][commission_persent];
@@ -119,26 +120,35 @@ else if($arr[book][status]=='CONFIRM'){
 	       $num++;
 	       
 		   if($row_price->s_topic_en=="park"){
-				
+				$check_type_park = 1;
 		   }
 		   
 		   if($row_price->s_topic_en=="person"){
-				
+				$check_type_person= 1;
 		   }	
 		   
 		   if($row_price->s_topic_en=="comision"){
+		   		$check_type_com = 1;
 				if($arr[book][total_commission]>0){
 					
 				}
 		   }	
 	}
+	
+	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$arr[book][plan_id]."'    ";
+ 	$query_country = $this->db->query($sql_country);
+ 	$res_country = $query_country->row();
 ?>
+
 
 <script>
 	$('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
 	$('#header_clean').text('<?=$_POST[invoice];?>');
 	console.log('IOS : <?=$_GET[ios];?>');
 </script>
+<input type="hidden" value="<?=$check_type_person;?>" id="check_type_person" />
+<input type="hidden" value="<?=$check_type_park;?>" id="check_type_park"  />
+<input type="hidden" value="<?=$check_type_com;?>" id="check_type_com"  />
 
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
@@ -330,36 +340,52 @@ else if($arr[book][status]=='CONFIRM'){
 	<div style="padding: 5px 0px;">
      	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
+     		<input type="hidden" value="<?=$arr[book][price_person_unit];?>" id="val_person_unit" />
+     		<input type="hidden" value="<?=$arr[book][price_park_unit];?>" id="val_park_unit" />
+     		<input type="hidden" value="<?=$arr[book][commission_persent];?>" id="val_com_persent" />
      		<tr>
      			<td width="100"><span class="font-16">ประเภท</span></td>
-     			<td colspan="2"><span class="font-16"><?=$plan;?></span></td>
+     			<td colspan="2"><span class="font-16" id="txt_type_plan"><?=$plan;?></span></td>
+     		</tr>
+     		<tr>
+     			<td width="100"><span class="font-16">สัญชาติ</span></td>
+     			<td colspan="2">
+     				<table>
+     					<tr>
+     						<td>
+			     				<img src="assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
+			     			</td>
+			     			<td>&nbsp;</td>
+			     			<td><span class="font-16" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+     					</tr>
+     				</table>
+     			</td>
      		</tr>
      		<tr style="<?=$display_park;?>">
      			<td width="100"><span class="font-16">ค่าจอด</span></td>
-     			<td align="right"><span class="font-16"><?=$park_total;?></span></td>
-     			<td width="105"><span class="font-16">บาท</span></td>
+     			<td align="right"><span class="font-16" id="txt_park_total"><?=$park_total;?></span></td>
+     			<td width="90"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
      			<td width="100"><span class="font-16">ค่าหัว</span></td>
-     			<td align="right" =><span class="font-16"><?=$cal_person;?> = <?=$person_total;?></span></td>
-     			<td width="105"><span class="font-16">บาท</span></td>
+     			<td align="right"><span class="font-16" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
+     			<td width="90"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="100"><span class="font-16">ค่าคอม</span></td>
-     			<td align="right"><span class="font-16"><?=$com_persent;?> %</span>
+     			<td align="right"><span class="font-16" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
-                <td width="105">
-                	
+                <td width="90">
                 </td>
      		</tr>
      		<tr>
      			<td  width="100">รวม</td>
      			<td align="right">
-	     			<span class="16">
+	     			<span class="16" id="txt_all_total">
 	     				<?=$total_price_all;?>
 	     			</span>
      			</td>
-     			 <td width="105">
+     			 <td width="90">
      			 	<span class="font-16">บาท</span>
      			 </td>
      		</tr>

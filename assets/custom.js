@@ -1232,3 +1232,7 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 				});
                 
 }
+
+function numberWithCommas(x){
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
