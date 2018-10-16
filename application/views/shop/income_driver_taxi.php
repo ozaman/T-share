@@ -47,7 +47,8 @@
 		   }	
 	}
 	
-	$total = intval($row->price_person_total) + intval($row->price_park_total);
+	$person_total = number_format(intval($row->price_person_unit) * intval($row->adult),2);
+	$total_price_all = number_format($row->price_park_unit + (intval($row->price_person_unit) * intval($row->adult)),2);
 	
 	if($row->check_lab_pay==1){
 		
@@ -86,7 +87,7 @@
 	    	<span class="font-16 txt-center">ค่าหัว</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->pax;?> = <?=number_format($row->price_person_total,2);?> บาท</span>
+	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->adult;?> = <?=number_format($person_total,2);?> บาท</span>
 	    </div>
 	</ons-list-item>
 	
@@ -95,7 +96,7 @@
 	    	<span class="font-16 txt-center">ค่าจอด</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=number_format($row->price_park_total,2);?> บาท</span>
+	    	<span class="font-16"><?=number_format($row->price_park_unit,2);?> บาท</span>
 	    </div>
 	</ons-list-item>
 	
@@ -104,7 +105,7 @@
 	    	<span class="font-16 txt-center">ค่าคอม</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=$row->commission_persent." %";?> = 0.00 บาท</span>
+	    	<span class="font-16"><?=$row->commission_persent." %";?> = <span class="font-16 txt-warning">รอดำเนินการ</span></span>
 	    </div>
 	</ons-list-item>
 	
@@ -113,7 +114,7 @@
 	    	<span class="font-16 txt-center">รวม</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=number_format($total,2);?> บาท</span>
+	    	<span class="font-16"><?=$total_price_all;?> บาท</span>
 	    </div>
 	</ons-list-item>
 

@@ -70,6 +70,8 @@
 		$status_txt = '<span class="font-16 txt-red"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอดำเนินการ</span></span>';
 	}
 	
+	$person_total = number_format(intval($row->price_person_unit) * intval($row->adult),2);
+	$total_price_all = number_format($row->price_park_unit + (intval($row->price_person_unit) * intval($row->adult)),2);
 ?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />
@@ -89,7 +91,7 @@
 	    	<span class="font-16 txt-center">ค่าหัว</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->pax;?> = <?=number_format($row->price_person_total,2);?> บาท</span>
+	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->pax;?> = <?=$person_total;?> บาท</span>
 	    </div>
 	</ons-list-item>
 	
@@ -98,7 +100,7 @@
 	    	<span class="font-16 txt-center">ค่าจอด</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=number_format($row->price_park_total,2);?> บาท</span>
+	    	<span class="font-16"><?=number_format($row->price_park_unit,2);?> บาท</span>
 	    </div>
 	</ons-list-item>
 	
@@ -107,7 +109,7 @@
 	    	<span class="font-16 txt-center">ค่าคอม</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=$row->commission_persent." %";?> = 0.00 บาท</span>
+	    	<span class="font-16"><?=$row->commission_persent." %";?> = <span class="font-16 txt-warning">รอดำเนินการ</span></span>
 	    </div>
 	</ons-list-item>
 	
@@ -116,7 +118,7 @@
 	    	<span class="font-16 txt-center">รวม</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=number_format($total,2);?> บาท</span>
+	    	<span class="font-16"><?=$total_price_all;?> บาท</span>
 	    </div>
 	</ons-list-item>
 

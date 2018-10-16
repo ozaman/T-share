@@ -1,41 +1,10 @@
-function testNotiSend(){
-	 var txt_long_ac = "S00159 : HKT0153 เพิ่มรายการส่งแขก คิงส์ พาวเวอร์ (ภูเก็ต)";
-                var ac = {
-					/*i_type : 1,
-					i_sub_type : 1,
-					i_event : 170,
-					i_driver : detect_user,
-					s_topic : "งานส่งแขก",
-					s_message : txt_long_ac,
-					s_posted : username*/
-				};
-				
-				 var txt_long_nc = "S00159 : HKT0153 เพิ่มรายการส่งแขก คิงส์ พาวเวอร์ (ภูเก็ต)";
-				 var nc = {
-					i_type : 1,
-					i_event :	170,
-					i_user :	0,
-					s_class_user :	"lab",
-					s_topic : "งานส่งแขก",
-					s_sub_topic : "เช็คอิน",
-					s_message :	txt_long_nc,
-					s_posted :	username
-				 };
-				apiRecordActivityAndNotification(ac, nc);
-}
-
-function testSwp(){
-	fn.pushPage({
-        'id': 'test_swp.html',
-        'title': 'Test'
-    }, 'slide-ios');
-}
-
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
-	console.log(newURL);
+//	console.log(newURL);
 //	location.replace(reloadApp)
-	window.location = newURL;
+	var pathname = new URL(newURL).pathname;
+//return;
+	window.location = pathname;
 }
 
 function setCountNotification(){
