@@ -287,6 +287,17 @@ public function driver_complete(){
 	return $data;
 }
 
+public function editpax(){
+	$data['adult'] = $_GET[adult];
+	$data['child'] = $_GET[child];
+	$data['pax'] = intval($_GET[adult]) + intval($_GET[child]);
+
+	$this->db->where('id', $_GET[id]);
+	$data[result] = $this->db->update('order_booking', $data); 
+
+	return $data;
+}
+
 public function editadult(){
 	$data['adult'] = $_GET[num];
 

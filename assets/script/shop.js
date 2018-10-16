@@ -495,10 +495,10 @@ $('#'+tax).removeClass('borderBlink')
  }
 // ons-tab[page="shop_history.html"]
 
-function editBook(x, type) {
+function editBook(x) {
     console.log(x)
     
-    if(type=="adult"){
+   
 		$('#text_edit_persion').show();
 	    $('#btn_selectisedit').show();
 	    $('#num_edit_persion').show();
@@ -506,23 +506,22 @@ function editBook(x, type) {
 	    $('#isedit').hide();
 	    $('#num_edit_persion').css('display', 'inline-block');
 	    $('#num_edit_persion').focus();
-	}else{
+	
 //		$('#text_edit_persion').show()
 	    $('#num_edit_child').show();
-	    $('#num_edit_child').focus();
+//	    $('#num_edit_child').focus();
 	    $('#num_final_edit_child').hide();
 	    $('#btn_isedit_child').hide();
 	    
 	    $('#btn_selectisedit_child').show();
 //	    $('#num_edit_child').val($('#num_final_edit_child').text());
 	    
-	}
-    
+	
 }
 
-function saveeditBook(x, type) {
+function saveeditBook(x) {
     //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-    if(type=="child"){
+
 		$('#num_edit_child').hide();
 		$('#num_final_edit_child').show();
 		$('#btn_selectisedit_child').hide();
@@ -530,22 +529,25 @@ function saveeditBook(x, type) {
 		
 		var num_child = $('#num_edit_child').val();
 		$('#num_final_edit_child').text(num_child);
-		var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
+		/*var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
 	        console.log(data);
-	    });
+	    });*/
 	    
-	}else{
-		var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
+		/*var url_load = "shop/editadult" + "?num=" + $('#num_edit_persion').val() + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
 	        //$('#load_mod_popup').html(data);
 	        console.log(data);
+	    });*/
+	     number_persion_new = $('#num_edit_persion').val()
+	    var url_load = "shop/editpax" + "?adult=" + number_persion_new + "&id=" + x+"&child="+num_child;
+		$.post(url_load, function(data) {
+	        console.log(data);
 	    });
-
 	    $('#text_edit_persion').hide()
-	    number_persion_new = $('#num_edit_persion').val()
+	   
 	    $('#num_final_edit').html(number_persion_new)
 	    console.log(x)
 	    $('#btn_selectisedit').hide()
@@ -564,8 +566,9 @@ function saveeditBook(x, type) {
 			var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
 			$('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
 		}
-	}
-    
+
+    var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
+    $('#txt_mn_pax_'+x).text(pax_all);
 }
 
 var cancelShop = function() {
@@ -1588,7 +1591,7 @@ function btn_guest_receive(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
@@ -1616,7 +1619,7 @@ function btn_guest_register(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
@@ -1644,7 +1647,7 @@ function btn_driver_pay_report(id) {
     }
     if (class_user == "taxi") {
         ons.notification.alert({
-            message: 'พนักงานเป็นคนยืนยันเท่านั้น',
+            message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })

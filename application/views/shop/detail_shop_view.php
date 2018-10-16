@@ -233,7 +233,22 @@ else if($arr[book][status]=='CONFIRM'){
          <td class="font-16"> <?=$arr[book][airout_h];?>:<?=str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
       </tr>
       <tr>
-         <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font></td>
+         <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font>
+         <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 3px;
+/*    font-size: 3px !important;*/
+    border-radius: 8px;display: inline-block;" id="btn_isedit">
+		<span class="font-14 text-cap">แก้ไข</span>
+	</span>
+	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 3px;
+/*    font-size: 3px !important;*/
+    border-radius: 8px;display: none;" id="btn_selectisedit">
+		<span class="font-14 text-cap">บันทึก</span>
+	</span>
+         </td>
         <td class="font-16" style="padding: 0 !important;" >
             <table width="100%">
             	<tr>
@@ -262,7 +277,7 @@ else if($arr[book][status]=='CONFIRM'){
         				
         			</td>
         			
-        			<td>
+        			<!--<td>
         				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>','adult');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
@@ -277,7 +292,7 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 8px;display: none;" id="btn_selectisedit">
 		<span class="font-16 text-cap">บันทึก</span>
 	</span>
-        			</td>
+        			</td>-->
         		</tr>
 
         		<tr>
@@ -291,7 +306,7 @@ else if($arr[book][status]=='CONFIRM'){
 /*    margin: auto;*/
     display: none;" value="<?=$arr[book][child];?>" >	
         			</td>
-        			<td width="60">
+        			<!--<td width="60">
         				<span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>','child');" style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
@@ -306,7 +321,7 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 8px;display: none;" id="btn_selectisedit_child">
 		<span class="font-16 text-cap">บันทึก</span>
 	</span>
-        			</td>
+        			</td>-->
         		</tr>
      	
             	<tr>
