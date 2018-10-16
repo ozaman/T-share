@@ -1610,7 +1610,7 @@ function btn_driver_pay_report(id) {
 /******* <!-------- function run page ------------> *******/
 
 function shopManage(){
-    $('#shop_manage').html(progress_circle);
+//    $('#shop_manage').html(progress_circle);
     var obj = array_data;
     var url = "page/shop_manage";
 
