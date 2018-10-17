@@ -138,6 +138,14 @@ else if($arr[book][status]=='CONFIRM'){
 	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$arr[book][plan_id]."'    ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
+ 	
+ 		$minutes_to_add = $val[airout_m];
+//        echo $minutes_to_add." ++";
+        $time_c = date('H:i',$arr[book][update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+        $time = new DateTime($time_c);
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+        
+        $stamp = $time->format('H:i');
 ?>
 
 
@@ -230,7 +238,7 @@ else if($arr[book][status]=='CONFIRM'){
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
-         <td class="font-16"> <?=$arr[book][airout_h];?>:<?=str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
+         <td class="font-16"><?=$stamp." น.";?></td>
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font>

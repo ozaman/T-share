@@ -75,6 +75,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	  }else{
 	  		username = username.toUpperCase();
 	  }
+	  var get_order_id = '<?=$_GET[order_id];?>';
+        var status = '<?=$_GET[status];?>';
+        var open_ic = '<?=$_GET[open_ic];?>';
 var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
   +'<circle class="progress-circular__background"/>'
   +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
@@ -1276,12 +1279,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <input type="hidden" id="lng" value="0" />
 </body>
 </html>
-<script>
-    if (detect_mb == "Android") {
-        sendTagOs(class_user, username);
-    }
-    
-</script>
+
 <script>
 	  var hideCustomDialog = function(id) {
   document
@@ -1521,4 +1519,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             }, 1500);
         });
     }
+</script>
+<script>
+    if (detect_mb == "Android") {
+        sendTagOs(class_user, username);
+    }
+    
 </script>

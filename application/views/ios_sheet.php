@@ -34,7 +34,7 @@
 	</ons-modal>
 	<script>
 		var modal = document.querySelector('ons-modal');
-		modal.show();
+//		modal.show();
 		var today = "<?=date('Y-m-d');?>";
 		var base_url = "<?=base_url();?>";
 		var detect_user = $.cookie("detect_user");

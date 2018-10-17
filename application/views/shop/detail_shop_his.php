@@ -80,6 +80,13 @@ else if($arr[book][status]=='CONFIRM'){
 	}else{
 		$display_com = "display:none";
 	}
+	$minutes_to_add = $val[airout_m];
+//        echo $minutes_to_add." ++";
+        $time_c = date('H:i',$arr[book][update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+        $time = new DateTime($time_c);
+//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+        
+        $stamp = $time->format('H:i');
 ?>
 
 <script>
@@ -178,7 +185,7 @@ else if($arr[book][status]=='CONFIRM'){
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
-         <td class="font-16"> <?=$arr[book][airout_h];?>:<?=str_pad($arr[book][airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></td>
+        <td class="font-16"><?=$stamp." น.";?></td>
       </tr>
       <tr>
          <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font></td>

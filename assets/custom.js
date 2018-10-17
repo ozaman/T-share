@@ -1,3 +1,5 @@
+
+
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
 //	console.log(newURL);
@@ -484,10 +486,11 @@ socket.on('getbookinglab', function(data) {
     if (frist_socket == true) {
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
-        var get_order_id = url.searchParams.get("order_id");
-        //        var get_order_id = "<?=$_GET['order_id'];?>";
-        var status = url.searchParams.get("status");
-        var open_ic = url.searchParams.get("open_ic");;
+        
+//        var get_order_id = url.searchParams.get("order_id");
+//        var status = url.searchParams.get("status");
+//        var open_ic = url.searchParams.get("open_ic");
+		
         if (get_order_id != "") {
             if (status == "his") {
                 openOrderFromAndroidHistory(get_order_id, status, open_ic);
@@ -499,7 +502,12 @@ socket.on('getbookinglab', function(data) {
                         console.log(value.id + " : " + index);
                         $('#check_open_num_detail').val(index)
                         $('#check_open_shop_id').val(value.id);
-                        openDetailShop(index, 'ios');
+                         if (detect_mb == "Android"){
+						 	var type_m = "android";
+						 }else{
+						 	var type_m = "android";
+						 }
+                        openDetailShop(index, type_m);
                     }
                 });
             }
@@ -631,6 +639,7 @@ function formatTime(date) {
 }
 
 function openOrderFromAndroid(id, status, open_ic) {
+//	modal.show();
 //	alert(status)
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     if (status == "his") {
@@ -659,6 +668,7 @@ function openOrderFromAndroid(id, status, open_ic) {
                     });*/
                     openDetailShop(index, 'android');
                     $('#check_open_shop_id').val(value.id);
+//                    modal.hide();
                 }
             });
 

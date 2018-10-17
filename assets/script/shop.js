@@ -1040,7 +1040,7 @@ function openDetailShop(key, type) {
 	}
     
     console.log(detailObj);
-    var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
+    var url = "shop/detail_shop" + "?user_id=" + detect_user;
     $.post(url, detailObj, function(data) {
         $('#body_popup1').html(data);
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
@@ -1067,7 +1067,7 @@ function openDetailShop(key, type) {
         checkPhotoCheckIn('guest_receive', obj.id);
         checkPhotoCheckIn('guest_register', obj.id);
         checkPhotoCheckIn('driver_pay_report', obj.id);
-        if(type=="sheet"){
+        if(type=="ios"){
 			modal.hide();
 		}
     });
