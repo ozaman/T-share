@@ -1032,12 +1032,12 @@ function saveShop() {
 function openDetailShop(key, type) {
     var detailObj = array_data.manage[key];
     if(type!="sheet"){
-		fn.pushPage({
-        'id': 'popup1.html',
-        'title': detailObj.invoice
-    }, 'slide-ios');
+			fn.pushPage({
+	        'id': 'popup1.html',
+	        'title': detailObj.invoice
+	    }, 'slide-ios');
 	}
-   
+    
     console.log(detailObj);
     var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
     $.post(url, detailObj, function(data) {
@@ -1066,6 +1066,9 @@ function openDetailShop(key, type) {
         checkPhotoCheckIn('guest_receive', obj.id);
         checkPhotoCheckIn('guest_register', obj.id);
         checkPhotoCheckIn('driver_pay_report', obj.id);
+        if(type=="sheet"){
+			modal.hide();
+		}
     });
     $('#check_open_shop_id').val(detailObj.id);
 }
@@ -1454,7 +1457,7 @@ function sendCheckIn(id, type) {
             $('#' + type + '_check_click').val(1)
 //            console.log("+++++++++++++++++----------------------------- "+timestampToDate(res.time, "time"));
             changeHtml(type, id, timestampToDate(res.time, "time"));
-
+			
 //            var message = "";
 //            socket.emit('sendchat', message);
 sendSocket(id);

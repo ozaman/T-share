@@ -28,7 +28,7 @@ class Send_onesignal_model extends CI_Model {
 //								array("field" => "tag", "key" => "username", "relation" => "=", "value" => "HKT0153")
 								),
 			'data' => array("order_id" => $order_id, "status" => "manage" ),
-			'url' => "https://www.welovetaxi.com/app/demo_new2/index_sheet.php?name=index&file=open_order&order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1",
 			'contents' => $content,
 			'headings' => $heading,
 			'ios_badgeType' => 'Increase',

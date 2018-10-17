@@ -25,7 +25,16 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
 	<body>
+	<ons-modal direction="up">
+	    <div style="text-align: center;">
+	        <p sty>
+	            <ons-icon icon="md-spinner" size="25px" spin></ons-icon> <span size="18px">Loading...</span>
+	        </p>
+	    </div>
+	</ons-modal>
 	<script>
+		var modal = document.querySelector('ons-modal');
+		modal.show();
 		var today = "<?=date('Y-m-d');?>";
 		var base_url = "<?=base_url();?>";
 		var detect_user = $.cookie("detect_user");
