@@ -21,6 +21,7 @@ class Shop extends CI_Controller {
 	}	
 
 	public function detail_shop(){
+//		echo 555;
 		$this->load->view('shop/detail_shop_view');
 	}	
 	

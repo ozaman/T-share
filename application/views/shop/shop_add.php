@@ -516,7 +516,7 @@ $data_shopmain = $shopmain->row();
 
               </div>
             </form>
-            <div  style="padding: 0px 10px;margin-bottom: 10px;">
+            <div  style="padding: 0px 10px;padding-bottom: 40px;">
               <?php 
               if(count($val) != 0){
       // echo count($val);

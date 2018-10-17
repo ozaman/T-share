@@ -1031,10 +1031,13 @@ function saveShop() {
 
 function openDetailShop(key, type) {
     var detailObj = array_data.manage[key];
-    fn.pushPage({
+    if(type!="sheet"){
+		fn.pushPage({
         'id': 'popup1.html',
         'title': detailObj.invoice
     }, 'slide-ios');
+	}
+   
     console.log(detailObj);
     var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
     $.post(url, detailObj, function(data) {
@@ -1371,7 +1374,7 @@ $('#body_popup2').html(ele);
 /******* <!-------- Change html CheckIn ------------> *******/
 
 function changeHtml(type, id, st) {
-
+//	new Date(unixtimestamp*1000);
     $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
     $('#iconchk_' + type).attr("src", "assets/images/yes.png");
     $("#number_" + type).removeClass('step-booking');
@@ -1449,6 +1452,7 @@ function sendCheckIn(id, type) {
         modal.hide();
         if (res.result == true) {
             $('#' + type + '_check_click').val(1)
+//            console.log("+++++++++++++++++----------------------------- "+timestampToDate(res.time, "time"));
             changeHtml(type, id, timestampToDate(res.time, "time"));
 
 //            var message = "";

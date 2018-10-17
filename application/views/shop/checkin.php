@@ -9,7 +9,7 @@
                <td width="50" rowspan="2">
                   <div class="step-booking" id="number_driver_topoint">1</div>
                   <div style="position:absolute; margin-top:-40px; margin-left: -5px;">
-                     <img src="assets/images/no.png" align="absmiddle" id="iconchk_driver_topoint">
+                     <img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_topoint">
                   </div>
                </td>
                <td colspan="2">
@@ -60,7 +60,7 @@
                         <tr>
                            <td width="50" rowspan="2">
                               <div class="step-booking" id="number_guest_receive">2</div>
-                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="assets/images/no.png" align="absmiddle" id="iconchk_guest_receive"></div>
+                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_receive"></div>
                            </td>
                            <td colspan="2">
                               <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>  พนักงานรับแขก</span></button>
@@ -104,7 +104,7 @@
                         <tr>
                            <td width="50" rowspan="2">
                               <div class="step-booking" id="number_guest_register">3</div>
-                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="assets/images/no.png" align="absmiddle" id="iconchk_guest_register"></div>
+                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_register"></div>
                            </td>
                            <td colspan="2"><button id="btn_guest_register" onclick="btn_guest_register('<?=$arr[book][id];?>')" type="button" class="btns  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"></i>แขกลงทะเบียน</span></button></td>
                         </tr>
@@ -146,7 +146,7 @@
                         <tr>
                            <td width="50" rowspan="2">
                               <div class="step-booking" id="number_driver_pay_report">4</div>
-                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="assets/images/no.png" align="absmiddle" id="iconchk_driver_pay_report"></div>
+                              <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pay_report"></div>
                            </td>
                            <td colspan="2">
                               <button id="btn_driver_pay_report" onclick="btn_driver_pay_report('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> แจ้งยอดรายได้</span></button>

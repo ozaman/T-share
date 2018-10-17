@@ -172,7 +172,7 @@ else if($arr[book][status]=='CONFIRM'){
       
       <tr>
          <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left; padding:2px; padding-left:5px; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('<?=$res_ps->id;?>');">
+            <div class="btn  btn-default" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('<?=$res_ps->id;?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -184,11 +184,11 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left" style="padding: 0px;" >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('<?=$res_ps->id;?>');">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('<?=$res_ps->id;?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="assets/images/social/zello.png" width="30" height="30" alt=""/> </td>
+                        <td align="center" width="30"><img src="<?=base_url();?>assets/images/social/zello.png" width="30" height="30" alt=""/> </td>
                         <td align="center" class="font-22">
                            <b>Zello</b>
                         </td>
@@ -198,11 +198,11 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  padding:2px;height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$res_ps->id;?>');">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$res_ps->id;?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="assets/images/social/map.png" width="30" height="30" alt=""/></td>
+                        <td align="center" width="30"><img src="<?=base_url();?>assets/images/social/map.png" width="30" height="30" alt=""/></td>
                         <td align="center" class="font-22"><b><?=t_maps;?></b></td>
                      </tr>
                   </tbody>
@@ -331,7 +331,7 @@ else if($arr[book][status]=='CONFIRM'){
 		            		<table>
 		            			<tr>
 		            				<td width="20"><span class="font-16">จีน</span></td>
-		            				<td width=""><img src="assets/images/flag/China.png" width="25" height="25" alt=""></td>
+		            				<td width=""><img src="<?=base_url();?>assets/images/flag/China.png" width="25" height="25" alt=""></td>
 		            			</tr>
 		            		</table>
 	            		</td>
@@ -342,7 +342,7 @@ else if($arr[book][status]=='CONFIRM'){
 		            		<table>
 		            			<tr>
 		            				<td width="20"><span class="font-16">ต่างชาติ</span></td>
-		            				<td width=""><img src="assets/images/flag/Other.png" width="25" height="25" alt=""></td>
+		            				<td width=""><img src="<?=base_url();?>assets/images/flag/Other.png" width="25" height="25" alt=""></td>
 		            			</tr>
 		            		</table>
 	            		</td>
@@ -372,7 +372,7 @@ else if($arr[book][status]=='CONFIRM'){
      				<table>
      					<tr>
      						<td>
-			     				<img src="assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
+			     				<img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
 			     			</td>
 			     			<td>&nbsp;</td>
 			     			<td><span class="font-16" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
@@ -383,18 +383,18 @@ else if($arr[book][status]=='CONFIRM'){
      		<tr style="<?=$display_park;?>">
      			<td width="100"><span class="font-16">ค่าจอด</span></td>
      			<td align="right"><span class="font-16" id="txt_park_total"><?=$park_total;?></span></td>
-     			<td width="90"><span class="font-16">บาท</span></td>
+     			<td width="15%"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
      			<td width="100"><span class="font-16">ค่าหัว</span></td>
      			<td align="right"><span class="font-16" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
-     			<td width="90"><span class="font-16">บาท</span></td>
+     			<td width="15%"><span class="font-16">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="100"><span class="font-16">ค่าคอม</span></td>
      			<td align="right"><span class="font-16" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
-                <td width="90">
+                <td width="15%">
                 </td>
      		</tr>
      		<tr>
