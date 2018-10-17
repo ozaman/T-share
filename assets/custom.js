@@ -497,7 +497,7 @@ socket.on('getbookinglab', function(data) {
                         console.log(value.id + " : " + index);
                         $('#check_open_num_detail').val(index)
                         $('#check_open_shop_id').val(value.id);
-                        openDetailShop(index, 'sheet');
+                        openDetailShop(index, 'ios');
                     }
                 });
             }
@@ -629,27 +629,23 @@ function formatTime(date) {
 }
 
 function openOrderFromAndroid(id, status, open_ic) {
+	
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     if (status == "his") {
         openOrderFromAndroidHistory(id, status, open_ic)
     } else {
         var check_open_shop_id = $('#check_open_shop_id').val();
-        if (check_open_shop_id <= 0) {
+        if(check_open_shop_id==id){
+			return;
+		}
+
             $.each(array_data.manage, function(index, value) {
+//            	alert(id);
                 if (value.id == id) {
-                    /*$('#main_load_mod_popup_6').show();
-                    var url_load= "load_page_mod_6.php?name=booking/shop_history&file=work_shop_detail_js&user_id=<?=$user_id;?>";
-                    console.log(url_load);
-                    $('#text_mod_topic_action_6').html("เลขที่ "+value.invoice);
-                    $('#load_mod_popup_6').html(load_main_mod);
-                    $.post(url_load,value,function(data){
-                    $('#load_mod_popup_6').html(data);
-                    $('#btn_cancel_book_'+value.id).css('top','60px');
-                    $('.assas_'+value.id).css('margin-top','30px');
-                });*/
+					
                     console.log(value.id + " : " + index);
                     $('#check_open_num_detail').val(index)
-                    var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
+                    /*var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
                     $.post(url, value, function(data) {
                         $('#load_mod_popup_clean').html(data);
                         $('#main_load_mod_popup_clean').show();
@@ -657,34 +653,29 @@ function openOrderFromAndroid(id, status, open_ic) {
                             openViewPrice();
                             console.log('Open Income')
                         }
-                    });
+                    });*/
+                    openDetailShop(index, 'android');
                     $('#check_open_shop_id').val(value.id);
                 }
             });
-        }
+
     }
 }
 
 function openOrderFromAndroidHistory(id, status, open_ic) {
     //    alert(id);
-    $.post("mod/booking/shop_history/php_shop.php?query=history_by_order&order_id=" + id, function(data) {
-        console.log(data);
-        var value = data.data[0];
-        var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
-        console.log(url);
-        $.post(url, value, function(data) {
-            $('#load_mod_popup_clean').html(data);
-            $('#main_load_mod_popup_clean').show();
-            $('#btn_cancel_book_' + value.id).css('top', 'unset');
-            //                   $('.assas_'+value.id).css('margin-top','0px');
-            $("#load_material").fadeOut();
-            if (open_ic == '1') {
-                openViewPrice();
-                console.log('Open Income')
-            }
-        });
-    });
+     $.ajax({
+        url: "shop/findInvoice?id="+id,
+        dataType: 'json',
+        type: 'post',
+        success: function(res) {
+        	console.log(res);
+        	openDetailBookinghistory('', '', res.invoice);
+        	}
+		});
+    
 }
+
 getTansferJobNumber(detect_user, today);
 
 function getTansferJobNumber(driver, date) {

@@ -1030,8 +1030,9 @@ function saveShop() {
 }
 
 function openDetailShop(key, type) {
+	alert(key);
     var detailObj = array_data.manage[key];
-    if(type!="sheet"){
+    if(type!="ios"){
 			fn.pushPage({
 	        'id': 'popup1.html',
 	        'title': detailObj.invoice

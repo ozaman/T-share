@@ -714,7 +714,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <template id="popup1.html">
         <ons-page>
             <ons-toolbar>
-                <div class="left">
+                <div class="left" onclick="$('#check_open_shop_id').val(0);">
                     <ons-back-button>กลับ</ons-back-button>
                 </div>
                 <div class="center"></div>

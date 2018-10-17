@@ -331,7 +331,7 @@ class Send_onesignal_model extends CI_Model {
 		$order_id = $_GET[id];
   		$type_txt = "พนักงานทำการแจ้งยอดรายได้แล้ว";
       	$tag =  array(
-								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $arr[dv][username])
+								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);
 		$content  = array(
         "en" => "ขณะนี้ ".$type_txt

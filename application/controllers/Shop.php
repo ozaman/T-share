@@ -190,8 +190,10 @@ class Shop extends CI_Controller {
 //			header('Content-Type: application/json');
 			echo json_encode($data['res']);
 		}
+		public function findInvoice(){
+			$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[id]), array('invoice'));
+			echo json_encode($data['book']);
+		}
+	
 	}
-
-
-
-	?>
+?>
