@@ -105,10 +105,21 @@ class Send_onesignal_model extends CI_Model {
 	$query = $this->db->query($sql);
 	$res_qr = $query->row();
 	$invoice = $res_qr->invoice;
-	$type_txt = $res_qr->car_plate." ทำการยกเลิกรายการนี้แล้ว กรุณาตรวจสอบ";
+//	$type_txt = $res_qr->car_plate." ทำการยกเลิกรายการนี้แล้ว กรุณาตรวจสอบ";
+	if($_GET[class_user]=="taxi"){
+		$cl = "คนขับแท็กซี่";
+	}else{
+		$cl = "พนักงาน";
+	}
+	$type_txt = "รายการส่งแขกนี้ถูกยกเลิกแล้ว กรุณาตรวจสอบ ยกเลิกโดย ".$cl;
 	
+		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_qr->drivername."' ";
+ 		$query_dv = $this->db->query($sql_dv);
+ 		$res_dv = $query_dv->row();
+ 		
     	$tag = array(
-								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab")
+								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab") ,array("operator" => "OR"), 
+								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);
 		$content  = array(
         "en" => "ทะเบียน ".$type_txt

@@ -1321,8 +1321,8 @@ shopManage();
 }, 1000);
                     });
                     $('#btn_cancel_book_' + order_id).hide();
-
-                    var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id;
+					
+                    var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id+"&class_user="+class_user;
                     $.post(url_messages, function(res) {
                         console.log(res)
                     });

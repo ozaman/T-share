@@ -1280,16 +1280,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     if (detect_mb == "Android") {
         sendTagOs(class_user, username);
     }
-    function sendTagOs(txt, username) {
-        if (typeof Android !== 'undefined') {
-            Android.sendTag(txt, username);
-        }
-    }
-    function deleteTagOs(txt) {
-        if (typeof Android !== 'undefined') {
-            Android.deleteTag(txt);
-        }
-    }
+    
 </script>
 <script>
 	  var hideCustomDialog = function(id) {

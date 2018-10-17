@@ -257,6 +257,7 @@ function createSignOut() {
 }
 
 function logOut() {
+	modal.show();
     $('#signout-alert-dialog').hide();
     /*$.removeCookie('detect_user', {
         path: '/'
@@ -280,7 +281,8 @@ function logOut() {
     clearCookieAll();
     deleteTagOs("Test Text");
     deleteTagIOS(class_user, username);
-    window.location = "../TShare_new/material/login/index.php";    
+        
+    setTimeout(function(){ window.location = "../TShare_new/material/login/index.php"; }, 2000);
 }
 
 function openNotifyline() {
@@ -629,9 +631,10 @@ function formatTime(date) {
 }
 
 function openOrderFromAndroid(id, status, open_ic) {
-	
+//	alert(status)
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     if (status == "his") {
+    	
         openOrderFromAndroidHistory(id, status, open_ic)
     } else {
         var check_open_shop_id = $('#check_open_shop_id').val();
@@ -663,7 +666,7 @@ function openOrderFromAndroid(id, status, open_ic) {
 }
 
 function openOrderFromAndroidHistory(id, status, open_ic) {
-    //    alert(id);
+//        alert(id);
      $.ajax({
         url: "shop/findInvoice?id="+id,
         dataType: 'json',
@@ -1191,4 +1194,15 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 
 function numberWithCommas(x){
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function sendTagOs(txt, username) {
+        if (typeof Android !== 'undefined') {
+            Android.sendTag(txt, username);
+        }
+    }
+function deleteTagOs(txt) {
+        if (typeof Android !== 'undefined') {
+            Android.deleteTag(txt);
+        }
 }
