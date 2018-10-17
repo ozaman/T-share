@@ -129,6 +129,7 @@ $data_shopmain = $shopmain->row();
 
           </script>
           <input value="" id="car_id" name="check_use_car_id" type="hidden" />
+          
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
               <td width="110">
@@ -153,7 +154,7 @@ $data_shopmain = $shopmain->row();
               </td>
             </tr>
             <tr>
-              <td colspan="2" align="center">
+              <td colspan="2" align="center" style="    padding-top: 10px">
                 <span class="font-17" style="color: #2b2828;">วันนี้  
                   <span id="date_open"></span> 
                   <span id="time_open" style="color: #24b968;">  </span>
@@ -169,6 +170,51 @@ $data_shopmain = $shopmain->row();
               </td> -->
             </tr>
           </table>
+		  <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
+   <tbody>
+      
+      <tr>
+         <td width="33%" align="left" style="padding: 0px;" >
+            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone"  onclick="openContact('<?=$data_place->id;?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
+                        <td align="center" class="font-22"><b><?=t_call;?></b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left" style="padding: 0px;" >
+            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('<?=$data_place->id;?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="<?=base_url();?>assets/images/social/zello.png" width="30" height="30" alt=""/> </td>
+                        <td align="center" class="font-22">
+                           <b>Zello</b>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left"  style="padding: 0px;"  >
+            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$data_place->id;?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="<?=base_url();?>assets/images/social/map.png" width="30" height="30" alt=""/></td>
+                        <td align="center" class="font-22"><b><?=t_maps;?></b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+	</table>
         </div>
         <?php 
         if (1==1) {
