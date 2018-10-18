@@ -107,7 +107,7 @@
     ?>
     <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=$val[pax]." ";?></span> คน </a>
+            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=intval($val[adult])+intval($val[child])." ";?></span> คน </a>
             </div>
            
 
@@ -118,11 +118,11 @@
           	<td><div class="font-17">
           	<?php 
           	if($val[adult]>0){ ?>
-          	ผู้ใหญ่ : <span id="txt_mn_adult"><?=$val[adult];?></span> 
+          	ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
           	<? } ?>
           	<?php 
           	if($val[child]>0){ ?>
-			เด็ก : <span id="txt_mn_child"><?=$val[child];?></span></div></td>	
+			เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span></div></td>	
 			<? }
           	?>
           	
@@ -188,7 +188,7 @@
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
 			 <? 
 				}else{ ?>
-		<div style="padding-left: 0px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับจากพนักงาน</font></div>
+		<div style="padding-left: 30px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
 <?				}
 			 }
              ?>

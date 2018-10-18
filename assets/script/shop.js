@@ -564,6 +564,9 @@ function saveeditBook(x) {
 
  var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
  $('#txt_mn_pax_'+x).text(pax_all);
+ 
+ $('#txt_mn_adult_'+x).text(number_persion_new);
+ $('#txt_mn_child_'+x).text(num_child);
 }
 
 var cancelShop = function() {

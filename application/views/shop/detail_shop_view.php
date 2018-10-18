@@ -33,14 +33,15 @@ function checkTypePay($id){
  $query_od = $this->db->query($sql_od);
  $res_od = $query_od->row();
  
-  $sql_ps = "SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ";
+  $sql_ps = "SELECT ".$place_shopping.",id,province FROM shopping_product  WHERE id='".$arr[book][program]."' ";
  $query_ps = $this->db->query($sql_ps);
  $res_ps = $query_ps->row();
 
-$sql_pv = "SELECT name FROM web_province  WHERE id=".$data_place->province." ";
+$sql_pv = "SELECT name FROM web_province  WHERE id=".$res_ps->province." ";
 $query_pv = $this->db->query($sql_pv);
 $data_pv = $query_pv->row();
-
+/*echo $arr[book][province];
+exit();*/
 
  $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
  $query_dv = $this->db->query($sql_dv);
@@ -232,21 +233,21 @@ else if($arr[book][status]=='CONFIRM'){
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
    		<tbody>
    		<tr>
-	      <td width="100" class="font-16 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-	      <td class="font-16"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
+	      <td width="110" class="font-17 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
+	      <td class="font-17"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
    		</tr>
    		</tbody>
 		<tbody>
       <tr>
-         <td class="font-16 text-cap"><font color="#333333"><?=t_date;?></font></td>
-         <td class="font-16"><span id="date_trans"></span></td>
+         <td class="font-17 text-cap"><font color="#333333"><?=t_date;?></font></td>
+         <td class="font-17"><span id="date_trans"></span></td>
       </tr>
       <tr>
-         <td class="font-16 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
-         <td class="font-16"><?=$stamp." น.";?></td>
+         <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
+         <td class="font-17"><?=$stamp." น.";?></td>
       </tr>
       <tr>
-         <td class="font-16 text-cap"><font color="#333333"><?=t_number;?></font>
+         <td class="font-17 text-cap"><font color="#333333"><?=t_number;?></font>
          <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 3px;
@@ -262,7 +263,7 @@ else if($arr[book][status]=='CONFIRM'){
 		<span class="font-14 text-cap">บันทึก</span>
 	</span>
          </td>
-        <td class="font-16" style="padding: 0 !important;" >
+        <td class="font-17" style="padding: 0 !important;" >
             <table width="100%">
             	<tr>
         			<td>	
@@ -296,14 +297,14 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: inline-block;" id="btn_isedit">
-		<span class="font-16 text-cap">แก้ไข</span>
+		<span class="font-17 text-cap">แก้ไข</span>
 	</span>
 	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: none;" id="btn_selectisedit">
-		<span class="font-16 text-cap">บันทึก</span>
+		<span class="font-17 text-cap">บันทึก</span>
 	</span>
         			</td>-->
         		</tr>
@@ -325,14 +326,14 @@ else if($arr[book][status]=='CONFIRM'){
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: inline-block;" id="btn_isedit_child">
-		<span class="font-16 text-cap">แก้ไข</span>
+		<span class="font-17 text-cap">แก้ไข</span>
 	</span>
 	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>','child');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;display: none;" id="btn_selectisedit_child">
-		<span class="font-16 text-cap">บันทึก</span>
+		<span class="font-17 text-cap">บันทึก</span>
 	</span>
         			</td>-->
         		</tr>
@@ -343,7 +344,7 @@ else if($arr[book][status]=='CONFIRM'){
 						<td style="padding: 0 !important;">
 		            		<table>
 		            			<tr>
-		            				<td width="20"><span class="font-16">จีน</span></td>
+		            				<td width="20"><span class="font-17">จีน</span></td>
 		            				<td width=""><img src="<?=base_url();?>assets/images/flag/China.png" width="25" height="25" alt=""></td>
 		            			</tr>
 		            		</table>
@@ -354,7 +355,7 @@ else if($arr[book][status]=='CONFIRM'){
 						<td style="padding: 0 !important;">
 		            		<table>
 		            			<tr>
-		            				<td width="20"><span class="font-16">ต่างชาติ</span></td>
+		            				<td width="20"><span class="font-17">ต่างชาติ</span></td>
 		            				<td width=""><img src="<?=base_url();?>assets/images/flag/Other.png" width="25" height="25" alt=""></td>
 		            			</tr>
 		            		</table>
@@ -376,11 +377,11 @@ else if($arr[book][status]=='CONFIRM'){
      		<input type="hidden" value="<?=$arr[book][price_park_unit];?>" id="val_park_unit" />
      		<input type="hidden" value="<?=$arr[book][commission_persent];?>" id="val_com_persent" />
      		<tr>
-     			<td width="100"><span class="font-16">ประเภท</span></td>
-     			<td colspan="2"><span class="font-16" id="txt_type_plan"><?=$plan;?></span></td>
+     			<td width="110"><span class="font-17">ประเภท</span></td>
+     			<td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
      		</tr>
      		<tr>
-     			<td width="100"><span class="font-16">สัญชาติ</span></td>
+     			<td width="110"><span class="font-17">สัญชาติ</span></td>
      			<td colspan="2">
      				<table>
      					<tr>
@@ -388,37 +389,37 @@ else if($arr[book][status]=='CONFIRM'){
 			     				<img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
 			     			</td>
 			     			<td>&nbsp;</td>
-			     			<td><span class="font-16" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+			     			<td><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
      					</tr>
      				</table>
      			</td>
      		</tr>
      		<tr style="<?=$display_park;?>">
-     			<td width="100"><span class="font-16">ค่าจอด</span></td>
-     			<td align="right"><span class="font-16" id="txt_park_total"><?=$park_total;?></span></td>
-     			<td width="15%"><span class="font-16">บาท</span></td>
+     			<td width="110"><span class="font-17">ค่าจอด</span></td>
+     			<td align="right"><span class="font-17" id="txt_park_total"><?=$park_total;?></span></td>
+     			<td width="15%"><span class="font-17">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
-     			<td width="100"><span class="font-16">ค่าหัว</span></td>
-     			<td align="right"><span class="font-16" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
-     			<td width="15%"><span class="font-16">บาท</span></td>
+     			<td width="110"><span class="font-17">ค่าหัว</span></td>
+     			<td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
+     			<td width="15%"><span class="font-17">บาท</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
-     			<td width="100"><span class="font-16">ค่าคอม</span></td>
-     			<td align="right"><span class="font-16" id="txt_com_persent"><?=$com_persent;?> %</span>
+     			<td width="110"><span class="font-17">ค่าคอม</span></td>
+     			<td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
                 <td width="15%">
                 </td>
      		</tr>
      		<tr>
-     			<td  width="100">รวม</td>
+     			<td  width="110">รวม</td>
      			<td align="right">
 	     			<span class="16" id="txt_all_total">
 	     				<?=$total_price_all;?>
 	     			</span>
      			</td>
      			 <td width="90">
-     			 	<span class="font-16">บาท</span>
+     			 	<span class="font-17">บาท</span>
      			 </td>
      		</tr>
      	</table>
@@ -430,18 +431,18 @@ else if($arr[book][status]=='CONFIRM'){
 		<!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
 		  <tr>
-		    <td width="100"  class="font-16"><font color="#333333"></font><?=t_dv_name;?></td>
-		    <td colspan="3" class="font-16">
+		    <td width="110"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
+		    <td colspan="3" class="font-17">
 			<?=$full_name_driver;?></td>
 		  </tr>
 		  <tbody>
 		    <tr>
-		      <td   width="100"  class="font-16"><font color="#333333"><?=t_car_registration_number;?></font></td>
-		      <td colspan="3" class="font-16"><?=$res_od->car_plate;?></td>
+		      <td   width="110"  class="font-17"><font color="#333333"><?=t_car_registration_number;?></font></td>
+		      <td colspan="3" class="font-17"><?=$res_od->car_plate;?></td>
 		    </tr>
 		     <tr>
-		      <td   width="100"  class="font-16"><font color="#333333"><?=t_call;?></font></td>
-		      <td colspan="3" class="font-16"><a href="tel:<?=$res_od->phone;?>" ><?=$arr[book][phone];?></a></td>
+		      <td   width="110"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
+		      <td colspan="3" class="font-17"><a href="tel:<?=$res_od->phone;?>" ><?=$arr[book][phone];?></a></td>
 		    </tr>
 		  </tbody>
 		</table>
@@ -462,7 +463,7 @@ else if($arr[book][status]=='CONFIRM'){
      <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
 
 	 <span class="text-cap font-22"><?=t_income;?></span>
-	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-16"><?=$txt_btn_pay;?></span> </ons-button>
+	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-17"><?=$txt_btn_pay;?></span> </ons-button>
 	</div>
 	
 	<div style="padding: 5px 0px;display: none;">
@@ -470,19 +471,19 @@ else if($arr[book][status]=='CONFIRM'){
 	<? if($data_user_class=='lab' and $arr[book][program]==1){ ?>
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
 			<tr>
-				<td width="60" valign="middle"><span class="font-16">Code</span></td>
+				<td width="60" valign="middle"><span class="font-17">Code</span></td>
 				<td width="150">
-				<input type="text" class="form-control font-16" id="code_order" name="code_order" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
+				<input type="text" class="form-control font-17" id="code_order" name="code_order" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
 				<td><span class="btn" align="center" onclick="updateCode('<?=$arr[book][program];?>','<?=$arr[book][id];?>');" style="background: #3b5998;
     color: #fff;
     padding: 0px 10px;
     font-size: 3px !important;
     border-radius: 8px;">
-		<span class="font-16 text-cap">บันทึก</span>
+		<span class="font-17 text-cap">บันทึก</span>
 	</span></td>
 			</tr>
 			<tr>
-				<td width="60"><span class="font-16">อัพโหลด</span></td>
+				<td width="60"><span class="font-17">อัพโหลด</span></td>
 				<td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff !important;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
 			</tr>
 		</table>
@@ -491,13 +492,13 @@ else if($arr[book][status]=='CONFIRM'){
 	
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_code_doc">
 			<tr>
-				<td width="60" valign="middle"><span class="font-16">Code</span></td>
+				<td width="60" valign="middle"><span class="font-17">Code</span></td>
 				<td width="150">
-				<input type="text" class="form-control font-16" readonly="readonly" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
+				<input type="text" class="form-control font-17" readonly="readonly" value="<?=$arr[book][code];?>" style="margin-bottom: 0px;height: 2.5rem;padding-left: 0px;"/></td>
 			</tr>
 			<tr>
 				<td width="60">
-				<span class="font-16">อัพโหลด</span></td>
+				<span class="font-17">อัพโหลด</span></td>
 				<td>
 				<a class="waves-effect waves-light btn" style="background-color: #3b5998;color: #fff !important;border-radius: 8px;" onclick="uploadCodeFile('<?=$arr[book][program];?>','<?=$arr[book][id];?>','taxi');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>ตรวจสอบภาพ</a></td>
 			</tr>

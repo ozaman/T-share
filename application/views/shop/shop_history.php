@@ -55,8 +55,21 @@
           </tr>
           <tr>
           	<td colspan="2" style="padding: 2px 0px;">
-          		<span class="font-17">จำนวนแขก : <?=$val->pax;?> คน</span>
+          		<span class="font-17">จำนวนแขก : <?=intval($val->adult)+intval($val->child)." ";?> คน</span>
           	</td>
+          </tr>
+          <tr>
+          	<td><div class="font-17">
+          	<?php 
+          	if($val->adult>0){ ?>
+          	ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val->id;?>"><?=$val->adult;?></span> 
+          	<? } ?>
+          	<?php 
+          	if($val->child>0){ ?>
+			เด็ก : <span id="txt_mn_child_<?=$val->id;?>"><?=$val->child;?></span></div></td>	
+			<? }
+          	?>
+          	
           </tr>
           <tr>
             <td colspan="2">
