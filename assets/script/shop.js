@@ -17,7 +17,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#nation_box";
             });
@@ -39,7 +39,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#box_com";
             });
@@ -63,7 +63,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#nation_box";
             });
@@ -76,7 +76,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#nation_box";
             });
@@ -89,7 +89,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#box_com";
             });
@@ -104,7 +104,7 @@ function checformadd(tax) {
 
                 // $("#adult").focus()
 
-                window.location.href = "#num_customer";
+                // window.location.href = "#num_customer";
             });
         } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
             if (form.elements["time_num"].value == 0) {
@@ -118,7 +118,7 @@ function checformadd(tax) {
             } else {
                 $('#box_time').removeClass('borderBlink')
 
-                $('#child').focusout();
+                // $('#child').focusout();
             }
 
         }
@@ -135,7 +135,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#nation_box";
             });
@@ -148,7 +148,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#nation_box";
             });
@@ -161,7 +161,7 @@ function checformadd(tax) {
                 scrollTop: $('#box_com').offset().top
             }, 300, function() {
 
-                
+
 
                 window.location.href = "#box_com";
             });
@@ -176,7 +176,7 @@ function checformadd(tax) {
 
                 // $("#adult").focus()
 
-                window.location.href = "#num_customer";
+                // window.location.href = "#num_customer";
             });
         } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
             if (form.elements["time_num"].value == 0) {
@@ -185,12 +185,12 @@ function checformadd(tax) {
             }
             if (form.elements["time_num"].value != 0) {
                 $('#btn_submitadd').addClass('borderBlink')
-                window.location.href = "#btn_submitadd";
+                // window.location.href = "#btn_submitadd";
 
             } else {
                 $('#box_time').removeClass('borderBlink')
 
-                $('#child').focusout();
+                // $('#child').focusout();
             }
 
         }
@@ -223,7 +223,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        
+
 
                         window.location.href = "#box_car";
                     });
@@ -236,7 +236,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        
+
 
                         window.location.href = "#nation_box";
                     });
@@ -249,7 +249,7 @@ function checformadd(tax) {
                         scrollTop: $('#box_com').offset().top
                     }, 300, function() {
 
-                        
+
 
                         window.location.href = "#box_com";
                     });
@@ -262,14 +262,14 @@ function checformadd(tax) {
                         scrollTop: $('#num_customer').offset().top
                     }, 300, function() {
 
-                       
 
-                        window.location.href = "#num_customer";
+
+                        // window.location.href = "#num_customer";
                     });
                 }
                 if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
                     if ($('#adult').val() != '' && $('#child').val() != '') {
-                    $('#num_customer').removeClass('borderBlink')
+                        $('#num_customer').removeClass('borderBlink')
 
                     }
                     // alert('')
@@ -311,7 +311,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            
+
 
             window.location.href = "#box_car";
         });
@@ -324,7 +324,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            
+
 
             window.location.href = "#nation_box";
         });
@@ -337,7 +337,7 @@ function checktime(x) {
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            
+
 
             window.location.href = "#box_com";
         });
@@ -352,13 +352,13 @@ function checktime(x) {
 
             // $("#adult").focus()
 
-            window.location.href = "#num_customer";
+            // window.location.href = "#num_customer";
         });
     } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
         if (form.elements["time_num"].value == 0) {
 
-           $('#child').focusout();
-           $('#box_time').addClass('borderBlink')
+         $('#child').focusout();
+         $('#box_time').addClass('borderBlink')
            // $('#time_num').focus()
        }
        if (form.elements["time_num"].value != 0) {
@@ -396,18 +396,18 @@ function handleClick_s(tax, name) {
     var form = document.getElementById("form_booking");
     console.log('#' + tax)
     if (tax == 'nation') {
-     $('#'+tax).removeClass('borderBlink')
-     var url = "shop/box_price_plan" + "?i_country=" + name;
+       $('#'+tax).removeClass('borderBlink')
+       var url = "shop/box_price_plan" + "?i_country=" + name;
 
-     $.post(url, function(res) {
+       $.post(url, function(res) {
         $('#box_price_plan').html(res);
         // console.log(data);
         $('#radio-nation'+name).prop('checked',true);
     });
 
 
- }
- if (tax == 'car') {
+   }
+   if (tax == 'car') {
     $('.box_car').removeClass('cus_focus')
     $('#div_car_' + name).addClass('cus_focus')
 }
@@ -415,39 +415,39 @@ if (tax == 'box_com') {
     console.log('55555555555555555555555555')
     console.log(form.elements["price_plan"].value)
     if (form.elements["price_plan"].value > 0) {
-$('#'+tax).removeClass('borderBlink')
+        $('#'+tax).removeClass('borderBlink')
     }
-        else{
-         $('#box_com').removeClass('borderBlink')
+    else{
+       $('#box_com').removeClass('borderBlink')
 
-     }
-    $('#price_plan_'+name).prop('checked',true);
-    
-    if (form.elements["plate_num_1"].value == 0) {
-        $('#box_car').addClass('borderBlink')
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function() {
+   }
+   $('#price_plan_'+name).prop('checked',true);
 
-            
+   if (form.elements["plate_num_1"].value == 0) {
+    $('#box_car').addClass('borderBlink')
+    $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+    }, 300, function() {
 
-            window.location.href = "#nation_box";
-        });
-    }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
-        $('#nation_box').addClass('borderBlink')
-        console.log(this.hash)
 
-        $('html, body').animate({
-            scrollTop: $('#box_com').offset().top
-        }, 300, function() {
+
+        window.location.href = "#nation_box";
+    });
+}
+if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+    $('#nation_box').addClass('borderBlink')
+    console.log(this.hash)
+
+    $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+    }, 300, function() {
 
             // 
 
             window.location.href = "#nation_box";
         });
-    }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+}
+if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
         // $('#box_com').addClass('borderBlink')
         $('#num_customer').removeClass('borderBlink')
         console.log(this.hash)
@@ -456,7 +456,7 @@ $('#'+tax).removeClass('borderBlink')
             scrollTop: $('#box_com').offset().top
         }, 300, function() {
 
-            
+
 
             window.location.href = "#box_com";
         });
@@ -470,7 +470,7 @@ $('#'+tax).removeClass('borderBlink')
             scrollTop: $('#num_customer').offset().top
         }, 300, function() {
 
-            $("#adult").focus()
+            // $("#adult").focus()
 
             window.location.href = "#num_customer";
         });
@@ -478,12 +478,12 @@ $('#'+tax).removeClass('borderBlink')
     if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
         $('#num_customer').removeClass('borderBlink')
         if (form.elements["time_num"].value == 0) {
-            $('#child').focusout();
+            // $('#child').focusout();
             $('#box_time').addClass('borderBlink')
-            $('#time_num').focus()
+            // $('#time_num').focus()
         } else {
             $('#box_time').removeClass('borderBlink')
-            $('#child').focusout();
+            // $('#child').focusout();
         }
     }
          // checformadd('box_com')
@@ -498,37 +498,37 @@ $('#'+tax).removeClass('borderBlink')
 function editBook(x) {
     console.log(x)
     
-   
-		$('#text_edit_persion').show();
-	    $('#btn_selectisedit').show();
-	    $('#num_edit_persion').show();
-	    $('#btn_isedit').hide();
-	    $('#isedit').hide();
-	    $('#num_edit_persion').css('display', 'inline-block');
-	    $('#num_edit_persion').focus();
-	
+
+    $('#text_edit_persion').show();
+    $('#btn_selectisedit').show();
+    $('#num_edit_persion').show();
+    $('#btn_isedit').hide();
+    $('#isedit').hide();
+    $('#num_edit_persion').css('display', 'inline-block');
+    $('#num_edit_persion').focus();
+
 //		$('#text_edit_persion').show()
-	    $('#num_edit_child').show();
+$('#num_edit_child').show();
 //	    $('#num_edit_child').focus();
-	    $('#num_final_edit_child').hide();
-	    $('#btn_isedit_child').hide();
-	    
-	    $('#btn_selectisedit_child').show();
+$('#num_final_edit_child').hide();
+$('#btn_isedit_child').hide();
+
+$('#btn_selectisedit_child').show();
 //	    $('#num_edit_child').val($('#num_final_edit_child').text());
-	    
-	
+
+
 }
 
 function saveeditBook(x) {
     //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
 
-		$('#num_edit_child').hide();
-		$('#num_final_edit_child').show();
-		$('#btn_selectisedit_child').hide();
-		$('#btn_isedit_child').show();
-		
-		var num_child = $('#num_edit_child').val();
-		$('#num_final_edit_child').text(num_child);
+    $('#num_edit_child').hide();
+    $('#num_final_edit_child').show();
+    $('#btn_selectisedit_child').hide();
+    $('#btn_isedit_child').show();
+
+    var num_child = $('#num_edit_child').val();
+    $('#num_final_edit_child').text(num_child);
 		/*var url_load = "shop/editchild" + "?num=" + num_child + "&id=" + x;
 	    console.log(url_load)
 	    $.post(url_load, function(data) {
@@ -541,34 +541,34 @@ function saveeditBook(x) {
 	        //$('#load_mod_popup').html(data);
 	        console.log(data);
 	    });*/
-	     number_persion_new = $('#num_edit_persion').val()
-	    var url_load = "shop/editpax" + "?adult=" + number_persion_new + "&id=" + x+"&child="+num_child;
-		$.post(url_load, function(data) {
-	        console.log(data);
-	    });
-	    $('#text_edit_persion').hide()
-	   
-	    $('#num_final_edit').html(number_persion_new)
-	    console.log(x)
-	    $('#btn_selectisedit').hide()
-	    $('#num_edit_persion').hide()
-	    $('#btn_isedit').show()
-	    $('#isedit').show()
+      number_persion_new = $('#num_edit_persion').val()
+      var url_load = "shop/editpax" + "?adult=" + number_persion_new + "&id=" + x+"&child="+num_child;
+      $.post(url_load, function(data) {
+       console.log(data);
+   });
+      $('#text_edit_persion').hide()
 
-		if($('#check_type_person').val()>=1){
-			var unit_person = $('#val_person_unit').val();
-			var total_new_price = parseInt(unit_person) * number_persion_new;
-			var full_txt_person_total = ""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2));
+      $('#num_final_edit').html(number_persion_new)
+      console.log(x)
+      $('#btn_selectisedit').hide()
+      $('#num_edit_persion').hide()
+      $('#btn_isedit').show()
+      $('#isedit').show()
+
+      if($('#check_type_person').val()>=1){
+         var unit_person = $('#val_person_unit').val();
+         var total_new_price = parseInt(unit_person) * number_persion_new;
+         var full_txt_person_total = ""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2));
 		//	console.log(""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2)));
-			$('#txt_person_total').text(full_txt_person_total);
-			
-			var park = $('#val_park_unit').val();
-			var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
-			$('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
-		}
+     $('#txt_person_total').text(full_txt_person_total);
 
-    var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
-    $('#txt_mn_pax_'+x).text(pax_all);
+     var park = $('#val_park_unit').val();
+     var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
+     $('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
+ }
+
+ var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
+ $('#txt_mn_pax_'+x).text(pax_all);
 }
 
 var cancelShop = function() {
@@ -743,9 +743,9 @@ var submitShop = function() {
         chek_x =  '0'+'.'+parseInt(time_num);
     }
     else if (parseInt(time_num) == 60) {
-       chek_x = 1+'.'+'0';
-   }
-   else{
+     chek_x = 1+'.'+'0';
+ }
+ else{
     if (chk_time == 0) {
         chek_x = x+'.'+'0';
     }
@@ -1030,20 +1030,23 @@ function saveShop() {
 }
 
 function openDetailShop(key, type) {
-	
+	console.log(key)
     var detailObj = array_data.manage[key];
+//    alert(detailObj.invoice);
     if(type!="ios"){
-			fn.pushPage({
-	        'id': 'popup1.html',
-	        'title': detailObj.invoice
-	    }, 'slide-ios');
-	}
-    
-    console.log(detailObj);
-    var url = "shop/detail_shop" + "?user_id=" + detect_user;
-    $.post(url, detailObj, function(data) {
-    	console.log(data);
-        $('#body_popup1').html(data);
+
+     fn.pushPage({
+       'id': 'popup1.html',
+       'title': detailObj.invoice
+   }, 'slide-ios');
+ }
+
+ console.log(detailObj);
+ var url = "shop/detail_shop" + "?user_id=" + detect_user;
+ $.post(url, detailObj, function(data) {
+   console.log(data);
+   $('#body_popup1').html(data);
+
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
         console.log(obj);
@@ -1069,10 +1072,10 @@ function openDetailShop(key, type) {
         checkPhotoCheckIn('guest_register', obj.id);
         checkPhotoCheckIn('driver_pay_report', obj.id);
         if(type=="ios"){
-			modal.hide();
-		}
-    });
-    $('#check_open_shop_id').val(detailObj.id);
+         modal.hide();
+     }
+ });
+ $('#check_open_shop_id').val(detailObj.id);
 }
 
 function openDetailBookinghistory(key, type, invoice) {
@@ -1322,7 +1325,7 @@ shopManage();
 }, 1000);
                     });
                     $('#btn_cancel_book_' + order_id).hide();
-					
+
                     var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id+"&class_user="+class_user;
                     $.post(url_messages, function(res) {
                         console.log(res)
@@ -1363,12 +1366,12 @@ function openZello(shop_id) {
 
 function openMapsDistance(shop_id) {
 
- fn.pushPage({
+   fn.pushPage({
     'id': 'popup2.html',
     'title': ''
 }, 'fade-md');
- var url = "page/call_page?id="+shop_id;
- $.post(url, {
+   var url = "page/call_page?id="+shop_id;
+   $.post(url, {
     path: "map/map_place"
 }, function(ele) {
 //      console.log(ele)
@@ -1380,32 +1383,32 @@ $('#body_popup2').html(ele);
 
 function changeHtml(type, id, st) {
 //	new Date(unixtimestamp*1000);
-    $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
-    $('#iconchk_' + type).attr("src", "assets/images/yes.png");
-    $("#number_" + type).removeClass('step-booking');
-    $("#number_" + type).addClass('step-booking-active');
+$('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
+$('#iconchk_' + type).attr("src", "assets/images/yes.png");
+$("#number_" + type).removeClass('step-booking');
+$("#number_" + type).addClass('step-booking-active');
 
-    $("#btn_" + type).css('background-color', '#666666');
+$("#btn_" + type).css('background-color', '#666666');
 
-    if (type == "driver_topoint") {
-        $('#step_guest_receive').show();
-    } else if (type == "guest_receive") {
-        $('#step_guest_register').show();
-    } else if (type == "guest_register") {
-        $('#step_driver_pay_report').show();
-    } else if (type == "driver_pay_report") {
+if (type == "driver_topoint") {
+    $('#step_guest_receive').show();
+} else if (type == "guest_receive") {
+    $('#step_guest_register').show();
+} else if (type == "guest_register") {
+    $('#step_driver_pay_report').show();
+} else if (type == "driver_pay_report") {
 
-    }
-    $('#' + type + '_locat_off').hide();
-    $('#' + type + '_locat_on').show();
-    $.ajax({
-        url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
-        type: 'HEAD',
-        error: function() {
-            console.log('Error file');
+}
+$('#' + type + '_locat_off').hide();
+$('#' + type + '_locat_on').show();
+$.ajax({
+    url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
+    type: 'HEAD',
+    error: function() {
+        console.log('Error file');
 
-            $('#photo_' + type + '_yes').hide();
-            $('#photo_' + type + '_no').show();
+        $('#photo_' + type + '_yes').hide();
+        $('#photo_' + type + '_no').show();
 
             //             $('#'+type+'_locat_off').show();
             //             $('#'+type+'_locat_on').hide();
@@ -1422,8 +1425,8 @@ function changeHtml(type, id, st) {
         }
     });
 
-    $('#' + type + '_check_click').val(1);
-    $("#box_" + type).removeClass('border-alert');
+$('#' + type + '_check_click').val(1);
+$("#box_" + type).removeClass('border-alert');
 }
 
 function changeApprovedIncome(check_lab_pay){
@@ -1458,8 +1461,8 @@ function sendCheckIn(id, type) {
         if (res.result == true) {
             $('#' + type + '_check_click').val(1)
 //            console.log("+++++++++++++++++----------------------------- "+timestampToDate(res.time, "time"));
-            changeHtml(type, id, timestampToDate(res.time, "time"));
-			
+changeHtml(type, id, timestampToDate(res.time, "time"));
+
 //            var message = "";
 //            socket.emit('sendchat', message);
 sendSocket(id);
@@ -1803,15 +1806,15 @@ function editTimeToPlace(id){
   var dialog = document.getElementById('change-time-dialog');
 
   if (dialog) {
-   dialog.show();
-   $('#order_id_change_time').val(id);
-} else {
-   ons.createElement('change-time.html', { append: true })
-   .then(function(dialog) {
-       dialog.show();
-       $('#order_id_change_time').val(id);
-   });
-}
+     dialog.show();
+     $('#order_id_change_time').val(id);
+ } else {
+     ons.createElement('change-time.html', { append: true })
+     .then(function(dialog) {
+         dialog.show();
+         $('#order_id_change_time').val(id);
+     });
+ }
 }
 
 function submitChangeTimeToPlace(){
@@ -1822,22 +1825,22 @@ function submitChangeTimeToPlace(){
 //  return;
 
 $.ajax({
- url: "shop/update_time_toplace",
- data: pass,
- type: 'post',
- dataType: 'json',
- success: function(res) {
-     console.log(res);
-     ons.notification.alert({
-      message: 'แก้ไขเวลาเรียบร้อย',
-      title: "สำเร็จ",
-      buttonLabel: "ปิด"
-  })
-     .then(function() {
-         shopManage()
-         document.getElementById('change-time-dialog').hide();
-     });
- }
+   url: "shop/update_time_toplace",
+   data: pass,
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
+       console.log(res);
+       ons.notification.alert({
+          message: 'แก้ไขเวลาเรียบร้อย',
+          title: "สำเร็จ",
+          buttonLabel: "ปิด"
+      })
+       .then(function() {
+           shopManage()
+           document.getElementById('change-time-dialog').hide();
+       });
+   }
 });
 }
 
@@ -1873,15 +1876,15 @@ $.ajax({
     success: function(res) {
         console.log(res);
         $.ajax({
-         url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
-         data: pass,
-         type: 'post',
-         dataType: 'json',
-         success: function(res) {
-             console.log(res);
-             sendSocket(id);
-             var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
-             var ac = {
+           url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
+           data: pass,
+           type: 'post',
+           dataType: 'json',
+           success: function(res) {
+               console.log(res);
+               sendSocket(id);
+               var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
+               var ac = {
                 i_type : 1,
                 i_sub_type : 4,
                 i_event : id,
@@ -1911,9 +1914,9 @@ $.ajax({
           })
             .then(function() {
 
-             shopManage();
+               shopManage();
 
-         });
+           });
         }
     });
     }
@@ -1927,7 +1930,7 @@ var date_rp = date.replace("-", "/");
 date_rp = date_rp.replace("-", "/");
 
 if(class_user=="taxi"){
- var url_his = 'api/shop_history_driver';
+   var url_his = 'api/shop_history_driver';
 //          var driver = detect_user;
 var data = {
     date : date_rp,
@@ -1935,16 +1938,16 @@ var data = {
 }
 }
 else{
- var url_his = 'api/shop_history_lab';
- var data = {
+   var url_his = 'api/shop_history_lab';
+   var data = {
     date : date_rp
 }
 }
 
 $.post(url_his,data,function(res){
- console.log(res);
- var url = "shop/shop_history";
- $.post(url,{ data : res.data },function(html){
+   console.log(res);
+   var url = "shop/shop_history";
+   $.post(url,{ data : res.data },function(html){
     $('#shop_history').html(html);
 });
 
@@ -1960,19 +1963,19 @@ var param = {
 }
 
 $.ajax({
- url: "shop/lab_approved_pay",
- data: param,
- type: 'post',
- dataType: 'json',
- success: function(res) {
-     console.log(res);
-     shopFuncNotiActi(id, "lab_pay_approve");
+   url: "shop/lab_approved_pay",
+   data: param,
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
+       console.log(res);
+       shopFuncNotiActi(id, "lab_pay_approve");
 //              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
 $.ajax({
- url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
- type: 'post',
- dataType: 'json',
- success: function(res) {
+   url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
     console.log(res);
     sendSocket(id);
 
@@ -1983,8 +1986,8 @@ $.ajax({
   })
     .then(function() {
 
-       reloadIncomeShop(id);
-   });
+     reloadIncomeShop(id);
+ });
 }
 });
 }
@@ -2000,14 +2003,14 @@ function approvePayDriverByTaxi(id, invoice, driver){
     }
     
     $.ajax({
-     url: "shop/driver_approved_pay",
-     data: param,
-     type: 'post',
-     dataType: 'json',
-     success: function(res) {
-         console.log(res);
-         $.ajax({
-             url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
+       url: "shop/driver_approved_pay",
+       data: param,
+       type: 'post',
+       dataType: 'json',
+       success: function(res) {
+           console.log(res);
+           $.ajax({
+               url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
 //                 data: param,
 type: 'post',
 dataType: 'json',
@@ -2015,32 +2018,41 @@ success: function(com) {
     console.log(com);
 }
 });
-         shopFuncNotiActi(id, "driver_pay_approve");
-         $.ajax({
-             url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
-             type: 'post',
-             dataType: 'json',
-             success: function(res) {
-                 console.log(res);
-                 sendSocket(id);
-                 ons.notification.alert({
-                  message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
-                  title: "สำเร็จ",
-                  buttonLabel: "ปิด"
-              })
-                 .then(function() {
+           shopFuncNotiActi(id, "driver_pay_approve");
+           $.ajax({
+               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   sendSocket(id);
+                   ons.notification.alert({
+                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+                      title: "สำเร็จ",
+                      buttonLabel: "ปิด"
+                  })
+                   .then(function() {
                     reloadIncomeShop(id);
                 });
-             }
-         });
-     }
- });
+               }
+           });
+       }
+   });
 }
 
 function _calltest (event){
- var el = $('ons-tab[page="shop_manage.html"]');
- performClick('tab_shop_mn')
- el.click();
+   var el = $('ons-tab[page="shop_manage.html"]');
+   performClick('tab_shop_mn')
+   el.click();
+   var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
+   $.post(url2, function(ele2) {
+   $('#shop_add').html(ele2);
+    setTimeout(function() {
+        // window.location.href = "#go_to_top_add"; 
+
+        // $('#shop_add').scrollTop(0);
+    }, 1000);
+});
    // console.log(el.click());
    // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
 // el.addEventListener("click"
