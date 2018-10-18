@@ -166,14 +166,16 @@
                 		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
 				<? } 
 			 }else if($data_user_class == "taxi"){ 
-			 		if($val[lab_approve_job]==0){
+			 		if($val[lab_approve_job]==1){
 			 ?>
 			 	   <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
 			 <? 
-				}
+				}else{ ?>
+		<div style="padding-left: 0px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอพนักงานยืนยัน</font></div>
+<?				}
 			 }
              ?>
             

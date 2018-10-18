@@ -365,7 +365,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>
         </ons-action-sheet>
     </template>
-    
     <template id="activity.html">	
         <ons-page>
             <div id="body_load_activity">
@@ -508,7 +507,37 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     </ons-page>
                 </template>
             </div>
+			<style>
+				.img-type-map{
+					    position: absolute;
+					    left: 40px;
+					    margin-top: 10px;
+					    width: 30px;
+				}
+			</style>
+			<input type="hidden"  id="place_lat" value=""/>
+			<input type="hidden"  id="place_lng" value=""/>
+			<input type="hidden" id="place_area" value=""/>
+			<input type="hidden" id="place_province" value=""/>
+			
+			<template id="select_type_map-action-sheet.html">
+			  <ons-action-sheet id="sheet" cancelable>
+			    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
+			    <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
+			    <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
+			    <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
+			  </ons-action-sheet>
+			</template>
             <script>
+            	var app_shop = {};
+
+				ons.ready(function () {
+				  ons.createElement('select_type_map-action-sheet.html', { append: true })
+				    .then(function (sheet) {
+				      app_shop.showSelectTypeMapShop = sheet.show.bind(sheet);
+				      app_shop.hideSelectTypeMapShop = sheet.hide.bind(sheet);
+				    });
+				});
                 ons.getScriptPage().onInit = function() {
                     console.log($('#number_shop').text())
 			    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
@@ -1121,7 +1150,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     border-left: 1px solid #bbb;
   }
 </style>
-    
     <template id="shop_add-dialog.html">
         <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
             <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -1248,7 +1276,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-button>
         </ons-dialog>
     </template>
-
 	<template id="test_swp.html">
         <ons-page>
             <ons-toolbar>
@@ -1277,6 +1304,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <input type="hidden" id="check_open_shop_id" value="0" />
     <input type="hidden" id="lat" value="0" />
     <input type="hidden" id="lng" value="0" />
+    
 </body>
 </html>
 

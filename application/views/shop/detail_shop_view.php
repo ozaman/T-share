@@ -37,6 +37,11 @@ function checkTypePay($id){
  $query_ps = $this->db->query($sql_ps);
  $res_ps = $query_ps->row();
 
+$sql_pv = "SELECT name FROM web_province  WHERE id=".$data_place->province." ";
+$query_pv = $this->db->query($sql_pv);
+$data_pv = $query_pv->row();
+
+
  $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
  $query_dv = $this->db->query($sql_dv);
  $res_dv = $query_dv->row();
@@ -206,7 +211,7 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$res_ps->id;?>');">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$data_place->lat;?>','<?=$data_place->lng;?>','<?=$data_place->address;?>', '<?=$data_pv->name;?>')">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>

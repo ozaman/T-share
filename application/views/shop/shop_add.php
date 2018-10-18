@@ -49,6 +49,10 @@ $sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]." AND pr
 $query_place = $this->db->query($sql_place);
 $data_place = $query_place->row();
 
+$sql_pv = "SELECT name FROM web_province  WHERE id=".$data_place->province." ";
+$query_pv = $this->db->query($sql_pv);
+$data_pv = $query_pv->row();
+
 $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->main";
 $shopmain = $this->db->query($sql_shopmain);
 $data_shopmain = $shopmain->row();
@@ -207,7 +211,7 @@ $data_shopmain = $shopmain->row();
             </div>
          </td>
          <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openMapsDistance('<?=$data_place->id;?>');">
+            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$data_place->lat;?>','<?=$data_place->lng;?>','<?=$data_place->address;?>', '<?=$data_pv->name;?>')">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>

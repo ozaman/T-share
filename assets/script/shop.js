@@ -1,10 +1,3 @@
-if (class_user == 'lab') {
-    var url_load = "go.php?name=shop/shop_new&file=booking_lab&driver=153&place=1";
-} 
-else {
-    var url_load = "go.php?name=shop/shop_new&file=booking&driver=153&place=1";
-}
-
 function checformadd(tax) {
     var form = document.getElementById("form_booking");
 
@@ -1364,22 +1357,51 @@ function openZello(shop_id) {
         $('#body_popup2').html(ele);
     });
 }
-
+function openShopMap(lat, lng, place_area, place_province){
+            		$('#place_lat').val(lat);
+            		$('#place_lng').val(lng);
+            		$('#place_area').val(place_area);
+            		$('#place_province').val(place_province);
+					app_shop.showSelectTypeMapShop();
+}
 function openMapsDistance(shop_id) {
-
+	
+	
    fn.pushPage({
-    'id': 'popup2.html',
-    'title': ''
-}, 'fade-md');
-   var url = "page/call_page?id="+shop_id;
-   $.post(url, {
-    path: "map/map_place"
-}, function(ele) {
-//      console.log(ele)
-$('#body_popup2').html(ele);
-});
+	    'id': 'popup2.html',
+	    'title': ''
+	}, 'fade-md');
+	   var url = "page/call_page?id="+shop_id;
+	   $.post(url, {
+	    path: "map/map_place"
+	}, function(ele) {
+	//      console.log(ele)
+		$('#body_popup2').html(ele);
+	});
 }
 
+function openMapPlace(){
+	var url_map_place = "https://maps.google.com/?q=8.1110951,98.3064646";
+ 	window.open(url_map_place);
+}
+
+function openMapNav(){
+	var lat = $('#lat').val();
+	var lng = $('#lng').val();
+	var place_area = $('#place_area').val();
+	var place_province = $('#place_province').val();
+	var place_lat = $('#place_lat').val();
+	var place_lng = $('#place_lng').val();
+	var zoom = "17z";
+	
+	var url_map_nav = "https://www.google.co.th/maps/dir/"+lat+","+lng+"/"+place_area+"+"+place_province+"/@"+place_lat+","+place_lng+","+zoom;
+	console.log(url_map_nav);
+ 	window.open(url_map_nav);
+}
+
+function openMapNotifyEdit(){
+	
+}
 /******* <!-------- Change html CheckIn ------------> *******/
 
 function changeHtml(type, id, st) {
