@@ -1032,7 +1032,7 @@ function saveShop() {
 }
 
 function openDetailShop(key, type) {
-	console.log(key)
+//	console.log(key)
     var detailObj = array_data.manage[key];
 //    alert(detailObj.invoice);
     if(type!="ios"){
@@ -1045,11 +1045,11 @@ function openDetailShop(key, type) {
  console.log(detailObj);
  var url = "shop/detail_shop" + "?user_id=" + detect_user;
  $.post(url, detailObj, function(data) {
-   console.log(data);
+//   console.log(data);
    $('#body_popup1').html(data);
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
-        console.log(obj);
+//        console.log(obj);
         changeApprovedIncome(obj.check_lab_pay);
         if (obj.check_driver_topoint == 1) {
             console.log("driver_topoint");
@@ -1079,7 +1079,8 @@ function openDetailShop(key, type) {
 }
 
 function openDetailBookinghistory(key, type, invoice) {
-
+	console.log(invoice)
+//	return;
     fn.pushPage({
         'id': 'popup1.html',
         'title': invoice
@@ -1090,14 +1091,14 @@ function openDetailBookinghistory(key, type, invoice) {
         user_id: $.cookie("detect_user"),
         invoice: invoice,
     };
-    console.log(param);
+//    console.log(param);
     $.ajax({
         url: url,
         dataType: 'json',
         data: param,
         type: 'post',
         success: function(res) {
-            console.log(res);
+//            console.log(res);
             var url = "page/shop_detail_his";
             $.post(url,res,function(ele) {
 //                  console.log(ele);

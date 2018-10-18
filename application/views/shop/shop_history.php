@@ -85,7 +85,7 @@
           </tr>
 		  <tr>
 		  	<td colspan="2">
-		  		<ons-button onclick="openDetailShop('0','','S00204');" style="padding: 15px;    margin-top: 5px;
+		  		<ons-button onclick="openDetailBookinghistory('0','','<?=$val->invoice;?> ');" style="padding: 15px;    margin-top: 5px;
     border-radius: 5px;
     line-height: 0;
     " modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">ตรวจสอบ</span> </ons-button>
@@ -96,9 +96,9 @@
   </div>
   <script>
     var d1 = "<?=date('Y/m/d H:i:s',$val->post_date);?>";
-    console.log(d1)
+//    console.log(d1)
     var d2 = js_yyyy_mm_dd_hh_mm_ss();
- 	console.log("<?=$val->invoice;?> : "+d1+" = "+d2);
+// 	console.log("<?=$val->invoice;?> : "+d1+" = "+d2);
  	$('#txt_date_diff_<?=$val->id;?>').text(CheckTime(d1,d2));
   </script>
 
