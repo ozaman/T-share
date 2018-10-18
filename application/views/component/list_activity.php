@@ -1,7 +1,7 @@
 <?php 
 $befordate = $_GET[last_date];
 foreach($_POST[data] as $val){
-	
+	$message = explode(" : ",$val[s_message]);
 if($val[s_material_icons]==0){
 			$icons = '<i class="'.$val[s_icons].' font-20" style="color: '.$val[s_color].';"></i>';
 		}
@@ -18,21 +18,21 @@ if($val[s_material_icons]==0){
 	if($befordate != $date_row){ 
 				$befordate = $date_row;
 				?>
-		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
+		<ons-list-header style="font-weight: 500;" class="font-13"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
 <div style="border-bottom: 1px solid #ccc; padding: 5px 5px;">
        		<table width="100%">
        			<tr>
-       				<td><?=$val[s_topic];?></td>
+       				<td><span class="font-17"><strong><?=$val[s_topic];?></strong>&nbsp;<?=$message[0];?></span></td>
        			</tr>
        			<tr>
        				<td>
-       					<span><?=$val[s_message];?></span>
+       					<span class="font-17"><?=$message[1];?></span>
        				</td>
        			</tr>
        			<tr>
        				<td >
-       				<span class="font-14"><span id="txt_date_diff_ac_<?=$val[id];?>" class="font-13">บันทึกเวลา <?=date('H:i:s');?> น.</span></span>
+       				<span id="txt_date_diff_ac_<?=$val[id];?>" class="font-15">บันทึกเวลา <?=date('H:i:s');?> น.</span>
        				</td>
        			</tr>
        		</table>

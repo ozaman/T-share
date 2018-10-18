@@ -20,7 +20,7 @@
 		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีบันทึกกิจกรรม</strong></div>
 	<? }
 	foreach ($query->result() as $row){ 
-		
+		$message = explode(" : ",$row->s_message);
 		
 		if($row->s_material_icons==0){
 			$icons = '<i class="'.$row->s_icons.' font-20" style="color: '.$row->s_color.';"></i>';
@@ -38,21 +38,21 @@
 				$befordate = $date_row;
 				
 				?>
-		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
+		<ons-list-header style="font-weight: 500;"  class="font-13"><?="วันที่ ".$date_row;?></ons-list-header>
 <?php			}	?>
 	    <ons-list-item  id="list_activity_<?=$row->id;?>" style=" margin-left: 10px;">
        		<table width="100%">
        			<tr>
-       				<td><?=$row->s_topic;?></td>
+       				<td><span class="font-17"><strong><?=$row->s_topic;?></strong>&nbsp;<?=$message[0];?></span></td>
        			</tr>
        			<tr>
        				<td>
-       					<span><?=$row->s_message;?></span>
+       					<span class="font-17"><?=$message[1];?></span>
        				</td>
        			</tr>
        			<tr>
        				<td >
-       				<span class="font-14"><span id="txt_date_diff_ac_<?=$row->id;?>" class="font-13">บันทึกเวลา <?=date('H:i:s');?> น.</span></span>
+       				<span id="txt_date_diff_ac_<?=$row->id;?>" class="font-15">บันทึกเวลา <?=date('H:i:s');?> น.</span>
        				</td>
        			</tr>
        		</table>
