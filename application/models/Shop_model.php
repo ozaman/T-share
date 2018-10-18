@@ -290,7 +290,7 @@ public function driver_complete(){
 public function editpax(){
 	$data['adult'] = $_GET[adult];
 	$data['child'] = $_GET[child];
-	$data['pax'] = intval($_GET[adult]) + intval($_GET[child]);
+	$data['pax'] = $_GET[adult];
 
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 
