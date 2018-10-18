@@ -30,7 +30,7 @@
     else if($val[status]=='COMPLETED'){
       $status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
     }
-    if($data_user_class == "taxi"){
+    /*if($data_user_class == "taxi"){
 	    if($val[lab_approve_job]==1){
 			$txt_lab_ap = '<span class="font-17 lab-active-shop" >พนักงานรับทราบแล้ว</span>';
 		}else{
@@ -40,7 +40,7 @@
 	}
 	else{
 		$tr_lab_ap = 'display:none;';
-	}
+	}*/
 	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
  	$query_ps = $this->db->query($sql_ps);
  	$res_ps = $query_ps->row();
@@ -77,10 +77,10 @@
   	?>
   	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
-    	  <tr style="<?=$tr_lab_ap;?>">
+    	  <!--<tr style="<?=$tr_lab_ap;?>">
     	  	<td><?=$txt_lab_ap;?></td>
     	  	<td></td>
-    	  </tr>
+    	  </tr>-->
           <tr>
             <td width="80%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="2">
@@ -107,14 +107,26 @@
     ?>
     <tr>
             <td colspan="2" style="padding: 0px 0px;">
-            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=$val[pax]." ";?></span> คน</a>
+            <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=$val[pax]." ";?></span> คน </a>
             </div>
            
 
             </td>
             
           </tr>
-          
+          <tr>
+          	<td><div class="font-17">
+          	<?php 
+          	if($val[adult]>0){ ?>
+          	ผู้ใหญ่ : <span id="txt_mn_adult"><?=$val[adult];?></span> 
+          	<? } ?>
+          	<?php 
+          	if($val[child]>0){ ?>
+			เด็ก : <span id="txt_mn_child"><?=$val[child];?></span></div></td>	
+			<? }
+          	?>
+          	
+          </tr>
           <tr>
             <td colspan="2">
             <span class="font-17" ><?=$val[invoice];?>
@@ -162,8 +174,10 @@
              <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
                 		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
             	<?php }else{ ?>
-					<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
-                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
+					 <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
+    border-radius: 5px;
+    line-height: 0;
+    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
 				<? } 
 			 }else if($data_user_class == "taxi"){ 
 			 		if($val[lab_approve_job]==1){
@@ -174,7 +188,7 @@
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
 			 <? 
 				}else{ ?>
-		<div style="padding-left: 0px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอพนักงานยืนยัน</font></div>
+		<div style="padding-left: 0px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับจากพนักงาน</font></div>
 <?				}
 			 }
              ?>

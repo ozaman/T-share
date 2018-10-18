@@ -510,9 +510,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			<style>
 				.img-type-map{
 					    position: absolute;
-					    left: 40px;
+					    left: 20px;
 					    margin-top: 10px;
-					    width: 30px;
+					   
 				}
 			</style>
 			<input type="hidden"  id="place_lat" value=""/>
@@ -522,8 +522,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			
 			<template id="select_type_map-action-sheet.html">
 			  <ons-action-sheet id="sheet" cancelable>
-			    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
-			    <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
+			    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
+			    <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" style=" width: 25px;" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
 			    <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
 			    <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
 			  </ons-action-sheet>
