@@ -562,10 +562,12 @@ function saveeditBook(x) {
 		//	console.log(""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2)));
      $('#txt_person_total').text(full_txt_person_total);
 
+
      var park = $('#val_park_unit').val();
      var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
      $('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
  }
+
 
  var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
  $('#txt_mn_pax_'+x).text(pax_all);
@@ -1034,7 +1036,6 @@ function openDetailShop(key, type) {
     var detailObj = array_data.manage[key];
 //    alert(detailObj.invoice);
     if(type!="ios"){
-
      fn.pushPage({
        'id': 'popup1.html',
        'title': detailObj.invoice
@@ -1046,7 +1047,6 @@ function openDetailShop(key, type) {
  $.post(url, detailObj, function(data) {
    console.log(data);
    $('#body_popup1').html(data);
-
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
         console.log(obj);
