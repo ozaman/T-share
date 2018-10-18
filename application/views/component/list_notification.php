@@ -23,17 +23,18 @@ if($_POST[s_material_icons]==0){
 					<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
 	<?php			}
 		}
+		$message = explode(" : ",$_POST[s_message]);
 ?>
 <div class="card-activity" id="card-ac_<?=$_POST[id];?>" <?=$bg;?> >
 	    	<table width="100%">
 	    		<tr>
 	    			<td onclick="openNotification('<?=$_POST[id];?>', '<?=$_POST[i_type];?>', '<?=$_POST[ac_topic];?>', '<?=$_POST[i_event];?>');">
-	    				<div class="font-20" style="-webkit-font-smoothing: antialiased;font-weight: 400; margin: 0px 0 8px;  padding: 0;"><?=$_POST[s_topic];?>
-	    					<span class="font-16" style="font-weight: blod;"><?=$_POST[s_sub_topic];?></span>
+	    				<div style="-webkit-font-smoothing: antialiased; margin: 0px 0 8px;  padding: 0;"><span class="font-17" ><strong><?=$_POST[s_topic];?></strong></span>
+	    					<span class="font-17" style="font-weight: blod;"><?=$_POST[s_sub_topic]." ".$message[0];?></span>
 	    				</div>
-				      	<div class="font-14" style="margin: 0;line-height: 1.4;color: #030303;"><?=$_POST[s_message];?></div>
+				      	<div class="font-17" style="margin: 0;line-height: 1.4;color: #030303;"><?=$message[1];?></div>
 					    <div style="margin: 5px 0px;">
-					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$_POST[id];?>" class="font-13"></span>
+					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$_POST[id];?>" class="font-15"></span>
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$_POST[id];?>);">

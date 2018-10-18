@@ -35,7 +35,7 @@
 			 if($check_now != 1){
 				$check_now = 1;
 				?>
-				<ons-list-header class="list-header" style="font-weight: unset;font-size: 13px;">ตอนนี้</ons-list-header>
+				<ons-list-header class="list-header font-13" style="font-weight: unset;">ตอนนี้</ons-list-header>
 				<?php
 			}
 		}else{ 
@@ -44,19 +44,20 @@
 				if($befordate != $date_row){ 
 					$befordate = $date_row;
 					?>
-					<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".$date_row;?></ons-list-header>
+					<ons-list-header class="list-header font-13" style="font-weight: unset;"><?="วันที่ ".$date_row;?></ons-list-header>
 	<?php			}
 			}else{
 				if($check_before != 1){
 					$check_before = 1;
 					?>
-					<ons-list-header class="list-header" style="font-weight: unset;font-size: 13px;">ก่อนหน้านี้</ons-list-header>
+					<ons-list-header class="list-header font-13" style="font-weight: unset;">ก่อนหน้านี้</ons-list-header>
 					<?php
 				}
 			}
 			
 		 }
-		
+		 
+		$message = explode(" : ",$row->s_message);
 		
 		if($row->s_material_icons==0){
 			$icons = '<i class="'.$row->s_icons.' font-20" style="color: '.$row->s_color.';"></i>';
@@ -76,12 +77,12 @@
 	    	<table width="100%">
 	    		<tr>
 	    			<td onclick="openNotification('<?=$row->id;?>', '<?=$row->i_type;?>', '<?=$row->ac_topic;?>', '<?=$row->i_event;?>');">
-	    				<div class="font-20" style="-webkit-font-smoothing: antialiased;font-weight: 400; margin: 0px 0 8px;  padding: 0;"><?=$row->s_topic;?>
-	    					<span class="font-16" style="font-weight: blod;"><?=$row->s_sub_topic;?></span>
+	    				<div style="-webkit-font-smoothing: antialiased; margin: 0px 0 8px;  padding: 0;"><span class="font-17"><strong><?=$row->s_topic;?></strong></span>
+	    					<span class="font-17" style="font-weight: blod;"><?=$row->s_sub_topic." ".$message[0];?></span>
 	    				</div>
-				      	<div class="font-14" style="margin: 0;line-height: 1.4;color: #030303;"><?=$row->s_message;?></div>
+				      	<div class="font-17" style="margin: 0;line-height: 1.4;color: #030303;"><?=$message[1];?></div>
 					    <div style="margin: 5px 0px;">
-					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$row->id;?>" class="font-13"></span>
+					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$row->id;?>" class="font-15"></span>
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">
