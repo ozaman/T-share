@@ -143,7 +143,7 @@
      <?php if($data_user_class == "lab"){ ?>
     <span class="font-17 text-cap">ปฏิเสธ</span>
 
-    ?>
+   
   <?php }
   else{
     ?>
