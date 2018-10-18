@@ -118,11 +118,11 @@
           	<td><div class="font-17">
           	<?php 
           	if($val[adult]>0){ ?>
-          	ผู้ใหญ่ : <span id="txt_mn_adult"><?=$val[adult];?></span> 
+          	ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
           	<? } ?>
           	<?php 
           	if($val[child]>0){ ?>
-			เด็ก : <span id="txt_mn_child"><?=$val[child];?></span></div></td>	
+			เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span></div></td>	
 			<? }
           	?>
           	
