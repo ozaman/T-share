@@ -1342,7 +1342,7 @@ function resetFormCancel(){
 function openContact(shop_id) {
     fn.pushPage({
         'id': 'popup2.html',
-        'title': 'Zello'
+        'title': 'เบอร์โทร'
     }, 'fade-md');
     var url_load = "page/social?type=phone&shop_id=" + shop_id;
     $.post(url_load, function(ele) {
