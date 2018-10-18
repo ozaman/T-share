@@ -490,7 +490,7 @@ socket.on('getbookinglab', function(data) {
 //        var get_order_id = url.searchParams.get("order_id");
 //        var status = url.searchParams.get("status");
 //        var open_ic = url.searchParams.get("open_ic");
-		
+		console.log(get_order_id);
         if (get_order_id != "") {
             if (status == "his") {
                 openOrderFromAndroidHistory(get_order_id, status, open_ic);
@@ -684,6 +684,7 @@ function openOrderFromAndroidHistory(id, status, open_ic) {
         success: function(res) {
         	console.log(res);
         	openDetailBookinghistory('', '', res.invoice);
+        	modal.hide();
         	}
 		});
     

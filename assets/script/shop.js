@@ -1030,7 +1030,7 @@ function saveShop() {
 }
 
 function openDetailShop(key, type) {
-	alert(key);
+	
     var detailObj = array_data.manage[key];
     if(type!="ios"){
 			fn.pushPage({
@@ -1042,6 +1042,7 @@ function openDetailShop(key, type) {
     console.log(detailObj);
     var url = "shop/detail_shop" + "?user_id=" + detect_user;
     $.post(url, detailObj, function(data) {
+    	console.log(data);
         $('#body_popup1').html(data);
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
