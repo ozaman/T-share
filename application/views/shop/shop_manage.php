@@ -139,7 +139,20 @@
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
-    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap"><?=t_cancel;?></span> </ons-button>
+    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; 
+     <?php if($data_user_class == "lab"){ ?>
+    <span class="font-17 text-cap">ปฏิเสธ</span>
+
+    ?>
+  <?php }
+  else{
+    ?>
+    <span class="font-17 text-cap"><?=t_cancel;?></span>
+
+    <?php
+  }
+  ?>
+  </ons-button>
         
             </td>
             <td width="65%">
