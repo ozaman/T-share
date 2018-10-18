@@ -5,7 +5,36 @@
 		<meta charset="utf-8">
 		<title></title>
 	</head>
-  
+  <?php 
+if($this->Mobile_model->version('iPad')){
+    // Code to run for the Apple iOS platform.
+$fontmobile=0;
+$detectname='iPad';
+$menu_ion_class = "icon-menu-ios";
+$border_menu_color = "#ccc";
+}
+if($this->Mobile_model->version('iPhone')){
+    // Code to run for the Apple iOS platform.
+$fontmobile=0;
+$detectname='iPhone';
+$menu_ion_class = "icon-menu-ios";
+$border_menu_color = "#ccc";
+}
+if($this->Mobile_model->version('Android')){
+    // Code to run for the Apple iOS platform.
+$fontmobile=6;
+$detectname='Android';
+$menu_ion_class = "icon-menu-android";
+$border_menu_color = "#eee";
+}
+else {
+$fontmobile=6;	
+$detectname='Other';
+$menu_ion_class = "icon-menu-ios";
+$border_menu_color = "#ccc";
+}
+$border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
+?>
   <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css?v=<?=time()?>">
   <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css?v=<?=time()?>">
   <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
@@ -40,6 +69,10 @@
 		var detect_user = $.cookie("detect_user");
    	  	var class_user = $.cookie("detect_userclass");
       	var username = $.cookie("detect_username");
+      	var get_order_id = '<?=$_GET[order_id];?>';
+        var status = '<?=$_GET[status];?>';
+        var open_ic = '<?=$_GET[open_ic];?>';
+        var detect_mb = "<?=$detectname;?>";
 	</script>
 	<ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
 
@@ -52,6 +85,7 @@
 	    
 	  	</ons-page>
 	</template>
+	
 	<template id="popup2.html">
         <ons-page>
             <ons-toolbar>

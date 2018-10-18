@@ -495,17 +495,19 @@ socket.on('getbookinglab', function(data) {
             if (status == "his") {
                 openOrderFromAndroidHistory(get_order_id, status, open_ic);
             } else {
+            	 
 //                console.log("order id : " + get_order_id);
 //                console.log(array_data);
                 $.each(array_data.manage, function(index, value) {
                     if (value.id == get_order_id) {
+//                    	 alert(123);
                         console.log(value.id + " : " + index);
                         $('#check_open_num_detail').val(index)
                         $('#check_open_shop_id').val(value.id);
                          if (detect_mb == "Android"){
 						 	var type_m = "android";
 						 }else{
-						 	var type_m = "android";
+						 	var type_m = "ios";
 						 }
                         openDetailShop(index, type_m);
                     }

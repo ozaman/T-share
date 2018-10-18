@@ -188,7 +188,7 @@
     " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
 			 <? 
 				}else{ ?>
-		<div style="padding-left: 0px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับจากพนักงาน</font></div>
+		<div style="padding-left: 30px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
 <?				}
 			 }
              ?>
