@@ -23,7 +23,7 @@ if($_GET[type]=="phone"){?>
    /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[contact] = $db->select_query("SELECT id,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
    while($arr[contact] = $db->fetch($res[contact])){ */ 
-   $query = $this->db->query("SELECT id,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
+   $query = $this->db->query("SELECT id,phone,name,usertype FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
 	foreach ($query->result() as $row){
    ?>
 <a  href="tel://<?=$row->phone;?>"  id="tel"   style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none;">
@@ -47,11 +47,15 @@ if($_GET[type]=="phone"){?>
 					 </tr>
 					 <tr>
 					 	<td style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none;">
-						<?  if($arr[contact][usertype]=='sale'){
-							echo t_marketing;
-							 } else {
-							echo t_receptionist;
-						 } ?>
+
+						<? 
+						$_where = array();
+                      $_where['id'] = $row->usertype; 
+                      $_select = array('*');
+                      $CONTACT_TYPE = $this->Main_model->rowdata(TBL_SHOPPING_CONTACT_TYPE,$_where);
+                      ?>
+						<span><?=$CONTACT_TYPE->name_th;?></span>
+						 
 						</td>
 					 </tr>
 					</tbody>
