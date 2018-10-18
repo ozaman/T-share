@@ -33,14 +33,15 @@ function checkTypePay($id){
  $query_od = $this->db->query($sql_od);
  $res_od = $query_od->row();
  
-  $sql_ps = "SELECT ".$place_shopping.",id FROM shopping_product  WHERE id='".$arr[book][program]."' ";
+  $sql_ps = "SELECT ".$place_shopping.",id,province FROM shopping_product  WHERE id='".$arr[book][program]."' ";
  $query_ps = $this->db->query($sql_ps);
  $res_ps = $query_ps->row();
 
-$sql_pv = "SELECT name FROM web_province  WHERE id=".$data_place->province." ";
+$sql_pv = "SELECT name FROM web_province  WHERE id=".$res_ps->province." ";
 $query_pv = $this->db->query($sql_pv);
 $data_pv = $query_pv->row();
-
+/*echo $arr[book][province];
+exit();*/
 
  $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
  $query_dv = $this->db->query($sql_dv);
