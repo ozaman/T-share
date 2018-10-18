@@ -68,6 +68,8 @@ $data_shopmain = $shopmain->row();
 
       <?php 
       if ($i_time_balance < 0) {
+          $op_select = 'ขณะนี้ปิดให้บริการ';
+
         $i_d_next = date('w')+1;
         $weekdays = Array();
         $weekdays[0] = "Sun";
@@ -103,7 +105,11 @@ $data_shopmain = $shopmain->row();
           </div>
 
 
-        <?php }?>
+        <?php }
+        else{
+          $op_select = 'เลือกเวลา';
+        }
+        ?>
 
 
 
@@ -464,7 +470,7 @@ $data_shopmain = $shopmain->row();
                 <tr>
                   <td width="45">เด็ก</td>
                   <td>
-                    <ons-input id="child" name="child" type="number" oninput="maxLengthCheck(this)" pattern="\d*" maxlength="20" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+                    <ons-input id="child" name="child" type="number" oninput="maxLengthCheck(this)" pattern="\d*" maxlength="3" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
                   </td>
                 </tr>
               </table>
@@ -500,7 +506,7 @@ $data_shopmain = $shopmain->row();
               <!-- <span class="list-header" style="background-image: none;"></span> -->
 
               <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-                <option value="0">-- เลือกเวลา --</option>
+                <option value="0">-- <?=$op_select;?> --</option>
                 <?php
                 $time = array("5" => "5 นาที",
                   "10" => "10 นาที",
