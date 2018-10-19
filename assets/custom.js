@@ -542,7 +542,10 @@ socket.on('datalab', function(username, data) {
             console.log(data)
             if (value.id == check_open) {
                 console.log(value);
-                changeApprovedIncome(value.check_lab_pay);
+                setTimeout(function(){ 
+                	changeApprovedIncome(value.check_lab_pay); 
+                }, 1500);
+                
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
                     changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"))
@@ -570,6 +573,21 @@ socket.on('datalab', function(username, data) {
             }
         });
     }
+    
+    if ($('#open_shop_manage').val() == 1) {
+    	$.each(data, function(index, value) {
+
+		          if(value.lab_approve_job==1){
+				  		$('#btn_manage_'+value.id).show();
+				  		$('#apporve_book_'+value.id).hide();
+				  }else{
+				  		$('#btn_manage_'+value.id).hide();
+				  		$('#apporve_book_'+value.id).show();
+				  }
+
+		});
+	}
+	
 });
 
 socket.on('updatedriver', function(username, data) {
@@ -578,12 +596,15 @@ socket.on('updatedriver', function(username, data) {
     console.log(username)
     console.log(data)
     var check_open = $('#check_open_shop_id').val();
+    
     if (check_open != 0) {
 
         if (data.id == check_open) {
             console.log(data)
             console.log(data.id);
-            changeApprovedIncome(data.check_lab_pay);
+            setTimeout(function(){ 
+                	changeApprovedIncome(data.check_driver_pay_report); 
+                }, 1000);
             if (data.check_driver_topoint == 1) {
                 console.log("driver_topoint");
                 changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"))
@@ -606,10 +627,20 @@ socket.on('updatedriver', function(username, data) {
     }
 	
     console.log($('#open_shop_manage').val());
+//    alert($('#open_shop_manage').val())
     if ($('#open_shop_manage').val() == 1) {
         console.log("*************************************");
        
-        setTimeout(function(){  shopManage(); }, 1500);
+        setTimeout(function(){  
+          if(data.lab_approve_job==1){
+		  		$('#btn_manage_'+data.id).show();
+		  		$('#txt_wait_'+data.id).hide();
+		  }else{
+		  		$('#btn_manage_'+data.id).hide();
+		  		$('#txt_wait_'+data.id).show();
+		  }
+		
+        }, 1000);
     }
 	setCountNotification();
 	if($('#check_open_noti_menu').val()==1){
@@ -644,15 +675,14 @@ function openOrderFromAndroid(id, status, open_ic) {
 //	modal.show();
 //	alert(status)
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
+     var check_open_shop_id = $('#check_open_shop_id').val();
+    if(check_open_shop_id==id){
+			return;
+		}
     if (status == "his") {
     	
         openOrderFromAndroidHistory(id, status, open_ic)
     } else {
-        var check_open_shop_id = $('#check_open_shop_id').val();
-        if(check_open_shop_id==id){
-			return;
-		}
-
             $.each(array_data.manage, function(index, value) {
 //            	alert(id);
                 if (value.id == id) {

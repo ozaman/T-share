@@ -170,26 +170,38 @@
             <td width="65%">
              <?php 
              if($data_user_class == "lab"){
-			 	if($val[lab_approve_job]==0){ ?>
-             <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
-                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
-            	<?php }else{ ?>
+			 	if($val[lab_approve_job]==0){ 
+			 		$btn_approve= "";
+			 		$btn_manage = "display:none;";
+			 	}else{
+			 		$btn_approve = "display:none;";
+			 		$btn_manage = "";
+			 	}?>
+			 	 
+            	<ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
+                		style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
 					 <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
     border-radius: 5px;
-    line-height: 0;
-    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
-				<? } 
-			 }else if($data_user_class == "taxi"){ 
+    line-height: 0;<?=$btn_manage;?>
+    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">จัดการ</span> </ons-button>
+				<? 
+			 }
+			 
+			 else if($data_user_class == "taxi"){ 
 			 		if($val[lab_approve_job]==1){
-			 ?>
-			 	   <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;
+			 			$btn_manage = "";
+			 			$txt_wait_approve = "display:none;";
+			 		}else{
+			 			$btn_manage = "display:none;";
+			 			$txt_wait_approve = "";
+			 		}?>
+		<ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 15px;border: 1px solid #0076ff;
     border-radius: 5px;
-    line-height: 0;
-    " modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; <span class="font-17 text-cap">จัดการ</span> </ons-button>
-			 <? 
-				}else{ ?>
-		<div style="padding-left: 30px;" align="center"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
-<?				}
+    line-height: 0;<?=$btn_manage;?>
+    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">จัดการ</span> </ons-button>	
+     
+		<div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
+<?				
 			 }
              ?>
             

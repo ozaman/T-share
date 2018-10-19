@@ -1046,7 +1046,7 @@ function openDetailShop(key, type) {
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
 //        console.log(obj);
-        changeApprovedIncome(obj.check_lab_pay);
+        
         if (obj.check_driver_topoint == 1) {
             console.log("driver_topoint");
             changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
@@ -1063,6 +1063,7 @@ function openDetailShop(key, type) {
             console.log("driver_pay_report");
             changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
         }
+        changeApprovedIncome(obj.check_driver_pay_report);
         checkPhotoCheckIn('driver_topoint', obj.id);
         checkPhotoCheckIn('guest_receive', obj.id);
         checkPhotoCheckIn('guest_register', obj.id);
@@ -1121,6 +1122,7 @@ checkPhotoCheckIn('driver_topoint', obj.id);
 checkPhotoCheckIn('guest_receive', obj.id);
 checkPhotoCheckIn('guest_register', obj.id);
 checkPhotoCheckIn('driver_pay_report', obj.id);
+$('#check_open_shop_id').val(obj.id);
 });
 //          $('#body_popup1').html(res);
 }
@@ -1455,10 +1457,10 @@ $('#' + type + '_check_click').val(1);
 $("#box_" + type).removeClass('border-alert');
 }
 
-function changeApprovedIncome(check_lab_pay){
-
+function changeApprovedIncome(check_driver_pay_report){
+//	alert(check_driver_pay_report)
     if(class_user=="taxi"){
-        if(check_lab_pay==1){
+        if(check_driver_pay_report==1){
             $('#box_approved_income').show();
         }
     }else{
@@ -1885,7 +1887,7 @@ function calTime(val){
 }
 
 function approveBook(id, invoice, driver_id){
-
+//sendSocket(id);
 //  return;
 var pass = {
     id : id,

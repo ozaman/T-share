@@ -100,7 +100,7 @@
           </tr>
 		  <tr>
 		  	<td colspan="2">
-		  		<ons-button onclick="openDetailBookinghistory('0','','<?=$val->invoice;?> ');" style="padding: 15px;    margin-top: 5px;
+		  		<ons-button onclick="openDetailBookinghistory('0','','<?=$val->invoice;?> ');" style="padding: 15px;    margin-top: 5px;border: 1px solid #0076ff;
     border-radius: 5px;
     line-height: 0;
     " modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">ตรวจสอบ</span> </ons-button>
