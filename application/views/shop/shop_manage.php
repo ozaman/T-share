@@ -229,8 +229,10 @@
   <script>
 //    console.log("<?=$stamp;?> || <?=$current_time;?>")
     var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
+//    console.log(d1)
     var d2 = js_yyyy_mm_dd_hh_mm_ss();
-    $('#txt_date_diff_<?=$val[id];?>').text(CheckTime(d1,d2));
+//    console.log(CheckTimeV2(d1,d2));
+    $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1,d2));
     $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
   </script>
 <?    

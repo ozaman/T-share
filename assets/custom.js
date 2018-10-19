@@ -85,29 +85,6 @@ function js_yyyy_mm_dd_hh_mm_ss() {
     return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 }
 
-/*function findDiffDynamic(d1, d2, type){
-	datetime1 = d1;
-    datetime2 = d2;
-    //Set date time format
-    var startDate = new Date(datetime1);
-    var endDate = new Date(datetime2);
-    var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-    //Calculate time
-    var days = Math.floor(seconds / (3600 * 24));
-    var hrs_d = Math.floor((seconds - (days * (3600 * 24))) / 3600);
-    var hrs = Math.floor(seconds / 3600);
-    var mnts = Math.floor((seconds - (hrs * 3600)) / 60);
-    var secs = seconds - (hrs * 3600) - (mnts * 60);
-    //old
-    var hrs_d_bc = hrs_d;
-    var mnts_bc = mnts;
-    var secs_bc = secs;
-    //Add 0 if one digit
-    if(type=="H"){
-		return hrs_d_bc;
-	}
-}*/
-
 function CheckTime(d1, d2) {
     //      console.log(d1+" = "+d2);
     datetime1 = d1;
@@ -152,6 +129,64 @@ function CheckTime(d1, d2) {
         return "ไม่กี่วินาทีที่ผ่านมา";
     }
     return final_txt + "ที่ผ่านมา";
+}
+
+function CheckTimeV2(d1, d2) {
+    //      console.log(d1+" = "+d2);
+    datetime1 = d1;
+    datetime2 = d2;
+    //Set date time format
+    var startDate = new Date(datetime1);
+    var endDate = new Date(datetime2);
+    var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
+    //Calculate time
+    var days = Math.floor(seconds / (3600 * 24));
+    var hrs_d = Math.floor((seconds - (days * (3600 * 24))) / 3600);
+    var hrs = Math.floor(seconds / 3600);
+    var mnts = Math.floor((seconds - (hrs * 3600)) / 60);
+    var secs = seconds - (hrs * 3600) - (mnts * 60);
+    //old
+    var hrs_d_bc = hrs_d;
+    var mnts_bc = mnts;
+    var secs_bc = secs;
+    //Add 0 if one digit
+    if (hrs_d < 10) hrs_d = "0" + hrs_d;
+    if (mnts < 10) mnts = "0" + mnts;
+    if (secs < 10) secs = "0" + secs;
+    var final_txt, day_txt, h_txy, m_txt, old_txt;
+    if (days == 0) {
+        day_txt = '';
+    } else {
+        day_txt = days + ' วัน';
+    }
+    if (hrs_d_bc == 0) {
+        h_txy = '';
+    } else {
+        h_txy = ' ' + hrs_d_bc + ' ชั่วโมง.';
+    }
+    if (mnts_bc == 0) {
+        m_txt = '';
+    } else {
+        m_txt = ' ' + mnts_bc + ' นาที';
+    }
+    
+    final_txt = day_txt + h_txy + m_txt
+    old_txt = days + ' ' + hrs_d + ':' + mnts + ':' + secs;
+    
+    if (days <= 0 && hrs_d_bc <= 0 && mnts_bc <= 0) {
+        return "ไม่กี่วินาทีที่ผ่านมา";
+    }
+    if(hrs_d_bc<1){
+		return final_txt + "ที่ผ่านมา";
+	}else{
+		var str = timestampToDate(startDate.getTime(), "time");
+		var res = d1.split(" ");
+		var res = res[1].split(":");
+		return  "ทำรายการเมื่อ "+res[0]+":"+res[1]+" น.";
+//		return  d1;
+	}
+	
+    
 }
 
 function performClick(elemId) {

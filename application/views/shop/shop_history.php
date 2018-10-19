@@ -114,7 +114,7 @@
 //    console.log(d1)
     var d2 = js_yyyy_mm_dd_hh_mm_ss();
 // 	console.log("<?=$val->invoice;?> : "+d1+" = "+d2);
- 	$('#txt_date_diff_<?=$val->id;?>').text(CheckTime(d1,d2));
+ 	$('#txt_date_diff_<?=$val->id;?>').text(CheckTimeV2(d1,d2));
   </script>
 
 <?php
