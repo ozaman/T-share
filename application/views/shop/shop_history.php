@@ -25,16 +25,18 @@
       $txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
     }
   }
-  if($_COOKIE[detect_userclass]=="taxi"){
+ /* if($_COOKIE[detect_userclass]=="taxi"){
   	$hide_plate = "display:none;";
   	$time_post_ps = "margin-top: -85px;";
   }else{
   	$time_post_ps = "margin-top: -105px;";
-  }
+  }*/
+  $time_post_ps = "margin-top: -30px;";
   ?>
    <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop" >
     <?=$txt_lab_ap;?>
+     <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
     <table width="100%"  onclick="openDetailBookinghistory('<?=$key;?>','his','<?=$val->invoice;?>');">
           <tr>
             <td width="80%" ><span class="font-17">คิงส์ พาวเวอร์ (ภูเก็ต)</span></td>
@@ -91,7 +93,7 @@
         <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val->id;?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </span>
             <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val->id;?>" onclick="editTimeToPlace('<?=$val->id;?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
-            <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
+           
        
             </td>
             

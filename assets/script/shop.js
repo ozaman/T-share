@@ -1939,8 +1939,9 @@ $.ajax({
               buttonLabel: "ปิด"
           })
             .then(function() {
-
-               shopManage();
+				
+				setTimeout(function(){  shopManage(); }, 1000);
+              
 
            });
         }

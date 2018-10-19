@@ -33,7 +33,7 @@ function checkTypePay($id){
  $query_od = $this->db->query($sql_od);
  $res_od = $query_od->row();
  
-  $sql_ps = "SELECT ".$place_shopping.",id,province FROM shopping_product  WHERE id='".$arr[book][program]."' ";
+  $sql_ps = "SELECT ".$place_shopping.",id,province,lat,lng,address FROM shopping_product  WHERE id='".$arr[book][program]."' ";
  $query_ps = $this->db->query($sql_ps);
  $res_ps = $query_ps->row();
 
@@ -212,7 +212,7 @@ else if($arr[book][status]=='CONFIRM'){
             </div>
          </td>
          <td width="33%" align="left"  style="padding: 0px;"  >
-            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$data_place->lat;?>','<?=$data_place->lng;?>','<?=$data_place->address;?>', '<?=$data_pv->name;?>')">
+            <div class="btn  btn-default" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$res_ps->lat;?>','<?=$res_ps->lng;?>','<?=$res_ps->address;?>', '<?=$data_pv->name;?>')">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
