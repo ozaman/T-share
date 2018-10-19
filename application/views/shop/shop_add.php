@@ -16,7 +16,7 @@ $arr_select = array('finish_h','finish_m');
 $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 //print_r(json_encode($datatime));
 $datenow = strtotime(date('Y-m-d H:i:s'));
-// $datenow = strtotime(date('Y-m-d 09:i:s'));
+// $datenow = strtotime(date('Y-m-d 19:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
 $i_time_balance = ($dateclose - $datenow)/60;
