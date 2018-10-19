@@ -1741,10 +1741,12 @@ document.addEventListener('prechange', function(event) {
 //    console.log(page)
 if (page == "shop_manage.html") {
     shopManage();
-}
-
-if (page == "shop_history.html") {
+    $('#box-shop_date').fadeOut(300);
+}else if (page == "shop_history.html") {
     historyShop($('#date_shop_his').val());
+    $('#box-shop_date').fadeIn(300);
+}else{
+	$('#box-shop_date').fadeOut(300);
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/

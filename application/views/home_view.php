@@ -462,6 +462,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 			      </ons-toolbar-button>
 			    </div>
             </ons-toolbar>
+			<ons-card id="box-shop_date" class="card" style="/*margin-bottom: 20px*/padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;">
+                            <ons-list-item class="input-items list-item p-l-0">
+                                <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+                                    <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+                                </div>
+                                <div class="center list-item__center" style="background-image: none;">
+                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" max="<?=date('Y-m-d',time());?>" />
+                                </div>
+                            </ons-list-item>
+             </ons-card>
             <div id="body_shop">
                 <ons-page>
                     <ons-tabbar swipeable position="top">
@@ -492,17 +502,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
-                        <ons-card class="card" style="margin-bottom: 20px">
-                            <ons-list-item class="input-items list-item p-l-0">
-                                <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
-                                    <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
-                                </div>
-                                <div class="center list-item__center" style="background-image: none;">
-                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" max="<?=date('Y-m-d',time());?>" />
-                                </div>
-                            </ons-list-item>
-                        </ons-card>
-                        <div id="shop_history">
+                        
+                        <div id="shop_history" style="margin-top: 75px;">
                         </div>
                     </ons-page>
                 </template>
