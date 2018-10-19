@@ -143,7 +143,7 @@ $data_shopmain = $shopmain->row();
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
               <td width="110">
-                <img src="../data/pic/place/1_logo.jpg" width="100px" alt="" style=" border-radius:  8px; border: 1px solid #ddd; ">
+                <img src="../data/pic/place/<?=$data_place->pic_logo;?>" width="100px" alt="" style=" border-radius:  8px; border: 1px solid #ddd; ">
               </td>
               <td>
                 <div class="element_to_find">
