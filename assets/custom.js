@@ -1121,7 +1121,7 @@ function myCar() {
 function addCarForSendShop(){
 	fn.pushPage({
         'id': 'popup1.html',
-        'title': 'รายรับ'
+        'title': 'เพิ่มข้อมูลรถ'
     }, 'slide-ios');
 
     $.post("page/call_page", {
