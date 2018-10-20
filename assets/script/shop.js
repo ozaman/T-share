@@ -1649,6 +1649,15 @@ function btn_driver_topoint(id) {
     if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
+    if(class_user=="lab"){
+		ons.notification.alert({
+            message: 'คนขับรถเป็นคนแจ้งสถานที่ส่งแขกเท่านั้น',
+            title: "ไม่สามารถแจ้งถึงสถานที่ได้",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});
+        return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
@@ -1784,6 +1793,7 @@ if (page == "shop_manage.html") {
 }else if (page == "shop_history.html") {
     historyShop($('#date_shop_his').val());
     $('#box-shop_date').fadeIn(300);
+    $('#date_shop_his').val(today);
 }else{
 	$('#box-shop_date').fadeOut(300);
 }
