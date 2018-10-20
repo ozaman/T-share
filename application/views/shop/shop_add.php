@@ -102,7 +102,9 @@ $data_shopmain = $shopmain->row();
         ?>
         <div class="card" align="center">
           <h1 style="color: red" align="center">ขณะนี้ปิดให้บริการ</h1>
-          <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ ในวันถัดไป</h2>
+           <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ <?=date('Y/m/d');?></h2>
+          <!-- <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span>  -->
+          <!-- <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ ในวันถัดไป</h2> -->
           <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span> 
             <h3 style="color: #24b968" align="center"><span style="color: #24b968;">เวลาเปิด <?=$datatime_next[0]->start_h.':'.$datatime_next[0]->start_m;?></span> ปิด <?=$datatime_next[0]->finish_h.':'.$datatime_next[0]->finish_m;?></span> น.</h3>
 
