@@ -5,12 +5,36 @@ if($_COOKIE[detect_userclass]=="taxi"){
 		$txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
 		$txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
 		
+		$title_topoint = "แจ้งถึงสถานที่ส่งแขก";
+		$title_guest_receive = "รอพนักงานยืนยันรับแขก";
+		$title_guest_regis = "รอพนักงานยืนยันแขกลงทะเบียน";
+		$title_pay = "รอพนักงานแจ้งยอดรายได้";
+		
+		$btn_topoint_color = "background-color:#3b5998";
+		$btn_guest_receive_color = "background-color:#666666";
+		$btn__guest_register_color = "background-color:#666666";
+		$btn_pay_report_color = "background-color:#666666";
+		
 	}else{
 		$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
 		$txt_wait_guest_receive = 'รอดำเนินการ';
 		$txt_wait_guest_register = 'รอดำเนินการ';
 		$txt_wait_pay_report = 'รอดำเนินการ';
+		
+		$title_topoint = "รอคนขับแจ้งถึงสถานที่";
+		$title_guest_receive = "ยืนยันพนักงานรับแขก";
+		$title_guest_regis = "ยืนยันแขกลงทะเบียน";
+		$title_pay = "ยืนยันแจ้งยอดรายได่";
+		
+		$btn_topoint_color = "background-color:#666666";
+		$btn_guest_receive_color = "background-color:#3b5998";
+		$btn__guest_register_color = "background-color:#3b5998";
+		$btn_pay_report_color = "background-color:#3b5998";
 	}
+	/*$txt_wait_topoint = 'รอดำเนินการ';
+		$txt_wait_guest_receive = 'รอดำเนินการ';
+		$txt_wait_guest_register = 'รอดำเนินการ';
+		$txt_wait_pay_report = 'รอดำเนินการ';*/
 ?>
 <div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
@@ -27,7 +51,7 @@ if($_COOKIE[detect_userclass]=="taxi"){
                   </div>
                </td>
                <td colspan="2">
-                  <button id="btn_driver_topoint" onclick="btn_driver_topoint('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  แจ้งถึงสถานที่ส่งแขก</span></button>
+                  <button id="btn_driver_topoint" onclick="btn_driver_topoint('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_topoint_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  <?=$title_topoint;?></span></button>
                </td>
             </tr>
             <tr>
@@ -77,7 +101,7 @@ if($_COOKIE[detect_userclass]=="taxi"){
                               <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_receive"></div>
                            </td>
                            <td colspan="2">
-                              <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>  พนักงานรับแขก</span></button>
+                              <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_receive_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>  <?=$title_guest_receive;?></span></button>
                               <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click">
                            </td>
                         </tr>
@@ -120,7 +144,7 @@ if($_COOKIE[detect_userclass]=="taxi"){
                               <div class="step-booking" id="number_guest_register">3</div>
                               <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_register"></div>
                            </td>
-                           <td colspan="2"><button id="btn_guest_register" onclick="btn_guest_register('<?=$arr[book][id];?>')" type="button" class="btns  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"></i>แขกลงทะเบียน</span></button></td>
+                           <td colspan="2"><button id="btn_guest_register" onclick="btn_guest_register('<?=$arr[book][id];?>')" type="button" class="btns  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_register_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"></i><?=$title_guest_regis;?></span></button></td>
                         </tr>
                         <tr>
                            <td style="height:30px;">
@@ -163,7 +187,7 @@ if($_COOKIE[detect_userclass]=="taxi"){
                               <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pay_report"></div>
                            </td>
                            <td colspan="2">
-                              <button id="btn_driver_pay_report" onclick="btn_driver_pay_report('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; background-color:#3b5998;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> แจ้งยอดรายได้</span></button>
+                              <button id="btn_driver_pay_report" onclick="btn_driver_pay_report('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pay_report_color;?>;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> <?=$title_pay;?></span></button>
                            </td>
                         </tr>
                         <tr>

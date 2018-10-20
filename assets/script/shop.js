@@ -1650,12 +1650,12 @@ function btn_driver_topoint(id) {
         return;
     }
     if(class_user=="lab"){
-		ons.notification.alert({
+		/*ons.notification.alert({
             message: 'คนขับรถเป็นคนแจ้งสถานที่ส่งแขกเท่านั้น',
             title: "ไม่สามารถแจ้งถึงสถานที่ได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
 	}
     fn.pushPage({
@@ -1678,12 +1678,12 @@ function btn_guest_receive(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
@@ -1706,12 +1706,12 @@ function btn_guest_register(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
@@ -1734,12 +1734,12 @@ function btn_driver_pay_report(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
