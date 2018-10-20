@@ -1364,6 +1364,17 @@ function openZello(shop_id) {
     });
 }
 
+function openLine(shop_id) {
+    fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'Line'
+    }, 'fade-md');
+    var url_load = "page/social?type=line&shop_id=" + shop_id;
+    $.post(url_load, function(ele) {
+        $('#body_popup2').html(ele);
+    });
+}
+
 function openShopMap(lat, lng, place_area, place_province){
             		$('#place_lat').val(lat);
             		$('#place_lng').val(lng);
@@ -1425,6 +1436,13 @@ function contactDriver(call, type, shop_id, order_id){
 			performClick('zello_driver_'+order_id);
 		}
 	}else if(type=="line"){
+		if(call=="lab"){
+			
+			openLine(shop_id);
+		}else{
+			performClick('line_driver_'+order_id);
+		}
+		
 		
 	}
 }
