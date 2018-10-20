@@ -871,6 +871,32 @@ function sendShop(company) {
     });
 }
 
+function beforeSendShop(){
+	var urlcount = "shop/car_count";
+	if (class_user == "taxi") {
+                $.post(urlcount, function(res) {
+                        if (res == 0) {
+                            ons.notification.alert({
+                                    message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
+                                    title: "ไม่สามารถส่งแขกได้",
+                                    buttonLabel: "เพิ่มรถ"
+                                })
+                                .then(function() {
+                                   
+                                   addCarForSendShop();
+                                    
+                                });
+							return;
+                        }else{
+							sendShop2();
+						}
+                });
+
+    }else{
+		sendShop2();
+	}
+}
+
 function sendShop2() {
     modal.show();
     
@@ -893,11 +919,10 @@ function sendShop2() {
 
 
             $.post(url2, function(ele2) {
-                if (class_user == "taxi") {
+                /*if (class_user == "taxi") {
 
                     $.post(urlcount, function(res) {
                         if (res == 0) {
-
                             ons.notification.alert({
                                     message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
                                     title: "ไม่สามารถส่งแขกได้",
@@ -912,11 +937,10 @@ function sendShop2() {
 
                                     return;
                                 });
-
                         }
                     });
 
-                }
+                }*/
                 
                 setTimeout(function() {
             modal.hide();
@@ -1091,6 +1115,19 @@ function myCar() {
             $('#body_car_manage').html(ele);
 
         });
+    });
+}
+
+function addCarForSendShop(){
+	fn.pushPage({
+        'id': 'popup1.html',
+        'title': 'รายรับ'
+    }, 'slide-ios');
+
+    $.post("page/call_page", {
+        path: "car/add_car_shop"
+    }, function(ele) {
+        $('#body_popup1').html(ele);
     });
 }
 

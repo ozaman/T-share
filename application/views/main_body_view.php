@@ -2,7 +2,7 @@
 <ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
 	  <center>
-	  	<div onclick="sendShop2();" class="circle-menu" style="    background-color: #34A0E7;" >
+	  	<div onclick="beforeSendShop();" class="circle-menu" style="    background-color: #34A0E7;" >
 	      <span id="number_shop" class="badge badge-custom font-18 pulse" style="display: none;">0</span>
 	      <div class="content">
 	     	<i class="icon-new-uniF14D" style="font-size: 24px;position: relative; top: 7px; left: 2px;"></i>

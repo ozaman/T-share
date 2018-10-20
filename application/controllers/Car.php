@@ -13,6 +13,12 @@ public function add_car(){
   		echo json_encode($data['res']);
 	}
 	
+public function add_car_shop(){
+		$data['res'] = $this->Car_model->add_car_shop();
+  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}
+	
 public function edit_car(){
 		$data['res'] = $this->Car_model->edit_car();
   		header('Content-Type: application/json');

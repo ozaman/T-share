@@ -292,7 +292,6 @@ function submitAddCar() {
             });
         return;
     }
-
     if ($('input[name="car_type"]').val() == "") {
         ons
             .notification.alert({
@@ -322,7 +321,6 @@ function submitAddCar() {
             });
         return;
     }
-   
     if ($('input[name="car_color"]').val() == "") {
         ons
             .notification.alert({
@@ -337,7 +335,7 @@ function submitAddCar() {
             });
         return;
     }
-     if ($('input[name="plate_color"]').val() == "") {
+    if ($('input[name="plate_color"]').val() == "") {
         ons
             .notification.alert({
                 message: 'กรุณาเลือกป้ายทะเบียน',
@@ -416,8 +414,7 @@ function submitAddCar() {
                 modal.hide();
             });
         return;
-    }
-    
+    }   
     if ($('input[name="txt_car_act"]').val() == "") {
         ons
             .notification.alert({
@@ -444,7 +441,6 @@ function submitAddCar() {
             });
         return;
     }
-    
     if ($('input[name="txt_car_tax"]').val() == "") {
         ons
             .notification.alert({
@@ -471,7 +467,6 @@ function submitAddCar() {
             });
         return;
     }
-    
     if ($('input[name="txt_car_insurance"]').val() == "") {
         ons
             .notification.alert({
@@ -532,6 +527,163 @@ function submitAddCar() {
                             $('#body_car_manage').html(ele);
 //                            $('ons-back-button').click();
 								callpop();
+                        });
+                    });
+					var ac = {
+						i_type : 9, // ข้อมูลรถ
+						i_sub_type : 1, // เพิ่ม
+						i_event : res.last_id,
+						i_user : detect_user,
+						s_topic : "ข้อมูลรถ",
+						s_message : "คุณทำการเพิ่มข้อมูลรถ ทะเบียน "+res.data.plate_num,
+						s_posted : username
+					};
+					var nc = {};
+					apiRecordActivityAndNotification(ac, nc);
+					
+            } else {
+                ons
+                    .notification.alert({
+                        message: 'ไม่สามารถเพิ่มรถได้ กรุณาลองใหม่อีกครั้ง',
+                        title: "ผิดพลาด",
+                        buttonLabel: "ปิด"
+                    });
+                modal.hide();
+            }
+
+        },
+        error: function(err) {
+            console.log(err);
+            //your code here
+        }
+    });
+
+}
+
+function submitAddCarForShop() {
+	$('#check_submit_add_car').val(1);
+	focusBoxCar2();
+    if ($('input[name="plate_num"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณากรอกเลขทะเบียนรถ',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                $('input[name="plate_num"]').focus();
+            });
+        return;
+    }
+    if ($('input[name="car_type"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกประเภทรถ',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                gotoDiv('car_type_box');
+                fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios');
+            });
+        return;
+    }
+    if ($('input[name="car_brand"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกยี่ห้อรถ',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+
+				gotoDiv('car_brand_box');
+				fn.pushPage({'id': 'option.html', 'title': 'ยี่ห้อรถ', 'open':'car_brand'}, 'lift-ios');
+            });
+        return;
+    }
+    if ($('input[name="car_color"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกสีรถ',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                gotoDiv('car_color_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีรถ', 'open':'car_color'}, 'lift-ios');
+            });
+        return;
+    }
+    if ($('input[name="plate_color"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกป้ายทะเบียน',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                gotoDiv('plate_color_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')
+            });
+        return;
+    }
+    if ($('input[name="car_province"]').val() == "") {
+        ons
+            .notification.alert({
+                message: 'กรุณาเลือกจังหวัด',
+                title: "ข้อมูลไม่สมบูรณ์",
+                buttonLabel: "ปิด"
+            })
+            .then(function() {
+                modal.hide();
+                gotoDiv('car_province_box');
+				fn.pushPage({'id': 'option.html', 'title': 'สีป้ายทะเบียน', 'open':'plate_color'}, 'lift-ios')
+            });
+        return;
+    }
+	
+    modal.show();
+	
+    var data = new FormData($('#form_addcar')[0]);
+
+	var url = "car/add_car_shop?driver_id=" + $.cookie("detect_user");
+	
+    console.log(url);
+    $.ajax({
+        url: url, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: 'post',
+        success: function(res) {
+            console.log(res);
+            if (res.data.result == true) {
+
+                ons
+                    .notification.alert({
+                        message: 'เพิ่มรถสำเร็จแล้ว',
+                        title: "สำเร็จ",
+                        buttonLabel: "ปิด"
+                    })
+                    .then(function() {
+                        modal.hide();
+
+                        var url = "page/call_page";
+                        $.post(url, {
+                            path: "car/car_view"
+                        }, function(ele) {
+                            $('#body_car_manage').html(ele);
+//                            $('ons-back-button').click();
+								callpop();
+								beforeSendShop();
                         });
                     });
 					var ac = {
