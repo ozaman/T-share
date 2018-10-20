@@ -508,15 +508,16 @@ socket.on('getbookinglab', function(data) {
 
 
     // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
-    if ($('#check_open_workshop').val() == 1) {
-        if (shop_frist_run == 0) {
+ 
+     if ($('#open_shop_manage').val() == 1){
+		 if (shop_frist_run == 0) {
             shop_frist_run = done.length;
         }
         if (done.length != shop_frist_run) {
-            filterMenu('manage');
+            shopManage();
             shop_frist_run = done.length;
         }
-    }
+	 }
     /* check open order id auto */
     if (frist_socket == true) {
         var url_string = window.location.href; //window.location.href

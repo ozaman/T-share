@@ -1268,6 +1268,7 @@ function submitCancel() {
         console.log(data)
         var obj = data;
         console.log(obj);
+        sendSocket(obj.id);
         var invoice_cancel = $('#invoice_cancel_select').val();
         var order_id_calcel = $('#order_id_cancel').val();
         var dv = $('#driver_id_cancel').val();
@@ -1319,9 +1320,9 @@ function submitCancel() {
                         setTimeout(function(){ var urlx = "shop/shop_manage";
 //                      appNavigator.popPage();
 
-resetFormCancel();
-shopManage();
-}, 1000);
+						resetFormCancel();
+						shopManage();
+						}, 1000);
                     });
                     $('#btn_cancel_book_' + order_id).hide();
 

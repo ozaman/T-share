@@ -63,8 +63,8 @@ else if($arr[book][status]=='CONFIRM'){
 		$show_alert = "display:none;";
 	}
 	*/
-	if($arr[book][price_park_total] != 0){
-		$park_total = number_format($arr[book][price_park_total],2);
+	if($arr[book][price_park_unit] != 0){
+		$park_total = number_format($arr[book][price_park_unit],2);
 		$display_park = "";
 	}else{
 		$display_park = "display:none";
@@ -102,16 +102,7 @@ else if($arr[book][status]=='CONFIRM'){
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
-	<!--<button class="btn waves-effect waves-light red lighten-3" align="center" onclick="cancelBook('<?=$_POST[id];?>');" id="btn_cancel_book_<?=$_POST[id];?>" style="position: absolute;
-    right: 10px;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 0;
-    top: 0px;
-    margin: 15px;<?=$cancel_shop;?>">
-		<span class="font-22 text-cap"><?=t_cancel;?></span>
-	</button>-->
-	
+
 	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
@@ -302,7 +293,8 @@ else if($arr[book][status]=='CONFIRM'){
      			<td  width="100">รวม</td>
      			<td><span class="16">
      				<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>
-     			</span></td>
+     			</span>
+     			</td>
      		</tr>
      	</table>
     </div>
