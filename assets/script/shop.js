@@ -1456,7 +1456,7 @@ $("#number_" + type).removeClass('step-booking');
 $("#number_" + type).addClass('step-booking-active');
 
 $("#btn_" + type).css('background-color', '#666666');
-
+	$('#pm_'+type).show();
 if (type == "driver_topoint") {
     $('#step_guest_receive').show();
 } else if (type == "guest_receive") {

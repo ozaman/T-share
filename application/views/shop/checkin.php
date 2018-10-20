@@ -1,3 +1,17 @@
+<?php 
+if($_COOKIE[detect_userclass]=="taxi"){
+		$txt_wait_topoint = 'รอดำเนินการ';
+		$txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
+		$txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
+		$txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
+		
+	}else{
+		$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
+		$txt_wait_guest_receive = 'รอดำเนินการ';
+		$txt_wait_guest_register = 'รอดำเนินการ';
+		$txt_wait_pay_report = 'รอดำเนินการ';
+	}
+?>
 <div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
    
@@ -20,11 +34,11 @@
                <td style="height:30px;">
                   <div id="status_driver_topoint">
                      <div class="font-16">
-                        <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong>
+                        <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_topoint;?></font></strong>
                      </div>
                   </div>
                </td>
-               <td width="30">
+               <td width="30" id="pm_driver_topoint" style="display: none;">
                   <table width="100%">
                      <tbody>
                         <tr>
@@ -50,7 +64,7 @@
 <div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
 <div style="padding: 5px 0px;">
    <span class="text-cap font-20"> ข้อมูลการเช็คอิน พนักงาน</span>
-   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1" id="table_show_hide_checkin_S00085">
+   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1">
       <tbody>
          <tr id="step_guest_receive" style="display:none">
             <td class="font-16">
@@ -70,10 +84,10 @@
                         <tr>
                            <td style="height:30px;">
                               <div id="status_guest_receive">
-                                 <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
+                                 <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_guest_receive;?></font></strong></div>
                               </div>
                            </td>
-                           <td width="30">
+                           <td width="30" id="pm_guest_receive" style="display: none;">
                               <table width="100%">
                                  <tbody>
                                     <tr>
@@ -115,7 +129,7 @@
                               </div>
                               <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click">
                            </td>
-                           <td width="30">
+                           <td width="30" id="pm_guest_register" style="display: none;">
                               <table width="100%">
                                  <tbody>
                                     <tr>
@@ -159,7 +173,7 @@
                                  <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
                               </div>
                            </td>
-                           <td width="30">
+                           <td width="30" id="pm_guest_driver_pay_report" style="display: none;">
                               <table width="100%">
                                  <tbody>
                                     <tr>
