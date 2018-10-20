@@ -91,9 +91,9 @@
            
 
             </td>
-            <td align="center">
-            	<button style="background-color: #607D8B;"><a href="tel:<?=$res_dv->phone;?>" class="font-17 txt-white"><?=$res_dv->phone;?></a></button>
-            </td>
+            <!--<td align="center">
+            	<button style="background-color: #607D8B; border: none;"><a href="tel:<?=$res_dv->phone;?>" class="font-17 txt-white"><?=$res_dv->phone;?></a></button>
+            </td>-->
           </tr>
           <tr>
           	<td>
@@ -109,10 +109,10 @@
           	?>
           	</div>
           	</td>
-          	<td align="center">
+          	<!--<td align="center">
           	<img src="http://localhost/app/T-share/assets/images/social/zello.png" width="30" height="30" alt="">
           		
-          	</td>
+          	</td>-->
           </tr>
           <tr>
             <td colspan="2">
@@ -132,13 +132,15 @@
             <td colspan="2">
               <table width="100%">
                <tr>
-                  <td width="35%">
+               <?php 
+               if($val[check_driver_pay_report]==0){ ?>
+			   	 <td width="35%">
               
              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
-    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large"></i>&nbsp; 
+    color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
      <?php if($data_user_class == "lab"){ ?>
     <span class="font-17 text-cap">ปฏิเสธ</span>
 
@@ -154,6 +156,9 @@
   </ons-button>
         
             </td>
+<?			   }
+               ?>
+                 
             	  <td width="65%">
              <?php 
              if($data_user_class == "lab"){
