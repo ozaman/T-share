@@ -56,10 +56,55 @@
   	?>
   	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
-    	  <!--<tr style="<?=$tr_lab_ap;?>">
-    	  	<td><?=$txt_lab_ap;?></td>
-    	  	<td></td>
-    	  </tr>-->
+    	  <tr>
+    	  	<td colspan="2">
+    	  		<table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
+   <tbody>
+      
+      <tr>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('1');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
+                        <td align="center" class="font-17"><b>โทร</b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('1');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/zello.png" width="30" height="30" alt=""> </td>
+                        <td align="center" class="font-17">
+                           <b>Zello</b>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('7.872888','98.360599','88 Road Vichit, Muang 83000, 88 Chao Fah Tawan Tok                                                                                                                            ', 'Phuket')">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/map.png" width="30" height="30" alt=""></td>
+                        <td align="center" class="font-17"><b>แผนที่</b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+	</table>
+    	  	</td>
+    	  </tr>
           <tr>
             <td width="80%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="1">
@@ -88,8 +133,6 @@
             <td colspan="1" style="padding: 0px 0px;">
             <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=intval($val[adult])+intval($val[child])." ";?></span> คน </a>
             </div>
-           
-
             </td>
             <!--<td align="center">
             	<button style="background-color: #607D8B; border: none;"><a href="tel:<?=$res_dv->phone;?>" class="font-17 txt-white"><?=$res_dv->phone;?></a></button>

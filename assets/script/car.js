@@ -683,7 +683,8 @@ function submitAddCarForShop() {
                             $('#body_car_manage').html(ele);
 //                            $('ons-back-button').click();
 								callpop();
-								beforeSendShop();
+								setTimeout(function(){	beforeSendShop(); }, 1000);
+								
                         });
                     });
 					var ac = {
