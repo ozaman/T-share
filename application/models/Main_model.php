@@ -383,9 +383,9 @@ curl_close($curl);
 	    $data[update_date] = time();
 	    $data[province] = $_POST[province];
 	    $data[i_gender] = $_POST[gender];
-	    
 	    $data[line_id] = $_POST[line];
 	    $data[wechat_id] = $_POST[wechat];
+	    $data[zello_id] = $_POST[zello_id];
 //	    $result = $db->update_db($tb_admin_chk,$data , " id= '".$_GET[id]."' ");
 		$this->db->where('id', $_GET[id]);
 	    $result = $this->db->update('web_driver', $data); 

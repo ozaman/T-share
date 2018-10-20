@@ -282,6 +282,19 @@
                 </ons-input>
             </label>
         </ons-list-item>
+        
+        <ons-list-item class="input-items list-item p-l-0">
+            <div class="left list-item__left">
+                <img src="assets/images/social_icon/zello.png" style="width: 31px;" />
+            </div>
+            <label class="center list-item__center">
+                <ons-input id="zello_id-input" float="" placeholder="Zello id" name="zello_id" style="width:100%;" value="<?=$driver->zello_id;?>">
+                    <input type="text" class="text-input"  placeholder="Zello id" name="zello_id" id="zello_id">
+                    <span class="text-input__label">
+                        Wechat id</span>
+                </ons-input>
+            </label>
+        </ons-list-item>
 	</ons-card>
     
     <ons-card class="card">

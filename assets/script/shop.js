@@ -1363,6 +1363,7 @@ function openZello(shop_id) {
         $('#body_popup2').html(ele);
     });
 }
+
 function openShopMap(lat, lng, place_area, place_province){
             		$('#place_lat').val(lat);
             		$('#place_lng').val(lng);
@@ -1370,6 +1371,7 @@ function openShopMap(lat, lng, place_area, place_province){
             		$('#place_province').val(place_province);
 					app_shop.showSelectTypeMapShop();
 }
+
 function openMapsDistance(shop_id) {
 	
 	
@@ -1407,6 +1409,24 @@ function openMapNav(){
 
 function openMapNotifyEdit(){
 	
+}
+
+function contactDriver(call, type, shop_id, order_id){
+	if(type=="phone"){
+		if(call=="lab"){
+			openContact(shop_id);
+		}else{
+			performClick('phone_driver_'+order_id);
+		}
+	}else if(type=="zello"){
+		if(call=="lab"){
+			openZello(shop_id);
+		}else{
+			
+		}
+	}else if(type=="line"){
+		
+	}
 }
 /******* <!-------- Change html CheckIn ------------> *******/
 

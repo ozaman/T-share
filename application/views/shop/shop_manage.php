@@ -7,7 +7,7 @@
   }
       
     foreach ($_POST[data] as $key=>$val){
-	  $sql_dv = "SELECT name,nickname,phone,name_en,zello_id FROM web_driver WHERE id='".$val[drivername]."'    ";
+	  $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver WHERE id='".$val[drivername]."'    ";
 	 $query_dv = $this->db->query($sql_dv);
 	 $res_dv = $query_dv->row();
 	 
@@ -41,18 +41,24 @@
         
         if($datetime1>$datetime2 and $data_user_class == "lab"){
           $display_time_none = "";
+         
         }else{
           $display_time_none = "display:none;";
         }
         ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" >
-    <!-- <span id="date_book_<?=$val[id];?>">-</span> -->
+    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
+    <a href="zello://<?=$res_dv->id;?>?add_user" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
   <div class="box-shop">
   	
   	<?php 
-  		if($data_user_class == "lab"){ ?>
+  		if($data_user_class == "lab"){ 
+  		$contract = "taxi";
+  		?>
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
-  	<?	}
+  	<?	}else{
+		$contract = "lab";
+	}
   	?>
   	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
@@ -63,7 +69,7 @@
       
       <tr>
          <td width="33%" align="left" style="padding: 0px;">
-            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('1');">
+            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>','phone', '<?=$res_ps->id;?>','<?=$val[id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -75,7 +81,7 @@
             </div>
          </td>
          <td width="33%" align="left" style="padding: 0px;">
-            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="openZello('1');">
+            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>','zello','<?=$res_ps->id;?>','<?=$val[id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
@@ -89,12 +95,12 @@
             </div>
          </td>
          <td width="33%" align="left" style="padding: 0px;">
-            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('7.872888','98.360599','88 Road Vichit, Muang 83000, 88 Chao Fah Tawan Tok                                                                                                                            ', 'Phuket')">
+            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>','line','<?=$res_ps->id;?>','<?=$val[id];?>');">
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/map.png" width="30" height="30" alt=""></td>
-                        <td align="center" class="font-17"><b>แผนที่</b></td>
+                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/line.png" width="30" height="30" alt=""></td>
+                        <td align="center" class="font-17"><b>Line</b></td>
                      </tr>
                   </tbody>
                </table>
