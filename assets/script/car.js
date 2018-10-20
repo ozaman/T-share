@@ -683,7 +683,15 @@ function submitAddCarForShop() {
                             $('#body_car_manage').html(ele);
 //                            $('ons-back-button').click();
 								callpop();
-								beforeSendShop();
+								setTimeout(function(){	
+									 beforeSendShop(); 
+									 $.post("car/check_num_car", {
+								        driver_id: $.cookie("detect_user")
+								     }, function(res) {
+								    	
+								     });
+								}, 1000);
+								
                         });
                     });
 					var ac = {

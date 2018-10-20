@@ -72,7 +72,9 @@ class Car_model extends CI_Model {
 		$last_id_car = mysql_insert_id();
 		$return[last_id] = $last_id_car;
 		$return[data] = $car;
-
+		
+		$return[p1] = rename("../data/pic/car/".$_POST[rand]."_1.jpg", "../data/pic/car/".$last_id_car."_1.jpg");
+		
 		return $return;
   }
   

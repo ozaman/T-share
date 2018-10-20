@@ -7,7 +7,7 @@
   }
       
     foreach ($_POST[data] as $key=>$val){
-	  $sql_dv = "SELECT name,nickname,phone,name_en,zello_id FROM web_driver WHERE id='".$val[drivername]."'    ";
+	  $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver WHERE id='".$val[drivername]."'    ";
 	 $query_dv = $this->db->query($sql_dv);
 	 $res_dv = $query_dv->row();
 	 
@@ -41,25 +41,76 @@
         
         if($datetime1>$datetime2 and $data_user_class == "lab"){
           $display_time_none = "";
+         
         }else{
           $display_time_none = "display:none;";
         }
         ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" >
-    <!-- <span id="date_book_<?=$val[id];?>">-</span> -->
+    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
+    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
   <div class="box-shop">
   	
   	<?php 
-  		if($data_user_class == "lab"){ ?>
+  		if($data_user_class == "lab"){ 
+  		$contract = "taxi";
+  		?>
   	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
-  	<?	}
+  	<?	}else{
+		$contract = "lab";
+	}
   	?>
   	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
-    	  <!--<tr style="<?=$tr_lab_ap;?>">
-    	  	<td><?=$txt_lab_ap;?></td>
-    	  	<td></td>
-    	  </tr>-->
+    	  <tr>
+    	  	<td colspan="2">
+    	  		<table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
+   <tbody>
+      
+      <tr>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>','phone', '<?=$res_ps->id;?>','<?=$val[id];?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><i class="fa fa-phone-square" style="font-size:32px; color: #8DC63F; border:none;"></i></td>
+                        <td align="center" class="font-17"><b>โทร</b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>','zello','<?=$res_ps->id;?>','<?=$val[id];?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="assets/images/social/zello.png" width="30" height="30" alt=""> </td>
+                        <td align="center" class="font-17">
+                           <b>Zello</b>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+         <td width="33%" align="left" style="padding: 0px;">
+            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>','line','<?=$res_ps->id;?>','<?=$val[id];?>');">
+               <table width="100%" border="0" cellspacing="1" cellpadding="1">
+                  <tbody>
+                     <tr>
+                        <td align="center" width="30"><img src="assets/images/social/line.png" width="30" height="30" alt=""></td>
+                        <td align="center" class="font-17"><b>Line</b></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+	</table>
+    	  	</td>
+    	  </tr>
           <tr>
             <td width="80%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
             <td width="20%" align="center" rowspan="1">
@@ -88,8 +139,6 @@
             <td colspan="1" style="padding: 0px 0px;">
             <div class="font-17">จำนวนแขก&nbsp;:&nbsp;<a><span id="txt_mn_pax_<?=$val[id];?>"><?=intval($val[adult])+intval($val[child])." ";?></span> คน </a>
             </div>
-           
-
             </td>
             <!--<td align="center">
             	<button style="background-color: #607D8B; border: none;"><a href="tel:<?=$res_dv->phone;?>" class="font-17 txt-white"><?=$res_dv->phone;?></a></button>
