@@ -1535,9 +1535,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 var check_new_user = '<?=$_GET[check_new_user];?>';
 			    var regis_linenoti = '<?=$_GET[regis];?>';
 				
-			    if (check_new_user != "") {
+			    /*if (check_new_user != "") {
 			       profileInfo('lift-ios');
-			    }
+			    }*/
 			    /*if (regis_linenoti != "") {
 			        $("#main_load_mod_popup").toggle();
 			        var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
