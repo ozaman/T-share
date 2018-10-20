@@ -48,7 +48,7 @@
         ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" >
     <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
-    <a href="zello://<?=$res_dv->id;?>?add_user" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
+    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
   <div class="box-shop">
   	
   	<?php 
@@ -85,7 +85,7 @@
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/zello.png" width="30" height="30" alt=""> </td>
+                        <td align="center" width="30"><img src="assets/images/social/zello.png" width="30" height="30" alt=""> </td>
                         <td align="center" class="font-17">
                            <b>Zello</b>
                         </td>
@@ -99,7 +99,7 @@
                <table width="100%" border="0" cellspacing="1" cellpadding="1">
                   <tbody>
                      <tr>
-                        <td align="center" width="30"><img src="http://localhost/app/T-share/assets/images/social/line.png" width="30" height="30" alt=""></td>
+                        <td align="center" width="30"><img src="assets/images/social/line.png" width="30" height="30" alt=""></td>
                         <td align="center" class="font-17"><b>Line</b></td>
                      </tr>
                   </tbody>

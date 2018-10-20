@@ -1422,7 +1422,7 @@ function contactDriver(call, type, shop_id, order_id){
 		if(call=="lab"){
 			openZello(shop_id);
 		}else{
-			
+			performClick('zello_driver_'+order_id);
 		}
 	}else if(type=="line"){
 		
