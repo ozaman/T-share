@@ -228,6 +228,29 @@ else if($arr[book][status]=='CONFIRM'){
 	</table>
 	
 	<div style="padding: 5px 0px;">
+     <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
+
+		<!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
+		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
+		  <tr>
+		    <td width="110"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
+		    <td colspan="3" class="font-17">
+			<?=$full_name_driver;?></td>
+		  </tr>
+		  <tbody>
+		    <tr>
+		      <td   width="110"  class="font-17"><font color="#333333"><?=t_car_registration_number;?></font></td>
+		      <td colspan="3" class="font-17"><?=$res_od->car_plate;?></td>
+		    </tr>
+		     <tr>
+		      <td   width="110"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
+		      <td colspan="3" class="font-17"><a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+	
+	<div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> <?=t_reservation_information;?></ons-list-header>
 		<!-- <span class="text-cap font-22"></span> -->
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
@@ -425,28 +448,6 @@ else if($arr[book][status]=='CONFIRM'){
      	</table>
     </div>
     
-	<div style="padding: 5px 0px;">
-     <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
-
-		<!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
-		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
-		  <tr>
-		    <td width="110"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
-		    <td colspan="3" class="font-17">
-			<?=$full_name_driver;?></td>
-		  </tr>
-		  <tbody>
-		    <tr>
-		      <td   width="110"  class="font-17"><font color="#333333"><?=t_car_registration_number;?></font></td>
-		      <td colspan="3" class="font-17"><?=$res_od->car_plate;?></td>
-		    </tr>
-		     <tr>
-		      <td   width="110"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
-		      <td colspan="3" class="font-17"><a href="tel:<?=$res_od->phone;?>" ><?=$arr[book][phone];?></a></td>
-		    </tr>
-		  </tbody>
-		</table>
-	</div>
 	<?php 
 	if($arr[book][status]!='CANCEL'){
 
