@@ -387,7 +387,7 @@ $data_shopmain = $shopmain->row();
               <tbody>
                 <tr>
                   <td>
-                    <ons-list-header class="list-header"> ค่าตอบแทน</ons-list-header>
+                    <ons-list-header class="list-header"> เลือกค่าตอบแทน</ons-list-header>
 
                   </td>
                   <td width="50" style="display: none;" id="row_accept_payment">
@@ -455,7 +455,7 @@ $data_shopmain = $shopmain->row();
 
 
     <div class="card" id="num_customer" onclick="checformadd('num_customer')">
-      <ons-list-header class="list-header "> จำนวนคน</ons-list-header>
+      <ons-list-header class="list-header "> จำนวนแขก</ons-list-header>
       <!-- <div class="form-group"> -->
         <table width="100%">
           <tr>
