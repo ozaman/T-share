@@ -1,4 +1,14 @@
 <?php 
+if($this->Mobile_model->version('Android')){
+	$href_line = "https://play.google.com/store/apps/details?id=jp.naver.line.android&hl=th";
+	$href_wechat = "https://play.google.com/store/apps/details?id=com.tencent.mm";
+	$href_zello = "https://play.google.com/store/apps/details?id=com.loudtalks";
+}else{
+	$href_line = "https://itunes.apple.com/us/app/line/id443904275?mt=8";
+	$href_wechat = "https://itunes.apple.com/th/app/wechat/id414478124?mt=8";
+	$href_zello = "https://itunes.apple.com/th/app/zello-walkie-talkie/id508231856?mt=8";
+}
+
 			$name_th = "ชื่อ - นามสกุล";
 			$name_en = "ชื่อ - นามสกุล (อังกฤษ)";
 			$nickname = "ชื่อเล่น";
@@ -41,7 +51,7 @@
 		}else{
 			$txt_pv = "เลือกจังหวัด";
 		}		
-		?>
+?>
 
 <div style="padding: 1px 0 0 0;">
 	<!--<p class="intro" >
@@ -268,6 +278,9 @@
                 </ons-input>
               
             </label>
+            <?php if($driver->line_id==""){ ?>
+            <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_line;?>"target="_blank"><span class="font-14">โหลด Line</span></a>
+            <?	}      ?>
         </ons-list-item>
         
         <ons-list-item class="input-items list-item p-l-0">
@@ -281,6 +294,9 @@
                         Wechat</span>
                 </ons-input>
             </label>
+             <?php if($driver->wechat_id==""){ ?>
+            <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_wechat;?>"target="_blank"><span class="font-14">โหลด Wechat</span></a>
+            <?	}      ?>
         </ons-list-item>
         
         <ons-list-item class="input-items list-item p-l-0">
@@ -291,9 +307,12 @@
                 <ons-input id="zello_id-input" float="" placeholder="Zello id" name="zello_id" style="width:100%;" value="<?=$driver->zello_id;?>">
                     <input type="text" class="text-input"  placeholder="Zello id" name="zello_id" id="zello_id">
                     <span class="text-input__label">
-                        Wechat id</span>
+                        Zello id</span>
                 </ons-input>
             </label>
+             <?php if($driver->zello_id==""){ ?>
+            <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_zello;?>"target="_blank"><span class="font-14">โหลด Zello</span></a>
+            <?	}      ?>
         </ons-list-item>
 	</ons-card>
     

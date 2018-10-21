@@ -1364,6 +1364,17 @@ function openZello(shop_id) {
     });
 }
 
+function openLine(shop_id) {
+    fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'Line'
+    }, 'fade-md');
+    var url_load = "page/social?type=line&shop_id=" + shop_id;
+    $.post(url_load, function(ele) {
+        $('#body_popup2').html(ele);
+    });
+}
+
 function openShopMap(lat, lng, place_area, place_province){
             		$('#place_lat').val(lat);
             		$('#place_lng').val(lng);
@@ -1425,6 +1436,13 @@ function contactDriver(call, type, shop_id, order_id){
 			performClick('zello_driver_'+order_id);
 		}
 	}else if(type=="line"){
+		if(call=="lab"){
+			
+			openLine(shop_id);
+		}else{
+			performClick('line_driver_'+order_id);
+		}
+		
 		
 	}
 }
@@ -1438,7 +1456,7 @@ $("#number_" + type).removeClass('step-booking');
 $("#number_" + type).addClass('step-booking-active');
 
 $("#btn_" + type).css('background-color', '#666666');
-
+	$('#pm_'+type).show();
 if (type == "driver_topoint") {
     $('#step_guest_receive').show();
 } else if (type == "guest_receive") {
@@ -1631,6 +1649,15 @@ function btn_driver_topoint(id) {
     if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
+    if(class_user=="lab"){
+		/*ons.notification.alert({
+            message: 'คนขับรถเป็นคนแจ้งสถานที่ส่งแขกเท่านั้น',
+            title: "ไม่สามารถแจ้งถึงสถานที่ได้",
+            buttonLabel: "ปิด"
+        })
+        .then(function() {});*/
+        return;
+	}
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
@@ -1651,12 +1678,12 @@ function btn_guest_receive(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
@@ -1679,12 +1706,12 @@ function btn_guest_register(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
@@ -1707,12 +1734,12 @@ function btn_driver_pay_report(id) {
         return;
     }
     if (class_user == "taxi") {
-        ons.notification.alert({
+        /*ons.notification.alert({
             message: 'พนักงานรับแขกเป็นคนยืนยันเท่านั้น',
             title: "ไม่สามารถยืนยันได้",
             buttonLabel: "ปิด"
         })
-        .then(function() {});
+        .then(function() {});*/
         return;
     }
     fn.pushPage({
@@ -1766,6 +1793,7 @@ if (page == "shop_manage.html") {
 }else if (page == "shop_history.html") {
     historyShop($('#date_shop_his').val());
     $('#box-shop_date').fadeIn(300);
+    $('#date_shop_his').val(today);
 }else{
 	$('#box-shop_date').fadeOut(300);
 }

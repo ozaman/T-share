@@ -122,4 +122,52 @@ else if($_GET[type]=="zello"){
 <? } ?>
 </div>
 <? }
+
+else if($_GET[type]=="line"){ 
+   ?>
+   <div style="margin-top: 0px;">
+<?php
+   /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+   $res[contact] = $db->select_query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='zello'");
+   while($arr[contact] = $db->fetch($res[contact])){*/  
+   $query = $this->db->query("SELECT id,line_id,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
+	foreach ($query->result() as $row){
+ $href = "line://ti/p/".$row->line_id;
+ /*if($detectname=='iPad' or  $detectname=='iPhone' or $detectname=='Other'){ 
+	$href = $row->phone;
+ } 
+ if($detectname=='Android' ){ 
+	$href = "zello://".$row->channel."?add_channel";
+ }*/ ?>
+
+<a href="<?=$href;?>"   style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none">
+   <div style="padding:5px; margin-top:15px; " class="div-all-zello"  >
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+         <tbody>
+            <tr>
+               <td width="120" align="center"><img src="assets/images/social/line.png"  width="80px"   border="0"       /></td>
+               <td>
+                  <table width="100%" border="0" cellpadding="2" cellspacing="2">
+                     <tbody>
+                        <tr>
+                           <td>
+                           	<a  href="<?=$href;?>"  style=" font-size:18px; margin-left:0px; padding:0px;   text-transform:uppercase; text-decoration:none;">
+<b>   <?=$row->name;?> </b> <?=$row->line_id;?>
+							</a>
+                           </td>
+						</tr>
+						<tr>
+							<td style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none"><?=$row->name;?></td>
+						</tr>
+					</tbody>
+				</table>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</a>
+<? } ?>
+</div>
+<? }
 ?>
