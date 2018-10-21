@@ -11,15 +11,24 @@
 	 $query_dv = $this->db->query($sql_dv);
 	 $res_dv = $query_dv->row();
 	 
-    if($val[status]=='CANCEL'){
+    // if($val[status]=='CANCEL'){
 
-      $status_txt = '<strong><font color="#ff0000">ยกเลิก</font></strong>';
+    //   $status_txt = '<strong><font color="#ff0000">ยกเลิก</font></strong>';
+    // }
+    // else if($val[status]=='NEW'){
+    //   $status_txt = '<strong><font color="#3b5998">'.t_new.'</font></strong>';
+    // }
+    // else if($val[status]=='COMPLETED'){
+    //   $status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
+    // }
+    // 
+    if($val[lab_approve_job] == 0){
+
+      $status_txt = '<strong><font color="#ff0000">รอตอบรับ</font></strong>';
     }
-    else if($val[status]=='NEW'){
-      $status_txt = '<strong><font color="#3b5998">'.t_new.'</font></strong>';
-    }
-    else if($val[status]=='COMPLETED'){
-      $status_txt = '<strong><font color="#54c23d">'.t_success.'</font></strong>';
+    
+    else if($val[lab_approve_job] ==1){
+      $status_txt = '<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>';
     }
 
 	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
@@ -53,15 +62,7 @@
     
   <div class="box-shop">
   	
-  	<?php 
-  		if($data_user_class == "lab"){ 
-  		$contract = "taxi";
-  		?>
-  	<button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>		
-  	<?	}else{
-		$contract = "lab";
-	}
-  	?>
+  	
   	 <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
     <table width="100%"  >
     	  <tr>
@@ -114,14 +115,19 @@
     	  	</td>
     	  </tr>
           <tr>
-            <td width="80%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
-            <td width="20%" align="center" rowspan="1">
-            <div class="font-18" id="status_book_<?=$val[id];?>" style="/*margin-top: -20px;
-    margin-left: -85px;
-    position: absolute;
-    max-width: 150px;*/
-    width: 100%;" align="center">
+            <td width="70%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
+            <td width="30%" align="center" rowspan="1">
+            <?php 
+            if($data_user_class != "lab"){
+              ?>
+            <div class="font-18" id="status_book_<?=$val[id];?>" style=" width: 100%;" align="center">
             <?=$status_txt;?></div>
+          <?php }else{
+            ?>
+    <button style="border-radius: 5px;padding: 5px" class="btn btn-xs edit-post-shop pull-right" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>   
+    <?php    
+          }
+           ?>
             </td>
           </tr>
           <?php 
@@ -185,7 +191,7 @@
                <tr>
                <?php 
                if($val[check_driver_pay_report]==0){ ?>
-			   	 <td width="35%">
+			   	 <td width="35%" valign="top">
               
              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
@@ -213,6 +219,7 @@
             	  <td width="65%">
              <?php 
              if($data_user_class == "lab"){
+              $text_mn = 'จัดการ';
 			 	if($val[lab_approve_job]==0){ 
 			 		$btn_approve= "";
 			 		$btn_manage = "display:none;";
@@ -226,22 +233,25 @@
 					 <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;
     border-radius: 5px;
     line-height: 0;<?=$btn_manage;?>
-    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">จัดการ</span> </ons-button>
+    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
 				<? 
 			 }
 			 
 			 else if($data_user_class == "taxi"){ 
+         $text_mn = 'ส่งแขก';
 			 		if($val[lab_approve_job]==1){
+           
 			 			$btn_manage = "";
 			 			$txt_wait_approve = "display:none;";
 			 		}else{
+            
 			 			$btn_manage = "display:none;";
 			 			$txt_wait_approve = "";
 			 		}?>
 		<ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
     border-radius: 5px;
     line-height: 0;<?=$btn_manage;?>
-    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">จัดการ</span> </ons-button>	
+    " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>	
      
 		<div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
 <?				

@@ -1010,7 +1010,7 @@ function saveShop() {
                 ons.notification.alert({
                     message: 'กรุณาตรวจสอบอีกครั้งหรือติดต่อเจ้าหน้าที่',
                     title: "ทำรายการไม่สำเร็จ",
-                    buttonLabel: "ปิด"
+                    buttonLabel: "ตกลง"
                 })
                 .then(function() {});
             }
@@ -1020,7 +1020,7 @@ function saveShop() {
             ons.notification.alert({
                 message: 'กรุณาตรวจสอบข้อมูลของท่าน',
                 title: "ผิดพลาด",
-                buttonLabel: "ปิด"
+                buttonLabel: "ตกลง"
             })
             .then(function() {});
         }
@@ -1312,7 +1312,7 @@ function submitCancel() {
                     ons.notification.alert({
                         message: 'ยกเลิกสำเร็จ',
                         title: "สำเร็จ",
-                        buttonLabel: "ปิด"
+                        buttonLabel: "ตกลง"
                     })
                     .then(function() {
                         fn.hideDialog('cancel-shop-dialog');
@@ -1548,7 +1548,7 @@ success: function(data) {
 ons.notification.alert({
     message: 'ยืนยันแล้ว',
     title: "สำเร็จ",
-    buttonLabel: "ปิด"
+    buttonLabel: "ตกลง"
 })
 .then(function() {
     callpop();
@@ -1913,7 +1913,7 @@ $.ajax({
        ons.notification.alert({
           message: 'แก้ไขเวลาเรียบร้อย',
           title: "สำเร็จ",
-          buttonLabel: "ปิด"
+          buttonLabel: "ตกลง"
       })
        .then(function() {
            shopManage()
@@ -1989,7 +1989,7 @@ $.ajax({
             ons.notification.alert({
               message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
               title: "สำเร็จ",
-              buttonLabel: "ปิด"
+              buttonLabel: "ตกลง"
           })
             .then(function() {
 				
@@ -2062,7 +2062,7 @@ $.ajax({
     ons.notification.alert({
       message: 'ยืนยันการจ่ายเงินแล้ว',
       title: "สำเร็จ",
-      buttonLabel: "ปิด"
+      buttonLabel: "ตกลง"
   })
     .then(function() {
 
@@ -2109,7 +2109,7 @@ success: function(com) {
                    ons.notification.alert({
                       message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
                       title: "สำเร็จ",
-                      buttonLabel: "ปิด"
+                      buttonLabel: "ตกลง"
                   })
                    .then(function() {
                     reloadIncomeShop(id);

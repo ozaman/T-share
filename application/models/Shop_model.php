@@ -26,38 +26,93 @@ class Shop_model extends CI_Model {
 		$data["price_extra_park"] = $price_extra_park;
 		$data["price_extra_person"] = $price_extra_park;
 		$data["income_price_park"] = $income_price_park;*/
-		
+		if (1<0) {
+			# code...
+
+			$_where = array();
+			$_where['i_shop_country_com_list'] = $_POST[price_plan];
+			$_select = array('*');
+			$_order = array();
+			$_order['id'] = 'asc';
+			$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
+			$_where = array();
+			$_where['i_plan_price'] = $list_price[0]->i_plan_price;
+			$_select = array('*');
+			$_order = array();
+			$_order['id'] = 'asc';
+			$ick = 0;
+			$list_pricex = $this->Main_model->fetch_data('','',TBL_SHOP_PLAN_COM,$_where,$_select,$_order);
+			foreach ($list_pricex as $key => $value) {
+				$_where = array();
+				$_where['id'] = $value->i_plan_com;
+				$_select = array('s_col');
+				$_order = array();
+				$_order['id'] = 'asc';
+				$list_prices = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
+				$s_col = $list_prices->s_col;
+				if ($value->i_plan_com == 5) {
+					if ($list_price[$ick]->s_topic_en == 'park') {
+
+			// if ($ick == 1) {
+						$price_person_total = (1*$list_price[$ick]->i_price) * (1*$_POST[adult]);
+						$data["aaaaaa".$s_col] = $list_price[$ick]->s_topic_en;
+					// }		
+
+
+					}
+					else{
+						$price_person_total = $list_price[$ick]->i_price * 1;
+						$data["bbbbb".$s_col] = $list_price[$ick]->s_topic_en;
+
+
+					}
+					$data[$s_col] = 1*$list_price[$ick]->i_price;;
+					$data["price_person_total"] = 1*$price_person_total;
+
+				}
+				else{
+					$data[$s_col] =  $list_price[$ick]->i_price;
+
+				}
+				$ick++;
+			}
+		}
+		/**********************************************************************************************/
+		/*************************              ********************************************************/
+		/**********************************************************************************************/
 		$_where = array();
 		$_where['i_shop_country_com_list'] = $_POST[price_plan];
 		$_select = array('*');
 		$_order = array();
 		$_order['id'] = 'asc';
 		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
-		$_where = array();
-		$_where['i_plan_price'] = $list_price[0]->i_plan_price;
-		$_select = array('*');
-		$_order = array();
-		$_order['id'] = 'asc';
-		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_PLAN_COM,$_where,$_select,$_order);
+
 		foreach ($list_price as $key => $value) {
 			$_where = array();
-			$_where['id'] = $value->i_plan_com;
+			$_where['id'] = $value->i_plan_product_price_name;
 			$_select = array('s_col');
 			$_order = array();
 			$_order['id'] = 'asc';
-			$list_prices = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
-			$s_col = $list_prices->s_col;
-			if ($value->i_plan_com == 5) {
-				$price_person_total = (1*$_POST[$s_col]) * (1*$_POST[adult]);
-				$data[$s_col] = 1*$_POST[$s_col];
+			$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
+			$s_col = $price_name->s_col;
+			if ($value->i_plan_product_price_name == 6) {
+				$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
+				$data["aaaaaa".$s_col] = $value->s_topic_en;
+				$data[$s_col] = 1*$value->i_price;;
 				$data["price_person_total"] = 1*$price_person_total;
-
+				
 			}
+
+
 			else{
-				$data[$s_col] = $_POST[$s_col];
+				$data[$s_col] =  $value->i_price;
 
 			}
+
+			// $ick++;
 		}
+
+		// return  $data;
 		// $data["price_all_total"] = $price_park_driver + $all_price_person_driver;
 		// $data["commission_persent"] = 1*$_POST[commission_persent];
 
@@ -135,7 +190,10 @@ class Shop_model extends CI_Model {
 
 		$data[update] = $data_update;
 
-		$this->linenoti();
+		if ($data_update[result] == true) {
+			$this->linenoti();
+			# code...
+		}
 
 		return $data;
 
@@ -148,18 +206,18 @@ class Shop_model extends CI_Model {
 		$data[driver_complete] = 1;
 		$data[update_date] = time();
 
-	$this->db->where('id', $_POST[order_id]);
-	$data[result] = $this->db->update('order_booking', $data); 
-	$data[order_id] = $_POST[order_id];
+		$this->db->where('id', $_POST[order_id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+		$data[order_id] = $_POST[order_id];
 
-	$typname = "typname_".$_POST[type_cancel];
-	$data_his[order_id] = $_POST[order_id];
-	$data_his[type] = $_POST[type_cancel];
-	$data_his[status] = "CANCEL";
-	$data_his[type_name] = $_POST[$typname];
-	$data_his[posted] = $_COOKIE[detect_username];
-	$data_his[post_date] = time();
-	$data_his[update_date] = time();
+		$typname = "typname_".$_POST[type_cancel];
+		$data_his[order_id] = $_POST[order_id];
+		$data_his[type] = $_POST[type_cancel];
+		$data_his[status] = "CANCEL";
+		$data_his[type_name] = $_POST[$typname];
+		$data_his[posted] = $_COOKIE[detect_username];
+		$data_his[post_date] = time();
+		$data_his[update_date] = time();
 
 		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
 //	$data_his[result] = true;

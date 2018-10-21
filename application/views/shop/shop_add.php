@@ -20,10 +20,8 @@ $datenow = strtotime(date('Y-m-d 10:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
 $date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
-$timefinal = 
-if (condition) {
-  # code...
-}
+// $timefinal = 
+
 $i_time_balance = ($dateclose - $datenow)/60;
 $i_time_balance2 = ($date_open - $datenow)/60;
 // echo $i_time_balance.'*****'.$i_time_balance2;

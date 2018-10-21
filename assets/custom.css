@@ -39,14 +39,14 @@ img[src=""] {
     margin-top: -30px;
 }
 .edit-post-shop {
-       margin-right: 10px;
+      /*margin-right: 10px; */
     border: 1px solid #3b5998 !important;
-    padding: 6px !important;
-    position: absolute;
+    /* padding: 6px !important; */
+    /* position: absolute; */
     z-index: 1;
-    left: 20px;
+    /* left: 20px; */
     background-color: #fff;
-    margin-top: -28px;
+    /* margin-top: -28px; */
 }
 .box-shop{
   background-color: #fff;	
