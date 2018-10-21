@@ -11,16 +11,22 @@ $arr_where = array();
 $arr_where['status'] = 1;
 $arr_where['product_id'] = $_GET[shop_id];
 $arr_where['product_day'] =  $weekdays[date('w')];
-$arr_select = array('finish_h','finish_m');
+$arr_select = array('finish_h','finish_m','start_h','start_m',);
 
 $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 //print_r(json_encode($datatime));
 $datenow = strtotime(date('Y-m-d H:i:s'));
-// $datenow = strtotime(date('Y-m-d 19:i:s'));
+$datenow = strtotime(date('Y-m-d 10:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
+$date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
+$timefinal = 
+if (condition) {
+  # code...
+}
 $i_time_balance = ($dateclose - $datenow)/60;
-// echo $dateclose.'*****'.$i_time_balance;
+$i_time_balance2 = ($date_open - $datenow)/60;
+// echo $i_time_balance.'*****'.$i_time_balance2;
 
 
 ?>
@@ -75,6 +81,7 @@ $data_shopmain = $shopmain->row();
           $op_select = 'ขณะนี้ปิดให้บริการ';
 
         $i_d_next = date('w')+1;
+        $i_d_next2 = date('d')+1;
         $weekdays = Array();
         $weekdays[0] = "Sun";
         $weekdays[1] = "Mon";
@@ -97,16 +104,15 @@ $data_shopmain = $shopmain->row();
         $weekdays2[5] = "วันศุกร์";
         $weekdays2[6] = "วันเสาร์";
 
-        $datatime_next = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
+        $datatime_next = $this->Main_model->rowdata(TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select);
+        // print_r($datatime_next);
 
         ?>
         <div class="card" align="center">
           <h1 style="color: red" align="center">ขณะนี้ปิดให้บริการ</h1>
-           <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ <?=date('Y/m/d');?></h2>
-          <!-- <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span>  -->
-          <!-- <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ ในวันถัดไป</h2> -->
+          <h2 style="color: #0076ff" align="center">จะเปิดให้บริการ <?=date('Y-m-'.$i_d_next2);?></h2>
           <h3 style="color: #24b968" align="center"><span><?=$weekdays2[$i_d_next];?></span> 
-            <h3 style="color: #24b968" align="center"><span style="color: #24b968;">เวลาเปิด <?=$datatime_next[0]->start_h.':'.$datatime_next[0]->start_m;?></span> ปิด <?=$datatime_next[0]->finish_h.':'.$datatime_next[0]->finish_m;?></span> น.</h3>
+            <h3 style="color: #24b968" align="center"><span style="color: #24b968;">เวลาเปิด <?=$datatime_next->start_h.':'.$datatime_next->start_m;?></span> ปิด <?=$datatime_next->finish_h.':'.$datatime_next->finish_m;?></span> น.</h3>
 
           </div>
 
@@ -543,11 +549,12 @@ $data_shopmain = $shopmain->row();
                 $mm = 5;
                 ?>
 
-                <?php foreach ($time as $key => $at) { 
+                <?php foreach ($time as $key => $at) {
                   if ($i_time_balance >= $key ) {
-        # code...
-
-                    ?>
+                    // if ($i_time_balance2 >= 0) {
+                      
+                    // }
+                   ?>
                     <option value="<?=$key; ?>"><?=$at; ?></option>
                   <?php }
                 }

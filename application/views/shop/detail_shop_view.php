@@ -226,7 +226,11 @@ else if($arr[book][status]=='CONFIRM'){
       </tr>
    </tbody>
 	</table>
-	
+  <?php 
+	if($_COOKIE[detect_userclass]=="taxi"){
+   ?>
+  
+
 	<div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
@@ -249,7 +253,7 @@ else if($arr[book][status]=='CONFIRM'){
 		  </tbody>
 		</table>
 	</div>
-	
+	<?php } ?>
 	<div style="padding: 5px 0px;">
      <ons-list-header class="list-header"> <?=t_reservation_information;?></ons-list-header>
 		<!-- <span class="text-cap font-22"></span> -->
