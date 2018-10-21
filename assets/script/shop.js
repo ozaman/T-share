@@ -564,7 +564,7 @@ function saveeditBook(x) {
 
  var pax_all = parseInt($('#num_edit_persion').val()) + parseInt($('#num_edit_child').val());
  $('#txt_mn_pax_'+x).text(pax_all);
- 
+
  $('#txt_mn_adult_'+x).text(number_persion_new);
  $('#txt_mn_child_'+x).text(num_child);
 }
@@ -1029,75 +1029,75 @@ function saveShop() {
 
 function openDetailShop(key, type) {
 //	console.log(key)
-    var detailObj = array_data.manage[key];
+var detailObj = array_data.manage[key];
 //    alert(detailObj.invoice);
-    if(type!="ios"){
-     fn.pushPage({
-       'id': 'popup1.html',
-       'title': detailObj.invoice
-   }, 'slide-ios');
- }
+if(type!="ios"){
+ fn.pushPage({
+   'id': 'popup1.html',
+   'title': detailObj.invoice
+}, 'slide-ios');
+}
 
- console.log(detailObj);
- var url = "shop/detail_shop" + "?user_id=" + detect_user;
- $.post(url, detailObj, function(data) {
+console.log(detailObj);
+var url = "shop/detail_shop" + "?user_id=" + detect_user;
+$.post(url, detailObj, function(data) {
 //   console.log(data);
-   $('#body_popup1').html(data);
+$('#body_popup1').html(data);
         //        var obj = JSON.parse('<?=json_encode($_POST);?>');
         var obj = detailObj;
 //        console.log(obj);
-        
-        if (obj.check_driver_topoint == 1) {
-            console.log("driver_topoint");
-            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
-        }
-        if (obj.check_guest_receive == 1) {
-            console.log("guest_receive");
-            changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
-        }
-        if (obj.check_guest_register == 1) {
-            console.log("guest_register");
-            changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
-        }
-        if (obj.check_driver_pay_report == 1) {
-            console.log("driver_pay_report");
-            changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
-        }
-        changeApprovedIncome(obj.check_driver_pay_report);
-        checkPhotoCheckIn('driver_topoint', obj.id);
-        checkPhotoCheckIn('guest_receive', obj.id);
-        checkPhotoCheckIn('guest_register', obj.id);
-        checkPhotoCheckIn('driver_pay_report', obj.id);
-        if(type=="ios"){
-         modal.hide();
-     }
- });
- $('#check_open_shop_id').val(detailObj.id);
+
+if (obj.check_driver_topoint == 1) {
+    console.log("driver_topoint");
+    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+}
+if (obj.check_guest_receive == 1) {
+    console.log("guest_receive");
+    changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+}
+if (obj.check_guest_register == 1) {
+    console.log("guest_register");
+    changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+}
+if (obj.check_driver_pay_report == 1) {
+    console.log("driver_pay_report");
+    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+}
+changeApprovedIncome(obj.check_driver_pay_report);
+checkPhotoCheckIn('driver_topoint', obj.id);
+checkPhotoCheckIn('guest_receive', obj.id);
+checkPhotoCheckIn('guest_register', obj.id);
+checkPhotoCheckIn('driver_pay_report', obj.id);
+if(type=="ios"){
+ modal.hide();
+}
+});
+$('#check_open_shop_id').val(detailObj.id);
 }
 
 function openDetailBookinghistory(key, type, invoice) {
 	console.log(invoice)
 //	return;
-    fn.pushPage({
-        'id': 'popup1.html',
-        'title': invoice
-    }, 'slide-ios');
+fn.pushPage({
+    'id': 'popup1.html',
+    'title': invoice
+}, 'slide-ios');
 
-    var url = "shop/detail_shop_his";
-    var param = {
-        user_id: $.cookie("detect_user"),
-        invoice: invoice,
-    };
+var url = "shop/detail_shop_his";
+var param = {
+    user_id: $.cookie("detect_user"),
+    invoice: invoice,
+};
 //    console.log(param);
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        data: param,
-        type: 'post',
-        success: function(res) {
+$.ajax({
+    url: url,
+    dataType: 'json',
+    data: param,
+    type: 'post',
+    success: function(res) {
 //            console.log(res);
-            var url = "page/shop_detail_his";
-            $.post(url,res,function(ele) {
+var url = "page/shop_detail_his";
+$.post(url,res,function(ele) {
 //                  console.log(ele);
 $('#body_popup1').html(ele);
 var obj = res;
@@ -1320,9 +1320,9 @@ function submitCancel() {
                         setTimeout(function(){ var urlx = "shop/shop_manage";
 //                      appNavigator.popPage();
 
-						resetFormCancel();
-						shopManage();
-						}, 1000);
+resetFormCancel();
+shopManage();
+}, 1000);
                     });
                     $('#btn_cancel_book_' + order_id).hide();
 
@@ -1376,32 +1376,32 @@ function openLine(shop_id) {
 }
 
 function openShopMap(lat, lng, place_area, place_province){
-            		$('#place_lat').val(lat);
-            		$('#place_lng').val(lng);
-            		$('#place_area').val(place_area);
-            		$('#place_province').val(place_province);
-					app_shop.showSelectTypeMapShop();
+  $('#place_lat').val(lat);
+  $('#place_lng').val(lng);
+  $('#place_area').val(place_area);
+  $('#place_province').val(place_province);
+  app_shop.showSelectTypeMapShop();
 }
 
 function openMapsDistance(shop_id) {
 	
 	
    fn.pushPage({
-	    'id': 'popup2.html',
-	    'title': ''
-	}, 'fade-md');
-	   var url = "page/call_page?id="+shop_id;
-	   $.post(url, {
-	    path: "map/map_place"
-	}, function(ele) {
+     'id': 'popup2.html',
+     'title': ''
+ }, 'fade-md');
+   var url = "page/call_page?id="+shop_id;
+   $.post(url, {
+     path: "map/map_place"
+ }, function(ele) {
 	//      console.log(ele)
-		$('#body_popup2').html(ele);
-	});
+  $('#body_popup2').html(ele);
+});
 }
 
 function openMapPlace(){
 	var url_map_place = "https://maps.google.com/?q=8.1110951,98.3064646";
- 	window.open(url_map_place);
+  window.open(url_map_place);
 }
 
 function openMapNav(){
@@ -1415,7 +1415,7 @@ function openMapNav(){
 	
 	var url_map_nav = "https://www.google.co.th/maps/dir/"+lat+","+lng+"/"+place_area+"+"+place_province+"/@"+place_lat+","+place_lng+","+zoom;
 	console.log(url_map_nav);
- 	window.open(url_map_nav);
+  window.open(url_map_nav);
 }
 
 function openMapNotifyEdit(){
@@ -1456,7 +1456,7 @@ $("#number_" + type).removeClass('step-booking');
 $("#number_" + type).addClass('step-booking-active');
 
 $("#btn_" + type).css('background-color', '#666666');
-	$('#pm_'+type).show();
+$('#pm_'+type).show();
 if (type == "driver_topoint") {
     $('#step_guest_receive').show();
 } else if (type == "guest_receive") {
@@ -1498,65 +1498,78 @@ $("#box_" + type).removeClass('border-alert');
 
 function changeApprovedIncome(check_driver_pay_report){
 //	alert(check_driver_pay_report)
-    if(class_user=="taxi"){
-        if(check_driver_pay_report==1){
-            $('#box_approved_income').show();
-        }
-    }else{
+if(class_user=="taxi"){
+    if(check_driver_pay_report==1){
         $('#box_approved_income').show();
     }
-    
-    
+}else{
+    $('#box_approved_income').show();
+}
+
+
 }
 /******* <!-------- End Change html CheckIn ------------> *******/
 
 
 /******* <!-------- function CheckIn ------------> *******/
 function sendCheckIn(id, type) {
+    console.log('*************')
+    console.log($('#num_cus').val())
+   modal.show();
 
-    modal.show();
+   var lng = $('#lng').val();
+   var lat = $('#lat').val();
+   if (type == 'guest_register') {
+    if ($('#num_cus').val() == '') {
+     ons.notification.alert({
+        message: 'จำนวนแขกที่ลงทะเบียน',
+        title: "กรุณาป้อน",
+        buttonLabel: "ตกลง"
+    })
+     modal.hide();
+     return false;
+ }
+ else{
+     var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_customer='+$('#num_cus').val();
 
-    var lng = $('#lng').val();
-    var lat = $('#lat').val();
-    //  var url = "mod/booking/shop_history/php_shop.php?action=<?=$action;?>&type=<?=$_GET[type]?>&id=<?=$arr[project][id]?>&lat="+lat+"&lng="+lng;
-    var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
-    console.log(url);
-
-    $.post(url, function(res) {
-        console.log(res);
-        modal.hide();
-        if (res.result == true) {
-            $('#' + type + '_check_click').val(1)
-//            console.log("+++++++++++++++++----------------------------- "+timestampToDate(res.time, "time"));
-changeHtml(type, id, timestampToDate(res.time, "time"));
-
-//            var message = "";
-//            socket.emit('sendchat', message);
-sendSocket(id);
-
-var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
-
-$.ajax({
-                url: url_msg, // point to server-side PHP script 
-                dataType: 'json', // what to expect back from the PHP script, if anything
-//                data: data,
-type: 'post',
-success: function(data) {
-    console.log(data);
+ }
 }
-});
-ons.notification.alert({
-    message: 'ยืนยันแล้ว',
-    title: "สำเร็จ",
-    buttonLabel: "ตกลง"
-})
-.then(function() {
-    callpop();
-});
+else{
+    var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
 
-shopFuncNotiActi(id, type);
+}
 
-} else {  }
+
+
+console.log(url);
+
+$.post(url, function(res) {
+    console.log(res);
+    modal.hide();
+    if (res.result == true) {
+        $('#' + type + '_check_click').val(1)
+        changeHtml(type, id, timestampToDate(res.time, "time"));
+        sendSocket(id);
+        var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
+        $.ajax({
+            url: url_msg, 
+            dataType: 'json', 
+            type: 'post',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+        ons.notification.alert({
+            message: 'ยืนยันแล้ว',
+            title: "สำเร็จ",
+            buttonLabel: "ตกลง"
+        })
+        .then(function() {
+            callpop();
+        });
+        shopFuncNotiActi(id, type);
+
+    } else {  }
 });
 
 }
@@ -1657,7 +1670,7 @@ function btn_driver_topoint(id) {
         })
         .then(function() {});*/
         return;
-	}
+    }
     fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
@@ -1992,11 +2005,11 @@ $.ajax({
               buttonLabel: "ตกลง"
           })
             .then(function() {
-				
-				setTimeout(function(){  shopManage(); }, 1000);
-              
 
-           });
+                setTimeout(function(){  shopManage(); }, 1000);
+
+
+            });
         }
     });
     }
@@ -2126,13 +2139,13 @@ function _calltest (event){
    el.click();
    var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
    $.post(url2, function(ele2) {
-   $('#shop_add').html(ele2);
-    setTimeout(function() {
+       $('#shop_add').html(ele2);
+       setTimeout(function() {
         // window.location.href = "#go_to_top_add"; 
 
         // $('#shop_add').scrollTop(0);
     }, 1000);
-});
+   });
    // console.log(el.click());
    // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
 // el.addEventListener("click"

@@ -28,7 +28,7 @@
     }
     
     else if($val[lab_approve_job] ==1){
-      $status_txt = '<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>';
+      $status_txt = '<strong><font color="#54c23d">ตอบรับแล้ว</font></strong>';
     }
 
 	 $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
@@ -237,8 +237,15 @@
 				<? 
 			 }
 			 
-			 else if($data_user_class == "taxi"){ 
-         $text_mn = 'ส่งแขก';
+			 else if($data_user_class == "taxi"){
+        if ($val[check_guest_register] == 1) {
+         $text_mn = 'เช็คยอดรายได้';
+          # code...
+        }
+        else{
+         $text_mn = 'แจ้งถึงสถานที่ส่งแขก';
+
+        }
 			 		if($val[lab_approve_job]==1){
            
 			 			$btn_manage = "";
