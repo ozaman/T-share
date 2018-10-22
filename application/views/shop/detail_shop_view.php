@@ -458,16 +458,18 @@ else if($arr[book][status]=='CONFIRM'){
 	include("application/views/shop/checkin.php"); 
 	
 	if($_COOKIE[detect_userclass]=="taxi"){
-		$txt_btn_pay = 'ยืนยันการรับเงิน';
+    $txt_btn_pay = 'ยืนยันการรับเงิน';
+		$txt_head_pay = t_income;
 	}else{
-		$txt_btn_pay = 'แจ้งยอดรายจ่าย';
+    $txt_btn_pay = 'แจ้งยอดรายจ่าย';
+		$txt_head_pay = 'รายจ่าย';
 	}
 	?>
 
 	<div style="padding: 5px 0px;display: none;" id="box_approved_income">
      <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
 
-	 <span class="text-cap font-22"><?=t_income;?></span>
+	 <span class="text-cap font-22"><?=$txt_head_pay;?></span>
 	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-17"><?=$txt_btn_pay;?></span> </ons-button>
 	</div>
 	
