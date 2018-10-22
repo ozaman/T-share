@@ -192,7 +192,7 @@
                <?php 
                if($val[check_driver_pay_report]==0){ ?>
 			   	 <td width="35%" valign="top">
-              <
+              
              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
