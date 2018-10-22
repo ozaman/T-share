@@ -1,4 +1,4 @@
-
+//setInterval(function(){ addUser(); }, 3000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -913,7 +913,7 @@ function beforeSendShop(){
 }
 
 function sendShop2() {
-	addUser();
+//	addUser();
     modal.show();
     
     var urlo = 'shop/place_companycount';
