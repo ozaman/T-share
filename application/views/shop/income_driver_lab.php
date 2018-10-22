@@ -91,7 +91,7 @@
 	    	<span class="font-16 txt-center">ค่าหัว</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->pax;?> = <?=$person_total;?> บาท</span>
+	    	<span class="font-16"><?=$row->price_person_unit;?>x<?=$row->pax_regis;?> = <?=$person_total;?> บาท</span>
 	    </div>
 	</ons-list-item>
 	
