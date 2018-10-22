@@ -74,7 +74,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
         var open_ic = '<?=$_GET[open_ic];?>';
         var detect_mb = "<?=$detectname;?>";
 	</script>
-	<ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+	<ons-navigator swipeable id="appNavigator" page="page1.html"></ons-navigator>
 
 	<template id="page1.html">
 	  	<ons-page id="page1">
@@ -85,7 +85,29 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	    
 	  	</ons-page>
 	</template>
-	
+	 <template id="popup_shop_checkin.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-back-button class="option-back">กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+                <div class="right">
+			      <ons-toolbar-button onclick="reloadApp();">
+			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+			      </ons-toolbar-button>
+			    </div>
+            </ons-toolbar>
+            <input type="hidden" id="type_checkin" value="xx" />
+            <div id="body_shop_checkin">
+            </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+	      }
+	    </script>
+        </ons-page>
+    </template>
 	<template id="popup2.html">
         <ons-page>
             <ons-toolbar>
@@ -247,7 +269,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 			}
 		}
         if (anim) {
-            document.getElementById('myNavigator').pushPage(page.id, {
+            document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
                     title: page.title
                 },
@@ -255,7 +277,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
             });
         } 
 		else {
-            document.getElementById('myNavigator').pushPage(page.id, {
+            document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
                     title: page.title
                 }
