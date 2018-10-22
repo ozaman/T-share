@@ -21,7 +21,9 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
 <ons-list id="body_list_ic_shop" >	 
 	<?php	foreach ($query->result() as $row){ 
 			$tras_d_time = date_create($row->transfer_date);
-
+			
+			$total_price_all = $row->price_park_unit + (intval($row->price_person_unit) * intval($row->pax_regis));
+			
 			if($befordate != $row->transfer_date){ 
 				$befordate = $row->transfer_date;
 				
@@ -32,14 +34,14 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
        		<table width="100%">
        			<tr>
        				<!--<td width="70"><?=$row->invoice;?></td>-->
-       				<td>
+       				<td width="190">
        					<span class="font-16"><?=$row->product_name;?></span><br/>
        					<span class="font-14"><?=date('Y-m-d h:i',$row->post_date);?></span>
        				</td>
-       				<td>
+       				<td >
        					<span class="font-16">รับเงินสด</span>
        				</td>
-       				<td align="right"><b class="font-16"><?="+ ".number_format($row->price_all_total,2);?></b></td>
+       				<td align="right"><b class="font-16"><?=$total_price_all." บ.";?></b></td>
        			</tr>
        		</table>
        </div>

@@ -250,6 +250,9 @@ $btn_pay_report_color = "background-color:#3b5998";
                                       <span class="input-group-text">คน</span>
                                    </td>
                                    <td>
+                                   <?php 
+                                   if($_COOKIE[detect_userclass]=="lab"){
+                                   ?>
                                     <td class="font-17 text-cap">
                                        <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" style="background: #3b5998;
                                        color: #fff;
@@ -266,6 +269,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                                     <span class="font-14 text-cap">บันทึก</span>
                                  </span>
                               </td>
+                              <?php } ?>
                            </td>
                         </tr>
                      </table>
