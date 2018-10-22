@@ -593,6 +593,7 @@ socket.on('datalab', function(username, data) {
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
+                   
                     $('#num_pax_regis_'+value.id).text(value.pax_regis);
                 }
                 if (value.check_driver_pay_report == 1) {
@@ -649,11 +650,13 @@ socket.on('updatedriver', function(username, data) {
             if (data.check_guest_receive == 1) {
                 console.log("guest_receive");
                 changeHtml("guest_receive", data.id,timestampToDate(data.guest_receive_date, "time"));
+                 
                 $('#step_guest_register').show();
             }
             if (data.check_guest_register == 1) {
                 console.log("guest_register");
                 changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"));
+                alert(data.pax_regis);
                 $('#num_pax_regis_'+data.id).text(data.pax_regis);
                 $('#step_driver_pay_report').show();
             }
