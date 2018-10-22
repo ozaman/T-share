@@ -952,7 +952,7 @@ function saveShop() {
                     $('#shop_add').html(ele2);
                 });*/
                 setTimeout(function() {
-                    modal.hide();
+                    
                     _calltest();
                     // $('ons-tab[page="shop_manage.html"]').click();
                 }, 2000);
@@ -1014,6 +1014,7 @@ function saveShop() {
                 })
                 .then(function() {});
             }
+            modal.hide();
         },
         error: function(data) {
             console.log(data);

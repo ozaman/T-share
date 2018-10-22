@@ -671,12 +671,14 @@ socket.on('updatedriver', function(username, data) {
           if(data.lab_approve_job==1){
 		  		$('#btn_manage_'+data.id).show();
 		  		$('#txt_wait_'+data.id).hide();
+		  		$('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 		  }else{
 		  		$('#btn_manage_'+data.id).hide();
 		  		$('#txt_wait_'+data.id).show();
+		  		$('#status_book_'+data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
 		  }
 		
-        }, 1000);
+        }, 500);
     }
 	setCountNotification();
 	if($('#check_open_noti_menu').val()==1){
