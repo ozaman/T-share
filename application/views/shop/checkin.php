@@ -222,9 +222,7 @@ $btn_pay_report_color = "background-color:#3b5998";
 
                               </td>
                            </tr>
- <?php if ($arr[book][check_guest_register] != 0) {
-                                   ?>
-                           <tr >
+                           <tr id="tr_show_pax_regis_<?=$arr[book][id];?>" style="display: none;" >
                               
                               <td colspan="3" align="center">
                                  <div style="padding: 10px;">
@@ -269,7 +267,6 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  </table>
                               </td>
                            </tr>
-                        <?php } ?>
                         </tbody>
 
                      </table>

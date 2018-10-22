@@ -1463,6 +1463,7 @@ if (type == "driver_topoint") {
 } else if (type == "guest_receive") {
     $('#step_guest_register').show();
 } else if (type == "guest_register") {
+	$('#tr_show_pax_regis_'+id).show();
     $('#step_driver_pay_report').show();
 } else if (type == "driver_pay_report") {
 
