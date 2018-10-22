@@ -581,7 +581,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาเลือกประเภทรถ',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#car_type').focus();
@@ -593,7 +593,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาระบุป้ายทะเบียนรถ',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#car_plate').focus();
@@ -613,7 +613,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาเลือกสัญชาติ',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $("#nation_box").focus();
@@ -632,7 +632,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาเลือกค่าตอบแทน',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             window.location.href = "#box_com";
@@ -649,7 +649,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาระบุจำนวนผู้ใหญ่',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#adult').focus();
@@ -664,7 +664,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาระบุจำนวนผู้ใหญ่ต้องมากว่า 0',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#adult').focus();
@@ -677,7 +677,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาระบุจำนวนเด็ก่',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#child').focus();
@@ -707,7 +707,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาเลือกเวลาโดยประมาณ',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#time_num').focus();
@@ -721,7 +721,7 @@ var submitShop = function() {
         ons.notification.alert({
             message: 'กรุณาระบุเวลาถึงโดยประมาณ',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {
             $('#time_num').focus();
@@ -863,7 +863,7 @@ var gtimeM = parseInt(res[0].finish_m);
                 ons.notification.alert({
                     message: 'ท่านเลือกเวลาส่งแขกเกินเวลาทำการกรุณา เลือกเวลาใหม่',
                     title: "เวลาทำการ "+$('#shop_topic_th').val()+ res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m,
-                    buttonLabel: "ปิด"
+                    buttonLabel: "ตกลง"
                 })
                 .then(function() {
 
@@ -888,7 +888,7 @@ var gtimeM = parseInt(res[0].finish_m);
             ons.notification.alert({
                 message: 'ท่านเลือกเวลาส่งแขกเกินเวลาทำการกรุณา เลือกเวลาใหม่',
                 title: "เวลาทำการ "+$('#shop_topic_th').val()+ res[0].start_h+':'+res[0].start_m + '-'+res[0].finish_h+':'+res[0].finish_m,
-                buttonLabel: "ปิด"
+                buttonLabel: "ตกลง"
             })
             .then(function() {
 
@@ -1256,7 +1256,7 @@ function submitCancel() {
         ons.notification.alert({
             message: 'กรุณาเลือกสาเหตุที่ยกเลิก',
             title: "ข้อมูลไม่ครบ",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {});
     }

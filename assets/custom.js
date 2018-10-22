@@ -1027,7 +1027,7 @@ function sendTransfer() {
     ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
             title: "ขอภัย",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {});
     return;
@@ -1047,7 +1047,7 @@ function booking() {
     ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
             title: "ขอภัย",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {});
     return;
@@ -1062,7 +1062,7 @@ function tour() {
     ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
             title: "ขอภัย",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {});
     return;
@@ -1077,7 +1077,7 @@ function pay() {
     ons.notification.alert({
             message: 'ยังไม่เปิดให้บริการ',
             title: "ขอภัย",
-            buttonLabel: "ปิด"
+            buttonLabel: "ตกลง"
         })
         .then(function() {});
     return;
@@ -1254,7 +1254,7 @@ function readURLprofileHome(input, type) {
                     ons.notification.alert({
                             message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',
                             title: "สำเร็จ",
-                            buttonLabel: "ปิด"
+                            buttonLabel: "ตกลง"
                         })
                         .then(function() {});
                 },
