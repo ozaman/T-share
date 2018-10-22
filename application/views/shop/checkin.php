@@ -40,10 +40,12 @@ else{
 
 $btn_topoint_color = "background-color:#3b5998";
 $btn_guest_receive_color = "background-color:#666666";
-$btn__guest_register_color = "background-color:#666666";
+$btn_guest_register_color = "background-color:#666666";
 $btn_pay_report_color = "background-color:#666666";
 
-}else{
+}
+
+else{
 
    if ($arr[book][driver_topoint] == 0) {
       $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
@@ -88,7 +90,7 @@ $txt_wait_pay_report = 'รอดำเนินการ';
 
 $btn_topoint_color = "background-color:#666666";
 $btn_guest_receive_color = "background-color:#3b5998";
-$btn__guest_register_color = "background-color:#3b5998";
+$btn_guest_register_color = "background-color:#3b5998";
 $btn_pay_report_color = "background-color:#3b5998";
 }
 	/*$txt_wait_topoint = 'รอดำเนินการ';
