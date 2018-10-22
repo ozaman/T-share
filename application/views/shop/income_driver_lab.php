@@ -60,7 +60,7 @@
 			$status_txt = '<span class="font-16 txt-warning"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอแท็กซี่ยืนยันรับเงิน</span></span>';
 		}
 		$btn_approved = "disabled";
-		$txt_btn_app = "ทำการยืนยันแล้ว";
+		$txt_btn_app = "ยืนยันแล้ว";
 		$show_after_approve = "";
 	}
 	else{

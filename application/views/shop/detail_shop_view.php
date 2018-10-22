@@ -461,7 +461,7 @@ else if($arr[book][status]=='CONFIRM'){
 	include("application/views/shop/checkin.php"); 
 	
 	if($_COOKIE[detect_userclass]=="taxi"){
-    $txt_btn_pay = 'ยืนยันการรับเงิน';
+    $txt_btn_pay = 'ตรวจสอบรายได้';
 		$txt_head_pay = t_income;
 	}else{
     $txt_btn_pay = 'แจ้งยอดรายจ่าย';

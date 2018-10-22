@@ -339,6 +339,7 @@ public function driver_complete(){
 	$data[driver_complete_date] = time();
 	$data[driver_complete_lat] = $_GET[lat];
 	$data[driver_complete_lng] = $_GET[lng];
+	$data[remark_pay] = $_GET[remark_pay];
 	$data[status] = "COMPLETED";
 
 	$this->db->where('id', $_GET[id]);

@@ -1,11 +1,11 @@
 <?php 
 if($_COOKIE[detect_userclass]=="taxi"){
- $txt_wait_topoint = 'รอดำเนินการ';
- $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
- $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
- $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
+  $txt_wait_topoint = 'รอดำเนินการ';
+ // $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
+ // $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
+ // $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
 
- if ($arr[book][driver_topoint] == 0) {
+  if ($arr[book][driver_topoint] == 0) {
    $title_topoint = "แจ้งถึงสถานที่ส่งแขก";   
    
    
@@ -16,24 +16,32 @@ else{
    
 }
 if ($arr[book][check_guest_receive] == 0) {
-  $title_guest_receive = "รอพนักงานยืนยันรับแขก";
+ $title_guest_receive = "รอพนักงานยืนยันรับแขก";
+ $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
+
 }
 else{
-  $title_guest_receive = "พนักงานยืนยันรับแขก";
+ $title_guest_receive = "พนักงานยืนยันรับแขก";
+ $txt_wait_guest_receive = 'พนักงานยืนยันรับแขก';
+
 
 }
 if ($arr[book][check_guest_register] == 0) {
    $title_guest_regis = "รอพนักงานยืนยันแขกลงทะเบียน";
+   $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
 }
 else{
    $title_guest_regis = "พนักงานยืนยันแขกลงทะเบียน";
+   $txt_wait_guest_register = 'พนักงานยืนยันแขกลงทะเบียน';
 
 }
 if ($arr[book][check_lab_pay] == 0) {
-   $title_pay = "รอพนักงานแจ้งยอดรายได้";
+   $title_pay = "พนักงานแจ้งยอดรายได้";
+   $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
 }
 else{
    $title_pay = "พนักงานแจ้งยอดรายได้";
+   $txt_wait_pay_report = 'พนักงานแจ้งยอดรายได้';
 
 }
 
@@ -46,7 +54,6 @@ $btn_pay_report_color = "background-color:#666666";
 }
 
 else{
-
    if ($arr[book][driver_topoint] == 0) {
       $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
 
@@ -58,13 +65,13 @@ else{
 
    }
    if ($arr[book][check_guest_receive] == 0) {
-     $title_guest_receive = "พนักงานยืนยันรับแขก";
-  }
-  else{
-     $title_guest_receive = "พนักงานยืนยันรับแขก";
+    $title_guest_receive = "ยืนยันรับแขก";
+ }
+ else{
+    $title_guest_receive = "ยืนยันรับแขก";
 
-  }
-  if ($arr[book][check_guest_register] == 0) {
+ }
+ if ($arr[book][check_guest_register] == 0) {
    $title_guest_regis = "ยืนยันแขกลงทะเบียน";
 }
 else{
@@ -72,7 +79,7 @@ else{
 
 }
 if ($arr[book][check_lab_pay] == 0) {
- $title_pay = "ยืนยันแจ้งยอดรายได้";
+  $title_pay = "ยืนยันแจ้งยอดรายได้";
 }
 else{
    $title_pay = "ยืนยันแจ้งยอดรายได้";
@@ -99,10 +106,10 @@ $btn_pay_report_color = "background-color:#3b5998";
 		$txt_wait_pay_report = 'รอดำเนินการ';*/
       ?>
       <div style="padding: 5px 0px;">
-       <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
+        <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
 
-       <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
-       <div class="div-all-checkin">
+        <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
+        <div class="div-all-checkin">
          <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
             <tbody>
                <tr>
@@ -227,22 +234,22 @@ $btn_pay_report_color = "background-color:#3b5998";
                               <td colspan="3" align="center">
                                  <div style="padding: 10px;">
 
-                                  <table width="100%">
-                                   <tr>
-                                     <td>
-                                      <span class="input-group-text" id="basic-addon1">แขกลงทะเบียน</span>
+                                   <table width="100%">
+                                     <tr>
+                                      <td>
+                                        <span class="input-group-text" id="basic-addon1">แขกลงทะเบียน</span>
+                                     </td>
+                                     <td width="5">
+                                       <input type="number" id="num_edit_persion2" pattern="\d*" class="form-control" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" disabled style="border-radius: 5px;
+                                       width: 60px;
+                                       border: none;
+                                       background: #FFF;
+                                       padding: 5px;">
+                                    </td>
+                                    <td>
+                                      <span class="input-group-text">คน</span>
                                    </td>
-                                   <td width="5">
-                                    <input type="number" id="num_edit_persion2" pattern="\d*" class="form-control" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" disabled style="border-radius: 5px;
-                                     width: 60px;
-                                     border: none;
-                                     background: #FFF;
-                                     padding: 5px;">
-                                  </td>
-                                  <td>
-                                     <span class="input-group-text">คน</span>
-                                  </td>
-                                  <td>
+                                   <td>
                                     <td class="font-17 text-cap">
                                        <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" style="background: #3b5998;
                                        color: #fff;
@@ -325,14 +332,14 @@ $btn_pay_report_color = "background-color:#3b5998";
       $('#btn_selectisedit2').show();
    }
    function saveeditBook2(id) {
-     console.log($('#num_edit_persion2').val())
-     var pax_regis = $('#num_edit_persion2').val();
-     var url = "shop/editpax_regis?pax_regis=" + pax_regis + "&id=" + id;
-      $.post(url, function(res) {
-       console.log(res);
-       $('#num_edit_persion2').attr('disabled',true);
-      $('#btn_selectisedit2').hide();
-      $('#btn_isedit2').show();
-   });
-   }
+    console.log($('#num_edit_persion2').val())
+    var pax_regis = $('#num_edit_persion2').val();
+    var url = "shop/editpax_regis?pax_regis=" + pax_regis + "&id=" + id;
+    $.post(url, function(res) {
+     console.log(res);
+     $('#num_edit_persion2').attr('disabled',true);
+     $('#btn_selectisedit2').hide();
+     $('#btn_isedit2').show();
+  });
+ }
 </script>

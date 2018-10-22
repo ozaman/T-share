@@ -53,11 +53,11 @@
 	if($row->check_lab_pay==1){
 		
 		if($row->check_driver_pay==1){
-			$status_txt = '<span class="font-16 txt-green"><img src="assets/images/yes.png" style=" position: absolute;margin-left: -20px; margin-top: 1px;" /><span>แท็กซี่ยืนยันแล้ว</span></span>';
+			$status_txt = '<span class="font-16 txt-green"><img src="assets/images/yes.png" style=" position: absolute;margin-left: -20px; margin-top: 1px;" /><span>ยืนยันแล้ว</span></span>';
 			$btn_approved = "disabled";
 			$txt_btn_app = "ยืนยันการรับเงินแล้ว";
 		}else{
-			$status_txt = '<span class="font-16 txt-warning"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอแท็กซี่ยืนยันรับเงิน</span></span>';
+			$status_txt = '<span class="font-16 txt-warning"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอยืนยันรับเงิน</span></span>';
 			$btn_approved = "";
 			$txt_btn_app = "ยืนยันการรับเงิน";
 		}
@@ -136,8 +136,22 @@
 	    </div>
 	</ons-list-item>
 	<ons-list-item <?=$show_after_approve;?>>
+		 
 	    <div class="center list-pd-r">
-	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 95%; margin: 0 auto;background-color: #26b06c;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
+	    	<div class="ons-card" style="width: 97%; margin-bottom: 10px;">
+              <!-- <ons-list-header class="list-header "> หมายเหตุ</ons-list-header> -->
+              <!-- <div class="form-group"> -->
+
+
+                <!-- <label class="font-17">จำนวนคน</label> -->
+
+              <ons-row>
+                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark_pay" name="remark_pay"   style="pointer-events: auto;" ></textarea>
+
+                </ons-row> 
+                  <!-- </div> -->
+                </div>
+	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 97%; margin: 0 auto;background-color: #26b06c;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
 	    </div>
 	    <!--<div class="right">
 	    	<span class="font-16 txt-red">ยังไม่จ่ายเงิน</span>

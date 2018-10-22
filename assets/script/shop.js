@@ -2108,7 +2108,7 @@ function approvePayDriverByTaxi(id, invoice, driver){
        success: function(res) {
            console.log(res);
            $.ajax({
-               url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val(),
+               url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val()+'&remark_pay='+$('#remark_pay').val(),
 //                 data: param,
 type: 'post',
 dataType: 'json',
