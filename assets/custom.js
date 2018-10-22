@@ -629,7 +629,7 @@ socket.on('datalab', function(username, data) {
 });
 
 socket.on('updatedriver', function(username, data) {
-
+	alert(data.pax_regis);
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
     console.log(data)
@@ -656,7 +656,7 @@ socket.on('updatedriver', function(username, data) {
             if (data.check_guest_register == 1) {
                 console.log("guest_register");
                 changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"));
-                alert(data.pax_regis);
+                
                 $('#num_pax_regis_'+data.id).text(data.pax_regis);
                 $('#step_driver_pay_report').show();
             }

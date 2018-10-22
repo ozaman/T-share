@@ -1549,6 +1549,9 @@ $.post(url, function(res) {
     console.log(res);
     modal.hide();
     if (res.result == true) {
+    	if(type == 'guest_register'){
+			$('#num_pax_regis_'+id)	.text(res.pax_regis);
+		}
         $('#' + type + '_check_click').val(1)
         changeHtml(type, id, timestampToDate(res.time, "time"));
         sendSocket(id);
