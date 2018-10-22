@@ -513,6 +513,7 @@ socket.on('getbookinglab', function(data) {
 		 if (shop_frist_run == 0) {
             shop_frist_run = done.length;
         }
+        console.log(shop_frist_run+" || "+done.length);
         if (done.length != shop_frist_run) {
             shopManage();
             shop_frist_run = done.length;
