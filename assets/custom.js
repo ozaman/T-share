@@ -629,7 +629,7 @@ socket.on('datalab', function(username, data) {
 });
 
 socket.on('updatedriver', function(username, data) {
-	alert(data.pax_regis);
+//	alert(data.pax_regis);
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
     console.log(username)
     console.log(data)
