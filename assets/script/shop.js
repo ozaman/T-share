@@ -1550,7 +1550,7 @@ $.post(url, function(res) {
     modal.hide();
     if (res.result == true) {
     	if(type == 'guest_register'){
-			$('#num_pax_regis_'+id)	.text(res.pax_regis);
+			$('#num_pax_regis_'+id)	.text($('#num_cus').val());
 		}
         $('#' + type + '_check_click').val(1)
         changeHtml(type, id, timestampToDate(res.time, "time"));
