@@ -272,7 +272,7 @@ $btn_pay_report_color = "background-color:#3b5998";
 
                      </table>
                   </div>
-                  </div>	      
+                 	      
                </td>
             </tr>
             <tr id="step_driver_pay_report" style="display:none">
