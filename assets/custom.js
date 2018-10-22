@@ -584,19 +584,20 @@ socket.on('datalab', function(username, data) {
                 
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
-                    changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"))
+                    changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
                 }
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
-                    changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"))
+                    changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
-                    changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"))
+                    changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
+                    $('#num_pax_regis_'+value.id).text(value.pax_regis);
                 }
                 if (value.check_driver_pay_report == 1) {
                     console.log("driver_pay_report");
-                    changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"))
+                    changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
                 }
                 var check_open_incom = $('#check_id_income').val();
                 if (typeof check_open_incom != 'undefined') {
@@ -643,21 +644,22 @@ socket.on('updatedriver', function(username, data) {
                 }, 1000);
             if (data.check_driver_topoint == 1) {
                 console.log("driver_topoint");
-                changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"))
+                changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
             }
             if (data.check_guest_receive == 1) {
                 console.log("guest_receive");
-                changeHtml("guest_receive", data.id,timestampToDate(data.guest_receive_date, "time"))
+                changeHtml("guest_receive", data.id,timestampToDate(data.guest_receive_date, "time"));
                 $('#step_guest_register').show();
             }
             if (data.check_guest_register == 1) {
                 console.log("guest_register");
-                changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"))
+                changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"));
+                $('#num_pax_regis_'+data.id).text(data.pax_regis);
                 $('#step_driver_pay_report').show();
             }
             if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
-                changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"))
+                changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
             }
         }
     }

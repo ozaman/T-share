@@ -232,7 +232,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                                           <td>
                                             
                                    <div style="    padding: 5px;" >
-                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
+                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;" id="num_pax_regis_<?=$arr[book][id];?>"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
                                  </div>
                                   
                                           </td>
