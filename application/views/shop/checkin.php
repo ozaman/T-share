@@ -232,7 +232,12 @@ $btn_pay_report_color = "background-color:#3b5998";
                                           <td>
                                             
                                    <div style="    padding: 5px;" >
-                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;" id="num_pax_regis_<?=$arr[book][id];?>"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
+                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;" id="num_pax_regis_<?=$arr[book][id];?>"> <input type="number" name="" id="num_edit_persion2" pattern="\d*" style="height: 30px;
+    width: 50px;
+    padding: 0px;
+    font-size: 16px;
+    margin: auto;
+    " value="<?=$arr[book][pax_regis];?> disabled" ></span> <span style="margin-left: 5px">คน</span>
                                  </div>
                                   
                                           </td>
@@ -242,14 +247,14 @@ $btn_pay_report_color = "background-color:#3b5998";
     color: #fff;
     padding: 5px;
     border-radius: 8px;
-    display: inline-block;" id="btn_isedit">
+    display: inline-block;" id="btn_isedit2">
                                                 <span class="font-14 text-cap">แก้ไข</span>
                                              </span>
                                              <span  align="center" onclick="saveeditBook2();" style="background: #3b5998;
     color: #fff;
     padding: 5px;
     border-radius: 8px;
-    display: none;" id="btn_selectisedit">
+    display: none;" id="btn_selectisedit2">
                                              <span class="font-14 text-cap">บันทึก</span>
                                           </span>
                                        </td>
