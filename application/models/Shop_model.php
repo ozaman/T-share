@@ -307,6 +307,7 @@ public function guest_register(){
 	$data[guest_register_date] = time();
 	$data[driver_register_lat] = $_GET[lat];
 	$data[driver_register_lng] = $_GET[lng];
+	$data[pax_regis] = $_GET[num_customer];
 
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 

@@ -1,11 +1,11 @@
 <?php 
 if($_COOKIE[detect_userclass]=="taxi"){
-  $txt_wait_topoint = 'รอดำเนินการ';
-  $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
-  $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
-  $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
+ $txt_wait_topoint = 'รอดำเนินการ';
+ $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
+ $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
+ $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
 
-  if ($arr[book][driver_topoint] == 0) {
+ if ($arr[book][driver_topoint] == 0) {
    $title_topoint = "แจ้งถึงสถานที่ส่งแขก";   
    
    
@@ -16,10 +16,10 @@ else{
    
 }
 if ($arr[book][check_guest_receive] == 0) {
- $title_guest_receive = "รอพนักงานยืนยันรับแขก";
+  $title_guest_receive = "รอพนักงานยืนยันรับแขก";
 }
 else{
- $title_guest_receive = "พนักงานยืนยันรับแขก";
+  $title_guest_receive = "พนักงานยืนยันรับแขก";
 
 }
 if ($arr[book][check_guest_register] == 0) {
@@ -46,23 +46,23 @@ $btn_pay_report_color = "background-color:#666666";
 }else{
 
    if ($arr[book][driver_topoint] == 0) {
-   $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
-   
-   
-}
-else{
-   $title_topoint = "คนขับแจ้งถึงสถานที่";
-   
-   
-}
-if ($arr[book][check_guest_receive] == 0) {
- $title_guest_receive = "พนักงานยืนยันรับแขก";
-}
-else{
- $title_guest_receive = "พนักงานยืนยันรับแขก";
+      $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
 
-}
-if ($arr[book][check_guest_register] == 0) {
+
+   }
+   else{
+      $title_topoint = "คนขับแจ้งถึงสถานที่";
+
+
+   }
+   if ($arr[book][check_guest_receive] == 0) {
+     $title_guest_receive = "พนักงานยืนยันรับแขก";
+  }
+  else{
+     $title_guest_receive = "พนักงานยืนยันรับแขก";
+
+  }
+  if ($arr[book][check_guest_register] == 0) {
    $title_guest_regis = "ยืนยันแขกลงทะเบียน";
 }
 else{
@@ -70,26 +70,26 @@ else{
 
 }
 if ($arr[book][check_lab_pay] == 0) {
-  $title_pay = "ยืนยันแจ้งยอดรายได่";
+ $title_pay = "ยืนยันแจ้งยอดรายได้";
 }
 else{
    $title_pay = "ยืนยันแจ้งยอดรายได้";
    
 }
-  $txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
-  $txt_wait_guest_receive = 'รอดำเนินการ';
-  $txt_wait_guest_register = 'รอดำเนินการ';
-  $txt_wait_pay_report = 'รอดำเนินการ';
+$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
+$txt_wait_guest_receive = 'รอดำเนินการ';
+$txt_wait_guest_register = 'รอดำเนินการ';
+$txt_wait_pay_report = 'รอดำเนินการ';
 
-  
-  
-  
-  
 
-  $btn_topoint_color = "background-color:#666666";
-  $btn_guest_receive_color = "background-color:#3b5998";
-  $btn__guest_register_color = "background-color:#3b5998";
-  $btn_pay_report_color = "background-color:#3b5998";
+
+
+
+
+$btn_topoint_color = "background-color:#666666";
+$btn_guest_receive_color = "background-color:#3b5998";
+$btn__guest_register_color = "background-color:#3b5998";
+$btn_pay_report_color = "background-color:#3b5998";
 }
 	/*$txt_wait_topoint = 'รอดำเนินการ';
 		$txt_wait_guest_receive = 'รอดำเนินการ';
@@ -97,10 +97,10 @@ else{
 		$txt_wait_pay_report = 'รอดำเนินการ';*/
       ?>
       <div style="padding: 5px 0px;">
-        <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
+       <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
 
-        <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
-        <div class="div-all-checkin">
+       <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
+       <div class="div-all-checkin">
          <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
             <tbody>
                <tr>
@@ -208,31 +208,70 @@ else{
                            </tr>
                            <tr>
                               <td style="height:30px;">
+                                 
+
                                  <div id="status_guest_register">
                                     <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
                                  </div>
                                  <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click">
                               </td>
                               <td width="30" id="pm_guest_register" style="display: none;">
-                                 <table width="100%">
+                                
+
+                              </td>
+                           </tr>
+ <?php if ($arr[book][check_guest_register] != 0) {
+                                   ?>
+                           <tr >
+                              
+                              <td colspan="3" align="center">
+                                 <div style="padding: 10px;">
+                                  <table width="100%">
                                     <tbody>
                                        <tr>
                                           <td>
+                                            
+                                   <div style="    padding: 5px;" >
+                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
+                                 </div>
+                                  
+                                          </td>
+                                          <td>
+                                             <td class="font-17 text-cap">
+                                                <span  align="center" onclick="editBook2();" style="background: #3b5998;
+    color: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-block;" id="btn_isedit">
+                                                <span class="font-14 text-cap">แก้ไข</span>
+                                             </span>
+                                             <span  align="center" onclick="saveeditBook2();" style="background: #3b5998;
+    color: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    display: none;" id="btn_selectisedit">
+                                             <span class="font-14 text-cap">บันทึก</span>
+                                          </span>
+                                       </td>
+                                    </td>
+                                         <!--  <td>
                                              <i id="guest_register_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
                                              <i id="guest_register_locat_on" onclick="openPointMaps('guest_register','<?=$arr[book][id];?>');" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
                                           </td>
                                           <td>
                                              <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
                                              <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date];?>');">photo_camera</i>
-                                          </td>
+                                          </td> -->
                                        </tr>
                                     </tbody>
                                  </table>
-
                               </td>
                            </tr>
+                        <?php } ?>
                         </tbody>
+
                      </table>
+                  </div>
                   </div>	      
                </td>
             </tr>

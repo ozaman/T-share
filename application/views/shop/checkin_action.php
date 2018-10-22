@@ -28,7 +28,7 @@
     
 ?>
 <ons-card>
-	<form name="form_checkin" id="form_checkin" enctype="multipart/form-data"></form>
+	
    <table class="onlyThisTable" width="100%" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;">
       <tr>
          <td align="center" class="font-26" style="text-align: center;"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"></i></td>
@@ -66,7 +66,36 @@
       	</td>
       </tr>
 </table>
+<form name="form_checkin" id="form_checkin" style="text-align: center;">
+   <?php 
+   if ($_GET[type]=='guest_register') {
+     ?>
+     <div class="form-group">
+      <label class="form-label">กรุณาป้อนจำนวนแขกที่ลงทะเบียน</label>
+      <div class="center list-item__center">
+                  
+                                    
+     <input name="num_customer" id="num_cus" placeholder="ยืนยันจำนวน" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1" class="text-input form-control"  >  <?php  }   ?>
+                      
+                 
+
+
+
+
+                  
+                </div>
+       
+     </div>
+
+
+    
+  </form>
 </ons-card>
 <div style="margin: 20px 10px">
     <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>','<?=$_GET[type];?>');" style="background-color: #fff;">ยืนยัน</ons-button>
 </div>
+<script type="text/javascript">
+  setTimeout(function(){ $('#num_cus').focus(); 
+}, 1000);
+  
+</script>
