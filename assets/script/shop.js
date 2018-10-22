@@ -1532,7 +1532,7 @@ function sendCheckIn(id, type) {
      return false;
  }
  else{
-     var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_customer='+$('#num_cus').val();
+     var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
 
  }
 }
