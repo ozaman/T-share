@@ -76,13 +76,13 @@ $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_li
   }
   
   if($arr[book][price_person_unit] != 0){
-    $person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),2);
-    $cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
+    $person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][pax_regis]),2);
+    $cal_person = $arr[book][price_person_unit]."*".$arr[book][pax_regis];
     $display_person = "";
   }else{
     $display_person = "display:none";
   }
-  $total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),2);
+  $total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][pax_regis])),2);
   
   if($arr[book][commission_persent] != 0){
     $display_com = "";
