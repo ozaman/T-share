@@ -70,8 +70,8 @@
 		$status_txt = '<span class="font-16 txt-red"><ons-icon style="margin-left: -30px;position: absolute;" icon="md-spinner" spin="" size="26px" class="ons-icon zmdi zmdi-spinner"></ons-icon> <span>รอดำเนินการ</span></span>';
 	}
 	
-	$person_total = number_format(intval($row->price_person_unit) * intval($row->adult),2);
-	$total_price_all = number_format($row->price_park_unit + (intval($row->price_person_unit) * intval($row->adult)),2);
+	$person_total = number_format(intval($row->price_person_unit) * intval($row->pax_regis),2);
+	$total_price_all = number_format($row->price_park_unit + (intval($row->price_person_unit) * intval($row->pax_regis)),2);
 ?>
 <div align="center">
 		<img src="../data/pic/place/<?=$row->program;?>_logo.jpg" class="box-img-product" />
