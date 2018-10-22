@@ -54,6 +54,11 @@
         }else{
           $display_time_none = "display:none;";
         }
+        if($data_user_class=="taxi"){
+			$contract = "lab";
+		}else{
+			$contract = "taxi";
+		}
         ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" >
     <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
