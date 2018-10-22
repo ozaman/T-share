@@ -196,24 +196,33 @@ class Shop extends CI_Controller {
 		}
 
 		public function update_logo(){
-		$arr_where = array();
+			$arr_where = array();
 		// $arr_where['status'] = 1;
-		$arr_select = array('*');
-		$arr_order = array();
-		$arr_order['id'] = 'ASC';
-		$data = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT, $arr_where, $arr_select,$arr_order);
-		foreach ($data as $key => $value) {
-			$name = $value->id.'_logo.jpg';
-			$add = array();
-			$add["pic_logo"] = $name;
-			$this->db->where('id', $value->id);
-		echo $result = $this->db->update(TBL_SHOPPING_PRODUCT, $add);
-		}
+			$arr_select = array('*');
+			$arr_order = array();
+			$arr_order['id'] = 'ASC';
+			$data = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT, $arr_where, $arr_select,$arr_order);
+			foreach ($data as $key => $value) {
+				$name = $value->id.'_logo.jpg';
+				$add = array();
+				$add["pic_logo"] = $name;
+				$this->db->where('id', $value->id);
+				echo $result = $this->db->update(TBL_SHOPPING_PRODUCT, $add);
+			}
 		// $data['place_company'] = $this->Shop_model->place_company();
   		// header('Content-Type: application/json');
   		// echo json_encode($data);
 		// $this->load->view('shop/place_company',$data);
+		}
+		public function editpax_regis(){
+			$data = $this->Shop_model->editpax_regis();
+			header('Content-Type: application/json');
+			echo json_encode($data);
+		}
+
+
+
+
+		
 	}
-	
-	}
-?>
+	?>

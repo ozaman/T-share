@@ -167,6 +167,8 @@ else if($arr[book][status]=='CONFIRM'){
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
+  <?php if ($arr[book][check_guest_register] != 1) {
+   ?>
 	<button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
@@ -177,6 +179,7 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 5px;
     top: 0px;
     /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>
+  <?php } ?>
 
 	<div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
 	<span class="font-20"><?=$res_ps->$place_shopping;?></span>

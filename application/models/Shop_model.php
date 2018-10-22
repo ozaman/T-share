@@ -449,6 +449,13 @@ public function driver_approved_pay(){
 	$data[result] = $this->db->update('order_booking', $data_ob); 
 	return $data;
 }
+public function editpax_regis(){
+	$data['pax_regis'] = $_GET[pax_regis];
+	$this->db->where('id', $_GET[id]);
+	$data[result] = $this->db->update('order_booking', $data); 
+
+	return $data;
+}
   /**
   * 
   * driver_topoint

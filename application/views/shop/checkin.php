@@ -210,7 +210,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                            </tr>
                            <tr>
                               <td style="height:30px;">
-                                 
+
 
                                  <div id="status_guest_register">
                                     <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
@@ -218,109 +218,121 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click">
                               </td>
                               <td width="30" id="pm_guest_register" style="display: none;">
-                                
+
 
                               </td>
                            </tr>
                            <tr id="tr_show_pax_regis_<?=$arr[book][id];?>" style="display: none;" >
-                              
+
                               <td colspan="3" align="center">
                                  <div style="padding: 10px;">
-                                  <table width="100%">
-                                    <tbody>
-                                       <tr>
-                                          <td>
-                                            
-                                   <div style="    padding: 5px;" >
-                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;" id="num_pax_regis_<?=$arr[book][id];?>"> <input type="number" name="" id="num_edit_persion2" pattern="\d*" style="height: 30px;
-    width: 50px;
-    padding: 0px;
-    font-size: 16px;
-    margin: auto;
-    " value="<?=$arr[book][pax_regis];?> disabled" ></span> <span style="margin-left: 5px">คน</span>
-                                 </div>
-                                  
-                                          </td>
-                                          <td>
-                                             <td class="font-17 text-cap">
-                                                <span  align="center" onclick="editBook2();" style="background: #3b5998;
-    color: #fff;
-    padding: 5px;
-    border-radius: 8px;
-    display: inline-block;" id="btn_isedit2">
-                                                <span class="font-14 text-cap">แก้ไข</span>
-                                             </span>
-                                             <span  align="center" onclick="saveeditBook2();" style="background: #3b5998;
-    color: #fff;
-    padding: 5px;
-    border-radius: 8px;
-    display: none;" id="btn_selectisedit2">
-                                             <span class="font-14 text-cap">บันทึก</span>
-                                          </span>
-                                       </td>
-                                    </td>
-                                         <!--  <td>
-                                             <i id="guest_register_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
-                                             <i id="guest_register_locat_on" onclick="openPointMaps('guest_register','<?=$arr[book][id];?>');" class="material-icons location" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
-                                          </td>
-                                          <td>
-                                             <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-                                             <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date];?>');">photo_camera</i>
-                                          </td> -->
-                                       </tr>
-                                    </tbody>
-                                 </table>
-                              </td>
-                           </tr>
-                        </tbody>
 
+                                  <table width="100%">
+                                   <tr>
+                                     <td>
+                                      <span class="input-group-text" id="basic-addon1">แขกลงทะเบียน</span>
+                                   </td>
+                                   <td width="5">
+                                    <input type="number" id="num_edit_persion2" pattern="\d*" class="form-control" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" disabled style="border-radius: 5px;
+                                     width: 60px;
+                                     border: none;
+                                     background: #FFF;
+                                     padding: 5px;">
+                                  </td>
+                                  <td>
+                                     <span class="input-group-text">คน</span>
+                                  </td>
+                                  <td>
+                                    <td class="font-17 text-cap">
+                                       <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" style="background: #3b5998;
+                                       color: #fff;
+                                       padding: 5px;
+                                       border-radius: 8px;
+                                       display: inline-block;" id="btn_isedit2">
+                                       <span class="font-14 text-cap">แก้ไข</span>
+                                    </span>
+                                    <span  align="center" onclick="saveeditBook2('<?=$arr[book][id];?>');" style="background: #3b5998;
+                                    color: #fff;
+                                    padding: 5px;
+                                    border-radius: 8px;
+                                    display: none;" id="btn_selectisedit2">
+                                    <span class="font-14 text-cap">บันทึก</span>
+                                 </span>
+                              </td>
+                           </td>
+                        </tr>
                      </table>
-                  </div>
-                 	      
-               </td>
-            </tr>
-            <tr id="step_driver_pay_report" style="display:none">
-               <td class="font-16">
-                  <div class="div-all-checkin">
-                     <table width="100%" border="0" cellspacing="2" cellpadding="0">
+
+                  </td>
+               </tr>
+            </tbody>
+
+         </table>
+      </div>
+
+   </td>
+</tr>
+<tr id="step_driver_pay_report" style="display:none">
+   <td class="font-16">
+      <div class="div-all-checkin">
+         <table width="100%" border="0" cellspacing="2" cellpadding="0">
+            <tbody>
+               <tr>
+                  <td width="50" rowspan="2">
+                     <div class="step-booking" id="number_driver_pay_report">4</div>
+                     <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pay_report"></div>
+                  </td>
+                  <td colspan="2">
+                     <button id="btn_driver_pay_report" onclick="btn_driver_pay_report('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pay_report_color;?>;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> <?=$title_pay;?></span></button>
+                  </td>
+               </tr>
+               <tr>
+                  <input type="hidden" value="<?=$arr[book][check_driver_pay_report];?>" id="driver_pay_report_check_click">
+                  <td style="height:30px;">
+                     <div id="status_driver_pay_report">
+                        <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
+                     </div>
+                  </td>
+                  <td width="30" id="pm_guest_driver_pay_report" style="display: none;">
+                     <table width="100%">
                         <tbody>
                            <tr>
-                              <td width="50" rowspan="2">
-                                 <div class="step-booking" id="number_driver_pay_report">4</div>
-                                 <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pay_report"></div>
-                              </td>
-                              <td colspan="2">
-                                 <button id="btn_driver_pay_report" onclick="btn_driver_pay_report('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pay_report_color;?>;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> <?=$title_pay;?></span></button>
-                              </td>
-                           </tr>
-                           <tr>
-                              <input type="hidden" value="<?=$arr[book][check_driver_pay_report];?>" id="driver_pay_report_check_click">
-                              <td style="height:30px;">
-                                 <div id="status_driver_pay_report">
-                                    <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
-                                 </div>
-                              </td>
-                              <td width="30" id="pm_guest_driver_pay_report" style="display: none;">
-                                 <table width="100%">
-                                    <tbody>
-                                       <tr>
-                                          <td>
+                              <td>
 
-                                          </td>
-                                          <td>
-                                             <i id="photo_driver_pay_report_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-                                             <i id="photo_driver_pay_report_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date];?>');">photo_camera</i>
-                                          </td>
-                                       </tr>
-                                    </tbody>
-                                 </table>
+                              </td>
+                              <td>
+                                 <i id="photo_driver_pay_report_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+                                 <i id="photo_driver_pay_report_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_pay_report','<?=$arr[book][driver_pay_report_date];?>');">photo_camera</i>
                               </td>
                            </tr>
                         </tbody>
-                     </table>  
-                  </div>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
+                     </table>
+                  </td>
+               </tr>
+            </tbody>
+         </table>  
+      </div>
+   </td>
+</tr>
+</tbody>
+</table>
+</div>
+<script type="text/javascript">
+   var book_edit_pax_regis;
+   function editBook2(id) {
+      $('#num_edit_persion2').attr('disabled',false)
+      $('#btn_isedit2').hide();
+      $('#btn_selectisedit2').show();
+   }
+   function saveeditBook2(id) {
+     console.log($('#num_edit_persion2').val())
+     var pax_regis = $('#num_edit_persion2').val();
+     var url = "shop/editpax_regis?pax_regis=" + pax_regis + "&id=" + id;
+      $.post(url, function(res) {
+       console.log(res);
+       $('#num_edit_persion2').attr('disabled',true);
+      $('#btn_selectisedit2').hide();
+      $('#btn_isedit2').show();
+   });
+   }
+</script>
