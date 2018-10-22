@@ -16,7 +16,7 @@ $arr_select = array('finish_h','finish_m','start_h','start_m',);
 $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 //print_r(json_encode($datatime));
 $datenow = strtotime(date('Y-m-d H:i:s'));
-$datenow = strtotime(date('Y-m-d 10:i:s'));
+// $datenow = strtotime(date('Y-m-d 10:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
 $date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
@@ -529,31 +529,33 @@ $data_shopmain = $shopmain->row();
                   "45" => "45 นาที",
                   "50" => "50 นาที",
                   "55" => "55 นาที",
-                  "60" => "1 ชัวโมง.",
-                  "90" => "1 ชัวโมง 30 นาที",
-                  "120" => "2 ชัวโมง",
-                  "150" => "2 ชัวโมง 30 นาที",
-                  "180" => "3 ชัวโมง",
-                  "210" => "3 ชัวโมง 30 นาที",
-                  "240" => "4 ชัวโมง",
-                  "270" => "4 ชัวโมง 30 นาที",
-                  "300" => "5 ชัวโมง",
-                  "330" => "5 ชัวโมง 30 นาที",
-                  "360" => "6 ชัวโมง",
-                  "390" => "6 ชัวโมง 30 นาที",
-                  "420" => "7 ชัวโมง",
-                  "450" => "7 ชัวโมง 30 นาที",
-                  "490" => "8 ชัวโมง");
+                  "60" => "1 ชั่วโมง.",
+                  "90" => "1 ชั่วโมง 30 นาที",
+                  "120" => "2 ชั่วโมง",
+                  "150" => "2 ชั่วโมง 30 นาที",
+                  "180" => "3 ชั่วโมง",
+                  "210" => "3 ชั่วโมง 30 นาที",
+                  "240" => "4 ชั่วโมง",
+                  "270" => "4 ชั่วโมง 30 นาที",
+                  "300" => "5 ชั่วโมง",
+                  "330" => "5 ชั่วโมง 30 นาที",
+                  "360" => "6 ชั่วโมง",
+                  "390" => "6 ชั่วโมง 30 นาที",
+                  "420" => "7 ชั่วโมง",
+                  "450" => "7 ชั่วโมง 30 นาที",
+                  "490" => "8 ชั่วโมง",
+                   "0" => "มากกว่านี่ปิดให้บริการ"
+                );
                 $mm = 5;
                 ?>
 
                 <?php foreach ($time as $key => $at) {
                   if ($i_time_balance >= $key ) {
-                    // if ($i_time_balance2 >= 0) {
-                      
-                    // }
+                    if ($key == '0' ) {
+                      $dis = 'disabled';
+                    }
                    ?>
-                    <option value="<?=$key; ?>"><?=$at; ?></option>
+                    <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
                   <?php }
                 }
                 ?>

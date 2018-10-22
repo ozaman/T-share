@@ -146,12 +146,12 @@
                 <!-- <label class="font-17">จำนวนคน</label> -->
 
               <ons-row>
-                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark_pay" name="remark_pay"   style="pointer-events: auto;" ></textarea>
+                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark_pay" name="remark_pay"   style="pointer-events: auto;width: 100%;" ></textarea>
 
                 </ons-row> 
                   <!-- </div> -->
                 </div>
-	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 97%; margin: 0 auto;background-color: #26b06c;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
+	    	<button type="button" class="button--large--cta" <?=$btn_approved;?> style="width: 97%; background-color: #26b06c;" onclick="approvePayDriverByTaxi('<?=$_GET[id];?>','<?=$row->invoice;?>','<?=$row->drivername;?>');"><?=$txt_btn_app;?></button>
 	    </div>
 	    <!--<div class="right">
 	    	<span class="font-16 txt-red">ยังไม่จ่ายเงิน</span>
