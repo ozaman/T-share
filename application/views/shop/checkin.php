@@ -40,10 +40,12 @@ else{
 
 $btn_topoint_color = "background-color:#3b5998";
 $btn_guest_receive_color = "background-color:#666666";
-$btn__guest_register_color = "background-color:#666666";
+$btn_guest_register_color = "background-color:#666666";
 $btn_pay_report_color = "background-color:#666666";
 
-}else{
+}
+
+else{
 
    if ($arr[book][driver_topoint] == 0) {
       $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
@@ -88,7 +90,7 @@ $txt_wait_pay_report = 'รอดำเนินการ';
 
 $btn_topoint_color = "background-color:#666666";
 $btn_guest_receive_color = "background-color:#3b5998";
-$btn__guest_register_color = "background-color:#3b5998";
+$btn_guest_register_color = "background-color:#3b5998";
 $btn_pay_report_color = "background-color:#3b5998";
 }
 	/*$txt_wait_topoint = 'รอดำเนินการ';
@@ -220,9 +222,7 @@ $btn_pay_report_color = "background-color:#3b5998";
 
                               </td>
                            </tr>
- <?php if ($arr[book][check_guest_register] != 0) {
-                                   ?>
-                           <tr >
+                           <tr id="tr_show_pax_regis_<?=$arr[book][id];?>" style="display: none;" >
                               
                               <td colspan="3" align="center">
                                  <div style="padding: 10px;">
@@ -232,7 +232,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                                           <td>
                                             
                                    <div style="    padding: 5px;" >
-                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
+                                    <span >แขกลงทะเบียน</span><span style="margin-left: 10px;" id="num_pax_regis_<?=$arr[book][id];?>"> <?=$arr[book][pax_regis];?></span> <span style="margin-left: 5px">คน</span>
                                  </div>
                                   
                                           </td>
@@ -267,12 +267,11 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  </table>
                               </td>
                            </tr>
-                        <?php } ?>
                         </tbody>
 
                      </table>
                   </div>
-                  </div>	      
+                 	      
                </td>
             </tr>
             <tr id="step_driver_pay_report" style="display:none">

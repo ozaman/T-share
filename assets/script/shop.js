@@ -952,7 +952,7 @@ function saveShop() {
                     $('#shop_add').html(ele2);
                 });*/
                 setTimeout(function() {
-                    modal.hide();
+                    
                     _calltest();
                     // $('ons-tab[page="shop_manage.html"]').click();
                 }, 2000);
@@ -1014,6 +1014,7 @@ function saveShop() {
                 })
                 .then(function() {});
             }
+            modal.hide();
         },
         error: function(data) {
             console.log(data);
@@ -1462,6 +1463,7 @@ if (type == "driver_topoint") {
 } else if (type == "guest_receive") {
     $('#step_guest_register').show();
 } else if (type == "guest_register") {
+	$('#tr_show_pax_regis_'+id).show();
     $('#step_driver_pay_report').show();
 } else if (type == "driver_pay_report") {
 
