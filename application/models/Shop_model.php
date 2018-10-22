@@ -41,6 +41,7 @@ class Shop_model extends CI_Model {
 			$_order = array();
 			$_order['id'] = 'asc';
 			$ick = 0;
+
 			$list_pricex = $this->Main_model->fetch_data('','',TBL_SHOP_PLAN_COM,$_where,$_select,$_order);
 			foreach ($list_pricex as $key => $value) {
 				$_where = array();
@@ -85,6 +86,7 @@ class Shop_model extends CI_Model {
 		$_select = array('*');
 		$_order = array();
 		$_order['id'] = 'asc';
+
 		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
 
 		foreach ($list_price as $key => $value) {
@@ -94,10 +96,11 @@ class Shop_model extends CI_Model {
 			$_order = array();
 			$_order['id'] = 'asc';
 			$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
+			// return $price_name;
 			$s_col = $price_name->s_col;
 			if ($value->i_plan_product_price_name == 6) {
 				$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
-				$data["aaaaaa".$s_col] = $value->s_topic_en;
+				// $data["aaaaaa".$s_col] = $value->s_topic_en;
 				$data[$s_col] = 1*$value->i_price;;
 				$data["price_person_total"] = 1*$price_person_total;
 				
@@ -307,7 +310,7 @@ public function guest_register(){
 	$data[guest_register_date] = time();
 	$data[driver_register_lat] = $_GET[lat];
 	$data[driver_register_lng] = $_GET[lng];
-	$data[pax_regis] = $_GET[num_customer];
+	$data[pax_regis] = $_GET[num_cus];
 
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 

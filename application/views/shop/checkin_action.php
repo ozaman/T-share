@@ -1,5 +1,66 @@
 <?php 
 
+ $_where = array();
+                      $_where['id'] = $_GET[id]; 
+                      $_select = array('*');
+                      $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
+// print_r( $book);
+  if($book->price_park_unit != 0){
+    $park_total = number_format($book->price_park_unit,2);
+    $display_park = "";
+  }else{
+    $display_park = "display:none";
+  }
+  
+  if($book->price_person_unit != 0){
+    $person_total = number_format(intval($book->price_person_unit) * intval($book->pax_regis),2);
+    $cal_person = $book->price_person_unit."*".$book->pax_regis;
+    $display_person = "";
+  }else{
+    $display_person = "display:none";
+  }
+  $total_price_all = number_format($book->price_park_unit + (intval($book->price_person_unit) * intval($book->pax_regis)),2);
+  
+  if($book->commission_persent != 0){
+    $display_com = "";
+    $com_persent = $book->commission_persent;
+    $total_price_all = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
+  }else{
+    $display_com = "display:none";
+    
+  }
+  
+  $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$book->plan_id."' ");
+  $num = 0;
+  foreach ($query_price->result() as $row_price){
+      if($num>=1){
+        $push = " + ";
+      }else{
+        $push = "";
+      }
+         $plan .= $push.$row_price->s_topic_th;
+         $num++;
+         
+       if($row_price->s_topic_en=="park"){
+        $check_type_park = 1;
+       }
+       
+       if($row_price->s_topic_en=="person"){
+        $check_type_person= 1;
+       }  
+       
+       if($row_price->s_topic_en=="comision"){
+          $check_type_com = 1;
+        if($book->total_commission>0){
+          
+        }
+       }  
+  }
+  
+  $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$book->plan_id."'    ";
+  $query_country = $this->db->query($sql_country);
+  $res_country = $query_country->row();
+
 	$arr[project][id]=$_GET[id];
     if($_GET[type]=='driver_topoint'){		
       $type= t_place_of_delivery;		
@@ -39,8 +100,73 @@
       <tr>
          <td align="center" class="font-22" style="text-align: center;"> <?=$type;?></td>
       </tr>
-      <tr>
-      	<td align="center"><span>กรุณาถ่ายภาพ <?=$type;?></span></td>
+      
+     
+        <?php 
+        if ( $_GET[type] == 'driver_pay_report') {
+         ?>
+         <tr>
+           <td>
+             <div style="padding: 5px 0px;">
+      <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
+      <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
+      
+        <tr>
+          <td width="80"><span class="font-17">ประเภท</span></td>
+          <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
+        </tr>
+        <tr>
+          <td width="80"><span class="font-17">สัญชาติ</span></td>
+          <td colspan="2">
+            <table>
+              <tr>
+                <td>
+                  <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
+                </td>
+                <td>&nbsp;</td>
+                <td><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr style="<?=$display_park;?>">
+          <td width="80"><span class="font-17">ค่าจอด</span></td>
+          <td align="right"><span class="font-17" id="txt_park_total"><?=$park_total;?></span></td>
+          <td width="15%"><span class="font-17">บาท</span></td>
+        </tr>
+        <tr style="<?=$display_person;?>">
+          <td width="80"><span class="font-17">ค่าหัว</span></td>
+          <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
+          <td width="15%"><span class="font-17">บาท</span></td>
+        </tr>
+        <tr style="<?=$display_com;?>">
+          <td width="80"><span class="font-17">ค่าคอม</span></td>
+          <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+                </td>
+                <td width="15%">
+                </td>
+        </tr>
+        <tr>
+          <td  width="80">รวม</td>
+          <td align="right">
+            <span class="16" id="txt_all_total" style="color: #19b616">
+              <?=$total_price_all;?>
+            </span>
+          </td>
+           <td width="90">
+            <span class="font-17">บาท</span>
+           </td>
+        </tr>
+      </table>
+    </div>
+           </td>
+         </tr>
+         <?php
+        }
+        else{
+        ?>
+        <tr>
+        <td align="center"><span>กรุณาถ่ายภาพ <?=$type;?></span></td>
       </tr>
       <tr>
       	<td>
@@ -63,29 +189,28 @@
 	margin-top: -25px;
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
-      	</td>
+      </td>
       </tr>
+      <?php 
+    }
+    ?>
+      	
 </table>
-<form name="form_checkin" id="form_checkin" style="text-align: center;">
+<form name="form_checkin" id="form_checkin"   enctype="multipart/form-data" style="text-align: center;">
    <?php 
    if ($_GET[type]=='guest_register') {
      ?>
      <div class="form-group">
       <label class="form-label">กรุณาป้อนจำนวนแขกที่ลงทะเบียน</label>
       <div class="center list-item__center">
-                  
-                                    
-     <input name="num_customer" id="num_cus" placeholder="ยืนยันจำนวน" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1" class="text-input form-control"  >  <?php  }   ?>
-                      
-                 
-
-
-
-
-                  
-                </div>
-       
+     <input name="num_cus" id="num_cus" placeholder="ยืนยันจำนวน" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1" class="text-input form-control" value="<?=$book->pax;?>" > 
+     </div> 
      </div>
+   <?php  }   ?>
+                
+
+       
+     
 
 
     
