@@ -183,12 +183,12 @@
           </tr>
           <tr>
             <td colspan="2">
-            <span class="font-17" ><?=$val[invoice];?>
+            <span class="font-17" >เลขจอง : <?=$val[invoice];?></span>
             
            <!-- <font color="#ff0000;" style="position: absolute;right: 25px;"><?=$val[airout_h].":".str_pad($val[airout_m], 2, '0', STR_PAD_LEFT)." ".t_n;?></font>-->
        
         <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
-            </span>
+            
             
            
        
@@ -249,18 +249,18 @@
 			 }
 			 
 			 else if($data_user_class == "taxi"){
-        if ($val[check_guest_register] == 1) {
-         $text_mn = 'เช็คยอดรายได้';
-          # code...
-        }
-        if($val[check_driver_topoint]==0){
-			$func = "sendCheckIn(".$val[id].", 'driver_topoint')";
-			$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
-		}
-        else{
-         $text_mn = 'ตรวจสอบ';
-
-        }
+			        if ($val[check_guest_register] == 1) {
+			         $text_mn = 'เช็คยอดรายได้';
+			          # code...
+			        }
+			        if($val[check_driver_topoint]==0){
+						$func = "sendCheckIn(".$val[id].", 'driver_topoint')";
+						$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
+					}
+			        else{
+			         $text_mn = 'ตรวจสอบ';
+						$func = "";
+			        }
 			 		if($val[lab_approve_job]==1){
            
 			 			$btn_manage = "";
