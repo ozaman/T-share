@@ -1514,11 +1514,14 @@ if(class_user=="taxi"){
 
 
 /******* <!-------- function CheckIn ------------> *******/
-var = url_send ;
+var url_send ;
 function cancelShop_action_pay() {
     $('#shop_add_action_pay').hide();
     // alert('aaaa')
-    $.post(url, function(res) {
+   
+}
+function saveShop_action_pay() {
+     $.post(url_send, function(res) {
     console.log(res);
     modal.hide();
     if (res.result == true) {
@@ -1549,9 +1552,6 @@ function cancelShop_action_pay() {
 
     } else {  }
 });
-}
-function saveShop_action_pay() {
-    // body...
 }
 function sendCheckIn(id, type) {
     console.log('*************')
