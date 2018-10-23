@@ -491,7 +491,7 @@ if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 
 
 function getPlanBox(id, plan_id){
 //	alert(plan_id);
-	var url = "shop/box_price_plan" + "?i_country=" + id+"&plan_id="+plan_id;
+	var url = "shop/box_price_plan" + "?i_country=" + id+"&plan_id="+plan_id+"&user_sc=";
 	console.log(url);
 	 $.post(url, function(res) {
         $('#box_price_replan').html(res);
