@@ -97,6 +97,7 @@ function addCar() {
         $('#body_popup1').html(ele);
 //        focusBox();
     });
+    // _body_car_station('body_station_add_car')
 }
 
 function editCar(id) {

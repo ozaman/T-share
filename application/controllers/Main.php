@@ -141,6 +141,36 @@ class Main extends CI_Controller {
 		}
   	 	echo json_encode($data);
   }
+  public function select_type(){
+    header('Content-Type: application/json');
+    $_where = array();
+    $_order = array();
+    if ($_GET[table] == 'shop_sub') {
+      $table = TBL_SHOPPING_PRODUCT_SUB;
+      $_where['main'] = $_GET[id_sub];
+      $_order['topic_en'] = 'asc';
+    }
+    if ($_GET[table] == 'province') {
+      $table = TBL_WEB_PROVINCE;
+      $_where['area'] = $_GET[id_sub];
+      $_order['name_th'] = 'asc';
+    }
+    if ($_GET[table] == 'amphur') {
+      $table = TBL_WEB_AMPHUR;
+      $_where['PROVINCE_ID'] = $_GET[id_sub];
+      $this->db->where('name_th<>','');
+      $_order['name_th'] = 'asc';
+    }
+    $_select = array('*');
+    $arr = $this->Main_model->fetch_data('','',$table,$_where,$_select,$_order);
+    echo json_encode($arr); // $this->load->view('shop/select/select_type');
+  }
+  public function submitadd_station(){
+    $data = $this->Main_model->submitadd_station();
+//  $data['res'] = 123;
+//    header('Content-Type: application/json');
+    echo json_encode($data);
+  }
 // public function detect
 //////////////////////////// End
 }
