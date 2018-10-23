@@ -168,6 +168,9 @@ else if($arr[book][status]=='CONFIRM'){
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
   <?php if ($arr[book][check_guest_register] != 1) {
+   
+         if($_COOKIE[detect_userclass]=="lab"){
+		 
    ?>
 	<button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
     /* position: absolute; */
@@ -179,7 +182,9 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 5px;
     top: 0px;
     /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>
-  <?php } ?>
+  <?php } 
+  
+}?>
 
 	<div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
 	<span class="font-20"><?=$res_ps->$place_shopping;?></span>
@@ -278,6 +283,9 @@ else if($arr[book][status]=='CONFIRM'){
       </tr>
       <tr>
          <td class="font-17 text-cap"><font color="#333333"><?=t_number;?></font>
+         <?php 
+         if($_COOKIE[detect_userclass]=="lab"){
+		 	?>
          <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 3px;
@@ -285,13 +293,16 @@ else if($arr[book][status]=='CONFIRM'){
     border-radius: 8px;display: inline-block;" id="btn_isedit">
 		<span class="font-14 text-cap">แก้ไข</span>
 	</span>
-	<span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+		 <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 3px;
 /*    font-size: 3px !important;*/
     border-radius: 8px;display: none;" id="btn_selectisedit">
 		<span class="font-14 text-cap">บันทึก</span>
 	</span>
+		<? 
+		 }
+         ?>
          </td>
         <td class="font-17" style="padding: 0 !important;" >
             <table width="100%">

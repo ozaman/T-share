@@ -1517,13 +1517,14 @@ if(class_user=="taxi"){
 
 /******* <!-------- function CheckIn ------------> *******/
 var url_send,type_send,id_send;
+
 function cancelShop_action_pay() {
     $('#shop_add_action_pay').hide();
     // alert('aaaa')
    modal.hide();
 }
 
-function saveShop_action_pay() {
+function saveShop_action_pay(poppage) {
 	
 	modal.show();
      $.post(url_send, function(res) {
@@ -1538,7 +1539,11 @@ function saveShop_action_pay() {
         $('#' + type_send + '_check_click').val(1)
         changeHtml(type_send, id_send, timestampToDate(res.time, "time"));
         sendSocket(id_send);
-        appNavigator.popPage();
+        setTimeout(function(){ shopManage(); }, 1500);
+        
+        if(poppage==1){
+			appNavigator.popPage();
+		}
         var url_msg = "send_onesignal/send_checkin?type="+type_send+"&id="+id_send;
         $.ajax({
             url: url_msg, 
@@ -1614,7 +1619,7 @@ var dialog = document.getElementById('shop_add_action_pay');
    }
    else if(type=='guest_receive'){
    
-   var dialog_receive = document.getElementById('confirm_checkin-alert-dialog');
+   /*var dialog_receive = document.getElementById('confirm_checkin-alert-dialog');
 		
 	  if (dialog_receive) {
 	  	 $('#checkin_txt_title').html('ยืนยันการรับแขก');
@@ -1626,9 +1631,10 @@ var dialog = document.getElementById('shop_add_action_pay');
 	      	$('#checkin_txt_content').html('คุณแน่ใจหรือไม่ ว่าต้องการยืนยันการรับแขก');
 	        dialog_receive.show();
 	      });
-	  }
+	  }*/
 	 
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+     saveShop_action_pay();
 	}
 
 
