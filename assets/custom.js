@@ -624,18 +624,20 @@ socket.on('datalab', function(username, data) {
     	$.each(data, function(index, value) {
 
 
-		           if(value.lab_approve_job==1){
-				  		$('#btn_manage_'+value.id).show();
-				  		$('#txt_wait_'+value.id).hide();
-				  		$('#td_cancel_book_'+value.id).hide();
-				  		$('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
-				  }else{
-				  		$('#btn_manage_'+value.id).hide();
-				  		$('#txt_wait_'+value.id).show();
-				  		$('#td_cancel_book_'+value.id).show();
-				  		$('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-				  }
+             if(value.lab_approve_job==1){
+                        $('#btn_manage_'+value.id).show();
+                        $('#txt_wait_'+value.id).hide();
+                        $('#td_cancel_book_'+value.id).hide();
+                        $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+                  }else{
+                        $('#btn_manage_'+value.id).hide();
+                        $('#txt_wait_'+value.id).show();
+                        $('#td_cancel_book_'+value.id).show();
+                        $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+                  }
 
+        });
+    }
 
 });
 
@@ -1444,7 +1446,7 @@ $.ajax({
    success: function(res) {
        console.log(res);
        if (res.status == true ) {
-
+_body_car_station('body_car_station')
        }
        else{
 

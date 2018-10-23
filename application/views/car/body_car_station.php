@@ -14,9 +14,9 @@ if ($num != 0) {
     <ons-list-header class="list-header font-17">คิวรถ </ons-list-header>
     <table width="100%">
       <tr>
-        <td width="80" class="font-17">ชื่อ</td>
-        <td>
-          <span class="font-17"><?=$arr[STATION]->topic_th;?></span>
+        <!-- <td width="80" class="font-17">ชื่อ</td> -->
+        <td align="center">
+          <span class="font-17" ><?=$arr[STATION]->topic_th;?></span>
         </td>
       </tr>
     </table>
