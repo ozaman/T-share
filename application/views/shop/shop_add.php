@@ -26,7 +26,12 @@ $i_time_balance = ($dateclose - $datenow)/60;
 $i_time_balance2 = ($date_open - $datenow)/60;
 // echo $i_time_balance.'*****'.$i_time_balance2;
 
-
+$_where = array();
+   $_where['PROVINCE_ID'] = 1;
+   $_select = array('*');
+   $_order = array();
+   $_order['name_th'] = 'asc';
+   $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
 ?>
 <style>
 .text-input--material{
@@ -124,7 +129,43 @@ $data_shopmain = $shopmain->row();
 
 
 
+ <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
+             <ons-list-header class="list-header ">อำเภอ/เขต </ons-list-header>
+             <!-- <div class="form-group"> -->
 
+              <!-- <span class="list-header" style="background-image: none;"></span> -->
+
+              <select class="select-input font-17" name="amphur" id="amphur" value="" onchange="checkzoon(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+                <option value="0">-- เลือกเขต --</option>
+                <?php
+                  foreach($arr[amphur] as $key=>$amphur){
+
+                    if($station->amphur == $amphur->id ){
+                      $selected_sub = "selected";
+                    }else{
+                      $selected_sub = "";
+                    }
+                    ?>
+                    <option value="<?=$amphur->id;?>"  <?=$selected_sub;?> ><?=$amphur->name_th;?></option>
+                  <?php } ?>
+
+
+              </select>
+
+              <!-- </div> -->
+              
+            </div>
+            <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
+              <ons-list-header class="list-header ">คิวรถ </ons-list-header>
+              <table width="100%">
+                <tr>
+                  <td width="45">ชื่อ</td>
+                  <td>
+                    <ons-input id="station" name="station" type="text" oninput="maxLengthCheck(this)"  class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+                  </td>
+                </tr>
+              </table>
+            </div>
 
         <div class="card" id="go_to_top_add">
           <script>
