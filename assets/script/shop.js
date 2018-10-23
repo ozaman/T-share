@@ -1525,6 +1525,8 @@ function saveShop_action_pay() {
     console.log(res);
     modal.hide();
     if (res.result == true) {
+    $('#shop_add_action_pay').hide();
+        
         if(type_send == 'guest_register'){
             $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
         }
@@ -1540,14 +1542,14 @@ function saveShop_action_pay() {
                 console.log(data);
             }
         });
-        ons.notification.alert({
-            message: 'ยืนยันแล้ว',
-            title: "สำเร็จ",
-            buttonLabel: "ตกลง"
-        })
-        .then(function() {
-            callpop();
-        });
+        // ons.notification.alert({
+        //     message: 'ยืนยันแล้ว',
+        //     title: "สำเร็จ",
+        //     buttonLabel: "ตกลง"
+        // })
+        // .then(function() {
+        //     callpop();
+        // });
         shopFuncNotiActi(id_send, type_send);
 
     } else {  }
@@ -1573,7 +1575,7 @@ function sendCheckIn(id, type) {
      return false;
  }
  else{
-    
+
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
 var dialog = document.getElementById('shop_add_action_pay');
                 if (dialog) {
