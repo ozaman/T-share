@@ -27,11 +27,11 @@ else{
 
 }
 if ($arr[book][check_guest_register] == 0) {
-   $title_guest_regis = "รอพนักงานยืนยันแขกลงทะเบียน";
+   $title_guest_regis = "แขกลงทะเบียน";
    $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
 }
 else{
-   $title_guest_regis = "พนักงานยืนยันแขกลงทะเบียน";
+   $title_guest_regis = "แขกลงทะเบียน";
    $txt_wait_guest_register = 'พนักงานยืนยันแขกลงทะเบียน';
 
 }

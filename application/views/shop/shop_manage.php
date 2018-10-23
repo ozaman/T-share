@@ -39,7 +39,12 @@
 //        echo $minutes_to_add." ++";
         $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
         $time = new DateTime($time_c);
-//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+        if( in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) ) ) { // debug mode on localhost ('127.0.0.1' IP in IPv4 and IPv6 formats)
+	
+		}else{
+			$time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+		}
+        
         
         $stamp = $time->format('H:i');
 //        echo $stamp." +";
@@ -299,7 +304,23 @@
   </script>
 <?    
     } ?>
-    
+ 
+<?php 
+$arr_select = array('finish_h','finish_m','start_h','start_m',);
+
+$datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
+//print_r(json_encode($datatime));
+$datenow = strtotime(date('Y-m-d H:i:s'));
+// $datenow = strtotime(date('Y-m-d 10:i:s'));
+// echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
+$dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
+$date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
+// $timefinal = 
+
+$i_time_balance = ($dateclose - $datenow)/60;
+$i_time_balance2 = ($date_open - $datenow)/60;
+
+?>   
 <template id="change-time.html">
  <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
     <div class="alert-dialog-title">แก้ไขเวลา</div>
@@ -343,7 +364,7 @@
           ?>
         </select>
       </div>
-       <span class="font-17">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
+       <span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
     </div>
     <div class="alert-dialog-footer">
       <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>

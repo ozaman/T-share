@@ -872,7 +872,7 @@ var gtimeM = parseInt(res[0].finish_m);
                 return false;
             }
             else{
-                var dialog = document.getElementById('shop_add-alert-dialog');
+                /*var dialog = document.getElementById('shop_add-alert-dialog');
                 if (dialog) {
                     dialog.show();
                 } else {
@@ -882,7 +882,8 @@ var gtimeM = parseInt(res[0].finish_m);
                     .then(function(dialog) {
                         dialog.show();
                     });
-                }
+                }*/
+                saveShop();
             }
         }
         else {
@@ -2001,6 +2002,7 @@ function calTime(val){
     dd.setMinutes(last);
     console.log(dd);
     $('#show_to_time').text(formatTime(dd));
+    $('#txt_show_to_time').fadeIn(500);
 }
 
 function approveBook(id, invoice, driver_id){
@@ -2052,17 +2054,18 @@ $.ajax({
             };
 
             apiRecordActivityAndNotification(ac, nc);
-            ons.notification.alert({
+            setTimeout(function(){  shopManage(); }, 1000);
+            /*ons.notification.alert({
               message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
               title: "สำเร็จ",
               buttonLabel: "ตกลง"
           })
             .then(function() {
 
-                setTimeout(function(){  shopManage(); }, 1000);
+                
 
 
-            });
+            });*/
         }
     });
     }
