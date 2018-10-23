@@ -328,6 +328,20 @@ $btn_pay_report_color = "background-color:#3b5998";
 </tbody>
 </table>
 </div>
+
+<template id="confirm_topoint-dialog.html">
+  <ons-alert-dialog id="confirm_topoint-alert-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">ยืนยันถึงสถานที่</div>
+    <div class="alert-dialog-content">
+      คุณแน่ใจหรือไม่ ว่าต้องการยืนยันถึงสถานที่ส่งแขก
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="document.getElementById('confirm_topoint-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+      <ons-alert-dialog-button id="btn_ok_topoint" onclick="sendCheckIn(0, 'driver_topoint');document.getElementById('confirm_topoint-alert-dialog').hide();">ยืนยัน</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+</template>
+
 <script type="text/javascript">
    var book_edit_pax_regis;
    function editBook2(id) {

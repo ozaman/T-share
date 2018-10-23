@@ -165,10 +165,10 @@
         }
         else{
         ?>
-        <tr>
+        <tr style="display: none;">
         <td align="center"><span>กรุณาถ่ายภาพ <?=$type;?></span></td>
       </tr>
-      <tr>
+      <tr style="display: none;">
       	<td>
       		<div align="center" style="margin: 10px;">
 			<div>

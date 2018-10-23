@@ -383,6 +383,7 @@ function shandleClicks(tax,country) {
     });
     // body...
 }
+
 function handleClick_s(tax, name) {
     console.log(tax)
     console.log(name)
@@ -1667,16 +1668,19 @@ function btn_driver_topoint(id) {
     if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
-    if(class_user=="lab"){
-		/*ons.notification.alert({
-            message: 'คนขับรถเป็นคนแจ้งสถานที่ส่งแขกเท่านั้น',
-            title: "ไม่สามารถแจ้งถึงสถานที่ได้",
-            buttonLabel: "ปิด"
-        })
-        .then(function() {});*/
-        return;
-    }
-    fn.pushPage({
+    var dialog = document.getElementById('confirm_topoint-alert-dialog');
+
+	  if (dialog) {
+	    dialog.show();
+	    $('#btn_ok_topoint').attr('onclick','sendCheckIn('+id+',"driver_topoint");');
+	  } else {
+	    ons.createElement('confirm_topoint-dialog.html', { append: true })
+	      .then(function(dialog) {
+	        dialog.show();
+	        $('#btn_ok_topoint').attr('onclick','sendCheckIn('+id+',"driver_topoint");');
+	      });
+	  }
+    /*fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
     }, 'fade-ios');
@@ -1686,7 +1690,7 @@ function btn_driver_topoint(id) {
         path: "shop/checkin_action"
     }, function(ele) {
         $('#body_shop_checkin').html(ele);
-    });
+    });*/
     //    $('#type_checkin').val('topoint');
     //    alert($('#type_checkin').val());
 }
