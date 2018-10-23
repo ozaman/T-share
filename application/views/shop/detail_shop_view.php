@@ -90,20 +90,20 @@ else if($arr[book][status]=='CONFIRM'){
 	}
 	*/
 	if($arr[book][price_park_unit] != 0){
-		$park_total = number_format($arr[book][price_park_unit],2);
+		$park_total = number_format($arr[book][price_park_unit],0);
 		$display_park = "";
 	}else{
 		$display_park = "display:none";
 	}
 	
 	if($arr[book][price_person_unit] != 0){
-		$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),2);
+		$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),0);
 		$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
 		$display_person = "";
 	}else{
 		$display_person = "display:none";
 	}
-	$total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),2);
+	$total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),0);
 	
 	if($arr[book][commission_persent] != 0){
 		$display_com = "";
@@ -240,17 +240,17 @@ else if($arr[book][status]=='CONFIRM'){
 		<!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
 		  <tr>
-		    <td width="110"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
+		    <td width="35%"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
 		    <td colspan="3" class="font-17">
 			<?=$full_name_driver;?></td>
 		  </tr>
 		  <tbody>
 		    <tr>
-		      <td   width="110"  class="font-17"><font color="#333333"><?=t_car_registration_number;?></font></td>
+		      <td   width="35%"  class="font-17"><font color="#333333"><?=t_car_registration_number;?></font></td>
 		      <td colspan="3" class="font-17"><?=$res_od->car_plate;?></td>
 		    </tr>
 		     <tr>
-		      <td   width="110"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
+		      <td   width="35%"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
 		      <td colspan="3" class="font-17"><a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a></td>
 		    </tr>
 		  </tbody>
@@ -263,7 +263,7 @@ else if($arr[book][status]=='CONFIRM'){
 		<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" style="display:nones" id="table_show_hide_data">
    		<tbody>
    		<tr>
-	      <td width="110" class="font-17 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
+	      <td width="35%" class="font-17 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
 	      <td class="font-17"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
    		</tr>
    		</tbody>
@@ -407,11 +407,11 @@ else if($arr[book][status]=='CONFIRM'){
      		<input type="hidden" value="<?=$arr[book][price_park_unit];?>" id="val_park_unit" />
      		<input type="hidden" value="<?=$arr[book][commission_persent];?>" id="val_com_persent" />
      		<tr>
-     			<td width="110"><span class="font-17">ประเภท</span></td>
+     			<td width="35%"><span class="font-17">ประเภท</span></td>
      			<td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
      		</tr>
      		<tr>
-     			<td width="110"><span class="font-17">สัญชาติ</span></td>
+     			<td width="35%"><span class="font-17">สัญชาติ</span></td>
      			<td colspan="2">
      				<table>
      					<tr>
@@ -425,31 +425,31 @@ else if($arr[book][status]=='CONFIRM'){
      			</td>
      		</tr>
      		<tr style="<?=$display_park;?>">
-     			<td width="110"><span class="font-17">ค่าจอด</span></td>
+     			<td width="35%"><span class="font-17">ค่าจอด</span></td>
      			<td align="right"><span class="font-17" id="txt_park_total"><?=$park_total;?></span></td>
-     			<td width="15%"><span class="font-17">บาท</span></td>
+     			<td width="15%"><span class="font-17">บ.</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
-     			<td width="110"><span class="font-17">ค่าหัว</span></td>
+     			<td width="35%"><span class="font-17">ค่าหัว</span></td>
      			<td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=$person_total;?></span></td>
-     			<td width="15%"><span class="font-17">บาท</span></td>
+     			<td width="15%"><span class="font-17">บ.</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
-     			<td width="110"><span class="font-17">ค่าคอม</span></td>
+     			<td width="35%"><span class="font-17">ค่าคอม</span></td>
      			<td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
                 <td width="15%">
                 </td>
      		</tr>
      		<tr>
-     			<td  width="110">รวม</td>
+     			<td  width="35%">รวม</td>
      			<td align="right">
 	     			<span class="16" id="txt_all_total">
 	     				<?=$total_price_all;?>
 	     			</span>
      			</td>
      			 <td width="90">
-     			 	<span class="font-17">บาท</span>
+     			 	<span class="font-17">บ.</span>
      			 </td>
      		</tr>
      	</table>

@@ -247,8 +247,12 @@
          $text_mn = 'เช็คยอดรายได้';
           # code...
         }
+        if($val[check_driver_topoint]==0){
+			$func = "sendCheckIn(".$val[id].", 'driver_topoint')";
+			$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
+		}
         else{
-         $text_mn = 'แจ้งถึงสถานที่ส่งแขก';
+         $text_mn = 'ตรวจสอบ';
 
         }
 			 		if($val[lab_approve_job]==1){
@@ -259,8 +263,10 @@
             
 			 			$btn_manage = "display:none;";
 			 			$txt_wait_approve = "";
-			 		}?>
-		<ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
+			 		}
+			 		
+			 		?>
+		<ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');<?=$func;?>" style="padding: 13px;border: 1px solid #0076ff;
     border-radius: 5px;
     line-height: 0;<?=$btn_manage;?>
     " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>	

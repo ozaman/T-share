@@ -1522,19 +1522,21 @@ function cancelShop_action_pay() {
 }
 
 function saveShop_action_pay() {
+	
 	modal.show();
      $.post(url_send, function(res) {
     console.log(res);
     
     if (res.result == true) {
-    $('#shop_add_action_pay').hide();
         
         if(type_send == 'guest_register'){
             $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
+            $('#num_edit_persion2').val($('#num_cus').val());
         }
         $('#' + type_send + '_check_click').val(1)
         changeHtml(type_send, id_send, timestampToDate(res.time, "time"));
         sendSocket(id_send);
+        appNavigator.popPage();
         var url_msg = "send_onesignal/send_checkin?type="+type_send+"&id="+id_send;
         $.ajax({
             url: url_msg, 
@@ -1578,7 +1580,7 @@ function sendCheckIn(id, type) {
      modal.hide();
      return false;
  }
- else{
+ 	else{
 
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
 var dialog = document.getElementById('shop_add_action_pay');
@@ -1593,32 +1595,37 @@ var dialog = document.getElementById('shop_add_action_pay');
                     });
                 }
  }
-}
+	return;
+	}
    else if(type=='driver_topoint'){
-   	  var dialog_topoint = document.getElementById('confirm_topoint-alert-dialog');
-
+   	  var dialog_topoint = document.getElementById('confirm_checkin-alert-dialog');
+		
 	  if (dialog_topoint) {
 	    dialog_topoint.show();
 	  } else {
-	    ons.createElement('confirm_topoint-dialog.html', { append: true })
+	    ons.createElement('confirm_checkin-dialog.html', { append: true })
 	      .then(function(dialog_topoint) {
 	        dialog_topoint.show();
 	      });
 	  }
 	   url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
    }
-   else{
-    var dialog = document.getElementById('shop_add_action_pay');
-                if (dialog) {
-                    dialog.show();
-                } else {
-                    ons.createElement('shop_add_action_pay.html', {
-                        append: true
-                    })
-                    .then(function(dialog) {
-                        dialog.show();
-                    });
-                }
+   else if(type=='guest_receive'){
+   
+   var dialog_receive = document.getElementById('confirm_checkin-alert-dialog');
+		
+	  if (dialog_receive) {
+	  	 $('#checkin_txt_title').html('ยืนยันการรับแขก');
+	     dialog_receive.show();
+	  } else {
+	    ons.createElement('confirm_checkin-dialog.html', { append: true })
+	      .then(function(dialog_receive) {
+	      	$('#checkin_txt_title').html('ยืนยันการรับแขก');
+	      	$('#checkin_txt_content').html('คุณแน่ใจหรือไม่ ว่าต้องการยืนยันการรับแขก');
+	        dialog_receive.show();
+	      });
+	  }
+	 
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
 	}
 
@@ -1744,7 +1751,8 @@ function btn_guest_receive(id) {
         .then(function() {});*/
         return;
     }
-    fn.pushPage({
+    sendCheckIn(id, 'guest_receive');
+    /*fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "พนักงานรับแขก"
     }, 'fade-ios');
@@ -1754,7 +1762,7 @@ function btn_guest_receive(id) {
         path: "shop/checkin_action"
     }, function(ele) {
         $('#body_shop_checkin').html(ele);
-    });
+    });*/
     //    $('#type_checkin').val('topoint');
     //    alert($('#type_checkin').val());
 }

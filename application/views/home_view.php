@@ -1171,10 +1171,22 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </div>
             <div class="alert-dialog-footer">
                 <ons-alert-dialog-button onclick="cancelShop_action_pay();">ยกเลิก</ons-alert-dialog-button>
-                <ons-alert-dialog-button onclick="saveShop_action_pay();">บันทึก</ons-alert-dialog-button>
+                <ons-alert-dialog-button onclick="saveShop_action_pay();cancelShop_action_pay();">บันทึก</ons-alert-dialog-button>
             </div>
         </ons-alert-dialog>
     </template>
+    <template id="confirm_checkin-dialog.html">
+	  <ons-alert-dialog id="confirm_checkin-alert-dialog" modifier="rowfooter">
+	    <div class="alert-dialog-title" id="checkin_txt_title">ยืนยันถึงสถานที่</div>
+	    <div class="alert-dialog-content" id="checkin_txt_content">
+	      แน่ใจหรือไม่ ว่าต้องการยืนยันถึงสถานที่ส่งแขก
+	    </div>
+	    <div class="alert-dialog-footer">
+	      <ons-alert-dialog-button onclick="document.getElementById('confirm_checkin-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+	      <ons-alert-dialog-button id="btn_ok_topoint" onclick="saveShop_action_pay();document.getElementById('confirm_checkin-alert-dialog').hide();">ยืนยัน</ons-alert-dialog-button>
+	    </div>
+	  </ons-alert-dialog>
+	</template>
     <template id="signout-dialog.html">
         <ons-alert-dialog id="signout-alert-dialog" modifier="rowfooter">
             <div class="alert-dialog-title" id="signout-submit-dialog-title">คุณแน่ใจหรือไม่</div>
