@@ -1573,8 +1573,19 @@ function sendCheckIn(id, type) {
      return false;
  }
  else{
+    
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
-
+var dialog = document.getElementById('shop_add_action_pay');
+                if (dialog) {
+                    dialog.show();
+                } else {
+                    ons.createElement('shop_add_action_pay.html', {
+                        append: true
+                    })
+                    .then(function(dialog) {
+                        dialog.show();
+                    });
+                }
  }
 }
 else{
