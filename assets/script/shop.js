@@ -1537,9 +1537,12 @@ function saveShop_action_pay(poppage) {
             $('#num_edit_persion2').val($('#num_cus').val());
         }
         $('#' + type_send + '_check_click').val(1)
-        changeHtml(type_send, id_send, timestampToDate(res.time, "time"));
+        
         sendSocket(id_send);
-        setTimeout(function(){ shopManage(); }, 1500);
+        changeHtml(type_send, id_send, timestampToDate(res.time, "time"));
+        setTimeout(function(){ 
+        	shopManage();
+         }, 1500);
         
         if(poppage==1){
 			appNavigator.popPage();
@@ -1571,8 +1574,6 @@ function saveShop_action_pay(poppage) {
 function sendCheckIn(id, type) {
     type_send = type;
     id_send = id;
-    console.log('*************')
-    console.log($('#num_cus').val())
 //   modal.show();
 
    var lng = $('#lng').val();
@@ -1590,56 +1591,28 @@ function sendCheckIn(id, type) {
  	else{
 
      url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
-var dialog = document.getElementById('shop_add_action_pay');
-                if (dialog) {
-                    dialog.show();
-                } else {
-                    ons.createElement('shop_add_action_pay.html', {
-                        append: true
-                    })
-                    .then(function(dialog) {
-                        dialog.show();
-                    });
-                }
- }
-	return;
+	var dialog = document.getElementById('shop_add_action_pay');
+	                if (dialog) {
+	                    dialog.show();
+	                } else {
+	                    ons.createElement('shop_add_action_pay.html', {
+	                        append: true
+	                    })
+	                    .then(function(dialog) {
+	                        dialog.show();
+	                    });
+	                }
+	 }
+
 	}
-   else if(type=='driver_topoint'){
-   	  var dialog_topoint = document.getElementById('confirm_checkin-alert-dialog');
-		
-	  if (dialog_topoint) {
-	    dialog_topoint.show();
-	  } else {
-	    ons.createElement('confirm_checkin-dialog.html', { append: true })
-	      .then(function(dialog_topoint) {
-	        dialog_topoint.show();
-	      });
-	  }
-	   url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+   else if (type== 'driver_pay_report'){
+   	url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+	saveShop_action_pay(1);
    }
-   else if(type=='guest_receive'){
-   
-   /*var dialog_receive = document.getElementById('confirm_checkin-alert-dialog');
-		
-	  if (dialog_receive) {
-	  	 $('#checkin_txt_title').html('ยืนยันการรับแขก');
-	     dialog_receive.show();
-	  } else {
-	    ons.createElement('confirm_checkin-dialog.html', { append: true })
-	      .then(function(dialog_receive) {
-	      	$('#checkin_txt_title').html('ยืนยันการรับแขก');
-	      	$('#checkin_txt_content').html('คุณแน่ใจหรือไม่ ว่าต้องการยืนยันการรับแขก');
-	        dialog_receive.show();
-	      });
-	  }*/
-	 
-     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
-     saveShop_action_pay();
-	}
-
-
-
-console.log(url_send);
+   else{
+   	url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+	saveShop_action_pay(0);
+   }
 }
 
 function shopFuncNotiActi(id, type){
