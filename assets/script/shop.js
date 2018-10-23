@@ -1514,7 +1514,7 @@ if(class_user=="taxi"){
 
 
 /******* <!-------- function CheckIn ------------> *******/
-var url_send ;
+var url_send,type_send,id_send;
 function cancelShop_action_pay() {
     $('#shop_add_action_pay').hide();
     // alert('aaaa')
@@ -1525,13 +1525,13 @@ function saveShop_action_pay() {
     console.log(res);
     modal.hide();
     if (res.result == true) {
-        if(type == 'guest_register'){
-            $('#num_pax_regis_'+id) .text($('#num_cus').val());
+        if(type_send == 'guest_register'){
+            $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
         }
-        $('#' + type + '_check_click').val(1)
-        changeHtml(type, id, timestampToDate(res.time, "time"));
-        sendSocket(id);
-        var url_msg = "send_onesignal/send_checkin?type="+type+"&id="+id;
+        $('#' + type_send + '_check_click').val(1)
+        changeHtml(type_send, id_send, timestampToDate(res.time, "time"));
+        sendSocket(id_send);
+        var url_msg = "send_onesignal/send_checkin?type="+type_send+"&id="+id_send;
         $.ajax({
             url: url_msg, 
             dataType: 'json', 
@@ -1548,12 +1548,14 @@ function saveShop_action_pay() {
         .then(function() {
             callpop();
         });
-        shopFuncNotiActi(id, type);
+        shopFuncNotiActi(id_send, type_send);
 
     } else {  }
 });
 }
 function sendCheckIn(id, type) {
+    type_send = type;
+    id_send = id;
     console.log('*************')
     console.log($('#num_cus').val())
    modal.show();
