@@ -1,4 +1,4 @@
-
+//setInterval(function(){ addUser(); }, 3000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -560,6 +560,13 @@ var dataorder = {
 };
 socket.emit('sendchat', '');
 socket.emit('adduser', dataorder);
+function addUser(){
+	var id = detect_user;
+	var dataorder = {
+    	order: parseInt(id),
+	};
+	socket.emit('adduser', dataorder);
+}
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
@@ -906,6 +913,7 @@ function beforeSendShop(){
 }
 
 function sendShop2() {
+//	addUser();
     modal.show();
     
     var urlo = 'shop/place_companycount';
