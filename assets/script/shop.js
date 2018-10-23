@@ -956,6 +956,7 @@ function saveShop() {
                 setTimeout(function() {
                     
                     _calltest();
+                    modal.hide();
                     // $('ons-tab[page="shop_manage.html"]').click();
                 }, 2000);
                 // ons.notification.alert({
@@ -1016,7 +1017,7 @@ function saveShop() {
                 })
                 .then(function() {});
             }
-            modal.hide();
+            
         },
         error: function(data) {
             console.log(data);
@@ -2006,8 +2007,6 @@ function calTime(val){
 }
 
 function approveBook(id, invoice, driver_id){
-//sendSocket(id);
-//  return;
 var pass = {
     id : id,
     vc : invoice,
@@ -2022,6 +2021,7 @@ $.ajax({
     dataType: 'json',
     success: function(res) {
         console.log(res);
+//        if(res.result==true)
         $.ajax({
            url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
            data: pass,
@@ -2052,9 +2052,11 @@ $.ajax({
                 s_message : txt_long_nc,
                 s_posted :  username
             };
-
+			
             apiRecordActivityAndNotification(ac, nc);
-            setTimeout(function(){  shopManage(); }, 1000);
+            $('#apporve_book_'+id).hide();
+			$('#opendetail_book_'+id).show();
+//            setTimeout(function(){  shopManage(); }, 1500);
             /*ons.notification.alert({
               message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
               title: "สำเร็จ",
