@@ -321,6 +321,36 @@ public function guest_register(){
 	return $data;
 } 
 
+public function change_plan(){
+	
+	 $_where['id'] = $_GET[id]; 
+     $_select = array('*');
+     $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
+	 
+	 $backup[order_id] = $book->id;
+	 $backup[invoice] = $book->invoice;
+	 $backup[status] = $book->status;
+	 $backup[post_date] = time();
+	 $backup[plan_id] = $book->plan_id;
+	 $backup[price_park_unit] = $book->price_park_unit;
+	 $backup[price_park_total] = $book->price_park_total;
+	 $backup[price_person_unit] = $book->price_person_unit;
+	 $backup[pax_regis] = $book->pax_regis;
+	 $backup[pax] = $book->pax;
+	 $backup[price_person_total] = $book->price_person_total;
+	 $backup[price_all_total] = $book->price_all_total;
+	 $backup[commission_persent] = $book->commission_persent;
+	 $backup[total_commission] = $book->total_commission;
+	 $backup[cause_change] = $_POST[cause_change];
+//	 $backup[result] = $this->db->insert('order_booking', $backup);
+	 
+	 $data[plan_id] = $_POST[plan_id];
+	 $this->db->where('id', $_GET[id]);
+//	 $data[result] = $this->db->update('order_booking', $data); 
+	
+	return $backup;
+}
+
 public function driver_pay_report(){
 	$data[check_driver_pay_report] = 1;
 	$data[driver_pay_report_date] = time();

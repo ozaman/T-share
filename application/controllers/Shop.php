@@ -221,7 +221,12 @@ class Shop extends CI_Controller {
 		}
 
 
-
+		public function change_plan(){
+			$data['change_plan'] = $this->Shop_model->change_plan();
+			$data['checkin'] = $this->Shop_model->guest_register();
+//			header('Content-Type: application/json');
+			echo json_encode($data);
+		}
 
 		
 	}

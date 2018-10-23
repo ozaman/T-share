@@ -350,28 +350,28 @@ if($query->num_rows()>=1){
 
 
 
+          ?>
+        <div class="card" id="nation_box">
+           <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
+           <div class="form-group">
+            <?php 
+            foreach($data['region'] as $key=>$val){
 
+              $_where = array();
+              $_where['i_shop_country'] = $val->id; 
+              $_select = array('*');
+              $_order = array();
+              $_order['id'] = 'asc';
+              $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
+              ?>
+              <label class="" for="radio-nation<?=$key+1;?>" onclick="handleClick_s('nation','<?=$val->id;?>');">
+                <ons-list-item tappable id="nation_<?=$key+1;?>">
+                  <label class=" left">
+                    <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
+                  </label>
+                  <?php
 
-  ?>
-  <div class="card" id="nation_box">
-   <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
-   <div class="form-group">
-    <?php 
-    foreach($data['region'] as $key=>$val){
-
-      $_where = array();
-      $_where['i_shop_country'] = $val->id; 
-      $_select = array('*');
-      $_order = array();
-      $_order['id'] = 'asc';
-      $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
-      ?>
-      <label class="" for="radio-nation<?=$key+1;?>" onclick="handleClick_s('nation','<?=$val->id;?>');">
-        <ons-list-item tappable id="nation_<?=$key+1;?>">
-          <label class=" left">
-            <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
-          </label>
-          <?php
+          
 
           foreach($arr[region_icon] as $key2=>$val2){
 
@@ -383,8 +383,8 @@ if($query->num_rows()>=1){
 
 
 
-          <?php }?>
-
+          </div>
+        </div>
         </ons-list-item>
       </label>
     <?php }?>
@@ -462,7 +462,7 @@ if($query->num_rows()>=1){
 
         </div>
       </div>
-    </div>
+    	</div>
 
 
 
