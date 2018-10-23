@@ -375,7 +375,7 @@ function checkchild(x) {
 function shandleClicks(tax,country) {
     console.log(tax)
     console.log(country)
-    var url = "shop/box_price_plan" + "?i_country=" + country;
+    var url = "shop/box_price_plan" + "?i_country=" + country+"&user_sc=1";
 
     $.post(url, function(res) {
         $('#box_price_plan').html(res);
@@ -488,6 +488,17 @@ if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 
 
  }
 // ons-tab[page="shop_history.html"]
+
+function getPlanBox(id, plan_id){
+//	alert(plan_id);
+	var url = "shop/box_price_plan" + "?i_country=" + id+"&plan_id="+plan_id;
+	console.log(url);
+	 $.post(url, function(res) {
+        $('#box_price_replan').html(res);
+        // console.log(data);
+         $('#radio-nationck'+id).prop('checked',true);
+    });
+}
 
 function editBook(x) {
     console.log(x)
@@ -1590,7 +1601,7 @@ function sendCheckIn(id, type) {
  }
  	else{
 
-     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
+     /*url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
 	var dialog = document.getElementById('shop_add_action_pay');
 	                if (dialog) {
 	                    dialog.show();
@@ -1601,7 +1612,42 @@ function sendCheckIn(id, type) {
 	                    .then(function(dialog) {
 	                        dialog.show();
 	                    });
-	                }
+	                }*/  
+		     $.ajax({
+	           url: "shop/change_plan?order_id="+id+ "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val(),
+	           data: $('#form_checkin').serialize(),
+	           type: 'post',
+	           dataType: 'json',
+	           success: function(res) {
+	               console.log(res);
+	              /* sendSocket(id);
+	               var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
+	               var ac = {
+	                i_type : 1,
+	                i_sub_type : 4,
+	                i_event : id,
+	                i_user : detect_user,
+	                s_topic : "งานส่งแขก",
+	                s_message : txt_long_ac,
+	                s_posted : username
+	            };
+
+	            var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
+	            var nc = {
+	                i_type : 1,
+	                i_event : id,
+	                i_user : driver_id,
+	                s_class_user : "taxi",
+	                s_topic : "งานส่งแขก",
+	                s_sub_topic : "ยืนยันงาน",
+	                s_message : txt_long_nc,
+	                s_posted :  username
+	            };
+	            apiRecordActivityAndNotification(ac, nc);*/
+
+	        }
+	    });           
+	                
 	 }
 
 	}
@@ -1768,7 +1814,7 @@ function btn_guest_register(id) {
     var url = "page/call_page?type=guest_register&id=" + id;
     console.log(url);
     $.post(url, {
-        path: "shop/checkin_action"
+        path: "shop/checkin_guest_register"
     }, function(ele) {
         $('#body_shop_checkin').html(ele);
     });
@@ -2189,6 +2235,7 @@ function _calltest (event){
     // $('ons-tab[page="shop_manage.html"]').click();
     // console.log( document.addEventListener('prechange'))
 }
+
 function maxLengthCheck(object) {
     if (object.value.length > 3)
       object.value = object.value.slice(0, 3)
@@ -2197,6 +2244,7 @@ function area_remark() {
     $('#remark').focus();
 }
 
-// myEl.addEventListener('click', function() {
-//     alert('Hello world');
-// }, false);
+function changePlan(id){
+	$('.replan').fadeIn(500);
+	getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
+}

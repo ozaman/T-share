@@ -321,6 +321,10 @@ public function guest_register(){
 	return $data;
 } 
 
+public function change_plan(){
+	return $_POST;
+}
+
 public function driver_pay_report(){
 	$data[check_driver_pay_report] = 1;
 	$data[driver_pay_report_date] = time();

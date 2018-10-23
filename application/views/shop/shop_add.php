@@ -387,7 +387,7 @@ $data_shopmain = $shopmain->row();
 
 
           ?>
-          <div class="card" id="nation_box">
+        <div class="card" id="nation_box">
            <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
            <div class="form-group">
             <?php 
@@ -424,7 +424,6 @@ $data_shopmain = $shopmain->row();
             <?php }?>
 
           </div>
-
         </div>
 
         <div class="card" id="box_com" >
@@ -496,7 +495,7 @@ $data_shopmain = $shopmain->row();
 
         </div>
       </div>
-    </div>
+    	</div>
 
 
 

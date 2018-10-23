@@ -23,15 +23,26 @@
   $_order['id'] = 'asc';
   $data['list_price'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
   // print_r( $data['list_price']);
+  if($_GET[user_sc]!=""){
+  	$btn_onclick = "handleClick_s('box_com',".$val->id.")";
+  }else{
+  	$btn_onclick = "";
+  }
+
+  if($_GET[plan_id]==$val->id){
+  	$check_plan = "checked";
+  }else{
+  	$check_plan = "";
+  }
   ?>
-  <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china"  onclick="handleClick_s('box_com','<?=$val->id;?>')">
+  <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china"  onclick="<?=$btn_onclick;?>">
     <label class="center" for="price_plan_<?=$val->id;?>">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" <?=$check_plan;?> ></ons-radio>
               </label>
             </td>
             <td class="font-17">
@@ -155,8 +166,9 @@
   </div>
 <?php } ?>
 
-
-<script >
+<?php 
+if($_GET[user_sc]!=""){	?>
+<script>
    setTimeout(function() {
     var form = document.getElementById("form_booking");
   var chk = '<?=count($data['list_plan']);?>';
@@ -236,3 +248,4 @@
   console.log(chk)
    }, 700);
 </script>
+<? }	?>
