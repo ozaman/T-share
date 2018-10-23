@@ -433,6 +433,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <div id="body_car_manage">
             </div>
+            <div id="body_car_station"></div>
             <template id="action-sheet.html">
                 <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
                     <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
