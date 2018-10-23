@@ -1513,18 +1513,19 @@ if(class_user=="taxi"){
 }
 /******* <!-------- End Change html CheckIn ------------> *******/
 
-
 /******* <!-------- function CheckIn ------------> *******/
 var url_send,type_send,id_send;
 function cancelShop_action_pay() {
     $('#shop_add_action_pay').hide();
     // alert('aaaa')
-   
+   modal.hide();
 }
+
 function saveShop_action_pay() {
+	modal.show();
      $.post(url_send, function(res) {
     console.log(res);
-    modal.hide();
+    
     if (res.result == true) {
     $('#shop_add_action_pay').hide();
         
@@ -1554,14 +1555,16 @@ function saveShop_action_pay() {
         shopFuncNotiActi(id_send, type_send);
 
     } else {  }
+	 modal.hide();
 });
 }
+
 function sendCheckIn(id, type) {
     type_send = type;
     id_send = id;
     console.log('*************')
     console.log($('#num_cus').val())
-   modal.show();
+//   modal.show();
 
    var lng = $('#lng').val();
    var lat = $('#lat').val();
@@ -1591,7 +1594,20 @@ var dialog = document.getElementById('shop_add_action_pay');
                 }
  }
 }
-else{
+   else if(type=='driver_topoint'){
+   	  var dialog_topoint = document.getElementById('confirm_topoint-alert-dialog');
+
+	  if (dialog_topoint) {
+	    dialog_topoint.show();
+	  } else {
+	    ons.createElement('confirm_topoint-dialog.html', { append: true })
+	      .then(function(dialog_topoint) {
+	        dialog_topoint.show();
+	      });
+	  }
+	   url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+   }
+   else{
     var dialog = document.getElementById('shop_add_action_pay');
                 if (dialog) {
                     dialog.show();
@@ -1603,9 +1619,8 @@ else{
                         dialog.show();
                     });
                 }
-    url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
-// return false;
-}
+     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+	}
 
 
 
@@ -1697,22 +1712,12 @@ function readURLcheckIn(input, type, subtype, id) {
 }
 
 function btn_driver_topoint(id) {
-    if ($('#driver_topoint_check_click').val() == 1) {
+	sendCheckIn(id, 'driver_topoint');
+   /* if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
-    var dialog = document.getElementById('confirm_topoint-alert-dialog');
-
-	  if (dialog) {
-	    dialog.show();
-	    $('#btn_ok_topoint').attr('onclick','sendCheckIn('+id+',"driver_topoint");');
-	  } else {
-	    ons.createElement('confirm_topoint-dialog.html', { append: true })
-	      .then(function(dialog) {
-	        dialog.show();
-	        $('#btn_ok_topoint').attr('onclick','sendCheckIn('+id+',"driver_topoint");');
-	      });
-	  }
-    /*fn.pushPage({
+ 
+    fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
     }, 'fade-ios');
@@ -1724,7 +1729,6 @@ function btn_driver_topoint(id) {
         $('#body_shop_checkin').html(ele);
     });*/
     //    $('#type_checkin').val('topoint');
-    //    alert($('#type_checkin').val());
 }
 
 function btn_guest_receive(id) {
