@@ -1514,44 +1514,17 @@ if(class_user=="taxi"){
 
 
 /******* <!-------- function CheckIn ------------> *******/
-function sendCheckIn(id, type) {
-    console.log('*************')
-    console.log($('#num_cus').val())
-   modal.show();
-
-   var lng = $('#lng').val();
-   var lat = $('#lat').val();
-   if (type == 'guest_register') {
-    if ($('#num_cus').val() == '') {
-     ons.notification.alert({
-        message: 'จำนวนแขกที่ลงทะเบียน',
-        title: "กรุณาป้อน",
-        buttonLabel: "ตกลง"
-    })
-     modal.hide();
-     return false;
- }
- else{
-     var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
-
- }
-}
-else{
-    var url = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
-
-}
-
-
-
-console.log(url);
-
-$.post(url, function(res) {
+var = url_send ;
+function cancelShop_action_pay() {
+    $('#shop_add_action_pay').hide();
+    // alert('aaaa')
+    $.post(url, function(res) {
     console.log(res);
     modal.hide();
     if (res.result == true) {
-    	if(type == 'guest_register'){
-			$('#num_pax_regis_'+id)	.text($('#num_cus').val());
-		}
+        if(type == 'guest_register'){
+            $('#num_pax_regis_'+id) .text($('#num_cus').val());
+        }
         $('#' + type + '_check_click').val(1)
         changeHtml(type, id, timestampToDate(res.time, "time"));
         sendSocket(id);
@@ -1576,7 +1549,51 @@ $.post(url, function(res) {
 
     } else {  }
 });
+}
+function saveShop_action_pay() {
+    // body...
+}
+function sendCheckIn(id, type) {
+    console.log('*************')
+    console.log($('#num_cus').val())
+   modal.show();
 
+   var lng = $('#lng').val();
+   var lat = $('#lat').val();
+   if (type == 'guest_register') {
+    if ($('#num_cus').val() == '') {
+     ons.notification.alert({
+        message: 'จำนวนแขกที่ลงทะเบียน',
+        title: "กรุณาป้อน",
+        buttonLabel: "ตกลง"
+    })
+     modal.hide();
+     return false;
+ }
+ else{
+     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
+
+ }
+}
+else{
+    var dialog = document.getElementById('shop_add_action_pay');
+                if (dialog) {
+                    dialog.show();
+                } else {
+                    ons.createElement('shop_add_action_pay.html', {
+                        append: true
+                    })
+                    .then(function(dialog) {
+                        dialog.show();
+                    });
+                }
+    url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
+// return false;
+}
+
+
+
+console.log(url_send);
 }
 
 function shopFuncNotiActi(id, type){
