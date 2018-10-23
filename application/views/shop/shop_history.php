@@ -41,12 +41,12 @@
           <tr>
             <td width="80%" ><span class="font-17">คิงส์ พาวเวอร์ (ภูเก็ต)</span></td>
             <td width="20%" align="center" rowspan="2">
-            <div class="font-17" id="status_book_<?=$val->id;?>" style="margin-top: -20px;
+            <!--<div class="font-17" id="status_book_<?=$val->id;?>" style="margin-top: -20px;
     margin-left: -85px;
     position: absolute;
     max-width: 150px;
     width: 100%;" align="center">
-            <?=$status_txt;?></div>
+            <?=$status_txt;?></div>-->
             </td>
           </tr>
           <tr style="<?=$hide_plate;?>">

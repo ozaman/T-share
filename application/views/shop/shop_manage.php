@@ -200,31 +200,32 @@
               <table width="100%">
                <tr>
                <?php 
-               if($val[check_driver_pay_report]==0){ ?>
-			   	 <td width="35%" valign="top">
+
+               if($data_user_class == "lab"){
+			   		$txt_cancel = "ปฏิเสธ";
+			   		
+			   }else{
+			   		$txt_cancel = t_cancel;
+			   		if($val[lab_approve_job]==0){ 
+			   			$btn_cancel_taxi = "";
+			   		}else{
+						$btn_cancel_taxi = "display:none;";
+					}
+			   }
+               ?>
+			   	 <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
               
              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
     border-radius: 5px;
     line-height: 0;
     border: 1px solid #fe3824;
     color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
-     <?php if($data_user_class == "lab"){ ?>
-    <span class="font-17 text-cap">ปฏิเสธ</span>
 
-   
-  <?php }
-  else{
-    ?>
-    <span class="font-17 text-cap"><?=t_cancel;?></span>
+    <span class="font-17 text-cap"><?=$txt_cancel;?></span>
 
-    <?php
-  }
-  ?>
   </ons-button>
         
             </td>
-<?			   }
-               ?>
                  
             	  <td width="65%">
              <?php 
@@ -262,11 +263,9 @@
 						$func = "";
 			        }
 			 		if($val[lab_approve_job]==1){
-           
 			 			$btn_manage = "";
 			 			$txt_wait_approve = "display:none;";
 			 		}else{
-            
 			 			$btn_manage = "display:none;";
 			 			$txt_wait_approve = "";
 			 		}
@@ -305,23 +304,6 @@
   </script>
 <?    
     } ?>
- 
-<?php 
-$arr_select = array('finish_h','finish_m','start_h','start_m',);
-
-$datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
-//print_r(json_encode($datatime));
-$datenow = strtotime(date('Y-m-d H:i:s'));
-// $datenow = strtotime(date('Y-m-d 10:i:s'));
-// echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
-$dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
-$date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
-// $timefinal = 
-
-$i_time_balance = ($dateclose - $datenow)/60;
-$i_time_balance2 = ($date_open - $datenow)/60;
-
-?>   
 <template id="change-time.html">
  <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
     <div class="alert-dialog-title">แก้ไขเวลา</div>
