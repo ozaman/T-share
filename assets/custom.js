@@ -970,25 +970,23 @@ function sendShop2() {
                 setTimeout(function() {
                     modal.hide();
                     $('#shop_add').html(ele2);
-                    
-                    $.ajax({
-                        url: "main/check_num_car_station",
-                        data: pass,
-                        type: 'post',
-                        success: function(res) {
-						console.log("car station number : "+res)
-                        if (res == 0) {
-                            fn.pushPage({
-						        'id': 'popup1.html',
-						        'title': 'ข้อมูลคิวรถ'
-						    }, 'lift-ios');
-		                    _form_car_station('body_popup1');
-                        }else{
-//							_body_car_station('body_add_shop_station');
-						}
+                    if (class_user == "taxi"){
+						 $.ajax({
+	                        url: "main/check_num_car_station",
+	                        data: pass,
+	                        type: 'post',
+	                        success: function(res) {
+							console.log("car station number : "+res)
+	                        if (res == 0) {
+	                            stationCar();
+	                        }else{
+	//							_body_car_station('body_add_shop_station');
+							}
 
-                    }
-                	});
+	                    }
+	                	});
+					}
+                   
                     
                     
                     

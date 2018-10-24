@@ -41,6 +41,14 @@
    	}else{
    		$contract = "taxi";
    	}
+   	if($res_dv->nickname!=""){
+		$nickname = " (".$res_dv->nickname.")";
+	}else{
+		$nickname = "";
+	}
+    $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name, t4.name_th as area FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
+	$row_q = $query_q->row();
+
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" >
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
@@ -102,10 +110,23 @@
             <td width="30%" align="center" rowspan="1">
                <?php 
                   if($data_user_class == "lab"){  ?>
-               <button style="border-radius: 5px;padding: 5px" class="btn btn-xs edit-post-shop pull-right" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>   
+               <button style="border-radius: 5px;padding: 2px 5px;" class="btn btn-xs edit-post-shop pull-right" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>   
                <? }
                   ?>
             </td>
+         </tr>
+		 <tr>
+         	<td>คิวรถ : <?=$row_q->topic_th;?></td>
+         	<td></td>
+         </tr>
+		 <tr>
+		 	<td colspan="2">
+		 		<?=$row_q->province_name;?>
+		 	</td>
+		 </tr>
+         
+         <tr>
+         	<td colspan="2">คนขับ : <?=$res_dv->name.$nickname;?></td>
          </tr>
          <?php 
             if($data_user_class == "lab"){ ?>
