@@ -50,7 +50,7 @@ else{
 
     <!-- <span class="list-header" style="background-image: none;"></span> -->
 
-    <select class="select-input font-17" name="region" id="region" onclick="_region(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+    <select class="select-input font-17" name="region" id="region" onchange="_region(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
       <option value="">เลือกภูมิภาค </option>
       <?php
       foreach($arr[region] as $key=>$region){
