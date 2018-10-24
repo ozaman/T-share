@@ -165,11 +165,20 @@ class Main extends CI_Controller {
     $arr = $this->Main_model->fetch_data('','',$table,$_where,$_select,$_order);
     echo json_encode($arr); // $this->load->view('shop/select/select_type');
   }
+
   public function submitadd_station(){
     $data = $this->Main_model->submitadd_station();
 //  $data['res'] = 123;
 //    header('Content-Type: application/json');
     echo json_encode($data);
+  }
+
+  public function check_num_car_station(){
+  	$res = array();
+	$_where = array();
+  	$_where['member'] = $_COOKIE['detect_user'];
+	$num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION,$_where);
+	echo $num;
   }
 // public function detect
 //////////////////////////// End

@@ -970,7 +970,28 @@ function sendShop2() {
                 setTimeout(function() {
                     modal.hide();
                     $('#shop_add').html(ele2);
-                    _body_car_station('body_add_shop_station')
+                    
+                    $.ajax({
+                        url: "main/check_num_car_station",
+                        data: pass,
+                        type: 'post',
+                        success: function(res) {
+						console.log("car station number : "+res)
+                        if (res == 0) {
+                            fn.pushPage({
+						        'id': 'popup1.html',
+						        'title': 'ข้อมูลคิวรถ'
+						    }, 'lift-ios');
+		                    _form_car_station('body_popup1');
+                        }else{
+//							_body_car_station('body_add_shop_station');
+						}
+
+                    }
+                	});
+                    
+                    
+                    
                     var pass = {
                         date: moment().format('YYYY-MM-DD'),
                         driver: $.cookie("detect_user"),
@@ -990,7 +1011,7 @@ function sendShop2() {
                         }
                         // $('ons-tab[page="shop_history.html"]').attr('badge', res);
                     }
-                });
+                	});
                 }, 1000);
 
 
@@ -1143,7 +1164,7 @@ function myCar() {
         });
     });
 
-    _body_car_station('body_car_station')
+//    _body_car_station('body_car_station')
 }
 
 function addCarForSendShop(){
@@ -1400,7 +1421,23 @@ function _body_car_station(body){
 		}
     });
 }
+
+function _form_car_station(body){
+	var area = $('#place_area').val();
+	var pv = $('#place_province').val();
+    $.post("car/car_form_station?area="+area+"&pv="+pv, {
+        id_user: $.cookie("detect_user")
+    }, function(res) {
+        //console.log(res);
+        $('#'+body).html(res);
+        if($('#province').val()!=""){
+			_province(pv);
+		}
+    });
+}
+
 function submitadd_station(){
+	modal.show();
     var region = $('#region').val()
     var province = $('#province').val()
     var amphur = $('#amphur').val()
@@ -1411,13 +1448,14 @@ function submitadd_station(){
     console.log($('#amphur').val())
     console.log($('#station').val())
 
-var pass = { 'region':region, 'province':province,'amphur':amphur,'station':station };
+//var pass = { 'region':region, 'province':province,'amphur':amphur,'station':station };
 if (region == '') {
     ons.notification.alert({
           message: 'ภูมิภาค',
           title: "กรุณาเลือก",
           buttonLabel: "ตกลง"
       })
+      modal.hide();
     return false;
 }
 if (province == '') {
@@ -1426,6 +1464,7 @@ if (province == '') {
           title: "กรุณาเลือก",
           buttonLabel: "ตกลง"
       })
+      modal.hide();
     return false;
 }
 if (amphur == '') {
@@ -1434,29 +1473,44 @@ if (amphur == '') {
           title: "กรุณาเลือก",
           buttonLabel: "ตกลง"
       })
+      modal.hide();
     return false;
 }
-if (station == '') {
+/*if (station == '') {
     ons.notification.alert({
           message: 'ชื่อคิว',
           title: "กรุณาป้อน",
           buttonLabel: "ตกลง"
       })
     return false;
-}
+}*/
 $.ajax({
    url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
-   data: pass,
+   data:  $('#form_addstation').serialize(),
    type: 'post',
    dataType: 'json',
    success: function(res) {
        console.log(res);
-       if (res.status == true ) {
-_body_car_station('body_car_station')
+       if (res.data1.result == true ) {
+       		callpop();
+       		/*setTimeout(function(){ 
+       		_body_car_station('body_add_shop_station');
+			callpop();
+			modal.hide();
+			 }, 1000);*/
+			
        }
        else{
 
-       }
+       }modal.hide();
    }
 });
+}
+
+function stationCar(){
+	fn.pushPage({
+			'id': 'popup1.html',
+			'title': 'ข้อมูลคิวรถ'
+	}, 'lift-ios');
+	_form_car_station('body_popup1');
 }

@@ -1,140 +1,106 @@
 <?php 
-$res = array();
-$_where = array();
+$query = $this->db->query("SELECT t1.*, t2.topic_th as name_type FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id where t1.member = ".$_COOKIE[detect_user]);
+$row = $query->row();
 
-$_where['member'] = $_COOKIE['detect_user'];
-$num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION,$_where);
-if ($num != 0) {
- $_where = array();
- $_where['member'] = $_COOKIE['detect_user']; 
- $_select = array('*');
- $arr[STATION] = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
  ?>
 <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
-    <ons-list-header class="list-header font-17">คิวรถ </ons-list-header>
-    <table width="100%">
+    <ons-list-header class="list-header font-17"><?=$row->name_type;?></ons-list-header>
+    <?php 
+    if($row->type==1){ ?>
+	<table class="tb_form" width="100%" id="box_form_ass" style="display: nones;" cellpadding="3" cellspacing="3">
+	      <tr>
+	        <td width="35%">ชื่อสมาคม</td>
+	        <td>
+	          <span class="font-17"><?=$row->topic_th;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">ที่อยู่สมาคม</td>
+	        <td>
+	          <?=$row->address;?>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">ชื่อนายกสมาคม</td>
+	        <td>
+	          <?=$row->leader;?>
+	        </td>
+	      </tr>
+	    </table>	
+	<? }
+	else if($row->type==2){
+    ?>
+    <table class="tb_form" width="100%" id="box_form_com" style="display: nones;" cellpadding="3" cellspacing="3">
+	      <tr>
+	        <td width="35%">ชื่อบริษัท</td>
+	        <td>
+	          <span class="font-17"><?=$row->topic_th;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">ที่อยู่</td>
+	        <td>
+	          <span class="font-17"><?=$row->address;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">เบอร์โทร</td>
+	        <td>
+	          <span class="font-17"><?=$row->phone;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">ชื่อเจ้าของบริษัท</td>
+	        <td>
+	          <span class="font-17"><?=$row->leader;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="35%">เบอร์ออฟฟิศ</td>
+	        <td>
+	          <span class="font-17"><?=$row->phone_company;?></span>
+	        </td>
+	      </tr>
+	    </table>
+	<?php } 
+	else if($row->type==3){ ?>
+	<table  class="tb_form" width="100%" id="box_form_queue" style="display: nones;" cellpadding="3" cellspacing="3">
+	   <tr>
+	        <td width="35%">ชื่อคิว</td>
+	        <td>
+	          <span class="font-17"><?=$row->topic_th;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="30%">ที่อยู่</td>
+	        <td>
+	          <span class="font-17"><?=$row->address;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="30%">ชื่อหัวหน้าคิว</td>
+	        <td>
+	          <span class="font-17"><?=$row->leader;?></span>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td width="30%">เบอร์หัวหน้าคิว</td>
+	        <td>
+	          <span class="font-17"><?=$row->leader_phone;?></span>
+	        </td>
+	      </tr>
+	    </table>
+	<?php	}
+	else{ ?>
+	<!--<table width="100%">
       <tr>
-        <!-- <td width="80" class="font-17">ชื่อ</td> -->
+      	<td width="80" class="font-17">ชื่อ</td>
         <td align="center">
-          <span class="font-17" ><?=$arr[STATION]->topic_th;?></span>
+          <span class="font-17" ><?=$row->topic_th;?></span>
         </td>
       </tr>
-    </table>
+    </table>-->
+	<?php }
+	?>
+    
   </div>
-
- <?php
-}
-else{
- $_select = array('*');
- $_order = array();
- $_order['topic_en'] = 'asc';
- $arr[region] = $this->Main_model->fetch_data('','',TBL_WEB_REGION,'',$_select,$_order);
-
- $_select = array('*');
- $_order = array();
- $_order['name_th'] = 'asc';
- $arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,'',$_select,$_order);
- $_where = array();
- $_where['PROVINCE_ID'] = $shop->province;
- $_select = array('*');
- $_order = array();
- $_order['name_th'] = 'asc';
- $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
- ?>
-
-
-
- <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
-   <ons-list-header class="list-header ">ภูมิภาค </ons-list-header>
-   <!-- <div class="form-group"> -->
-
-    <!-- <span class="list-header" style="background-image: none;"></span> -->
-
-    <select class="select-input font-17" name="region" id="region" onchange="_region(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-      <option value="">เลือกภูมิภาค </option>
-      <?php
-      foreach($arr[region] as $key=>$region){
-        /*if($station->region == $region->id ){
-          $selected_sub = "selected";
-        }else{
-          $selected_sub = "";
-        }*/
-        if($_GET[area] == $region->id ){
-          $selected_sub = "selected";
-        }else{
-          $selected_sub = "";
-        }
-        ?>
-        <option value="<?=$region->id;?>"  <?=$selected_sub;?> ><?=$region->topic_th;?></option>
-      <?php } ?>
-    </select>
-
-    <!-- </div> -->
-
-  </div>
-  <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
-   <ons-list-header class="list-header ">จังหวัด</ons-list-header>
-   <!-- <div class="form-group"> -->
-
-    <!-- <span class="list-header" style="background-image: none;"></span> -->
-
-    <select class="select-input font-17" name="province" id="province" onchange="_province(this.value);" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-      <option value="">เลือกจังหวัด</option>
-      <?php
-      foreach($arr[province] as $key=>$province){
-        /*if($station->province == $province->id ){
-          $selected_sub = "selected";
-        }else{
-          $selected_sub = "";
-        }*/
-        if($_GET[pv] == $province->id ){
-          $selected_sub = "selected";
-        }else{
-          $selected_sub = "";
-        }
-        ?>
-        <option value="<?=$province->id;?>"  <?=$selected_sub;?> ><?=$province->name_th;?></option>
-      <?php } ?>
-    </select>
-
-    <!-- </div> -->
-
-  </div>
-  <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
-   <ons-list-header class="list-header ">อำเภอ/เขต </ons-list-header>
-   <!-- <div class="form-group"> -->
-
-    <!-- <span class="list-header" style="background-image: none;"></span> -->
-
-    <select class="select-input font-17" name="amphur" id="amphur" value="" onchange="//checkzoon(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-      <option value="0">-- เลือกเขต --</option>
-      <?php
-      foreach($arr[amphur] as $key=>$amphur){
-
-        if($station->amphur == $amphur->id ){
-          $selected_sub = "selected";
-        }else{
-          $selected_sub = "";
-        }
-        ?>
-        <option value="<?=$amphur->id;?>"  <?=$selected_sub;?> ><?=$amphur->name_th;?></option>
-      <?php } ?>
-
-
-    </select>
-
-    <!-- </div> -->
-
-  </div>
-  <div class="card" id="box_zoon" onclick="$( '#station' ).focus();">
-    <ons-list-header class="list-header ">คิวรถ </ons-list-header>
-    <table width="100%">
-      <tr>
-        <td width="45">ชื่อ</td>
-        <td>
-          <ons-input id="station" name="station" type="text"  class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <?php } ?>

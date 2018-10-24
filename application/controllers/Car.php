@@ -48,8 +48,16 @@ class Car extends CI_Controller {
 		$arr_order['id'] = 'ASC';
 		$data['CAR_STATION'] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION, $arr_where, $arr_select,$arr_order);		
 		$this->load->view('car/body_car_station',$data);
+	}
 	
-	
-}
+	public function car_form_station(){
+		$arr_where = array();
+		$arr_where['member'] = $_POST[driver_id];
+		$arr_select = array('*');
+		$arr_order = array();
+		$arr_order['id'] = 'ASC';
+		$data['CAR_STATION'] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION, $arr_where, $arr_select,$arr_order);		
+		$this->load->view('car/form_car_station',$data);
+	}
 }
 ?>
