@@ -54,7 +54,12 @@ else{
       <option value="">เลือกภูมิภาค </option>
       <?php
       foreach($arr[region] as $key=>$region){
-        if($station->region == $region->id ){
+        /*if($station->region == $region->id ){
+          $selected_sub = "selected";
+        }else{
+          $selected_sub = "";
+        }*/
+        if($_GET[area] == $region->id ){
           $selected_sub = "selected";
         }else{
           $selected_sub = "";
@@ -77,7 +82,12 @@ else{
       <option value="">เลือกจังหวัด</option>
       <?php
       foreach($arr[province] as $key=>$province){
-        if($station->province == $province->id ){
+        /*if($station->province == $province->id ){
+          $selected_sub = "selected";
+        }else{
+          $selected_sub = "";
+        }*/
+        if($_GET[pv] == $province->id ){
           $selected_sub = "selected";
         }else{
           $selected_sub = "";
@@ -116,7 +126,7 @@ else{
     <!-- </div> -->
 
   </div>
-  <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
+  <div class="card" id="box_zoon" onclick="$( '#station' ).focus();">
     <ons-list-header class="list-header ">คิวรถ </ons-list-header>
     <table width="100%">
       <tr>

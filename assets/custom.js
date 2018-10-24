@@ -433,6 +433,8 @@ function updatePlaceNum(province) {
         console.log(obj);
         var province = obj[0].id;
         var area = obj[0].area;
+        $('#place_province').val(province);
+        $('#place_area').val(area);
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
@@ -1386,12 +1388,16 @@ function _province(itm) {
        });
 }
 function _body_car_station(body){
-
-    $.post("car/car_station", {
+	var area = $('#place_area').val();
+	var pv = $('#place_province').val();
+    $.post("car/car_station?area="+area+"&pv="+pv, {
         id_user: $.cookie("detect_user")
     }, function(res) {
         //console.log(res);
         $('#'+body).html(res);
+        if($('#province').val()!=""){
+			_province(pv);
+		}
     });
 }
 function submitadd_station(){

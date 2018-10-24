@@ -536,10 +536,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					   
 				}
 			</style>
-			<input type="hidden"  id="place_lat" value=""/>
-			<input type="hidden"  id="place_lng" value=""/>
-			<input type="hidden" id="place_area" value=""/>
-			<input type="hidden" id="place_province" value=""/>
+			
 			
 			<template id="select_type_map-action-sheet.html">
 			  <ons-action-sheet id="sheet" cancelable>
@@ -1350,6 +1347,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <input type="hidden" id="lat" value="0" />
     <input type="hidden" id="lng" value="0" />
     
+    <input type="hidden"  id="place_lat" value=""/>
+	<input type="hidden"  id="place_lng" value=""/>
+	<input type="hidden" id="place_area" value=""/>
+	<input type="hidden" id="place_province" value=""/>
 </body>
 </html>
 
