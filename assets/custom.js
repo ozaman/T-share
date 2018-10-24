@@ -921,7 +921,7 @@ function beforeSendShop(){
   }
 }
 
-function sendShop2() {
+function sendShop2(){
 	addUser();
     modal.show();
     
