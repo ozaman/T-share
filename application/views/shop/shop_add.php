@@ -18,7 +18,7 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_whe
 
 
 $datenow = strtotime(date('Y-m-d H:i:s'));
-$datenow = strtotime(date('Y-m-d 00:i:s'));
+// $datenow = strtotime(date('Y-m-d 00:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
 $date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
