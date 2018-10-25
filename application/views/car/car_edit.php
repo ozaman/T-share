@@ -8,6 +8,10 @@
 		$query = $this->db->query($select);
 		$data_car = $query->row();
 		
+		$select = "SELECT id,name_en FROM web_car_gen where id = ".$data_car->i_car_gen;
+		$query = $this->db->query($select);
+		$data_gen = $query->row();
+		
 		$select_brand = "SELECT img FROM web_car_brand where id = '".$data_car->i_car_brand."' ";
 		$query_brand = $this->db->query($select_brand);
 		$data_brand = $query_brand->row();
@@ -17,7 +21,11 @@
 		$txt_brand = "เลือก";
 		$txt_plate_color = "เลือก";
 		$txt_pv = "เลือก";
+		$txt_car_gen = "เลือก";
 		
+		if($data_gen->name_en!=""){
+			$txt_car_gen = $data_gen->name_en;
+		}
 		if($data_car->type_name!=""){
 			$txt_type = $data_car->type_name;
 		}else{
@@ -93,6 +101,15 @@
                 <span id="txt_car_brand" ><?=$txt_brand;?></span>
                 <input type="hidden" name="car_brand" id="car_brand" value="<?=$data_car->i_car_brand;?>" />
                 <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value="<?=$data_car->car_brand;?>" />
+            </div>
+        </ons-list-item>
+        <ons-list-item class="input-items list-item p-l-0" >
+        	<div class="left list-item__left"  style="width: 110px;" id="car_gen_txt">
+                <span>รุ่น</span>
+            </div>
+            <div class="center list-item__center custom-sl-pd" id="car_gen_box" onclick="fn.pushPage({'id': 'option.html', 'title': 'รุ่นรถ', 'open':'car_gen'}, 'lift-ios')">
+                <span id="txt_car_gen" ><?=$txt_car_gen;?></span>
+                <input type="hidden" name="i_car_gen" id="i_car_gen" value="<?=$data_gen->id;?>" />
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">

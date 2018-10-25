@@ -49,6 +49,8 @@
     $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
 	$row_q = $query_q->row();
 
+ $query_car = $this->db->query("SELECT t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id where t1.id = ".$val[check_use_car_id]);
+	$row_car = $query_car->row();
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" >
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
@@ -119,6 +121,8 @@
          	<td><?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?></td>
          	<td></td>
          </tr>
+          <?php 
+            if($data_user_class == "lab"){ ?>
 		 <tr>
 		 	<td colspan="2">
 		 		<?="จ.".$row_q->province_name." อ.".$row_q->area;?>
@@ -128,8 +132,10 @@
          <tr>
          	<td colspan="2">คนขับ : <?=$res_dv->name.$nickname;?></td>
          </tr>
-         <?php 
-            if($data_user_class == "lab"){ ?>
+         <tr>
+         	<td colspan="2">ยี่ห้อ : <?=$row_car->name_brand;?> รุ่น : <?=$row_car->name_gen;?></td>
+         </tr>
+        
          <tr>
             <td colspan="2" style="padding: 0px 0px;">
                <div class="font-17">ป้ายทะเบียน&nbsp;:&nbsp;<a><?=$val[car_plate]." ";?></a>

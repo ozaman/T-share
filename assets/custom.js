@@ -1510,5 +1510,15 @@ function stationCar(){
 			'id': 'popup1.html',
 			'title': 'ข้อมูลคิวรถ'
 	}, 'lift-ios');
-	_form_car_station('body_popup1');
+	var area = $('#place_area').val();
+	var pv = $('#place_province').val();
+    $.post("car/edit_form_station?area="+area+"&pv="+pv, {
+        id_user: $.cookie("detect_user")
+    }, function(res) {
+        
+        $('#body_popup1').html(res);
+        if($('#province').val()!=""){
+			_province(pv);
+		}
+    });
 }

@@ -63,7 +63,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 </ons-modal>
 <script>
 	var modal = document.querySelector('ons-modal');
-		modal.show();
+//		modal.show();
 	var today = "<?=date('Y-m-d');?>";
     var detect_mb = "<?=$detectname;?>";
     var detect_user = $.cookie("detect_user");
