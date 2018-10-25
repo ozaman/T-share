@@ -58,7 +58,9 @@
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
       <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+      <span class="font-20"><b>ติดต่อ</b></span>
       <table width="100%"  >
+      	 
          <tr>
             <td colspan="2">
                <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
@@ -147,6 +149,7 @@
          <tr>
             <td>
                <div class="font-17">
+               	    จำนวน : 
                   <?php 
                      if($val[adult]>0){ ?>
                   ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 

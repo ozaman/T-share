@@ -832,17 +832,18 @@ var gtimeM = parseInt(res[0].finish_m);
            console.log(ftimeM)*/
            if (parseInt(ftimeH) < parseInt(gtimeH)) {
             var dialog = document.getElementById('shop_add-alert-dialog');
-            if (dialog) {
+           /* if (dialog) {
                 dialog.show();
-            } else {
+            } 
+            else {
                 ons.createElement('shop_add-dialog.html', {
                     append: true
                 })
                 .then(function(dialog) {
                     dialog.show();
                 });
-            }
-
+            }*/
+			saveShop();
             // if (parseInt(ftimeH) > parseInt(gtimeH)) {
             //     ons.notification.alert({
             //         message: 'ท่านเลือกเวลาส่งแขกเกินเวลาทำการกรุณา เลือกเวลาใหม่',
