@@ -21,18 +21,18 @@ if ($arr[book][check_guest_receive] == 0) {
 
 }
 else{
- $title_guest_receive = "พนักงานรับแขก";
+ $title_guest_receive = "พนักงานรับแขกแล้ว";
  $txt_wait_guest_receive = 'พนักงานยืนยันรับแขก';
 
 
 }
 if ($arr[book][check_guest_register] == 0) {
-   $title_guest_regis = "แขกลงทะเบียน";
-   $txt_wait_guest_register = 'รอพนักงานยืนยันแขกลงทะเบียน';
+   $title_guest_regis = "รอแขกลงทะเบียน";
+   $txt_wait_guest_register = 'รอแขกลงทะเบียน';
 }
 else{
-   $title_guest_regis = "แขกลงทะเบียน";
-   $txt_wait_guest_register = 'พนักงานยืนยันแขกลงทะเบียน';
+   $title_guest_regis = "แขกลงทะเบียนแล้ว";
+   $txt_wait_guest_register = 'แขกลงทะเบียนแล้ว';
 
 }
 if ($arr[book][check_lab_pay] == 0) {
@@ -213,14 +213,17 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  <div class="step-booking" id="number_guest_register">3</div>
                                  <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_register"></div>
                               </td>
-                              <td colspan="2"><button id="btn_guest_register" onclick="btn_guest_register('<?=$arr[book][id];?>')" type="button" class="btns  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_register_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"></i><?=$title_guest_regis;?></span></button></td>
+                              <td colspan="2">
+                              <button id="btn_guest_register" onclick="btn_guest_register('<?=$arr[book][id];?>')" type="button" class="btns  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_register_color;?>;  border-radius: 20px; border:none;color: #fff;    margin-top: 10px; "><span class="font-20 text-cap"><i class="icon-new-uniF116-6" style="width:10px;"></i><?=$title_guest_regis;?></span></button>
+                              
+                              </td>
                            </tr>
                            <tr>
                               <td style="height:30px;">
 
 
                                  <div id="status_guest_register">
-                                    <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
+                                    <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_guest_register;?></font></strong></div>
                                  </div>
                                  <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click">
                               </td>

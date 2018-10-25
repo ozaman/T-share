@@ -69,8 +69,9 @@
           $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
           ?>
 <input type="hidden" value="<?=$res_country->sci_id;?>" id="sci_id" />  
-<input type="hidden" value="<?=$book->plan_id;?>" id="plane_id_replan" />  
+
 <form name="form_checkin" id="form_checkin"   enctype="multipart/form-data">
+<input type="hidden" value="<?=$book->plan_id;?>" id="plane_id_replan" name="plane_id_replan" />  
 <ons-card >
 	<table class="onlyThisTable" width="100%" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;" >
       <tr>
@@ -95,7 +96,7 @@
 </ons-card>
 
 <div style="margin: 20px 10px">
-   <ons-button type="button" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" >เปลี่ยนค่าตอบแทน</ons-button>
+   <ons-button type="button" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" data-check="0" >เปลี่ยนค่าตอบแทน</ons-button>
 </div>
 
 <div class="card replan" id="nation_box" style="display: none;">
@@ -187,6 +188,12 @@
 	    <ons-list-item tappable>
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-4"  value="3"></ons-radio>
+	      </label>
+	      <label for="radio-4" class="center">แขกต่างชาติ</label>
+	    </ons-list-item>
+	    <ons-list-item tappable>
+	      <label class="left">
+	        <ons-radio name="cause_change" input-id="radio-4"  value="4"></ons-radio>
 	      </label>
 	      <label for="radio-4" class="center">แขกต่างชาติ</label>
 	    </ons-list-item>

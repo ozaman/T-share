@@ -206,7 +206,7 @@ class Shop_model extends CI_Model {
 
 		$data[status] = "CANCEL";
 		$data[cancel_type] = $_POST[type_cancel];
-		$data[driver_complete] = 1;
+		$data[driver_complete] = 0;
 		$data[update_date] = time();
 
 		$this->db->where('id', $_POST[order_id]);
@@ -217,6 +217,7 @@ class Shop_model extends CI_Model {
 		$data_his[order_id] = $_POST[order_id];
 		$data_his[type] = $_POST[type_cancel];
 		$data_his[status] = "CANCEL";
+		$data_his[i_status] = 0;
 		$data_his[type_name] = $_POST[$typname];
 		$data_his[posted] = $_COOKIE[detect_username];
 		$data_his[post_date] = time();
@@ -323,32 +324,39 @@ public function guest_register(){
 
 public function change_plan(){
 	
-	 $_where['id'] = $_GET[id]; 
+	 $_where['id'] = $_GET[order_id]; 
      $_select = array('*');
      $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
+	 	$backup[order_id] = $book->id;
+		 $backup[invoice] = $book->invoice;
+		 $backup[status] = $book->status;
+		 $backup[post_date] = time();
+		 $backup[plan_id] = $book->plan_id;
+		 $backup[price_park_unit] = $book->price_park_unit;
+		 $backup[price_park_total] = $book->price_park_total;
+		 $backup[price_person_unit] = $book->price_person_unit;
+		 $backup[pax_regis] = $book->pax_regis;
+		 $backup[pax] = $book->pax;
+		 $backup[price_person_total] = $book->price_person_total;
+		 $backup[price_all_total] = $book->price_all_total;
+		 $backup[commission_persent] = $book->commission_persent;
+		 $backup[total_commission] = $book->total_commission;
+		 $backup[cause_change] = $_POST[cause_change];
 	 
-	 $backup[order_id] = $book->id;
-	 $backup[invoice] = $book->invoice;
-	 $backup[status] = $book->status;
-	 $backup[post_date] = time();
-	 $backup[plan_id] = $book->plan_id;
-	 $backup[price_park_unit] = $book->price_park_unit;
-	 $backup[price_park_total] = $book->price_park_total;
-	 $backup[price_person_unit] = $book->price_person_unit;
-	 $backup[pax_regis] = $book->pax_regis;
-	 $backup[pax] = $book->pax;
-	 $backup[price_person_total] = $book->price_person_total;
-	 $backup[price_all_total] = $book->price_all_total;
-	 $backup[commission_persent] = $book->commission_persent;
-	 $backup[total_commission] = $book->total_commission;
-	 $backup[cause_change] = $_POST[cause_change];
-//	 $backup[result] = $this->db->insert('order_booking', $backup);
+	 $backup[result] = $this->db->insert('order_booking', $backup);
 	 
-	 $data[plan_id] = $_POST[plan_id];
+	 $data[plan_id] = $_POST[price_plan];
+	 $data[price_person_unit] = $_POST[price_person_unit];
+	 $data[price_park_unit] = $_POST[price_park_unit];
+	 $data[commission_persent] = $_POST[commission_persent]; 
 	 $this->db->where('id', $_GET[id]);
-//	 $data[result] = $this->db->update('order_booking', $data); 
-	
-	return $backup;
+	 $data[result] = $this->db->update('order_booking', $data); 
+
+	 $return[backup] = $backup;
+	 $return[update] = $data;
+//	 $return[post] = $_POST;
+	 
+	return $return;
 }
 
 public function driver_pay_report(){
@@ -480,12 +488,30 @@ public function driver_approved_pay(){
 	$data[result] = $this->db->update('order_booking', $data_ob); 
 	return $data;
 }
+
 public function editpax_regis(){
 	$data['pax_regis'] = $_GET[pax_regis];
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 
 	return $data;
+}
+
+public function taxi_approved_cancel(){
+	
+	$data[driver_complete] = 1;
+	$data[update_date] = time();
+	$this->db->where('id', $_GET[order_id]);
+    $data[result] = $this->db->update('order_booking', $data); 
+    
+    $data2[i_status] = 1;
+	$this->db->where('order_id', $_GET[order_id]);
+    $data2[result] = $this->db->update('history_del_order_booking', $data); 
+    
+    $data[ord] = $data;
+    $data[his] = $data2;
+    
+    return $data;
 }
   /**
   * 
@@ -497,4 +523,5 @@ public function editpax_regis(){
   * *********** End
   * 
   */
+  
 }

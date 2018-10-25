@@ -31,7 +31,7 @@
   }else{
   	$time_post_ps = "margin-top: -105px;";
   }*/
-  $time_post_ps = "margin-top: -30px;";
+  $time_post_ps = "margin-top: -20px;";
   ?>
    <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop" >

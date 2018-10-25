@@ -492,9 +492,12 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-    console.log(array_data.manage);
-    if (done.length > 0) {
-        $('#number_shop').show();
+
+
+//                console.log(array_data.manage);
+if (done.length > 0) {
+    $('#number_shop').show();
+
         //			$('#circle_icon_shop').addClass("pulse");
     } else {
         $('#number_shop').hide();
@@ -512,9 +515,9 @@ socket.on('getbookinglab', function(data) {
     // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
 
     if ($('#open_shop_manage').val() == 1){
-     if (shop_frist_run == 0) {
-        shop_frist_run = done.length;
-    }
+	     if (shop_frist_run == 0) {
+	        shop_frist_run = done.length;
+	    }
 //        console.log(shop_frist_run+" || "+done.length);
 if (done.length != shop_frist_run) {
     shopManage();
@@ -562,6 +565,7 @@ var dataorder = {
 };
 socket.emit('sendchat', '');
 socket.emit('adduser', dataorder);
+
 function addUser(){
 	var id = detect_user;
 	var dataorder = {
@@ -569,6 +573,7 @@ function addUser(){
    };
    socket.emit('adduser', dataorder);
 }
+
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
@@ -638,7 +643,12 @@ socket.on('datalab', function(username, data) {
             $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
 
+<<<<<<< HEAD
     });
+=======
+        });
+//        shopManage();
+>>>>>>> a9d962063e8201ace67c40a6c65c6c38bd1e2f33
     }
 
 });
@@ -680,6 +690,7 @@ if (check_open != 0) {
             changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
         }
     }
+
 }
 
 console.log($('#open_shop_manage').val());
@@ -699,6 +710,8 @@ if ($('#open_shop_manage').val() == 1) {
           $('#td_cancel_book_'+data.id).show();
           $('#status_book_'+data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
       }
+      
+//      shopManage();
 
   }, 500);
 }
