@@ -434,26 +434,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-toolbar>
             <div id="body_car_manage">
             </div>
-            <div id="body_car_station"></div>
-
-            <?php 
-            
-  $_where = array();
-    // $_where['product_id'] = $_GET[id];
-    // echo $_COOKIE['detect_user'].'**********************************************************';
-  $_where['member'] = $_COOKIE['detect_user'];
-  $num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION,$_where);
-  //echo $num.'---------------'.TBL_PLACE_CAR_STATION;
-  if ($num == 0) {
-
-  ?>
-            <div style="padding: 0px 10px;padding-bottom: 40px;">
-                              <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large font-17" onclick="submitadd_station();" id="btn_submitadd">ยืนยันข้อมูล</ons-button>
-
-                          </div>
-                      <?php }
-                      ?>
-
             <template id="action-sheet.html">
                 <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
                     <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
@@ -1496,6 +1476,23 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					console.log(param);
 	                $.post("component/cpn_car_ins",param,function(el){
 						$('#body_option').html(el);
+					});
+	             }
+	        	});
+			}
+			else if(page.open=="car_gen"){
+				
+				$.ajax({
+	            url: "main/data_car_gen?i_brand="+$('#car_brand').val(), // point to server-side PHP script 
+	            dataType: 'json', // what to expect back from the PHP script, if anything
+	            type: 'post',
+	            success: function(res) {	
+	            	console.log(res);
+					var param = { data : res };
+					console.log(param);
+	                $.post("component/cpn_car_gen",param,function(el){
+						$('#body_option').html(el);
+						$('#car_brand_in_gen').text($('#txt_car_brand').text());
 					});
 	             }
 	        	});

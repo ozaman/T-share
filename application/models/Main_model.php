@@ -337,6 +337,14 @@ public function query_car_type(){
 }
 return $data;
 }
+public function query_car_gen(){
+ $sql = "SELECT * FROM web_car_gen WHERE status = 1 and i_brand = ".$_GET[i_brand];
+ $query = $this->db->query($sql);
+ foreach($query->result() as $val){ 
+  $data[] = $val;
+}
+return $data;
+}
 public function query_car_color(){
  $sql = "SELECT id,name_th,name_en,img,plate FROM web_car_color WHERE status = 1 ";
  $query = $this->db->query($sql);

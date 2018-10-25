@@ -27,6 +27,13 @@ public function cpn_car_type()
 		
 	}
 	
+	public function cpn_car_gen()
+	{
+//		$data['data'] = $this->Main_model->query_province();
+		$this->load->view('component/car_gen');
+		
+	}
+	
 	public function cpn_car_color()
 	{
 //		$data['data'] = $this->Main_model->query_province();

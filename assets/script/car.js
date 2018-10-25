@@ -1163,6 +1163,16 @@ function selectCarType(id) {
     focusBoxCar2();
 }
 
+function selectCarGen(id) {
+    var name = $('#item_car_gen_' + id).data('name');
+    console.log(name + " " + id);
+
+    $('#i_car_gen').val(id);
+    $('#txt_car_gen').text(name);
+   	callpop();
+    focusBoxCar2();
+}
+
 function selectCarBrand(id, ps) {
     var name = $('#item_car_brand_' + id).data('name');
     console.log(name + " " + id);
@@ -1416,6 +1426,15 @@ function focusBoxCar2(){
     }else{
 		$('#car_brand_box').removeClass('border-bottom-red');
 		 $('#car_brand_txt').removeClass('txt-red');
+	}
+    
+    if ($('input[name="i_car_gen"]').val() == "") {
+       $('#car_gen_box').addClass('border-bottom-red');
+        $('#car_gen_txt').addClass('txt-red');
+
+    }else{
+		$('#car_gen_box').removeClass('border-bottom-red');
+		 $('#car_gen_txt').removeClass('txt-red');
 	}
     
     if ($('input[name="car_color"]').val() == "") {
