@@ -438,8 +438,8 @@ function updatePlaceNum(province) {
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
-//            console.log(data2);
-});
+           console.log(data2);
+       });
     });
 }
 var array_rooms;
@@ -492,9 +492,9 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-                console.log(array_data.manage);
-if (done.length > 0) {
-    $('#number_shop').show();
+    console.log(array_data.manage);
+    if (done.length > 0) {
+        $('#number_shop').show();
         //			$('#circle_icon_shop').addClass("pulse");
     } else {
         $('#number_shop').hide();
@@ -626,19 +626,19 @@ socket.on('datalab', function(username, data) {
     	$.each(data, function(index, value) {
 
 
-             if(value.lab_approve_job==1){
-                        $('#btn_manage_'+value.id).show();
-                        $('#txt_wait_'+value.id).hide();
-                        $('#td_cancel_book_'+value.id).hide();
-                        $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
-                  }else{
-                        $('#btn_manage_'+value.id).hide();
-                        $('#txt_wait_'+value.id).show();
-                        $('#td_cancel_book_'+value.id).show();
-                        $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-                  }
+         if(value.lab_approve_job==1){
+            $('#btn_manage_'+value.id).show();
+            $('#txt_wait_'+value.id).hide();
+            $('#td_cancel_book_'+value.id).hide();
+            $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+        }else{
+            $('#btn_manage_'+value.id).hide();
+            $('#txt_wait_'+value.id).show();
+            $('#td_cancel_book_'+value.id).show();
+            $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+        }
 
-        });
+    });
     }
 
 });
@@ -971,37 +971,37 @@ function sendShop2(){
                     modal.hide();
                     $('#shop_add').html(ele2);
                     if (class_user == "taxi"){
-						 $.ajax({
-	                        url: "main/check_num_car_station",
-	                        data: pass,
-	                        type: 'post',
-	                        success: function(res) {
-							console.log("car station number : "+res)
-	                        if (res == 0) {
-	                            stationCar();
-	                        }else{
-	//							_body_car_station('body_add_shop_station');
-							}
+                       $.ajax({
+                         url: "main/check_num_car_station",
+                         data: pass,
+                         type: 'post',
+                         success: function(res) {
+                           console.log("car station number : "+res)
+                           if (res == 0) {
+                             stationCar();
+                         }else{
 
-	                    }
-	                	});
-					}
-                   
-                    
-                    
-                    
-                    var pass = {
-                        date: moment().format('YYYY-MM-DD'),
-                        driver: $.cookie("detect_user"),
-                        type: 'his'
-                    };
-                    console.log(pass);
-                    var urlcounthis = "shop/count_his"
-                    $.ajax({
-                        url: urlcounthis,
-                        data: pass,
-                        type: 'post',
-                        success: function(res) {
+                         }
+
+                     }
+                 });
+                   }
+
+
+
+
+                   var pass = {
+                    date: moment().format('YYYY-MM-DD'),
+                    driver: $.cookie("detect_user"),
+                    type: 'his'
+                };
+                console.log(pass);
+                var urlcounthis = "shop/count_his"
+                $.ajax({
+                    url: urlcounthis,
+                    data: pass,
+                    type: 'post',
+                    success: function(res) {
                         // console.log(res);
                         if (res != 0) {
                             $('#num_his').show();
@@ -1009,8 +1009,8 @@ function sendShop2(){
                         }
                         // $('ons-tab[page="shop_history.html"]').attr('badge', res);
                     }
-                	});
-                }, 1000);
+                });
+            }, 1000);
 
 
             });
@@ -1396,8 +1396,15 @@ function _province(itm) {
   $.post(url, function(res) {
     console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
+    var select;
     $.each(res, function (i, item) {
-      htmlOption += "<option value='" + item.id + "'>" + item.name_th + "</option>";
+        if ($('#have_arm').val() == item.id) {
+            select = 'selected';
+        }
+        else{
+            select = '';
+        }
+      htmlOption += "<option value='" + item.id + "' "+select+">" + item.name_th + "</option>";
   });
     $("#amphur").html(htmlOption);
         // $("#select_type").val();
@@ -1415,9 +1422,9 @@ function _body_car_station(body){
         //console.log(res);
         $('#'+body).html(res);
         if($('#province').val()!=""){
-			_province(pv);
-		}
-    });
+           _province(pv);
+       }
+   });
 }
 
 function _form_car_station(body){
@@ -1429,18 +1436,23 @@ function _form_car_station(body){
         //console.log(res);
         $('#'+body).html(res);
         if($('#province').val()!=""){
-			_province(pv);
-		}
-    });
+           _province(pv);
+       }
+   });
 }
+var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, have = 1,
 
 function submitadd_station(){
-	modal.show();
+    var form = document.getElementById("form_addstation");
+
+    console.log( form.elements["station_other"].value)
+    // return false;
+    modal.show();
     var region = $('#region').val()
     var province = $('#province').val()
     var amphur = $('#amphur').val()
     var station = $('#station').val()
-
+    var station_other =  form.elements["station_other"].value;
     console.log($('#region').val())
     console.log($('#province').val())
     console.log($('#amphur').val())
@@ -1449,30 +1461,41 @@ function submitadd_station(){
 //var pass = { 'region':region, 'province':province,'amphur':amphur,'station':station };
 if (region == '') {
     ons.notification.alert({
-          message: 'ภูมิภาค',
-          title: "กรุณาเลือก",
-          buttonLabel: "ตกลง"
-      })
-      modal.hide();
+      message: 'ภูมิภาค',
+      title: "กรุณาเลือก",
+      buttonLabel: "ตกลง"
+  })
+    modal.hide();
     return false;
 }
 if (province == '') {
     ons.notification.alert({
-          message: 'จังหวัด',
-          title: "กรุณาเลือก",
-          buttonLabel: "ตกลง"
-      })
-      modal.hide();
+      message: 'จังหวัด',
+      title: "กรุณาเลือก",
+      buttonLabel: "ตกลง"
+  })
+    modal.hide();
     return false;
 }
 if (amphur == '') {
     ons.notification.alert({
-          message: 'อำเภอ',
+      message: 'อำเภอ',
+      title: "กรุณาเลือก",
+      buttonLabel: "ตกลง"
+  })
+    modal.hide();
+    return false;
+}
+if (check_get_have == 1) {
+    if (station_other == '') {
+        ons.notification.alert({
+          message: type_name,
           title: "กรุณาเลือก",
           buttonLabel: "ตกลง"
       })
-      modal.hide();
-    return false;
+        modal.hide();
+        return false;
+    }
 }
 /*if (station == '') {
     ons.notification.alert({
@@ -1490,35 +1513,182 @@ $.ajax({
    success: function(res) {
        console.log(res);
        if (res.data1.result == true ) {
-       		callpop();
+         callpop();
        		/*setTimeout(function(){ 
        		_body_car_station('body_add_shop_station');
 			callpop();
 			modal.hide();
-			 }, 1000);*/
-			
-       }
-       else{
+        }, 1000);*/
 
-       }modal.hide();
-   }
+    }
+    else{
+
+    }modal.hide();
+}
 });
 }
 
 function stationCar(){
 	fn.pushPage({
-			'id': 'popup1.html',
-			'title': 'ข้อมูลคิวรถ'
-	}, 'lift-ios');
+       'id': 'popup1.html',
+       'title': 'ข้อมูลคิวรถ'
+   }, 'lift-ios');
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();
     $.post("car/edit_form_station?area="+area+"&pv="+pv, {
         id_user: $.cookie("detect_user")
     }, function(res) {
-        
+
         $('#body_popup1').html(res);
         if($('#province').val()!=""){
-			_province(pv);
-		}
+           // _province(pv);
+       }
+   });
+}
+function get_station() {
+    $('#box_station_others').show();
+    $('#box_form_toshow').hide();
+
+
+
+}
+function add_new_station(){
+    check_get_have = 0;
+    $('#check_get_have').val(0);
+    $('#box_station_others').hide();
+    $('#box_form_toshow').show();
+    $('#get_stations').show();
+    if(id_type_station==1){
+       $('#box_form_toshow').show();
+       $('#box_form_ass').show();
+   }else if(id_type_station==2){
+       $('#box_form_toshow').show();
+       $('#box_form_com').show();
+   }else if(id_type_station==3){
+       $('#box_form_toshow').show();
+       $('#box_form_queue').show();
+   }else{
+       $('#box_form_toshow').hide();
+   }
+}
+function selectTypeCarPlace(id){
+    $('.station_other').prop("checked", false);
+    id_type_station = id;
+    var region = $('#region').val();
+    var province = $('#province').val();
+    var amphur = $('#amphur').val();
+    var member = $.cookie("detect_user");
+    if (region == '') {
+        ons.notification.alert({
+          message: 'ภูมิภาค',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (province == '') {
+        ons.notification.alert({
+          message: 'จังหวัด',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (amphur == '') {
+        ons.notification.alert({
+          message: 'อำเภอ',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#radio-'+id).prop("checked", false);
+        $('#type_topic_'+id).prop("checked", false);
+
+        return false;
+    }
+
+    console.log(region)
+    console.log(province)
+    console.log(amphur)
+    console.log(member)
+    type_name = $('#type_topic_'+id).val();
+    $('#header_topic_type').text(type_name);
+    $('.tb_form').hide();
+
+    var data = {
+        region: region,
+        province: province,
+        amphur: amphur,
+        type: id
+        
+    };
+    var url = "car/num_station_other";
+    $.ajax({
+        url: url, // point to server-side PHP script 
+        // dataType: 'json', // what to expect back from the PHP script, if anything
+        data: data,
+        type: 'post',
+        success: function(num) {
+            console.log(num);
+            if (num == 0) {
+                check_get_have = 0;
+                $('#check_get_have').val(0);
+                $('#box_form_toshow').show();
+                $('#box_station_others').hide();
+                $('#get_stations').hide();
+
+
+                if(id==1){
+                   $('#box_form_toshow').show();
+                   $('#box_form_ass').show();
+               }else if(id==2){
+                   $('#box_form_toshow').show();
+                   $('#box_form_com').show();
+               }else if(id==3){
+                   $('#box_form_toshow').show();
+                   $('#box_form_queue').show();
+               }else{
+                   $('#box_form_toshow').hide();
+               }
+           }
+           else{
+            check_get_have = 1;
+            $('#check_get_have').val(1);
+            $('#box_form_toshow').hide();
+            $('#box_station_others').show();
+
+            var url = "car/box_station_other";
+            $.ajax({
+                url: url, 
+
+                data: data,
+                type: 'post',
+                success: function(res) {
+                    console.log(res);
+                    $('#box_station_others').html(res);
+                    $('#header_topic_other').html(type_name)
+
+                },
+                error: function(err) {
+                    console.log(err);
+            //your code here
+        }
     });
+        }
+            // $('#box_station_others').html(res);
+
+        },
+        error: function(err) {
+            console.log(err);
+            //your code here
+        }
+    });
+    
+}
+function selectstation(id) {
+    $('#radio_other_'+id).prop("checked", true);
 }

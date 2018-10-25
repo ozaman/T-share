@@ -69,5 +69,21 @@ class Car extends CI_Controller {
 		$data['CAR_STATION'] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION, $arr_where, $arr_select,$arr_order);		
 		$this->load->view('car/edit_car_station',$data);
 	}
+	public function box_station_other(){
+		
+		$this->load->view('car/box_station_other');
+	}
+	public function num_station_other()
+	{
+		$_where = array();
+		$_where[region] = $_POST[region];
+		$_where[province] = $_POST[province];
+		$_where[amphur] = $_POST[amphur];
+		$_where[type] = $_POST[type];
+
+		$num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION_OTHRET,$_where);
+		header('Content-Type: application/json');
+		echo json_encode($num);
+	}
 }
 ?>
