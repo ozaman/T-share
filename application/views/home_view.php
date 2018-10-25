@@ -1242,7 +1242,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    </script>
         </ons-page>
     </template>
-    <ons-dialog id="cancel-shop-dialog" cancelable>
+    
+    <style>
+    	.dialog{
+			min-height: 460px !important;
+		}
+    </style>
+    <ons-dialog id="cancel-shop-dialog" cancelable style="min-height: 430px;">
         <!-- Optional page. This could contain a Navigator as well. -->
         <ons-page>
             <ons-toolbar>
@@ -1258,7 +1264,20 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
                     <input type="hidden" name="typname_2" value="แขกไม่ไป" />
                     <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
-                    <ons-list-item tappable>
+                    <?php 
+                    	$query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
+						foreach ($query->result() as $row){ ?>
+						       <ons-list-item tappable>
+			                        <label class="left">
+			                            <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="cancel_<?=$row->id;?>" name="type_cancel"></ons-radio>
+			                        </label>
+			                        <label for="cancel_<?=$row->id;?>" class="center"><?=$row->s_topic;?></label>
+			                    </ons-list-item> 
+			                    <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
+					<?	}
+                    ?>
+                    
+                    <!--<ons-list-item tappable>
                         <label class="left">
                             <ons-radio class="radio-fruit" input-id="test1" value="1" name="type_cancel"></ons-radio>
                         </label>
@@ -1275,8 +1294,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                             <ons-radio class="radio-fruit" input-id="test3" value="3" name="type_cancel"></ons-radio>
                         </label>
                         <label for="test3" class="center">เลือกสถานที่ผิด</label>
-                    </ons-list-item>
-                    <!--<input type="hidden" value="เลือกสถานที่ผิด" name="typname_3">-->
+                    </ons-list-item>-->
                 </div>
             </form>
             <p style="text-align: center">

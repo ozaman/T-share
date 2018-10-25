@@ -96,7 +96,7 @@
 </ons-card>
 
 <div style="margin: 20px 10px">
-   <ons-button type="button" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" >เปลี่ยนค่าตอบแทน</ons-button>
+   <ons-button type="button" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" data-check="0" >เปลี่ยนค่าตอบแทน</ons-button>
 </div>
 
 <div class="card replan" id="nation_box" style="display: none;">
