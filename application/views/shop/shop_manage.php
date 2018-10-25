@@ -56,6 +56,10 @@
  $query_car = $this->db->query("SELECT t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = ".$val[check_use_car_id]);
 	$row_car = $query_car->row();
 	
+	 $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
+   	$query_cancel = $this->db->query($sql);
+   	$res_cancel = $query_cancel->row();
+//   	echo json_encode($res_cancel);
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" >
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
@@ -63,9 +67,8 @@
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
       <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
-      <span class="font-20"><b>ติดต่อ</b></span>
+      <span class="font-18"><b>ติดต่อ</b></span>
       <table width="100%"  >
-      	 
          <tr>
             <td colspan="2">
                <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
@@ -124,12 +127,13 @@
                   ?>
             </td>
          </tr>
+         <?php 
+            if($data_user_class == "lab"){ ?>
 		 <tr>
          	<td><?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?></td>
          	<td></td>
          </tr>
-          <?php 
-            if($data_user_class == "lab"){ ?>
+          
 		 <tr>
 		 	<td colspan="2">
 		 		<?="จ.".$row_q->province_name." อ.".$row_q->area;?>
@@ -140,7 +144,7 @@
          	<td colspan="2">คนขับ : <?=$res_dv->name.$nickname;?></td>
          </tr>
          <tr>
-         	<td colspan="2">ยี่ห้อ : <?=$row_car->name_brand;?> รุ่น : <?=$row_car->name_gen;?> สี : </td>
+         	<td colspan="2">ยี่ห้อ : <?=$row_car->name_brand;?> รุ่น : <?=$row_car->name_gen;?> สี : <?=$row_car->color;?></td>
          </tr>
         
          <tr>
@@ -166,9 +170,6 @@
                      ?>
                </div>
             </td>
-            <!--<td align="center">
-               <img src="http://localhost/app/T-share/assets/images/social/zello.png" width="30" height="30" alt="">
-               </td>-->
          </tr>
          <tr>
             <td colspan="2">
@@ -177,8 +178,11 @@
                <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </td>
          </tr>
-         <tr>
-            <td colspan="2">
+         <?php 
+         if($val[status]!="CANCEL"){
+         ?>
+         	<tr>
+            	<td colspan="2">
                <table width="100%">
                   <tr>
                      <?php 
@@ -266,7 +270,35 @@
                   </tr>
                </table>
             </td>
-         </tr>
+        	</tr>
+         <?php }
+
+		 else{ ?>
+         	<tr>
+         		<td colspan="2">
+         			<table width="100%" >
+         				<tr>
+         		<td>
+         			<div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
+         			
+         		</td>
+         		<td>
+         			<?php 
+         			if($data_user_class == "lab"){ 
+         			?>
+         				<span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>
+         			<?php }
+         			else{ ?>
+						<ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="taxiApproveCancel('<?=$val[id];?>');" 
+                           style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">ตกลง</span> </ons-button>
+					<?php }
+         			?>
+         		</td>
+         	</tr>
+         			</table>
+         		</td>
+         	</tr>
+        <? }?>
       </table>
    </div>
 </div>

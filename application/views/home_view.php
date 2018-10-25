@@ -1269,32 +1269,14 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						foreach ($query->result() as $row){ ?>
 						       <ons-list-item tappable>
 			                        <label class="left">
-			                            <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="cancel_<?=$row->id;?>" name="type_cancel"></ons-radio>
+			                            <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
 			                        </label>
 			                        <label for="cancel_<?=$row->id;?>" class="center"><?=$row->s_topic;?></label>
 			                    </ons-list-item> 
 			                    <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
 					<?	}
                     ?>
-                    
-                    <!--<ons-list-item tappable>
-                        <label class="left">
-                            <ons-radio class="radio-fruit" input-id="test1" value="1" name="type_cancel"></ons-radio>
-                        </label>
-                        <label for="test1" class="center">แขกลงทะเบียนไม่ได้</label>
-                    </ons-list-item>
-                    <ons-list-item tappable>
-                        <label class="left">
-                            <ons-radio class="radio-fruit" input-id="test2" value="2" name="type_cancel"></ons-radio>
-                        </label>
-                        <label for="test2" class="center">แขกไม่ไป</label>
-                    </ons-list-item>
-                    <ons-list-item tappable modifier="longdivider">
-                        <label class="left">
-                            <ons-radio class="radio-fruit" input-id="test3" value="3" name="type_cancel"></ons-radio>
-                        </label>
-                        <label for="test3" class="center">เลือกสถานที่ผิด</label>
-                    </ons-list-item>-->
+
                 </div>
             </form>
             <p style="text-align: center">

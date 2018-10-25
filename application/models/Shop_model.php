@@ -206,11 +206,11 @@ class Shop_model extends CI_Model {
 
 		$data[status] = "CANCEL";
 		$data[cancel_type] = $_POST[type_cancel];
-		$data[driver_complete] = 1;
+		$data[driver_complete] = 0;
 		$data[update_date] = time();
 
 		$this->db->where('id', $_POST[order_id]);
-		$data[result] = $this->db->update('order_booking', $data); 
+//		$data[result] = $this->db->update('order_booking', $data); 
 		$data[order_id] = $_POST[order_id];
 
 		$typname = "typname_".$_POST[type_cancel];
@@ -222,7 +222,7 @@ class Shop_model extends CI_Model {
 		$data_his[post_date] = time();
 		$data_his[update_date] = time();
 
-		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
+//		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
 //	$data_his[result] = true;
 		$data[history] = $data_his;
 

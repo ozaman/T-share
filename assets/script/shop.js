@@ -1281,7 +1281,7 @@ function submitCancel() {
     console.log(url + " ");
     // ons.navigator.resetToPage('popup1.html')
     $.post(url, $('#form_type_cancel').serialize(), function(data) {
-        console.log(data)
+//        console.log(data)
         var obj = data;
         console.log(obj);
         sendSocket(obj.id);
@@ -1325,21 +1325,22 @@ function submitCancel() {
                 apiRecordActivityAndNotification(ac_2, nc_to_lab);
                 
                 if (obj.result == true) {
-                    ons.notification.alert({
+                    /*ons.notification.alert({
                         message: 'ยกเลิกสำเร็จ',
                         title: "สำเร็จ",
                         buttonLabel: "ตกลง"
                     })
                     .then(function() {
-                        fn.hideDialog('cancel-shop-dialog');
+                        
+						
+                    });*/
+                    fn.hideDialog('cancel-shop-dialog');
 
-                        setTimeout(function(){ var urlx = "shop/shop_manage";
-//                      appNavigator.popPage();
-
-resetFormCancel();
-shopManage();
-}, 1000);
-                    });
+                        setTimeout(function(){ 
+                        var urlx = "shop/shop_manage";
+						resetFormCancel();
+						shopManage();
+					}, 1000);
                     $('#btn_cancel_book_' + order_id).hide();
 
                     var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id+"&class_user="+class_user;
