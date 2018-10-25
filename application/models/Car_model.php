@@ -57,6 +57,7 @@ class Car_model extends CI_Model {
 		$car[car_type] = $_POST[car_type];
 		$car[car_brand] = $_POST[car_brand_txt];
 		$car[i_car_brand] = $_POST[car_brand];
+		$car[i_car_gen] = $_POST[i_car_gen];
 		$car[i_car_color] = $_POST[car_color];
 		$car[car_color] = $_POST[car_color_txt];
 		$car[plate_color] = $_POST[plate_color_txt];

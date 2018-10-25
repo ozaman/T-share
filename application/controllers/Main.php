@@ -64,6 +64,11 @@ class Main extends CI_Controller {
   	header('Content-Type: application/json');
   	echo json_encode($data['res']);
   }
+  public function data_car_gen(){
+  	$data['res'] = $this->Main_model->query_car_gen();
+  	header('Content-Type: application/json');
+  	echo json_encode($data['res']);
+  }
   public function data_car_color(){
   	$data['res'] = $this->Main_model->query_car_color();
   	header('Content-Type: application/json');
