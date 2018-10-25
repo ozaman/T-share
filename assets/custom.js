@@ -643,12 +643,10 @@ socket.on('datalab', function(username, data) {
             $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
 
-<<<<<<< HEAD
-    });
-=======
+
         });
 //        shopManage();
->>>>>>> a9d962063e8201ace67c40a6c65c6c38bd1e2f33
+
     }
 
 });
