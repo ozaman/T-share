@@ -46,7 +46,7 @@
 	}else{
 		$nickname = "";
 	}
-    $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name, t4.name_th as area FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
+    $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
 	$row_q = $query_q->row();
 
           ?>
@@ -116,12 +116,12 @@
             </td>
          </tr>
 		 <tr>
-         	<td>คิวรถ : <?=$row_q->topic_th;?></td>
+         	<td><?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?></td>
          	<td></td>
          </tr>
 		 <tr>
 		 	<td colspan="2">
-		 		<?=$row_q->province_name;?>
+		 		<?="จ.".$row_q->province_name." อ.".$row_q->area;?>
 		 	</td>
 		 </tr>
          
