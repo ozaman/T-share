@@ -210,19 +210,20 @@ class Shop_model extends CI_Model {
 		$data[update_date] = time();
 
 		$this->db->where('id', $_POST[order_id]);
-//		$data[result] = $this->db->update('order_booking', $data); 
+		$data[result] = $this->db->update('order_booking', $data); 
 		$data[order_id] = $_POST[order_id];
 
 		$typname = "typname_".$_POST[type_cancel];
 		$data_his[order_id] = $_POST[order_id];
 		$data_his[type] = $_POST[type_cancel];
 		$data_his[status] = "CANCEL";
+		$data_his[i_status] = 0;
 		$data_his[type_name] = $_POST[$typname];
 		$data_his[posted] = $_COOKIE[detect_username];
 		$data_his[post_date] = time();
 		$data_his[update_date] = time();
 
-//		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
+		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
 //	$data_his[result] = true;
 		$data[history] = $data_his;
 
@@ -487,12 +488,30 @@ public function driver_approved_pay(){
 	$data[result] = $this->db->update('order_booking', $data_ob); 
 	return $data;
 }
+
 public function editpax_regis(){
 	$data['pax_regis'] = $_GET[pax_regis];
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 
 	return $data;
+}
+
+public function taxi_approved_cancel(){
+	
+	$data[driver_complete] = 1;
+	$data[update_date] = time();
+	$this->db->where('id', $_GET[order_id]);
+    $data[result] = $this->db->update('order_booking', $data); 
+    
+    $data2[i_status] = 1;
+	$this->db->where('order_id', $_GET[order_id]);
+    $data2[result] = $this->db->update('history_del_order_booking', $data); 
+    
+    $data[ord] = $data;
+    $data[his] = $data2;
+    
+    return $data;
 }
   /**
   * 
@@ -504,4 +523,5 @@ public function editpax_regis(){
   * *********** End
   * 
   */
+  
 }

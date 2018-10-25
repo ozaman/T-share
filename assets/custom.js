@@ -492,6 +492,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
+    shopManage();
 //                console.log(array_data.manage);
 if (done.length > 0) {
     $('#number_shop').show();
@@ -512,9 +513,9 @@ if (done.length > 0) {
     // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
 
     if ($('#open_shop_manage').val() == 1){
-     if (shop_frist_run == 0) {
-        shop_frist_run = done.length;
-    }
+	     if (shop_frist_run == 0) {
+	        shop_frist_run = done.length;
+	    }
 //        console.log(shop_frist_run+" || "+done.length);
 if (done.length != shop_frist_run) {
     shopManage();
@@ -569,6 +570,7 @@ function addUser(){
    };
    socket.emit('adduser', dataorder);
 }
+
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)

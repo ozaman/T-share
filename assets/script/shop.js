@@ -970,7 +970,7 @@ function saveShop() {
                     _calltest();
                     modal.hide();
                     // $('ons-tab[page="shop_manage.html"]').click();
-                }, 2000);
+                }, 2500);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
                 //         title: "สำเร็จ",
@@ -1284,7 +1284,7 @@ function submitCancel() {
 //        console.log(data)
         var obj = data;
         console.log(obj);
-        sendSocket(obj.id);
+        
         var invoice_cancel = $('#invoice_cancel_select').val();
         var order_id_calcel = $('#order_id_cancel').val();
         var dv = $('#driver_id_cancel').val();
@@ -1322,7 +1322,7 @@ function submitCancel() {
                     s_message : txt_long_nc_cancel_shop,
                     s_posted :  username
                 };
-                apiRecordActivityAndNotification(ac_2, nc_to_lab);
+        apiRecordActivityAndNotification(ac_2, nc_to_lab);
                 
                 if (obj.result == true) {
                     /*ons.notification.alert({
@@ -1337,7 +1337,7 @@ function submitCancel() {
                     fn.hideDialog('cancel-shop-dialog');
 
                         setTimeout(function(){ 
-                        var urlx = "shop/shop_manage";
+                        sendSocket(obj.id);
 						resetFormCancel();
 						shopManage();
 					}, 1000);
@@ -2251,6 +2251,7 @@ function maxLengthCheck(object) {
     if (object.value.length > 3)
       object.value = object.value.slice(0, 3)
 }
+
 function area_remark() {
     $('#remark').focus();
 }
@@ -2258,4 +2259,40 @@ function area_remark() {
 function changePlan(id){
 	$('.replan').fadeIn(500);
 	getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
+}
+
+function taxiApproveCancel(id, invoice){
+	$.ajax({
+               url: "shop/taxi_approved_cancel?order_id="+id,
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   shopManage();
+                   sendSocket(id);
+                   /*var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
+		               var ac = {
+		                i_type : 1,
+		                i_sub_type : 4,
+		                i_event : id,
+		                i_user : detect_user,
+		                s_topic : "งานส่งแขก",
+		                s_message : txt_long_ac,
+		                s_posted : username
+		            };
+
+		            var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
+		            var nc = {
+		                i_type : 1,
+		                i_event : id,
+		                i_user : driver_id,
+		                s_class_user : "lab",
+		                s_topic : "งานส่งแขก",
+		                s_sub_topic : "ยกเลิกงาน",
+		                s_message : txt_long_nc,
+		                s_posted :  username
+		            };				
+		            apiRecordActivityAndNotification(ac, nc);*/
+               }
+           });
 }

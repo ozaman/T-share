@@ -230,6 +230,11 @@ class Shop extends CI_Controller {
 //			header('Content-Type: application/json');
 			echo json_encode($data);
 		}
+		
+		public function taxi_approved_cancel(){
+			$data['res'] = $this->Shop_model->taxi_approved_cancel();
+			echo json_encode($data['res']);
+		}
 
 		
 	}
