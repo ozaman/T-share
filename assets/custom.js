@@ -492,7 +492,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-    shopManage();
+
 //                console.log(array_data.manage);
 if (done.length > 0) {
     $('#number_shop').show();
@@ -563,6 +563,7 @@ var dataorder = {
 };
 socket.emit('sendchat', '');
 socket.emit('adduser', dataorder);
+
 function addUser(){
 	var id = detect_user;
 	var dataorder = {
@@ -641,6 +642,7 @@ socket.on('datalab', function(username, data) {
                   }
 
         });
+//        shopManage();
     }
 
 });
@@ -682,6 +684,7 @@ if (check_open != 0) {
             changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
         }
     }
+
 }
 
 console.log($('#open_shop_manage').val());
@@ -701,6 +704,8 @@ if ($('#open_shop_manage').val() == 1) {
           $('#td_cancel_book_'+data.id).show();
           $('#status_book_'+data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
       }
+      
+//      shopManage();
 
   }, 500);
 }
