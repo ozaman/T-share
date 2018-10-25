@@ -34,7 +34,7 @@ $_where = array();
       <label class="left">
         <ons-radio name="station_other" class="station_other" input-id="radio_other_<?=$row->id;?>" value="<?=$row->id;?>" ></ons-radio>
       </label>
-      <label for="radio-<?=$row->id;?>" class="center">
+      <label for="radio_other_<?=$row->id;?>" class="center">
         <?=$row->topic_th;?>
       </label>
     </ons-list-item>

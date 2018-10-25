@@ -1400,7 +1400,22 @@ function _region(itm) {
            // $('#select_type').html(ele);
        });
 }
+var pro = 0;
+function checkzoon(argument) {
+$('#box_station_others').hide()
+$('#box_form_toshow').hide()
+$('.radio-button').prop("checked", false);
+
+    
+}
 function _province(itm) {
+    if (pro != 0) {
+$('#box_form_toshow').hide()
+$('.radio-button').prop("checked", false);
+
+    }
+    pro ++;
+
 
   var url = "main/select_type?id_sub=" + itm+'&table=amphur';
   var htmlOption = '';
@@ -1455,15 +1470,21 @@ var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, 
 
 function submitadd_station(){
     var form = document.getElementById("form_addstation");
+if (check_get_have != 0) {
+    if (id_type_station != 4) {
+        console.log(form.elements["station_other"].value)
+var station_other =  form.elements["station_other"].value;
+    }
 
-    console.log( form.elements["station_other"].value)
+}
+    //
     // return false;
     modal.show();
     var region = $('#region').val()
     var province = $('#province').val()
     var amphur = $('#amphur').val()
     var station = $('#station').val()
-    var station_other =  form.elements["station_other"].value;
+    
     console.log($('#region').val())
     console.log($('#province').val())
     console.log($('#amphur').val())
@@ -1498,6 +1519,7 @@ if (amphur == '') {
     return false;
 }
 if (check_get_have == 1) {
+    if (id_type_station != 4) {
     if (station_other == '') {
         ons.notification.alert({
           message: type_name,
@@ -1507,6 +1529,7 @@ if (check_get_have == 1) {
         modal.hide();
         return false;
     }
+}
 }
 /*if (station == '') {
     ons.notification.alert({
@@ -1523,18 +1546,20 @@ $.ajax({
    dataType: 'json',
    success: function(res) {
        console.log(res);
-       if (res.data1.result == true ) {
+       if (res.status == true ) {
          callpop();
        		/*setTimeout(function(){ 
        		_body_car_station('body_add_shop_station');
 			callpop();
 			modal.hide();
         }, 1000);*/
+        modal.hide();
 
     }
     else{
 
-    }modal.hide();
+    }
+    modal.hide();
 }
 });
 }
@@ -1646,7 +1671,14 @@ function selectTypeCarPlace(id){
         success: function(num) {
             console.log(num);
             if (num == 0) {
-                check_get_have = 0;
+                if (id == 4) {
+            check_get_have = 1;
+
+            }
+            else{
+            check_get_have = 0;
+
+            }
                 $('#check_get_have').val(0);
                 $('#box_form_toshow').show();
                 $('#box_station_others').hide();
@@ -1667,7 +1699,15 @@ function selectTypeCarPlace(id){
                }
            }
            else{
+            console.log('in case')
+            if (id == 4) {
+            check_get_have = 0;
+
+            }
+            else{
             check_get_have = 1;
+
+            }
             $('#check_get_have').val(1);
             $('#box_form_toshow').hide();
             $('#box_station_others').show();

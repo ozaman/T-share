@@ -16,14 +16,21 @@ $_select = array('*');
 $_order = array();
 $_order['topic_en'] = 'asc';
 $arr[region] = $this->Main_model->fetch_data('','',TBL_WEB_REGION,'',$_select,$_order);
-
+$_where = array();
+if (count($MEMBER)!= 0) {
+	 $_where[area] = $MEMBER->region;
+}
+else{
+	$_where = array();
+}
 $_select = array('*');
 $_order = array();
 $_order['name_th'] = 'asc';
-$arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,'',$_select,$_order);
+$arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$_where,$_select,$_order);
+// print_r($arr[province]);
 $_where = array();
 if (count($MEMBER)!= 0) {
-	 $_where['PROVINCE_ID'] = $MEMBER->province->id;
+	 $_where['PROVINCE_ID'] = $MEMBER->province;
 }
 else{
 	$_where = array();
@@ -135,7 +142,7 @@ setTimeout(function(){
 
 		<!-- <span class="list-header" style="background-image: none;"></span> -->
 
-		<select class="select-input font-17" name="amphur" id="amphur" value="" onchange="//checkzoon(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+		<select class="select-input font-17" name="amphur" id="amphur" value="" onchange="checkzoon(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
 			<option value="0">-- เลือกเขต --</option>
 			<?php
 			foreach($arr[amphur] as $key=>$amphur){
