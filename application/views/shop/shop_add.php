@@ -15,8 +15,10 @@ $arr_select = array('finish_h','finish_m','start_h','start_m',);
 
 $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME, $arr_where, $arr_select,'');
 //print_r(json_encode($datatime));
+
+
 $datenow = strtotime(date('Y-m-d H:i:s'));
-// $datenow = strtotime(date('Y-m-d 10:i:s'));
+// $datenow = strtotime(date('Y-m-d 00:i:s'));
 // echo $datatime[0]->finish_h.':'.$datatime[0]->finish_m;
 $dateclose = strtotime(date('Y-m-d ' .$datatime[0]->finish_h.':'.$datatime[0]->finish_m.':s'));
 $date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->start_m.':s'));
@@ -24,7 +26,7 @@ $date_open = strtotime(date('Y-m-d ' .$datatime[0]->start_h.':'.$datatime[0]->st
 
 $i_time_balance = ($dateclose - $datenow)/60;
 $i_time_balance2 = ($date_open - $datenow)/60;
-// echo $i_time_balance.'*****'.$i_time_balance2;
+// echo $i_time_balance.'*****'.$i_time_balance2.'***********'.(8*60);
 
 $_where = array();
 $_where['PROVINCE_ID'] = 1;
@@ -193,7 +195,7 @@ $data_shopmain = $shopmain->row();
           </table>
           <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
            <tbody>
-            
+
             <tr>
              <td width="33%" align="left" style="padding: 0px;" >
               <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone"  onclick="openContact('<?=$data_place->id;?>');">
@@ -350,7 +352,7 @@ if($query->num_rows()>=1){
 
 
 
-       
+
 
   ?>
   <div class="card" id="nation_box">
@@ -383,35 +385,35 @@ if($query->num_rows()>=1){
 
 
 
-        
-       
-        </ons-list-item>
-      </label>
-    <?php }}?>
+
+
+          </ons-list-item>
+        </label>
+      <?php }}?>
+
+    </div>
 
   </div>
 
-</div>
+  <div class="card" id="box_com" >
+    <!-- Agent Issu -->  
+    <div class="" id="show_payment_detail" style="">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td>
+              <ons-list-header class="list-header"> เลือกค่าตอบแทน</ons-list-header>
 
-<div class="card" id="box_com" >
-  <!-- Agent Issu -->  
-  <div class="" id="show_payment_detail" style="">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tbody>
-        <tr>
-          <td>
-            <ons-list-header class="list-header"> เลือกค่าตอบแทน</ons-list-header>
+            </td>
+            <td width="50" style="display: none;" id="row_accept_payment">
 
-          </td>
-          <td width="50" style="display: none;" id="row_accept_payment">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <input type="hidden" value="" name="price_plan" id="price_plan"></ons-radio>
-
-    <div id="box_price_plan">
+      <div id="box_price_plan">
 
 
           <!-- <div class=" " style="border-bottom: dotted #999999 0px;padding: 10px 0px;" >
@@ -462,7 +464,7 @@ if($query->num_rows()>=1){
 
         </div>
       </div>
-    	</div>
+    </div>
 
 
 
@@ -525,7 +527,9 @@ if($query->num_rows()>=1){
               <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
                 <option value="0">-- <?=$op_select;?> --</option>
                 <?php
-                $time = array("5" => "5 นาที",
+                $time = array(
+                  "500" => "ยังไม่เปิดให้บริการ",
+                  "5" => "5 นาที",
                   "10" => "10 นาที",
                   "15" => "15 นาที",
                   "20" => "20 นาที",
@@ -550,26 +554,70 @@ if($query->num_rows()>=1){
                   "390" => "6 ชั่วโมง 30 นาที",
                   "420" => "7 ชั่วโมง",
                   "450" => "7 ชั่วโมง 30 นาที",
-                  "490" => "8 ชั่วโมง",
+                  "480" => "8 ชั่วโมง",
                   "0" => "มากกว่านี่ปิดให้บริการ"
+                 
                 );
                 $mm = 5;
                 ?>
 
                 <?php foreach ($time as $key => $at) {
-                  if ($i_time_balance >= $key ) {
-                    if ($key == '0' ) {
-                      $dis = 'disabled';
+
+
+
+                  if ($i_time_balance2 > 0) {
+                    if ($key >= $i_time_balance2 ) {
+                      if ($key == '500' ) {
+                        $dis = 'disabled';
+                      }
+                      else{
+                        $dis = '';
+
+                      }
+                      ?>
+                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at;?></option>
+
+                      <?php
                     }
-                    ?>
-                    <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
-                  <?php }
+                  }
+                  else{
+                    if ($i_time_balance >= $key && $key < 500) {
+                      if ($key == '0') {
+                        $dis = 'disabled';
+                      }
+                      else{
+                        $dis = '';
+
+                      }
+                      ?>
+                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
+
+                      <?php
+                    }
+                  }
+                  if ($i_time_balance2 > 480 && $key == 500) {
+                   if ($key == '500') {
+                        $dis = 'disabled';
+                      }
+                      else{
+                        $dis = '';
+
+                      }
+                      ?>
+                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
+
+                      <?php
+                  }
+
+
+
+
                 }
                 ?>
 
               </select>
 
-              <!-- </div> -->
+               <!-- </div> -->
             </div>
             <div class="card"  onclick="area_remark()">
               <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
