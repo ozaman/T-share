@@ -218,6 +218,7 @@
                                    $text_mn = 'เช็คยอดรายได้';
                                     # code...
                                   }
+
                                   if($val[check_driver_topoint]==0){
                            		$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
                            		$btn_manage_display = "display: none;";
