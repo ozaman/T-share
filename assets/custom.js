@@ -492,7 +492,7 @@ socket.on('getbookinglab', function(data) {
         manage: done,
         history: none
     };
-//                console.log(array_data.manage);
+                console.log(array_data.manage);
 if (done.length > 0) {
     $('#number_shop').show();
         //			$('#circle_icon_shop').addClass("pulse");

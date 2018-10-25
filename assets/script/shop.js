@@ -1045,7 +1045,7 @@ function saveShop() {
 function openDetailShop(key, type) {
 //	console.log(key)
 var detailObj = array_data.manage[key];
-//    alert(detailObj.invoice);
+
 if(type!="ios"){
  fn.pushPage({
    'id': 'popup1.html',
@@ -1659,6 +1659,15 @@ function sendCheckIn(id, type) {
    	url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
 	saveShop_action_pay(0);
    }
+}
+
+function checkinAndOpenDetail(id, key){
+	sendCheckIn(id, 'driver_topoint');
+	array_data.manage[key].check_driver_topoint = 1;
+		openDetailShop(key,"");
+		$('#btn_manage_'+id+' span').text('ตรวจสอบ');
+		$('#btn_manage_'+id).show();
+		$('#btn_manage_topoint_'+id).hide();
 }
 
 function shopFuncNotiActi(id, type){

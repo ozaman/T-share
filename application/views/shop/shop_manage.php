@@ -49,7 +49,7 @@
     $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
 	$row_q = $query_q->row();
 
- $query_car = $this->db->query("SELECT t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id where t1.id = ".$val[check_use_car_id]);
+ $query_car = $this->db->query("SELECT t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = ".$val[check_use_car_id]);
 	$row_car = $query_car->row();
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" >
@@ -133,7 +133,7 @@
          	<td colspan="2">คนขับ : <?=$res_dv->name.$nickname;?></td>
          </tr>
          <tr>
-         	<td colspan="2">ยี่ห้อ : <?=$row_car->name_brand;?> รุ่น : <?=$row_car->name_gen;?></td>
+         	<td colspan="2">ยี่ห้อ : <?=$row_car->name_brand;?> รุ่น : <?=$row_car->name_gen;?> สี : </td>
          </tr>
         
          <tr>
@@ -219,25 +219,36 @@
                                     # code...
                                   }
                                   if($val[check_driver_topoint]==0){
-                           		$func = "sendCheckIn(".$val[id].", 'driver_topoint')";
                            		$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
-                           	}
+                           		$btn_manage_display = "display: none;";
+                           		$btn_manage_topoint_display = "";
+                           		}
                                   else{
-                                   $text_mn = 'ตรวจสอบ';
-                           		$func = "";
+                                    $text_mn = 'ตรวจสอบ';
+                           			$btn_manage_display = "";
+                           			$btn_manage_topoint_display = "display:none;";
                                   }
                            		if($val[lab_approve_job]==1){
                            			$btn_manage = "";
                            			$txt_wait_approve = "display:none;";
+                           			
                            		}else{
                            			$btn_manage = "display:none;";
                            			$txt_wait_approve = "";
                            		}
                            		?>
-                        <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');<?=$func;?>" style="padding: 13px;border: 1px solid #0076ff;
+                        <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>','<?=$key;?>');" style="padding: 13px;border: 1px solid #0076ff;
                            border-radius: 5px;
-                           line-height: 0;<?=$btn_manage;?>
-                           " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
+                           line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
+                           " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
+                           <span class="font-17 text-cap">แจ้งถึงสถานที่ส่งแขก</span> </ons-button>   
+                           		
+                        <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
+                           border-radius: 5px;
+                           line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
+                           " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
+                           <?=$text_mn;?></span> 
+                           </ons-button>
                         <div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
                         <?				
                            }
