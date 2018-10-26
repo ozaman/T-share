@@ -371,7 +371,7 @@
       </div>
       <div class="alert-dialog-footer">
          <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-         <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">แก้ไข</ons-alert-dialog-button>
+         <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">ตกลง</ons-alert-dialog-button>
       </div>
    </ons-alert-dialog>
 </template>

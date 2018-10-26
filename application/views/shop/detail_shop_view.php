@@ -278,7 +278,19 @@ else if($arr[book][status]=='CONFIRM'){
          <td class="font-17"><span id="date_trans"></span></td>
       </tr>
       <tr>
-         <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font></td>
+         <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font>
+          <?php 
+         if($_COOKIE[detect_userclass]=="lab"){
+		 	?>
+         <span  class="button " align="center" onclick="editTimeToPlace('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+    color: #fff;
+    padding: 0px 3px;
+/*    font-size: 3px !important;*/
+    border-radius: 8px;display: inline-block;" id="btn_isedit">
+		<span class="font-14 text-cap">แก้ไข</span>
+	</span>
+	<?php } ?>
+         </td>
          <td class="font-17"><?=$stamp." น.";?></td>
       </tr>
       <tr>
@@ -289,6 +301,7 @@ else if($arr[book][status]=='CONFIRM'){
          <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 3px;
+        margin-left: 5px;
 /*    font-size: 3px !important;*/
     border-radius: 8px;display: inline-block;" id="btn_isedit">
 		<span class="font-14 text-cap">แก้ไข</span>
@@ -296,6 +309,7 @@ else if($arr[book][status]=='CONFIRM'){
 		 <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
     color: #fff;
     padding: 0px 3px;
+        margin-left: 5px;
 /*    font-size: 3px !important;*/
     border-radius: 8px;display: none;" id="btn_selectisedit">
 		<span class="font-14 text-cap">บันทึก</span>
