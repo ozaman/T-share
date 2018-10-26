@@ -131,7 +131,6 @@ $query_type = $this->db->query($sql_type);
 	?>
   </ons-list>
   </div>
-
   <div class="card" id="box_form_toshow">
 	    <ons-list-header class="list-header" id="header_topic_type" ></ons-list-header>
 	    <table class="tb_form" width="100%" id="box_form_com" style="display: none;">
@@ -225,21 +224,27 @@ $query_type = $this->db->query($sql_type);
 <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span>
 </div>
 <script>
-	function selectTypeCarPlace(id){
-		var type_name = $('#type_topic_'+id).val();
-		$('#header_topic_type').text(type_name);
-		$('.tb_form').hide();
-		if(id==1){
-			$('#box_form_toshow').show();
-			$('#box_form_ass').show();
-		}else if(id==2){
-			$('#box_form_toshow').show();
-			$('#box_form_com').show();
-		}else if(id==3){
-			$('#box_form_toshow').show();
-			$('#box_form_queue').show();
-		}else{
-			$('#box_form_toshow').hide();
-		}
-	}
+	// function selectTypeCarPlace111(id){
+		
+	// 	var type_name = $('#type_topic_'+id).val();
+	// 	$('#header_topic_type').text(type_name);
+	// 	$('.tb_form').hide();
+	// 	if(id==1){
+	// 		$('#box_form_toshow').show();
+	// 		$('#box_form_ass').show();
+	// 	}else if(id==2){
+	// 		$('#box_form_toshow').show();
+	// 		$('#box_form_com').show();
+	// 	}else if(id==3){
+	// 		$('#box_form_toshow').show();
+	// 		$('#box_form_queue').show();
+	// 	}else{
+	// 		$('#box_form_toshow').hide();
+	// 	}
+	
+
+
+
+
+	// }
 </script>

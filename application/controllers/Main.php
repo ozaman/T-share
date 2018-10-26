@@ -185,6 +185,7 @@ class Main extends CI_Controller {
 	$num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION,$_where);
 	echo $num;
   }
+  
 // public function detect
 //////////////////////////// End
 }

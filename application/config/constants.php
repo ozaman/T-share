@@ -99,7 +99,9 @@ define('TBL_SHOP_COUNTRY_ICON_TAXI', 'shop_country_icon_taxi');
 define('TBL_SHOP_PLAN_COM', 'shop_plan_com');
 define('TBL_SHOP_PAYMENT_CHANNEL','shop_payment_channel');
 define('TBL_PLACE_CAR_STATION','place_car_station');
-define('TBL_PLACE_CAR_STATION_RTHRET','place_car_station_other');
+define('TBL_PLACE_CAR_STATION_OTHRET','place_car_station_other');
+define('TBL_PLACE_CAR_STATION_TYPE','place_car_station_type');
+
 
 
 
