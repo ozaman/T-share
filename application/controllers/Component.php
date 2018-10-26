@@ -78,8 +78,7 @@ public function cpn_car_type()
 	
 	public function list_shop_manage()
 	{
-//		$data['data'] = $this->Main_model->query_province();
-		$this->load->view('component/list_shop_manage');
+		$this->load->view('component/list_shop_manage_'.$_COOKIE[detect_userclass]);
 		
 	}
 }

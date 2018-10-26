@@ -44,7 +44,12 @@ public function shop_view(){
 	}	
 		
 public function shop_manage(){
-		$this->load->view('shop/shop_manage',$data);
+		if($_COOKIE[detect_userclass]=="lab"){
+			$this->load->view('shop/shop_manage_lab',$data);
+		}else{
+			$this->load->view('shop/shop_manage_taxi',$data);
+		}
+		
 	}
 	
 public function shop_detail_his(){

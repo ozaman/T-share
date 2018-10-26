@@ -202,34 +202,6 @@ class Shop_model extends CI_Model {
 
 	}
 
-	public function cancel_shop(){
-
-		$data[status] = "CANCEL";
-		$data[cancel_type] = $_POST[type_cancel];
-		$data[driver_complete] = 0;
-		$data[update_date] = time();
-
-		$this->db->where('id', $_POST[order_id]);
-		$data[result] = $this->db->update('order_booking', $data); 
-		$data[order_id] = $_POST[order_id];
-
-		$typname = "typname_".$_POST[type_cancel];
-		$data_his[order_id] = $_POST[order_id];
-		$data_his[type] = $_POST[type_cancel];
-		$data_his[status] = "CANCEL";
-		$data_his[i_status] = 0;
-		$data_his[type_name] = $_POST[$typname];
-		$data_his[posted] = $_COOKIE[detect_username];
-		$data_his[post_date] = time();
-		$data_his[update_date] = time();
-
-		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
-//	$data_his[result] = true;
-		$data[history] = $data_his;
-
-		return $data;
-	}
-
 	function linenoti(){
 		$txt_short = 'ทะเบียน '.$_POST[car_plate];
 		$txt_short .=' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ';
@@ -497,6 +469,36 @@ public function editpax_regis(){
 	return $data;
 }
 
+public function cancel_shop(){
+
+		$data[status] = "CANCEL";
+		$data[cancel_type] = $_POST[type_cancel];
+		$data[driver_complete] = 0;
+		$data[update_date] = time();
+
+		$this->db->where('id', $_POST[order_id]);
+		$data[result] = $this->db->update('order_booking', $data); 
+		$data[order_id] = $_POST[order_id];
+
+		$typname = "typname_".$_POST[type_cancel];
+		$data_his[order_id] = $_POST[order_id];
+		$data_his[type] = $_POST[type_cancel];
+		$data_his[status] = "CANCEL";
+		$data_his[i_status] = 0;
+		$data_his[type_name] = $_POST[$typname];
+		$data_his[user_cancel] = $_COOKIE[detect_user];
+		$data_his[class_user_cancel] = $_COOKIE[detect_userclass];
+		$data_his[posted] = $_COOKIE[detect_username];
+		$data_his[post_date] = time();
+		$data_his[update_date] = time();
+
+		$data_his[result] = $this->db->insert('history_del_order_booking', $data_his);;
+//	$data_his[result] = true;
+		$data[history] = $data_his;
+
+		return $data;
+	}
+
 public function taxi_approved_cancel(){
 	
 	$data[driver_complete] = 1;
@@ -505,6 +507,8 @@ public function taxi_approved_cancel(){
     $data[result] = $this->db->update('order_booking', $data); 
     
     $data2[i_status] = 1;
+    $data2[user_approved] = $_COOKIE[detect_user];
+    $data2[class_user_approved] = $_COOKIE[detect_userclass];
 	$this->db->where('order_id', $_GET[order_id]);
     $data2[result] = $this->db->update('history_del_order_booking', $data); 
     
@@ -513,6 +517,8 @@ public function taxi_approved_cancel(){
     
     return $data;
 }
+
+
   /**
   * 
   * driver_topoint

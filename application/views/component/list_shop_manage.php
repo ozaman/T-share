@@ -123,21 +123,21 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
               <table  style="position: absolute;right: 25px;margin-top: -10px;">
                            <tr>
                               <td>
-                                 <i onclick="viewPhotoGlobal('../data/pic/car/<?=$row_car->id;?>_1.jpg?v=<?=time();?>','','รูปหน้ารถ');" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);">local_taxi</i>
+                                 <i onclick="modalShowImg('../data/pic/car/<?=$row_car->id;?>_1.jpg?v=<?=time();?>');" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);">local_taxi</i>
                               </td>
                               <td width="1"></td>
                               <td>
-                                 <i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="viewPhotoGlobal('../data/pic/driver/small/<?=$res_dv->username;?>.jpg','','<?=$res_dv->username;?>');">account_circle</i>
+                                 <i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg');">account_circle</i>
                               </td>
                            </tr>
                      </table>
                <? }else{
-               	
+               	if()
                	$sql_l = "SELECT username,name FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
 			    $query_l = $this->db->query($sql_l);
 			    $res_l = $query_l->row();
                	?>
-			   	<i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="viewPhotoGlobal('../data/pic/driver/small/<?=$res_l->username;?>.jpg','','<?=$res_l->name;?>');">account_circle</i>
+			   	<i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="modalShowImg('../data/pic/driver/small/<?=$res_l->username;?>.jpg');">account_circle</i>
 			   	<?php 
 			   }
                   ?>

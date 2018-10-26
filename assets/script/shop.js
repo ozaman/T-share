@@ -1761,12 +1761,12 @@ function readURLcheckIn(input, type, subtype, id) {
 }
 
 function btn_driver_topoint(id) {
-	sendCheckIn(id, 'driver_topoint');
-   /* if ($('#driver_topoint_check_click').val() == 1) {
+	
+    if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
- 
-    fn.pushPage({
+ sendCheckIn(id, 'driver_topoint');
+   /* fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"
     }, 'fade-ios');
@@ -1871,8 +1871,8 @@ function shopManage(){
 //    $('#shop_manage').html(progress_circle);
 console.log("Load Shop Manage page");
 var obj = array_data;
-var url = "page/shop_manage";
 
+var url = "page/shop_manage";
 array_ma = obj.manage;
 console.log(array_ma);
 var pass = {
@@ -1884,7 +1884,6 @@ $.ajax({
     data: pass,
     type: 'post',
     success: function(ele) {
-                //                              console.log(data);
                 $('#shop_manage').html(ele);
             }
     });
@@ -2273,7 +2272,7 @@ function changePlan(id){
 	getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
 }
 
-function taxiApproveCancel(id, invoice){
+function userApproveCancel(id, invoice){
 	$.ajax({
                url: "shop/taxi_approved_cancel?order_id="+id,
                type: 'post',

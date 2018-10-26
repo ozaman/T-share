@@ -179,12 +179,12 @@
 	      </label>
 	      <label for="radio-2" class="center">เวลาเที่ยวบินไม่พอ (ป้ายฟ้า)</label>
 	    </ons-list-item>
-	    <ons-list-item tappable>
+	    <!--<ons-list-item tappable>
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-3"  value="2"></ons-radio>
 	      </label>
 	      <label for="radio-3" class="center">แขกไม่มีเที่ยวบิน (ป้ายฟ้า)</label>
-	    </ons-list-item>
+	    </ons-list-item>-->
 	    <ons-list-item tappable>
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-4"  value="3"></ons-radio>
@@ -195,7 +195,7 @@
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-4"  value="4"></ons-radio>
 	      </label>
-	      <label for="radio-4" class="center">แขกต่างชาติ</label>
+	      <label for="radio-4" class="center">แขกไกด์</label>
 	    </ons-list-item>
   </ons-list>
 </ons-card>

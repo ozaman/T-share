@@ -1295,15 +1295,14 @@ function viewPhotoGlobal(path, time, caption) {
 
 }
 
-function viewPhotoCarDriver(driver_id){
-	fn.pushPage({
-        'id': 'popup2.html',
-        'title': 'ภาพรถ'
-    }, 'fade-md');
-    var url_load = "page/view_photo_car?=driver_id" + driver_id;
+function modalShowImg(path){
+	modal_photo.show({ animation: "fade" });
+	console.log(path);
+	$('#photo_to_show_inmodal').attr('src',path);
+    /* var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
     $.post(url_load, function(ele) {
-        $('#body_popup2').html(ele);
-    });
+        $('#body_load_photo').html(ele);
+    });*/
 }
 
 function readURLprofileHome(input, type) {
