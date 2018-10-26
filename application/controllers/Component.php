@@ -75,5 +75,12 @@ public function cpn_car_type()
 		$this->load->view('component/list_activity');
 		
 	}
+	
+	public function list_shop_manage()
+	{
+//		$data['data'] = $this->Main_model->query_province();
+		$this->load->view('component/list_shop_manage');
+		
+	}
 }
 ?>

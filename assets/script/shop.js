@@ -1275,7 +1275,7 @@ function submitCancel() {
         })
         .then(function() {});
     }
-    console.log($('#form_type_cancel').serialize());
+//    console.log($('#form_type_cancel').serialize());
     // var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
     var url = "shop/cancel_shop";
     console.log(url + " ");
@@ -1337,7 +1337,7 @@ function submitCancel() {
                     fn.hideDialog('cancel-shop-dialog');
 
                         setTimeout(function(){ 
-                        sendSocket(obj.id);
+                        sendSocket(obj.order_id);
 						resetFormCancel();
 						shopManage();
 					}, 1000);
@@ -1666,6 +1666,10 @@ function sendCheckIn(id, type) {
 function checkinAndOpenDetail(id, key){
 	sendCheckIn(id, 'driver_topoint');
 	array_data.manage[key].check_driver_topoint = 1;
+	array_data.manage[key].driver_topoint = 1;
+	array_data.manage[key].driver_topoint_date = $.now();
+	array_data.manage[key].driver_topoint_lat = $('#lat').val();
+	array_data.manage[key].driver_topoint_lng = $('#lng').val();
 		openDetailShop(key,"");
 		$('#btn_manage_'+id+' span').text('ตรวจสอบ');
 		$('#btn_manage_'+id).show();
@@ -1865,6 +1869,7 @@ function btn_driver_pay_report(id) {
 
 function shopManage(){
 //    $('#shop_manage').html(progress_circle);
+console.log("Load Shop Manage page");
 var obj = array_data;
 var url = "page/shop_manage";
 
@@ -1882,7 +1887,7 @@ $.ajax({
                 //                              console.log(data);
                 $('#shop_manage').html(ele);
             }
-        });
+    });
 }
 var array_ma = [];
 var array_his = [];

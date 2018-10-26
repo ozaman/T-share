@@ -1,13 +1,9 @@
-<input type="hidden" id="open_shop_manage" value="1" />
-<?php 
-   $data_user_class = $_COOKIE[detect_userclass];
-    if(count($_POST[data])<=0){ 
-       echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
-      //exit();
-    }
-
-      foreach ($_POST[data] as $key=>$val){
-     $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver WHERE id='".$val[drivername]."'    ";
+<?php
+$data_user_class = $_COOKIE[detect_userclass];
+$val = $_POST[data];
+/*echo json_encode($val);
+exit();*/
+$sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver WHERE id='".$val[drivername]."'    ";
     $query_dv = $this->db->query($sql_dv);
     $res_dv = $query_dv->row();
     
@@ -61,7 +57,7 @@
    	$res_cancel = $query_cancel->row();
 //   	echo json_encode($res_cancel);
           ?>
-<div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
+<div>
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
@@ -308,56 +304,3 @@
    $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1,d2));
    $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
 </script>
-<?    
-   } ?>
-<template id="change-time.html">
-   <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
-      <div class="alert-dialog-title">แก้ไขเวลา</div>
-      <div class="alert-dialog-content">
-         <input type="hidden" value="0" id="order_id_change_time" />
-         <div style="margin: 0px 5px;margin-bottom: 10px;">
-            <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-               <option value="0">-- เลือกเวลา --</option>
-               <?php
-                  $time = array("5" => "5 นาที",
-                    "10" => "10 นาที",
-                    "15" => "15 นาที",
-                    "20" => "20 นาที",
-                    "25" => "25 นาที",
-                    "30" => "30 นาที",
-                    "35" => "35 นาที",
-                    "40" => "40 นาที",
-                    "45" => "45 นาที",
-                    "50" => "50 นาที",
-                    "55" => "55 นาที",
-                    "60" => "1 ชัวโมง.",
-                    "90" => "1 ชัวโมง 30 นาที",
-                    "120" => "2 ชัวโมง",
-                    "150" => "2 ชัวโมง 30 นาที",
-                    "180" => "3 ชัวโมง",
-                    "210" => "3 ชัวโมง 30 นาที",
-                    "240" => "4 ชัวโมง",
-                    "270" => "4 ชัวโมง 30 นาที",
-                    "300" => "5 ชัวโมง",
-                    "330" => "5 ชัวโมง 30 นาที",
-                    "360" => "6 ชัวโมง",
-                    "390" => "6 ชัวโมง 30 นาที",
-                    "420" => "7 ชัวโมง",
-                    "450" => "7 ชัวโมง 30 นาที",
-                    "490" => "8 ชัวโมง");
-                  $mm = 5;
-                  ?>
-               <?php foreach ($time as $key => $at) { ?>
-               <option value="<?=$key; ?>"><?=$at; ?></option>
-               <?php }
-                  ?>
-            </select>
-         </div>
-         <span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
-      </div>
-      <div class="alert-dialog-footer">
-         <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-         <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">แก้ไข</ons-alert-dialog-button>
-      </div>
-   </ons-alert-dialog>
-</template>

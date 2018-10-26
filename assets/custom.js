@@ -497,12 +497,11 @@ socket.on('getbookinglab', function(data) {
 //                console.log(array_data.manage);
 if (done.length > 0) {
     $('#number_shop').show();
-
-        //			$('#circle_icon_shop').addClass("pulse");
-    } else {
+    } 
+else {
         $('#number_shop').hide();
-        //			$('#circle_icon_shop').removeClass("btn-floating pulse pd-5");
     }
+
     $('#number_shop').text(done.length);
     if ($('#number_shop').text() != 0) {
         $('#num_manage').show();
@@ -510,20 +509,17 @@ if (done.length > 0) {
     }else{
       $('#num_manage').hide();
   }
+	
+    
+	if (shop_frist_run == 0) {
+	    shop_frist_run = done.length;
+	}
+	console.log(done.length+ "|| "+shop_frist_run)
+	if (done.length != shop_frist_run) {
+	    shopManage();
+	    shop_frist_run = done.length;
+	}
 
-
-    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
-
-    if ($('#open_shop_manage').val() == 1){
-	     if (shop_frist_run == 0) {
-	        shop_frist_run = done.length;
-	    }
-//        console.log(shop_frist_run+" || "+done.length);
-if (done.length != shop_frist_run) {
-    shopManage();
-    shop_frist_run = done.length;
-}
-}
 /* check open order id auto */
 if (frist_socket == true) {
         var url_string = window.location.href; //window.location.href
@@ -631,7 +627,10 @@ socket.on('datalab', function(username, data) {
     	$.each(data, function(index, value) {
 
              	  if(value.lab_approve_job==1){
-                        $('#btn_manage_topoint_'+value.id).show();
+		             	  if(value.check_driver_topoint == 0){
+							  	$('#btn_manage_topoint_'+value.id).show();
+						  }
+                        
                         $('#txt_wait_'+value.id).hide();
                         $('#td_cancel_book_'+value.id).hide();
                         $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
@@ -641,8 +640,22 @@ socket.on('datalab', function(username, data) {
                         $('#td_cancel_book_'+value.id).show();
                         $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
                   }
-
-
+				  
+				  if(value.status == "CANCEL"){
+				  	var pass = {
+						    data: value
+						};
+						console.log(pass);
+						var url = "component/list_shop_manage";
+						$.ajax({
+						    url: url,
+						    data: pass,
+						    type: 'post',
+						    success: function(ele) {
+						                $('#list_shop_manage_'+value.id).html(ele);
+						            }
+						    });
+				  }
         });
 //        shopManage();
 
@@ -697,6 +710,9 @@ if ($('#open_shop_manage').val() == 1) {
 
     setTimeout(function(){  
       if(data.lab_approve_job==1){
+      	 if(data.check_driver_topoint == 1){
+		  	$('#btn_manage_topoint_'+data.id).hide();
+		  }
           $('#btn_manage_'+data.id).show();
           $('#txt_wait_'+data.id).hide();
           $('#td_cancel_book_'+data.id).hide();
@@ -707,6 +723,7 @@ if ($('#open_shop_manage').val() == 1) {
           $('#td_cancel_book_'+data.id).show();
           $('#status_book_'+data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
       }
+     
       
 //      shopManage();
 
