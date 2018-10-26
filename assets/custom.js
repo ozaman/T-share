@@ -627,8 +627,12 @@ socket.on('datalab', function(username, data) {
     	$.each(data, function(index, value) {
 
              	  if(value.lab_approve_job==1){
-		             	  if(value.check_driver_topoint == 0){
-							  	$('#btn_manage_topoint_'+value.id).show();
+		             	  if(value.check_driver_topoint == 1){
+						  	$('#btn_manage_topoint_'+value.id).hide();
+						  	$('#btn_manage_'+value.id).show();
+						  }else{
+						  	$('#btn_manage_topoint_'+value.id).show();
+						  	$('#btn_manage_'+value.id).hide();
 						  }
                         
                         $('#txt_wait_'+value.id).hide();
@@ -641,7 +645,7 @@ socket.on('datalab', function(username, data) {
                         $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
                   }
 				  
-				  if(value.status == "CANCEL"){
+				  if(value.status != $('#check_status_'+value.id).val()){
 				  	var pass = {
 						    data: value
 						};
@@ -708,12 +712,15 @@ console.log($('#open_shop_manage').val());
 if ($('#open_shop_manage').val() == 1) {
     console.log("*************************************");
 
-    setTimeout(function(){  
       if(data.lab_approve_job==1){
       	 if(data.check_driver_topoint == 1){
 		  	$('#btn_manage_topoint_'+data.id).hide();
+		  	$('#btn_manage_'+data.id).show();
+		  }else{
+		  	$('#btn_manage_topoint_'+data.id).show();
+		  	$('#btn_manage_'+data.id).hide();
 		  }
-          $('#btn_manage_'+data.id).show();
+          
           $('#txt_wait_'+data.id).hide();
           $('#td_cancel_book_'+data.id).hide();
           $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
@@ -723,11 +730,7 @@ if ($('#open_shop_manage').val() == 1) {
           $('#td_cancel_book_'+data.id).show();
           $('#status_book_'+data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
       }
-     
-      
-//      shopManage();
 
-  }, 500);
 }
 setCountNotification();
 if($('#check_open_noti_menu').val()==1){
@@ -949,7 +952,7 @@ function beforeSendShop(){
 }
 
 function sendShop2(){
-	addUser();
+//	addUser();
     modal.show();
     
     var urlo = 'shop/place_companycount';
@@ -1290,6 +1293,17 @@ function viewPhotoGlobal(path, time, caption) {
         $('#body-photo-view').html(ele);
     });*/
 
+}
+
+function viewPhotoCarDriver(driver_id){
+	fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'ภาพรถ'
+    }, 'fade-md');
+    var url_load = "page/view_photo_car?=driver_id" + driver_id;
+    $.post(url_load, function(ele) {
+        $('#body_popup2').html(ele);
+    });
 }
 
 function readURLprofileHome(input, type) {

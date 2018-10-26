@@ -3,7 +3,7 @@ $data_user_class = $_COOKIE[detect_userclass];
 $val = $_POST[data];
 /*echo json_encode($val);
 exit();*/
-$sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver WHERE id='".$val[drivername]."'    ";
+$sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web_driver WHERE id='".$val[drivername]."'    ";
     $query_dv = $this->db->query($sql_dv);
     $res_dv = $query_dv->row();
     
@@ -58,6 +58,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
 //   	echo json_encode($res_cancel);
           ?>
 <div>
+	<input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
@@ -70,7 +71,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
                <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
                   <tbody>
                      <tr>
-                        <td width="33%" align="left" style="padding: 0px;">
+                        <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                            <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>','phone', '<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
@@ -82,7 +83,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
                               </table>
                            </div>
                         </td>
-                        <td width="33%" align="left" style="padding: 0px;">
+                        <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                            <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>','zello','<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
@@ -96,7 +97,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
                               </table>
                            </div>
                         </td>
-                        <td width="33%" align="left" style="padding: 0px;">
+                        <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                            <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>','line','<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
@@ -118,7 +119,18 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
             <td width="30%" align="center" rowspan="1">
                <?php 
                   if($data_user_class == "lab"){  ?>
-               <button style="border-radius: 5px;padding: 2px 5px;" class="btn btn-xs edit-post-shop pull-right" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>   
+              <!-- <button style="border-radius: 5px;padding: 2px 5px;" class="btn btn-xs edit-post-shop pull-right" id="btn_edit_time_<?=$val[id];?>" onclick="editTimeToPlace('<?=$val[id];?>');" style="<?=$display_time_none;?>"><span class="font-14">แก้ไขเวลา</span></button>   -->
+              <table  style="position: absolute;right: 25px;margin-top: -10px;">
+                           <tr>
+                              <td>
+                                 <i onclick="viewPhotoGlobal('../data/pic/car/<?=$row_car->id;?>_1.jpg?v=<?=time();?>','','รูปหน้ารถ');" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);">local_taxi</i>
+                              </td>
+                              <td width="1"></td>
+                              <td>
+                                 <i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="viewPhotoGlobal('../data/pic/driver/small/<?=$res_dv->username;?>.jpg','','<?=$res_dv->username;?>');">account_circle</i>
+                              </td>
+                           </tr>
+                     </table>
                <? }
                   ?>
             </td>
@@ -126,13 +138,15 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id FROM web_driver W
          <?php 
             if($data_user_class == "lab"){ ?>
 		 <tr>
-         	<td><?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?></td>
-         	<td></td>
+         	<td><?="จ.".$row_q->province_name." อ.".$row_q->area;?></td>
+         	<td>
+         		
+         	</td>
          </tr>
           
 		 <tr>
 		 	<td colspan="2">
-		 		<?="จ.".$row_q->province_name." อ.".$row_q->area;?>
+		 		<?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?>
 		 	</td>
 		 </tr>
          
