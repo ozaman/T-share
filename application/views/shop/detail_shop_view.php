@@ -145,13 +145,15 @@ else if($arr[book][status]=='CONFIRM'){
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
  	
- 		$minutes_to_add = $val[airout_m];
-//        echo $minutes_to_add." ++";
-        $time_c = date('H:i',$arr[book][update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
-        $time = new DateTime($time_c);
-//        $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-        
-        $stamp = $time->format('H:i');
+ 		 $minutes_to_add = $arr[book][airout_m];
+   //        echo $minutes_to_add." ++";
+          $time_c = date('H:i',$arr[book][update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+          $time = new DateTime($time_c);
+          if( in_array( $_SERVER['REMOTE_ADDR'], array( '127.0.0.1', '::1' ) ) ) { // debug mode on localhost ('127.0.0.1' IP in IPv4 and IPv6 formats)
+		   	}else{
+		   		$time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+		   	}
+          $stamp = $time->format('H:i');
 ?>
 
 

@@ -131,7 +131,15 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                               </td>
                            </tr>
                      </table>
-               <? }
+               <? }else{
+               	
+               	$sql_l = "SELECT username,name FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
+			    $query_l = $this->db->query($sql_l);
+			    $res_l = $query_l->row();
+               	?>
+			   	<i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="viewPhotoGlobal('../data/pic/driver/small/<?=$res_l->username;?>.jpg','','<?=$res_l->name;?>');">account_circle</i>
+			   	<?php 
+			   }
                   ?>
             </td>
          </tr>
