@@ -32,6 +32,10 @@
   	$time_post_ps = "margin-top: -105px;";
   }*/
   $time_post_ps = "margin-top: -20px;";
+  
+  $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val->cancel_type."' ";
+   	$query_cancel = $this->db->query($sql);
+   	$res_cancel = $query_cancel->row();
   ?>
    <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop" >
@@ -98,6 +102,15 @@
             </td>
             
           </tr>
+          <?php 
+          if($val->status=="CANCEL"){ ?>
+		  	<tr>
+         		<td colspan="2">
+         			<div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
+         		</td>
+         	</tr>
+		 <? }
+          ?>
 		  <tr>
 		  	<td colspan="2">
 		  		<ons-button onclick="openDetailBookinghistory('0','','<?=$val->invoice;?> ');" style="padding: 15px;    margin-top: 5px;border: 1px solid #0076ff;

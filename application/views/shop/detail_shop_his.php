@@ -29,9 +29,13 @@ $data_pv = $query_pv->row();
 
  }
  $full_name_driver = $res_dv->name." (".$res_dv->nickname.")";
+ 
+$sql = "SELECT * FROM shop_type_cancel  WHERE id='".$arr[book][cancel_type]."' ";
+$query_cancel = $this->db->query($sql);
+$res_cancel = $query_cancel->row();
 
  if($arr[book][status]=='CANCEL'){
-			 if($arr[book][cancel_type]=='1'){
+			 /*if($arr[book][cancel_type]=='1'){
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
 			}
 			else if($arr[book][cancel_type]=='2'){
@@ -41,7 +45,8 @@ $data_pv = $query_pv->row();
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_wrong_selected_place.'</font>';
 			}else{
 				$status_txt = '<font color="#ff0000">ยกเลิก ไม่ระบุ</font>';
-			}
+			}*/
+			$status_txt = '<font color="#ff0000"> ยกเลิก '.$res_cancel->s_topic.'</font>';
 }
 else if($arr[book][status]=='NEW'){
 			$status_txt = '<font color="#3b5998">'.t_new.'</font>';
@@ -130,7 +135,7 @@ $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_li
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
 
-	<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="    float: right;
+	<!--<button class="button button--outline" onclick="fn.showDialog('cancel-shop-dialog');$('#order_id_cancel').val('<?=$_POST[id];?>');" style="    float: right;
     /* position: absolute; */
     /* right: 10px; */
     border: 1px solid #F44336;
@@ -139,7 +144,7 @@ $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_li
     padding: 0px 4px;
     border-radius: 5px;
     top: 0px;
-    /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>
+    /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-20 text-cap"><?=t_cancel;?></span></button>-->
 
 	<div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
 	<span class="font-20"><?=$res_ps->$place_shopping;?></span>
