@@ -2043,6 +2043,8 @@ function calTime(val){
 }
 
 function approveBook(id, invoice, driver_id){
+$('#apporve_book_'+id).prop('disabled', true);
+//return;
 var pass = {
     id : id,
     vc : invoice,
