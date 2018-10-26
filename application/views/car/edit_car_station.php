@@ -8,6 +8,14 @@ $MEMBER = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
   // print_r($MEMBER);
   // 
   // 
+if (count($MEMBER)!= 0) {
+	$res = array();
+$res = array();
+$_where = array();
+    // $_where['product_id'] = $_GET[id];
+$_where['id'] = $MEMBER->type;
+$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+}
 
 $sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by i_index asc";
 $query_type = $this->db->query($sql_type);
@@ -39,12 +47,12 @@ $_select = array('*');
 $_order = array();
 $_order['name_th'] = 'asc';
 $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
- // print_r($arr[amphur]);
+// print_r($arr[amphur]);
 ?>
 <script>
 setTimeout(function(){ 
        		
-       
+       $('#check_get_have').val(0);
 	var chek_data = '<?=count($MEMBER);?>';
 	if (chek_data == 0) {
 		var area = $('#place_area').val();
@@ -58,7 +66,7 @@ setTimeout(function(){
   
 	}
 	else{
-		_province('<?=$MEMBER->amphur;?>')
+		//_province('<?=$MEMBER->amphur;?>')
 	}
 	 }, 1000);
 </script>
@@ -153,7 +161,7 @@ setTimeout(function(){
 					$selected_sub = "";
 				}
 				?>
-				<option value="<?=$amphur->id;?>"  <?=$selected_sub;?> ><?=$amphur->name_th;?><?=$amphur->id;?></option>
+				<option value="<?=$amphur->id;?>"  <?=$selected_sub;?> ><?=$amphur->name_th;?></option>
 			<?php } ?>
 
 
@@ -167,7 +175,7 @@ setTimeout(function(){
 		<ons-list>
 			<?php 
 			foreach ($query_type->result() as $row){
-				if ($MEMBER->type == $row->id) {
+				if ($TYPE->id == $row->id) {
 					$chekes =  'checked="checked"';
 				}
 				else{
@@ -315,7 +323,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 
 			
 			
-           _province(pv);
+           //_province(pv);
       
   
 	}

@@ -1401,22 +1401,26 @@ function _region(itm) {
        });
 }
 var pro = 0;
+var arm = 0;
 function checkzoon(argument) {
 $('#box_station_others').hide()
 $('#box_form_toshow').hide()
+if (arm > 0) {
 $('.radio-button').prop("checked", false);
 
+}
+arm++;
     
 }
 function _province(itm) {
-    if (pro != 0) {
+    if (pro > 0) {
 $('#box_form_toshow').hide()
 $('.radio-button').prop("checked", false);
 
     }
-    pro ++;
+   
 
-
+console.log(itm)
   var url = "main/select_type?id_sub=" + itm+'&table=amphur';
   var htmlOption = '';
   $.post(url, function(res) {
@@ -1432,12 +1436,15 @@ $('.radio-button').prop("checked", false);
         }
       htmlOption += "<option value='" + item.id + "' "+select+">" + item.name_th + "</option>";
   });
+    if (pro > 0) {
     $("#amphur").html(htmlOption);
         // $("#select_type").val();
         // $('select_type', select).remove();
         // select.val(selectedOption);
            // $('#select_type').html(ele);
+            }
        });
+   pro ++;
 }
 function _body_car_station(body){
 	var area = $('#place_area').val();
@@ -1448,7 +1455,7 @@ function _body_car_station(body){
         //console.log(res);
         $('#'+body).html(res);
         if($('#province').val()!=""){
-           _province(pv);
+           //_province(pv);
        }
    });
 }
@@ -1462,7 +1469,7 @@ function _form_car_station(body){
         //console.log(res);
         $('#'+body).html(res);
         if($('#province').val()!=""){
-           _province(pv);
+           //_province(pv);
        }
    });
 }
