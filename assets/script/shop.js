@@ -2009,6 +2009,7 @@ function submitChangeTimeToPlace(){
     var time = $('#time_num_change_time').val();
     var id = $('#order_id_change_time').val();
     var pass = { order_id:id, time:time };
+    
     console.log(pass);
 //  return;
 
@@ -2019,17 +2020,21 @@ $.ajax({
    dataType: 'json',
    success: function(res) {
        console.log(res);
-       ons.notification.alert({
-          message: 'แก้ไขเวลาเรียบร้อย',
-          title: "สำเร็จ",
-          buttonLabel: "ตกลง"
-      })
-       .then(function() {
-           shopManage()
-           document.getElementById('change-time-dialog').hide();
-       });
+       if(res.result==true){
+	   		shopManage();
+	   		$('#txt_time_change_now').text($('#show_to_time').text());
+	   		$('#txt_time_change_now').css('color','#f00');
+	   		
+       		document.getElementById('change-time-dialog').hide();
+       		$('#time_num_change_time').val(0);
+       		$('#txt_show_to_time').hide();
+       		setTimeout(function(){ $('#time_toplace_'+$('#order_id_change_time').val()).text('ถึงประมาณ '+$('#show_to_time').text()+' น.'); }, 3000);
+       		
+	   }
+       
    }
 });
+
 }
 
 function calTime(val){

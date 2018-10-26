@@ -293,7 +293,7 @@ else if($arr[book][status]=='CONFIRM'){
 	</span>
 	<?php } ?>
          </td>
-         <td class="font-17"><?=$stamp." น.";?></td>
+         <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
       </tr>
       <tr>
          <td class="font-17 text-cap"><font color="#333333"><?=t_number;?></font>
