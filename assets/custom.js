@@ -630,7 +630,6 @@ socket.on('datalab', function(username, data) {
     if ($('#open_shop_manage').val() == 1) {
     	$.each(data, function(index, value) {
 
-
              	  if(value.lab_approve_job==1){
                         $('#btn_manage_topoint_'+value.id).show();
                         $('#txt_wait_'+value.id).hide();
