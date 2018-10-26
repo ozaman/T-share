@@ -1,9 +1,10 @@
+
 <?php 
  	$result = json_encode($_POST[data]);
  	$result = json_decode($result);
 
    if(count($result)<=0){ 
-      echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+      echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
   }
    foreach($result as $key=>$val){
 
@@ -59,11 +60,7 @@
             </div>
             </td>
           </tr>
-          <tr>
-          	<td colspan="2" style="padding: 2px 0px;">
-          		<span class="font-17">จำนวนแขก : <?=intval($val->adult)+intval($val->child)." ";?> คน</span>
-          	</td>
-          </tr>
+         
           <tr>
           	<td><div class="font-17">
           	<?php 
@@ -76,6 +73,11 @@
 			<? }
           	?>
           	
+          </tr>
+		   <tr>
+          	<td colspan="2" style="padding: 2px 0px;">
+          		<span class="font-17">ลงทะเบียน : <?=$val->pax_regis;?> คน</span>
+          	</td>
           </tr>
           <tr>
             <td colspan="2">
@@ -94,7 +96,7 @@
           $display_time_none = "display:none;";
         }
         ?>
-        <font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val->id;?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
+        <!--<font color="#ff0000;"  style="position: absolute;right: 15px;" id="time_toplace_<?=$val->id;?>"><?="ถึงประมาณ ".$stamp." น.";?></font>-->
             </span>
             <button class="btn btn-xs edit-post-shop" id="btn_edit_time_<?=$val->id;?>" onclick="editTimeToPlace('<?=$val->id;?>');" style="<?=$display_time_none;?>">แก้ไขเวลา</button>
            
@@ -103,12 +105,25 @@
             
           </tr>
           <?php 
-          if($val->status=="CANCEL"){ ?>
-		  	<tr>
-         		<td colspan="2">
-         			<div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
-         		</td>
-         	</tr>
+          if($val->status=="CANCEL"){ 
+          $sql = "SELECT * FROM history_del_order_booking  WHERE order_id='".$val->id."' ";
+	   	 $query_cl = $this->db->query($sql);
+	   	 $res_cl = $query_cl->row();
+          ?>
+          <tr>
+		  	<td colspan="2">
+		  		<table width="100%">
+		  			<tr>
+	         		<td>
+	         			<div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
+	         		</td>
+	         		<td align="right">
+	         			<font color="#ff0000;">เวลายกเลิก <?=date('H:i',$res_cl->post_date)." น.";?></font>
+	         		</td>
+	         	</tr>
+		  		</table>
+		  	</td>
+		  </tr>
 		 <? }
           ?>
 		  <tr>
@@ -131,4 +146,6 @@
   </script>
 
 <?php
- }?>
+ }
+
+?>

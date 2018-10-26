@@ -468,7 +468,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
       }
     </script>
         </ons-page>
-    </template>
+    </template>	
     <template id="car_manage.html">
         <ons-page>
             <ons-toolbar>
@@ -519,7 +519,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                                     <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                                 </div>
                                 <div class="center list-item__center" style="background-image: none;">
-                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());" max="<?=date('Y-m-d',time());?>" />
+                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
                                 </div>
                             </ons-list-item>
              </ons-card>
@@ -553,11 +553,32 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
-                        
-                        <div id="shop_history" style="margin-top: 75px;">
+                        <?php 
+                        	if($_COOKIE[detect_userclass]=="lab"){ ?>
+						<ons-row style="width: 101%;margin-top: 60px;">
+						<ons-col width="33%">
+							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="his-shop-active shop-his-btn" >ทั้งหมด <span id="num_his_all"></span>
+							
+							</ons-button>
+							</ons-col>
+							<ons-col width="33%">
+							<ons-button class="shop-his-btn" id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+								
+							</ons-col>
+							<ons-col width="33%">
+							<ons-button class="shop-his-btn" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+								
+							</ons-col>
+						</ons-row>		
+						<?php }
+                        ?>
+                        <input type="hidden" id="check_filter_his" value="" />
+                        <input type="hidden" id="first_run_his" value="0" />
+                        <div id="shop_history" style="margin-top: 5px;">
                         </div>
                     </ons-page>
                 </template>
+                
             </div>
 			<style>
 				.img-type-map{
@@ -566,9 +587,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					    margin-top: 10px;
 					   
 				}
-			</style>
-			
-			
+			</style>	
 			<template id="select_type_map-action-sheet.html">
 			  <ons-action-sheet id="sheet" cancelable>
 			    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>

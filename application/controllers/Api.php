@@ -112,7 +112,7 @@ $ch = curl_init($url);
 
 //setup request to send json via POST
 
-$curl_post_data2 = '{"date":"'.$_POST[date].'"}';
+$curl_post_data2 = '{"date":"'.$_POST[date].'", "status":"'.$_POST[status].'"}';
 
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);

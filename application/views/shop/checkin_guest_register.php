@@ -164,7 +164,7 @@
       </div>
 </div>
 
-<ons-card class="replan" style="display: none;">
+<ons-card class="replan" style="display: none;" id="box_cause">
 	 <ons-list-header class="list-header">สาเหตุ</ons-list-header>
 	 <ons-list>
 	    <ons-list-item tappable>

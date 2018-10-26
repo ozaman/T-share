@@ -491,6 +491,11 @@ if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 
 
 function getPlanBox(id, plan_id){
 //	alert(plan_id);
+	if(id==2){
+		$('#box_cause').hide();
+	}else{
+		$('#box_cause').show();
+	}
 	var url = "shop/box_price_plan" + "?i_country=" + id+"&plan_id="+plan_id+"&user_sc=";
 	console.log(url);
 	 $.post(url, function(res) {
@@ -2122,34 +2127,53 @@ $.ajax({
 }
 
 function historyShop(date){
-//  console.log(date)
-//  return;
+var type_status = $('#check_filter_his').val();
 var date_rp = date.replace("-", "/");
 date_rp = date_rp.replace("-", "/");
-
+//return;
 if(class_user=="taxi"){
    var url_his = 'api/shop_history_driver';
-//          var driver = detect_user;
-var data = {
-    date : date_rp,
-    driver : detect_user
-}
+	//          var driver = detect_user;
+	var data = {
+	    date : date_rp,
+	    driver : detect_user
+	};
 }
 else{
    var url_his = 'api/shop_history_lab';
    var data = {
-    date : date_rp
+    date : date_rp,
+    status : type_status
+	};
 }
-}
-
+console.log(data);
+var success = [];
+var fail = [];
+var first_run_his = $('#first_run_his').val();
+//alert(first_run_his);
 $.post(url_his,data,function(res){
    console.log(res);
-   var url = "shop/shop_history";
-   $.post(url,{ data : res.data },function(html){
-    $('#shop_history').html(html);
-});
+    var all = res.data.length;
+    $.each(res.data, function( index, value ) {
+	  	if(value.status=="COMPLETE"){
+			success.push(value);
+		}else if(value.status=="CANCEL"){
+			fail.push(value);
+		}
+	});
+	if(first_run_his==0){
+		$('#num_his_all').text("("+all+")");
+   		$('#num_his_com').text("("+success.length+")");
+   		$('#num_his_cancel').text("("+fail.length+")");
+   		$('#first_run_his').val(1);
+	}
+	   var url = "shop/shop_history";
+	   $.post(url,{ data : res.data },function(html){
+	    $('#shop_history').html(html);
+	});
 
 });
+
 }
 
 function approvePayDriverByLab(id, invoice, driver){
@@ -2268,6 +2292,7 @@ function area_remark() {
 }
 
 function changePlan(id){
+	
 	$('.replan').fadeIn(500);
 	getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
 }
@@ -2306,4 +2331,12 @@ function userApproveCancel(id, invoice){
 		            apiRecordActivityAndNotification(ac, nc);*/
                }
            });
+}
+
+function filterHistoryStatus(type, id){
+	$('#check_filter_his').val(type);
+	$('.shop-his-btn').removeClass('his-shop-active');
+	$('#'+id).addClass('his-shop-active');
+	
+	historyShop($('#date_shop_his').val());
 }
