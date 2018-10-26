@@ -1405,11 +1405,11 @@ var arm = 0;
 function checkzoon(argument) {
 $('#box_station_others').hide()
 $('#box_form_toshow').hide()
-if (arm > 0) {
+// if (arm > 0) {
 $('.radio-button').prop("checked", false);
 
-}
-arm++;
+// }
+// arm++;
     
 }
 function _province(itm) {
@@ -1726,7 +1726,7 @@ function selectTypeCarPlace(id){
                 data: data,
                 type: 'post',
                 success: function(res) {
-                    console.log(res);
+                    // console.log(res);
                     $('#box_station_others').html(res);
                     $('#header_topic_other').html(type_name)
 
