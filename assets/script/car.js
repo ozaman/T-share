@@ -180,6 +180,7 @@ function changeCarStatus(id, status, often) {
 		app.showFromTemplate()
 		return;
 	}
+	
     modal.show();
     console.log(id);
     if (status == 0) {

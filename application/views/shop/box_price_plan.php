@@ -26,7 +26,7 @@
   if($_GET[user_sc]!=""){
   	$btn_onclick = "handleClick_s('box_com',".$val->id.")";
   }else{
-  	$btn_onclick = "";
+  	$btn_onclick = "selectPlanRegis(".$val->id.");";
   }
 
   if($_GET[plan_id]==$val->id){

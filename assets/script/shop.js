@@ -502,13 +502,15 @@ function getPlanBox(id, plan_id){
         $('#box_price_replan').html(res);
         // console.log(data);
          $('#radio-nationck'+id).prop('checked',true);
+         $('#body_shop_checkin').animate({
+	        scrollTop: $( '#box_cause' ).offset().top
+	    }, 500);
     });
 }
 
 function editBook(x) {
     console.log(x)
     
-
     $('#text_edit_persion').show();
     $('#btn_selectisedit').show();
     $('#num_edit_persion').show();
@@ -1056,42 +1058,45 @@ if(type!="ios"){
  fn.pushPage({
    'id': 'popup1.html',
    'title': detailObj.invoice
-}, 'slide-ios');
+}, 'fade-ios');
 }
 
 console.log(detailObj);
 var url = "shop/detail_shop" + "?user_id=" + detect_user;
 $.post(url, detailObj, function(data) {
 //   console.log(data);
-$('#body_popup1').html(data);
-        //        var obj = JSON.parse('<?=json_encode($_POST);?>');
-        var obj = detailObj;
-//        console.log(obj);
+	$('#body_popup1').html(data);
+	        //        var obj = JSON.parse('<?=json_encode($_POST);?>');
+	        var obj = detailObj;
+	//        console.log(obj);
 
-if (obj.check_driver_topoint == 1) {
-    console.log("driver_topoint");
-    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
-}
-if (obj.check_guest_receive == 1) {
-    console.log("guest_receive");
-    changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
-}
-if (obj.check_guest_register == 1) {
-    console.log("guest_register");
-    changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
-}
-if (obj.check_driver_pay_report == 1) {
-    console.log("driver_pay_report");
-    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
-}
-changeApprovedIncome(obj.check_driver_pay_report);
-checkPhotoCheckIn('driver_topoint', obj.id);
-checkPhotoCheckIn('guest_receive', obj.id);
-checkPhotoCheckIn('guest_register', obj.id);
-checkPhotoCheckIn('driver_pay_report', obj.id);
-if(type=="ios"){
- modal.hide();
-}
+	if (obj.check_driver_topoint == 1) {
+	    console.log("driver_topoint");
+	    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+	}
+	if (obj.check_guest_receive == 1) {
+	    console.log("guest_receive");
+	    changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+	}
+	if (obj.check_guest_register == 1) {
+	    console.log("guest_register");
+	    changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+	}
+	if (obj.check_driver_pay_report == 1) {
+	    console.log("driver_pay_report");
+	    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+	}
+	changeApprovedIncome(obj.check_driver_pay_report);
+	checkPhotoCheckIn('driver_topoint', obj.id);
+	checkPhotoCheckIn('guest_receive', obj.id);
+	checkPhotoCheckIn('guest_register', obj.id);
+	checkPhotoCheckIn('driver_pay_report', obj.id);
+	$('.page').animate({
+        scrollTop: $( '#btn_driver_topoint' ).offset().top
+    }, 500);
+	if(type=="ios"){
+	 modal.hide();
+	}
 });
 $('#check_open_shop_id').val(detailObj.id);
 }
@@ -1608,18 +1613,8 @@ function sendCheckIn(id, type) {
  }
  	else{
 
-     /*url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val();
-	var dialog = document.getElementById('shop_add_action_pay');
-	                if (dialog) {
-	                    dialog.show();
-	                } else {
-	                    ons.createElement('shop_add_action_pay.html', {
-	                        append: true
-	                    })
-	                    .then(function(dialog) {
-	                        dialog.show();
-	                    });
-	                }*/  
+	     
+	                
 		     $.ajax({
 	           url: "shop/change_plan?order_id="+id+ "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val(),
 	           data: $('#form_checkin').serialize(),
@@ -1627,33 +1622,33 @@ function sendCheckIn(id, type) {
 	           dataType: 'json',
 	           success: function(res) {
 	               console.log(res);
-	              /* sendSocket(id);
-	               var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
-	               var ac = {
-	                i_type : 1,
-	                i_sub_type : 4,
-	                i_event : id,
-	                i_user : detect_user,
-	                s_topic : "งานส่งแขก",
-	                s_message : txt_long_ac,
-	                s_posted : username
-	            };
+	              		if (res.change_plan.result == true) {
+				        $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
+				        $('#num_edit_persion2').val($('#num_cus').val());
+				        $('#' + type_send + '_check_click').val(1)
+				        
+				        sendSocket(id_send);
+				        changeHtml(type_send, id_send, timestampToDate(res.checkin.time, "time"));
+				        setTimeout(function(){ 
+				        	shopManage();
+				         }, 1500);
+				        
+				        appNavigator.popPage();
+				        var url_msg = "send_onesignal/send_checkin?type="+type_send+"&id="+id_send;
+				        $.ajax({
+				            url: url_msg, 
+				            dataType: 'json', 
+				            type: 'post',
+				            success: function(data) {
+				                console.log(data);
+				            }
+				        });
 
-	            var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
-	            var nc = {
-	                i_type : 1,
-	                i_event : id,
-	                i_user : driver_id,
-	                s_class_user : "taxi",
-	                s_topic : "งานส่งแขก",
-	                s_sub_topic : "ยืนยันงาน",
-	                s_message : txt_long_nc,
-	                s_posted :  username
-	            };
-	            apiRecordActivityAndNotification(ac, nc);*/
+				        shopFuncNotiActi(id_send, type_send);
 
-	        }
-	    });           
+				    }
+			        }
+			    });           
 	                
 	 }
 
@@ -2292,9 +2287,22 @@ function area_remark() {
 }
 
 function changePlan(id){
+//	if($('#check_change_plan').val()==0){
+		$('.replan').fadeIn(500);
+		getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
+		$('#check_change_plan').val(1);
+		$('#btn_change_plan').fadeOut(500);
+		
+//		$('#txt_btn_change_plan').text('ยกเลิกเปลี่ยนค่าตอบแทน');
+//		$('#btn_change_plan').css('background-color', '#9e9e9e');
+	/*}else{
 	
-	$('.replan').fadeIn(500);
-	getPlanBox($('#sci_id').val(),$('#plane_id_replan').val());
+		$('.replan').fadeOut(500);
+		$('#check_change_plan').val(0);
+		$('#txt_btn_change_plan').text('เปลี่ยนค่าตอบแทน');
+		$('#btn_change_plan').css('background-color', '#0076ff');
+	}*/
+	
 }
 
 function userApproveCancel(id, invoice){
@@ -2339,4 +2347,17 @@ function filterHistoryStatus(type, id){
 	$('#'+id).addClass('his-shop-active');
 	
 	historyShop($('#date_shop_his').val());
+}
+
+function selectPlanRegis(id){
+	if(id==4){
+		$('#box_cause').fadeOut(500);
+	}
+}
+
+function loadNewPlan(id){
+	var url_new_plan = "component/new_plan?id="+id;
+	$.post(url_new_plan,function(html){
+		$('#load_new_plan').html(html);
+	});
 }

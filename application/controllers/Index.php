@@ -10,9 +10,19 @@ class Index extends CI_Controller {
 
 public function index()
 	{
-		$this->load->view('home_view',$data);
+		$this->load->view('home_view');
 	}
-	
+
+public function query()
+	{
+		$query = $this->db->query("select * from web_carall where drivername = 153");
+		foreach ($query->result() as $row){
+		       echo $row->id." <br/>";
+		}
+		
+//		echo print_r($row);
+		echo "+++";
+	}	
 
 
   //////////////////////////// End

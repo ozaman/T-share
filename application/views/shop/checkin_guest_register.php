@@ -74,29 +74,65 @@
 <input type="hidden" value="<?=$book->plan_id;?>" id="plane_id_replan" name="plane_id_replan" />  
 <ons-card >
 	<table class="onlyThisTable" width="100%" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;" >
-      <tr>
-         <td align="center" class="font-26" style="text-align: center;"><i class="<?=$icon;?>" style=" font-size:80px; color: #3b5998;"></i></td>
-      </tr>
+      
       <tr>
          <td align="center" class="font-26" style="text-align: center;"><b>คุณแน่ใจหรือไม่ </b></td>
       </tr>
       <tr>
          <td align="center" class="font-22" style="text-align: center;"> <?=$type;?></td>
       </tr>
+
+      <tr style="display: nones;">
+         <td align="center"><span>กรุณาถ่ายภาพใบลงทะเบียน</span></td>
+      </tr>
+      <tr style="display: nones;">
+         <td>
+            <div align="center" style="margin: 10px;">
+               <div>
+                  <input type="file" class="cropit-image-input" accept="image/*" id="img_checkin" name="img_checkin" style="opacity: 0;position: absolute;" 
+                     onchange="readURLcheckIn(this,'checkin','<?=$_GET[type];?>', '<?=$_GET[id];?>');">
+               </div>
+               <span id="txt-img-has-checkin" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+               <span id="txt-img-nohas-checkin" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+               <div class="box-preview-img" id="box_img_checkin" onclick="performClick('img_checkin');">
+                  <img src="" class="img-preview-show" id="pv_checkin"  style="display: nones;">
+               </div>
+               <span style="background-color: #f4f4f4;
+                  padding: 0px 10px;
+                  position: absolute;
+                  margin-left: -27px;
+                  /*    bottom: 278px;*/
+                  margin-top: -25px;
+                  border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+            </div>
+         </td>
+      </tr>
    </table>
    
-      <div class="form-group">
+      <!--<div class="form-group">
          <label class="form-label">กรุณาป้อนจำนวนแขกที่ลงทะเบียน</label>
          <div class="center list-item__center">
             <input name="num_cus" id="num_cus" placeholder="ยืนยันจำนวน" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1" class="text-input form-control" value="<?=$book->pax;?>" > 
          </div>
-      </div>
-
-   
+      </div>-->
+    <div align="center">
+	<table>
+		<tr>
+			<td><span>ลงทะเบียน</span></td>
+			<td width="5"></td>
+			<td >
+			<input name="num_cus" id="num_cus" placeholder="ยืนยันจำนวน" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1" class="text-input form-control" value="<?=$book->pax;?>" style="border-bottom: 1px solid #ccc;text-align: center;width: 80px;" > 
+			</td>
+			<td width="5"></td>
+			<td>คน</td>
+		</tr>
+	</table>
+   </div>  
 </ons-card>
 
 <div style="margin: 20px 10px">
-   <ons-button type="button" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" data-check="0" >เปลี่ยนค่าตอบแทน</ons-button>
+	<input type="hidden" value="0" id="check_change_plan" />
+   <ons-button type="button" id="btn_change_plan" class="button-margin button button--large" onclick="changePlan('<?=$_GET[id];?>');" data-check="0" ><span id="txt_btn_change_plan">เปลี่ยนค่าตอบแทน</span></ons-button>
 </div>
 
 <div class="card replan" id="nation_box" style="display: none;">

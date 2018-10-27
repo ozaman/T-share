@@ -1,4 +1,4 @@
-//setInterval(function(){ addUser(); }, 3000);
+setInterval(function(){ addUser(); }, 30000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -948,11 +948,14 @@ function beforeSendShop(){
                 return;
             }else{
              sendShop2();
+             setTimeout(function(){ shopManage(); }, 2000);
+             
          }
      });
 
     }else{
       sendShop2();
+      setTimeout(function(){ shopManage(); }, 2000);
   }
 }
 

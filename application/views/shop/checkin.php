@@ -243,7 +243,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                                         <span class="input-group-text" id="basic-addon1">แขกลงทะเบียน</span>
                                      </td>
                                      <td width="5">
-                                       <input type="number" id="num_edit_persion2" pattern="\d*" class="form-control" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" disabled style="border-radius: 5px;
+                                       <input type="number" id="num_edit_persion2" pattern="\d*" class="form-control font-16" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" disabled style="border-radius: 5px;
                                        width: 60px;
                                        border: none;
                                        background: #FFF;
@@ -276,7 +276,18 @@ $btn_pay_report_color = "background-color:#3b5998";
                            </td>
                         </tr>
                      </table>
-
+                     			<?php 
+                     			$query = $this->db->query("select * from change_plan_logs where order_id = "$arr[book][id]);
+								if($query->num_rows()>0){ ?>
+								<script>
+									loadNewPlan('<?=$arr[book][id];?>');
+								</script>	
+								<? }
+                     			?>
+								   <div id="load_new_plan">
+								   		123
+								   </div>
+						</div>
                   </td>
                </tr>
             </tbody>
@@ -337,6 +348,7 @@ $btn_pay_report_color = "background-color:#3b5998";
       $('#num_edit_persion2').attr('disabled',false)
       $('#btn_isedit2').hide();
       $('#btn_selectisedit2').show();
+      performClick('num_edit_persion2');
    }
    function saveeditBook2(id) {
     console.log($('#num_edit_persion2').val())

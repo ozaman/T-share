@@ -285,10 +285,11 @@ public function guest_register(){
 	$data[driver_register_lng] = $_GET[lng];
 	$data[pax_regis] = $_GET[num_cus];
 
-	$this->db->where('id', $_GET[id]);
+	$this->db->where('id', $_GET[order_id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 //		$data[result] = true;
 	$data[next_step] = "driver_pay_report";
+	$data[id] = $_GET[order_id];
 	$data[time] = time();
 
 	return $data;
@@ -299,7 +300,7 @@ public function change_plan(){
 	 $_where['id'] = $_GET[order_id]; 
      $_select = array('*');
      $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
-	 	$backup[order_id] = $book->id;
+	 	 $backup[order_id] = $book->id;
 		 $backup[invoice] = $book->invoice;
 		 $backup[status] = $book->status;
 		 $backup[post_date] = time();
@@ -315,17 +316,19 @@ public function change_plan(){
 		 $backup[total_commission] = $book->total_commission;
 		 $backup[cause_change] = $_POST[cause_change];
 	 
-	 $backup[result] = $this->db->insert('order_booking', $backup);
+	 $backup[result] = $this->db->insert('change_plan_logs', $backup);
 	 
 	 $data[plan_id] = $_POST[price_plan];
 	 $data[price_person_unit] = $_POST[price_person_unit];
 	 $data[price_park_unit] = $_POST[price_park_unit];
 	 $data[commission_persent] = $_POST[commission_persent]; 
-	 $this->db->where('id', $_GET[id]);
+	 $this->db->where('id', $_GET[order_id]);
 	 $data[result] = $this->db->update('order_booking', $data); 
 
 	 $return[backup] = $backup;
 	 $return[update] = $data;
+	 $return[result] = $data[result];
+//	 $return[time] = time();
 //	 $return[post] = $_POST;
 	 
 	return $return;

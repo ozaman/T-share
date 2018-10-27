@@ -81,5 +81,11 @@ public function cpn_car_type()
 		$this->load->view('component/list_shop_manage_'.$_COOKIE[detect_userclass]);
 		
 	}
+	
+	public function new_plan()
+	{
+		$data['book'] = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[id]), array('*'));
+		$this->load->view('component/new_plan',$data['book']);
+	}
 }
 ?>

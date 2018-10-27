@@ -526,12 +526,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <div id="body_shop">
                 <ons-page>
                     <ons-tabbar swipeable position="top">
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn">
+                    	<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
+                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" active>
                             <span class="notification none" id="num_manage" style="    float: right;
     margin-top: 15px;
     right: 30px;"></span>
-                        </ons-tab>
-                        <ons-tab page="shop_add.html" label="ส่งแขก" active>
                         </ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
                             <!--<span class="notification none" id="num_his" style="float: right;
@@ -540,15 +539,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         </ons-tab>
                     </ons-tabbar>
                 </ons-page>
-                <template id="shop_manage.html">
-                    <ons-page id="shop_manage">
-                    </ons-page>
-                </template>
+                
                 <template id="shop_add.html">
                     <ons-page id="shop_add">
                         <div>
                             <!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
                         </div>
+                    </ons-page>
+                </template>
+				<template id="shop_manage.html">
+                    <ons-page id="shop_manage">
                     </ons-page>
                 </template>
                 <template id="shop_history.html">
