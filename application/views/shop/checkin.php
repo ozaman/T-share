@@ -254,10 +254,11 @@ $btn_pay_report_color = "background-color:#3b5998";
                                    </td>
                                    <td>
                                    <?php 
-                                   if($_COOKIE[detect_userclass]=="lab"){
+                                   if($_COOKIE[detect_userclass]=="lab" and $arr[book][check_guest_register]==0){
                                    ?>
                                     <td class="font-17 text-cap">
-                                       <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" style="background: #3b5998;
+                                  
+                                       <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" class="btn-eb2" style="background: #3b5998;
                                        color: #fff;
                                        padding: 5px;
                                        border-radius: 8px;
@@ -268,7 +269,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                                     color: #fff;
                                     padding: 5px;
                                     border-radius: 8px;
-                                    display: none;" id="btn_selectisedit2">
+                                    display: none;"  class="btn-eb2" id="btn_selectisedit2">
                                     <span class="font-14 text-cap">บันทึก</span>
                                  </span>
                               </td>
@@ -276,16 +277,9 @@ $btn_pay_report_color = "background-color:#3b5998";
                            </td>
                         </tr>
                      </table>
-                     			<?php 
-                     			$query = $this->db->query("select * from change_plan_logs where order_id = ".$arr[book][id]);
-								if($query->num_rows()>0){ ?>
-								<script>
-									loadNewPlan('<?=$arr[book][id];?>');
-								</script>	
-								<? }
-                     			?>
+                     			
 								   <div id="load_new_plan">
-								   		123
+								   		  
 								   </div>
 						</div>
                   </td>

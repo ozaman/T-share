@@ -527,29 +527,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 <ons-page>
                     <ons-tabbar swipeable position="top">
                     <?php 
-                    if($_COOKIE[detect_userclass]=="lab"){ ?>
-						<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" active>
-                            <span class="notification none" id="num_manage" style="    float: right;
-    margin-top: 15px;
-    right: 30px;"></span>
-                        </ons-tab>
-					<?php }else{ ?>
-						
-                        
-                        <ons-tab page="shop_add.html" label="ส่งแขก" active></ons-tab>
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" >
-                            <span class="notification none" id="num_manage" style="    float: right;
-    margin-top: 15px;
-    right: 30px;"></span>
-                        </ons-tab>
-					<?php }
+                    if($_COOKIE[detect_userclass]=="lab"){ 
+                    	$active_add = "";
+                    	$active_mn = "active";
+                     }else{ 
+                     	$active_add = "active";
+                     	$active_mn = "";
+                     }
                     ?>
-                    	<!--<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" active>-->
-                            <span class="notification none" id="num_manage" style="    float: right;
-    margin-top: 15px;
-    right: 30px;"></span>
+                    	<ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
+                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> >
+                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 30px;"></span>
                         </ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
                             <!--<span class="notification none" id="num_his" style="float: right;

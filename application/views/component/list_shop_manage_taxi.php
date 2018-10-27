@@ -42,7 +42,7 @@ $val = $_POST[data];
    	$res_cancel = $query_cancel->row();
 //   	echo json_encode($res_cancel);
           ?>
-<div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
+<div >
    <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>

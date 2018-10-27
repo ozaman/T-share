@@ -56,7 +56,7 @@
  	$res_type_change = $query->row();
 ?>
 <div style="padding: 5px 0px;">
-     	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
+     	<ons-list-header class="list-header"> <?="เปลี่ยน".t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr>
      			<td>สาเหตุ</td>

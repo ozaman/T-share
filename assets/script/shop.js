@@ -1350,7 +1350,7 @@ function submitCancel() {
                         sendSocket(obj.order_id);
 						resetFormCancel();
 						shopManage();
-					}, 1000);
+					}, 2000);
                     $('#btn_cancel_book_' + order_id).hide();
 
                     var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id+"&class_user="+class_user;
@@ -1490,6 +1490,7 @@ if (type == "driver_topoint") {
     $('#step_guest_register').show();
 } else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
+	loadNewPlan(id);
     $('#step_driver_pay_report').show();
 } else if (type == "driver_pay_report") {
 
@@ -1614,7 +1615,8 @@ function sendCheckIn(id, type) {
  	else{
 
 	     
-	                
+//	                console.log($('#form_checkin').serialize());
+//	                return;
 		     $.ajax({
 	           url: "shop/change_plan?order_id="+id+ "&lat=" + lat + "&lng=" + lng+'&num_cus='+$('#num_cus').val(),
 	           data: $('#form_checkin').serialize(),
@@ -1622,7 +1624,7 @@ function sendCheckIn(id, type) {
 	           dataType: 'json',
 	           success: function(res) {
 	               console.log(res);
-	              		if (res.change_plan.result == true) {
+	              		if (res.checkin.result == true) {
 				        $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
 				        $('#num_edit_persion2').val($('#num_cus').val());
 				        $('#' + type_send + '_check_click').val(1)
@@ -1631,6 +1633,7 @@ function sendCheckIn(id, type) {
 				        changeHtml(type_send, id_send, timestampToDate(res.checkin.time, "time"));
 				        setTimeout(function(){ 
 				        	shopManage();
+				        	$('.btn-eb2').hide();
 				         }, 1500);
 				        
 				        appNavigator.popPage();
@@ -1643,7 +1646,7 @@ function sendCheckIn(id, type) {
 				                console.log(data);
 				            }
 				        });
-
+						
 				        shopFuncNotiActi(id_send, type_send);
 
 				    }
@@ -2352,12 +2355,29 @@ function filterHistoryStatus(type, id){
 function selectPlanRegis(id){
 	if(id==4){
 		$('#box_cause').fadeOut(500);
+	}else{
+		$('#box_cause').fadeIn(500);
 	}
 }
 
 function loadNewPlan(id){
-	var url_new_plan = "component/new_plan?id="+id;
-	$.post(url_new_plan,function(html){
-		$('#load_new_plan').html(html);
-	});
+	$.ajax({
+               url: "shop/check_row_change_plan?order_id="+id,
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+	               /*if(res>0){
+				   	var url_new_plan = "component/new_plan?id="+id;
+					$.post(url_new_plan,function(html){
+						$('#load_new_plan').html(html);
+					});
+				   }*/
+				   var url_new_plan = "component/new_plan?id="+id;
+					$.post(url_new_plan,function(html){
+						$('#load_new_plan').html(html);
+					});
+               }
+           });
+	
 }

@@ -222,7 +222,7 @@ class Shop extends CI_Controller {
 
 
 		public function change_plan(){
-			if($_POST[plane_id_replan]!=$_POST[price_plan]){
+			if($_POST[plane_id_replan]!=$_POST[price_plan] and $_POST[price_plan]!=""){
 				$data['change_plan'] = $this->Shop_model->change_plan();
 			}
 			
@@ -235,6 +235,12 @@ class Shop extends CI_Controller {
 			$data['res'] = $this->Shop_model->taxi_approved_cancel();
 			echo json_encode($data['res']);
 		}
+		public function check_row_change_plan(){
+		
+			$query = $this->db->query("select * from change_plan_logs where order_id = ".$_GET[order_id]);
+			echo $query->num_rows();
+		}
+		
 
 		
 	}
