@@ -277,7 +277,7 @@ $btn_pay_report_color = "background-color:#3b5998";
                         </tr>
                      </table>
                      			<?php 
-                     			$query = $this->db->query("select * from change_plan_logs where order_id = "$arr[book][id]);
+                     			$query = $this->db->query("select * from change_plan_logs where order_id = ".$arr[book][id]);
 								if($query->num_rows()>0){ ?>
 								<script>
 									loadNewPlan('<?=$arr[book][id];?>');
