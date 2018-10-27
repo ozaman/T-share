@@ -45,13 +45,23 @@
 	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$data->plan_id."'    ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
+ 	
+ 	/*$sql_country = "SELECT * from ";
+ 	$query_country = $this->db->query($sql_country);
+ 	$res_country = $query_country->row();*/
+ 	$query = $this->db->query("SELECT cause_change FROM change_plan_logs where order_id = ".$data->id);
+ 	$res_log_change = $query->row();
+ 	
+ 	$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = ".$res_log_change->cause_change);
+ 	$res_type_change = $query->row();
 ?>
 <div style="padding: 5px 0px;">
      	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
-     		<input type="hidden" value="<?=$data->price_person_unit;?>" id="val_person_unit" />
-     		<input type="hidden" value="<?=$data->price_park_unit;?>" id="val_park_unit" />
-     		<input type="hidden" value="<?=$data->commission_persent;?>" id="val_com_persent" />
+     		<tr>
+     			<td>สาเหตุ</td>
+     			<td><?=$res_type_change->s_topic;?></td>
+     		</tr>
      		<tr>
      			<td width="35%"><span class="font-17">ประเภท</span></td>
      			<td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
