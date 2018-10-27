@@ -61,18 +61,18 @@ else if($arr[book][status]=='CONFIRM'){
 		$display_park = "";
 	}else{
 		$display_park = "display:none";
-	}*/
+	}
 	
-	/*if($arr[book][price_person_unit] != 0){
+	if($arr[book][price_person_unit] != 0){
 		$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),0);
 		$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
 		$display_person = "";
 	}else{
 		$display_person = "display:none";
-	}*/
+	}
+	$total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),0);
 	
-	
-	/*if($arr[book][commission_persent] != 0){
+	if($arr[book][commission_persent] != 0){
 		$display_com = "";
 		$com_persent = $arr[book][commission_persent];
 		$total_price_all = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
@@ -83,6 +83,13 @@ else if($arr[book][status]=='CONFIRM'){
 	
 	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$arr[book][plan_id]."' ");
 	$num = 0;
+	
+	$display_person = "display:none";
+	$display_com = "display:none";
+	$display_park = "display:none";
+	$park_total = 0;
+	$person_total = 0;
+	$com_total = 0;
 	foreach ($query_price->result() as $row_price){
 			if($num>=1){
 				$push = " + ";
@@ -94,34 +101,25 @@ else if($arr[book][status]=='CONFIRM'){
 	       
 		   if($row_price->s_topic_en=="park"){
 				$check_type_park = 1;
-				$park_total = number_format($arr[book][price_park_unit],0);
 				$display_park = "";
-		   }else{
-		   		$display_park = "display:none";
+				$park_total = $arr[book][price_park_unit];
 		   }
 		   
 		   if($row_price->s_topic_en=="person"){
 				$check_type_person= 1;
-				$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),0);
-				$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
 				$display_person = "";
-		   }else{
-		   		$display_person = "display:none";
+				$person_total = intval($arr[book][price_person_unit]) * intval($arr[book][adult]);
+				$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
 		   }	
 		   
 		   if($row_price->s_topic_en=="comision"){
 		   		$check_type_com = 1;
-				if($arr[book][total_commission]>0){
-					$display_com = "";
-					$com_persent = $arr[book][commission_persent];
-					$total_price_all = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
-				}else{
-					$display_com = "display:none";
-				}
+		   		$display_com = "";
+				$com_persent = $arr[book][commission_persent];
+				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
 		   }	
 	}
-	$total_price_all = number_format($arr[book][price_park_unit] + (intval($arr[book][price_person_unit]) * intval($arr[book][adult])),0);
-	
+	$all_total = $park_total + $person_total + $com_total;
 	
 	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$arr[book][plan_id]."'    ";
  	$query_country = $this->db->query($sql_country);
@@ -137,8 +135,8 @@ else if($arr[book][status]=='CONFIRM'){
 		   	}
           $stamp = $time->format('H:i');
           
-          echo $display_park;
-          echo $display_person;
+//          echo $display_park;
+//          echo $display_person;
 ?>
 
 
@@ -457,7 +455,7 @@ else if($arr[book][status]=='CONFIRM'){
      			<td  width="35%">รวม</td>
      			<td align="right">
 	     			<span class="16" id="txt_all_total">
-	     				<?=$total_price_all;?>
+	     				<?=$all_total;?>
 	     			</span>
      			</td>
      			 <td width="90">

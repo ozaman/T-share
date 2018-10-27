@@ -526,8 +526,26 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <div id="body_shop">
                 <ons-page>
                     <ons-tabbar swipeable position="top">
-                    	<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
+                    <?php 
+                    if($_COOKIE[detect_userclass]=="lab"){ ?>
+						<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
                         <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" active>
+                            <span class="notification none" id="num_manage" style="    float: right;
+    margin-top: 15px;
+    right: 30px;"></span>
+                        </ons-tab>
+					<?php }else{ ?>
+						
+                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" >
+                            <span class="notification none" id="num_manage" style="    float: right;
+    margin-top: 15px;
+    right: 30px;"></span>
+                        </ons-tab>
+                        <ons-tab page="shop_add.html" label="ส่งแขก" active></ons-tab>
+					<?php }
+                    ?>
+                    	<!--<ons-tab page="shop_add.html" label="ส่งแขก" ></ons-tab>
+                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" active>-->
                             <span class="notification none" id="num_manage" style="    float: right;
     margin-top: 15px;
     right: 30px;"></span>
@@ -547,10 +565,12 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         </div>
                     </ons-page>
                 </template>
+				
 				<template id="shop_manage.html">
                     <ons-page id="shop_manage">
                     </ons-page>
                 </template>
+                
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
                         <?php 
@@ -572,7 +592,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 						</ons-row>		
 						<?php 
 						$margin_his = "margin-top: 5px;";
-						}else{
+						}
+							else{
 							$margin_his = "margin-top: 75px;";
 						}
                         ?>
