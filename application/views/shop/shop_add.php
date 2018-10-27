@@ -479,7 +479,7 @@ if($query->num_rows()>=1){
                 <tr>
                   <td width="45">ผู้ใหญ่</td>
                   <td>
-                    <ons-input id="adult" name="adult" type="number" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1"  class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+                    <ons-input id="adult" name="adult" type="number" oninput="maxLengthCheck(this)" type="number" pattern="\d*" maxlength="4" min="1"  class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;text-align-last: center !important;"></ons-input>
                   </td>
                 </tr>
               </table>
@@ -489,7 +489,7 @@ if($query->num_rows()>=1){
                 <tr>
                   <td width="45">เด็ก</td>
                   <td>
-                    <ons-input id="child" name="child" type="number" oninput="maxLengthCheck(this)" pattern="\d*" maxlength="3" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;" onchange="checkchild(this.value)"></ons-input>
+                    <ons-input id="child" name="child" type="number" oninput="maxLengthCheck(this)" pattern="\d*" maxlength="3" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;text-align-last: center !important;" onchange="checkchild(this.value)"></ons-input>
                   </td>
                 </tr>
               </table>

@@ -102,13 +102,13 @@ else if($arr[book][status]=='CONFIRM'){
 		   if($row_price->s_topic_en=="park"){
 				$check_type_park = 1;
 				$display_park = "";
-				$park_total = number_format($arr[book][price_park_unit],0);
+				$park_total = $arr[book][price_park_unit];
 		   }
 		   
 		   if($row_price->s_topic_en=="person"){
 				$check_type_person= 1;
 				$display_person = "";
-				$person_total = number_format(intval($arr[book][price_person_unit]) * intval($arr[book][adult]),0);
+				$person_total = intval($arr[book][price_person_unit]) * intval($arr[book][adult]);
 				$cal_person = $arr[book][price_person_unit]."*".$arr[book][adult];
 		   }	
 		   
@@ -119,7 +119,7 @@ else if($arr[book][status]=='CONFIRM'){
 				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
 		   }	
 	}
-	$all_total = intval($park_total) + intval($arr[book][price_person_unit]) + intval($arr[book][price_person_unit])
+	$all_total = $park_total + $person_total + $com_total;
 	
 	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$arr[book][plan_id]."'    ";
  	$query_country = $this->db->query($sql_country);
@@ -135,8 +135,8 @@ else if($arr[book][status]=='CONFIRM'){
 		   	}
           $stamp = $time->format('H:i');
           
-          echo $display_park;
-          echo $display_person;
+//          echo $display_park;
+//          echo $display_person;
 ?>
 
 
@@ -455,7 +455,7 @@ else if($arr[book][status]=='CONFIRM'){
      			<td  width="35%">รวม</td>
      			<td align="right">
 	     			<span class="16" id="txt_all_total">
-	     				<?=$total_price_all;?>
+	     				<?=$all_total;?>
 	     			</span>
      			</td>
      			 <td width="90">
