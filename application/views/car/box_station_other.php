@@ -19,18 +19,18 @@ $_where['member'] = $_COOKIE['detect_user'];
 $MEMBER2 = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where); 
 ?>
 <div class="card" onclick="">
-  <ons-list-header class="list-header" ><span id="header_topic_other"></span> <button type="button" class="btn btn-md btn-success btn-equal " onclick="add_new_station()" style="margin: 5px;
+  <ons-list-header class="list-header" style="padding: 5px 0px; padding-left: 15px;" ><span id="header_topic_other"></span> <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station()" style="margin: 5px;
     padding: 5px 12px;
     border: none;
     color: #ffffff;
     background-color: #339933;
     border-color: #2d862d;
-    border-radius: 5px;"> 
+    border-radius: 5px;    margin-top: 0px;"> 
             <i class="fa fa-plus "></i>
             <span>เพิ่ม</span>
           </button></ons-list-header>
    
-    <ons-list>
+    <ons-list style="width: 100%;">
     
 <select class="select-input font-17" name="station_other" id="station_other" value="" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
       <option value="0">-- กรุณาเลือก --</option>
