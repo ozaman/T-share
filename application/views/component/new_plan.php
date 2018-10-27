@@ -1,31 +1,33 @@
 <?php 
-
-	if($_POST[price_park_unit] != 0){
-		$park_total = number_format($_POST[price_park_unit],0);
+	$data = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[id]), array('*'));
+	echo $data->price_park_unit;
+	exit();
+	if($data->price_park_unit != 0){
+		$park_total = number_format($data->price_park_unit,0);
 		$display_park = "";
 	}else{
 		$display_park = "display:none";
 	}
 	
-	if($_POST[price_person_unit] != 0){
-		$person_total = number_format(intval($_POST[price_person_unit]) * intval($_POST[adult]),0);
-		$cal_person = $_POST[price_person_unit]."*".$_POST[adult];
+	if($data->price_person_unit != 0){
+		$person_total = number_format(intval($data->price_person_unit) * intval($data->adult),0);
+		$cal_person = $_POST->price_person_unit."*".->adult;
 		$display_person = "";
 	}else{
 		$display_person = "display:none";
 	}
-	$total_price_all = number_format($_POST[price_park_unit] + (intval($_POST[price_person_unit]) * intval($_POST[adult])),0);
+	$total_price_all = number_format($data->price_park_unit + (intval($data->price_person_unit] * intval($data->adult)),0);
 	
-	if($_POST[commission_persent] != 0){
+	if($data->commission_persent != 0){
 		$display_com = "";
-		$com_persent = $_POST[commission_persent];
+		$com_persent = $data->commission_persent;
 		$total_price_all = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
 	}else{
 		$display_com = "display:none";
 		
 	}
 	
-	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$_POST[plan_id]."' ");
+	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$data->plan_id."' ");
 	$num = 0;
 	foreach ($query_price->result() as $row_price){
 			if($num>=1){
@@ -37,16 +39,14 @@
 	       $num++;
 	}
 
-$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$arr[book][plan_id]."'    ";
+$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$_POST->plan_id."'    ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
 ?>
 <div style="padding: 5px 0px;">
      	<ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
-     		<input type="hidden" value="<?=$_POST[price_person_unit];?>" id="val_person_unit" />
-     		<input type="hidden" value="<?=$_POST[price_park_unit];?>" id="val_park_unit" />
-     		<input type="hidden" value="<?=$_POST[commission_persent];?>" id="val_com_persent" />
+     		
      		<tr>
      			<td width="35%"><span class="font-17">ประเภท</span></td>
      			<td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
