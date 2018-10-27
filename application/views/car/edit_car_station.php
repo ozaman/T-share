@@ -214,13 +214,14 @@ setTimeout(function(){
 	<div id="box_station_others"></div>
 
 	<div class="card" id="box_form_toshow" style="display: none">
-		<ons-list-header class="list-header"  ><span id="header_topic_type"></span> <button type="button" class="btn btn-md btn-success btn-equal " onclick="get_station()" id="get_stations" style="margin: 5px;
+		<ons-list-header class="list-header" style="padding: 5px 0; padding-left: 15px;" ><span id="header_topic_type"></span> <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="get_station()" id="get_stations" style="margin: 5px;
 		padding: 5px 12px;
 		border: none;
 		color: #ffffff;
 		background-color: #339933;
 		border-color: #2d862d;
 		border-radius: 5px;
+		margin-top: 0px;
 		" style="display: none"> 
 		<i class="fa fa-plus "></i>
 		<span>เลือกที่มีอยู่</span>
