@@ -203,24 +203,26 @@
 <ons-card class="replan" style="display: none;" id="box_cause">
 	 <ons-list-header class="list-header">สาเหตุ</ons-list-header>
 	 <ons-list>
-	    <ons-list-item tappable>
-	      <label class="left">
-	        <ons-radio name="cause_change" input-id="radio-1" value="0" checked></ons-radio>
-	      </label>
-	      <label for="radio-1" class="center">เที่ยวบินภายในประเทศ (ป้ายฟ้า)</label>
-	    </ons-list-item>
-	    <ons-list-item tappable>
+	 	<?php 
+	 		
+	 		$query = $this->db->query("SELECT * FROM shop_type_change_plan where i_status = 1");
+			foreach ($query->result() as $val){ ?>
+			        <ons-list-item tappable>
+				      <label class="left">
+				        <ons-radio name="cause_change" input-id="radio-<?=$val->id;?>" value="0"></ons-radio>
+				      </label>
+				      <label for="radio-<?=$val->id;?>" class="center"><?=$val->s_topic;?></label>
+				    </ons-list-item>
+		<?	}
+		 		
+	 	?>
+	   
+	    <!--<ons-list-item tappable>
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-2"  value="1"></ons-radio>
 	      </label>
 	      <label for="radio-2" class="center">เวลาเที่ยวบินไม่พอ (ป้ายฟ้า)</label>
 	    </ons-list-item>
-	    <!--<ons-list-item tappable>
-	      <label class="left">
-	        <ons-radio name="cause_change" input-id="radio-3"  value="2"></ons-radio>
-	      </label>
-	      <label for="radio-3" class="center">แขกไม่มีเที่ยวบิน (ป้ายฟ้า)</label>
-	    </ons-list-item>-->
 	    <ons-list-item tappable>
 	      <label class="left">
 	        <ons-radio name="cause_change" input-id="radio-4"  value="3"></ons-radio>
@@ -232,7 +234,7 @@
 	        <ons-radio name="cause_change" input-id="radio-4"  value="4"></ons-radio>
 	      </label>
 	      <label for="radio-4" class="center">แขกไกด์</label>
-	    </ons-list-item>
+	    </ons-list-item>-->
   </ons-list>
 </ons-card>
 
