@@ -744,11 +744,16 @@ public function submitadd_station(){
       $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
     }
     else{
+       $_where = array();
+      $_where[id] = $_POST[station_other]; 
+      $_select = array('*');
+      $arr[STATION] = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
+
       $data2 = array();
-      $data2[station] = 0;
+      $data2[station] = $_POST[station_other];
       $data2[member] = $_GET[id_user];
       $data2[type] = $_POST[station_select];
-      $data2[topic_th] = '';
+      $data2[topic_th] = $arr[STATION]->topic_th;
       $data2[province] = $_POST[province];
       $data2[region] = $_POST[region];
       $data2[amphur] = $_POST[amphur];
@@ -756,7 +761,7 @@ public function submitadd_station(){
       $data2[last_update] = time();
       $this->db->where('id', $_GET[id_user]);
 
-      $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
+      $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
     }
 
 
