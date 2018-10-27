@@ -57,7 +57,7 @@ $val = $_POST[data];
                   <tbody>
                      <tr>
                         <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                           <div class="btn" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>','phone', '<?=$res_ps->id;?>','<?=$val[id];?>');">
+                           <div class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>','phone', '<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
                                     <tr>
@@ -69,7 +69,7 @@ $val = $_POST[data];
                            </div>
                         </td>
                         <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                           <div class="btn " style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>','zello','<?=$res_ps->id;?>','<?=$val[id];?>');">
+                           <div class="btn " style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>','zello','<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
                                     <tr>
@@ -83,7 +83,7 @@ $val = $_POST[data];
                            </div>
                         </td>
                         <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                           <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>','line','<?=$res_ps->id;?>','<?=$val[id];?>');">
+                           <div class="btn" style=" width:100%; text-align:left;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>','line','<?=$res_ps->id;?>','<?=$val[id];?>');">
                               <table width="100%" border="0" cellspacing="1" cellpadding="1">
                                  <tbody>
                                     <tr>

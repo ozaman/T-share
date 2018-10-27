@@ -431,6 +431,9 @@ function updatePlaceNum(province) {
     }, function(obj) {
         //        var obj = JSON.parse(data);
         console.log(obj);
+        if(obj.length<=0){
+			return;
+		}
         var province = obj[0].id;
         var area = obj[0].area;
         $('#place_province').val(province);
@@ -856,7 +859,7 @@ function hideRes(id) {
     }
 }
 /*************************** Menu function *********************************/
-function sendShop(company) {
+function sendShops(company) {
     fn.pushPage({
         'id': 'shopping.html',
         'title': 'ส่งแขก',
@@ -874,6 +877,7 @@ function sendShop(company) {
         if (class_user == "taxi") {
 
             $.post(urlcount, function(res) {
+            	
                 if (res == 0) {
 
                     ons.notification.alert({
@@ -929,6 +933,7 @@ function beforeSendShop(){
 	var urlcount = "shop/car_count";
 	if (class_user == "taxi") {
         $.post(urlcount, function(res) {
+        	console.log(res)
             if (res == 0) {
                 ons.notification.alert({
                     message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',

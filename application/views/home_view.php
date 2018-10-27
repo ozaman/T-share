@@ -555,7 +555,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-page style="overflow-y: scroll;">
                         <?php 
                         	if($_COOKIE[detect_userclass]=="lab"){ ?>
-						<ons-row style="width: 101%;margin-top: 60px;">
+						<ons-row style="width: 100%;margin-top: 60px;">
 						<ons-col width="33%">
 							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="his-shop-active shop-his-btn" >ทั้งหมด <span id="num_his_all"></span>
 							
@@ -570,11 +570,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 								
 							</ons-col>
 						</ons-row>		
-						<?php }
+						<?php 
+						$margin_his = "margin-top: 5px;";
+						}else{
+							$margin_his = "margin-top: 75px;";
+						}
                         ?>
                         <input type="hidden" id="check_filter_his" value="" />
                         <input type="hidden" id="first_run_his" value="0" />
-                        <div id="shop_history" style="margin-top: 5px;">
+                        <div id="shop_history" style="<?=$margin_his;?>">
                         </div>
                     </ons-page>
                 </template>

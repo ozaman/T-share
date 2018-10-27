@@ -400,13 +400,14 @@ public function place_companycount(){
 }
 
 public function car_count(){
-	$login_id = $this->input->cookie('detect_user');
-		//echo $login_id;
-  		// $this->db->select('count(*)');
+	/*$login_id = $this->input->cookie('detect_user');
 	$this->db->from(TBL_WEB_CARALL);
 	$this->db->where('drivername',$login_id);
-	$query = $this->db->get();
-		// echo $query->num_rows();
+	$query = $this->db->get();*/
+	
+	$query = $this->db->query('SELECT * FROM web_carall where drivername = '.$_COOKIE[detect_user]);
+//	echo $query->num_rows();
+
 	return $query->num_rows();
   		// $this->load->view('shop/place_company',$data);
 }
