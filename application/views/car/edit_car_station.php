@@ -17,7 +17,7 @@ $_where['id'] = $MEMBER->type;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 }
 
-$sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by i_index asc";
+$sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by topic_th asc";
 $query_type = $this->db->query($sql_type);
 
 $_select = array('*');
@@ -55,6 +55,8 @@ setTimeout(function(){
        $('#check_get_have').val(0);
 	var chek_data = '<?=count($MEMBER);?>';
 	if (chek_data == 0) {
+       $('#check_get_have').val(2);
+
 		var area = $('#place_area').val();
 		var pv = $('#place_province').val();
 

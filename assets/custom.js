@@ -1591,7 +1591,8 @@ $.ajax({
    success: function(res) {
        console.log(res);
        if (res.status == true ) {
-         callpop();
+         // callpop();
+         beforeSendShop()
        		/*setTimeout(function(){ 
        		_body_car_station('body_add_shop_station');
 			callpop();
@@ -1601,7 +1602,11 @@ $.ajax({
 
     }
     else{
-
+ ons.notification.alert({
+      message: 'คิว/บริษัท/สมาคม',
+      title: "กรุณาเลือก",
+      buttonLabel: "ตกลง"
+  })
     }
     modal.hide();
 }
@@ -1633,7 +1638,7 @@ function get_station() {
 
 }
 function add_new_station(){
-    check_get_have = 0;
+    check_get_have = 2;
     $('#check_get_have').val(0);
     $('#box_station_others').hide();
     $('#box_form_toshow').show();
@@ -1784,6 +1789,6 @@ function selectTypeCarPlace(id){
     });
     
 }
-function selectstation(id) {
-    $('#radio_other_'+id).prop("checked", true);
-}
+// function selectstation(id) {
+    // $('#radio_other_'+id).prop("checked", true);
+// }

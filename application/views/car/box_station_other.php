@@ -13,6 +13,10 @@ $_where = array();
     $_order = array();
     $_order['topic_th'] = 'asc';
     $data[OTHRET] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION_OTHRET,$_where,$_select,$_order);
+    $_where = array();
+    // $_where['product_id'] = $_GET[id];
+$_where['member'] = $_COOKIE['detect_user'];
+$MEMBER2 = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where); 
 ?>
 <div class="card" onclick="">
   <ons-list-header class="list-header" ><span id="header_topic_other"></span> <button type="button" class="btn btn-md btn-success btn-equal " onclick="add_new_station()" style="margin: 5px;
@@ -27,20 +31,23 @@ $_where = array();
           </button></ons-list-header>
    
     <ons-list>
-    <?php 
-      foreach ( $data[OTHRET] as $row){
-  ?>
-    <ons-list-item tappable onclick="selectstation(<?=$row->id;?>);">
-      <label class="left">
-        <ons-radio name="station_other" class="station_other" input-id="radio_other_<?=$row->id;?>" value="<?=$row->id;?>" ></ons-radio>
-      </label>
-      <label for="radio_other_<?=$row->id;?>" class="center">
-        <?=$row->topic_th;?>
-      </label>
-    </ons-list-item>
-    <!-- <input type="hidden" value="<?=$row->topic_th;?>" id="__<?=$row->id;?>" /> -->
-  <?php 
-    }
-  ?>
+    
+<select class="select-input font-17" name="station_other" id="station_other" value="" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+      <option value="0">-- กรุณาเลือก --</option>
+      <?php
+      foreach($data[OTHRET] as $key=>$row){
+
+        if($MEMBER2->station == $row->id ){
+          $selected_sub = "selected";
+        }else{
+          $selected_sub = "";
+        }
+        ?>
+        <option value="<?=$row->id;?>"  <?=$selected_sub;?> ><?=$row->topic_th;?></option>
+      <?php } ?>
+
+
+    </select>
+
   </ons-list>
   </div>
