@@ -94,11 +94,22 @@ setTimeout(function(){
         }else{
           $selected_sub = "";
       }*/
-      if($_GET[area] == $region->id ){
-      	$selected_sub = "selected";
-      }else{
-      	$selected_sub = "";
+      if (count($MEMBER) == 0) {
+      	if($_GET[area] == $region->id ){
+      		$selected_sub = "selected";
+      	}else{
+      		$selected_sub = "";
+      	}
       }
+      else{
+      	if($MEMBER->region == $region->id ){
+      		$selected_sub = "selected";
+      	}else{
+      		$selected_sub = "";
+      	}
+      }
+
+
       ?>
       <option value="<?=$region->id;?>"  <?=$selected_sub;?> ><?=$region->topic_th;?></option>
   <?php } ?>

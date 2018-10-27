@@ -1602,11 +1602,21 @@ $.ajax({
 
     }
     else{
- ons.notification.alert({
+        if (res.msg == 'type') {
+            ons.notification.alert({
       message: 'คิว/บริษัท/สมาคม',
       title: "กรุณาเลือก",
       buttonLabel: "ตกลง"
   })
+        }
+        else{
+ons.notification.alert({
+      message: 'กรุณาเลือกที่มีอยู่ในระบบ',
+      title: "มีชื่อนี้ในระบบ",
+      buttonLabel: "ตกลง"
+  })
+        }
+ 
     }
     modal.hide();
 }

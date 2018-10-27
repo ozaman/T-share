@@ -637,6 +637,22 @@ class Main_model extends CI_Model
         $_where['member'] = $_GET[id_user];
         $num              = $this->Main_model->num_row(TBL_PLACE_CAR_STATION, $_where);
         if ($num == 0) {
+           $_where       = array();
+                $_where[topic_th]   = $_POST[topic_th];
+                $_where[region]   = $_POST[region];
+                $_where[province]   = $_POST[province];
+                $_where[amphur]   = $_POST[amphur];
+                $_select      = array('*');
+                $OTHRET_C = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+          if (count($OTHRET_C) == 0) {
+             $res[status] = false;
+                $res[msg] = 'name';
+
+                return $res;
+          }
+          else{
+
+
             if ($_POST[check_get_have] == 0) {
                 if ($_POST[station_select] == 1) {
                     $data[topic_th] = $_POST[name_ass];
@@ -698,6 +714,7 @@ class Main_model extends CI_Model
                 $this->db->where('id', $_GET[id_user]);
                 $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
             }
+          }
         } else {
             if ($_POST[check_get_have] == 0) {
                 if ($_POST[station_select] == 4) {
@@ -740,6 +757,20 @@ class Main_model extends CI_Model
                     $data[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data);
                 }
             } else if ($_POST[check_get_have] == 2) {
+               $_where       = array();
+                $_where[topic_th]   = $_POST[topic_th];
+                $_where[region]   = $_POST[region];
+                $_where[province]   = $_POST[province];
+                $_where[amphur]   = $_POST[amphur];
+                $_select      = array('*');
+                $OTHRET_C = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+          if (count($OTHRET_C) == 0) {
+             $res[status] = false;
+                $res[msg] = 'name';
+
+                return $res;
+          }
+          else{
                 if ($_POST[station_select] == 4) {
                     $data2              = array();
                     $data2[station]     = 0;
@@ -789,6 +820,7 @@ class Main_model extends CI_Model
                     $data2[last_update] = time();
                     $data2[result]      = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
                 }
+              }
             } else {
               if ($_POST[station_other] == 0) {
                 $res[status] = false;
