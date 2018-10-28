@@ -42,6 +42,12 @@ class Main extends CI_Controller {
   	echo json_encode($data['res']);
   }
   
+  public function get_data_user(){
+  	$query = $this->db->query("select name,nickname,username from web_driver where id = ".$_GET[id]);
+	$row = $query->row();
+  	echo json_encode($row);
+  }
+  
   public function update_num_place(){
   	$data['res'] = $this->Main_model->update_num_place_all();
   	header('Content-Type: application/json');

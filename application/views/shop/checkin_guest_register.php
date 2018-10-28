@@ -178,6 +178,7 @@
 
           </div>
         </div>
+
 <div class="card replan" id="box_com"  style="display: none;" >
           <!-- Agent Issu -->  
           <div class="" id="show_payment_detail" style="">
@@ -200,7 +201,7 @@
       </div>
 </div>
 
-<ons-card class="replan" style="display: none;" id="box_cause">
+<div class="card replan" style="display: none;" id="box_cause">
 	 <ons-list-header class="list-header">สาเหตุ</ons-list-header>
 	 <ons-list>
 	 	<?php 
@@ -209,7 +210,7 @@
 			foreach ($query->result() as $val){ ?>
 			        <ons-list-item tappable>
 				      <label class="left">
-				        <ons-radio name="cause_change" input-id="radio-<?=$val->id;?>" value="0"></ons-radio>
+				        <ons-radio name="cause_change" input-id="radio-<?=$val->id;?>" value="<?=$val->id;?>"></ons-radio>
 				      </label>
 				      <label for="radio-<?=$val->id;?>" class="center"><?=$val->s_topic;?></label>
 				    </ons-list-item>
@@ -236,12 +237,13 @@
 	      <label for="radio-4" class="center">แขกไกด์</label>
 	    </ons-list-item>-->
   </ons-list>
-</ons-card>
+</div>
 
 <div style="margin: 20px 10px">
    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>','<?=$_GET[type];?>');" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
 </div>
 </form>
+
 <script type="text/javascript">
    setTimeout(function(){ $('#num_cus').focus(); 
    }, 1000);

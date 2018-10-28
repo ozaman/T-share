@@ -296,7 +296,9 @@ public function guest_register(){
 } 
 
 public function change_plan(){
-	
+	if($_POST[price_plan]==""){
+	 	return FALSE;
+	 }
 	 $_where['id'] = $_GET[order_id]; 
      $_select = array('*');
      $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
@@ -314,9 +316,13 @@ public function change_plan(){
 		 $backup[price_all_total] = $book->price_all_total;
 		 $backup[commission_persent] = $book->commission_persent;
 		 $backup[total_commission] = $book->total_commission;
+		 if($_POST[cause_change]==""){
+		 	$_POST[cause_change] = 0;
+		 }
 		 $backup[cause_change] = $_POST[cause_change];
 	 
 	 $backup[result] = $this->db->insert('change_plan_logs', $backup);
+	 
 	 
 	 $data[plan_id] = $_POST[price_plan];
 	 $data[price_person_unit] = $_POST[price_person_unit];

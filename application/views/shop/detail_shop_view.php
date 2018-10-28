@@ -479,12 +479,10 @@ else if($arr[book][status]=='CONFIRM'){
 	}
 	?>
 
-	<div style="padding: 5px 0px;display: none;" id="box_approved_income">
-     <!-- <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header> -->
-
+	<!--<div style="padding: 5px 0px;display: none;" id="box_approved_income">
 	 <span class="text-cap font-22"><?=$txt_head_pay;?></span>
 	  <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();"><i class="icon-new-uniF121-10" aria-hidden="true"></i>&nbsp;<span class="font-17"><?=$txt_btn_pay;?></span> </ons-button>
-	</div>
+	</div>-->
 	
 	<div style="padding: 5px 0px;display: none;">
 		<span class="text-cap font-22"><?=โค้ดและเอกสาร;?></span>

@@ -1,4 +1,4 @@
-setInterval(function(){ addUser(); }, 30000);
+//setInterval(function(){ addUser(); }, 30000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -473,6 +473,7 @@ var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
     //console.log(data.booking)
+    addUser();
     array_data = [];
     var done = [];
     var none = [];
@@ -575,9 +576,9 @@ function addUser(){
 
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
-    console.log(rooms)
+//    console.log(rooms)
     array_rooms = rooms;
-    console.log(current_room)
+//    console.log(current_room)
 });
 
 socket.on('datalab', function(username, data) {
@@ -592,9 +593,7 @@ socket.on('datalab', function(username, data) {
             console.log(data)
             if (value.id == check_open) {
                 console.log(value);
-                setTimeout(function(){ 
-                	changeApprovedIncome(value.check_lab_pay); 
-                }, 1500);
+               
                 
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
@@ -607,8 +606,8 @@ socket.on('datalab', function(username, data) {
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
-
-                    $('#num_pax_regis_'+value.id).text(value.pax_regis);
+//					alert(value.pax_regis);
+                    $('#num_edit_persion2').val(value.pax_regis);
                 }
                 if (value.check_driver_pay_report == 1) {
                     console.log("driver_pay_report");
@@ -641,11 +640,31 @@ socket.on('datalab', function(username, data) {
                         $('#txt_wait_'+value.id).hide();
                         $('#td_cancel_book_'+value.id).hide();
                         $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+                        
+                        $('#view_lab_approve_'+value.id).show();
+                       
+                        
+                        $.ajax({
+					           url: "main/get_data_user?id="+value.lab_approve_job_post,
+//					           data: pass,
+					           type: 'post',
+					           dataType: 'json',
+					           success: function(res) {
+					               console.log(res);
+					               var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
+					               $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
+//					               $('#text_name_approved').text(res.nickname);
+								}
+					    	});
+                        
+                        
                   }else{
+                  		
                         $('#btn_manage_topoint_'+value.id).hide();
                         $('#txt_wait_'+value.id).show();
                         $('#td_cancel_book_'+value.id).show();
                         $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+                        $('#view_lab_approve_'+value.id).hide();
                   }
 				  
 				  if(value.status != $('#check_status_'+value.id).val()){
@@ -682,9 +701,7 @@ if (check_open != 0) {
     if (data.id == check_open) {
         console.log(data)
         console.log(data.id);
-        setTimeout(function(){ 
-           changeApprovedIncome(data.check_driver_pay_report); 
-       }, 1000);
+       
         if (data.check_driver_topoint == 1) {
             console.log("driver_topoint");
             changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
@@ -698,9 +715,9 @@ if (check_open != 0) {
         if (data.check_guest_register == 1) {
             console.log("guest_register");
             changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"));
-
-            $('#num_pax_regis_'+data.id).text(data.pax_regis);
-            $('#step_driver_pay_report').show();
+			
+           $('#num_edit_persion2').val(value.pax_regis);
+//            $('#step_driver_pay_report').show();
         }
         if (data.check_driver_pay_report == 1) {
             console.log("driver_pay_report");
@@ -727,6 +744,11 @@ if ($('#open_shop_manage').val() == 1) {
           $('#txt_wait_'+data.id).hide();
           $('#td_cancel_book_'+data.id).hide();
           $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+          
+          /*$('#view_lab_approve_'+value.id).show();
+          var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
+          $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
+          
       }else{
           $('#btn_manage_'+data.id).hide();
           $('#txt_wait_'+data.id).show();
@@ -1303,10 +1325,11 @@ function viewPhotoGlobal(path, time, caption) {
 
 }
 
-function modalShowImg(path){
+function modalShowImg(path, cap){
 	modal_photo.show({ animation: "fade" });
 	console.log(path);
 	$('#photo_to_show_inmodal').attr('src',path);
+	$('#text_name_approved').text(cap);
     /* var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
     $.post(url_load, function(ele) {
         $('#body_load_photo').html(ele);
