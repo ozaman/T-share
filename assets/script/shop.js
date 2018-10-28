@@ -1428,7 +1428,8 @@ function openMapsDistance(shop_id) {
 }
 
 function openMapPlace(){
-	var url_map_place = "https://maps.google.com/?q=8.1110951,98.3064646";
+	
+	var url_map_place = "https://maps.google.com/?q="+$('#lat_product_place').val()+","+$('#lng_product_place').val();
   window.open(url_map_place);
 }
 
@@ -1496,24 +1497,29 @@ if (type == "driver_topoint") {
     $('#step_guest_receive').show();
     
 } 
+
 else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if(class_user=="taxi"){
-		$('#txt_btn_guest_receive').text('รับแขกแล้ว');
+		$('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
 	}else{
 		$('#txt_btn_guest_receive').text('ยืนยันรับแขก');
 	}
-} else if (type == "guest_register") {
+} 
+
+else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
 	loadNewPlan(id);
     $('#step_driver_pay_report').show();
     if(class_user=="taxi"){
-		$('#txt_btn_guest_register').text('รับแขกแล้ว');
+		$('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
 	}else{
-		$('#txt_btn_guest_register').text('ยืนยันรับแขก');
+		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
     
-} else if (type == "driver_pay_report") {
+} 
+
+else if (type == "driver_pay_report") {
 
 }
 $('#' + type + '_locat_off').hide();
@@ -2376,12 +2382,12 @@ function selectPlanRegis(id){
 }
 
 function loadNewPlan(id){
-	$.ajax({
+	/*$.ajax({
                url: "shop/check_row_change_plan?order_id="+id,
                type: 'post',
                dataType: 'json',
                success: function(res) {
-                   console.log(res);
+                   console.log(res);*/
 	               /*if(res>0){
 				   	var url_new_plan = "component/new_plan?id="+id;
 					$.post(url_new_plan,function(html){
@@ -2392,7 +2398,21 @@ function loadNewPlan(id){
 					$.post(url_new_plan,function(html){
 						$('#load_new_plan').html(html);
 					});
-               }
-           });
+              /* }
+           });*/
 	
+}
+
+function confirmGetIncome(id){
+	$.ajax({
+               url: "shop/driver_approved_pay?order_id="+id,
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   if(res.result==true){
+				   		sendSocket(id);
+				   }
+            }
+    });
 }

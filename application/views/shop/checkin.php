@@ -4,30 +4,13 @@ if($_COOKIE[detect_userclass]=="taxi"){
 
 $title_topoint = "แจ้งถึงสถานที่";   
 
-$title_guest_receive = "พนักงานรับแขก";
+$title_guest_receive = "รอพนักงานรับแขก";
 $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
 
-$title_guest_receive = "รอรับแขก";
-$txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
 
-$title_guest_regis = "รอลงทะเบียน";
-$txt_wait_guest_register = 'รอลงทะเบียน';
+$title_guest_regis = "รอยืนยันลงทะเบียน";
+$txt_wait_guest_register = 'รอยืนยันแขกลงลงทะเบียน';
 
-
-if ($arr[book][check_lab_pay] == 0) {
-   $title_pay = "พนักงานแจ้งยอดรายได้";
-   $txt_wait_pay_report = 'รอพนักงานแจ้งยอดรายได้';
-}
-
-else{
-   $title_pay = "พนักงานแจ้งยอดรายได้";
-   $txt_wait_pay_report = 'พนักงานแจ้งยอดรายได้';
-
-}
-
-if($arr[book][check_lab_pay]== 0){
-	$title_pay_income;
-}
 
 
 $btn_topoint_color = "background-color:#3b5998";
@@ -38,15 +21,15 @@ $btn_pay_report_color = "background-color:#666666";
 }
 
 else{
-  $title_topoint = "รอคนขับแจ้งถึงสถานที่";  
-  $title_guest_receive = "ยืนยันรับแขก";
-  $title_guest_regis = "ยืนยันแขกลงทะเบียน";
-  $title_pay = "ยืนยันแจ้งยอดรายได้";
+  	$title_topoint = "รอคนขับแจ้งถึงสถานที่";  
+  	$title_guest_receive = "ยืนยันรับแขก";
+  	$title_guest_regis = "ยืนยันลงทะเบียน";
+  	$title_pay = "ยืนยันแจ้งยอดรายได้";
 
-$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
-$txt_wait_guest_receive = 'รอดำเนินการ';
-$txt_wait_guest_register = 'รอดำเนินการ';
-$txt_wait_pay_report = 'รอดำเนินการ';
+	$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
+	$txt_wait_guest_receive = 'รอยืนยันรับแขก';
+	$txt_wait_guest_register = 'รอดำเนินการ';
+	$txt_wait_pay_report = 'รอดำเนินการ';
 
 
 
@@ -60,7 +43,7 @@ $btn_pay_report_color = "background-color:#3b5998";
 }
 	
       ?>
-      <div style="padding: 5px 0px;">
+   <div style="padding: 5px 0px;">
         <ons-list-header class="list-header"> ข้อมูลการเช็คอิน คนขับ</ons-list-header>
 
         <!-- <span class="text-cap font-20"> ข้อมูลการเช็คอิน คนขับ</span> -->
@@ -112,7 +95,7 @@ $btn_pay_report_color = "background-color:#3b5998";
    </div>
    <div style="width: 100%;height: 5px;background-color: #ddd ;margin: 10px 0px;" ></div>
    <div style="padding: 5px 0px;">
-      <span class="text-cap font-20"> ข้อมูลการเช็คอิน พนักงาน</span>
+   	  <ons-list-header class="list-header"> ข้อมูลการเช็คอิน พนักงาน</ons-list-header>
       <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="1">
          <tbody>
             <tr id="step_guest_receive" style="display:none">
@@ -126,7 +109,12 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_receive"></div>
                               </td>
                               <td colspan="2">
-                                 <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_receive_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>   <span id="txt_btn_guest_receivet"><?=$title_guest_receive;?></span></span></button>
+                                 <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_receive_color;?>;  border-radius: 20px; border:none;color: #fff; ">
+                                 <span class="font-20 text-cap">
+                                 <i class="icon-new-uniF159-5" style="width:10px;"></i>   
+                                 </span>
+                                 <span  class="font-20 text-cap" id="txt_btn_guest_receive"><?=$title_guest_receive;?></span>
+                                 </button>
                                  <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click">
                               </td>
                            </tr>
@@ -261,7 +249,7 @@ $btn_pay_report_color = "background-color:#3b5998";
 
    </td>
 </tr>
-<tr id="step_driver_pay_report" style="display:none">
+<!--<tr id="step_driver_pay_report" style="display:none">
    <td class="font-16">
       <div class="div-all-checkin">
          <table width="100%" border="0" cellspacing="2" cellpadding="0">
@@ -303,49 +291,8 @@ $btn_pay_report_color = "background-color:#3b5998";
          </table>  
       </div>
    </td>
-</tr>
-<!--<tr id="step_pay_all" style="display:nones;">
-   <td class="font-16">
-      <div class="div-all-checkin">
-         <table width="100%" border="0" cellspacing="2" cellpadding="0">
-            <tbody>
-               <tr>
-                  <td width="50" rowspan="2">
-                     <div class="step-booking" id="number_pay_all">5</div>
-                     <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_pay_all"></div>
-                  </td>
-                  <td colspan="2">
-                     <button id="btn_pay_all" onclick="openViewPrice('<?=$arr[book][id];?>');" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pay_report_color;?>;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> <?=$title_pay_income;?></span></button>
-                  </td>
-               </tr>
-               <tr>
-                  <input type="hidden" value="<?=$arr[book][check_pay_all];?>" id="pay_all_check_click">
-                  <td style="height:30px;">
-                     <div id="status_pay_all">
-                        <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
-                     </div>
-                  </td>
-                  <td width="30" id="pm_guest_pay_all" style="display: none;">
-                     <table width="100%">
-                        <tbody>
-                           <tr>
-                              <td>
-
-                              </td>
-                              <td>
-                                 <i id="photo_pay_all_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-                                 <i id="photo_pay_all_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','pay_all','<?=$arr[book][pay_all_date];?>');">photo_camera</i>
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </td>
-               </tr>
-            </tbody>
-         </table>  
-      </div>
-   </td>
 </tr>-->
+
 </tbody>
 </table>
 </div>

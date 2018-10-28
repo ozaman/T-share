@@ -235,7 +235,10 @@ $data_shopmain = $shopmain->row();
       </tr>
     </tbody>
   </table>
+  
 </div>
+<input type="hidden" value="<?=$data_place->lat;?>" id="lat_product_place" />
+<input type="hidden" value="<?=$data_place->lng;?>" id="lng_product_place" />
 </td>
 </tr>
 </tbody>
