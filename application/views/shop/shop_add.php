@@ -46,7 +46,9 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
   z-index: 2;
 }
 </style>
+
 <?php
+
 $select = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt,tb_pro.id as tb_pro_id, tb_pro.name as tb_pro_name, tb_pro.name_th as tb_pro_name_th, tb_pro.name_cn as tb_pro_name_cn FROM web_carall as t1 left join web_province as tb_pro on t1.i_province = tb_pro.id    left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 ORDER BY t1.status_usecar  DESC";
 $query = $this->db->query($select);
 
@@ -523,162 +525,178 @@ if($query->num_rows()>=1){
              <!-- <div class="form-group"> -->
 
               <!-- <span class="list-header" style="background-image: none;"></span> -->
+              <?php
+                # เวลาที่จะถึง
+              for($i=5;$i<=480;$i+=5){
+                $s_h = $i.' นาที';
+               if($i >= 60){
+                $s_h = '';
+                $s_h = floor($i/60).' ชั่วโมง';
+                $i_m = $i%60;
+                if($i_m > 0){
+                 $s_h .= ' '.$i_m.' นาที';
+               }
+             }
+             $t_time_m[$i] = $s_h; 
+           }
+               // print_r($t_time_m);
+           ?>
+           <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+            <option value="0">-- <?=$op_select;?> --</option>
+            <?php
 
-              <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-                <option value="0">-- <?=$op_select;?> --</option>
-                <?php
-                $time = array(
-                  "500" => "ยังไม่เปิดให้บริการ",
-                  "5" => "5 นาที",
-                  "10" => "10 นาที",
-                  "15" => "15 นาที",
-                  "20" => "20 นาที",
-                  "25" => "25 นาที",
-                  "30" => "30 นาที",
-                  "35" => "35 นาที",
-                  "40" => "40 นาที",
-                  "45" => "45 นาที",
-                  "50" => "50 นาที",
-                  "55" => "55 นาที",
-                  "60" => "1 ชั่วโมง.",
-                  "90" => "1 ชั่วโมง 30 นาที",
-                  "120" => "2 ชั่วโมง",
-                  "150" => "2 ชั่วโมง 30 นาที",
-                  "180" => "3 ชั่วโมง",
-                  "210" => "3 ชั่วโมง 30 นาที",
-                  "240" => "4 ชั่วโมง",
-                  "270" => "4 ชั่วโมง 30 นาที",
-                  "300" => "5 ชั่วโมง",
-                  "330" => "5 ชั่วโมง 30 นาที",
-                  "360" => "6 ชั่วโมง",
-                  "390" => "6 ชั่วโมง 30 นาที",
-                  "420" => "7 ชั่วโมง",
-                  "450" => "7 ชั่วโมง 30 นาที",
-                  "480" => "8 ชั่วโมง",
-                  "0" => "มากกว่านี่ปิดให้บริการ"
-                 
-                );
-                $mm = 5;
-                ?>
+            $time = array(
+              "500" => "ยังไม่เปิดให้บริการ",
+              "5" => "5 นาที",
+              "10" => "10 นาที",
+              "15" => "15 นาที",
+              "20" => "20 นาที",
+              "25" => "25 นาที",
+              "30" => "30 นาที",
+              "35" => "35 นาที",
+              "40" => "40 นาที",
+              "45" => "45 นาที",
+              "50" => "50 นาที",
+              "55" => "55 นาที",
+              "60" => "1 ชั่วโมง.",
+              "90" => "1 ชั่วโมง 30 นาที",
+              "120" => "2 ชั่วโมง",
+              "150" => "2 ชั่วโมง 30 นาที",
+              "180" => "3 ชั่วโมง",
+              "210" => "3 ชั่วโมง 30 นาที",
+              "240" => "4 ชั่วโมง",
+              "270" => "4 ชั่วโมง 30 นาที",
+              "300" => "5 ชั่วโมง",
+              "330" => "5 ชั่วโมง 30 นาที",
+              "360" => "6 ชั่วโมง",
+              "390" => "6 ชั่วโมง 30 นาที",
+              "420" => "7 ชั่วโมง",
+              "450" => "7 ชั่วโมง 30 นาที",
+              "480" => "8 ชั่วโมง",
+              "0" => "มากกว่านี่ปิดให้บริการ"
 
-                <?php foreach ($time as $key => $at) {
+            );
+            $mm = 5;
+            ?>
+
+            <?php foreach ($t_time_m as $key => $at) {
 
 
 
-                  if ($i_time_balance2 > 0) {
-                    if ($key >= $i_time_balance2 ) {
-                      if ($key == '500' ) {
-                        $dis = 'disabled';
-                      }
-                      else{
-                        $dis = '';
-
-                      }
-                      ?>
-                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at;?></option>
-
-                      <?php
-                    }
+              if ($i_time_balance2 > 0) {
+                if ($key >= $i_time_balance2 ) {
+                  if ($key == '500' ) {
+                    $dis = 'disabled';
                   }
                   else{
-                    if ($i_time_balance >= $key && $key < 500) {
-                      if ($key == '0') {
-                        $dis = 'disabled';
-                      }
-                      else{
-                        $dis = '';
+                    $dis = '';
 
-                      }
-                      ?>
-                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
-
-                      <?php
-                    }
                   }
-                  if ($i_time_balance2 > 480 && $key == 500) {
-                   if ($key == '500') {
-                        $dis = 'disabled';
-                      }
-                      else{
-                        $dis = '';
+                  ?>
+                  <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at;?></option>
 
-                      }
-                      ?>
-                      <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
-
-                      <?php
-                  }
-
-
-
-
+                  <?php
                 }
-                ?>
+              }
+              else{
+                if ($i_time_balance >= $key && $key < 500) {
+                  if ($key == '0') {
+                    $dis = 'disabled';
+                  }
+                  else{
+                    $dis = '';
 
-              </select>
+                  }
+                  ?>
+                  <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
 
-               <!-- </div> -->
-            </div>
-            <div class="card"  onclick="area_remark()">
-              <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
-              <!-- <div class="form-group"> -->
+                  <?php
+                }
+              }
+              if ($i_time_balance2 > 480 && $key == 500) {
+               if ($key == '500') {
+                $dis = 'disabled';
+              }
+              else{
+                $dis = '';
 
-
-                <!-- <label class="font-17">จำนวนคน</label> -->
-
-                <ons-row>
-                  <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark"  cols="100"  style="pointer-events: auto;" ></textarea>
-
-                </ons-row> 
-                <!-- </div> -->
-              </div>
-
-
-            </div>
-          </form>
-          <div  style="padding: 0px 10px;padding-bottom: 40px;">
-            <?php 
-            if(count($val) != 0){
-      // echo count($val);
+              }
               ?>
-              <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
+              <option  <?=$dis; ?> value="<?=$key; ?>"><?=$at; ?></option>
 
-            <?php } ?>
-          </div>
-          <?php 
-        }
-        else{
+              <?php
+            }
 
 
 
-        }
 
-        ?>
+          }
+          ?>
+
+        </select>
+
+        <!-- </div> -->
       </div>
-      <!-- <button onclick="_calltest()">dsadsdsd</button> -->
+      <div class="card"  onclick="area_remark()">
+        <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
+        <!-- <div class="form-group"> -->
 
-      <script type="text/javascript">
-        function_name();
-        function function_name() {
-          var weekdays = new Array(7);
-          weekdays[0] = "Sun";
-          weekdays[1] = "Mon";
-          weekdays[2] = "Tue";
-          weekdays[3] = "Wed";
-          weekdays[4] = "Thu";
-          weekdays[5] = "Fri";
-          weekdays[6] = "Sat";
-          var weekdays2 = new Array(7);
-          weekdays2[0] = "วันอาทิตย์";
-          weekdays2[1] = "วันจันทร์";
-          weekdays2[2] = "วันอังคาร";
-          weekdays2[3] = "วันพุธ";
-          weekdays2[4] = "วันพฤหัส";
-          weekdays2[5] = "วันศุกร์";
-          weekdays2[6] = "วันเสาร์";
-          var current_date = new Date();
 
-          weekday_value = current_date.getDay();
+          <!-- <label class="font-17">จำนวนคน</label> -->
+
+          <ons-row>
+            <textarea class="textarea" rows="3" placeholder="หมายเหตุ" id="remark" name="remark"  cols="100"  style="pointer-events: auto;" ></textarea>
+
+          </ons-row> 
+          <!-- </div> -->
+        </div>
+
+
+      </div>
+    </form>
+    <div  style="padding: 0px 10px;padding-bottom: 40px;">
+      <?php 
+      if(count($val) != 0){
+      // echo count($val);
+        ?>
+        <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
+
+      <?php } ?>
+    </div>
+    <?php 
+  }
+  else{
+
+
+
+  }
+
+  ?>
+</div>
+<!-- <button onclick="_calltest()">dsadsdsd</button> -->
+
+<script type="text/javascript">
+  function_name();
+  function function_name() {
+    var weekdays = new Array(7);
+    weekdays[0] = "Sun";
+    weekdays[1] = "Mon";
+    weekdays[2] = "Tue";
+    weekdays[3] = "Wed";
+    weekdays[4] = "Thu";
+    weekdays[5] = "Fri";
+    weekdays[6] = "Sat";
+    var weekdays2 = new Array(7);
+    weekdays2[0] = "วันอาทิตย์";
+    weekdays2[1] = "วันจันทร์";
+    weekdays2[2] = "วันอังคาร";
+    weekdays2[3] = "วันพุธ";
+    weekdays2[4] = "วันพฤหัส";
+    weekdays2[5] = "วันศุกร์";
+    weekdays2[6] = "วันเสาร์";
+    var current_date = new Date();
+
+    weekday_value = current_date.getDay();
 //    console.log(weekdays[weekday_value])
 var url_chk_time = "shop/chk_time?shop_id=<?=$_GET[shop_id];?>&day=" +weekdays[weekday_value];
 $.ajax({

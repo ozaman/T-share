@@ -1822,6 +1822,71 @@ function selectTypeCarPlace(id){
     });
     
 }
+// $(function() {
+var options = {
+            data: [{civilite: "lorem", prenom: "ipsum", nom: "sed ut", fonction: "unde", departement: "voluptatem", coderegion: "accusantium"}],
+            getValue: "civilite",
+            template: {
+                type: "custom",
+                method: function(value, item) {
+                    return "<span class='s-1'>" + value + "</span> <span class='s-2'>" + item.prenom + " " + item.nom + "</span> <span class='s-3'>" + item.fonction + "</span> <span class='s-4'>" + item.departement + ' (' + item.coderegion + ')</span>';
+                }
+            }
+        };
+        // $("#custom-template").easyAutocomplete(options);
+
+// var options = {
+
+//     url: function(phrase) {
+//     return  "http://easyautocomplete.com/api/countrySearch.php";
+//   },
+
+//   getValue: function(element) {
+//     return element.name;
+//   },
+
+//   ajaxSettings: {
+//     dataType: "json",
+//     method: "POST",
+//     data: {
+//       dataType: "json"
+//     }
+//   },
+
+//   preparePostData: function(data) {
+//     data.phrase = $("#in_search_station").val();
+//     return data;
+//   },
+
+//   requestDelay: 400
+
+            // data: [{civilite: "lorem", prenom: "ipsum", nom: "sed ut", fonction: "unde", departement: "voluptatem", coderegion: "accusantium"}],
+
+            // getValue: "topic_th"
+
+            // template: {
+            //     type: "custom",
+            //     method: function(value, item) {
+            //         return "<span class='s-1'>" + value + "</span> <span class='s-2'>" + item.prenom + " " + item.nom + "</span> <span class='s-3'>" + item.fonction + "</span> <span class='s-4'>" + item.departement + ' (' + item.coderegion + ')</span>';
+            //     }
+            // }
+        // };
+
+        $("#in_search_station").easyAutocomplete(options);
 // function selectstation(id) {
     // $('#radio_other_'+id).prop("checked", true);
 // }
+// 
+
+//     $("#in_search_station").autocomplete({
+//     source: function (request, response) {
+//         $.getJSON("core/code/includes/search.php", {
+//             term: request.term
+//         }, response);
+//     },
+//     minLength: 2,
+//     select: function(event, ui) {
+//         log(ui.item ? "Selected: " + ui.item.value + " aka " + ui.item.id : "Nothing selected, input was " + this.value);
+//     }
+// });
+// });

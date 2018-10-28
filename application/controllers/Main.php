@@ -191,6 +191,38 @@ class Main extends CI_Controller {
 	$num = $this->Main_model->num_row(TBL_PLACE_CAR_STATION,$_where);
 	echo $num;
   }
+  public function search(){
+    $keyword = $this->input->post('term');
+
+    $data['response'] = 'false'; //Set default response
+
+    $query = $this->Main_model->sw_search($keyword); //Model DB search
+
+    if($query->num_rows() > 0){
+       $data['response'] = 'true';
+       $data['message'] = array(); 
+       $data['keyword'] =  $keyword; 
+       foreach($query->result() as $row){
+         $_where             = array();
+                $_where[id]         = $row->type;
+                $_select            = array(
+                    '*'
+                );
+                $TYPE      = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE, $_where);
+                $data[result] =  $row;
+                $data[type] =  $TYPE;
+                          $data['message'][] = array('label'=> $row->topic_th.'('.$TYPE->topic_th.')', 'value'=> $row->topic_th.'('.$TYPE->topic_th.')', 'station'=>$row->id); 
+       }
+    }
+    echo json_encode($data);
+  }
+   public function search_select(){
+     $id     = $this->input->post('id');
+    $data = $this->Main_model->search_select( $id );
+//  $data['res'] = 123;
+//    header('Content-Type: application/json');
+    echo json_encode($data);
+  }
   
   public function get_timestamp(){
   	echo json_encode(time());
