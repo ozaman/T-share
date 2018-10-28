@@ -46,7 +46,7 @@ else{
 }
 
 if($arr[book][check_lab_pay]== 0){
-	$title_pay_income
+	$title_pay_income;
 }
 
 
