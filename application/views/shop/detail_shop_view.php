@@ -153,7 +153,7 @@ else if($arr[book][status]=='CONFIRM'){
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
   <?php 
-  echo $arr[book][plan_id];
+//  echo $arr[book][plan_id];
   if ($arr[book][check_guest_register] != 1) {
    
          if($_COOKIE[detect_userclass]=="lab"){
@@ -217,8 +217,10 @@ else if($arr[book][status]=='CONFIRM'){
                   </tbody>
                </table>
             </div>
+            
          </td>
       </tr>
+	
    </tbody>
 	</table>
   <?php 

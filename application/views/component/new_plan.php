@@ -1,7 +1,6 @@
 <?php 
 	$data = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[id]), array('*'));
-//	echo $data->price_park_unit;
-//	exit();
+	
 	$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$data->plan_id."' ");
 	$num = 0;
 	
@@ -42,23 +41,37 @@
 	}
 	$all_total = $park_total + $person_total + $com_total;
 	
-	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$arr[book][plan_id]."'    ";
+	
+	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
  	
  	/*$sql_country = "SELECT * from ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();*/
- 	$query = $this->db->query("SELECT cause_change FROM change_plan_logs where order_id = ".$data->id);
+ 	
+ 	$query = $this->db->query("SELECT cause_change FROM change_plan_logs where order_id = '".$data->id."' ");
  	$res_log_change = $query->row();
  	
- 	$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = ".$res_log_change->cause_change);
+ 	$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = '".$res_log_change->cause_change."' ");
  	$res_type_change = $query->row();
+ 	
+ 	$query = $this->db->query("select * from change_plan_logs where order_id = ".$data->id);
+ 	$check_change_plan = $query->num_rows();
+ 	if($check_change_plan==0){
+		$titel = t_work_remuneration;
+		$display_none_change_plan = "display:none;";
+	}else{
+		$titel = "เปลี่ยน".t_work_remuneration;
+		$display_none_change_plan = "";
+	}
+	
+//	echo $check_change_plan." ++++++++";
 ?>
 <div style="padding: 5px 0px;">
      	<ons-list-header class="list-header"> <?="เปลี่ยน".t_work_remuneration;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
-     		<tr>
+     		<tr style="<?=$display_none_change_plan;?>">
      			<td>สาเหตุ</td>
      			<td><?=$res_type_change->s_topic;?></td>
      		</tr>
@@ -109,4 +122,8 @@
      			 </td>
      		</tr>
      	</table>
-    </div>
+   <?php 
+   	if($_COOKIE[detect_userclass]=="taxi"){ ?>  	
+   <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันค่าตอบแทน</ons-button> 
+   <?php }   ?>	
+</div>

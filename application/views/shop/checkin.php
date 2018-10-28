@@ -4,11 +4,9 @@ if($_COOKIE[detect_userclass]=="taxi"){
 
 $title_topoint = "แจ้งถึงสถานที่";   
 
-$title_guest_receive = "พนักงานรับแขก";
+$title_guest_receive = "รอพนักงานรับแขก";
 $txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
 
-$title_guest_receive = "รอรับแขก";
-$txt_wait_guest_receive = 'รอพนักงานยืนยันรับแขก';
 
 $title_guest_regis = "รอลงทะเบียน";
 $txt_wait_guest_register = 'รอลงทะเบียน';
@@ -126,7 +124,12 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_guest_receive"></div>
                               </td>
                               <td colspan="2">
-                                 <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_receive_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>   <span id="txt_btn_guest_receivet"><?=$title_guest_receive;?></span></span></button>
+                                 <button id="btn_guest_receive" onclick="btn_guest_receive('<?=$arr[book][id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_guest_receive_color;?>;  border-radius: 20px; border:none;color: #fff; ">
+                                 <span class="font-20 text-cap">
+                                 <i class="icon-new-uniF159-5" style="width:10px;"></i>   
+                                 </span>
+                                 <span  class="font-20 text-cap" id="txt_btn_guest_receive"><?=$title_guest_receive;?></span>
+                                 </button>
                                  <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click">
                               </td>
                            </tr>
