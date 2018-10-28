@@ -518,7 +518,7 @@ else {
 	if (shop_frist_run == 0) {
 	    shop_frist_run = done.length;
 	}
-	console.log(done.length+ "|| "+shop_frist_run)
+//	console.log(done.length+ "|| "+shop_frist_run)
 	if (done.length != shop_frist_run) {
 	    shopManage();
 	    shop_frist_run = done.length;

@@ -42,7 +42,7 @@
 	}
 	$all_total = $park_total + $person_total + $com_total;
 	
-	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.id='".$data->plan_id."'    ";
+	$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$arr[book][plan_id]."'    ";
  	$query_country = $this->db->query($sql_country);
  	$res_country = $query_country->row();
  	
