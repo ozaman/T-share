@@ -45,6 +45,10 @@ else{
 
 }
 
+if($arr[book][check_lab_pay]== 0){
+	$title_pay_income
+}
+
 
 $btn_topoint_color = "background-color:#3b5998";
 $btn_guest_receive_color = "background-color:#666666";
@@ -228,7 +232,21 @@ $btn_pay_report_color = "background-color:#3b5998";
                                  <input type="hidden" value="<?=$arr[book][check_guest_register];?>" id="guest_register_check_click">
                               </td>
                               <td width="30" id="pm_guest_register" style="display: none;">
-
+                                 <table width="100%">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <i id="guest_register_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
+                                             <i id="guest_register_locat_on" onclick="openPointMaps('guest_register','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
+                                          </td>
+                                          <td>
+                                             <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+                                             <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date];?>');">photo_camera</i>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                             
 
                               </td>
                            </tr>
@@ -333,6 +351,48 @@ $btn_pay_report_color = "background-color:#3b5998";
       </div>
    </td>
 </tr>
+<!--<tr id="step_pay_all" style="display:nones;">
+   <td class="font-16">
+      <div class="div-all-checkin">
+         <table width="100%" border="0" cellspacing="2" cellpadding="0">
+            <tbody>
+               <tr>
+                  <td width="50" rowspan="2">
+                     <div class="step-booking" id="number_pay_all">5</div>
+                     <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_pay_all"></div>
+                  </td>
+                  <td colspan="2">
+                     <button id="btn_pay_all" onclick="openViewPrice('<?=$arr[book][id];?>');" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pay_report_color;?>;  border-radius:  20px; border:none;color: #fff;"><span class="font-20 text-cap"><i class="icon-new-uniF121-10" style="width:10px;"></i> <?=$title_pay_income;?></span></button>
+                  </td>
+               </tr>
+               <tr>
+                  <input type="hidden" value="<?=$arr[book][check_pay_all];?>" id="pay_all_check_click">
+                  <td style="height:30px;">
+                     <div id="status_pay_all">
+                        <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอดำเนินการ</font></strong></div>
+                     </div>
+                  </td>
+                  <td width="30" id="pm_guest_pay_all" style="display: none;">
+                     <table width="100%">
+                        <tbody>
+                           <tr>
+                              <td>
+
+                              </td>
+                              <td>
+                                 <i id="photo_pay_all_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+                                 <i id="photo_pay_all_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','pay_all','<?=$arr[book][pay_all_date];?>');">photo_camera</i>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+            </tbody>
+         </table>  
+      </div>
+   </td>
+</tr>-->
 </tbody>
 </table>
 </div>

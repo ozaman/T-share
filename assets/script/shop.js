@@ -1086,7 +1086,7 @@ $.post(url, detailObj, function(data) {
 	    console.log("driver_pay_report");
 	    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
 	}
-	changeApprovedIncome(obj.check_driver_pay_report);
+	
 	checkPhotoCheckIn('driver_topoint', obj.id);
 	checkPhotoCheckIn('guest_receive', obj.id);
 	checkPhotoCheckIn('guest_register', obj.id);
@@ -1525,18 +1525,6 @@ $('#' + type + '_check_click').val(1);
 $("#box_" + type).removeClass('border-alert');
 }
 
-function changeApprovedIncome(check_driver_pay_report){
-//	alert(check_driver_pay_report)
-if(class_user=="taxi"){
-    if(check_driver_pay_report==1){
-        $('#box_approved_income').show();
-    }
-}else{
-    $('#box_approved_income').show();
-}
-
-
-}
 /******* <!-------- End Change html CheckIn ------------> *******/
 
 /******* <!-------- function CheckIn ------------> *******/

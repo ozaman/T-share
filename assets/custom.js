@@ -1,4 +1,4 @@
-setInterval(function(){ addUser(); }, 30000);
+//setInterval(function(){ addUser(); }, 30000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -592,9 +592,7 @@ socket.on('datalab', function(username, data) {
             console.log(data)
             if (value.id == check_open) {
                 console.log(value);
-                setTimeout(function(){ 
-                	changeApprovedIncome(value.check_lab_pay); 
-                }, 1500);
+               
                 
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
@@ -682,9 +680,7 @@ if (check_open != 0) {
     if (data.id == check_open) {
         console.log(data)
         console.log(data.id);
-        setTimeout(function(){ 
-           changeApprovedIncome(data.check_driver_pay_report); 
-       }, 1000);
+       
         if (data.check_driver_topoint == 1) {
             console.log("driver_topoint");
             changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
