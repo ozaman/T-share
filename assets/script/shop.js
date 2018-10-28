@@ -2411,6 +2411,31 @@ function confirmGetIncome(id){
                success: function(res) {
                    console.log(res);
                    if(res.result==true){
+                   		$('#btn_confirm_get_'+id).hide();
+                   		$('#status_get_'+id).show();
+                   		$('#text_get_box_'+id).show();
+                   		$('#text_confirm_date_'+id).text(timestampToDate(res.driver_pay_report_date, "time"));
+                   		
+				   		sendSocket(id);
+				   }
+            }
+    });
+}
+
+function confirmPayIncome(id){
+	var data = {
+		order_id : id
+	}
+	$.ajax({
+               url: "shop/lab_approved_pay",
+               type: 'post',
+               data : data,
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   if(res.result==true){
+                   		$('#btn_confirm_get_'+id).hide();
+                   		$('#confirm_lab_pay_'+id).show();
 				   		sendSocket(id);
 				   }
             }

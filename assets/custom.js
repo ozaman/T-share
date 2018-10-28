@@ -612,8 +612,16 @@ socket.on('datalab', function(username, data) {
                     console.log("driver_pay_report");
                     changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
                 }
+                if(value.check_driver_pay==1 && value.check_lab_pay==1){
+					loadNewPlan(value.id);
+					return;
+				}
                 if(value.check_driver_pay==1){
 					loadNewPlan(value.id);
+				}
+				if(value.check_lab_pay==1){
+					loadNewPlan(value.id);
+//					alert(value.check_lab_pay);
 				}
                 
             }
@@ -711,13 +719,14 @@ if (check_open != 0) {
             console.log("guest_register");
             changeHtml("guest_register", data.id,timestampToDate(data.guest_register_date, "time"));
 			
-           $('#num_edit_persion2').val(value.pax_regis);
+           $('#num_edit_persion2').val(data.pax_regis);
 //            $('#step_driver_pay_report').show();
         }
         if (data.check_driver_pay_report == 1) {
             console.log("driver_pay_report");
             changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
         }
+        
     }
 
 }

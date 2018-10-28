@@ -464,11 +464,12 @@ public function lab_approved_pay(){
 
 public function driver_approved_pay(){
 
-	$id = $_POST[order_id];
+	$id = $_GET[order_id];
 	$data_ob[check_driver_pay] = 1;
+	$data_ob[driver_pay_report_date] = time();
 	$this->db->where('id', $id);
-	$data[result] = $this->db->update('order_booking', $data_ob); 
-	return $data;
+	$data_ob[result] = $this->db->update('order_booking', $data_ob); 
+	return $data_ob;
 }
 
 public function editpax_regis(){
