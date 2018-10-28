@@ -106,14 +106,14 @@ $val = $_POST[data];
                  
                	  if($val[lab_approve_job]==1){
 					$hide_btn_photo = "";
-					$sql_l = "SELECT username,name FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
+					$sql_l = "SELECT username,name,nickname FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
 			    	$query_l = $this->db->query($sql_l);
 			    	$res_l = $query_l->row();
 				}else{
 					$hide_btn_photo = "display:none;";
 				  }
                	?>
-			   	<i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('../data/pic/driver/small/<?=$res_l->username;?>.jpg');" >account_circle</i>
+			   	<i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('../data/pic/driver/small/<?=$res_l->username;?>.jpg?v=<?=time();?>','<?=$res_l->nickname;?>');" >account_circle</i>
 			   
             </td>
          </tr>
@@ -174,7 +174,7 @@ $val = $_POST[data];
                                   }
 
                                   if($val[check_driver_topoint]==0){
-                           		$text_mn = 'แจ้งถึงสถานที่ส่งแขก';
+                           		$text_mn = 'ถึงสถานที่ส่งแขก';
                            		$btn_manage_display = "display: none;";
                            		$btn_manage_topoint_display = "";
                            		}

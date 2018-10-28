@@ -473,6 +473,7 @@ var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
     //console.log(data.booking)
+    addUser();
     array_data = [];
     var done = [];
     var none = [];
@@ -575,9 +576,9 @@ function addUser(){
 
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
-    console.log(rooms)
+//    console.log(rooms)
     array_rooms = rooms;
-    console.log(current_room)
+//    console.log(current_room)
 });
 
 socket.on('datalab', function(username, data) {
@@ -639,11 +640,31 @@ socket.on('datalab', function(username, data) {
                         $('#txt_wait_'+value.id).hide();
                         $('#td_cancel_book_'+value.id).hide();
                         $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+                        
+                        $('#view_lab_approve_'+value.id).show();
+                       
+                        
+                        $.ajax({
+					           url: "main/get_data_user?id="+value.lab_approve_job_post,
+//					           data: pass,
+					           type: 'post',
+					           dataType: 'json',
+					           success: function(res) {
+					               console.log(res);
+					               var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
+					               $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
+//					               $('#text_name_approved').text(res.nickname);
+								}
+					    	});
+                        
+                        
                   }else{
+                  		
                         $('#btn_manage_topoint_'+value.id).hide();
                         $('#txt_wait_'+value.id).show();
                         $('#td_cancel_book_'+value.id).show();
                         $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+                        $('#view_lab_approve_'+value.id).hide();
                   }
 				  
 				  if(value.status != $('#check_status_'+value.id).val()){
@@ -723,6 +744,11 @@ if ($('#open_shop_manage').val() == 1) {
           $('#txt_wait_'+data.id).hide();
           $('#td_cancel_book_'+data.id).hide();
           $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+          
+          /*$('#view_lab_approve_'+value.id).show();
+          var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
+          $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
+          
       }else{
           $('#btn_manage_'+data.id).hide();
           $('#txt_wait_'+data.id).show();
@@ -1299,10 +1325,11 @@ function viewPhotoGlobal(path, time, caption) {
 
 }
 
-function modalShowImg(path){
+function modalShowImg(path, cap){
 	modal_photo.show({ animation: "fade" });
 	console.log(path);
 	$('#photo_to_show_inmodal').attr('src',path);
+	$('#text_name_approved').text(cap);
     /* var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
     $.post(url_load, function(ele) {
         $('#body_load_photo').html(ele);

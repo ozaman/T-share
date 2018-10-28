@@ -40,7 +40,13 @@ $val = $_POST[data];
 	 $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
    	$query_cancel = $this->db->query($sql);
    	$res_cancel = $query_cancel->row();
-
+	
+	if($res_dv->name!=""){
+		$name_dv = $res_dv->name;
+	}
+	if($res_dv->nickname!=""){
+		$name_dv = $res_dv->nickname;
+	}
           ?>
 <div >
    <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -109,7 +115,7 @@ $val = $_POST[data];
                               </td>
                               <td width="1"></td>
                               <td>
-                                 <i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg');">account_circle</i>
+                                 <i class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg','<?=$name_dv;?>');">account_circle</i>
                               </td>
                            </tr>
                 </table>

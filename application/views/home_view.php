@@ -530,14 +530,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     if($_COOKIE[detect_userclass]=="lab"){ 
                     	$active_add = "";
                     	$active_mn = "active";
+                    	$display_none_num_shop = "";
                      }else{ 
                      	$active_add = "active";
                      	$active_mn = "";
+                     	$display_none_num_shop = "display:none;";
                      }
                     ?>
                     	<ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
                         <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> >
-                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 30px;"></span>
+                        
+                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 30px;" <?=$display_none_num_shop;?>></span>
                         </ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
                             <!--<span class="notification none" id="num_his" style="float: right;
@@ -1422,6 +1425,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 	    <div id="body_load_photo">
 	    	<div>
 	    		<img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
+	    		<div style="background-color: #000;color: #fff;">
+	    			<b style="font-size: 34px;" id="text_name_approved">เบิร์ด</b>
+	    		</div>
 	    	</div>
 	    </div>
 	  </div>

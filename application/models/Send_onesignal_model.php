@@ -392,12 +392,12 @@ class Send_onesignal_model extends CI_Model {
  		
 	$invoice = $_GET[vc];
 	$order_id = $_GET[order_id];
-	$type_txt = "พนักงานรับทราบงานของคุณแล้ว";
+	$type_txt = "พนักงานรับทราบ";
     	$tag = array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);
 		$content  = array(
-        "en" => "ทะเบียน ".$type_txt
+        "en" => $type_txt
    		 );				
 	$heading = array(
 		   "en" => "เลขที่งาน ".$invoice
