@@ -1,4 +1,4 @@
-//setInterval(function(){ addUser(); }, 30000);
+//setInterval(function(){ addUser(); }, 10000);
 
 function reloadApp(){
 	var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -473,7 +473,7 @@ var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
     //console.log(data.booking)
-    addUser();
+    
     array_data = [];
     var done = [];
     var none = [];
@@ -576,9 +576,9 @@ function addUser(){
 
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
-//    console.log(rooms)
+    console.log(rooms)
     array_rooms = rooms;
-//    console.log(current_room)
+    console.log(current_room)
 });
 
 socket.on('datalab', function(username, data) {

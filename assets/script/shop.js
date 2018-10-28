@@ -1072,6 +1072,7 @@ $.post(url, detailObj, function(data) {
 
 	if (obj.check_driver_topoint == 1) {
 	    console.log("driver_topoint");
+//	    alert(obj.driver_topoint_date);
 	    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
 	}
 	if (obj.check_guest_receive == 1) {
@@ -1484,14 +1485,34 @@ $("#number_" + type).addClass('step-booking-active');
 
 $("#btn_" + type).css('background-color', '#666666');
 $('#pm_'+type).show();
+
 if (type == "driver_topoint") {
+	if(class_user=="taxi"){
+		$('#txt_btn_driver_topoint').text('ยืนยันถึงสถานที่');
+	}else{
+		$('#txt_btn_driver_topoint').text('คนขับแจ้งถึงสถานที่');
+	}
+	
     $('#step_guest_receive').show();
-} else if (type == "guest_receive") {
+    
+} 
+else if (type == "guest_receive") {
     $('#step_guest_register').show();
+    if(class_user=="taxi"){
+		$('#txt_btn_guest_receive').text('รับแขกแล้ว');
+	}else{
+		$('#txt_btn_guest_receive').text('ยืนยันรับแขก');
+	}
 } else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
 	loadNewPlan(id);
     $('#step_driver_pay_report').show();
+    if(class_user=="taxi"){
+		$('#txt_btn_guest_register').text('รับแขกแล้ว');
+	}else{
+		$('#txt_btn_guest_register').text('ยืนยันรับแขก');
+	}
+    
 } else if (type == "driver_pay_report") {
 
 }
@@ -1655,16 +1676,20 @@ function sendCheckIn(id, type) {
 }
 
 function checkinAndOpenDetail(id, key){
-	sendCheckIn(id, 'driver_topoint');
-	array_data.manage[key].check_driver_topoint = 1;
-	array_data.manage[key].driver_topoint = 1;
-	array_data.manage[key].driver_topoint_date = $.now();
-	array_data.manage[key].driver_topoint_lat = $('#lat').val();
-	array_data.manage[key].driver_topoint_lng = $('#lng').val();
-		openDetailShop(key,"");
-		$('#btn_manage_'+id+' span').text('ตรวจสอบ');
-		$('#btn_manage_'+id).show();
-		$('#btn_manage_topoint_'+id).hide();
+	
+	$.post('main/get_timestamp',function(res){
+		sendCheckIn(id, 'driver_topoint');
+		array_data.manage[key].check_driver_topoint = 1;
+		array_data.manage[key].driver_topoint = 1;
+		array_data.manage[key].driver_topoint_date = res;
+		array_data.manage[key].driver_topoint_lat = $('#lat').val();
+		array_data.manage[key].driver_topoint_lng = $('#lng').val();
+			openDetailShop(key,"");
+			$('#btn_manage_'+id+' span').text('ตรวจสอบ');
+			$('#btn_manage_'+id).show();
+			$('#btn_manage_topoint_'+id).hide();
+	});
+	
 }
 
 function shopFuncNotiActi(id, type){
@@ -1752,11 +1777,13 @@ function readURLcheckIn(input, type, subtype, id) {
 }
 
 function btn_driver_topoint(id) {
-	
+	if (class_user == 'lab') {
+        return;
+    }
     if ($('#driver_topoint_check_click').val() == 1) {
         return;
     }
- sendCheckIn(id, 'driver_topoint');
+ 	sendCheckIn(id, 'driver_topoint');
    /* fn.pushPage({
         'id': 'popup_shop_checkin.html',
         'title': "ถึงสถานที่ส่งแขก"

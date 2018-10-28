@@ -192,6 +192,10 @@ class Main extends CI_Controller {
 	echo $num;
   }
   
+  public function get_timestamp(){
+  	echo json_encode(time());
+  }
+  
 // public function detect
 //////////////////////////// End
 }

@@ -117,7 +117,7 @@
                <table  style="position: absolute;right: 25px;margin-top: -10px;">
                            <tr>
                               <td>
-                                 <i onclick="modalShowImg('../data/pic/car/<?=$row_car->id;?>_1.jpg?v=<?=time();?>');" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);">local_taxi</i>
+                                 <i onclick="modalShowImg('../data/pic/car/<?=$row_car->id;?>_1.jpg?v=<?=time();?>','');" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);">local_taxi</i>
                               </td>
                               <td width="1"></td>
                               <td>
