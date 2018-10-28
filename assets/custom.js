@@ -1533,7 +1533,7 @@ function _form_car_station(body){
        }
    });
 }
-var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, have = 1,
+var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, have = 1 2 have addnew 3 search,
 
 function submitadd_station(){
     var form = document.getElementById("form_addstation");
