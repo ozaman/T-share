@@ -69,7 +69,7 @@
 //	echo $check_change_plan." ++++++++";
 ?>
 <div style="padding: 5px 0px;">
-     	<ons-list-header class="list-header"> <?="เปลี่ยน".t_work_remuneration;?></ons-list-header>
+     	<ons-list-header class="list-header"> <?=$titel;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr style="<?=$display_none_change_plan;?>">
      			<td>สาเหตุ</td>
@@ -122,8 +122,12 @@
      			 </td>
      		</tr>
      	</table>
-   <?php 
+  	 <?php 
    	if($_COOKIE[detect_userclass]=="taxi"){ ?>  	
-   <ons-button onclick="openViewPrice('<?=$arr[book][id];?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันค่าตอบแทน</ons-button> 
+   <ons-button onclick="confirmGetIncome('<?=$data->id;?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันรับเงิน</ons-button> 
+   <?php } 
+   else{   ?>  
+   <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอยืนยันรับเงิน</font></strong></div>
    <?php }   ?>	
+   
 </div>

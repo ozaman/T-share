@@ -2382,12 +2382,12 @@ function selectPlanRegis(id){
 }
 
 function loadNewPlan(id){
-	$.ajax({
+	/*$.ajax({
                url: "shop/check_row_change_plan?order_id="+id,
                type: 'post',
                dataType: 'json',
                success: function(res) {
-                   console.log(res);
+                   console.log(res);*/
 	               /*if(res>0){
 				   	var url_new_plan = "component/new_plan?id="+id;
 					$.post(url_new_plan,function(html){
@@ -2398,7 +2398,21 @@ function loadNewPlan(id){
 					$.post(url_new_plan,function(html){
 						$('#load_new_plan').html(html);
 					});
-               }
-           });
+              /* }
+           });*/
 	
+}
+
+function confirmGetIncome(id){
+	$.ajax({
+               url: "shop/driver_approved_pay?order_id="+id,
+               type: 'post',
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   if(res.result==true){
+				   		sendSocket(id);
+				   }
+            }
+    });
 }

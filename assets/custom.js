@@ -594,7 +594,6 @@ socket.on('datalab', function(username, data) {
             if (value.id == check_open) {
                 console.log(value);
                
-                
                 if (value.check_driver_topoint == 1) {
                     console.log("driver_topoint");
                     changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
@@ -613,14 +612,10 @@ socket.on('datalab', function(username, data) {
                     console.log("driver_pay_report");
                     changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
                 }
-                var check_open_incom = $('#check_id_income').val();
-                if (typeof check_open_incom != 'undefined') {
-                    if (check_open_incom == check_open) {
-                        console.log("Refresh Incom = " + check_open_incom + " | " + check_open);
-                        //                        openViewPrice()
-                        reloadIncomeShop(value.id);
-                    }
-                }
+                if(value.check_driver_pay==1){
+					loadNewPlan(value.id);
+				}
+                
             }
         });
     }
@@ -761,6 +756,7 @@ setCountNotification();
 if($('#check_open_noti_menu').val()==1){
   loadNotificationPage();
 }
+
 });
 
 function formatDate(date) {
