@@ -646,7 +646,11 @@ class Main_model extends CI_Model
                 '*'
             );
             $OTHRET_C         = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
-            if (count($OTHRET_C) == 0 && $_POST[station_other] == 0) {
+            // $chk_station_other = 0;
+            // if (isset($_POST[station_other]) && !empty($_POST[station_other])) {
+            //     $chk_station_other = 1;
+            //     }
+            if (count($OTHRET_C) != 0 ) {
                 $res[status] = false;
                 $res[msg]    = 'name';
                   $res[data2]  = $data2;
@@ -655,13 +659,13 @@ class Main_model extends CI_Model
         $res[post]   = $_POST;
                 return $res;
             } else {
-                if ($_POST[check_get_have] == 0) {
+                if ($_POST[check_get_have] == 0 ) {
                     if ($_POST[station_select] == 1) {
                         $data[topic_th] = $_POST[name_ass];
                         $data[address]  = $_POST[address_ass];
                         $data[leader]   = $_POST[leader_name_ass];
-                        $data[phone_company]   = $_POST[phone_office_com];
-                        $data[leader_phone]   = $_POST[phone_leader_q];
+                        $data[phone_company]   = $_POST[phone_office_ass];
+                        $data[leader_phone]   = $_POST[phone_leader_ass];
                     } else if ($_POST[station_select] == 2) {
                         $data[topic_th]      = $_POST[name_com];
                         $data[address]       = $_POST[address_com];
@@ -691,15 +695,61 @@ class Main_model extends CI_Model
                     $data2[amphur]      = $_POST[amphur];
                     $data2[post_date]   = time();
                     $data2[last_update] = time();
+                     $data2[date_up] = time();
+                    $data2[date_end] = time();
                     $data2[result]      = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
-                } else {
+                }
+                else if ($_POST[check_get_have] == 3) {
+                   $_where             = array();
+                    $_where[id]         = $_POST[id_station];
+                    $_select            = array(
+                        '*'
+                    );
+                    if ($_POST[station_select] == 1) {
+                        $data2[topic_th] = $_POST[name_ass];
+                        $data2[address]  = $_POST[address_ass];
+                        $data2[leader]   = $_POST[leader_name_ass];
+                        $data2[phone_company]   = $_POST[phone_office_ass];
+                        $data2[leader_phone]   = $_POST[phone_leader_ass];
+                    } else if ($_POST[station_select] == 2) {
+                        $data2[topic_th]      = $_POST[name_com];
+                        $data2[address]       = $_POST[address_com];
+                        $data2[phone]         = $_POST[phone_com];
+                        $data2[leader]        = $_POST[leader_name_come];
+                        $data2[phone_company] = $_POST[phone_office_com];
+                    } else if ($_POST[station_select] == 3) {
+                        $data2[topic_th]     = $_POST[name_q];
+                        $data2[address]      = $_POST[address_q];
+                        $data2[leader]       = $_POST[leader_name_q];
+                        $data2[leader_phone] = $_POST[phone_leader_q];
+                    }
+                    $arr[STATION]       = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+                    $data2              = array();
+                    $data2[address]  = $arr[STATION]->address;
+                    $data2[leader]   = $arr[STATION]->leader;
+                    $data2[phone_company]   = $arr[STATION]->phone_company;
+                    $data2[leader_phone]   = $arr[STATION]->leader_phone;
+                    $data2[station]     = $arr[STATION]->id;
+                    $data2[member]      = $_GET[id_user];
+                    $data2[type]        = $arr[STATION]->type;
+                    $data2[topic_th]    = $arr[STATION]->topic_th;
+                    $data2[province]    = $arr[STATION]->province;
+                    $data2[region]      = $arr[STATION]->region;
+                    $data2[amphur]      = $arr[STATION]->amphur;
+                    $data2[post_date]   = time();
+                    $data2[last_update] = time();
+                    $data2[date_up] = time();
+                    $data2[date_end] = time();
+                    $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
+                } 
+                else {
                     if ($_POST[station_other] == 0) {
                         $res[status] = false;
                         $res[msg]    = 'type';
                           $res[data2]  = $data2;
-        $res[data]   = $data;
-        $res[num]    = $num;
-        $res[post]   = $_POST;
+                        $res[data]   = $data;
+                        $res[num]    = $num;
+                        $res[post]   = $_POST;
                         return $res;
                     }
                     $_where             = array();
@@ -718,6 +768,8 @@ class Main_model extends CI_Model
                     $data2[amphur]      = $_POST[amphur];
                     $data2[post_date]   = time();
                     $data2[last_update] = time();
+                     $data2[date_up] = time();
+                    $data2[date_end] = time();
                     $this->db->where('id', $_GET[id_user]);
                     $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
                 }
@@ -742,8 +794,8 @@ class Main_model extends CI_Model
                         $data[topic_th] = $_POST[name_ass];
                         $data[address]  = $_POST[address_ass];
                         $data[leader]   = $_POST[leader_name_ass];
-                        $data[phone_company]   = $_POST[phone_office_com];
-                        $data[leader_phone]   = $_POST[phone_leader_q];
+                        $data[phone_company]   = $_POST[phone_office_ass];
+                        $data[leader_phone]   = $_POST[phone_leader_ass];
                     } else if ($_POST[station_select] == 2) {
                         $data[topic_th]      = $_POST[name_com];
                         $data[address]       = $_POST[address_com];
@@ -795,6 +847,8 @@ class Main_model extends CI_Model
                         $data2[amphur]      = $_POST[amphur];
                         $data2[post_date]   = time();
                         $data2[last_update] = time();
+                         $data2[date_up] = time();
+                    $data2[date_end] = time();
                         $this->db->where('member', $_GET[id_user]);
                         $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
                     } else {
@@ -802,8 +856,8 @@ class Main_model extends CI_Model
                             $data[topic_th] = $_POST[name_ass];
                             $data[address]  = $_POST[address_ass];
                             $data[leader]   = $_POST[leader_name_ass];
-                            $data[phone_company]   = $_POST[phone_office_com];
-                        $data[leader_phone]   = $_POST[phone_leader_q];
+                            $data[phone_company]   = $_POST[phone_office_ass];
+                        $data[leader_phone]   = $_POST[phone_leader_ass];
                         } else if ($_POST[station_select] == 2) {
                             $data[topic_th]      = $_POST[name_com];
                             $data[address]       = $_POST[address_com];
@@ -833,6 +887,8 @@ class Main_model extends CI_Model
                         $data2[amphur]      = $_POST[amphur];
                         $data2[post_date]   = time();
                         $data2[last_update] = time();
+                         $data2[date_up] = time();
+                    $data2[date_end] = time();
                         $data2[result]      = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
                     }
                 }
@@ -861,6 +917,8 @@ class Main_model extends CI_Model
                 $data2[amphur]      = $arr[STATION]->amphur;
                 $data2[post_date]   = time();
                 $data2[last_update] = time();
+                 $data2[date_up] = time();
+                    $data2[date_end] = time();
                 $this->db->where('member', $_GET[id_user]);
                 $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
             }

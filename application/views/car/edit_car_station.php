@@ -58,7 +58,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 			$('#check_get_have').val(2);
 $('#btb_submit_form_station_new').show()
 
-			$('#form_addstation').hide()
+			$('#form_addstation_div').hide()
 			$('#btb_submit_form_station').hide()
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
@@ -111,10 +111,13 @@ $('#btb_submit_form_station_new').show()
 	border-radius: 5px;
 }
 </style>
+<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
 <?php
-if (count($MEMBER)== 0) {
-	$cnone = 'block';
+if (count($MEMBER) == 0) {
+	$cnone = 'none';
 	?>
+
+	<input type="hidden" name="id_station" id="id_station">
 	<div class=""  style="    background: #8BC34A;
     padding: 5px;">
 	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
@@ -131,13 +134,13 @@ if (count($MEMBER)== 0) {
 	<?php 
 }
 else{
-	$cnone = 'none';
+	$cnone = 'block';
 }
 ?>
 
 <!-- <input type="submit"> -->
 
-<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data" style="display: <?=$cnone;?>">
+	<div id="form_addstation_div" style="display: <?=$cnone;?>">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
 	<div class="card" id="box_zoon" onclick="//checformadd('box_time')">
@@ -358,7 +361,7 @@ else{
 		<tr>
 			<td width="35%">เบอร์โทรสมาคม</td>
 			<td>
-				<ons-input id="phone_office_com" name="phone_office_com" type="number" pattern="\d*" value="<?=$MEMBER->phone_company;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+				<ons-input id="phone_office_ass" name="phone_office_ass" type="number" pattern="\d*" value="<?=$MEMBER->phone_company;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
 			</td>
 		</tr>
 		<tr>
@@ -376,11 +379,12 @@ else{
 		<tr>
 			<td width="30%">เบอร์โทรนายกสมาคม</td>
 			<td>
-				<ons-input id="phone_leader_q" name="phone_leader_q" type="number" pattern="\d*" value="<?=$MEMBER->leader_phone;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+				<ons-input id="phone_leader_ass" name="phone_leader_ass" type="number" pattern="\d*" value="<?=$MEMBER->leader_phone;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
 			</td>
 		</tr>
 	</table>
 
+</div>
 </div>
 </form>
 
@@ -404,7 +408,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 ?>
 <script type="text/javascript">
 	function add_station_other() {
-		$('#form_addstation').show()
+		$('#form_addstation_div').show()
 			$('#btb_submit_form_station').show()
 			$('#btb_submit_form_station_new').hide()
 
@@ -463,14 +467,14 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
             		add(data.message);
             	}
             	else{
-            		$('#form_addstation').hide()
+            		$('#form_addstation_div').hide()
 			$('#btb_submit_form_station').hide()
 			$('#btb_submit_form_station_new').show()
-            		ons.notification.alert({
-                                    message: 'กรุณาเลือกเพิ่มข้อมูลใหม่',
-                                    title: "ไม่มีข้อมูล",
-                                    buttonLabel: "ตกลง"
-                                })
+            		// ons.notification.alert({
+              //                       message: 'กรุณาเลือกเพิ่มข้อมูลใหม่',
+              //                       title: "ไม่มีข้อมูล",
+              //                       buttonLabel: "ตกลง"
+              //                   })
             	}
             }
         });
@@ -479,9 +483,12 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			console.log('*******************************************22222');
 			console.log(event);
 			console.log(ui);
-			$('#form_addstation').show()
+			$('#form_addstation_div').show()
 			$('#btb_submit_form_station').show()
 			$('#btb_submit_form_station_new').hide()
+			$('#id_station').val(ui.item.station)
+			
+
 			var req = {
 				id: ui.item.station,
 
@@ -492,17 +499,48 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
             type: 'POST',
             data: req,
             success: function(res){
-            	console.log(res)
             	
-            	selectTypeCarPlace(res.OTHRET.type);
+            	console.log(res)
+            	var count = '<?=count($MEMBER);?>'
+
+            	
             	_province(res.OTHRET.province)
-            	setTimeout(function() {
-            		$('#region').val(res.OTHRET.region)
+            	$('#region').val(res.OTHRET.region)
             	$('#province').val(res.OTHRET.province)
             	$('#amphur').val(res.OTHRET.amphur)
-            	// $('#radio-'+res.OTHRET.type).prop("checked", true);
+            	selectTypeCarPlace(res.OTHRET.type);
+            	
+            	setTimeout(function() {
+            		
+            		$('#amphur').val(res.OTHRET.amphur)
+
+            	 $('#radio-'+res.OTHRET.type).prop("checked", true);
             		$('#station_other').val(res.OTHRET.id)
-            	}, 1500);
+            		if (count == 0) {
+            			$('#check_get_have').val(3)
+            			if (res.OTHRET.type == 1) {
+            				$('#name_ass').val(res.OTHRET.topic_th)
+            				$('#phone_office_ass').val(res.OTHRET.phone_company)
+            				$('#address_ass').val(res.OTHRET.address)
+            				$('#leader_name_ass').val(res.OTHRET.leader)
+            				$('#phone_leader_ass').val(res.OTHRET.leader_phone)
+            			}
+            			if (res.OTHRET.type == 2) {
+            				$('#name_com').val(res.OTHRET.topic_th)
+            				$('#address_com').val(res.OTHRET.address)
+            				$('#phone_com').val(res.OTHRET.phone)
+            				$('#leader_name_come').val(res.OTHRET.leader)
+            				$('#phone_office_com').val(res.OTHRET.phone_company)
+            				
+            			}
+            			if (res.OTHRET.type == 3) {
+            				$('#name_q').val(res.OTHRET.topic_th)
+            				$('#address_q').val(res.OTHRET.address)
+            				$('#leader_name_q').val(res.OTHRET.leader)
+            				$('#phone_leader_q').val(res.OTHRET.leader_phone)
+            			}
+            		}
+            	}, 1000);
             		// console.log(res)
 
 
