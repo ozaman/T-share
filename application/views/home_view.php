@@ -43,6 +43,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
+    <link href="<?=base_url();?>assets/EasyAutocomplete/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 </head> 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -51,6 +53,10 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
+ <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+        <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time();?>"></script>
 

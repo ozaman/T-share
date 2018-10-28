@@ -656,6 +656,8 @@ class Main_model extends CI_Model
                         $data[topic_th] = $_POST[name_ass];
                         $data[address]  = $_POST[address_ass];
                         $data[leader]   = $_POST[leader_name_ass];
+                        $data[phone_company]   = $_POST[phone_office_com];
+                        $data[leader_phone]   = $_POST[phone_leader_q];
                     } else if ($_POST[station_select] == 2) {
                         $data[topic_th]      = $_POST[name_com];
                         $data[address]       = $_POST[address_com];
@@ -732,6 +734,8 @@ class Main_model extends CI_Model
                         $data[topic_th] = $_POST[name_ass];
                         $data[address]  = $_POST[address_ass];
                         $data[leader]   = $_POST[leader_name_ass];
+                        $data[phone_company]   = $_POST[phone_office_com];
+                        $data[leader_phone]   = $_POST[phone_leader_q];
                     } else if ($_POST[station_select] == 2) {
                         $data[topic_th]      = $_POST[name_com];
                         $data[address]       = $_POST[address_com];
@@ -786,6 +790,8 @@ class Main_model extends CI_Model
                             $data[topic_th] = $_POST[name_ass];
                             $data[address]  = $_POST[address_ass];
                             $data[leader]   = $_POST[leader_name_ass];
+                            $data[phone_company]   = $_POST[phone_office_com];
+                        $data[leader_phone]   = $_POST[phone_leader_q];
                         } else if ($_POST[station_select] == 2) {
                             $data[topic_th]      = $_POST[name_com];
                             $data[address]       = $_POST[address_com];
@@ -849,6 +855,42 @@ class Main_model extends CI_Model
         $res[post]   = $_POST;
         $res[status] = true;
         return $res;
+    }
+    public function sw_search($keyword){
+       $this->db->select('*');
+        $this->db->from(TBL_PLACE_CAR_STATION_OTHRET);
+        // $this->db->where('suppress', 0);
+        $this->db->like('topic_th', $keyword);
+        $this->db->order_by("topic_th", "asc");
+
+        $query = $this->db->get();
+         $data = array();
+        foreach($query->result_array() as $row){
+            //$data[$row['friendly_name']];
+               
+                // $data[] = $row;
+        }
+        //return $data;
+        return $query;
+    }
+    public function search_select($id){
+        $data = array();
+         $_where             = array();
+                $_where[id]         = $id;
+                $_select            = array(
+                    '*'
+                );
+                $OTHRET      = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+                $_where             = array();
+                $_where[id]         = $OTHRET->type;
+                $_select            = array(
+                    '*'
+                );
+                $TYPE      = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE, $_where);
+                $data[OTHRET] =  $OTHRET;
+                $data[TYPE] =  $TYPE;
+        //return $data;
+        return $data;
     }
     /**
      * *********** End

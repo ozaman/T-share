@@ -10,11 +10,11 @@ $MEMBER = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
   // 
 if (count($MEMBER)!= 0) {
 	$res = array();
-$res = array();
-$_where = array();
+	$res = array();
+	$_where = array();
     // $_where['product_id'] = $_GET[id];
-$_where['id'] = $MEMBER->type;
-$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+	$_where['id'] = $MEMBER->type;
+	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 }
 
 $sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by topic_th asc";
@@ -26,7 +26,7 @@ $_order['topic_en'] = 'asc';
 $arr[region] = $this->Main_model->fetch_data('','',TBL_WEB_REGION,'',$_select,$_order);
 $_where = array();
 if (count($MEMBER)!= 0) {
-	 $_where[area] = $MEMBER->region;
+	$_where[area] = $MEMBER->region;
 }
 else{
 	$_where = array();
@@ -38,7 +38,7 @@ $arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$_where,$_
 // print_r($arr[province]);
 $_where = array();
 if (count($MEMBER)!= 0) {
-	 $_where['PROVINCE_ID'] = $MEMBER->province;
+	$_where['PROVINCE_ID'] = $MEMBER->province;
 }
 else{
 	$_where = array();
@@ -50,31 +50,72 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 // print_r($arr[amphur]);
 ?>
 <script>
-setTimeout(function(){ 
-       		
-       $('#check_get_have').val(0);
-	var chek_data = '<?=count($MEMBER);?>';
-	if (chek_data == 0) {
-       $('#check_get_have').val(2);
+	setTimeout(function(){ 
 
-		var area = $('#place_area').val();
-		var pv = $('#place_province').val();
+		$('#check_get_have').val(0);
+		var chek_data = '<?=count($MEMBER);?>';
+		if (chek_data == 0) {
+			$('#check_get_have').val(2);
+
+			var area = $('#place_area').val();
+			var pv = $('#place_province').val();
 
 
 			
 			
-           _province(pv);
-      
-  
-	}
-	else{
+			_province(pv);
+
+
+		}
+		else{
 		//_province('<?=$MEMBER->amphur;?>')
 	}
-	 }, 1000);
+}, 1000);
 </script>
 <p class="intro font-16">
 	ต้องการข้อมูลของท่าน
 </p>
+<style type="text/css">
+.tt-hint,
+.city {
+	border: 2px solid #CCCCCC;
+	border-radius: 8px 8px 8px 8px;
+	font-size: 24px;
+	height: 45px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+	width: 400px;
+}
+
+.tt-dropdown-menu {
+	width: 100%;
+	margin-top: 5px;
+	padding: 8px 12px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px 8px 8px 8px;
+	font-size: 18px;
+	color: #111;
+	background-color: #F1F1F1;
+}
+.ui-widget.ui-widget-content{
+	top: 145px;
+	left: 8px !important;
+	width: 94%;
+	border-radius: 5px;
+}
+</style>
+
+<div class="card"  >
+	<ons-list-header class="list-header ">ค้นหา </ons-list-header>
+	<div class="autocomplete" style="width:300px;">
+		<input class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="ชื่อคิว"  >
+	</div>
+</div>
+<!-- <input type="submit"> -->
+
 <form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
@@ -294,6 +335,12 @@ setTimeout(function(){
 			</td>
 		</tr>
 		<tr>
+			<td width="35%">เบอร์โทรสมาคม</td>
+			<td>
+				<ons-input id="phone_office_com" name="phone_office_com" type="number" pattern="\d*" value="<?=$MEMBER->phone_company;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+			</td>
+		</tr>
+		<tr>
 			<td width="35%">ที่อยู่สมาคม</td>
 			<td>
 				<ons-input id="address_ass" name="address_ass" type="text"  class="font-17" value="<?=$MEMBER->address;?>" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
@@ -305,6 +352,12 @@ setTimeout(function(){
 				<ons-input id="leader_name_ass" name="leader_name_ass" type="text"  class="font-17" value="<?=$MEMBER->leader;?>" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
 			</td>
 		</tr>
+		<tr>
+			<td width="30%">เบอร์โทรนายกสมาคม</td>
+			<td>
+				<ons-input id="phone_leader_q" name="phone_leader_q" type="number" pattern="\d*" value="<?=$MEMBER->leader_phone;?>" class="font-17" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+			</td>
+		</tr>
 	</table>
 
 </div>
@@ -314,7 +367,8 @@ setTimeout(function(){
 	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="submitadd_station();" style="background-color: #fff;">บันทึกข้อมูล</ons-button>
 </div>
 <div style="margin: 10px 10px;">
-	<span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span>
+	<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
+	<span class="font-14" >*หมายเหตุ : ข้อมูลนี้กรอกครั้งเดียวเท่านั่น</span>
 </div>
 <?php 
 $res = array();
@@ -326,37 +380,90 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 ?>
 <script type="text/javascript">
 	setTimeout(function(){ 
-       		
-       
-	var chek_data = '<?=count($MEMBER);?>';
-	var chek_show = '<?=$MEMBER->type;?>';
-	if (chek_data == 0) {
-		var area = $('#place_area').val();
-		var pv = $('#place_province').val();
+
+
+		var chek_data = '<?=count($MEMBER);?>';
+		var chek_show = '<?=$MEMBER->type;?>';
+		if (chek_data == 0) {
+			var area = $('#place_area').val();
+			var pv = $('#place_province').val();
 
 
 			
 			
            //_province(pv);
-      
-  
-	}
-	else{
-	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
-		$('#get_stations').hide()
-		if(chek_show==1){
-                   $('#box_form_toshow').show();
-                   $('#box_form_ass').show();
-               }else if(chek_show==2){
-                   $('#box_form_toshow').show();
-                   $('#box_form_com').show();
-               }else if(chek_show==3){
-                   $('#box_form_toshow').show();
-                   $('#box_form_queue').show();
-               }else{
-                   $('#box_form_toshow').hide();
-               }
-	}
-	 }, 1000);
-	
-</script>
+
+
+       }
+       else{
+       	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
+       	$('#get_stations').hide()
+       	if(chek_show==1){
+       		$('#box_form_toshow').show();
+       		$('#box_form_ass').show();
+       	}else if(chek_show==2){
+       		$('#box_form_toshow').show();
+       		$('#box_form_com').show();
+       	}else if(chek_show==3){
+       		$('#box_form_toshow').show();
+       		$('#box_form_queue').show();
+       	}else{
+       		$('#box_form_toshow').hide();
+       	}
+       }
+   }, 1000);
+	$("#in_search_station").autocomplete({
+		minLength: 1,
+		source: function(req, add){
+			console.log(req)
+			var companyList =   $.ajax({
+            url: 'main/search', //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            data: req,
+            success: function(data){
+            	if(data.response =='true'){
+
+            		console.log(data)
+
+            		add(data.message);
+            	}
+            }
+        });
+		},
+		select: function (event, ui) {
+			console.log('*******************************************22222');
+			console.log(event);
+			console.log(ui);
+			var req = {
+				id: ui.item.station,
+
+			};
+			$.ajax({
+            url: 'main/search_select', //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            data: req,
+            success: function(res){
+
+            	$('#region').val(res.OTHRET.region)
+            	$('#province').val(res.OTHRET.province)
+            	$('#amphur').val(res.OTHRET.amphur)
+            	$('#radio-'+res.OTHRET.type).prop("checked", true);
+            	selectTypeCarPlace(res.OTHRET.type);
+
+            	setTimeout(function() {
+            		$('#station_other').val(res.OTHRET.id)
+            	}, 1000);
+            		// console.log(res)
+
+
+
+            	}
+            });
+          //return false;
+      },
+
+  });
+	 //companyList.autocomplete('option','change').call();
+	</script>
