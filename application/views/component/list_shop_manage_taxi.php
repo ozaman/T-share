@@ -196,7 +196,7 @@ $val = $_POST[data];
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
-                           <span class="font-17 text-cap">แจ้งถึงสถานที่ส่งแขก</span> </ons-button>   
+                           <span class="font-17 text-cap">ถึงสถานที่</span> </ons-button>   
                            		
                         <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
                            border-radius: 5px;
