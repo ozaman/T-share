@@ -17,7 +17,7 @@ if (count($MEMBER)!= 0) {
 	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 }
 
-$sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by topic_th asc";
+$sql_type = "SELECT * FROM place_car_station_type  WHERE status = 1 order by i_index asc";
 $query_type = $this->db->query($sql_type);
 
 $_select = array('*');
@@ -56,7 +56,10 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 		var chek_data = '<?=count($MEMBER);?>';
 		if (chek_data == 0) {
 			$('#check_get_have').val(2);
+$('#btb_submit_form_station_new').show()
 
+			$('#form_addstation').hide()
+			$('#btb_submit_form_station').hide()
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
 
@@ -68,12 +71,13 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 
 		}
 		else{
+			$('#btb_submit_form_station_new').hide()
 		//_province('<?=$MEMBER->amphur;?>')
 	}
 }, 1000);
 </script>
 <p class="intro font-16">
-	ต้องการข้อมูลของท่าน
+	ค้นหาหรือเพิ่มคิวรถ
 </p>
 <style type="text/css">
 .tt-hint,
@@ -109,20 +113,31 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 </style>
 <?php
 if (count($MEMBER)== 0) {
+	$cnone = 'block';
 	?>
-	<div class=""  style="    background: #fff;">
-	<ons-list-header class="list-header ">ค้นหา </ons-list-header>
+	<div class=""  style="    background: #8BC34A;
+    padding: 5px;">
+	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
 	<div class="autocomplete" style="    padding: 5px;">
-		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="ชื่อคิว"  >
+		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="สมาคม / บริษัท / คิวรถ" style="    font-size: 17px;
+    width: 100%;
+    padding: 9px 15px;
+    background: #fff;
+    color: #333;
+    /* border: 1px solid #fff; */
+    border-radius: 20px;" >
 	</div>
 </div>
 	<?php 
+}
+else{
+	$cnone = 'none';
 }
 ?>
 
 <!-- <input type="submit"> -->
 
-<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
+<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data" style="display: <?=$cnone;?>">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
 	<div class="card" id="box_zoon" onclick="//checformadd('box_time')">
@@ -369,8 +384,11 @@ if (count($MEMBER)== 0) {
 </div>
 </form>
 
-<div style="margin: 10px 10px">
+<div style="margin: 10px 10px" id="btb_submit_form_station" style="display: <?=$cnone;?>">
 	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="submitadd_station();" style="background-color: #fff;">บันทึกข้อมูล</ons-button>
+</div>
+<div style="margin: 10px 10px" id="btb_submit_form_station_new">
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_station_other();" style="background-color: #fff;">เพิ่มข้อมูลใหม่</ons-button>
 </div>
 <div style="margin: 10px 10px;">
 	<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
@@ -385,12 +403,20 @@ $_where[id] = $MEMBER->type;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where); 
 ?>
 <script type="text/javascript">
+	function add_station_other() {
+		$('#form_addstation').show()
+			$('#btb_submit_form_station').show()
+			$('#btb_submit_form_station_new').hide()
+
+	}
 	setTimeout(function(){ 
 
 
 		var chek_data = '<?=count($MEMBER);?>';
 		var chek_show = '<?=$MEMBER->type;?>';
 		if (chek_data == 0) {
+			
+
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
 
@@ -402,6 +428,8 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 
        }
        else{
+			
+
        	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
        	$('#get_stations').hide()
        	if(chek_show==1){
@@ -428,11 +456,21 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
             type: 'POST',
             data: req,
             success: function(data){
-            	if(data.response =='true'){
-
+            	if(data.response ==true){
+            		
             		console.log(data)
 
             		add(data.message);
+            	}
+            	else{
+            		$('#form_addstation').hide()
+			$('#btb_submit_form_station').hide()
+			$('#btb_submit_form_station_new').show()
+            		ons.notification.alert({
+                                    message: 'กรุณาเลือกเพิ่มข้อมูลใหม่',
+                                    title: "ไม่มีข้อมูล",
+                                    buttonLabel: "ตกลง"
+                                })
             	}
             }
         });
@@ -441,6 +479,9 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			console.log('*******************************************22222');
 			console.log(event);
 			console.log(ui);
+			$('#form_addstation').show()
+			$('#btb_submit_form_station').show()
+			$('#btb_submit_form_station_new').hide()
 			var req = {
 				id: ui.item.station,
 
@@ -451,16 +492,17 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
             type: 'POST',
             data: req,
             success: function(res){
-
-            	$('#region').val(res.OTHRET.region)
+            	console.log(res)
+            	
+            	selectTypeCarPlace(res.OTHRET.type);
+            	_province(res.OTHRET.province)
+            	setTimeout(function() {
+            		$('#region').val(res.OTHRET.region)
             	$('#province').val(res.OTHRET.province)
             	$('#amphur').val(res.OTHRET.amphur)
-            	$('#radio-'+res.OTHRET.type).prop("checked", true);
-            	selectTypeCarPlace(res.OTHRET.type);
-
-            	setTimeout(function() {
+            	// $('#radio-'+res.OTHRET.type).prop("checked", true);
             		$('#station_other').val(res.OTHRET.id)
-            	}, 1000);
+            	}, 1500);
             		// console.log(res)
 
 

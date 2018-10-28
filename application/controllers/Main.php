@@ -194,12 +194,12 @@ class Main extends CI_Controller {
   public function search(){
     $keyword = $this->input->post('term');
 
-    $data['response'] = 'false'; //Set default response
+    // $data['response'] = 'false'; //Set default response
 
     $query = $this->Main_model->sw_search($keyword); //Model DB search
 
     if($query->num_rows() > 0){
-       $data['response'] = 'true';
+       $data['response'] = true;
        $data['message'] = array(); 
        $data['keyword'] =  $keyword; 
        foreach($query->result() as $row){
@@ -213,6 +213,11 @@ class Main extends CI_Controller {
                 $data[type] =  $TYPE;
                           $data['message'][] = array('label'=> $row->topic_th.'('.$TYPE->topic_th.')', 'value'=> $row->topic_th.'('.$TYPE->topic_th.')', 'station'=>$row->id); 
        }
+    }
+    else{
+      $data['response'] = false;
+       $data['message'] = array(); 
+       $data['keyword'] =  $keyword; 
     }
     echo json_encode($data);
   }

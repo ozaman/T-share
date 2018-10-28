@@ -636,7 +636,7 @@ class Main_model extends CI_Model
         $_where           = array();
         $_where['member'] = $_GET[id_user];
         $num              = $this->Main_model->num_row(TBL_PLACE_CAR_STATION, $_where);
-        if ($num == 0) {
+        if ($num == 0 ) {
             $_where           = array();
             $_where[topic_th] = $_POST[topic_th];
             $_where[region]   = $_POST[region];
@@ -646,9 +646,13 @@ class Main_model extends CI_Model
                 '*'
             );
             $OTHRET_C         = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
-            if (count($OTHRET_C) == 0) {
+            if (count($OTHRET_C) == 0 && $_POST[station_other] == 0) {
                 $res[status] = false;
                 $res[msg]    = 'name';
+                  $res[data2]  = $data2;
+        $res[data]   = $data;
+        $res[num]    = $num;
+        $res[post]   = $_POST;
                 return $res;
             } else {
                 if ($_POST[check_get_have] == 0) {
@@ -692,6 +696,10 @@ class Main_model extends CI_Model
                     if ($_POST[station_other] == 0) {
                         $res[status] = false;
                         $res[msg]    = 'type';
+                          $res[data2]  = $data2;
+        $res[data]   = $data;
+        $res[num]    = $num;
+        $res[post]   = $_POST;
                         return $res;
                     }
                     $_where             = array();
