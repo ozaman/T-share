@@ -325,9 +325,36 @@ public function change_plan(){
 	 
 	 
 	 $data[plan_id] = $_POST[price_plan];
-	 $data[price_person_unit] = $_POST[price_person_unit];
+	 $_where = array();
+		$_where['i_shop_country_com_list'] = $_POST[price_plan];
+		$_select = array('*');
+		$_order = array();
+		$_order['id'] = 'asc';
+
+		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
+
+		foreach ($list_price as $key => $value) {
+			$_where = array();
+			$_where['id'] = $value->i_plan_product_price_name;
+			$_select = array('s_col');
+			$_order = array();
+			$_order['id'] = 'asc';
+			$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
+			// return $price_name;
+			$s_col = $price_name->s_col;
+			if ($value->i_plan_product_price_name == 6) {
+				$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
+				// $data["aaaaaa".$s_col] = $value->s_topic_en;
+				$data[$s_col] = 1*$value->i_price;;
+				$data["price_person_total"] = 1*$price_person_total;
+				
+			}else{
+				$data[$s_col] =  $value->i_price;
+			}
+		}
+	 /*$data[price_person_unit] = $_POST[price_person_unit];
 	 $data[price_park_unit] = $_POST[price_park_unit];
-	 $data[commission_persent] = $_POST[commission_persent]; 
+	 $data[commission_persent] = $_POST[commission_persent]; */
 	 $this->db->where('id', $_GET[order_id]);
 	 $data[result] = $this->db->update('order_booking', $data); 
 

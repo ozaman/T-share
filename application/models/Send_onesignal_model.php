@@ -224,7 +224,7 @@ class Send_onesignal_model extends CI_Model {
  		
  		$invoice = $res_book->invoice;
 		$order_id = $_GET[id];
-  		$type_txt = "พนักงานต้องรับ รับแขกแล้ว";
+  		$type_txt = "พนักงานรับแขกแล้ว";
         $tag =  array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);
@@ -282,7 +282,7 @@ class Send_onesignal_model extends CI_Model {
  		
  		 $invoice = $res_book->invoice;
 		 $order_id = $_GET[id];
-  		 $type_txt = "แขกทำการลงทะเบียนเรียบร้อยแล้ว";
+  		 $type_txt = "ลงทะเบียนเรียบร้อยแล้ว";
          $tag =  array(
 								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
 								);

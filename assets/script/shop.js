@@ -1522,8 +1522,8 @@ else if (type == "guest_register") {
 else if (type == "driver_pay_report") {
 
 }
-$('#' + type + '_locat_off').hide();
-$('#' + type + '_locat_on').show();
+//$('#' + type + '_locat_off').hide();
+//$('#' + type + '_locat_on').show();
 $.ajax({
     url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
     type: 'HEAD',
@@ -1532,9 +1532,6 @@ $.ajax({
 
         $('#photo_' + type + '_yes').hide();
         $('#photo_' + type + '_no').show();
-
-            //             $('#'+type+'_locat_off').show();
-            //             $('#'+type+'_locat_on').hide();
         },
         success: function() {
             //file exists
@@ -1543,8 +1540,6 @@ $.ajax({
             $('#photo_' + type + '_yes').show();
             $('#photo_' + type + '_no').hide();
 
-            //             $('#'+type+'_locat_off').hide();
-            //               $('#'+type+'_locat_on').show();
         }
     });
 
@@ -2436,6 +2431,8 @@ function confirmPayIncome(id){
                    if(res.result==true){
                    		$('#btn_confirm_get_'+id).hide();
                    		$('#confirm_lab_pay_'+id).show();
+                   		$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
+                   		
 				   		sendSocket(id);
 				   }
             }

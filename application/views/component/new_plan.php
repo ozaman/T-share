@@ -105,10 +105,10 @@
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
-     			<td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+     			<td align="right" colspan="2"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> % <?=$com_progress;?></span>
                 </td>
-                <td width="15%">
-                </td>
+                <!--<td width="15%">
+                </td>-->
      		</tr>
      		<tr>
      			<td  width="35%">รวม</td>
@@ -150,6 +150,7 @@
 					$time_approve_lab = "-";
 				}
 			}
+//			echo $data->check_lab_pay;
    	?>  
    	
    
@@ -169,6 +170,7 @@
    		if($data->check_driver_pay==0){
 			$btn_confirm_get = "display:none;";
 			$status_get = "";
+			$text_driver_pay = "display:none;";
 		}else{
 			$btn_confirm_get = "";
 			$status_get = "display:none;";
@@ -177,21 +179,31 @@
 			}else{
 				$time_approve = "-";
 			}
+			$text_driver_pay = "";
 		}
 		
 		if($data->check_lab_pay==0){
 			$confirm_lab_pay = "display:none;";
+			
 		}else{
-			$confirm_lab_pay = "";
+			$btn_confirm_get = "display:none;";
+			
+			
 			$status_get = "display:none;";
+			$confirm_lab_pay = "";
+			if($data->driver_payment_date!=""){
+				$time_approve_lab = date("H:i",$data->driver_payment_date)." น.";
+				}else{
+					$time_approve_lab = "-";
+				}
 		}
 		
     ?>  
-    <div style="<?=$btn_confirm_get;?>">
+    <div style="<?=$text_driver_pay;?>">
    		<b style="color: #59aa47;" class="font-16">คนขับยืนยันรับเงิน เวลา : <?=$time_approve;?></b>
    	</div>	
    	<div id="confirm_lab_pay_<?=$data->id;?>"  style="<?=$confirm_lab_pay;?>" >
-   		<b style="color: #097bff;" class="font-16">ยืนยันจ่ายเงิน เวลา : <?=$time_approve;?></b>
+   		<b style="color: #097bff;" class="font-16">ยืนยันจ่ายเงิน เวลา : <span id="text_lab_pay_time_<?=$data->id;?>"><?=$time_approve_lab;?></span></b>
    	</div>
    <div class="font-16" style="<?=$status_get;?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอยืนยันรับเงิน</font></strong></div>
    
