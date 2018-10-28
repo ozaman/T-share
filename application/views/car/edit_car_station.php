@@ -107,13 +107,19 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 	border-radius: 5px;
 }
 </style>
-
-<div class="card"  >
+<?php
+if (count($MEMBER)== 0) {
+	?>
+	<div class=""  style="    background: #fff;">
 	<ons-list-header class="list-header ">ค้นหา </ons-list-header>
-	<div class="autocomplete" style="width:300px;">
-		<input class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="ชื่อคิว"  >
+	<div class="autocomplete" style="    padding: 5px;">
+		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="ชื่อคิว"  >
 	</div>
 </div>
+	<?php 
+}
+?>
+
 <!-- <input type="submit"> -->
 
 <form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">

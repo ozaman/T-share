@@ -770,6 +770,10 @@ class Main_model extends CI_Model
                 if (count($OTHRET_C) == 0) {
                     $res[status] = false;
                     $res[msg]    = 'name';
+                    $res[data2]  = $data2;
+        $res[data]   = $data;
+        $res[num]    = $num;
+        $res[post]   = $_POST;
                     return $res;
                 } else {
                     if ($_POST[station_select] == 4) {
@@ -828,6 +832,10 @@ class Main_model extends CI_Model
                 if ($_POST[station_other] == 0) {
                     $res[status] = false;
                     $res[msg]    = 'type';
+                    $res[data2]  = $data2;
+        $res[data]   = $data;
+        $res[num]    = $num;
+        $res[post]   = $_POST;
                     return $res;
                 }
                 $_where             = array();
