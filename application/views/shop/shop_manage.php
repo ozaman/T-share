@@ -39,7 +39,7 @@
           }else{
             $display_time_none = "display:none;";
           }
-          if($data_user_class=="taxi"){
+   if($data_user_class=="taxi"){
    		$contract = "lab";
    	}else{
    		$contract = "taxi";
@@ -68,7 +68,7 @@
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
       <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
-      <span class="font-18"><b>ติดต่อ</b></span>
+      <span class="font-18"><b>ติดต่อ</b>66666<?=$data_user_class." ++";?></span>
       <table width="100%"  >
          <tr>
             <td colspan="2">

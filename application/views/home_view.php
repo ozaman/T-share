@@ -1344,9 +1344,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         <!-- Optional page. This could contain a Navigator as well. -->
         <ons-page>
             <ons-toolbar>
-                <div class="center">ยกเลิกรายการ</div>
+                <div class="center">ยกเลิกส่งแขก</div>
             </ons-toolbar>
-            <p style="text-align: center">กรุณาเลือกเหตุผลยกเลิก</p>
+            <p style="text-align: center">เลือกสาเหตุยกเลิก</p>
             <input type="hidden" value="" id="invoice_cancel_select" />
             <input type="hidden" value="" id="driver_id_cancel"/>
             <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">

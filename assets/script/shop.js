@@ -988,10 +988,16 @@ function saveShop() {
                 });*/
                 setTimeout(function() {
                     
-                    _calltest();
-                    modal.hide();
+                    
+				   var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
+				   $.post(url2, function(ele2) {
+				       $('#shop_add').html(ele2);
+				        performClick('tab_shop_mn');
+				        modal.hide();
+				   });
+                    
                     // $('ons-tab[page="shop_manage.html"]').click();
-                }, 2500);
+                }, 2000);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
                 //         title: "สำเร็จ",
@@ -1472,13 +1478,15 @@ function contactDriver(call, type, shop_id, order_id){
 		}else{
 			performClick('phone_driver_'+order_id);
 		}
-	}else if(type=="zello"){
+	}
+	else if(type=="zello"){
 		if(call=="lab"){
 			openZello(shop_id);
 		}else{
 			performClick('zello_driver_'+order_id);
 		}
-	}else if(type=="line"){
+	}
+	else if(type=="line"){
 		if(call=="lab"){
 			
 			openLine(shop_id);
@@ -1651,7 +1659,7 @@ function sendCheckIn(id, type) {
 				        $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
 				        $('#num_edit_persion2').val($('#num_cus').val());
 				        $('#' + type_send + '_check_click').val(1)
-				        
+				        $('#btn_isedit').hide();
 				        sendSocket(id_send);
 				        changeHtml(type_send, id_send, timestampToDate(res.checkin.time, "time"));
 				        setTimeout(function(){ 
@@ -2289,26 +2297,6 @@ success: function(com) {
    });
 }
 
-function _calltest (event){
-   var el = $('ons-tab[page="shop_manage.html"]');
-   performClick('tab_shop_mn')
-   el.click();
-   var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
-   $.post(url2, function(ele2) {
-       $('#shop_add').html(ele2);
-       setTimeout(function() {
-        // window.location.href = "#go_to_top_add"; 
-
-        // $('#shop_add').scrollTop(0);
-    }, 1000);
-   });
-   // console.log(el.click());
-   // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
-// el.addEventListener("click"
-    // $('ons-tab[page="shop_manage.html"]').click();
-    // console.log( document.addEventListener('prechange'))
-}
-
 function maxLengthCheck(object) {
     if (object.value.length > 3)
       object.value = object.value.slice(0, 3)
@@ -2430,7 +2418,7 @@ function confirmGetIncome(id){
                    		$('#btn_confirm_get_'+id).hide();
                    		$('#status_get_'+id).show();
 //                   		$('#text_get_box_'+id).show();
-                   		$('#text_confirm_date_'+id).text(timestampToDate($.now(), "time"));
+                   		$('#text_confirm_date_'+id).text(timestampToDate(driver_pay_report_date, "time"));
                    		$('#iconchk_confirm_pay_com').attr("src", "assets/images/yes.png");
 						$("#number_driver_pay_com").removeClass('step-booking');
 						$("#number_driver_pay_com").addClass('step-booking-active');
@@ -2458,7 +2446,7 @@ function confirmPayIncome(id){
                    		$('#confirm_lab_pay_'+id).hide();
 						$('#status_pay_'+id).show();
 						$('#txt_status_getpay_'+id).show();
-						$('#text_lab_pay_time_'+id).text(timestampToDate($.now(), "time"));
+						$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
                    		
 				   		sendSocket(id);
 				   }

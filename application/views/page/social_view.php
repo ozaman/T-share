@@ -77,7 +77,7 @@ else if($_GET[type]=="zello"){
    /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[contact] = $db->select_query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='zello'");
    while($arr[contact] = $db->fetch($res[contact])){*/  
-   $query = $this->db->query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='zello'");
+   $query = $this->db->query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='zello' and status = 1");
 	foreach ($query->result() as $row){
  
  if($detectname=='iPad' or  $detectname=='iPhone' or $detectname=='Other'){ 
@@ -92,7 +92,7 @@ else if($_GET[type]=="zello"){
       <table width="100%" border="0" cellspacing="2" cellpadding="2">
          <tbody>
             <tr>
-               <td width="120"><img src="../data/qrcode/zello/<?=$row->channel;?>.png?v=<?=$row->update_date;?>"  width="100%"   border="0"       /></td>
+               <td width="120"><img src="../data/qrcode/zello/<?=$row->channel;?>.png?v=<?=time();?>"  width="100%"   border="0"       /></td>
                <td>
                   <table width="100%" border="0" cellpadding="2" cellspacing="2">
                      <tbody>
@@ -130,7 +130,7 @@ else if($_GET[type]=="line"){
    /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
    $res[contact] = $db->select_query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='zello'");
    while($arr[contact] = $db->fetch($res[contact])){*/  
-   $query = $this->db->query("SELECT id,line_id,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
+   $query = $this->db->query("SELECT id,line_id,phone,name,channel,usertype FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='line' and status=1");
 	foreach ($query->result() as $row){
  $href = "line://ti/p/".$row->line_id;
  /*if($detectname=='iPad' or  $detectname=='iPhone' or $detectname=='Other'){ 
@@ -140,24 +140,24 @@ else if($_GET[type]=="line"){
 	$href = "zello://".$row->channel."?add_channel";
  }*/ ?>
 
-<a href="<?=$href;?>"   style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none">
+<a href="<?=$href;?>"   style=" font-size:16px; margin-left:0px; padding:0px;    color:#000000; text-decoration:none">
    <div style="padding:5px; margin-top:15px; " class="div-all-zello"  >
       <table width="100%" border="0" cellspacing="2" cellpadding="2">
          <tbody>
             <tr>
-               <td width="120" align="center"><img src="assets/images/social/line.png"  width="80px"   border="0"       /></td>
+               <td width="120" align="center"><img src="../data/qrcode/line/<?=$row->channel;?>.png?v=<?=time();?>"  width="150px"   border="0"       /></td>
                <td>
                   <table width="100%" border="0" cellpadding="2" cellspacing="2">
                      <tbody>
                         <tr>
                            <td>
-                           	<a  href="<?=$href;?>"  style=" font-size:18px; margin-left:0px; padding:0px;   text-transform:uppercase; text-decoration:none;">
+                           	<a  href="<?=$href;?>"  style=" font-size:18px; margin-left:0px; padding:0px;  text-decoration:none;">
 <b>   <?=$row->name;?> </b> <?=$row->line_id;?>
 							</a>
                            </td>
 						</tr>
 						<tr>
-							<td style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none"><?=$row->name;?></td>
+							<td style=" font-size:16px; margin-left:0px; padding:0px; color:#000000; text-decoration:none"><?=$row->usertype;?></td>
 						</tr>
 					</tbody>
 				</table>
