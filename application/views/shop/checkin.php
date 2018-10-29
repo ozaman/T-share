@@ -13,12 +13,13 @@ $txt_wait_guest_register = 'รอยืนยันแขกลงลงทะ�
 
 $title_pay = "รอโอนค่าคอมมิชชั่น";
 
+$title_confirm = "ยืนยันรับเงิน";
 
 $btn_topoint_color = "background-color:#3b5998";
 $btn_guest_receive_color = "background-color:#666666";
 $btn_guest_register_color = "background-color:#666666";
 $btn_pay_com_color = "background-color:#666666";
-
+$btn_confirm_color = "background-color:#3b5998";
 }
 
 else{
@@ -26,7 +27,7 @@ else{
   	$title_guest_receive = "ยืนยันรับแขก";
   	$title_guest_regis = "ยืนยันลงทะเบียน";
   	$title_pay = "รอโอนค่าคอมมิชชั่น";
-
+	$title_confirm = "ยืนยันจ่ายเงิน";
 	$txt_wait_topoint = 'รอคนขับแจ้งถึงสถานที่';
 	$txt_wait_guest_receive = 'รอยืนยันรับแขก';
 	$txt_wait_guest_register = 'รอดำเนินการ';
@@ -40,7 +41,7 @@ else{
 $btn_topoint_color = "background-color:#666666";
 $btn_guest_receive_color = "background-color:#3b5998";
 $btn_guest_register_color = "background-color:#3b5998";
-$btn_pay_report_color = "background-color:#3b5998";
+$btn_confirm_color = "background-color:#3b5998";
 $btn_pay_com_color = "background-color:#666666";
 }
 	
@@ -251,14 +252,19 @@ $btn_pay_com_color = "background-color:#666666";
 
    </td>
 </tr>
-<tr id="step_driver_pay_com" style="display:nones;">
+
+			<tr id="step_confirm_pay" style="display:nones;">
+			   
+			</tr>
+			
+			<tr id="step_driver_pay_com" style="display:none;">
    <td class="font-16">
       <div class="div-all-checkin">
          <table width="100%" border="0" cellspacing="2" cellpadding="0">
             <tbody>
                <tr>
                   <td width="50" rowspan="2">
-                     <div class="step-booking" id="number_driver_pay_com">4</div>
+                     <div class="step-booking" id="number_driver_pay_com">5</div>
                      <div style="position:absolute; margin-top:-40px; margin-left: -5px;"><img src="<?=base_url();?>assets/images/no.png" align="absmiddle" 
                      id="iconchk_driver_pay_com"></div>
                   </td>

@@ -86,5 +86,10 @@ public function cpn_car_type()
 	{
 		$this->load->view('component/new_plan');
 	}
+	
+	public function box_confirm_pay()
+	{
+		$this->load->view('component/box_confirm_pay_shop');
+	}
 }
 ?>

@@ -241,6 +241,39 @@ class Shop extends CI_Controller {
 			echo $query->num_rows();
 		}
 		
+		public function check_commission_plan(){
+			$return[result] = false;
+			$query = $this->db->query("select plan_id from order_booking where id = ".$_GET[order_id]);
+			$row = $query->row();
+			$query = $this->db->query("select s_topic_en from shop_country_com_list_price_taxi where i_shop_country_com_list = ".$row->plan_id);
+			foreach ($query->result() as $row){
+				if($row->s_topic_en == "comision"){
+					$return[result] = true;
+				}
+				$data[] = $row;
+			}
+			
+			$return[plan_id] = $_GET[plan_id];
+			$return[row] = $data;
+			echo json_encode($return);
+		}
+		
+		public function complete_job(){
+			$check = false;
+			$query = $this->db->query("select plan_id from order_booking where id = ".$_GET[id]);
+			$row = $query->row();
+			$query = $this->db->query("select s_topic_en from shop_country_com_list_price_taxi where i_shop_country_com_list = ".$row->plan_id);
+			foreach ($query->result() as $row){
+				if($row->s_topic_en == "comision"){
+					$check = true;
+				}
+			}
+			if($check==false){
+				$data['checkin'] = $this->Shop_model->driver_complete();
+			}
+			$data[check] = $check;
+			echo json_encode($data);
+		}
 
 		
 	}

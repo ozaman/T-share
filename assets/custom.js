@@ -608,20 +608,20 @@ socket.on('datalab', function(username, data) {
 //					alert(value.pax_regis);
                     $('#num_edit_persion2').val(value.pax_regis);
                 }
+                
                 /*if (value.check_driver_pay_report == 1) {
                     console.log("driver_pay_report");
                     changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
                 }*/
                 if(value.check_driver_pay==1 && value.check_lab_pay==1){
-					loadNewPlan(value.id);
+					loadBoxConfirmPay(value.id);
 					return;
 				}
                 if(value.check_driver_pay==1){
-					loadNewPlan(value.id);
+					loadBoxConfirmPay(value.id);
 				}
 				if(value.check_lab_pay==1){
-					loadNewPlan(value.id);
-//					alert(value.check_lab_pay);
+					loadBoxConfirmPay(value.id);
 				}
                 
             }

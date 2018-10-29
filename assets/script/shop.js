@@ -1,3 +1,17 @@
+function check_com_plan(id){
+	$.ajax({
+		        url: "shop/check_commission_plan?order_id="+id, 
+		        dataType: 'json', 
+		        type: 'post',
+		        success: function(chk) {
+		                console.log(chk);
+		                if(chk.result==true){
+							$('#step_driver_pay_com').show();
+						}
+		        }
+	});
+}
+
 function checformadd(tax) {
     var form = document.getElementById("form_booking");
 
@@ -1510,13 +1524,15 @@ else if (type == "guest_receive") {
 else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
 	loadNewPlan(id);
+	loadBoxConfirmPay(id);
     $('#step_driver_pay_report').show();
     if(class_user=="taxi"){
 		$('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
 	}else{
 		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
-    $('#step_driver_pay_com').show();
+	check_com_plan(id);
+//    $('#step_driver_pay_com').show();
 } 
 
 //$('#' + type + '_locat_off').hide();
@@ -2395,7 +2411,15 @@ function loadNewPlan(id){
 	
 }
 
+function loadBoxConfirmPay(id){
+	var url_new_plan = "component/box_confirm_pay?id="+id;
+		$.post(url_new_plan,function(html){
+			$('#step_confirm_pay').html(html);
+		});
+}
+
 function confirmGetIncome(id){
+
 	$.ajax({
                url: "shop/driver_approved_pay?order_id="+id,
                type: 'post',
@@ -2405,16 +2429,21 @@ function confirmGetIncome(id){
                    if(res.result==true){
                    		$('#btn_confirm_get_'+id).hide();
                    		$('#status_get_'+id).show();
-                   		$('#text_get_box_'+id).show();
-                   		$('#text_confirm_date_'+id).text(timestampToDate(res.driver_pay_report_date, "time"));
-                   		
+//                   		$('#text_get_box_'+id).show();
+                   		$('#text_confirm_date_'+id).text(timestampToDate($.now(), "time"));
+                   		$('#iconchk_confirm_pay_com').attr("src", "assets/images/yes.png");
+						$("#number_driver_pay_com").removeClass('step-booking');
+						$("#number_driver_pay_com").addClass('step-booking-active');
 				   		sendSocket(id);
+				   		
+				   		completedJobShop(id);
 				   }
             }
     });
 }
 
 function confirmPayIncome(id){
+	
 	var data = {
 		order_id : id
 	}
@@ -2426,12 +2455,28 @@ function confirmPayIncome(id){
                success: function(res) {
                    console.log(res);
                    if(res.result==true){
-                   		$('#btn_confirm_get_'+id).hide();
-                   		$('#confirm_lab_pay_'+id).show();
-                   		$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
+                   		$('#confirm_lab_pay_'+id).hide();
+						$('#status_pay_'+id).show();
+						$('#txt_status_getpay_'+id).show();
+						$('#text_lab_pay_time_'+id).text(timestampToDate($.now(), "time"));
                    		
 				   		sendSocket(id);
 				   }
             }
     });
 }
+
+function completedJobShop(id){
+	
+	var url_complete = "shop/complete_job?id="+id;
+	$.ajax({
+		        url: url_complete, 
+		        dataType: 'json', 
+		        type: 'post',
+		        success: function(data) {
+		        		console.log(data)
+		        }
+	});
+	
+}
+

@@ -323,6 +323,12 @@ public function change_plan(){
 	 
 	 $backup[result] = $this->db->insert('change_plan_logs', $backup);
 	 
+	 $update[price_person_unit] = 0;
+	 $update[price_park_unit] = 0;
+	 $update[commission_persent] = 0;
+	 $this->db->where('id', $_GET[order_id]);
+	 $update[result] = $this->db->update('order_booking', $update); 
+	 
 	 
 	 $data[plan_id] = $_POST[price_plan];
 	 $_where = array();

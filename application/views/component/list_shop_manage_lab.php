@@ -181,17 +181,18 @@ $val = $_POST[data];
                   <tr>
                      <?php 
                      	$txt_cancel = "ปฏิเสธ";
-                        
+                        if($val[check_guest_register]==0){ ?>
+						<td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
+	                        <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+	                           border-radius: 5px;
+	                           line-height: 0;
+	                           border: 1px solid #fe3824;
+	                           color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
+	                           <span class="font-17 text-cap"><?=$txt_cancel;?></span>
+	                        </ons-button>
+	                     </td>	
+						<?php }
                         ?>
-                     <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
-                        <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
-                           border-radius: 5px;
-                           line-height: 0;
-                           border: 1px solid #fe3824;
-                           color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
-                           <span class="font-17 text-cap"><?=$txt_cancel;?></span>
-                        </ons-button>
-                     </td>
                      <td width="65%">
                         <?php 
                             $text_mn = 'จัดการ';
