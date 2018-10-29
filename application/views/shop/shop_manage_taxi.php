@@ -35,7 +35,7 @@
           $datetime1 = new DateTime($current_time);
           $datetime2 = new DateTime($stamp);
 
-          $contract = "taxi";
+          $contract = "lab";
 	   	if($res_dv->nickname!=""){
 			$nickname = " (".$res_dv->nickname.")";
 		}else{

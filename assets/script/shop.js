@@ -1472,13 +1472,15 @@ function contactDriver(call, type, shop_id, order_id){
 		}else{
 			performClick('phone_driver_'+order_id);
 		}
-	}else if(type=="zello"){
+	}
+	else if(type=="zello"){
 		if(call=="lab"){
 			openZello(shop_id);
 		}else{
 			performClick('zello_driver_'+order_id);
 		}
-	}else if(type=="line"){
+	}
+	else if(type=="line"){
 		if(call=="lab"){
 			
 			openLine(shop_id);
