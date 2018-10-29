@@ -5,8 +5,7 @@
        echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
       //
     }
-//    echo json_encode($_POST[data]);
-//    exit();
+   
       foreach ($_POST[data] as $key=>$val){
      $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web_driver WHERE id='".$val[drivername]."'    ";
     $query_dv = $this->db->query($sql_dv);
@@ -37,7 +36,23 @@
 			$nickname = "";
 		}
 	
-    $query_q = $this->db->query("SELECT t1.*, t2.topic_th as name_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station as t1 left join place_car_station_type as t2 on t1.type = t2.id left join web_province as t3 on t1.province = t3.id left join web_area as t4 on t1.amphur = t4.id where t1.member = ".$val[drivername]);
+    $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
+
+FROM place_car_station as t1 left join place_car_station_type as t2 
+
+on t1.type = t2.id 
+
+left join  place_car_station_other as t5 
+
+on t1.station = t5.id
+
+left join web_province as t3 
+
+on t5.province = t3.id 
+
+left join web_area as t4 on t5.amphur = t4.id
+
+where t1.member = '".$val[drivername]."' ");
 	$row_q = $query_q->row();
 
  $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = '".$val[check_use_car_id]."'");
@@ -53,6 +68,7 @@
 	if($res_dv->nickname!=""){
 		$name_dv = $res_dv->nickname;
 	}
+	
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
    <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -137,7 +153,7 @@
           
 		 <tr>
 		 	<td colspan="2">
-		 		<?=$row_q->topoic_pcs;?> : <?=$row_q->topic_th;?>
+		 		<?=$row_q->topic_type;?> : <?=$row_q->topic_th;?>
 		 	</td>
 		 </tr>
          

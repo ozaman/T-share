@@ -19,7 +19,7 @@ $data_pv = $query_pv->row();
 /*echo $arr[book][province];
 exit();*/
 
- $sql_dv = "SELECT name,nickname,phone,name_en FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
+ $sql_dv = "SELECT name,nickname,phone,name_en,username FROM web_driver WHERE id='".$arr[book][drivername]."'    ";
  $query_dv = $this->db->query($sql_dv);
  $res_dv = $query_dv->row();
 
@@ -31,7 +31,12 @@ exit();*/
 
  }
  $full_name_driver = $res_dv->name." (".$res_dv->nickname.")";
-
+if($res_dv->name!=""){
+		$name_dv = $res_dv->name;
+	}
+	if($res_dv->nickname!=""){
+		$name_dv = $res_dv->nickname;
+	}
  if($arr[book][status]=='CANCEL'){
 			 if($arr[book][cancel_type]=='1'){
 				$status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
@@ -101,8 +106,8 @@ else if($arr[book][status]=='COMPLETED'){
 					$person_total = intval($arr[book][price_person_unit]) * intval($arr[book][adult]);
 					$cal_person = $arr[book][price_person_unit]."x".$arr[book][adult];
 				}else{
-					$person_total = intval($row_plan->price_person_unit) * intval($row_plan->adult);
-					$cal_person = $row_plan->price_person_unit."x".$row_plan->adult;
+					$person_total = intval($row_plan->price_person_unit) * intval($arr[book][adult]);
+					$cal_person = $row_plan->price_person_unit."x".$arr[book][adult];
 				}
 				
 		   }	

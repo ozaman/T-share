@@ -1545,7 +1545,7 @@ else if (type == "guest_register") {
 
 //$('#' + type + '_locat_off').hide();
 //$('#' + type + '_locat_on').show();
-$.ajax({
+/*$.ajax({
     url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
     type: 'HEAD',
     error: function() {
@@ -1562,7 +1562,7 @@ $.ajax({
             $('#photo_' + type + '_no').hide();
 
         }
-    });
+    });*/
 
 $('#' + type + '_check_click').val(1);
 $("#box_" + type).removeClass('border-alert');
@@ -1620,7 +1620,7 @@ function saveShop_action_pay(poppage) {
         //     callpop();
         // });
         shopFuncNotiActi(id_send, type_send);
-
+		
     } else {  }
 	 modal.hide();
 });
@@ -1679,7 +1679,7 @@ function sendCheckIn(id, type) {
 				        });
 						
 				        shopFuncNotiActi(id_send, type_send);
-
+						check_com_plan(id_send);
 				    }
 			        }
 			    });           
@@ -2418,7 +2418,7 @@ function confirmGetIncome(id){
                    		$('#btn_confirm_get_'+id).hide();
                    		$('#status_get_'+id).show();
 //                   		$('#text_get_box_'+id).show();
-                   		$('#text_confirm_date_'+id).text(timestampToDate(driver_pay_report_date, "time"));
+                   		$('#text_confirm_date_'+id).text(timestampToDate(res.driver_pay_report_date, "time"));
                    		$('#iconchk_confirm_pay_com').attr("src", "assets/images/yes.png");
 						$("#number_driver_pay_com").removeClass('step-booking');
 						$("#number_driver_pay_com").addClass('step-booking-active');
@@ -2447,6 +2447,10 @@ function confirmPayIncome(id){
 						$('#status_pay_'+id).show();
 						$('#txt_status_getpay_'+id).show();
 						$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
+                   		
+                   		$('#iconchk_confirm_pay_com').attr("src", "assets/images/yes.png");
+						$("#number_driver_pay_com").removeClass('step-booking');
+						$("#number_driver_pay_com").addClass('step-booking-active');
                    		
 				   		sendSocket(id);
 				   }
