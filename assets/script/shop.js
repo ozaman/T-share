@@ -1651,7 +1651,7 @@ function sendCheckIn(id, type) {
 				        $('#num_pax_regis_'+id_send) .text($('#num_cus').val());
 				        $('#num_edit_persion2').val($('#num_cus').val());
 				        $('#' + type_send + '_check_click').val(1)
-				        
+				        $('#btn_isedit').hide();
 				        sendSocket(id_send);
 				        changeHtml(type_send, id_send, timestampToDate(res.checkin.time, "time"));
 				        setTimeout(function(){ 
@@ -2430,7 +2430,7 @@ function confirmGetIncome(id){
                    		$('#btn_confirm_get_'+id).hide();
                    		$('#status_get_'+id).show();
 //                   		$('#text_get_box_'+id).show();
-                   		$('#text_confirm_date_'+id).text(timestampToDate($.now(), "time"));
+                   		$('#text_confirm_date_'+id).text(timestampToDate(driver_pay_report_date, "time"));
                    		$('#iconchk_confirm_pay_com').attr("src", "assets/images/yes.png");
 						$("#number_driver_pay_com").removeClass('step-booking');
 						$("#number_driver_pay_com").addClass('step-booking-active');
@@ -2458,7 +2458,7 @@ function confirmPayIncome(id){
                    		$('#confirm_lab_pay_'+id).hide();
 						$('#status_pay_'+id).show();
 						$('#txt_status_getpay_'+id).show();
-						$('#text_lab_pay_time_'+id).text(timestampToDate($.now(), "time"));
+						$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
                    		
 				   		sendSocket(id);
 				   }
