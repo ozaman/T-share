@@ -101,6 +101,8 @@ define('TBL_SHOP_PAYMENT_CHANNEL','shop_payment_channel');
 define('TBL_PLACE_CAR_STATION','place_car_station');
 define('TBL_PLACE_CAR_STATION_OTHRET','place_car_station_other');
 define('TBL_PLACE_CAR_STATION_TYPE','place_car_station_type');
+define('TBL_SHOP_STATION','shop_station');
+define('TBL_SHOP_STATION_FIELD','shop_station_field');
 
 
 

@@ -85,5 +85,17 @@ class Car extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($num);
 	}
+	public function body_car_station(){
+//		echo 555;
+		$this->load->view('car/body_car_station');
+	}
+	public function form_addstation_div(){
+//		echo 555;
+		$this->load->view('car/form_car_station');
+	}
+	public function shop_station_field(){
+//		echo 555;
+		$this->load->view('car/box_station_field');
+	}
 }
 ?>

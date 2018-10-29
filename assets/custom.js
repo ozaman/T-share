@@ -1654,7 +1654,7 @@ ons.notification.alert({
 function stationCar(){
 	fn.pushPage({
        'id': 'popup1.html',
-       'title': 'ข้อมูลคิวรถ'
+       'title': 'ข้อมูลสังกัดรถ'
    }, 'lift-ios');
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();
