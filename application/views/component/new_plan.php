@@ -61,15 +61,17 @@
  	if($check_change_plan==0){
 		$titel = t_work_remuneration;
 		$display_none_change_plan = "display:none;";
+		$color_titel = "";
 	}else{
 		$titel = "เปลี่ยน".t_work_remuneration;
 		$display_none_change_plan = "";
+		$color_titel = "color: #f00 !important;";
 	}
 	
 //	echo $check_change_plan." ++++++++";
 ?>
-<div style="padding: 5px 0px;">
-     	<ons-list-header class="list-header"> <?=$titel;?></ons-list-header>
+<div style="padding: 0px 0px;">
+     	<ons-list-header class="list-header" style="<?=$color_titel;?>"> <?=$titel;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr style="<?=$display_none_change_plan;?>">
      			<td>สาเหตุ</td>
@@ -105,10 +107,10 @@
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
-     			<td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+     			<td align="right" colspan="2"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> % <?=$com_progress;?></span>
                 </td>
-                <td width="15%">
-                </td>
+                <!--<td width="15%">
+                </td>-->
      		</tr>
      		<tr>
      			<td  width="35%">รวม</td>
@@ -123,11 +125,91 @@
      		</tr>
      	</table>
   	 <?php 
-   	if($_COOKIE[detect_userclass]=="taxi"){ ?>  	
-   <ons-button onclick="confirmGetIncome('<?=$data->id;?>');" style="background-color: #fff;margin: 10px 0px;" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันรับเงิน</ons-button> 
+//  	 echo $data->check_driver_pay;
+   	if($_COOKIE[detect_userclass]=="taxi"){ 
+   		if($data->check_driver_pay==0){
+			$btn_confirm_get = "";
+			$status_get = "display:none;";
+			
+		}else{
+			$btn_confirm_get = "display:none;";
+			$status_get = "";
+			if($data->driver_pay_report_date!=""){
+				$time_approve = date("H:i",$data->driver_pay_report_date)." น.";
+			}else{
+				$time_approve = "-";
+			}
+			
+		}
+		
+		if($data->check_lab_pay==0){
+				$text_get = "display:none;";
+			}else{
+				$text_get = "";
+				if($data->driver_payment_date!=""){
+				$time_approve_lab = date("H:i",$data->driver_payment_date)." น.";
+				}else{
+					$time_approve_lab = "-";
+				}
+			}
+//			echo $data->check_lab_pay;
+   	?>  
+   	
+   
+   <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>');" style="background-color: #fff;margin: 10px 0px;<?=$btn_confirm_get;?>" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันรับเงิน</ons-button> 
+   
+   <div id="status_get_<?=$data->id;?>"  style="<?=$status_get;?>" class="font-16">
+   <b style="color: #59aa47;" class="font-16">
+   ยืนยันรับเงิน เวลา : <span id="text_confirm_date_<?=$data->id;?>"><?=$time_approve;?></span>
+   </b>
+   </div>
+   <div id="text_get_box_<?=$data->id;?>" style="<?=$text_get;?>">
+   		<b style="color: #0076ff;" class="font-16">ยืนยันการจ่ายเงิน เวลา : <?=$time_approve_lab;?></b>
+   	</div>	
    <?php } 
-   else{   ?>  
-   <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอยืนยันรับเงิน</font></strong></div>
+
+    else{  
+   		if($data->check_driver_pay==0){
+			$btn_confirm_get = "display:none;";
+			$status_get = "";
+			$text_driver_pay = "display:none;";
+		}else{
+			$btn_confirm_get = "";
+			$status_get = "display:none;";
+			if($data->driver_pay_report_date!=""){
+				$time_approve = date("H:i",$data->driver_pay_report_date)." น.";
+			}else{
+				$time_approve = "-";
+			}
+			$text_driver_pay = "";
+		}
+		
+		if($data->check_lab_pay==0){
+			$confirm_lab_pay = "display:none;";
+			
+		}else{
+			$btn_confirm_get = "display:none;";
+			
+			
+			$status_get = "display:none;";
+			$confirm_lab_pay = "";
+			if($data->driver_payment_date!=""){
+				$time_approve_lab = date("H:i",$data->driver_payment_date)." น.";
+				}else{
+					$time_approve_lab = "-";
+				}
+		}
+		
+    ?>  
+    <div style="<?=$text_driver_pay;?>">
+   		<b style="color: #59aa47;" class="font-16">คนขับยืนยันรับเงิน เวลา : <?=$time_approve;?></b>
+   	</div>	
+   	<div id="confirm_lab_pay_<?=$data->id;?>"  style="<?=$confirm_lab_pay;?>" >
+   		<b style="color: #097bff;" class="font-16">ยืนยันจ่ายเงิน เวลา : <span id="text_lab_pay_time_<?=$data->id;?>"><?=$time_approve_lab;?></span></b>
+   	</div>
+   <div class="font-16" style="<?=$status_get;?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">รอยืนยันรับเงิน</font></strong></div>
+   
+   <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>');" style="background-color: #fff;margin: 10px 0px;<?=$btn_confirm_get;?>" modifier="outline" class="button-margin button button--outline button--large" onclick="submitShop();">ยืนยันจ่ายเงิน</ons-button> 
    <?php }   ?>	
    
 </div>

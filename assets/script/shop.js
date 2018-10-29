@@ -1516,14 +1516,11 @@ else if (type == "guest_register") {
 	}else{
 		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
-    
+    $('#step_driver_pay_com').show();
 } 
 
-else if (type == "driver_pay_report") {
-
-}
-$('#' + type + '_locat_off').hide();
-$('#' + type + '_locat_on').show();
+//$('#' + type + '_locat_off').hide();
+//$('#' + type + '_locat_on').show();
 $.ajax({
     url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
     type: 'HEAD',
@@ -1532,9 +1529,6 @@ $.ajax({
 
         $('#photo_' + type + '_yes').hide();
         $('#photo_' + type + '_no').show();
-
-            //             $('#'+type+'_locat_off').show();
-            //             $('#'+type+'_locat_on').hide();
         },
         success: function() {
             //file exists
@@ -1543,8 +1537,6 @@ $.ajax({
             $('#photo_' + type + '_yes').show();
             $('#photo_' + type + '_no').hide();
 
-            //             $('#'+type+'_locat_off').hide();
-            //               $('#'+type+'_locat_on').show();
         }
     });
 
@@ -2411,6 +2403,33 @@ function confirmGetIncome(id){
                success: function(res) {
                    console.log(res);
                    if(res.result==true){
+                   		$('#btn_confirm_get_'+id).hide();
+                   		$('#status_get_'+id).show();
+                   		$('#text_get_box_'+id).show();
+                   		$('#text_confirm_date_'+id).text(timestampToDate(res.driver_pay_report_date, "time"));
+                   		
+				   		sendSocket(id);
+				   }
+            }
+    });
+}
+
+function confirmPayIncome(id){
+	var data = {
+		order_id : id
+	}
+	$.ajax({
+               url: "shop/lab_approved_pay",
+               type: 'post',
+               data : data,
+               dataType: 'json',
+               success: function(res) {
+                   console.log(res);
+                   if(res.result==true){
+                   		$('#btn_confirm_get_'+id).hide();
+                   		$('#confirm_lab_pay_'+id).show();
+                   		$('#text_lab_pay_time_'+id).text(timestampToDate(res.driver_payment_date, "time"));
+                   		
 				   		sendSocket(id);
 				   }
             }
