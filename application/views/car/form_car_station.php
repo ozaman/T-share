@@ -294,17 +294,17 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             	$('#amphur').val(res.OTHRET.amphur)
             	selectTypeCarPlace_edit(res.OTHRET.type);
             	
-            	// setTimeout(function() {
+            setTimeout(function() {
             		
             	// 	$('#amphur').val(res.OTHRET.amphur)
 
-            	 //$('#radio-'+res.OTHRET.type).prop("checked", true);
+            	 $('#radio-'+res.OTHRET.type).prop("checked", true);
             		// $('#station_other').val(res.OTHRET.id)
             	// 	if (count == 0) {
             	// 		$('#check_get_have').val(3)
             			
             	// 	}
-            	 // }, 1000);
+            	 }, 1000);
             		// console.log(res)
 
  
