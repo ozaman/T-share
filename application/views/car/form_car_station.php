@@ -61,7 +61,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 // print_r($arr[amphur]);
 ?>
 <div id="search_station">
-<div class=""  style="background: #8BC34A; padding: 5px;display: none;" >
+<div class=""  style="background: #8BC34A; padding: 5px;" >
 	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
 	<div class="autocomplete" style="    padding: 5px;">
 		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="สมาคม / บริษัท / คิวรถ" style="    font-size: 17px;
@@ -73,9 +73,9 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
     border-radius: 20px;" >
 	</div>
 </div>
-<div style="margin: 10px 10px">
+<!-- <div style="margin: 10px 10px">
 	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_station_other();" style="background-color: #fff;">เพิ่มข้อมูลใหม่</ons-button>
-</div>
+</div> -->
 </div>
 <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
 
@@ -229,4 +229,85 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 
     });
 	}
+	$("#in_search_station").autocomplete({
+		minLength: 1,
+		source: function(req, add){
+			console.log(req)
+			var companyList =   $.ajax({
+            url: 'main/search', //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            data: req,
+            success: function(data){
+            	if(data.response ==true){
+            		
+            		console.log(data)
+
+            		add(data.message);
+            	}
+            	else{
+   //          		$('#form_addstation_div').hide()
+			// $('#btb_submit_form_station').hide()
+			// $('#btb_submit_form_station_new').show()
+            		// ons.notification.alert({
+              //                       message: 'กรุณาเลือกเพิ่มข้อมูลใหม่',
+              //                       title: "ไม่มีข้อมูล",
+              //                       buttonLabel: "ตกลง"
+              //                   })
+            	}
+            }
+        });
+		},
+		select: function (event, ui) {
+			console.log('*******************************************22222');
+			console.log(event);
+			console.log(ui);
+			// $('#form_addstation_div').show()
+			// $('#btb_submit_form_station').show()
+			// $('#btb_submit_form_station_new').hide()
+			$('#id_station').val(ui.item.station)
+			
+
+			var req = {
+				id: ui.item.station,
+
+			};
+			$.ajax({
+            url: 'main/search_select', //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            data: req,
+            success: function(res){
+            	
+            	console.log(res)
+            	// var count = '<?=count($MEMBER);?>'
+
+            	$('#id_station').val(res.OTHRET.id)
+            	// _province(res.OTHRET.province)
+            	$('#region').val(res.OTHRET.region)
+            	$('#province').val(res.OTHRET.province)
+            	$('#amphur').val(res.OTHRET.amphur)
+            	selectTypeCarPlace_edit(res.OTHRET.type);
+            	
+            	// setTimeout(function() {
+            		
+            	// 	$('#amphur').val(res.OTHRET.amphur)
+
+            	 $('#radio-'+res.OTHRET.type).prop("checked", true);
+            		// $('#station_other').val(res.OTHRET.id)
+            	// 	if (count == 0) {
+            	// 		$('#check_get_have').val(3)
+            			
+            	// 	}
+            	 // }, 1000);
+            		// console.log(res)
+
+
+
+            	}
+            });
+          return false;
+      },
+
+  });
 </script>
