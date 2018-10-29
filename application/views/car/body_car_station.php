@@ -1,106 +1,57 @@
-<?php 
-$query = $this->db->query("SELECT t1.*, t2.topic_th as name_type FROM place_car_station_other as t1 left join place_car_station_type as t2 on t1.type = t2.id where t1.member = ".$_COOKIE[detect_user]);
-$row = $query->row();
+<?php
 
- ?>
-<div class="card" id="box_zoon" onclick="//checformadd('box_time')">
-    <ons-list-header class="list-header font-17"><?=$row->name_type;?></ons-list-header>
-    <?php 
-    if($row->type==1){ ?>
-	<table class="tb_form" width="100%" id="box_form_ass" style="display: nones;" cellpadding="3" cellspacing="3">
-	      <tr>
-	        <td width="35%">ชื่อสมาคม</td>
-	        <td>
-	          <span class="font-17"><?=$row->topic_th;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">ที่อยู่สมาคม</td>
-	        <td>
-	          <?=$row->address;?>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">ชื่อนายกสมาคม</td>
-	        <td>
-	          <?=$row->leader;?>
-	        </td>
-	      </tr>
-	    </table>	
-	<? }
-	else if($row->type==2){
-    ?>
-    <table class="tb_form" width="100%" id="box_form_com" style="display: nones;" cellpadding="3" cellspacing="3">
-	      <tr>
-	        <td width="35%">ชื่อบริษัท</td>
-	        <td>
-	          <span class="font-17"><?=$row->topic_th;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">ที่อยู่</td>
-	        <td>
-	          <span class="font-17"><?=$row->address;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">เบอร์โทร</td>
-	        <td>
-	          <span class="font-17"><?=$row->phone;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">ชื่อเจ้าของบริษัท</td>
-	        <td>
-	          <span class="font-17"><?=$row->leader;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="35%">เบอร์ออฟฟิศ</td>
-	        <td>
-	          <span class="font-17"><?=$row->phone_company;?></span>
-	        </td>
-	      </tr>
-	    </table>
-	<?php } 
-	else if($row->type==3){ ?>
-	<table  class="tb_form" width="100%" id="box_form_queue" style="display: nones;" cellpadding="3" cellspacing="3">
-	   <tr>
-	        <td width="35%">ชื่อคิว</td>
-	        <td>
-	          <span class="font-17"><?=$row->topic_th;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="30%">ที่อยู่</td>
-	        <td>
-	          <span class="font-17"><?=$row->address;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="30%">ชื่อหัวหน้าคิว</td>
-	        <td>
-	          <span class="font-17"><?=$row->leader;?></span>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td width="30%">เบอร์หัวหน้าคิว</td>
-	        <td>
-	          <span class="font-17"><?=$row->leader_phone;?></span>
-	        </td>
-	      </tr>
-	    </table>
-	<?php	}
-	else{ ?>
-	<!--<table width="100%">
-      <tr>
-      	<td width="80" class="font-17">ชื่อ</td>
-        <td align="center">
-          <span class="font-17" ><?=$row->topic_th;?></span>
-        </td>
-      </tr>
-    </table>-->
-	<?php }
-	?>
-    
-  </div>
+
+$_where = array();
+$_where['member'] = $_COOKIE[detect_user];
+$_where['status'] = 1;
+$STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
+
+$_where = array();
+			$_where['id'] = $STATION->station;
+			$OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
+
+
+$_where = array();
+$_where['id'] = $OTHRET->type;
+$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+
+
+$_where = array();
+$_where[user_class] = $_COOKIE['detect_userclass'];
+$_where[i_station_type] = $OTHRET->type;
+$_select = array('*');
+$_order = array();
+$_order[i_index] = 'asc';
+$STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_where,$_select,$_order);
+
+
+?>
+
+<div class="card">
+	<ons-list-header class="list-header font-17">ข้อมูลต้นสังกัด</ons-list-header>
+	<table class="tb_form" width="100%" id="" style="display: nones;" cellpadding="3" cellspacing="3">
+		
+		<?php
+		foreach($STATION_FIELD as $row){
+			$field = $row->s_field_show;
+		   
+			?>
+			<tr>
+				<td width="40%">
+					<span class="font-17"><?=$row->s_topic_th;?> :</span>
+				</td>
+				<td>
+
+					<span class="font-17"><?=$OTHRET->$field;?></span>
+				</td>
+			</tr>
+
+
+		<?php }
+		?>
+	</table>
+</div>
+
+<div style="margin: 10px 10px" id="btb__station_new">
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_btb__station_new();" style="background-color: #fff;">ย้ายสังกัด / เพิ่ม</ons-button>
+</div>

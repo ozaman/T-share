@@ -211,7 +211,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         ข้อมูลส่วนตัว
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="stationCar();">สังกัด</div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="stationCar();">สังกัดรถ</div>
                     <?php 
                     	$this->db->select('id');
 						$this->db->where('driver_id = '.$_COOKIE['detect_user']);

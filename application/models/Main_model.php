@@ -728,6 +728,7 @@ class Main_model extends CI_Model
                     $data2[address]  = $arr[STATION]->address;
                     $data2[leader]   = $arr[STATION]->leader;
                     $data2[phone_company]   = $arr[STATION]->phone_company;
+                    $data2[phone]   = $arr[STATION]->phone;
                     $data2[leader_phone]   = $arr[STATION]->leader_phone;
                     $data2[station]     = $arr[STATION]->id;
                     $data2[member]      = $_GET[id_user];
@@ -902,25 +903,54 @@ class Main_model extends CI_Model
         $res[post]   = $_POST;
                     return $res;
                 }
-                $_where             = array();
-                $_where[id]         = $_POST[station_other];
-                $_select            = array(
-                    '*'
-                );
-                $arr[STATION]       = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
-                $data2              = array();
-                $data2[station]     = $_POST[station_other];
-                $data2[type]        = $_POST[station_select];
-                $data2[topic_th]    = $arr[STATION]->topic_th;
-                $data2[province]    = $arr[STATION]->province;
-                $data2[region]      = $arr[STATION]->region;
-                $data2[amphur]      = $arr[STATION]->amphur;
-                $data2[post_date]   = time();
-                $data2[last_update] = time();
-                 $data2[date_up] = time();
-                    $data2[date_end] = time();
-                $this->db->where('member', $_GET[id_user]);
-                $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
+                 $_where             = array();
+            $_where[id]         = $_POST[station_other];
+            $_select            = array(
+                '*'
+            );
+            $arr[STATION]       = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+            $_where           = array();
+            $_where[member] = $_GET[id_user];
+            $_where[station] = $arr[STATION]->id;
+            $num_have              = $this->Main_model->num_row(TBL_PLACE_CAR_STATION, $_where);
+            
+            $arr_where = array();
+            $arr_where[member] = $_GET[id_user];
+            $arr_select = array('*');
+            $arr_order = array();
+            $arr_order['id'] = 'ASC';
+            $allSTATION = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION, $arr_where, $arr_select,$arr_order);
+
+            foreach ($allSTATION as $row) {
+               $data2              = array();
+               if ($row->station == $_POST[station_other]) {
+                $data2[status]     = 1;
+            }
+            else{
+                $data2[status]     = 0;
+            }
+            $data2[post_date]   = time();
+            $data2[last_update] = time();
+            $data2[date_up] = time();
+            $data2[date_end] = time();
+            $this->db->where('id', $row->id);
+            $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
+
+            
+
+        }
+        if ($num_have == 0) {
+            $data2              = array();
+            $data2[station]     = $_POST[station_other];
+            $data2[member]        = $_GET[id_user];
+
+            $data2[post_date]   = time();
+            $data2[last_update] = time();
+            $data2[date_up] = time();
+            $data2[date_end] = time();
+                // $this->db->where('member', $_GET[id_user]);
+            $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
+        }
             }
         }
         $res[data2]  = $data2;
