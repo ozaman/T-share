@@ -1516,12 +1516,9 @@ else if (type == "guest_register") {
 	}else{
 		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
-    
+    $('#step_driver_pay_com').show();
 } 
 
-else if (type == "driver_pay_report") {
-
-}
 //$('#' + type + '_locat_off').hide();
 //$('#' + type + '_locat_on').show();
 $.ajax({

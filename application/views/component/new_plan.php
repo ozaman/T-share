@@ -61,15 +61,17 @@
  	if($check_change_plan==0){
 		$titel = t_work_remuneration;
 		$display_none_change_plan = "display:none;";
+		$color_titel = "";
 	}else{
 		$titel = "เปลี่ยน".t_work_remuneration;
 		$display_none_change_plan = "";
+		$color_titel = "color: #f00 !important;";
 	}
 	
 //	echo $check_change_plan." ++++++++";
 ?>
 <div style="padding: 0px 0px;">
-     	<ons-list-header class="list-header"> <?=$titel;?></ons-list-header>
+     	<ons-list-header class="list-header" style="<?=$color_titel;?>"> <?=$titel;?></ons-list-header>
      	<table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
      		<tr style="<?=$display_none_change_plan;?>">
      			<td>สาเหตุ</td>
