@@ -988,10 +988,16 @@ function saveShop() {
                 });*/
                 setTimeout(function() {
                     
-                    _calltest();
-                    modal.hide();
+                    
+				   var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
+				   $.post(url2, function(ele2) {
+				       $('#shop_add').html(ele2);
+				        performClick('tab_shop_mn');
+				        modal.hide();
+				   });
+                    
                     // $('ons-tab[page="shop_manage.html"]').click();
-                }, 2500);
+                }, 2000);
                 // ons.notification.alert({
                 //         message: 'ทำรายการสำเร็จแล้ว',
                 //         title: "สำเร็จ",
@@ -2289,26 +2295,6 @@ success: function(com) {
            });
        }
    });
-}
-
-function _calltest (event){
-   var el = $('ons-tab[page="shop_manage.html"]');
-   performClick('tab_shop_mn')
-   el.click();
-   var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
-   $.post(url2, function(ele2) {
-       $('#shop_add').html(ele2);
-       setTimeout(function() {
-        // window.location.href = "#go_to_top_add"; 
-
-        // $('#shop_add').scrollTop(0);
-    }, 1000);
-   });
-   // console.log(el.click());
-   // el.addEventListener("click",$('ons-tab[page="shop_manage.html"]').click());
-// el.addEventListener("click"
-    // $('ons-tab[page="shop_manage.html"]').click();
-    // console.log( document.addEventListener('prechange'))
 }
 
 function maxLengthCheck(object) {
