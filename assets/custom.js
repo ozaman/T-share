@@ -1694,6 +1694,34 @@ function add_new_station(){
        $('#box_form_toshow').hide();
    }
 }
+function selectTypeCarPlace_edit(type) {
+    $('.station_other').prop("checked", false);
+    
+    var region = $('#region').val();
+    var province = $('#province').val();
+    var amphur = $('#amphur').val();
+    var member = $.cookie("detect_user");
+
+    var data = {
+        region: region,
+        province: province,
+        amphur: amphur,
+       
+
+    };
+    var url = "car/box_station_other?type="+type;
+            $.ajax({
+                url: url,
+                data: data,
+                type: 'post',
+                success: function(res) {
+                    $('#box_station_others').html(res);
+                },
+                error: function(err) {
+                    console.log(err);
+        }
+    });
+}
 function selectTypeCarPlace(id){
     $('.station_other').prop("checked", false);
     id_type_station = id;
@@ -1767,23 +1795,12 @@ function selectTypeCarPlace(id){
 
             }
                 $('#check_get_have').val(0);
-                $('#box_form_toshow').show();
-                $('#box_station_others').hide();
-                $('#get_stations').hide();
+                // $('#box_form_toshow').show();
+                // $('#box_station_others').hide();
+                // $('#get_stations').hide();
 
 
-                if(id==1){
-                   $('#box_form_toshow').show();
-                   $('#box_form_ass').show();
-               }else if(id==2){
-                   $('#box_form_toshow').show();
-                   $('#box_form_com').show();
-               }else if(id==3){
-                   $('#box_form_toshow').show();
-                   $('#box_form_queue').show();
-               }else{
-                   $('#box_form_toshow').hide();
-               }
+               
            }
            else{
             console.log('in case')
@@ -1796,8 +1813,8 @@ function selectTypeCarPlace(id){
 
             }
             $('#check_get_have').val(1);
-            $('#box_form_toshow').hide();
-            $('#box_station_others').show();
+            // $('#box_form_toshow').hide();
+            // $('#box_station_others').show();
 
             var url = "car/box_station_other";
             $.ajax({
@@ -1808,7 +1825,7 @@ function selectTypeCarPlace(id){
                 success: function(res) {
                     // console.log(res);
                     $('#box_station_others').html(res);
-                    $('#header_topic_other').html(type_name)
+                    // $('#header_topic_other').html(type_name)
 
                 },
                 error: function(err) {
@@ -1827,71 +1844,20 @@ function selectTypeCarPlace(id){
     });
     
 }
-// $(function() {
-var options = {
-            data: [{civilite: "lorem", prenom: "ipsum", nom: "sed ut", fonction: "unde", departement: "voluptatem", coderegion: "accusantium"}],
-            getValue: "civilite",
-            template: {
-                type: "custom",
-                method: function(value, item) {
-                    return "<span class='s-1'>" + value + "</span> <span class='s-2'>" + item.prenom + " " + item.nom + "</span> <span class='s-3'>" + item.fonction + "</span> <span class='s-4'>" + item.departement + ' (' + item.coderegion + ')</span>';
-                }
-            }
-        };
-        // $("#custom-template").easyAutocomplete(options);
+function add_btb__station_new(){
+    $('#check_get_have').val(2)
+        $('#body_car_station').hide()
 
-// var options = {
+        $('#form_addstation_div').show()
+            $('#btb_submit_form_station').show()
+            $('#box_form_toshow').hide()
+$.post("car/form_addstation_div", {
+        id_user: $.cookie("detect_user")
+    }, function(res) {
+        //console.log(res);
+        $('#form_addstation_div').html(res);
+        
+   });
 
-//     url: function(phrase) {
-//     return  "http://easyautocomplete.com/api/countrySearch.php";
-//   },
 
-//   getValue: function(element) {
-//     return element.name;
-//   },
-
-//   ajaxSettings: {
-//     dataType: "json",
-//     method: "POST",
-//     data: {
-//       dataType: "json"
-//     }
-//   },
-
-//   preparePostData: function(data) {
-//     data.phrase = $("#in_search_station").val();
-//     return data;
-//   },
-
-//   requestDelay: 400
-
-            // data: [{civilite: "lorem", prenom: "ipsum", nom: "sed ut", fonction: "unde", departement: "voluptatem", coderegion: "accusantium"}],
-
-            // getValue: "topic_th"
-
-            // template: {
-            //     type: "custom",
-            //     method: function(value, item) {
-            //         return "<span class='s-1'>" + value + "</span> <span class='s-2'>" + item.prenom + " " + item.nom + "</span> <span class='s-3'>" + item.fonction + "</span> <span class='s-4'>" + item.departement + ' (' + item.coderegion + ')</span>';
-            //     }
-            // }
-        // };
-
-        $("#in_search_station").easyAutocomplete(options);
-// function selectstation(id) {
-    // $('#radio_other_'+id).prop("checked", true);
-// }
-// 
-
-//     $("#in_search_station").autocomplete({
-//     source: function (request, response) {
-//         $.getJSON("core/code/includes/search.php", {
-//             term: request.term
-//         }, response);
-//     },
-//     minLength: 2,
-//     select: function(event, ui) {
-//         log(ui.item ? "Selected: " + ui.item.value + " aka " + ui.item.id : "Nothing selected, input was " + this.value);
-//     }
-// });
-// });
+    }

@@ -83,31 +83,8 @@ $('#btb_submit_form_station_new').show()
 <form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
-<?php
-if (count($MEMBER) == 0) {
-	$cnone = 'none';
-	?>
-
 	<input type="hidden" name="id_station" id="id_station">
-	<div class=""  style="    background: #8BC34A;
-    padding: 5px;">
-	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
-	<div class="autocomplete" style="    padding: 5px;">
-		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="สมาคม / บริษัท / คิวรถ" style="    font-size: 17px;
-    width: 100%;
-    padding: 9px 15px;
-    background: #fff;
-    color: #333;
-    /* border: 1px solid #fff; */
-    border-radius: 20px;" >
-	</div>
-</div>
-	<?php 
-}
-else{
-	$cnone = 'none';
-}
-?>
+
 
 <!-- <input type="submit"> -->
 	<div id="body_car_station"></div>
@@ -119,9 +96,7 @@ else{
 <div style="margin: 10px 10px" id="btb_submit_form_station" style="display: <?=$cnone;?>">
 	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="submitadd_station();" style="background-color: #fff;">บันทึกข้อมูล</ons-button>
 </div>
-<div style="margin: 10px 10px" id="btb_submit_form_station_new">
-	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_station_other();" style="background-color: #fff;">เพิ่มข้อมูลใหม่</ons-button>
-</div>
+
 <div style="margin: 10px 10px;">
 	<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
 	<span class="font-14" >*หมายเหตุ : ข้อมูลนี้กรอกครั้งเดียวเท่านั่น</span>
@@ -135,22 +110,7 @@ $_where[id] = $MEMBER->type;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where); 
 ?>
 <script type="text/javascript">
-	function add_btb__station_new(){
-		$('#body_car_station').hide()
-
-		$('#form_addstation_div').show()
-			$('#btb_submit_form_station').show()
-			$('#box_form_toshow').hide()
-$.post("car/form_addstation_div", {
-        id_user: $.cookie("detect_user")
-    }, function(res) {
-        //console.log(res);
-        $('#form_addstation_div').html(res);
-        
-   });
-
-
-	}
+	
 	function add_station_other() {
 		$('#form_addstation_div').show()
 			$('#btb_submit_form_station').show()
@@ -204,7 +164,7 @@ $.post("car/form_addstation_div", {
        }
    }, 1000);
 
-	
+
 	$("#in_search_station").autocomplete({
 		minLength: 1,
 		source: function(req, add){
@@ -273,27 +233,7 @@ $.post("car/form_addstation_div", {
             		$('#station_other').val(res.OTHRET.id)
             		if (count == 0) {
             			$('#check_get_have').val(3)
-            			if (res.OTHRET.type == 1) {
-            				$('#name_ass').val(res.OTHRET.topic_th)
-            				$('#phone_office_ass').val(res.OTHRET.phone_company)
-            				$('#address_ass').val(res.OTHRET.address)
-            				$('#leader_name_ass').val(res.OTHRET.leader)
-            				$('#phone_leader_ass').val(res.OTHRET.leader_phone)
-            			}
-            			if (res.OTHRET.type == 2) {
-            				$('#name_com').val(res.OTHRET.topic_th)
-            				$('#address_com').val(res.OTHRET.address)
-            				$('#phone_com').val(res.OTHRET.phone)
-            				$('#leader_name_come').val(res.OTHRET.leader)
-            				$('#phone_office_com').val(res.OTHRET.phone_company)
-            				
-            			}
-            			if (res.OTHRET.type == 3) {
-            				$('#name_q').val(res.OTHRET.topic_th)
-            				$('#address_q').val(res.OTHRET.address)
-            				$('#leader_name_q').val(res.OTHRET.leader)
-            				$('#phone_leader_q').val(res.OTHRET.leader_phone)
-            			}
+            			
             		}
             	}, 1000);
             		// console.log(res)
