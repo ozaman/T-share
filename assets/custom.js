@@ -1718,7 +1718,7 @@ function selectTypeCarPlace_edit(type) {
         $('#box_station_others').show();
 
     }
-    $('.station_other').prop("checked", false);
+    // $('.station_other').prop("checked", false);
     
     var region = $('#region').val();
     var province = $('#province').val();
@@ -1739,10 +1739,9 @@ function selectTypeCarPlace_edit(type) {
         type: 'post',
         success: function(res) {
             $('#box_station_others').html(res);
-            setTimeout(function(){ 
-            $('#station_other').val($('#id_station').val())
-           
-        }, 1000);
+             $('#station_other').val($('#id_station').val())
+             modal.hide();
+          
         },
         error: function(err) {
             console.log(err);

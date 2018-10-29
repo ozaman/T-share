@@ -37,7 +37,7 @@ $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_wh
 		   
 			?>
 			<tr>
-				<td width="40%">
+				<td width="40%" valign="top">
 					<span class="font-17"><?=$row->s_topic_th;?> :</span>
 				</td>
 				<td>

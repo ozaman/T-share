@@ -217,11 +217,15 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 
 </div>
 <script type="text/javascript">
-	$('#radio-<?=$OTHRET->type;?>').prop("checked", true);
+	// $('#radio-<?=$OTHRET->type;?>').prop("checked", true);
 	var chek_show = '<?=$OTHRET->type;?>';
 	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
 	selectTypeCarPlace_edit(chek_show);
-	// func_shop_station_field(chek_show)
+	func_shop_station_field(chek_show)
+	   //setTimeout(function(){ 
+   //          selectTypeCarPlace_edit(chek_show);
+           
+   //      }, 1000);
 	function func_shop_station_field(station_type) {
 		$.post("car/shop_station_field?i_station_type="+station_type, function(res) {
         //console.log(res);
@@ -259,6 +263,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
         });
 		},
 		select: function (event, ui) {
+			 modal.show();
 			console.log('*******************************************22222');
 			console.log(event);
 			console.log(ui);
@@ -293,7 +298,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             		
             	// 	$('#amphur').val(res.OTHRET.amphur)
 
-            	 $('#radio-'+res.OTHRET.type).prop("checked", true);
+            	 //$('#radio-'+res.OTHRET.type).prop("checked", true);
             		// $('#station_other').val(res.OTHRET.id)
             	// 	if (count == 0) {
             	// 		$('#check_get_have').val(3)
@@ -302,7 +307,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             	 // }, 1000);
             		// console.log(res)
 
-
+ 
 
             	}
             });

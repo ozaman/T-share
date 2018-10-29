@@ -15,6 +15,11 @@ if (count($MEMBER)!= 0) {
     // $_where['product_id'] = $_GET[id];
 	$_where['id'] = $MEMBER->type;
 	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+	$res = array();
+
+$_where = array();
+$_where[id] = $MEMBER->station;
+$OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 }
 
 ?>
@@ -83,7 +88,7 @@ $('#btb_submit_form_station_new').show()
 <form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
-	<input type="hidden" name="id_station" id="id_station">
+	<input type="hidden" name="id_station" id="id_station" value="<?=$OTHERT->id;?>">
 
 
 <!-- <input type="submit"> -->
@@ -117,7 +122,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			$('#btb_submit_form_station_new').hide()
 
 	}
-	setTimeout(function(){ 
+	// setTimeout(function(){ 
 
 
 		var chek_data = '<?=count($MEMBER);?>';
@@ -162,7 +167,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
        	// 	$('#box_form_toshow').hide();
        	// }
        }
-   }, 1000);
+   // }, 1000);
 
 
 	
