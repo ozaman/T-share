@@ -1,5 +1,5 @@
 <?php 
-
+// print_r($_POST);
 
 
 
@@ -7,19 +7,28 @@ $_where = array();
     $_where[region] = $_POST[region];
     $_where[province] = $_POST[province];
     $_where[amphur] = $_POST[amphur];
-    $_where[type] = $_POST[type];
+    $_where[type] = $_GET[type];
 
     $_select = array('*');
     $_order = array();
     $_order['topic_th'] = 'asc';
     $data[OTHRET] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION_OTHRET,$_where,$_select,$_order);
     $_where = array();
-    // $_where['product_id'] = $_GET[id];
-$_where['member'] = $_COOKIE['detect_user'];
-$MEMBER2 = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where); 
+
+$_where[status] = 1;
+$_where[member] = $_COOKIE['detect_user'];
+$STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
+$_where = array();
+ $_where['id'] = $STATION->station;
+$OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);  
+
+$_where = array();
+$_where[id] = $_GET[type];
+$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 ?>
 <div class="card" onclick="">
-  <ons-list-header class="list-header" style="padding: 5px 0px; padding-left: 15px;" ><span id="header_topic_other"></span> <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station()" style="margin: 5px;
+  <ons-list-header class="list-header" style="padding: 5px 0px; padding-left: 15px;" ><span ><?=$TYPE->topic_th;?></span> 
+    <!-- <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station()" style="margin: 5px;
     padding: 5px 12px;
     border: none;
     color: #ffffff;
@@ -28,7 +37,8 @@ $MEMBER2 = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
     border-radius: 5px;    margin-top: 0px;"> 
             <i class="fa fa-plus "></i>
             <span>เพิ่ม</span>
-          </button></ons-list-header>
+          </button> -->
+        </ons-list-header>
    
     <ons-list style="width: 100%;">
     
@@ -37,7 +47,7 @@ $MEMBER2 = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
       <?php
       foreach($data[OTHRET] as $key=>$row){
 
-        if($MEMBER2->station == $row->id ){
+        if($OTHRET->id == $row->id ){
           $selected_sub = "selected";
         }else{
           $selected_sub = "";

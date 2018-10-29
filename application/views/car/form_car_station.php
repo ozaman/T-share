@@ -60,7 +60,23 @@ $_order['name_th'] = 'asc';
 $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
 // print_r($arr[amphur]);
 ?>
-
+<div id="search_station">
+<div class=""  style="background: #8BC34A; padding: 5px;display: none;" >
+	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
+	<div class="autocomplete" style="    padding: 5px;">
+		<input  class="text-input" id="in_search_station" type="text" name="in_search_station" placeholder="สมาคม / บริษัท / คิวรถ" style="    font-size: 17px;
+    width: 100%;
+    padding: 9px 15px;
+    background: #fff;
+    color: #333;
+    /* border: 1px solid #fff; */
+    border-radius: 20px;" >
+	</div>
+</div>
+<div style="margin: 10px 10px">
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_station_other();" style="background-color: #fff;">เพิ่มข้อมูลใหม่</ons-button>
+</div>
+</div>
 <div class="card" id="box_zoon" onclick="//checformadd('box_time')">
 
 	<ons-list-header class="list-header ">ภูมิภาค </ons-list-header>
@@ -180,7 +196,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 			}
 			?>
 
-			<ons-list-item tappable onclick="selectTypeCarPlace(<?=$TYPE->id;?>);">
+			<ons-list-item tappable onclick="selectTypeCarPlace_edit(<?=$TYPE->id;?>);">
 				<label class="left">
 					<ons-radio name="station_select" input-id="radio-<?=$TYPE->id;?>" value="<?=$TYPE->id;?>" <?=$chekes ;?> ></ons-radio>
 				</label>
@@ -194,29 +210,18 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 		?>
 	</ons-list>
 </div>
-<div id="box_station_others"></div>
 
-<div class="card" id="shop_station_field" style="display: nones">
-	
+<div id="box_station_others"></div>
+<div class="card" id="shop_station_field" style="display: none">
+
 
 </div>
 <script type="text/javascript">
 	$('#radio-<?=$OTHRET->type;?>').prop("checked", true);
 	var chek_show = '<?=$OTHRET->type;?>';
 	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
-	if(chek_show==1){
-		$('#box_form_toshow').show();
-		$('#box_form_ass').show();
-	}else if(chek_show==2){
-		$('#box_form_toshow').show();
-		$('#box_form_com').show();
-	}else if(chek_show==3){
-		$('#box_form_toshow').show();
-		$('#box_form_queue').show();
-	}else{
-		$('#box_form_toshow').hide();
-	}
-	func_shop_station_field(chek_show)
+	selectTypeCarPlace_edit(chek_show);
+	// func_shop_station_field(chek_show)
 	function func_shop_station_field(station_type) {
 		$.post("car/shop_station_field?i_station_type="+station_type, function(res) {
         //console.log(res);
