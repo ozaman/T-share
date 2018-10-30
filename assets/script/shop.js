@@ -1548,7 +1548,8 @@ else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
 	loadNewPlan(id);
 	loadBoxConfirmPay(id);
-    $('#step_driver_pay_report').show();
+//    $('#step_driver_pay_report').show();
+    
     if(class_user=="taxi"){
 		$('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
 	}else{
@@ -1569,7 +1570,6 @@ else if (type == "guest_register") {
 				}
 		});
 	}
-//    $('#step_driver_pay_com').show();
 } 
 
 //$('#' + type + '_locat_off').hide();

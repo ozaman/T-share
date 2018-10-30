@@ -608,7 +608,7 @@ socket.on('datalab', function(username, data) {
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
 //					alert(value.pax_regis);
 					$('#num_edit_persion2').val(value.pax_regis);
-}
+				}
 				
                 if(value.check_driver_pay==1 && value.check_lab_pay==1){
                    loadBoxConfirmPay(value.id);
