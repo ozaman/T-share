@@ -698,8 +698,8 @@ function register()
                 $_where[province] = $_POST[province];
                 $_where[amphur] = $_POST[amphur];
 
-                $OTHRET_C             = $this->Main_model->num_row(TBL_PLACE_CAR_STATION_OTHRET, $_where);
-                if ( $OTHRET_C == 0) {
+                $OTHRET_C             = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+                if ( count($OTHRET_C) == 0) {
                     $data[region] = $_POST[region];
                     $data[type] = $_POST[station_select];
                     $data[province] = $_POST[province];
@@ -739,8 +739,23 @@ function register()
                     return $res;
                 }
                 else{
-                    $res[status] = false;
-                    $res[msg]    = 'มี'.$name.'ในระบบแล้วกรุณาเลือกที่มีอยู่';
+
+                    $data = array();
+                    foreach ($STATION_FIELD as $key => $row) {
+                    if ($key ==0) {
+                        // $name = $_POST[$row->s_field];
+                    }
+                    else{
+                    $data[$row->s_field_show]   =  $_POST[$row->s_field];
+
+                    }
+
+                }
+
+                $this->db->where('id', $OTHRET_C->id);
+                $up[result] = $this->db->update(TBL_PLACE_CAR_STATION_OTHRET, $data);
+                    $res[status] = $up[result];
+                    $res[msg]    = '';//'มี'.$name.'ในระบบแล้วกรุณาเลือกที่มีอยู่';
                     $res[data2]  = $data2;
                     $res[data]   = $data;
                     $res[num]    = $num;
