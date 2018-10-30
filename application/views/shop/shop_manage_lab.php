@@ -193,6 +193,16 @@ where t1.member = '".$val[drivername]."' ");
                <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
             </td>
          </tr>
+         <?php
+         	if($val[lab_approve_job]==1){ ?>
+				<tr id="date_approved_job_<?=$val[id];?>">
+		         	<td colspan="2">
+		               <span class="font-17" >เวลารับทราบงาน :</span>
+		               <font color="#000;" style="position: absolute;right: 25px;" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
+		            </td>
+		         </tr>
+		<?php	}
+         ?>
          <?php 
          
          if($val[status]!="CANCEL"){

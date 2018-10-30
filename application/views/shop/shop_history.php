@@ -42,7 +42,7 @@
   <div class="box-shop" >
     <?=$txt_lab_ap;?>
      <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
-    <table width="100%"  onclick="openDetailBookinghistory('<?=$key;?>','his','<?=$val->invoice;?>');">
+    <table width="100%"  >
           <tr>
             <td width="80%" ><span class="font-17">คิงส์ พาวเวอร์ (ภูเก็ต)</span></td>
             <td width="20%" align="center" rowspan="2">
@@ -128,7 +128,7 @@
           ?>
 		  <tr>
 		  	<td colspan="2">
-		  		<ons-button onclick="openDetailBookinghistory('0','','<?=$val->invoice;?> ');" style="padding: 15px;    margin-top: 5px;border: 1px solid #0076ff;
+		  		<ons-button onclick="openDetailBookinghistory('<?=$key;?>','his','<?=$val->invoice;?>');" style="padding: 15px;    margin-top: 5px;border: 1px solid #0076ff;
     border-radius: 5px;
     line-height: 0;
     " modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">ตรวจสอบ</span> </ons-button>
