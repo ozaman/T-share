@@ -525,7 +525,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                                     <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                                 </div>
                                 <div class="center list-item__center" style="background-image: none;">
-                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 18px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
+                                    <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
                                 </div>
                             </ons-list-item>
              </ons-card>
@@ -546,8 +546,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     	<ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
                         <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> >
                         
-                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 30px;" <?=$display_none_num_shop;?>></span>
+                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
                         </ons-tab>
+                        <ons-tab page="shop_wait.html" label="รอโอน"></ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
                             <!--<span class="notification none" id="num_his" style="float: right;
     margin-top: 15px;
@@ -563,37 +564,41 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         </div>
                     </ons-page>
                 </template>
-				
+                			
 				<template id="shop_manage.html">
                     <ons-page id="shop_manage">
                     </ons-page>
                 </template>
                 
+                <template id="shop_wait.html">
+                    <ons-page id="shop_wait">
+                        <div>
+                           
+                        </div>
+                    </ons-page>
+                </template>
+                
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
-                        <?php 
-                        	if($_COOKIE[detect_userclass]=="lab"){ ?>
-						<ons-row style="width: 100%;margin-top: 60px;">
+                       
+						<ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
 						<ons-col width="33%">
-							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="his-shop-active shop-his-btn" >ทั้งหมด <span id="num_his_all"></span>
+							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="his-shop-active shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
 							
 							</ons-button>
 							</ons-col>
 							<ons-col width="33%">
-							<ons-button class="shop-his-btn" id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+							<ons-button class="shop-his-btn font-16" id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
 								
 							</ons-col>
 							<ons-col width="33%">
-							<ons-button class="shop-his-btn" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
-								
+							<ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
 							</ons-col>
+							
 						</ons-row>		
 						<?php 
 						$margin_his = "margin-top: 5px;";
-						}
-							else{
-							$margin_his = "margin-top: 75px;";
-						}
+						
                         ?>
                         <input type="hidden" id="check_filter_his" value="" />
                         <input type="hidden" id="first_run_his" value="0" />

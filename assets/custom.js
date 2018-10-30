@@ -601,18 +601,15 @@ socket.on('datalab', function(username, data) {
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
                     changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
+					
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
 //					alert(value.pax_regis);
-$('#num_edit_persion2').val(value.pax_regis);
-}
-
-                /*if (value.check_driver_pay_report == 1) {
-                    console.log("driver_pay_report");
-                    changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
-                }*/
+					$('#num_edit_persion2').val(value.pax_regis);
+				}
+				
                 if(value.check_driver_pay==1 && value.check_lab_pay==1){
                  loadBoxConfirmPay(value.id);
                  return;
@@ -633,16 +630,20 @@ $('#num_edit_persion2').val(value.pax_regis);
 
             if(value.lab_approve_job==1){
               if(value.check_driver_topoint == 1){
-                 $('#btn_manage_topoint_'+value.id).hide();
-                 $('#btn_manage_'+value.id).show();
-             }else{
-                 $('#btn_manage_topoint_'+value.id).show();
-                 $('#btn_manage_'+value.id).hide();
-             }
+               $('#btn_manage_topoint_'+value.id).hide();
+               $('#btn_manage_'+value.id).show();
+               
+               
+           }else{
+               $('#btn_manage_topoint_'+value.id).show();
+               $('#btn_manage_'+value.id).hide();
+           }
+		   $('#date_approved_job_'+value.id).show();
+		   $('#txt_date_approved_job_'+value.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+           $('#txt_wait_'+value.id).hide();
+           $('#td_cancel_book_'+value.id).hide();
+           $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
-             $('#txt_wait_'+value.id).hide();
-             $('#td_cancel_book_'+value.id).hide();
-             $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
              $('#view_lab_approve_'+value.id).show();
 
@@ -650,18 +651,21 @@ $('#num_edit_persion2').val(value.pax_regis);
              $.ajax({
                 url: "main/get_data_user?id="+value.lab_approve_job_post,
 //					           data: pass,
-type: 'post',
-dataType: 'json',
-success: function(res) {
-    console.log(res);
-    var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
-    $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
-//					               $('#text_name_approved').text(res.nickname);
-}
-});
+			type: 'post',
+			dataType: 'json',
+			success: function(res) {
+			    console.log(res);
+			    var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
+			    $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
+			//					               $('#text_name_approved').text(res.nickname);
+			}
+		 });
 
 
-         }else{
+
+       }
+       else{
+
 
             $('#btn_manage_topoint_'+value.id).hide();
             $('#txt_wait_'+value.id).show();
@@ -738,16 +742,20 @@ if ($('#open_shop_manage').val() == 1) {
 
     if(data.lab_approve_job==1){
         if(data.check_driver_topoint == 1){
-         $('#btn_manage_topoint_'+data.id).hide();
-         $('#btn_manage_'+data.id).show();
-     }else{
-         $('#btn_manage_topoint_'+data.id).show();
-         $('#btn_manage_'+data.id).hide();
-     }
 
-     $('#txt_wait_'+data.id).hide();
-     $('#td_cancel_book_'+data.id).hide();
-     $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+           $('#btn_manage_topoint_'+data.id).hide();
+           $('#btn_manage_'+data.id).show();
+           
+       }else{
+           $('#btn_manage_topoint_'+data.id).show();
+           $('#btn_manage_'+data.id).hide();
+       }
+	   $('#date_approved_job_'+data.id).show();
+	   $('#txt_date_approved_job_'+data.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+       $('#txt_wait_'+data.id).hide();
+       $('#td_cancel_book_'+data.id).hide();
+       $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+
 
           /*$('#view_lab_approve_'+value.id).show();
           var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";

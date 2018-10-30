@@ -274,7 +274,14 @@ class Shop extends CI_Controller {
 			$data[check] = $check;
 			echo json_encode($data);
 		}
-
+		
+		public function get_user_by_shop(){
+			$sql = "select t2.name,t2.nickname,t2.username,t2.phone from order_booking as t1 left join web_driver as t2 on t1.".$_GET[type]." = t2.id where t1.id = ".$_GET[id];
+			$query = $this->db->query($sql);
+   			$row = $query->row();
+   			echo json_encode($row);
+		
+		}
 		
 	}
 	?>

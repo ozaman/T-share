@@ -51,6 +51,7 @@ class Shop_model extends CI_Model {
 				$_order['id'] = 'asc';
 				$list_prices = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
 				$s_col = $list_prices->s_col;
+				
 				if ($value->i_plan_com == 5) {
 					if ($list_price[$ick]->s_topic_en == 'park') {
 
@@ -111,6 +112,10 @@ class Shop_model extends CI_Model {
 				$data[$s_col] =  $value->i_price;
 
 			}
+			
+			if($value->s_topic_en=="comision"){
+				$data[check_tran_job] = 1;
+			}
 
 			// $ick++;
 		}
@@ -123,7 +128,7 @@ class Shop_model extends CI_Model {
 
 
 		$data["plan_setting"] = $_POST[plan_setting];
-
+		
 		$data["plan_id"] = $_POST[price_plan];
 		$data["pax"] = $_POST[adult];
 		$data["program"] = $_POST[program];
@@ -268,7 +273,8 @@ public function guest_receive(){
 	$data[guest_receive_date] = time();
 	$data[driver_pickup_lat] = $_GET[lat];
 	$data[driver_pickup_lng] = $_GET[lng];
-
+	$data[guest_receive_ps] = $_COOKIE[detect_user];
+	
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 //		$data[result] = true;
@@ -283,6 +289,7 @@ public function guest_register(){
 	$data[guest_register_date] = time();
 	$data[driver_register_lat] = $_GET[lat];
 	$data[driver_register_lng] = $_GET[lng];
+	$data[guest_register_ps] = $_COOKIE[detect_user];
 	$data[pax_regis] = $_GET[num_cus];
 
 	$this->db->where('id', $_GET[order_id]);

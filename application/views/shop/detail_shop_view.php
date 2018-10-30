@@ -121,7 +121,7 @@ else if($arr[book][status]=='COMPLETED'){
 				}else{
 					$com_persent = $row_plan->commission_persent;
 				}
-				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
+				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
 		   }	
 	}
 	$all_total = $park_total + $person_total + $com_total;
@@ -450,7 +450,7 @@ else if($arr[book][status]=='COMPLETED'){
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
-     			<td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+     			<td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
                 <td width="15%">
                 </td>

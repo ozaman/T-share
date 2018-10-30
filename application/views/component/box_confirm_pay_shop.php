@@ -56,7 +56,7 @@ if($data->check_driver_pay==0){
 							 			 <div id="status_get_<?=$data->id;?>" style="<?=$status_taxi_ap;?>">
 							 			<b class="font-16" style="color: #59AA47;">ยืนยันรับเงิน เวลา <span id="text_confirm_date_<?=$data->id;?>"><?=date('H:i',$data->driver_pay_report_date);?></span> น.</b>
 							 			</div>
-				                  <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>');" style=" margin-top: 10px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
+				                  <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="border-radius: 25px; margin-top: 0px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
 							 <?php }
 								
 								else{  
@@ -83,7 +83,7 @@ if($data->check_driver_pay==0){
 									}
 							 ?>
 							 		
-							 		<ons-button id="confirm_lab_pay_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>');" style="margin-top: 10px;background-color: #fff;<?=$btn_confirm_lab;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการจ่ายเงิน</span> </ons-button>
+							 		<ons-button id="confirm_lab_pay_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="border-radius: 25px;margin-top: 0px;background-color: #fff;<?=$btn_confirm_lab;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการจ่ายเงิน</span> </ons-button>
 							 		
 							 		<div id="status_pay_<?=$data->id;?>" style="<?=$status_lab_pay;?>">
 							 			<b class="font-16" style="color: #0076ff;">ยืนยันการจ่ายเงิน เวลา <span id="text_lab_pay_time_<?=$data->id;?>"><?=date('H:i',$data->driver_payment_date);?></span> น.</b>
@@ -98,25 +98,6 @@ if($data->check_driver_pay==0){
 				                     รอคนขับยืนยันรับเงิน</font></strong></div>
 							 	
 							 <?php } ?>
-			                  </td>
-			               </tr>
-			               <tr>
-			                  <input type="hidden" value="<?=$arr[book][check_driver_pay_com];?>" id="driver_pay_com_check_click">
-			                
-			                  <td width="30" id="pm_guest_driver_pay_com" style="display: none;">
-			                     <table width="100%">
-			                        <tbody>
-			                           <tr>
-			                              <td>
-
-			                              </td>
-			                              <td>
-			                                 <i id="photo_driver_pay_com_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-			                                 <i id="photo_driver_pay_com_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_pay_com','<?=$arr[book][driver_pay_com_date];?>');">photo_camera</i>
-			                              </td>
-			                           </tr>
-			                        </tbody>
-			                     </table>
 			                  </td>
 			               </tr>
 			            </tbody>

@@ -1107,11 +1107,11 @@ $.post(url, detailObj, function(data) {
 	    console.log("driver_pay_report");
 	    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
 	}
-	
-	checkPhotoCheckIn('driver_topoint', obj.id);
-	checkPhotoCheckIn('guest_receive', obj.id);
 	checkPhotoCheckIn('guest_register', obj.id);
-	checkPhotoCheckIn('driver_pay_report', obj.id);
+	/*checkPhotoCheckIn('driver_topoint', obj.id);
+	checkPhotoCheckIn('guest_receive', obj.id);
+	
+	checkPhotoCheckIn('driver_pay_report', obj.id);*/
 	$('.page').animate({
         scrollTop: $( '#btn_driver_topoint' ).offset().top
     }, 500);
@@ -1527,20 +1527,49 @@ else if (type == "guest_receive") {
 	}else{
 		$('#txt_btn_guest_receive').text('ยืนยันรับแขก');
 	}
+	if(class_user=="taxi"){
+		$.ajax({
+			url: "shop/get_user_by_shop?id="+id+"&type=guest_receive_ps", 
+			dataType: 'json', 
+			type: 'post',
+			success: function(data) {
+				console.log(data);
+				var img = '../data/pic/driver/small/'+data.username+'.jpg';
+				var name = data.nickname;
+					$('#guest_receive_pf').attr("onclick","modalShowImg('"+img+"','"+name+"');");
+					$('#guest_receive_phone').attr("href","tel:"+data.phone);
+				}
+		});
+	}
+	
 } 
 
 else if (type == "guest_register") {
 	$('#tr_show_pax_regis_'+id).show();
 	loadNewPlan(id);
 	loadBoxConfirmPay(id);
-    $('#step_driver_pay_report').show();
+//    $('#step_driver_pay_report').show();
+    
     if(class_user=="taxi"){
 		$('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
 	}else{
 		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
 	check_com_plan(id);
-//    $('#step_driver_pay_com').show();
+	if(class_user=="taxi"){
+		$.ajax({
+			url: "shop/get_user_by_shop?id="+id+"&type=guest_register_ps", 
+			dataType: 'json', 
+			type: 'post',
+			success: function(data) {
+				console.log(data);
+				var img = '../data/pic/driver/small/'+data.username+'.jpg';
+				var name = data.nickname;
+					$('#guest_register_pf').attr("onclick","modalShowImg('"+img+"','"+name+"');");
+					$('#guest_register_phone').attr("href","tel:"+data.phone);
+				}
+		});
+	}
 } 
 
 //$('#' + type + '_locat_off').hide();
@@ -1928,6 +1957,23 @@ $.ajax({
             }
     });
 }
+
+function waitTransShop(){
+
+var url_his = 'api/shop_wait_trans_shop';
+console.log(data);
+
+	$.post(url_his,data,function(res){
+	   console.log(res);
+	   
+		   var url = "shop/shop_history";
+		   $.post(url,{ data : res.data },function(html){
+		    $('#shop_history').html(html);
+		});
+
+	});
+}
+
 var array_ma = [];
 var array_his = [];
 var date = moment().format('YYYY-MM-DD');
@@ -1942,8 +1988,8 @@ if (page == "shop_manage.html") {
     historyShop($('#date_shop_his').val());
     $('#box-shop_date').fadeIn(300);
     $('#date_shop_his').val(today);
-}else{
-	$('#box-shop_date').fadeOut(300);
+}else if (page == "shop_wait.html"){
+	waitTransShop();
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/
@@ -1972,7 +2018,7 @@ function timestampToDate(unix_timestamp, type) {
     if (type == "date") {
         return txt_date;
     } else if (type == "time") {
-        return formattedTime;
+        return hours + ':' + minutes.substr(-2) + ' น.';
     } else {
         return txt_date + " " + formattedTime;
     }
@@ -2143,18 +2189,16 @@ $.ajax({
             apiRecordActivityAndNotification(ac, nc);
             $('#apporve_book_'+id).hide();
 			$('#opendetail_book_'+id).show();
-//            setTimeout(function(){  shopManage(); }, 1500);
-            /*ons.notification.alert({
-              message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
-              title: "สำเร็จ",
-              buttonLabel: "ตกลง"
-          })
-            .then(function() {
-
-                
-
-
-            });*/
+			
+			
+			$.ajax({
+		      url: "main/get_timestamp",
+		      type: 'post',
+		      success: function(ele) {
+		         	$('#date_approved_job_'+id).show();
+		         	$('#txt_date_approved_job_'+id).text(timestampToDate(ele,'time'));
+		      }
+		  	});
         }
     });
     }
@@ -2211,10 +2255,9 @@ $.post(url_his,data,function(res){
 
 }
 
-function approvePayDriverByLab(id, invoice, driver){
+/*function approvePayDriverByLab(id, invoice, driver){
     console.log("Lab approved pay");
-/*   sendSocket(id);
-return;*/
+
 var param = {
     order_id : id
 }
@@ -2227,7 +2270,6 @@ $.ajax({
    success: function(res) {
        console.log(res);
        shopFuncNotiActi(id, "lab_pay_approve");
-//              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
 $.ajax({
    url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
    type: 'post',
@@ -2253,8 +2295,7 @@ $.ajax({
 
 function approvePayDriverByTaxi(id, invoice, driver){
     console.log("Driver approved pay");
-     /*sendSocket(id);
-     return;*/
+
      var param = {
         order_id : id
     }
@@ -2295,7 +2336,7 @@ success: function(com) {
            });
        }
    });
-}
+}*/
 
 function maxLengthCheck(object) {
     if (object.value.length > 3)
@@ -2406,7 +2447,7 @@ function loadBoxConfirmPay(id){
 		});
 }
 
-function confirmGetIncome(id){
+function confirmGetIncome(id, invoice, driver){
 
 	$.ajax({
                url: "shop/driver_approved_pay?order_id="+id,
@@ -2425,12 +2466,31 @@ function confirmGetIncome(id){
 				   		sendSocket(id);
 				   		
 				   		completedJobShop(id);
+				   		shopFuncNotiActi(id, "driver_pay_approve");
+			           $.ajax({
+			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+			               type: 'post',
+			               dataType: 'json',
+			               success: function(res) {
+			                   console.log(res);
+			                   sendSocket(id);
+			                   ons.notification.alert({
+			                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+			                      title: "สำเร็จ",
+			                      buttonLabel: "ตกลง"
+			                  })
+			                   .then(function() {
+			                    reloadIncomeShop(id);
+			                });
+			               }
+			           });
+				   		
 				   }
             }
     });
 }
 
-function confirmPayIncome(id){
+function confirmPayIncome(id,invoice,driver){
 	
 	var data = {
 		order_id : id
@@ -2453,6 +2513,15 @@ function confirmPayIncome(id){
 						$("#number_driver_pay_com").addClass('step-booking-active');
                    		
 				   		sendSocket(id);
+				   		shopFuncNotiActi(id, "lab_pay_approve");
+				   		$.ajax({
+			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+			               type: 'post',
+			               dataType: 'json',
+			               success: function(res) {
+			                   console.log(res);
+			               }
+			           });
 				   }
             }
     });
