@@ -1742,7 +1742,7 @@ function get_station() {
 
 
 } 
-var ckstation = 0;
+var ckstation = 1;
 function selectTypeCarPlace_edit(type) {
     if (type == 4) {
         $('#box_station_others').hide();
@@ -1780,11 +1780,14 @@ function selectTypeCarPlace_edit(type) {
             $('#box_station_others').html(res);
             // $('#station_other').val(0)
             modal.hide();
-            if (ckstation == 0) {
+            if (ckstation == 1) {
                 setTimeout(function(){ 
                 $('#station_other').val($('#id_station').val());
                 ckstation++;
             },1000);
+            }
+            else if (ckstation == 0) {
+                $('#station_other').val($('#id_station').val());
             }
             else{
                 $('#station_other').val(0);

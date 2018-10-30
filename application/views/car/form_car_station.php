@@ -280,6 +280,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
         });
 		},
 		select: function (event, ui) {
+
 			 modal.show();
 			console.log('*******************************************22222');
 			console.log(event);
@@ -288,7 +289,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 			// $('#btb_submit_form_station').show()
 			// $('#btb_submit_form_station_new').hide()
 			$('#id_station').val(ui.item.station)
-			
+
 
 			var req = {
 				id: ui.item.station,
@@ -300,7 +301,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             type: 'POST',
             data: req,
             success: function(res){
-            	
+            	ckstation = 0;
             	console.log(res)
             	//var count = '<?=count($MEMBER);?>'
 
@@ -310,16 +311,16 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             	$('#province').val(res.OTHRET.province)
             	$('#amphur').val(res.OTHRET.amphur)
             	selectTypeCarPlace_edit(res.OTHRET.type);
-            	
+
             setTimeout(function() {
-            		
+
             	// 	$('#amphur').val(res.OTHRET.amphur)
 
             	 $('#radio-'+res.OTHRET.type).prop("checked", true);
             		// $('#station_other').val(res.OTHRET.id)
             	// 	if (count == 0) {
             	// 		$('#check_get_have').val(3)
-            			
+
             	// 	}
             	 }, 1000);
             		// console.log(res)
