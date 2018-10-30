@@ -166,7 +166,7 @@ where t1.member = '".$val[drivername]."' ");
          ?>
          <tr id="date_approved_job_<?=$val[id];?>" style="<?=$hidden_date_app;?>">
 		         	<td colspan="2">
-		               <span class="font-17" >เวลารับทราบงาน :</span>
+		               <span class="font-17" >รับทราบงาน :</span>
 		               <font color="#000;" style="position: absolute;right: 25px;" id="txt_date_approved_job_<?=$val[id];?>" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
 		            </td>
 		</tr>
@@ -221,13 +221,20 @@ where t1.member = '".$val[drivername]."' ");
                            			$txt_wait_approve = "";
                            		}
                            		?>
+                           		<?php 
+                         	if($_GET[wait_trans]!=""){
+								$onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
+							}else{
+								$onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
+							}
+                         ?>  	
                         <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>','<?=$key;?>');" style="padding: 13px;border: 1px solid #0076ff;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
                            <span class="font-17 text-cap">ถึงสถานที่</span> </ons-button>   
                            		
-                        <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
+                        <ons-button onclick="<?=$onclick;?>" style="padding: 13px;border: 1px solid #0076ff;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">

@@ -196,7 +196,7 @@ where t1.member = '".$val[drivername]."' ");
          ?>
          <tr id="date_approved_job_<?=$val[id];?>" style="<?=$hidden_date_app;?>">
 		         	<td colspan="2">
-		               <span class="font-17" >เวลารับทราบงาน :</span>
+		               <span class="font-17" >รับทราบงาน :</span>
 		               <font color="#000;" style="position: absolute;right: 25px;" id="txt_date_approved_job_<?=$val[id];?>" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
 		            </td>
 		</tr>
@@ -232,9 +232,16 @@ where t1.member = '".$val[drivername]."' ");
                            $btn_approve = "display:none;";
                            $btn_manage = "";
                            }?>
+                           <?php 
+                         	if($_GET[wait_trans]!=""){
+								$onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
+							}else{
+								$onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
+							}
+                         ?>  		
                         <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>','<?=$val[invoice];?>','<?=$val[drivername];?>');" 
                            style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
-                        <ons-button id="opendetail_book_<?=$val[id];?>" onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;
+                        <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" style="padding: 13px;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
