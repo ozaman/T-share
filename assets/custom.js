@@ -18,11 +18,11 @@ function setCountNotification(){
 //			        	console.log(num);
 //			        	num = 0;
 if(num>0){
-   $('.fa-bell').addClass('bell');		    
-   $('#tab_notification').attr('badge', num);
+ $('.fa-bell').addClass('bell');		    
+ $('#tab_notification').attr('badge', num);
 }else{
-   $('.fa-bell').removeClass('bell');		    
-   $('#tab_notification').attr('badge', '');
+ $('.fa-bell').removeClass('bell');		    
+ $('#tab_notification').attr('badge', '');
 }
 
 }
@@ -432,17 +432,17 @@ function updatePlaceNum(province) {
         //        var obj = JSON.parse(data);
         console.log(obj);
         if(obj.length<=0){
-         return;
-     }
-     var province = obj[0].id;
-     var area = obj[0].area;
-     $('#place_province').val(province);
-     $('#place_area').val(area);
+           return;
+       }
+       var province = obj[0].id;
+       var area = obj[0].area;
+       $('#place_province').val(province);
+       $('#place_area').val(area);
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
-         console.log(data2);
-     });
+           console.log(data2);
+       });
     });
 }
 var array_rooms;
@@ -516,12 +516,12 @@ if ($('#number_shop').text() != 0) {
 
 
 if (shop_frist_run == 0) {
-   shop_frist_run = done.length;
+ shop_frist_run = done.length;
 }
 //	console.log(done.length+ "|| "+shop_frist_run)
 if (done.length != shop_frist_run) {
-   shopManage();
-   shop_frist_run = done.length;
+ shopManage();
+ shop_frist_run = done.length;
 }
 
 /* check open order id auto */
@@ -569,9 +569,9 @@ socket.emit('adduser', dataorder);
 function addUser(){
 	var id = detect_user;
 	var dataorder = {
-     order: parseInt(id),
- };
- socket.emit('adduser', dataorder);
+       order: parseInt(id),
+   };
+   socket.emit('adduser', dataorder);
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
@@ -614,18 +614,18 @@ $('#num_edit_persion2').val(value.pax_regis);
                     changeHtml("driver_pay_report", value.id, timestampToDate(value.driver_pay_report_date, "time"));
                 }*/
                 if(value.check_driver_pay==1 && value.check_lab_pay==1){
-                   loadBoxConfirmPay(value.id);
-                   return;
-               }
-               if(value.check_driver_pay==1){
-                   loadBoxConfirmPay(value.id);
-               }
-               if(value.check_lab_pay==1){
-                   loadBoxConfirmPay(value.id);
-               }
+                 loadBoxConfirmPay(value.id);
+                 return;
+             }
+             if(value.check_driver_pay==1){
+                 loadBoxConfirmPay(value.id);
+             }
+             if(value.check_lab_pay==1){
+                 loadBoxConfirmPay(value.id);
+             }
 
-           }
-       });
+         }
+     });
     }
     
     if ($('#open_shop_manage').val() == 1) {
@@ -633,22 +633,22 @@ $('#num_edit_persion2').val(value.pax_regis);
 
             if(value.lab_approve_job==1){
               if(value.check_driver_topoint == 1){
-               $('#btn_manage_topoint_'+value.id).hide();
-               $('#btn_manage_'+value.id).show();
-           }else{
-               $('#btn_manage_topoint_'+value.id).show();
-               $('#btn_manage_'+value.id).hide();
-           }
+                 $('#btn_manage_topoint_'+value.id).hide();
+                 $('#btn_manage_'+value.id).show();
+             }else{
+                 $('#btn_manage_topoint_'+value.id).show();
+                 $('#btn_manage_'+value.id).hide();
+             }
 
-           $('#txt_wait_'+value.id).hide();
-           $('#td_cancel_book_'+value.id).hide();
-           $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+             $('#txt_wait_'+value.id).hide();
+             $('#td_cancel_book_'+value.id).hide();
+             $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
-           $('#view_lab_approve_'+value.id).show();
+             $('#view_lab_approve_'+value.id).show();
 
 
-           $.ajax({
-            url: "main/get_data_user?id="+value.lab_approve_job_post,
+             $.ajax({
+                url: "main/get_data_user?id="+value.lab_approve_job_post,
 //					           data: pass,
 type: 'post',
 dataType: 'json',
@@ -661,31 +661,31 @@ success: function(res) {
 });
 
 
-       }else{
+         }else{
 
-        $('#btn_manage_topoint_'+value.id).hide();
-        $('#txt_wait_'+value.id).show();
-        $('#td_cancel_book_'+value.id).show();
-        $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-        $('#view_lab_approve_'+value.id).hide();
-    }
+            $('#btn_manage_topoint_'+value.id).hide();
+            $('#txt_wait_'+value.id).show();
+            $('#td_cancel_book_'+value.id).show();
+            $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+            $('#view_lab_approve_'+value.id).hide();
+        }
 
-    if(value.status != $('#check_status_'+value.id).val()){
-     var pass = {
-      data: value
-  };
-  console.log(pass);
-  var url = "component/list_shop_manage";
-  $.ajax({
-      url: url,
-      data: pass,
-      type: 'post',
-      success: function(ele) {
-          $('#list_shop_manage_'+value.id).html(ele);
+        if(value.status != $('#check_status_'+value.id).val()){
+           var pass = {
+              data: value
+          };
+          console.log(pass);
+          var url = "component/list_shop_manage";
+          $.ajax({
+              url: url,
+              data: pass,
+              type: 'post',
+              success: function(ele) {
+                  $('#list_shop_manage_'+value.id).html(ele);
+              }
+          });
       }
   });
-}
-});
 //        shopManage();
 
 }
@@ -738,16 +738,16 @@ if ($('#open_shop_manage').val() == 1) {
 
     if(data.lab_approve_job==1){
         if(data.check_driver_topoint == 1){
-           $('#btn_manage_topoint_'+data.id).hide();
-           $('#btn_manage_'+data.id).show();
-       }else{
-           $('#btn_manage_topoint_'+data.id).show();
-           $('#btn_manage_'+data.id).hide();
-       }
+         $('#btn_manage_topoint_'+data.id).hide();
+         $('#btn_manage_'+data.id).show();
+     }else{
+         $('#btn_manage_topoint_'+data.id).show();
+         $('#btn_manage_'+data.id).hide();
+     }
 
-       $('#txt_wait_'+data.id).hide();
-       $('#td_cancel_book_'+data.id).hide();
-       $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+     $('#txt_wait_'+data.id).hide();
+     $('#td_cancel_book_'+data.id).hide();
+     $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
           /*$('#view_lab_approve_'+value.id).show();
           var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
@@ -797,9 +797,9 @@ function openOrderFromAndroid(id, status, open_ic) {
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     var check_open_shop_id = $('#check_open_shop_id').val();
     if(check_open_shop_id==id){
-       return;
-   }
-   if (status == "his") {
+     return;
+ }
+ if (status == "his") {
 
     openOrderFromAndroidHistory(id, status, open_ic)
 } else {
@@ -834,10 +834,10 @@ $.ajax({
     dataType: 'json',
     type: 'post',
     success: function(res) {
-     console.log(res);
-     openDetailBookinghistory('', '', res.invoice);
-     modal.hide();
- }
+       console.log(res);
+       openDetailBookinghistory('', '', res.invoice);
+       modal.hide();
+   }
 });
 
 }
@@ -969,16 +969,16 @@ function beforeSendShop(){
                 })
                 .then(function() {
 
-                   addCarForSendShop();
+                 addCarForSendShop();
 
-               });
+             });
                 return;
             }else{
-               sendShop2();
-               setTimeout(function(){ shopManage(); }, 2000);
+             sendShop2();
+             setTimeout(function(){ shopManage(); }, 2000);
 
-           }
-       });
+         }
+     });
 
     }else{
       sendShop2();
@@ -1036,26 +1036,26 @@ $.post(urlo, function(res) {
                     modal.hide();
                     $('#shop_add').html(ele2);
                     if (class_user == "taxi"){
-                     $.ajax({
-                       url: "main/check_num_car_station",
-                       data: pass,
-                       type: 'post',
-                       success: function(res) {
-                         console.log("car station number : "+res)
-                         if (res == 0) {
-                           stationCar();
-                       }else{
+                       $.ajax({
+                         url: "main/check_num_car_station",
+                         data: pass,
+                         type: 'post',
+                         success: function(res) {
+                           console.log("car station number : "+res)
+                           if (res == 0) {
+                             stationCar();
+                         }else{
 
-                       }
+                         }
 
+                     }
+                 });
                    }
-               });
-                 }
 
 
 
 
-                 var pass = {
+                   var pass = {
                     date: moment().format('YYYY-MM-DD'),
                     driver: $.cookie("detect_user"),
                     type: 'his'
@@ -1200,8 +1200,8 @@ function myAccountBank() {
     }, function(ele) {
         $('#body_account_bank').html(ele);
         setTimeout(function(){
-           setnumbank();
-           if($('#detect_num_bank').val()==0){
+         setnumbank();
+         if($('#detect_num_bank').val()==0){
             addBank();
         }
     }, 500);
@@ -1394,10 +1394,10 @@ function clearCookieAll() {
     for (var cookie in cookies) {
         console.log(cookie);
         if(cookie != "app_remember_user" && cookie!= "app_remember_pass"){
-           $.removeCookie(cookie, {
-             path: '/'
-         });
-       }
+         $.removeCookie(cookie, {
+           path: '/'
+       });
+     }
         //	   $.removeCookie(cookie);
         
     }
@@ -1413,11 +1413,11 @@ function expenditure() {
 function apiRecordActivityAndNotification(param_aan, param_aan2){
 
     var param_all = {
-     activity : param_aan,
-     notification : param_aan2
- };
- console.log(param_all);
- $.ajax({
+       activity : param_aan,
+       notification : param_aan2
+   };
+   console.log(param_all);
+   $.ajax({
 						url: "main/recordActivityAndNoti", // point to server-side PHP script 
 						dataType: 'json', // what to expect back from the PHP script, if anything
 						type: 'post',
@@ -1538,7 +1538,7 @@ function _form_car_station(body){
        }
    });
 }
-var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, have = 1 2 have addnew 3 search,
+var id_type_station,check_get_have = 0,type_name;  //check_get_station :no = 0, have = 1 addnwe, 2 have, addnew 3 search,
 
 function submitadd_station(){
     var form = document.getElementById("form_addstation");
@@ -1612,47 +1612,65 @@ if (check_get_have == 1) {
     return false;
 }*/
 $.ajax({
- url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
- data:  $('#form_addstation').serialize(),
- type: 'post',
- dataType: 'json',
- success: function(res) {
-     console.log(res);
-     if (res.status == true ) {
-         // callpop();
+   url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
+   data:  $('#form_addstation').serialize(),
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
+       console.log(res);
+       if (res.status == true ) {
+         
 
          // beforeSendShop()
-       	setTimeout(function(){ 
-            
-       		stationCaragain();
+         setTimeout(function(){ 
+
+           // stationCaragain();
+           var area = $('#place_area').val();
+           var pv = $('#place_province').val();
+           $.post("car/edit_form_station?area="+area+"&pv="+pv, {
+            id_user: $.cookie("detect_user")
+        }, function(res) {
+callpop();
+            $('#body_popup1').html(res);
             modal.hide();
-        }, 1000);
-        
+            if($('#province').val()!=""){
+           // _province(pv);
+       }
+   });
+           
+       }, 1000);
 
-    }
-    else{
-        if (res.msg == 'type') {
-            ons.notification.alert({
-              message: 'คิว/บริษัท/สมาคม',
-              title: "กรุณาเลือก",
+
+     }
+     else{
+        ons.notification.alert({
+              message: res.msg,
+              title: "กรุณาตรวจสอบ",
               buttonLabel: "ตกลง"
           })
-        }
-        else{
-            ons.notification.alert({
-              message: 'กรุณาเลือกที่มีอยู่ในระบบ',
-              title: "มีชื่อนี้ในระบบ",
-              buttonLabel: "ตกลง"
-          })
-        }
+         modal.hide();
+        // if (res.msg == 'type') {
+        //     ons.notification.alert({
+        //       message: 'คิว/บริษัท/สมาคม',
+        //       title: "กรุณาเลือก",
+        //       buttonLabel: "ตกลง"
+        //   })
+        // }
+        // else{
+        //     ons.notification.alert({
+        //       message: 'กรุณาเลือกที่มีอยู่ในระบบ',
+        //       title: "มีชื่อนี้ในระบบ",
+        //       buttonLabel: "ตกลง"
+        //   })
+        // }
 
     }
-    modal.hide();
+    // modal.hide();
 }
 });
 }
 function stationCaragain(){
-    
+
     var area = $('#place_area').val();
     var pv = $('#place_province').val();
     $.post("car/edit_form_station?area="+area+"&pv="+pv, {
@@ -1667,9 +1685,9 @@ function stationCaragain(){
 }
 function stationCar(){
 	fn.pushPage({
-     'id': 'popup1.html',
-     'title': 'ข้อมูลสังกัดรถ'
- }, 'lift-ios');
+       'id': 'popup1.html',
+       'title': 'ข้อมูลสังกัดรถ'
+   }, 'lift-ios');
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();
     $.post("car/edit_form_station?area="+area+"&pv="+pv, {
@@ -1682,40 +1700,53 @@ function stationCar(){
        }
    });
 }
+
+/***************************** *** ******************************/
+/************************* new station **************************/
+/***************************** *** ******************************/
+function func_shop_station_field(station_type) {
+    console.log('aaaaa')
+        $.post("car/shop_station_field?i_station_type="+station_type, function(res) {
+        //console.log(res);
+        $('#shop_station_field').html(res);
+
+    });
+}
+
+
+/***************************** *** ******************************/
+/********************* BTN ADD NEW STATION **********************/
+/***************************** *** ******************************/
+function add_new_station(id){
+    // check_get_have = 2;
+    $('#check_get_have').val(0);
+    $('#box_station_others').hide()
+
+    $('#shop_station_field').show()
+    func_shop_station_field(id)
+    
+}
+
 function get_station() {
     $('#box_station_others').show();
-    $('#box_form_toshow').hide();
+    $('#shop_station_field').hide()
 
 
 
-}
-function add_new_station(){
-    check_get_have = 2;
-    $('#check_get_have').val(0);
-    $('#box_station_others').hide();
-    $('#box_form_toshow').show();
-    $('#get_stations').show();
-    if(id_type_station==1){
-     $('#box_form_toshow').show();
-     $('#box_form_ass').show();
- }else if(id_type_station==2){
-     $('#box_form_toshow').show();
-     $('#box_form_com').show();
- }else if(id_type_station==3){
-     $('#box_form_toshow').show();
-     $('#box_form_queue').show();
- }else{
-     $('#box_form_toshow').hide();
- }
-}
+} 
+var ckstation = 0;
 function selectTypeCarPlace_edit(type) {
     if (type == 4) {
         $('#box_station_others').hide();
+        $('#shop_station_field').hide();
+
 
         
     }
     else{
         $('#box_station_others').show();
+        $('#shop_station_field').hide();
+
 
     }
     // $('.station_other').prop("checked", false);
@@ -1739,9 +1770,20 @@ function selectTypeCarPlace_edit(type) {
         type: 'post',
         success: function(res) {
             $('#box_station_others').html(res);
-             $('#station_other').val($('#id_station').val())
-             modal.hide();
-          
+            // $('#station_other').val(0)
+            modal.hide();
+            if (ckstation == 0) {
+                setTimeout(function(){ 
+                $('#station_other').val($('#id_station').val());
+                ckstation++;
+            },1000);
+            }
+            else{
+                $('#station_other').val(0);
+
+            }
+            
+
         },
         error: function(err) {
             console.log(err);
@@ -1871,17 +1913,21 @@ function selectTypeCarPlace(id){
     
 }
 function add_btb__station_new(){
+    fn.pushPage({
+       'id': 'popup2.html',
+       'title': 'ข้อมูลสังกัดรถ'
+   }, 'lift-ios');
     $('#check_get_have').val(2)
-    $('#body_car_station').hide()
+    // $('#body_car_station').hide()
 
     $('#form_addstation_div').show()
     $('#btb_submit_form_station').show()
-    $('#box_form_toshow').hide()
+    // $('#box_form_toshow').hide()
     $.post("car/form_addstation_div", {
         id_user: $.cookie("detect_user")
     }, function(res) {
         //console.log(res);
-        $('#form_addstation_div').html(res);
+        $('#body_popup2').html(res);
         
     });
 
