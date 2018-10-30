@@ -2240,10 +2240,9 @@ $.post(url_his,data,function(res){
 
 }
 
-function approvePayDriverByLab(id, invoice, driver){
+/*function approvePayDriverByLab(id, invoice, driver){
     console.log("Lab approved pay");
-/*   sendSocket(id);
-return;*/
+
 var param = {
     order_id : id
 }
@@ -2256,7 +2255,6 @@ $.ajax({
    success: function(res) {
        console.log(res);
        shopFuncNotiActi(id, "lab_pay_approve");
-//              "send_messages/send_pay_driver.php?type=send_driver&vc="+invoice+'&driver='+driver+'&order_id='+order_id
 $.ajax({
    url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
    type: 'post',
@@ -2282,8 +2280,7 @@ $.ajax({
 
 function approvePayDriverByTaxi(id, invoice, driver){
     console.log("Driver approved pay");
-     /*sendSocket(id);
-     return;*/
+
      var param = {
         order_id : id
     }
@@ -2324,7 +2321,7 @@ success: function(com) {
            });
        }
    });
-}
+}*/
 
 function maxLengthCheck(object) {
     if (object.value.length > 3)

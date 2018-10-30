@@ -492,6 +492,7 @@ class Send_onesignal_model extends CI_Model {
  		 $res_ob = $query_ob->row();
  		 
 		 $txt_short = "ทะเบียน ".$res_ob->car_plate." คนขับยืนยันได้รับเงินแล้ว";
+		 $txt_short = "เลขที่ : ".$invoice." คนขับยืนยันได้รับเงินแล้ว";
 		 $content  = array(
         "en" => $txt_short.' กรุณาตรวจสอบ'
    		 );
