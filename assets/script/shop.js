@@ -1107,11 +1107,11 @@ $.post(url, detailObj, function(data) {
 	    console.log("driver_pay_report");
 	    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
 	}
-	
-	checkPhotoCheckIn('driver_topoint', obj.id);
-	checkPhotoCheckIn('guest_receive', obj.id);
 	checkPhotoCheckIn('guest_register', obj.id);
-	checkPhotoCheckIn('driver_pay_report', obj.id);
+	/*checkPhotoCheckIn('driver_topoint', obj.id);
+	checkPhotoCheckIn('guest_receive', obj.id);
+	
+	checkPhotoCheckIn('driver_pay_report', obj.id);*/
 	$('.page').animate({
         scrollTop: $( '#btn_driver_topoint' ).offset().top
     }, 500);
@@ -1527,14 +1527,21 @@ else if (type == "guest_receive") {
 	}else{
 		$('#txt_btn_guest_receive').text('ยืนยันรับแขก');
 	}
-	$.ajax({
-			url: "shop/get_user_by_shop?id="+value.guest_receive_ps, 
+	if(class_user=="taxi"){
+		$.ajax({
+			url: "shop/get_user_by_shop?id="+id+"&type=guest_receive_ps", 
 			dataType: 'json', 
 			type: 'post',
 			success: function(data) {
-				$('#guest_receive_pf').onclick('modalShowImg','"../data/pic/driver/small/'+data.username+'.jpg","'+data.name+'"');
+				console.log(data);
+				var img = '../data/pic/driver/small/'+data.username+'.jpg';
+				var name = data.nickname;
+					$('#guest_receive_pf').attr("onclick","modalShowImg('"+img+"','"+name+"');");
+					$('#guest_receive_phone').attr("href","tel:"+data.phone);
 				}
-	});
+		});
+	}
+	
 } 
 
 else if (type == "guest_register") {
@@ -1548,6 +1555,20 @@ else if (type == "guest_register") {
 		$('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
 	}
 	check_com_plan(id);
+	if(class_user=="taxi"){
+		$.ajax({
+			url: "shop/get_user_by_shop?id="+id+"&type=guest_register_ps", 
+			dataType: 'json', 
+			type: 'post',
+			success: function(data) {
+				console.log(data);
+				var img = '../data/pic/driver/small/'+data.username+'.jpg';
+				var name = data.nickname;
+					$('#guest_register_pf').attr("onclick","modalShowImg('"+img+"','"+name+"');");
+					$('#guest_register_phone').attr("href","tel:"+data.phone);
+				}
+		});
+	}
 //    $('#step_driver_pay_com').show();
 } 
 

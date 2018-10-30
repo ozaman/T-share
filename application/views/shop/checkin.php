@@ -146,8 +146,9 @@ $btn_pay_com_color = "background-color:#666666";
 		                                 <td>
 		                                 	<i id="guest_receive_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('','');">account_circle</i>
 		                                 </td>
+		                                 <td>&nbsp;</td>
 		                                 <td>
-		                                 	<a href="tel:<?=$arr[book][phone];?>"><i id="guest_receive_phone" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
+		                                 	<a id="guest_receive_phone" href="tel:<?=$arr[book][phone];?>"><i class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
 		                                 </td>
 										<?	}
 		                                 ?>
@@ -171,6 +172,7 @@ $btn_pay_com_color = "background-color:#666666";
 
                </td>
             </tr>
+			
             <tr id="step_guest_register" style="display:none">
                <td class="font-16">
                   <div class="div-all-checkin">
@@ -200,8 +202,16 @@ $btn_pay_com_color = "background-color:#666666";
                                     <tbody>
                                        <tr>
                                           <td>
-                                             <!--<i id="guest_register_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
-                                             <i id="guest_register_locat_on" onclick="openPointMaps('guest_register','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>-->
+                                           <?php 
+		                                 if($_COOKIE[detect_userclass]=="taxi"){ ?>
+		                                 <td>
+		                                 	<i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('','');">account_circle</i>
+		                                 </td>
+		                                 <td>&nbsp;</td>
+		                                 <td>
+		                                 	<a id="guest_register_phone" href="tel:<?=$arr[book][phone];?>"><i  class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
+		                                 </td>
+										<?	}                          ?>
                                           </td>
                                           <td>
                                              <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
