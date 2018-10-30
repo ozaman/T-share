@@ -572,8 +572,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 
                 <template id="shop_wait.html">
                     <ons-page id="shop_wait">
-                        <div>12
-                           
+                        <div>
                         </div>
                     </ons-page>
                 </template>

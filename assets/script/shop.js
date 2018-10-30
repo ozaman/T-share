@@ -1063,15 +1063,13 @@ if(type!="ios"){
 console.log(detailObj);
 var url = "shop/detail_shop" + "?user_id=" + detect_user;
 $.post(url, detailObj, function(data) {
-//   console.log(data);
+
 	$('#body_popup1').html(data);
-	        //        var obj = JSON.parse('<?=json_encode($_POST);?>');
-	        var obj = detailObj;
-	//        console.log(obj);
+	
+	var obj = detailObj;
 
 	if (obj.check_driver_topoint == 1) {
 	    console.log("driver_topoint");
-//	    alert(obj.driver_topoint_date);
 	    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
 	}
 	if (obj.check_guest_receive == 1) {
@@ -1087,10 +1085,6 @@ $.post(url, detailObj, function(data) {
 	    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
 	}
 	checkPhotoCheckIn('guest_register', obj.id);
-	/*checkPhotoCheckIn('driver_topoint', obj.id);
-	checkPhotoCheckIn('guest_receive', obj.id);
-	
-	checkPhotoCheckIn('driver_pay_report', obj.id);*/
 	$('.page').animate({
         scrollTop: $( '#btn_driver_topoint' ).offset().top
     }, 500);
@@ -1099,6 +1093,58 @@ $.post(url, detailObj, function(data) {
 	}
 });
 $('#check_open_shop_id').val(detailObj.id);
+}
+
+function openDetailShopWaitTrans(invoice){
+	fn.pushPage({
+    'id': 'popup1.html',
+    'title': invoice
+}, 'slide-ios');
+
+var url = "shop/detail_shop_his";
+var param = {
+    user_id: $.cookie("detect_user"),
+    invoice: invoice,
+};
+//    console.log(param);
+$.ajax({
+    url: url,
+    dataType: 'json',
+    data: param,
+    type: 'post',
+    success: function(res) {
+//            console.log(res);
+var url = "page/shop_detail_his";
+$.post(url,res,function(ele) {
+//                  console.log(ele);
+$('#body_popup1').html(ele);
+var obj = res;
+console.log(obj);
+if (obj.check_driver_topoint == 1) {
+    console.log("driver_topoint");
+    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+}
+if (obj.check_guest_receive == 1) {
+    console.log("guest_receive");
+    changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+}
+if (obj.check_guest_register == 1) {
+    console.log("guest_register");
+    changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+}
+if (obj.check_driver_pay_report == 1) {
+    console.log("driver_pay_report");
+    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+}
+/*checkPhotoCheckIn('driver_topoint', obj.id);
+checkPhotoCheckIn('guest_receive', obj.id);
+checkPhotoCheckIn('driver_pay_report', obj.id);*/
+checkPhotoCheckIn('guest_register', obj.id);
+$('#check_open_shop_id').val(obj.id);
+});
+//          $('#body_popup1').html(res);
+}
+});
 }
 
 function openDetailBookinghistory(key, type, invoice) {
@@ -1144,10 +1190,11 @@ if (obj.check_driver_pay_report == 1) {
     console.log("driver_pay_report");
     changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
 }
-checkPhotoCheckIn('driver_topoint', obj.id);
+/*checkPhotoCheckIn('driver_topoint', obj.id);
 checkPhotoCheckIn('guest_receive', obj.id);
 checkPhotoCheckIn('guest_register', obj.id);
-checkPhotoCheckIn('driver_pay_report', obj.id);
+checkPhotoCheckIn('driver_pay_report', obj.id);*/
+checkPhotoCheckIn('guest_register', obj.id);
 $('#check_open_shop_id').val(obj.id);
 });
 //          $('#body_popup1').html(res);
@@ -1948,13 +1995,13 @@ console.log(url_his);
 		    data: res.data
 		};
 		console.log(pass);
-		   var url = "page/shop_manage";
+		   var url = "page/shop_manage?wait_trans=1";
 		   $.ajax({
 			    url: url,
 			    data: pass,
 			    type: 'post',
 			    success: function(ele) {
-			    			console.log(ele);
+//			    			console.log(ele);
 			                $('#shop_wait').html(ele);
 			            }
 			    });
