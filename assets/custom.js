@@ -1942,3 +1942,17 @@ function add_btb__station_new(){
 
 
 }
+function view_station_his() {
+    modal.show();
+    fn.pushPage({
+       'id': 'popup2.html',
+       'title': 'ข้อมูลประวัตสังกัดรถ'
+   }, 'lift-ios');
+    console.log('aaaaa')
+        $.post("car/station_his", function(res) {
+        //console.log(res);
+        $('#body_popup2').html(res);
+        modal.hide();
+
+    });
+}
