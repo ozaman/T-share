@@ -601,12 +601,13 @@ socket.on('datalab', function(username, data) {
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
                     changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
+					
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
 //					alert(value.pax_regis);
-$('#num_edit_persion2').val(value.pax_regis);
+					$('#num_edit_persion2').val(value.pax_regis);
 }
 
                 /*if (value.check_driver_pay_report == 1) {

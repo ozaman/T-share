@@ -268,7 +268,8 @@ public function guest_receive(){
 	$data[guest_receive_date] = time();
 	$data[driver_pickup_lat] = $_GET[lat];
 	$data[driver_pickup_lng] = $_GET[lng];
-
+	$data[guest_receive_ps] = $_COOKIE[detect_user];
+	
 	$this->db->where('id', $_GET[id]);
 	$data[result] = $this->db->update('order_booking', $data); 
 //		$data[result] = true;
@@ -283,6 +284,7 @@ public function guest_register(){
 	$data[guest_register_date] = time();
 	$data[driver_register_lat] = $_GET[lat];
 	$data[driver_register_lng] = $_GET[lng];
+	$data[guest_register_ps] = $_COOKIE[detect_user];
 	$data[pax_regis] = $_GET[num_cus];
 
 	$this->db->where('id', $_GET[order_id]);

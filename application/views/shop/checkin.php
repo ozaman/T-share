@@ -144,10 +144,10 @@ $btn_pay_com_color = "background-color:#666666";
                                        <?php 
 		                                 if($_COOKIE[detect_userclass]=="taxi"){ ?>
 		                                 <td>
-		                                 	<i id="driver_topoint_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg','<?=$name_dv;?>');">account_circle</i>
+		                                 	<i id="guest_receive_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('','');">account_circle</i>
 		                                 </td>
 		                                 <td>
-		                                 	<a href="tel:<?=$arr[book][phone];?>"><i id="driver_topoint_pf" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
+		                                 	<a href="tel:<?=$arr[book][phone];?>"><i id="guest_receive_phone" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
 		                                 </td>
 										<?	}
 		                                 ?>

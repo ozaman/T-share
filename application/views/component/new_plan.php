@@ -107,10 +107,10 @@
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
-     			<td align="right" colspan="2"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> % <?=$com_progress;?></span>
+     			<td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
-                <!--<td width="15%">
-                </td>-->
+                <td width="15%">
+                </td>
      		</tr>
      		<tr>
      			<td  width="35%">รวม</td>

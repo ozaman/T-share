@@ -1527,6 +1527,14 @@ else if (type == "guest_receive") {
 	}else{
 		$('#txt_btn_guest_receive').text('ยืนยันรับแขก');
 	}
+	$.ajax({
+			url: "shop/get_user_by_shop?id="+value.guest_receive_ps, 
+			dataType: 'json', 
+			type: 'post',
+			success: function(data) {
+				$('#guest_receive_pf').onclick('modalShowImg','"../data/pic/driver/small/'+data.username+'.jpg","'+data.name+'"');
+				}
+	});
 } 
 
 else if (type == "guest_register") {
