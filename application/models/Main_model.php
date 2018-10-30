@@ -728,6 +728,7 @@ function register()
                      $data2              = array();
                      $data2[station]     = 0;
                      $data2[post_date]   = time();
+                     $_where[member] = $_GET[id_user];
                      $data2[type] = $_POST[station_select];
                      $data2[last_update] = time();
                      $data2[date_up] = time();
