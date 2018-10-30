@@ -1957,6 +1957,23 @@ $.ajax({
             }
     });
 }
+
+function waitTransShop(){
+
+var url_his = 'api/shop_wait_trans_shop';
+console.log(data);
+
+	$.post(url_his,data,function(res){
+	   console.log(res);
+	   
+		   var url = "shop/shop_history";
+		   $.post(url,{ data : res.data },function(html){
+		    $('#shop_history').html(html);
+		});
+
+	});
+}
+
 var array_ma = [];
 var array_his = [];
 var date = moment().format('YYYY-MM-DD');
@@ -1971,8 +1988,8 @@ if (page == "shop_manage.html") {
     historyShop($('#date_shop_his').val());
     $('#box-shop_date').fadeIn(300);
     $('#date_shop_his').val(today);
-}else{
-	$('#box-shop_date').fadeOut(300);
+}else if (page == "shop_wait.html"){
+	waitTransShop();
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/

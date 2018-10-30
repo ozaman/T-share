@@ -51,6 +51,7 @@ class Shop_model extends CI_Model {
 				$_order['id'] = 'asc';
 				$list_prices = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
 				$s_col = $list_prices->s_col;
+				
 				if ($value->i_plan_com == 5) {
 					if ($list_price[$ick]->s_topic_en == 'park') {
 
@@ -111,6 +112,10 @@ class Shop_model extends CI_Model {
 				$data[$s_col] =  $value->i_price;
 
 			}
+			
+			if($value->s_topic_en=="comision"){
+				$data[check_tran_job] = 1;
+			}
 
 			// $ick++;
 		}
@@ -123,7 +128,7 @@ class Shop_model extends CI_Model {
 
 
 		$data["plan_setting"] = $_POST[plan_setting];
-
+		
 		$data["plan_id"] = $_POST[price_plan];
 		$data["pax"] = $_POST[adult];
 		$data["program"] = $_POST[program];
