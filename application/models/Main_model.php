@@ -773,7 +773,7 @@ function register()
                     $data2           = array();
                     $data2[status]   = 1;
                     $data2[date_up] = time();
-                    $_where[member] = $_GET[id_user];
+                    // $_where[member] = $_GET[id_user];
                     $this->db->where('member', $_GET[id_user]);
                     $this->db->where('station', $_POST[station_other]);
                     $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
@@ -782,7 +782,7 @@ function register()
                     $data2              = array();
                     $data2[station]     =  $OTHRET->id;
                     $data2[post_date]   = time();
-                    $_where[member] = $_GET[id_user];
+                    $data2[member] = $_GET[id_user];
                     $data2[type] = $_POST[station_select];
                     $data2[last_update] = time();
                     $data2[date_up] = time();

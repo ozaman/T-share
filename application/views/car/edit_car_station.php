@@ -15,6 +15,11 @@ if (count($MEMBER)!= 0) {
     // $_where['product_id'] = $_GET[id];
 	$_where['id'] = $MEMBER->type;
 	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+	$res = array();
+
+$_where = array();
+$_where[id] = $MEMBER->station;
+$OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 }
 
 ?>
@@ -83,7 +88,7 @@ $('#btb_submit_form_station_new').show()
 <form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
 	<input type="hidden" name="check_get_have" value="" id="check_get_have">
 	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
-	<input type="hidden" name="id_station" id="id_station">
+	<input type="hidden" name="id_station" id="id_station" value="<?=$OTHERT->id;?>">
 
 
 <!-- <input type="submit"> -->
@@ -117,7 +122,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			$('#btb_submit_form_station_new').hide()
 
 	}
-	setTimeout(function(){ 
+	// setTimeout(function(){ 
 
 
 		var chek_data = '<?=count($MEMBER);?>';
@@ -162,89 +167,9 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
        	// 	$('#box_form_toshow').hide();
        	// }
        }
-   }, 1000);
+   // }, 1000);
 
 
-	$("#in_search_station").autocomplete({
-		minLength: 1,
-		source: function(req, add){
-			console.log(req)
-			var companyList =   $.ajax({
-            url: 'main/search', //Controller where search is performed
-            dataType: 'json',
-            type: 'POST',
-            data: req,
-            success: function(data){
-            	if(data.response ==true){
-            		
-            		console.log(data)
-
-            		add(data.message);
-            	}
-            	else{
-            		$('#form_addstation_div').hide()
-			$('#btb_submit_form_station').hide()
-			$('#btb_submit_form_station_new').show()
-            		// ons.notification.alert({
-              //                       message: 'กรุณาเลือกเพิ่มข้อมูลใหม่',
-              //                       title: "ไม่มีข้อมูล",
-              //                       buttonLabel: "ตกลง"
-              //                   })
-            	}
-            }
-        });
-		},
-		select: function (event, ui) {
-			console.log('*******************************************22222');
-			console.log(event);
-			console.log(ui);
-			$('#form_addstation_div').show()
-			$('#btb_submit_form_station').show()
-			$('#btb_submit_form_station_new').hide()
-			$('#id_station').val(ui.item.station)
-			
-
-			var req = {
-				id: ui.item.station,
-
-			};
-			$.ajax({
-            url: 'main/search_select', //Controller where search is performed
-            dataType: 'json',
-            type: 'POST',
-            data: req,
-            success: function(res){
-            	
-            	console.log(res)
-            	var count = '<?=count($MEMBER);?>'
-
-            	
-            	_province(res.OTHRET.province)
-            	$('#region').val(res.OTHRET.region)
-            	$('#province').val(res.OTHRET.province)
-            	$('#amphur').val(res.OTHRET.amphur)
-            	selectTypeCarPlace(res.OTHRET.type);
-            	
-            	setTimeout(function() {
-            		
-            		$('#amphur').val(res.OTHRET.amphur)
-
-            	 $('#radio-'+res.OTHRET.type).prop("checked", true);
-            		$('#station_other').val(res.OTHRET.id)
-            		if (count == 0) {
-            			$('#check_get_have').val(3)
-            			
-            		}
-            	}, 1000);
-            		// console.log(res)
-
-
-
-            	}
-            });
-          //return false;
-      },
-
-  });
+	
 	 //companyList.autocomplete('option','change').call();
 	</script>

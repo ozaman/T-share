@@ -491,8 +491,8 @@ public function lab_approved_pay(){
 	$data_ob[driver_payment_date] = time();
 	$data_ob[check_lab_pay] = 1;
 	$this->db->where('id', $id);
-	$data[result] = $this->db->update('order_booking', $data_ob); 
-	return $data;
+	$data_ob[result] = $this->db->update('order_booking', $data_ob); 
+	return $data_ob;
 }
 
 public function driver_approved_pay(){

@@ -37,7 +37,7 @@ $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_wh
 		   
 			?>
 			<tr>
-				<td width="40%">
+				<td width="40%" valign="top">
 					<span class="font-17"><?=$row->s_topic_th;?> :</span>
 				</td>
 				<td>
@@ -53,5 +53,5 @@ $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_wh
 </div>
 
 <div style="margin: 10px 10px" id="btb__station_new">
-	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_btb__station_new();" style="background-color: #fff;">ย้ายสังกัด / เพิ่ม</ons-button>
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_btb__station_new();" style="background-color: #fff;">ค้นหา / ย้ายสังกัด / เพิ่ม</ons-button>
 </div>
