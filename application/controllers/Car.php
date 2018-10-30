@@ -97,5 +97,9 @@ class Car extends CI_Controller {
 //		echo 555;
 		$this->load->view('car/box_station_field');
 	}
+	public function station_his(){
+//		echo 555;
+		$this->load->view('car/body_station_his');
+	}
 }
 ?>

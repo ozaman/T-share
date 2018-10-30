@@ -2,12 +2,22 @@
 
 
 $_where = array();
+$_select = array('*');
 $_where['member'] = $_COOKIE[detect_user];
-$_where['status'] = 1;
-$STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
+$_where['status'] = 0;
+$_order[date_end] = 'asc';
+$STATION = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION,$_where,$_select,$_order);
+?>
+<ons-list-header class="list-header font-17" style="    padding: 5px 0px;
+    padding-left: 15px;">
+     <span>ข้อมูลต้นสังกัด</span> 
+		
+	</ons-list-header>
+<?php 
 
+foreach($STATION as $KEY=> $row){
 $_where = array();
-			$_where['id'] = $STATION->station;
+			$_where['id'] = $row->station;
 			$OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 
 
@@ -36,24 +46,11 @@ $AMPHUR = $this->Main_model->rowdata(TBL_WEB_AMPHUR,$_where);
 ?>
 
 <div class="card">
-	<ons-list-header class="list-header font-17" style="    padding: 5px 0px;
-    padding-left: 15px;">
-     <span>ข้อมูลต้นสังกัด</span> 
-		<button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="view_station_his()" style="margin: 5px;
-    padding: 5px 12px;
-    border: none;
-    color: #ffffff;
-    background-color: #339933;
-    border-color: #2d862d;
-    border-radius: 5px;    margin-top: 0px;"> 
-            <i class="fa  fa-search "></i>
-            <span>ประวัต</span>
-          </button>
-	</ons-list-header>
+	
 	<table class="tb_form" width="100%" id="" style="display: nones;" cellpadding="3" cellspacing="3">
 		
 		<?php
-		if ($STATION->station == 0) {
+		if ($row->station == 0) {
 			$_where = array();
 $_where['id'] = 4;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
@@ -71,13 +68,13 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 
 	 <?php	}
 		else{
-		foreach($STATION_FIELD as $row){
-			$field = $row->s_field_show;
+		foreach($STATION_FIELD as $row2){
+			$field = $row2->s_field_show;
 		   
 			?>
 			<tr>
 				<td width="41%" valign="top">
-					<span class="font-17"><?=$row->s_topic_th;?> :</span>
+					<span class="font-17"><?=$row2->s_topic_th;?> :</span>
 				</td>
 				<td>
 
@@ -109,16 +106,34 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			</tr>
 			<tr>
 				<td width="40%" valign="top">
-					<span class="font-17"> วันที่เข้าสังกัด :</span>
+					<span class="font-17"> วันที่ออกสังกัด :</span>
 				</td>
 				<td>
 
-					<span class="font-17"><?=date('Y-m-d', $STATION->date_up );?></span>
+					<span class="font-17"><?=date('Y-m-d', $row->date_end );?></span>
 				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div style="" id="btb__station_new">
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="move_station();" style="background-color: #fff;padding: 0;"> ย้ายสังกัด </ons-button>
+</div>
+				</td>
+				<!-- <td>
+					<button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="move_station('<?=$row->id;?>')" style="margin: 5px;
+    padding: 5px 12px;
+    border: none;
+    color: #ffffff;
+    background-color: #339933;
+    border-color: #2d862d;
+    border-radius: 5px;    margin-top: 0px;"> 
+            <i class="fa fa-plus "></i>
+            <span>ยายสังกัด</span>
+          </button>
+				</td> -->
 			</tr>
 	</table>
 </div>
 
-<div style="margin: 10px 10px" id="btb__station_new">
-	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_btb__station_new();" style="background-color: #fff;">ค้นหา / ย้ายสังกัด / เพิ่ม</ons-button>
-</div>
+
+<?php } ?>
