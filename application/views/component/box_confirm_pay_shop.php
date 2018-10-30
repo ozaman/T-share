@@ -56,7 +56,7 @@ if($data->check_driver_pay==0){
 							 			 <div id="status_get_<?=$data->id;?>" style="<?=$status_taxi_ap;?>">
 							 			<b class="font-16" style="color: #59AA47;">ยืนยันรับเงิน เวลา <span id="text_confirm_date_<?=$data->id;?>"><?=date('H:i',$data->driver_pay_report_date);?></span> น.</b>
 							 			</div>
-				                  <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>');" style="border-radius: 25px; margin-top: 0px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
+				                  <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="border-radius: 25px; margin-top: 0px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
 							 <?php }
 								
 								else{  
@@ -83,7 +83,7 @@ if($data->check_driver_pay==0){
 									}
 							 ?>
 							 		
-							 		<ons-button id="confirm_lab_pay_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>');" style="border-radius: 25px;margin-top: 0px;background-color: #fff;<?=$btn_confirm_lab;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการจ่ายเงิน</span> </ons-button>
+							 		<ons-button id="confirm_lab_pay_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="border-radius: 25px;margin-top: 0px;background-color: #fff;<?=$btn_confirm_lab;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการจ่ายเงิน</span> </ons-button>
 							 		
 							 		<div id="status_pay_<?=$data->id;?>" style="<?=$status_lab_pay;?>">
 							 			<b class="font-16" style="color: #0076ff;">ยืนยันการจ่ายเงิน เวลา <span id="text_lab_pay_time_<?=$data->id;?>"><?=date('H:i',$data->driver_payment_date);?></span> น.</b>

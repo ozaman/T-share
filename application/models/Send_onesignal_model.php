@@ -447,7 +447,7 @@ class Send_onesignal_model extends CI_Model {
 			   "en" => "เลขที่งาน ".$invoice
 		 );
   		$content  = array(
-        "en" => 'พนักงานยืนยันการจ่ายเงินแล้ว กรุณาตรวจสอบ'
+        "en" => 'พนักงานยืนยันการจ่ายเงินแล้ว'
    		 );
    		 $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",

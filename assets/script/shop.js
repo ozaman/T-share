@@ -2435,7 +2435,7 @@ function loadBoxConfirmPay(id){
 		});
 }
 
-function confirmGetIncome(id){
+function confirmGetIncome(id, invoice, driver){
 
 	$.ajax({
                url: "shop/driver_approved_pay?order_id="+id,
@@ -2454,12 +2454,31 @@ function confirmGetIncome(id){
 				   		sendSocket(id);
 				   		
 				   		completedJobShop(id);
+				   		shopFuncNotiActi(id, "driver_pay_approve");
+			           $.ajax({
+			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
+			               type: 'post',
+			               dataType: 'json',
+			               success: function(res) {
+			                   console.log(res);
+			                   sendSocket(id);
+			                   ons.notification.alert({
+			                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+			                      title: "สำเร็จ",
+			                      buttonLabel: "ตกลง"
+			                  })
+			                   .then(function() {
+			                    reloadIncomeShop(id);
+			                });
+			               }
+			           });
+				   		
 				   }
             }
     });
 }
 
-function confirmPayIncome(id){
+function confirmPayIncome(id,invoice,driver){
 	
 	var data = {
 		order_id : id
@@ -2482,6 +2501,15 @@ function confirmPayIncome(id){
 						$("#number_driver_pay_com").addClass('step-booking-active');
                    		
 				   		sendSocket(id);
+				   		shopFuncNotiActi(id, "lab_pay_approve");
+				   		$.ajax({
+			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
+			               type: 'post',
+			               dataType: 'json',
+			               success: function(res) {
+			                   console.log(res);
+			               }
+			           });
 				   }
             }
     });
