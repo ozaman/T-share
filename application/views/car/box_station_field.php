@@ -51,7 +51,7 @@ $OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 		<tr>
 			<td width="35%"><?=$row->s_topic_th;?></td>
 			<td>
-				<ons-input id="<?=$row->s_field;?>" name="<?=$row->s_field;?>" type="text"  class="font-17" value="<?=$OTHRET->$field;?>" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
+				<ons-input id="<?=$row->s_field;?>" name="<?=$row->s_field;?>" type="<?=$row->s_type_name;?>"  class="font-17" value="<?=$OTHRET->$field;?>" style="width: 100%;margin: 5px 0px;padding: 0px 0px;border-bottom: 1px solid #ccc;"></ons-input>
 			</td>
 		</tr>
 	<?php } ?>
