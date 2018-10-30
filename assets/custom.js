@@ -1921,6 +1921,7 @@ function selectTypeCarPlace(id){
     
 }
 function add_btb__station_new(){
+    ckstation = 0;
     fn.pushPage({
        'id': 'popup2.html',
        'title': 'ข้อมูลสังกัดรถ'
