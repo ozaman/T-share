@@ -36,7 +36,7 @@
 		   		$check_type_com = 1;
 		   		$display_com = "";
 				$com_persent = $data->commission_persent;
-				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอดำเนินการ</font></span>';
+				$com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
 		   }	
 	}
 	$all_total = $park_total + $person_total + $com_total;
@@ -98,18 +98,18 @@
      		<tr style="<?=$display_park;?>">
      			<td width="35%"><span class="font-17">ค่าจอด</span></td>
      			<td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?></span></td>
-     			<td width="15%"><span class="font-17">บ.</span></td>
+     			<td width="10%"><span class="font-17">บ.</span></td>
      		</tr>
      		<tr style="<?=$display_person;?>">
      			<td width="35%"><span class="font-17">ค่าหัว</span></td>
      			<td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?></span></td>
-     			<td width="15%"><span class="font-17">บ.</span></td>
+     			<td width="10%"><span class="font-17">บ.</span></td>
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
      			<td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
-                <td width="15%">
+                <td width="10%">
                 </td>
      		</tr>
      		<tr>
@@ -119,7 +119,7 @@
 	     				<?=number_format($all_total,0);?>
 	     			</span>
      			</td>
-     			 <td width="90">
+     			 <td width="10%">
      			 	<span class="font-17">บ.</span>
      			 </td>
      		</tr>

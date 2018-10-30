@@ -158,15 +158,18 @@ where t1.member = '".$val[drivername]."' ");
             </td>
          </tr>
           <?php
-         	if($val[lab_approve_job]==1){ ?>
-				<tr id="date_approved_job_<?=$val[id];?>">
+         	if($val[lab_approve_job]==1){ 
+         		$hidden_date_app = "";
+         	}else{
+				$hidden_date_app = "display:none;";
+			}
+         ?>
+         <tr id="date_approved_job_<?=$val[id];?>" style="<?=$hidden_date_app;?>">
 		         	<td colspan="2">
 		               <span class="font-17" >เวลารับทราบงาน :</span>
-		               <font color="#000;" style="position: absolute;right: 25px;" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
+		               <font color="#000;" style="position: absolute;right: 25px;" id="txt_date_approved_job_<?=$val[id];?>" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
 		            </td>
-		         </tr>
-		<?php	}
-         ?>
+		</tr>
          <?php 
          
          if($val[status]!="CANCEL"){

@@ -2001,7 +2001,7 @@ function timestampToDate(unix_timestamp, type) {
     if (type == "date") {
         return txt_date;
     } else if (type == "time") {
-        return formattedTime;
+        return hours + ':' + minutes.substr(-2) + ' น.';
     } else {
         return txt_date + " " + formattedTime;
     }
@@ -2172,18 +2172,16 @@ $.ajax({
             apiRecordActivityAndNotification(ac, nc);
             $('#apporve_book_'+id).hide();
 			$('#opendetail_book_'+id).show();
-//            setTimeout(function(){  shopManage(); }, 1500);
-            /*ons.notification.alert({
-              message: 'แจ้งเตือนการรับทราบงานของคุณไปยังคนขับแล้ว',
-              title: "สำเร็จ",
-              buttonLabel: "ตกลง"
-          })
-            .then(function() {
-
-                
-
-
-            });*/
+			
+			
+			$.ajax({
+		      url: "main/get_timestamp",
+		      type: 'post',
+		      success: function(ele) {
+		         	$('#date_approved_job_'+id).show();
+		         	$('#txt_date_approved_job_'+id).text(timestampToDate(ele,'time'));
+		      }
+		  	});
         }
     });
     }
