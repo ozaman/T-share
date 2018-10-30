@@ -935,28 +935,7 @@ var gtimeM = parseInt(res[0].finish_m);
 });
 
 };
-// function getDayName(dateStr, locale)
-// {
-//     var date = new Date(dateStr);
-//     return date.toLocaleDateString(locale, { weekday: 'long' });        
-// }
 
-// var dateStr = '05/23/2014';
-// var day = getDayName(dateStr, "en-US"); // Gives back 'Vrijdag' which is Dutch for Friday.
-// function getWeekDays(locale)
-// {
-//     var baseDate = new Date(Date.UTC(2017, 0, 2)); // just a Monday
-//     var weekDays = [];
-//     for(i = 0; i < 7; i++)
-//     {       
-//         weekDays.push(baseDate.toLocaleDateString(locale, { weekday: 'long' }));
-//         console.log(baseDate.getDate())
-//         baseDate.setDate(baseDate.getDate() );       
-//         console.log(baseDate.setDate(baseDate.getDate() ))
-
-//     }
-//     return weekDays;
-// }
 function saveShop() {
 
 // var weekDays = getWeekDays('en-US'); // Gives back { 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag', 'zondag'} which are the days of the week in Dutch.
@@ -1070,7 +1049,7 @@ function saveShop() {
     });
 }
 
-function openDetailShop(key, type) {
+function openDetailShop(key, type ) {
 //	console.log(key)
 var detailObj = array_data.manage[key];
 
@@ -1943,7 +1922,7 @@ var obj = array_data;
 
 var url = "page/shop_manage";
 array_ma = obj.manage;
-console.log(array_ma);
+//console.log(array_ma);
 var pass = {
     data: array_ma
 };
@@ -1961,15 +1940,24 @@ $.ajax({
 function waitTransShop(){
 
 var url_his = 'api/shop_wait_trans_shop';
-console.log(data);
+console.log(url_his);
 
-	$.post(url_his,data,function(res){
-	   console.log(res);
+	$.post(url_his,function(res){
 	   
-		   var url = "shop/shop_history";
-		   $.post(url,{ data : res.data },function(html){
-		    $('#shop_history').html(html);
-		});
+	   var pass = {
+		    data: res.data
+		};
+		console.log(pass);
+		   var url = "page/shop_manage";
+		   $.ajax({
+			    url: url,
+			    data: pass,
+			    type: 'post',
+			    success: function(ele) {
+			    			console.log(ele);
+			                $('#shop_wait').html(ele);
+			            }
+			    });
 
 	});
 }
@@ -1990,6 +1978,7 @@ if (page == "shop_manage.html") {
     $('#date_shop_his').val(today);
 }else if (page == "shop_wait.html"){
 	waitTransShop();
+	$('#box-shop_date').fadeOut(300);
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/

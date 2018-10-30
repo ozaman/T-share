@@ -131,7 +131,7 @@ echo json_encode($decode);
 
 public function shop_wait_trans_shop(){
 
-$url = "http://www.welovetaxi.com:3000/getOrderhislab";                              
+$url = "http://www.welovetaxi.com:3000/getOrderbookingcom";                              
 
 //create a new cURL resource
 $ch = curl_init($url);
