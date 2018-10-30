@@ -67,7 +67,6 @@ where t1.member = '".$val[drivername]."' ");
 	 $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
    	$query_cancel = $this->db->query($sql);
    	$res_cancel = $query_cancel->row();
-//   	echo json_encode($res_cancel);
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
    <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -75,7 +74,15 @@ where t1.member = '".$val[drivername]."' ");
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
-      <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+   	  <?php 
+   	  	if($_GET[wait_trans]!=""){ ?>
+			<span class="time-post-shop" style="font-size:14px;"><?=date("Y-m-d",$val[post_date]);?></span>
+		<?php }else{ ?>
+			<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+	<?php	}
+   	  ?>
+	  
+	
       <span class="font-18"><b>ติดต่อ</b></span>
       <table width="100%"  >
          <tr>
@@ -237,8 +244,14 @@ where t1.member = '".$val[drivername]."' ");
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
                            <span class="font-17 text-cap">แจ้งถึงสถานที่</span> </ons-button>   
-                           		
-                        <ons-button onclick="openDetailShop('<?=$key;?>','<?=$_GET[type];?>','<?=$val[invoice];?>');" style="padding: 13px;border: 1px solid #0076ff;
+                         <?php 
+                         	if($_GET[wait_trans]!=""){
+								$onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
+							}else{
+								$onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
+							}
+                         ?>  		
+                        <ons-button onclick="<?=$onclick;?>" style="padding: 13px;border: 1px solid #0076ff;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
@@ -298,10 +311,15 @@ where t1.member = '".$val[drivername]."' ");
    </div>
 </div>
 <script>
-   var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
-   var d2 = js_yyyy_mm_dd_hh_mm_ss();
-   $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1,d2));
-   $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
+	var check_wait = "<?=$_GET[wait_trans];?>";
+    if(check_wait==""){
+	   var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
+	   var d2 = js_yyyy_mm_dd_hh_mm_ss();
+	   var check_wait = "<?=$_GET[wait_trans];?>";
+	  
+	   $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1,d2));
+	   $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
+	}
 </script>
 <?    
    } ?>
