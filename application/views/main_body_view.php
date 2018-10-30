@@ -34,7 +34,7 @@
 	     	<i class="fa fa-taxi" style="font-size: 24px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>
 	    </div>
-	    <span class="txt-dark">จองรถ</span>
+	    <span class="txt-dark">เรียกรถ</span>
 	    </center>
   </ons-col>
 
@@ -45,7 +45,7 @@
 	     	<i class="fa fa-suitcase" style="font-size: 28px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>
 	    </div>
-	    <span class="txt-dark">จองทัวร์</span>
+	    <span class="txt-dark">ท่องเที่ยว</span>
    </center>
 </ons-col>
 </ons-row>
