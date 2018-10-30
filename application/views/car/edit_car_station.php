@@ -17,9 +17,9 @@ if (count($MEMBER)!= 0) {
 	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 	$res = array();
 
-$_where = array();
-$_where[id] = $MEMBER->station;
-$OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
+	$_where = array();
+	$_where[id] = $MEMBER->station;
+	$OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 }
 
 ?>
@@ -30,7 +30,7 @@ $OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 		var chek_data = '<?=count($MEMBER);?>';
 		if (chek_data == 0) {
 			$('#check_get_have').val(2);
-$('#btb_submit_form_station_new').show()
+			$('#btb_submit_form_station_new').show()
 
 			$('#form_addstation_div').hide()
 			$('#btb_submit_form_station').hide()
@@ -85,91 +85,50 @@ $('#btb_submit_form_station_new').show()
 	border-radius: 5px;
 }
 </style>
-<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
-	<input type="hidden" name="check_get_have" value="" id="check_get_have">
-	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
-	<input type="hidden" name="id_station" id="id_station" value="<?=$OTHERT->id;?>">
 
-
+<input type="hidden" name="id_station" id="id_station" value="<?=$MEMBER->station;?>">
 <!-- <input type="submit"> -->
-	<div id="body_car_station"></div>
-	<div id="form_addstation_div" style="display: <?=$cnone;?>">
+<div id="body_car_station"></div>
+<div id="form_addstation_div" style="display: <?=$cnone;?>">
 	
-</div>
-</form>
 
-<div style="margin: 10px 10px" id="btb_submit_form_station" style="display: <?=$cnone;?>">
-	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="submitadd_station();" style="background-color: #fff;">บันทึกข้อมูล</ons-button>
-</div>
 
-<div style="margin: 10px 10px;">
-	<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
-	<span class="font-14" >*หมายเหตุ : ข้อมูลนี้กรอกครั้งเดียวเท่านั่น</span>
-</div>
-<?php 
-$res = array();
-$res = array();
-$_where = array();
+
+	<div style="margin: 10px 10px;">
+		<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
+		<span class="font-14" >*หมายเหตุ : ข้อมูลนี้กรอกครั้งเดียวเท่านั่น</span>
+	</div>
+	<?php
+	$_where = array();
     // $_where['product_id'] = $_GET[id];
-$_where[id] = $MEMBER->type;
-$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where); 
-?>
-<script type="text/javascript">
-	
-	function add_station_other() {
-		$('#form_addstation_div').show()
+	$_where[id] = $MEMBER->type;
+	$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where); 
+	?>
+	<script type="text/javascript">
+		function add_station_other() {
+			$('#form_addstation_div').show()
 			$('#btb_submit_form_station').show()
 			$('#btb_submit_form_station_new').hide()
 
-	}
+		}
 	// setTimeout(function(){ 
 
 
 		var chek_data = '<?=count($MEMBER);?>';
 		var chek_show = '<?=$MEMBER->type;?>';
 		if (chek_data == 0) {
-			
-
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
+		}
+		else{
+			$('#btb_submit_form_station').hide();
+			$.post("car/body_car_station", {
+				id_user: $.cookie("detect_user")
+			}, function(res) {
+				$('#body_car_station').html(res);
+			});
 
 
-			
-			
-           //_province(pv);
-
-
-       }
-       else{
-       		$('#btb_submit_form_station').hide();
-
-       	$.post("car/body_car_station", {
-        id_user: $.cookie("detect_user")
-    }, function(res) {
-        //console.log(res);
-        $('#body_car_station').html(res);
-        
-   });
-			
-
-       	// $('#header_topic_type').html('<?=$TYPE->topic_th;?>')
-       	$('#get_stations').hide()
-       	// if(chek_show==1){
-       	// 	$('#box_form_toshow').show();
-       	// 	$('#box_form_ass').show();
-       	// }else if(chek_show==2){
-       	// 	$('#box_form_toshow').show();
-       	// 	$('#box_form_com').show();
-       	// }else if(chek_show==3){
-       	// 	$('#box_form_toshow').show();
-       	// 	$('#box_form_queue').show();
-       	// }else{
-       	// 	$('#box_form_toshow').hide();
-       	// }
-       }
-   // }, 1000);
-
-
-	
-	 //companyList.autocomplete('option','change').call();
+			$('#get_stations').hide()
+		}
 	</script>

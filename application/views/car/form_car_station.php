@@ -10,7 +10,6 @@ $SHOP_STATION = $this->Main_model->fetch_data('','',TBL_SHOP_STATION,$_where,$_s
 
 
 
-
 $res = array();
 $_where = array();
 $_where['status'] = 1;
@@ -21,7 +20,7 @@ $_where = array();
 $_where['status'] = 1;
 $_where[id] =$MEMBER->station;
 $OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
-
+// print_r($OTHRET->id);
 
 
 
@@ -37,7 +36,8 @@ $_order['topic_en'] = 'asc';
 $arr[region] = $this->Main_model->fetch_data('','',TBL_WEB_REGION,'',$_select,$_order);
 $_where = array();
 if (count($MEMBER)!= 0) {
-	$_where[area] = $OTHRET->region;
+
+	$_where[area] = $MEMBER->region;
 }
 else{
 	$_where = array();
@@ -49,7 +49,7 @@ $arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$_where,$_
 // print_r($arr[province]);
 $_where = array();
 if (count($MEMBER)!= 0) {
-	$_where['PROVINCE_ID'] = $OTHRET->province;
+	$_where['PROVINCE_ID'] = $MEMBER->province;
 }
 else{
 	$_where = array();
@@ -60,6 +60,14 @@ $_order['name_th'] = 'asc';
 $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
 // print_r($arr[amphur]);
 ?>
+<script type="text/javascript">
+	
+</script>
+<form name="form_addstation" id="form_addstation"  enctype="multipart/form-data">
+	<input type="hidden" name="check_get_have" value="2" id="check_get_have">
+	<input type="hidden" name="" value="<?=$MEMBER->amphur;?>" id="have_arm">
+	
+
 <div id="search_station">
 <div class=""  style="background: #8BC34A; padding: 5px;" >
 	<ons-list-header class="list-header " style="background: #8bc34a; color: #fff;">ค้นหา </ons-list-header>
@@ -101,7 +109,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
       	}
       }
       else{
-      	if($OTHRET->region == $region->id ){
+      	if($MEMBER->region == $region->id ){
       		$selected_sub = "selected";
       	}else{
       		$selected_sub = "";
@@ -140,7 +148,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
       	}
       }
       else{
-      	if($OTHRET->province == $province->id ){
+      	if($MEMBER->province == $province->id ){
       		$selected_sub = "selected";
       	}else{
       		$selected_sub = "";
@@ -164,7 +172,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 		<?php
 		foreach($arr[amphur] as $key=>$amphur){
 
-			if($OTHRET->amphur == $amphur->id ){
+			if($MEMBER->amphur == $amphur->id ){
 				$selected_sub = "selected";
 			}else{
 				$selected_sub = "";
@@ -187,7 +195,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 			$_where = array();
 			$_where[id] = $row->i_station_type;
 			$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
-			if ($OTHRET->type == $row->id) {
+			if ($MEMBER->type == $row->id) {
 				$chekes =  'checked="checked"';
 			}
 			else{
@@ -216,23 +224,32 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 
 
 </div>
+</div>
+</form>
+
+<div style="margin: 10px 10px" id="btb_submit_form_station" style="display: <?=$cnone;?>">
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="submitadd_station();" style="background-color: #fff;">บันทึกข้อมูล</ons-button>
+</div>
+<div style="margin: 10px 10px;">
+	<!-- <span class="font-14" >*หมายเหตุ : ข้อมูลนี้จะถูกบันทึกแค่ครั้งเดียว</span> -->
+	<span class="font-14" >*หมายเหตุ : ข้อมูลนี้กรอกครั้งเดียวเท่านั่น</span>
+</div>
 <script type="text/javascript">
 	// $('#radio-<?=$OTHRET->type;?>').prop("checked", true);
+	setTimeout(function(){ 
 	var chek_show = '<?=$OTHRET->type;?>';
+	if (chek_show == 4) {
+		$('#box_station_others').hide();
+	}
+	}, 1000);
 	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
 	selectTypeCarPlace_edit(chek_show);
 	func_shop_station_field(chek_show)
-	   //setTimeout(function(){ 
+	   //
    //          selectTypeCarPlace_edit(chek_show);
            
-   //      }, 1000);
-	function func_shop_station_field(station_type) {
-		$.post("car/shop_station_field?i_station_type="+station_type, function(res) {
-        //console.log(res);
-        $('#shop_station_field').html(res);
-
-    });
-	}
+   //      
+	
 	$("#in_search_station").autocomplete({
 		minLength: 1,
 		source: function(req, add){
@@ -285,7 +302,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             success: function(res){
             	
             	console.log(res)
-            	// var count = '<?=count($MEMBER);?>'
+            	//var count = '<?=count($MEMBER);?>'
 
             	$('#id_station').val(res.OTHRET.id)
             	// _province(res.OTHRET.province)

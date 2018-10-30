@@ -28,7 +28,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 ?>
 <div class="card" onclick="">
   <ons-list-header class="list-header" style="padding: 5px 0px; padding-left: 15px;" ><span ><?=$TYPE->topic_th;?></span> 
-    <!-- <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station()" style="margin: 5px;
+    <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station('<?=$TYPE->id;?>')" style="margin: 5px;
     padding: 5px 12px;
     border: none;
     color: #ffffff;
@@ -37,7 +37,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
     border-radius: 5px;    margin-top: 0px;"> 
             <i class="fa fa-plus "></i>
             <span>เพิ่ม</span>
-          </button> -->
+          </button>
         </ons-list-header>
    
     <ons-list style="width: 100%;">

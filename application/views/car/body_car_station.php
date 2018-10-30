@@ -32,6 +32,24 @@ $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_wh
 	<table class="tb_form" width="100%" id="" style="display: nones;" cellpadding="3" cellspacing="3">
 		
 		<?php
+		if ($STATION->station == 0) {
+			$_where = array();
+$_where['id'] = 4;
+$TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
+
+			?>
+			<tr>
+				<td width="40%" valign="top">
+					<span class="font-17">สังกัด :</span>
+				</td>
+				<td>
+
+					<span class="font-17"><?=$TYPE->topic_th;?></span>
+				</td>
+			</tr>
+
+	 <?php	}
+		else{
 		foreach($STATION_FIELD as $row){
 			$field = $row->s_field_show;
 		   
@@ -48,6 +66,7 @@ $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_wh
 
 
 		<?php }
+	}
 		?>
 	</table>
 </div>

@@ -27,7 +27,7 @@ $OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 
 <ons-list-header class="list-header" style="padding: 5px 0; padding-left: 15px;" >
 	<span ><?=$TYPE->topic_th;?></span> 
-	<!-- <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="get_station()" id="get_stations" style="margin: 5px;
+	<button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="get_station()" id="get_stations" style="margin: 5px;
 	padding: 5px 12px;
 	border: none;
 	color: #ffffff;
@@ -38,7 +38,7 @@ $OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 	" style="display: none"> 
 	<i class="fa fa-plus "></i>
 	<span>เลือกที่มีอยู่</span>
-</button>  -->
+</button> 
 </ons-list-header>
 
 <table class="tb_form" width="100%">
