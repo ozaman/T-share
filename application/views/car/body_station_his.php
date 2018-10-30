@@ -106,11 +106,11 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			</tr>
 			<tr>
 				<td width="40%" valign="top">
-					<span class="font-17"> วันที่เข้าสังกัด :</span>
+					<span class="font-17"> วันที่ออกสังกัด :</span>
 				</td>
 				<td>
 
-					<span class="font-17"><?=date('Y-m-d', $row->date_up );?></span>
+					<span class="font-17"><?=date('Y-m-d', $row->date_end );?></span>
 				</td>
 			</tr>
 			<tr>
