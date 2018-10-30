@@ -18,9 +18,12 @@ $_where['member'] = $_COOKIE[detect_user];
 $_where['status'] = 1;
 $STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
 
-$_where = array();
+if ($_GET[opt]) {
+	$_where = array();
 $_where['id'] = $STATION->station;
 $OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
+}
+
 ?>
 
 

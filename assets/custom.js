@@ -1712,9 +1712,9 @@ function stationCar(){
 /***************************** *** ******************************/
 /************************* new station **************************/
 /***************************** *** ******************************/
-function func_shop_station_field(station_type) {
+function func_shop_station_field(station_type,option) {
     console.log('aaaaa')
-        $.post("car/shop_station_field?i_station_type="+station_type, function(res) {
+        $.post("car/shop_station_field?i_station_type="+station_type+'&opt='+option, function(res) {
         //console.log(res);
         $('#shop_station_field').html(res);
 
@@ -1725,13 +1725,13 @@ function func_shop_station_field(station_type) {
 /***************************** *** ******************************/
 /********************* BTN ADD NEW STATION **********************/
 /***************************** *** ******************************/
-function add_new_station(id){
+function add_new_station(id,opt){
     // check_get_have = 2;
     $('#check_get_have').val(0);
     $('#box_station_others').hide()
 
     $('#shop_station_field').show()
-    func_shop_station_field(id)
+    func_shop_station_field(id,opt)
     
 }
 
