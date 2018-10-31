@@ -699,6 +699,7 @@ socket.on('updatedriver', function(username, data) {
 console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
 console.log(username)
 console.log(data)
+//console.log(array_rooms)
 var check_open = $('#check_open_shop_id').val();
 
 if (check_open != 0) {
@@ -1147,7 +1148,7 @@ function profileInfo(animate) {
         $('#body_profile_view').html(html);
 
         setTimeout(function() {
-            checkPicDocProfile();
+            checkPicDocProfile($.cookie("detect_user"));
         }, 700);
         checkImgProfile($.cookie("detect_username"), 1);
     });

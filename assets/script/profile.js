@@ -6,9 +6,11 @@
 	  return date.getFullYear() + '-' + m + '-' + d;
 	}
 	 
-	function checkPicDocProfile(){
+	function checkPicDocProfile(id){
+		
+		console.log(id+" *****************----------------");
 		$.ajax({
-			url: '../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg',
+			url: '../data/pic/driver/id_card/'+id+'_idcard.jpg',
 			type:'HEAD',
 			error: function()
 			{
@@ -23,12 +25,12 @@
 				 $('#box_img_id_card').fadeIn(200);
    				 $('#txt-img-has-id_card').show();
    				 $('#txt-img-nohas-id_card').hide();
-				 $('#pv_id_card').attr('src','../data/pic/driver/id_card/'+$.cookie("detect_user")+'_idcard.jpg?v='+$.now());
+				 $('#pv_id_card').attr('src','../data/pic/driver/id_card/'+id+'_idcard.jpg?v='+$.now());
 			}
 		});
 		
 	$.ajax({
-			url: '../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg',
+			url: '../data/pic/driver/id_driving/'+id+'_iddriving.jpg',
 			type:'HEAD',
 			error: function()
 			{
@@ -43,7 +45,7 @@
 				 $('#box_img_id_driving').fadeIn(200);
    				 $('#txt-img-has-id_driving').show();
    				 $('#txt-img-nohas-id_driving').hide();
-				$('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+$.cookie("detect_user")+'_iddriving.jpg?v='+$.now());
+				$('#pv_id_driving').attr('src','../data/pic/driver/id_driving/'+id+'_iddriving.jpg?v='+$.now());
 			}
 		});
 	}
