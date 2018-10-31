@@ -54,11 +54,13 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
- <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
-        <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
-            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
-   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+<script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
+
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
      setTimeout(function() {
@@ -1691,6 +1693,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script>
 	if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
        /* $(window).load(function() {

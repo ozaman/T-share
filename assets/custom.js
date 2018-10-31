@@ -2061,9 +2061,19 @@ function taxiList(){
 //	$('#body_popup1').html(progress_circle);
 	
     $.post("page/call_page", {
-        path: "page/taxi_list"
+        path: "page/taxi_list", online : array_rooms
     }, function(ele) {
     	modal.hide();
         $('#body_popup1').html(ele);
+        eachTaxiList();
+//        console.log(array_rooms);
     });
 }
+
+function eachTaxiList(){
+		$.each(array_rooms, function( index, value ) {
+		  console.log(value );
+		  $('#icon_online_'+value).css('color','rgb(139, 195, 74)');
+		});
+}
+
