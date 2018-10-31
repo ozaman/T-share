@@ -992,25 +992,24 @@ else {
 }
 public function move_station($station){
     $arr_where = array();
-    $arr_where[member] = $_GET[id_user];
+    $arr_where[member] = $_COOKIE['detect_user'];
     $arr_where[status] = 1;
     $arr_select = array('*');
     $STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION, $arr_where);
     $data2           = array();
     $data2[status]   = 0;
     $data2[date_end] = time();
-    $this->db->where('id', $station);
+    $this->db->where('id', $STATION->id);
     $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
 
      $data2           = array();
     $data2[status]   = 1;
     $data2[date_up] = time();
-    $this->db->where('station', $station);
-    $this->db->where('member', $_COOKIE['detect_user']);
+    $this->db->where('id', $station);
     $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
     $res[data2]  = $data2;
-    
-    $res[STATION]    = $STATION;
+
+    $res[STATION]    = $station;
     $res[post]   = $_POST;
     $res[status] = $data2[result];
     return $res;

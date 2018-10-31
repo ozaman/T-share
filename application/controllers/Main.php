@@ -239,7 +239,7 @@ public function search_select(){
  echo json_encode($data);
 }
 public function move_station(){
- $id     = $this->input->post('station');
+ $id     = $_GET[station];
  $data = $this->Main_model->move_station( $id );
 //  $data['res'] = 123;
 //    header('Content-Type: application/json');

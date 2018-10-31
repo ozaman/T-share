@@ -1996,7 +1996,7 @@ function view_station_his() {
     });
 }
 function move_station(station){
-
+ modal.show();
     $.ajax({
      url: "main/move_station?station="+station,
    // data:  $('#form_addstation').serialize(),
@@ -2032,10 +2032,10 @@ function move_station(station){
           title: "กรุณาตรวจสอบ",
           buttonLabel: "ตกลง"
       })
-        modal.hide();
+       
         
 
     }
-
+}
 });
 }
