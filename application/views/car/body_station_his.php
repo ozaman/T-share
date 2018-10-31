@@ -116,7 +116,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 			<tr>
 				<td colspan="2">
 					<div style="" id="btb__station_new">
-	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="move_station();" style="background-color: #fff;padding: 0;"> ย้ายสังกัด </ons-button>
+	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="move_station('<?=$row->id;?>');" style="background-color: #fff;padding: 0;"> ย้ายสังกัด </ons-button>
 </div>
 				</td>
 				<!-- <td>

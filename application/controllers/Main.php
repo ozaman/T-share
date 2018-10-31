@@ -238,6 +238,13 @@ public function search_select(){
 //    header('Content-Type: application/json');
  echo json_encode($data);
 }
+public function move_station(){
+ $id     = $this->input->post('station');
+ $data = $this->Main_model->move_station( $id );
+//  $data['res'] = 123;
+//    header('Content-Type: application/json');
+ echo json_encode($data);
+}
 
 public function get_timestamp(){
  echo json_encode(time());

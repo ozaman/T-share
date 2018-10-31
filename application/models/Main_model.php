@@ -675,21 +675,21 @@ function register()
                 $check_have             = $this->Main_model->num_row(TBL_PLACE_CAR_STATION, $_where);
                 if ($check_have == 0) {
 
-                   $data2              = array();
-                   $data2[station]     = 0;
-                   $data2[member] = $_GET[id_user];
-                   $data2[type] = $_POST[station_select];
-                   $data2[region] = $_POST[region];
+                 $data2              = array();
+                 $data2[station]     = 0;
+                 $data2[member] = $_GET[id_user];
+                 $data2[type] = $_POST[station_select];
+                 $data2[region] = $_POST[region];
 
-                   $data2[province] = $_POST[province];
-                   $data2[amphur] = $_POST[amphur];
-                   $data2[post_date]   = time();
-                   $data2[last_update] = time();
-                   $data2[date_up] = time();
-                   $data2[date_end] = time();
-                   $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
-               }
-               else{
+                 $data2[province] = $_POST[province];
+                 $data2[amphur] = $_POST[amphur];
+                 $data2[post_date]   = time();
+                 $data2[last_update] = time();
+                 $data2[date_up] = time();
+                 $data2[date_end] = time();
+                 $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
+             }
+             else{
                 $data2              = array();
                 $data2[status]     = 1;
                 $data2[date_up] = time();
@@ -737,10 +737,10 @@ function register()
                 $data2[station]     =  $OTHRET->id;
                 $data2[post_date]   = time();
                 $data2[member] = $_GET[id_user];
-                 $data2[region] = $OTHRET->region;
-                   
-                    $data2[province] = $OTHRET->province;
-                    $data2[amphur] = $OTHRET->amphur;
+                $data2[region] = $OTHRET->region;
+
+                $data2[province] = $OTHRET->province;
+                $data2[amphur] = $OTHRET->amphur;
                 $data2[type] = $OTHRET->type;
                 $data2[last_update] = time();
                 $data2[date_up] = time();
@@ -766,98 +766,98 @@ else {
                 $check_have_data = 0;
                 foreach ($STATION_FIELD as $row) {
                     if ($row->s_field_show == 'topic_th') {
-                     if ($_POST[$row->s_field] == '') {
-                       $res[status] = false;
-                       $res[msg]    = 'ป้อน'. $row->s_topic_th;
-                       $res[data2]  = $data2;
-                       $res[data]   = $data;
-                       $res[num]    = $num;
-                       $res[post]   = $_POST;
+                       if ($_POST[$row->s_field] == '') {
+                         $res[status] = false;
+                         $res[msg]    = 'ป้อน'. $row->s_topic_th;
+                         $res[data2]  = $data2;
+                         $res[data]   = $data;
+                         $res[num]    = $num;
+                         $res[post]   = $_POST;
 
-                       return $res;
-                   } 
-                   else{
-                    $check_have_data = 1;
-                }  
+                         return $res;
+                     } 
+                     else{
+                        $check_have_data = 1;
+                    }  
 
-            }
-
-        }
-        if ($check_have_data != 0) {
-            $data2 = array();
-            $data = array();
-            foreach ($STATION_FIELD as $key => $row) {
-                if ($key==0) {
-                    $name = $_POST[$row->s_field];
                 }
-                $data[$row->s_field_show]   =  $_POST[$row->s_field];
 
             }
-            $res              = array();
-            $_where           = array();
-            $_where[type] = $_POST[station_select];
-            $_where[topic_th] = $name;
-            $_where[region] = $_POST[region];
-            $_where[province] = $_POST[province];
-            $_where[amphur] = $_POST[amphur];
-
-            $OTHRET_C             = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
-            if ( count($OTHRET_C) == 0) {
-                $data[region] = $_POST[region];
-                $data[type] = $_POST[station_select];
-                $data[province] = $_POST[province];
-                $data[amphur] = $_POST[amphur];
-                $data[post_date]   = time();
-                $data[last_update] = time();
-                $data[result] = $this->db->insert(TBL_PLACE_CAR_STATION_OTHRET, $data);
-                $id_station         = mysql_insert_id();
-                foreach ($allSTATION as $row) {
-                    if ($row->status == 1) {
-                        $data2           = array();
-                        $data2[status]   = 0;
-                        $data2[date_end] = time();
-                        $this->db->where('id', $row->id);
-                        $up[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
-                    }
-                }
-                $data2           = array();
-                $data2[member] = $_GET[id_user];
-                $data2[station] = $id_station;
-                $data2[type] = $_POST[station_select];
-                $data2[region] = $_POST[region];
-                $data2[province] = $_POST[province];
-                $data2[amphur] = $_POST[amphur];
-                $data2[station]     = $id_station;
-                $data2[post_date] = time();
-                $data2[last_update] = time();
-                $data2[date_up] = time();
-                $data2[date_end] = time();
-                $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
-                $res[status] = $data2[result];
-                $res[msg]    = 'สำเร็จ';
-                $res[data2]  = $data2;
-                $res[data]   = $data;
-                $res[num]    = $num;
-                $res[post]   = $_POST;
-                return $res;
-            }
-            else{
-
+            if ($check_have_data != 0) {
+                $data2 = array();
                 $data = array();
                 foreach ($STATION_FIELD as $key => $row) {
-                    if ($key ==0) {
-                        // $name = $_POST[$row->s_field];
+                    if ($key==0) {
+                        $name = $_POST[$row->s_field];
                     }
-                    else{
-                        $data[$row->s_field_show]   =  $_POST[$row->s_field];
-
-                    }
+                    $data[$row->s_field_show]   =  $_POST[$row->s_field];
 
                 }
+                $res              = array();
+                $_where           = array();
+                $_where[type] = $_POST[station_select];
+                $_where[topic_th] = $name;
+                $_where[region] = $_POST[region];
+                $_where[province] = $_POST[province];
+                $_where[amphur] = $_POST[amphur];
 
-                $this->db->where('id', $OTHRET_C->id);
-                $up[result] = $this->db->update(TBL_PLACE_CAR_STATION_OTHRET, $data);
-                $res[status] = $up[result];
+                $OTHRET_C             = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+                if ( count($OTHRET_C) == 0) {
+                    $data[region] = $_POST[region];
+                    $data[type] = $_POST[station_select];
+                    $data[province] = $_POST[province];
+                    $data[amphur] = $_POST[amphur];
+                    $data[post_date]   = time();
+                    $data[last_update] = time();
+                    $data[result] = $this->db->insert(TBL_PLACE_CAR_STATION_OTHRET, $data);
+                    $id_station         = mysql_insert_id();
+                    foreach ($allSTATION as $row) {
+                        if ($row->status == 1) {
+                            $data2           = array();
+                            $data2[status]   = 0;
+                            $data2[date_end] = time();
+                            $this->db->where('id', $row->id);
+                            $up[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
+                        }
+                    }
+                    $data2           = array();
+                    $data2[member] = $_GET[id_user];
+                    $data2[station] = $id_station;
+                    $data2[type] = $_POST[station_select];
+                    $data2[region] = $_POST[region];
+                    $data2[province] = $_POST[province];
+                    $data2[amphur] = $_POST[amphur];
+                    $data2[station]     = $id_station;
+                    $data2[post_date] = time();
+                    $data2[last_update] = time();
+                    $data2[date_up] = time();
+                    $data2[date_end] = time();
+                    $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
+                    $res[status] = $data2[result];
+                    $res[msg]    = 'สำเร็จ';
+                    $res[data2]  = $data2;
+                    $res[data]   = $data;
+                    $res[num]    = $num;
+                    $res[post]   = $_POST;
+                    return $res;
+                }
+                else{
+
+                    $data = array();
+                    foreach ($STATION_FIELD as $key => $row) {
+                        if ($key ==0) {
+                        // $name = $_POST[$row->s_field];
+                        }
+                        else{
+                            $data[$row->s_field_show]   =  $_POST[$row->s_field];
+
+                        }
+
+                    }
+
+                    $this->db->where('id', $OTHRET_C->id);
+                    $up[result] = $this->db->update(TBL_PLACE_CAR_STATION_OTHRET, $data);
+                    $res[status] = $up[result];
                     $res[msg]    = '';//'มี'.$name.'ในระบบแล้วกรุณาเลือกที่มีอยู่';
                     $res[data2]  = $data2;
                     $res[data]   = $data;
@@ -901,21 +901,21 @@ else {
                     $check_have             = $this->Main_model->num_row(TBL_PLACE_CAR_STATION, $_where);
                     if ($check_have == 0) {
 
-                       $data2              = array();
-                       $data2[station]     = 0;
-                       $data2[member] = $_GET[id_user];
-                       $data2[type] = $_POST[station_select];
-                        $data2[region] = $_POST[region];
-                  
-                    $dat2a[province] = $_POST[province];
-                    $data2[amphur] = $_POST[amphur];
-                       $data2[post_date]   = time();
-                       $data2[last_update] = time();
-                       $data2[date_up] = time();
-                       $data2[date_end] = time();
-                       $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
-                   }
-                   else{
+                     $data2              = array();
+                     $data2[station]     = 0;
+                     $data2[member] = $_GET[id_user];
+                     $data2[type] = $_POST[station_select];
+                     $data2[region] = $_POST[region];
+
+                     $dat2a[province] = $_POST[province];
+                     $data2[amphur] = $_POST[amphur];
+                     $data2[post_date]   = time();
+                     $data2[last_update] = time();
+                     $data2[date_up] = time();
+                     $data2[date_end] = time();
+                     $data2[result] = $this->db->insert(TBL_PLACE_CAR_STATION, $data2);
+                 }
+                 else{
                     $data2              = array();
                     $data2[status]     = 1;
                     $data2[date_up] = time();
@@ -962,8 +962,8 @@ else {
                     $data2              = array();
                     $data2[station]     =  $OTHRET->id;
                     $data2[post_date]   = time();
-                     $data2[region] = $_POST[region];
-                   
+                    $data2[region] = $_POST[region];
+
                     $data2[province] = $_POST[province];
                     $data2[amphur] = $_POST[amphur];
                     $data2[member] = $_GET[id_user];
@@ -990,22 +990,47 @@ else {
     $res[status] = $data2[result];
     return $res;
 }
-public function sw_search($keyword){
-   $this->db->select('*');
-   $this->db->from(TBL_PLACE_CAR_STATION_OTHRET);
-        // $this->db->where('suppress', 0);
-   $this->db->like('topic_th', $keyword);
-   $this->db->order_by("topic_th", "asc");
+public function move_station($station){
+    $arr_where = array();
+    $arr_where[member] = $_GET[id_user];
+    $arr_where[status] = 1;
+    $arr_select = array('*');
+    $STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION, $arr_where);
+    $data2           = array();
+    $data2[status]   = 0;
+    $data2[date_end] = time();
+    $this->db->where('id', $station);
+    $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
 
-   $query = $this->db->get();
-   $data = array();
-   foreach($query->result_array() as $row){
+     $data2           = array();
+    $data2[status]   = 1;
+    $data2[date_up] = time();
+    $this->db->where('station', $station);
+    $this->db->where('member', $_COOKIE['detect_user']);
+    $data2[result] = $this->db->update(TBL_PLACE_CAR_STATION, $data2);
+    $res[data2]  = $data2;
+    
+    $res[STATION]    = $STATION;
+    $res[post]   = $_POST;
+    $res[status] = $data2[result];
+    return $res;
+}
+public function sw_search($keyword){
+ $this->db->select('*');
+ $this->db->from(TBL_PLACE_CAR_STATION_OTHRET);
+        // $this->db->where('suppress', 0);
+ $this->db->like('topic_th', $keyword);
+ $this->db->order_by("topic_th", "asc");
+
+ $query = $this->db->get();
+ $data = array();
+ foreach($query->result_array() as $row){
             //$data[$row['friendly_name']];
 
                 // $data[] = $row;
-   }
+ }
         //return $data;
-   return $query;
+ return $query;
 }
 public function search_select($id){
     $data = array();
