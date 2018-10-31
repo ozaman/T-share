@@ -448,6 +448,7 @@ function updatePlaceNum(province) {
 var array_rooms;
 var res_socket;
 var socket = io.connect('https://www.welovetaxi.com:3443');
+var check_run_shop = 0;
 //on message received we print all the data inside the #container div
 socket.on('notification', function(data) {
     //          console.log("Start Socket");
@@ -468,7 +469,6 @@ socket.on('notification', function(data) {
         }
     }
 });
-var shop_frist_run = 0;
 var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
@@ -499,6 +499,12 @@ socket.on('getbookinglab', function(data) {
 
 
 //                console.log(array_data.manage);
+
+if(check_run_shop != done.length){
+	shopManage();
+	check_run_shop = done.length;
+}
+
 if (done.length > 0) {
     $('#number_shop').show();
 } 
@@ -507,23 +513,19 @@ else {
 }
 
 $('#number_shop').text(done.length);
-if ($('#number_shop').text() != 0) {
+
+if ($('#number_shop').text() > 0) {
+	$('#tab_shop_mn').attr('badge',done.length);
+}else{
+	$('#tab_shop_mn').removeAttr("badge");
+}
+/*if ($('#number_shop').text() != 0) {
     $('#num_manage').show();
     $('#num_manage').html($('#number_shop').text());
 }else{
   $('#num_manage').hide();
-}
 
-
-if (shop_frist_run == 0) {
-   shop_frist_run = done.length;
-}
-//	console.log(done.length+ "|| "+shop_frist_run)
-if (done.length != shop_frist_run) {
-   shopManage();
-   shop_frist_run = done.length;
-}
-
+}*/
 /* check open order id auto */
 if (frist_socket == true) {
         var url_string = window.location.href; //window.location.href
@@ -1107,8 +1109,30 @@ $.post(urlo, function(res) {
         // $('#body_place_company').html(res);
     });
 
- // }, 1000);
+setTimeout(function(){ 
 
+countWaitTransShop(); 
+
+}, 1500);
+
+
+}
+
+function countWaitTransShop(){
+	
+	var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
+	$.ajax({
+		        url: url, 
+		        dataType: 'json', 
+		        type: 'post',
+		        success: function(res) {
+		                console.log(res);
+		                if(res>0){
+							$('#tab_shop_wait').attr('badge',res);
+						}
+		                
+		        }
+	});
 }
 
 function callpop() {

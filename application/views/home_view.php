@@ -544,11 +544,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                      }
                     ?>
                     	<ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> >
-                        
+                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> badge="" >
                             <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
                         </ons-tab>
-                        <ons-tab page="shop_wait.html" label="รอโอน"></ons-tab>
+                        <ons-tab page="shop_wait.html" label="รอโอน" badge="" id="tab_shop_wait"></ons-tab>
                         <ons-tab page="shop_history.html" label="ประวัติ">
                             <!--<span class="notification none" id="num_his" style="float: right;
     margin-top: 15px;
@@ -634,8 +633,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 				    });
 				});
                 ons.getScriptPage().onInit = function() {
-                    console.log($('#number_shop').text())
-			    // $('ons-tab[page="shop_manage.html"]').attr('badge', $('#number_shop').text());
 			    window.fn.showDialog = function(id) {
 			        var elem = document.getElementById(id);
 			        if (id === 'popover-dialog') {
