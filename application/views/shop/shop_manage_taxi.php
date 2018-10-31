@@ -42,7 +42,7 @@
 			$nickname = "";
 		}
 	
-     $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
+    /* $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
 
 FROM place_car_station as t1 left join place_car_station_type as t2 
 
@@ -66,7 +66,7 @@ where t1.member = '".$val[drivername]."' ");
 	
 	 $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
    	$query_cancel = $this->db->query($sql);
-   	$res_cancel = $query_cancel->row();
+   	$res_cancel = $query_cancel->row();*/
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
    <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -75,10 +75,8 @@ where t1.member = '".$val[drivername]."' ");
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
    	  <?php 
-   	  	if($_GET[wait_trans]!=""){ ?>
-			<span class="time-post-shop" style="font-size:14px;"><?=date("Y-m-d",$val[post_date]);?></span>
-		<?php }else{ ?>
-			<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+   	  	if($_GET[wait_trans]==""){ ?>
+		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
 	<?php	}
    	  ?>
 	  

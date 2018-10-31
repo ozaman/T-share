@@ -47,7 +47,7 @@ on t5.province = t3.id
 
 left join web_area as t4 on t5.amphur = t4.id
 
-where t1.member = '".$val[drivername]."' ");
+where t1.member = '".$val[drivername]."' and t1.status = 1 ");
 	$row_q = $query_q->row();
 
  $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = ".$val[check_use_car_id]);

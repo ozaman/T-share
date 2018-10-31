@@ -36,23 +36,7 @@
 			$nickname = "";
 		}
 	
-    $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
-
-FROM place_car_station as t1 left join place_car_station_type as t2 
-
-on t1.type = t2.id 
-
-left join  place_car_station_other as t5 
-
-on t1.station = t5.id
-
-left join web_province as t3 
-
-on t5.province = t3.id 
-
-left join web_area as t4 on t5.amphur = t4.id
-
-where t1.member = '".$val[drivername]."' ");
+    $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station as t1 left join place_car_station_type as t2 on t1.type = t2.id left join place_car_station_other as t5 on t1.station = t5.id left join web_province as t3 on t5.province = t3.id left join web_area as t4 on t5.amphur = t4.id where t1.member = '".$val[drivername]."' and t1.status = 1");
 	$row_q = $query_q->row();
 
  $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = '".$val[check_use_car_id]."'");
@@ -76,14 +60,24 @@ where t1.member = '".$val[drivername]."' ");
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
-       <?php 
-   	  	if($_GET[wait_trans]!=""){ ?>
-			<span class="time-post-shop" style="font-size:14px;"><?=date("Y-m-d",$val[post_date]);?></span>
-		<?php }else{ ?>
-			<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+   <?php 
+   	  	if($_GET[wait_trans]==""){ ?>
+		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
 	<?php	}
    	  ?>
-      <span class="font-18"><b>ติดต่อ</b></span>
+   	<table width="100%">
+   		<tr>
+   			<td><span class="font-18"><b>ติดต่อ</b></span></td>
+   			<?php 
+   	  	if($_GET[wait_trans]!=""){ ?>
+		 <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
+	<?php	}
+   	  ?>
+   		</tr>
+   	</table>
+       
+      
+      
       <table width="100%"  >
          <tr>
             <td colspan="2">
