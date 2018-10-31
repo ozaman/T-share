@@ -45,10 +45,12 @@ public function shop_view(){
 		
 public function shop_manage(){
 		if($_COOKIE[detect_userclass]=="lab"){
-			$this->load->view('shop/shop_manage_lab',$data);
+			$this->load->view('shop/shop_manage_lab');
 		}else{
-			$this->load->view('shop/shop_manage_taxi',$data);
+			$this->load->view('shop/shop_manage_taxi');
 		}
+//		$this->load->view('shop/shop_manage_lab');
+//		echo 123;
 		
 	}
 	
