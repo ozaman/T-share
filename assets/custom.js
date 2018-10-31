@@ -2057,8 +2057,9 @@ function taxiList(){
         'title': 'รายชื่อสมาชิก'
     }, 'lift-ios');
 
-    $.post("page/taxi_list", function(ele) {
-    	console.log(ele);
+    $.post("page/call_page", {
+        path: "page/taxi_list"
+    }, function(ele) {
         $('#body_popup1').html(ele);
     });
 }

@@ -1,5 +1,5 @@
 <?php 
-	$query = $this->db->query("select * where from web_driver where status = 1 and user_class = 'taxi' ");
+	$query = $this->db->query("select * from web_driver where status = 1 and user_class = 'taxi' ");
 ?>
 <ons-list>
 	<ons-list-header>รายชื่อสมาชิก</ons-list-header>
