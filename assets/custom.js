@@ -573,7 +573,7 @@ function addUser(){
 	var dataorder = {
      order: parseInt(id),
  };
- socket.emit('adduser', dataorder);
+ 
 }
 
 socket.on('updaterooms', function(rooms, current_room) {

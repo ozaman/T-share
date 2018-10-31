@@ -1,4 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <?php 
 if($this->Mobile_model->version('iPad')){
     // Code to run for the Apple iOS platform.
@@ -59,7 +60,16 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
-
+<script type="text/javascript">
+     setTimeout(function() {
+            console.log('aaaaaaaa')
+            var dataorder = {
+    order: '<?=$_COOKIE[detect_user];?>',
+};
+            console.log( '<?=$_COOKIE[detect_user];?>')
+        socket.emit('adduser', dataorder);
+         }, 1000);
+</script>
 <ons-modal direction="up" id="modal_load">
     <div style="text-align: center;">
         <p sty>
@@ -1675,6 +1685,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 setCountNotification();
             }, 1500);
         });*/
+
         $(window).on('load', function(){ 
         	 $("#load_material").fadeOut(500);
 			modal.hide();
