@@ -85,10 +85,14 @@ public function social(){
 	}
  public function icome_trans_list(){
 		$this->load->view('statement/trans_ic');
-   }  
+   } 
+    
  public function icome_trans_detail(){
 		$this->load->view('statement/trans_ic_bill');
-   }   
-   		
+   }  
+    
+ public function taxi_list(){
+		$this->load->view('page/taxi_list');
+   }  		
 }
 ?>

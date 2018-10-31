@@ -2052,5 +2052,13 @@ function move_station(station){
 }
 
 function taxiList(){
-	
+	fn.pushPage({
+        'id': 'popup1.html',
+        'title': 'รายชื่อสมาชิก'
+    }, 'lift-ios');
+
+    $.post("page/taxi_list", function(ele) {
+    	console.log(ele);
+        $('#body_popup1').html(ele);
+    });
 }
