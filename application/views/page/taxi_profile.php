@@ -319,7 +319,7 @@ input[type="text"]:disabled {
         </ons-list-item>
         <div align="center" style="margin: 10px;">			
 	      <div class="box-preview-img" id="box_img_id_card" >
-	      	<img src="assets/images/ex_card/id_card.jpg?v=<?=time();?>" class="img-preview-show" id="pv_id_card" />
+	      	<img src="../data/pic/driver/id_card/<?=$driver->id;?>_idcard.jpg?v=<?=time();?>" class="img-preview-show" id="pv_id_card" />
 	      </div> 
 	    </div>
         
@@ -353,7 +353,7 @@ input[type="text"]:disabled {
         </ons-list-item>
       <div align="center" style="margin: 10px;">
 	      <div class="box-preview-img" id="box_img_id_driving" >
-	      	<img src="assets/images/ex_card/id_driving.jpg" class="img-preview-show" id="pv_id_driving" />
+	      	<img src="../data/pic/driver/id_driving/<?=$driver->id;?>_iddriving.jpg" class="img-preview-show" id="pv_id_driving" />
 	      </div>
 	    </div>
 	</ons-card>
@@ -370,7 +370,7 @@ input[type="text"]:disabled {
 //	console.log(ISO8601(new Date(res[0],res[1],res[2])));
 	document.getElementById('ex_iddriving').value = ISO8601(new Date(res[0],res[1],res[2]));
 	
-	var idcard = '<?=$driver->iddriving;?>';
+	var idcard = '<?=$driver->iddriving_finish;?>';
 	var res_idcard = idcard.split("-");
 	document.getElementById('ex_idcard').value = ISO8601(new Date(res_idcard[0],res_idcard[1],res_idcard[2]));
 </script>
