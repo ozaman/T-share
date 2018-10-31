@@ -64,8 +64,19 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
-      <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
-      <span class="font-18"><b>ติดต่อ</b></span>
+      <?php 
+   	  	if($_GET[wait_trans]==""){ ?>
+		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
+	<?php	
+		$width = "60";
+	}
+   	  ?>
+   	<table width="100%">
+   		<tr>
+   		   <td width="<?=$width;?>"><span class="font-18"><b>ติดต่อ</b></span></td>
+		   <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
+   		</tr>
+   	</table>
       <table width="100%"  >
          <tr>
             <td colspan="2">

@@ -63,16 +63,14 @@
    <?php 
    	  	if($_GET[wait_trans]==""){ ?>
 		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
-	<?php	}
+	<?php	
+		$width = "60";
+	}
    	  ?>
    	<table width="100%">
    		<tr>
-   			<td><span class="font-18"><b>ติดต่อ</b></span></td>
-   			<?php 
-   	  	if($_GET[wait_trans]!=""){ ?>
-		 <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
-	<?php	}
-   	  ?>
+   		   <td width="<?=$width;?>"><span class="font-18"><b>ติดต่อ</b></span></td>
+		   <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
    		</tr>
    	</table>
        
