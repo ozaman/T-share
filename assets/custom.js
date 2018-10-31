@@ -2070,10 +2070,3 @@ function taxiList(){
     });
 }
 
-function eachTaxiList(){
-		$.each(array_rooms, function( index, value ) {
-		  console.log(value );
-		  $('#icon_online_'+value).css('color','rgb(139, 195, 74)');
-		});
-}
-
