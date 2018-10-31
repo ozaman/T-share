@@ -1953,7 +1953,7 @@ $.ajax({
     data: pass,
     type: 'post',
     success: function(ele) {
-    			console.log(ele);
+//    			console.log(ele);
                 $('#shop_manage').html(ele);
             }
     });
