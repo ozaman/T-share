@@ -283,5 +283,17 @@ class Shop extends CI_Controller {
 		
 		}
 		
+		public function count_wait_trans_shop_lab(){
+			
+			$query = $this->db->query("select id from order_booking where check_guest_register = 1 and check_tran_job = 1");
+			echo $query->num_rows();
+		}
+		
+		public function count_wait_trans_shop_taxi(){
+			
+			$query = $this->db->query("select id from order_booking where check_guest_register = 1 and check_tran_job = 1 and drivername = ".$_GET[driver_id]);
+			echo $query->num_rows();
+		}
+		
 	}
 	?>
