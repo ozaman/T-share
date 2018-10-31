@@ -256,10 +256,6 @@ function checkTimeHome(i) {
     return i;
 }
 
-function use_often(id) {}
-
-function cancel_often(id) {}
-
 function sendTagIOS(classname, username) {
     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (iOS == true) {
@@ -322,7 +318,7 @@ function logOut() {
         setTimeout(function(){ window.location = "../TShare_new/material/login/index.php"; }, 2000);
     }
 
-    function openNotifyline() {
+function openNotifyline() {
         location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
     }
 
@@ -343,7 +339,7 @@ function logOut() {
         maximumAge: 0
     };
 
-    function success(pos) {
+function success(pos) {
         if (first_get_pos == true) {
             current = {
                 lat: parseFloat(pos.coords.latitude),
@@ -1345,21 +1341,6 @@ function viewPhotoGlobal(path, time, caption) {
         $('#body_popup2').html(ele);
     });
 
-    /* var dialog = document.getElementById('photo-view-dialog');
-
-		  if (dialog) {
-		    dialog.show();
-		  } else {
-		    ons.createElement('photo-dialog.html', { append: true })
-		      .then(function(dialog) {
-		        dialog.show();
-		      });
-		  }
-    var url_load = "page/view_photo?time=" + time + "&path=" + path+"&caption="+caption;
-    $.post(url_load, function(ele) {
-        $('#body-photo-view').html(ele);
-    });*/
-
 }
 
 function modalShowImg(path, cap){
@@ -1701,6 +1682,7 @@ $.ajax({
 }
 });
 }
+
 function stationCaragain(){
 
     var area = $('#place_area').val();
@@ -1715,6 +1697,7 @@ function stationCaragain(){
        }
    });
 }
+
 function stationCar(){
 	fn.pushPage({
      'id': 'popup1.html',
@@ -1861,6 +1844,7 @@ function selectTypeCarPlace_edit(type) {
         }
     });
 }
+
 function selectTypeCarPlace(id){
     $('.station_other').prop("checked", false);
     id_type_station = id;
@@ -1983,6 +1967,7 @@ function selectTypeCarPlace(id){
     });
     
 }
+
 function add_btb__station_new(){
     ckstation = 0;
     fn.pushPage({
@@ -2005,6 +1990,7 @@ function add_btb__station_new(){
 
 
 }
+
 function view_station_his() {
     modal.show();
     fn.pushPage({
@@ -2019,6 +2005,7 @@ function view_station_his() {
 
     });
 }
+
 function move_station(station){
  modal.show();
     $.ajax({
@@ -2062,4 +2049,8 @@ function move_station(station){
     }
 }
 });
+}
+
+function taxiList(){
+	
 }

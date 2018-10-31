@@ -218,6 +218,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					$menu_ref = "";
 					$menu_noti_line = "";
 					$menu_contect = "display:none;";
+					$menu_lab = "";
 					
 					$menu_sub_bank = "display:none;";
 					$menu_sub_affiliation = "display:none;";
@@ -229,6 +230,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					$menu_ref = "";
 					$menu_noti_line = "";
 					$menu_contect = "";
+					$menu_lab = "display:none;";
 					
 					$menu_sub_bank = "";
 					$menu_sub_affiliation = "";
@@ -237,7 +239,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <ons-list>
                 <ons-list-item expandable style="<?=$menu_profile;?>">
                     <div class="left">
-                        <i class="icon-new-uniF133-2 list-item__icon"></i>
+                        <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลส่วนตัว
@@ -253,6 +255,18 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <div class="expandable-content" style="padding-left: 60px;<?=$menu_sub_bank;?>" onclick="myAccountBank();">บัญชีธนาคาร (<span id="num_bank_home">
                             <?=$num_bank;?></span> บัญชี)</div>
                     <div class="right arr" id="list_profile">
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                </ons-list-item>
+				<ons-list-item expandable style="<?=$menu_lab;?>">
+                    <div class="left">
+                        <i class="icon-new-uniF133-2 list-item__icon"></i>
+                    </div>
+                    <div class="center" onclick="arrowChange('list_lab');">
+                        Lab
+                    </div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="taxiList();">รายชื่อสมาชิก</div>
+                    <div class="right arr" id="list_lab">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
