@@ -437,7 +437,7 @@ function updatePlaceNum(province) {
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
-         console.log(data2);
+//         console.log(data2);
      });
     });
 }
