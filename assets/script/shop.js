@@ -2477,6 +2477,7 @@ function confirmGetIncome(id, invoice, driver){
 				   		sendSocket(id);
 				   		
 				   		completedJobShop(id);
+				   		countWaitTransShop(); 
 				   		shopFuncNotiActi(id, "driver_pay_approve");
 			           $.ajax({
 			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,

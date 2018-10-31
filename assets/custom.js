@@ -1106,17 +1106,17 @@ $.post(urlo, function(res) {
         // $('#body_place_company').html(res);
     });
 
-setTimeout(function(){ 
+
 
 countWaitTransShop(); 
 
-}, 1500);
+
 
 
 }
 
 function countWaitTransShop(){
-	
+	setTimeout(function(){ 
 	var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
 	$.ajax({
 		        url: url, 
@@ -1130,6 +1130,7 @@ function countWaitTransShop(){
 		                
 		        }
 	});
+	}, 1500);
 }
 
 function callpop() {
