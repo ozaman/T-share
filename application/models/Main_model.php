@@ -763,8 +763,14 @@ else {
                 $_order = array();
                 $_order[i_index] = 'asc';
                 $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_where,$_select,$_order);
-                $check_have_data = 0;
-                foreach ($STATION_FIELD as $row) {
+                
+                if ($_POST[station_other] != 0) {
+                    $check_have_data = 1;
+
+                }
+                else{
+                    $check_have_data = 0;
+                     foreach ($STATION_FIELD as $row) {
                     if ($row->s_field_show == 'topic_th') {
                        if ($_POST[$row->s_field] == '') {
                          $res[status] = false;
@@ -783,16 +789,30 @@ else {
                 }
 
             }
+
+                }
+               
             if ($check_have_data != 0) {
                 $data2 = array();
                 $data = array();
-                foreach ($STATION_FIELD as $key => $row) {
+                if ($_POST[station_other] != 0) {
+                    $check_have_data = 1;
+                    $res              = array();
+                    $_where           = array();
+                    $_where[id] = $_POST[station_other];
+                    $OTHRET             = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET, $_where);
+                    $name = $OTHRET->topic_th;
+                }
+                else{
+                    foreach ($STATION_FIELD as $key => $row) {
                     if ($key==0) {
                         $name = $_POST[$row->s_field];
                     }
                     $data[$row->s_field_show]   =  $_POST[$row->s_field];
 
                 }
+                }
+                
                 $res              = array();
                 $_where           = array();
                 $_where[type] = $_POST[station_select];
