@@ -15,6 +15,13 @@ $_where = array();
 $_where['status'] = 1;
 $_where['member'] = $_COOKIE['detect_user'];
 $MEMBER = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
+if (count($MEMBER) == 0) {
+	$none = 'none';
+}
+else{
+	$none = 'block';
+
+}
 $res = array();
 $_where = array();
 $_where['status'] = 1;
@@ -219,7 +226,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 	</ons-list>
 </div>
 
-<div id="box_station_others"></div>
+<div id="box_station_others" style="display: <?=$none;?>"></div>
 <div class="card" id="shop_station_field" style="display: none">
 
 
@@ -238,13 +245,24 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 	// $('#radio-<?=$OTHRET->type;?>').prop("checked", true);
 	setTimeout(function(){ 
 	var chek_show = '<?=$OTHRET->type;?>';
+	var chek_mem = '<?=count($MEMBER)?>';
 	if (chek_show == 4) {
 		$('#box_station_others').hide();
 	}
+	if (chek_mem == 0) {
+		ckstation = 2;
+		$('#box_station_others').hide();
+
+	}
+	else{
+		$('#box_station_others').show();
+
+		selectTypeCarPlace_edit(chek_show);
+	func_shop_station_field(chek_show)
+	}
 	}, 1000);
 	$('#header_topic_type').html('<?=$TYPE->topic_th;?>')
-	selectTypeCarPlace_edit(chek_show);
-	func_shop_station_field(chek_show)
+	
 	   //
    //          selectTypeCarPlace_edit(chek_show);
            

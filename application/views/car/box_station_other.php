@@ -13,6 +13,7 @@ $_where = array();
     $_order = array();
     $_order['topic_th'] = 'asc';
     $data[OTHRET] = $this->Main_model->fetch_data('','',TBL_PLACE_CAR_STATION_OTHRET,$_where,$_select,$_order);
+    // print_r($data[OTHRET]);
     $_where = array();
 
 $_where[status] = 1;

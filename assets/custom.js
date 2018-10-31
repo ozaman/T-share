@@ -18,11 +18,11 @@ function setCountNotification(){
 //			        	console.log(num);
 //			        	num = 0;
 if(num>0){
- $('.fa-bell').addClass('bell');		    
- $('#tab_notification').attr('badge', num);
+   $('.fa-bell').addClass('bell');		    
+   $('#tab_notification').attr('badge', num);
 }else{
- $('.fa-bell').removeClass('bell');		    
- $('#tab_notification').attr('badge', '');
+   $('.fa-bell').removeClass('bell');		    
+   $('#tab_notification').attr('badge', '');
 }
 
 }
@@ -432,17 +432,17 @@ function updatePlaceNum(province) {
         //        var obj = JSON.parse(data);
         console.log(obj);
         if(obj.length<=0){
-           return;
-       }
-       var province = obj[0].id;
-       var area = obj[0].area;
-       $('#place_province').val(province);
-       $('#place_area').val(area);
+         return;
+     }
+     var province = obj[0].id;
+     var area = obj[0].area;
+     $('#place_province').val(province);
+     $('#place_area').val(area);
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
-           console.log(data2);
-       });
+         console.log(data2);
+     });
     });
 }
 var array_rooms;
@@ -524,8 +524,8 @@ if ($('#number_shop').text() > 0) {
     $('#num_manage').html($('#number_shop').text());
 }else{
   $('#num_manage').hide();
-}*/
 
+}*/
 /* check open order id auto */
 if (frist_socket == true) {
         var url_string = window.location.href; //window.location.href
@@ -571,9 +571,9 @@ socket.emit('adduser', dataorder);
 function addUser(){
 	var id = detect_user;
 	var dataorder = {
-       order: parseInt(id),
-   };
-   socket.emit('adduser', dataorder);
+     order: parseInt(id),
+ };
+ socket.emit('adduser', dataorder);
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
@@ -603,28 +603,28 @@ socket.on('datalab', function(username, data) {
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
                     changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
-					
+
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
 //					alert(value.pax_regis);
-					$('#num_edit_persion2').val(value.pax_regis);
-				}
-				
-                if(value.check_driver_pay==1 && value.check_lab_pay==1){
-                 loadBoxConfirmPay(value.id);
-                 return;
-             }
-             if(value.check_driver_pay==1){
-                 loadBoxConfirmPay(value.id);
-             }
-             if(value.check_lab_pay==1){
-                 loadBoxConfirmPay(value.id);
-             }
+$('#num_edit_persion2').val(value.pax_regis);
+}
 
-         }
-     });
+if(value.check_driver_pay==1 && value.check_lab_pay==1){
+   loadBoxConfirmPay(value.id);
+   return;
+}
+if(value.check_driver_pay==1){
+   loadBoxConfirmPay(value.id);
+}
+if(value.check_lab_pay==1){
+   loadBoxConfirmPay(value.id);
+}
+
+}
+});
     }
     
     if ($('#open_shop_manage').val() == 1) {
@@ -632,19 +632,19 @@ socket.on('datalab', function(username, data) {
 
             if(value.lab_approve_job==1){
               if(value.check_driver_topoint == 1){
-               $('#btn_manage_topoint_'+value.id).hide();
-               $('#btn_manage_'+value.id).show();
-               
-               
-           }else{
-               $('#btn_manage_topoint_'+value.id).show();
-               $('#btn_manage_'+value.id).hide();
-           }
-		   $('#date_approved_job_'+value.id).show();
-		   $('#txt_date_approved_job_'+value.id).text(timestampToDate(value.lab_approve_job_date,'time'));
-           $('#txt_wait_'+value.id).hide();
-           $('#td_cancel_book_'+value.id).hide();
-           $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+                 $('#btn_manage_topoint_'+value.id).hide();
+                 $('#btn_manage_'+value.id).show();
+
+
+             }else{
+                 $('#btn_manage_topoint_'+value.id).show();
+                 $('#btn_manage_'+value.id).hide();
+             }
+             $('#date_approved_job_'+value.id).show();
+             $('#txt_date_approved_job_'+value.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+             $('#txt_wait_'+value.id).hide();
+             $('#td_cancel_book_'+value.id).hide();
+             $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
              $('#view_lab_approve_'+value.id).show();
@@ -653,20 +653,20 @@ socket.on('datalab', function(username, data) {
              $.ajax({
                 url: "main/get_data_user?id="+value.lab_approve_job_post,
 //					           data: pass,
-			type: 'post',
-			dataType: 'json',
-			success: function(res) {
-			    console.log(res);
-			    var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
-			    $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
+type: 'post',
+dataType: 'json',
+success: function(res) {
+ console.log(res);
+ var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
+ $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
 			//					               $('#text_name_approved').text(res.nickname);
-			}
-		 });
+     }
+ });
 
 
 
-       }
-       else{
+         }
+         else{
 
 
             $('#btn_manage_topoint_'+value.id).hide();
@@ -677,21 +677,21 @@ socket.on('datalab', function(username, data) {
         }
 
         if(value.status != $('#check_status_'+value.id).val()){
-           var pass = {
-              data: value
-          };
-          console.log(pass);
-          var url = "component/list_shop_manage";
-          $.ajax({
-              url: url,
-              data: pass,
-              type: 'post',
-              success: function(ele) {
-                  $('#list_shop_manage_'+value.id).html(ele);
-              }
-          });
-      }
-  });
+         var pass = {
+          data: value
+      };
+      console.log(pass);
+      var url = "component/list_shop_manage";
+      $.ajax({
+          url: url,
+          data: pass,
+          type: 'post',
+          success: function(ele) {
+              $('#list_shop_manage_'+value.id).html(ele);
+          }
+      });
+  }
+});
 //        shopManage();
 
 }
@@ -745,18 +745,18 @@ if ($('#open_shop_manage').val() == 1) {
     if(data.lab_approve_job==1){
         if(data.check_driver_topoint == 1){
 
-           $('#btn_manage_topoint_'+data.id).hide();
-           $('#btn_manage_'+data.id).show();
-           
-       }else{
-           $('#btn_manage_topoint_'+data.id).show();
-           $('#btn_manage_'+data.id).hide();
-       }
-	   $('#date_approved_job_'+data.id).show();
-	   $('#txt_date_approved_job_'+data.id).text(timestampToDate(value.lab_approve_job_date,'time'));
-       $('#txt_wait_'+data.id).hide();
-       $('#td_cancel_book_'+data.id).hide();
-       $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+         $('#btn_manage_topoint_'+data.id).hide();
+         $('#btn_manage_'+data.id).show();
+
+     }else{
+         $('#btn_manage_topoint_'+data.id).show();
+         $('#btn_manage_'+data.id).hide();
+     }
+     $('#date_approved_job_'+data.id).show();
+     $('#txt_date_approved_job_'+data.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+     $('#txt_wait_'+data.id).hide();
+     $('#td_cancel_book_'+data.id).hide();
+     $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
           /*$('#view_lab_approve_'+value.id).show();
@@ -807,9 +807,9 @@ function openOrderFromAndroid(id, status, open_ic) {
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     var check_open_shop_id = $('#check_open_shop_id').val();
     if(check_open_shop_id==id){
-     return;
- }
- if (status == "his") {
+       return;
+   }
+   if (status == "his") {
 
     openOrderFromAndroidHistory(id, status, open_ic)
 } else {
@@ -844,10 +844,10 @@ $.ajax({
     dataType: 'json',
     type: 'post',
     success: function(res) {
-       console.log(res);
-       openDetailBookinghistory('', '', res.invoice);
-       modal.hide();
-   }
+     console.log(res);
+     openDetailBookinghistory('', '', res.invoice);
+     modal.hide();
+ }
 });
 
 }
@@ -979,16 +979,16 @@ function beforeSendShop(){
                 })
                 .then(function() {
 
-                 addCarForSendShop();
+                   addCarForSendShop();
 
-             });
+               });
                 return;
             }else{
-             sendShop2();
-             setTimeout(function(){ shopManage(); }, 2000);
+               sendShop2();
+               setTimeout(function(){ shopManage(); }, 2000);
 
-         }
-     });
+           }
+       });
 
     }else{
       sendShop2();
@@ -1046,26 +1046,26 @@ $.post(urlo, function(res) {
                     modal.hide();
                     $('#shop_add').html(ele2);
                     if (class_user == "taxi"){
-                       $.ajax({
-                         url: "main/check_num_car_station",
-                         data: pass,
-                         type: 'post',
-                         success: function(res) {
-                           console.log("car station number : "+res)
-                           if (res == 0) {
-                             stationCar();
-                         }else{
+                     $.ajax({
+                       url: "main/check_num_car_station",
+                       data: pass,
+                       type: 'post',
+                       success: function(res) {
+                         console.log("car station number : "+res)
+                         if (res == 0) {
+                           stationCar();
+                       }else{
 
-                         }
+                       }
 
-                     }
-                 });
                    }
+               });
+                 }
 
 
 
 
-                   var pass = {
+                 var pass = {
                     date: moment().format('YYYY-MM-DD'),
                     driver: $.cookie("detect_user"),
                     type: 'his'
@@ -1232,8 +1232,8 @@ function myAccountBank() {
     }, function(ele) {
         $('#body_account_bank').html(ele);
         setTimeout(function(){
-         setnumbank();
-         if($('#detect_num_bank').val()==0){
+           setnumbank();
+           if($('#detect_num_bank').val()==0){
             addBank();
         }
     }, 500);
@@ -1426,10 +1426,10 @@ function clearCookieAll() {
     for (var cookie in cookies) {
         console.log(cookie);
         if(cookie != "app_remember_user" && cookie!= "app_remember_pass"){
-         $.removeCookie(cookie, {
-           path: '/'
-       });
-     }
+           $.removeCookie(cookie, {
+             path: '/'
+         });
+       }
         //	   $.removeCookie(cookie);
         
     }
@@ -1445,11 +1445,11 @@ function expenditure() {
 function apiRecordActivityAndNotification(param_aan, param_aan2){
 
     var param_all = {
-       activity : param_aan,
-       notification : param_aan2
-   };
-   console.log(param_all);
-   $.ajax({
+     activity : param_aan,
+     notification : param_aan2
+ };
+ console.log(param_all);
+ $.ajax({
 						url: "main/recordActivityAndNoti", // point to server-side PHP script 
 						dataType: 'json', // what to expect back from the PHP script, if anything
 						type: 'post',
@@ -1644,14 +1644,14 @@ if (check_get_have == 1) {
     return false;
 }*/
 $.ajax({
-   url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
-   data:  $('#form_addstation').serialize(),
-   type: 'post',
-   dataType: 'json',
-   success: function(res) {
-       console.log(res);
-       if (res.status == true ) {
-         
+ url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
+ data:  $('#form_addstation').serialize(),
+ type: 'post',
+ dataType: 'json',
+ success: function(res) {
+     console.log(res);
+     if (res.status == true ) {
+
 
          // beforeSendShop()
          setTimeout(function(){ 
@@ -1662,7 +1662,7 @@ $.ajax({
            $.post("car/edit_form_station?area="+area+"&pv="+pv, {
             id_user: $.cookie("detect_user")
         }, function(res) {
-callpop();
+            callpop();
             $('#body_popup1').html(res);
             modal.hide();
             if($('#province').val()!=""){
@@ -1676,11 +1676,11 @@ callpop();
      }
      else{
         ons.notification.alert({
-              message: res.msg,
-              title: "กรุณาตรวจสอบ",
-              buttonLabel: "ตกลง"
-          })
-         modal.hide();
+          message: res.msg,
+          title: "กรุณาตรวจสอบ",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
         // if (res.msg == 'type') {
         //     ons.notification.alert({
         //       message: 'คิว/บริษัท/สมาคม',
@@ -1717,9 +1717,9 @@ function stationCaragain(){
 }
 function stationCar(){
 	fn.pushPage({
-       'id': 'popup1.html',
-       'title': 'ข้อมูลสังกัดรถ'
-   }, 'lift-ios');
+     'id': 'popup1.html',
+     'title': 'ข้อมูลสังกัดรถ'
+ }, 'lift-ios');
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();
     $.post("car/edit_form_station?area="+area+"&pv="+pv, {
@@ -1738,7 +1738,7 @@ function stationCar(){
 /***************************** *** ******************************/
 function func_shop_station_field(station_type,option) {
     console.log('aaaaa')
-        $.post("car/shop_station_field?i_station_type="+station_type+'&opt='+option, function(res) {
+    $.post("car/shop_station_field?i_station_type="+station_type+'&opt='+option, function(res) {
         //console.log(res);
         $('#shop_station_field').html(res);
 
@@ -1768,6 +1768,42 @@ function get_station() {
 } 
 var ckstation = 1;
 function selectTypeCarPlace_edit(type) {
+    var region = $('#region').val();
+    var province = $('#province').val();
+    var amphur = $('#amphur').val();
+    var member = $.cookie("detect_user");
+    if (region == '') {
+        ons.notification.alert({
+          message: 'ภูมิภาค',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (province == '') {
+        ons.notification.alert({
+          message: 'จังหวัด',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (amphur == '') {
+        ons.notification.alert({
+          message: 'อำเภอ',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#radio-'+id).prop("checked", false);
+        $('#type_topic_'+id).prop("checked", false);
+
+        return false;
+    }
     if (type == 4) {
         $('#box_station_others').hide();
         $('#shop_station_field').hide();
@@ -1806,9 +1842,9 @@ function selectTypeCarPlace_edit(type) {
             modal.hide();
             if (ckstation == 1) {
                 setTimeout(function(){ 
-                $('#station_other').val($('#id_station').val());
-                ckstation++;
-            },1000);
+                    $('#station_other').val($('#id_station').val());
+                    ckstation++;
+                },1000);
             }
             else if (ckstation == 0) {
                 $('#station_other').val($('#id_station').val());
@@ -1950,9 +1986,9 @@ function selectTypeCarPlace(id){
 function add_btb__station_new(){
     ckstation = 0;
     fn.pushPage({
-       'id': 'popup2.html',
-       'title': 'ข้อมูลสังกัดรถ'
-   }, 'lift-ios');
+     'id': 'popup2.html',
+     'title': 'ข้อมูลสังกัดรถ'
+ }, 'lift-ios');
     $('#check_get_have').val(2)
     // $('#body_car_station').hide()
 
@@ -1972,14 +2008,58 @@ function add_btb__station_new(){
 function view_station_his() {
     modal.show();
     fn.pushPage({
-       'id': 'popup2.html',
-       'title': 'ข้อมูลประวัตสังกัดรถ'
-   }, 'lift-ios');
+     'id': 'popup2.html',
+     'title': 'ข้อมูลประวัตสังกัดรถ'
+ }, 'lift-ios');
     console.log('aaaaa')
-        $.post("car/station_his", function(res) {
+    $.post("car/station_his", function(res) {
         //console.log(res);
         $('#body_popup2').html(res);
         modal.hide();
 
     });
+}
+function move_station(station){
+ modal.show();
+    $.ajax({
+     url: "main/move_station?station="+station,
+   // data:  $('#form_addstation').serialize(),
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
+     console.log(res);
+     if (res.status == true ) {
+
+
+         // beforeSendShop()
+         setTimeout(function(){ 
+
+           // stationCaragain();
+           var area = $('#place_area').val();
+           var pv = $('#place_province').val();
+           $.post("car/edit_form_station?area="+area+"&pv="+pv, {
+            id_user: $.cookie("detect_user")
+        }, function(res) {
+            callpop();
+            $('#body_popup1').html(res);
+            modal.hide();
+            if($('#province').val()!=""){
+           // _province(pv);
+       }
+   });
+           
+       }, 1000);
+     }
+     else{
+        ons.notification.alert({
+          message: res.msg,
+          title: "กรุณาตรวจสอบ",
+          buttonLabel: "ตกลง"
+      })
+       
+        
+
+    }
+}
+});
 }
