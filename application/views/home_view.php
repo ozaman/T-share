@@ -196,7 +196,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </ons-popover>
     
     <template id="sidemenu.html">
-        <?=$_COOKIE['detect_user'];?>
         <ons-page>
             <div class="profile-pic" align="center">
                 <form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
@@ -210,31 +209,68 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     margin-top: -20px;
     border-top-left-radius: 5px;/* pointer-events: none;*/" onclick="performClick('img_profile_home');"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
             </div>
-            <!--<ons-list-title>เมนู</ons-list-title>-->
+			<?php 
+				if($_COOKIE[detect_userclass]=="lab"){
+					$menu_profile = "";
+					$menu_car = "display:none;";
+					$menu_income = "display:none;";
+					$menu_wallet = "display:none;";
+					$menu_ref = "";
+					$menu_noti_line = "";
+					$menu_contect = "display:none;";
+					$menu_lab = "";
+					
+					$menu_sub_bank = "display:none;";
+					$menu_sub_affiliation = "display:none;";
+				}else{
+					$menu_profile = "";
+					$menu_car = "";
+					$menu_income = "";
+					$menu_wallet = "";
+					$menu_ref = "";
+					$menu_noti_line = "";
+					$menu_contect = "";
+					$menu_lab = "display:none;";
+					
+					$menu_sub_bank = "";
+					$menu_sub_affiliation = "";
+				}
+			?>
             <ons-list>
-                <ons-list-item expandable>
+                <ons-list-item expandable style="<?=$menu_profile;?>">
                     <div class="left">
-                        <!--<ons-icon fixed-width class="list-item__icon" icon="ion-edit, material:md-edit"></ons-icon>-->
-                        <i class="icon-new-uniF133-2 list-item__icon"></i>
+                        <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                     </div>
                     <div class="center" onclick="arrowChange('list_profile');">
                         ข้อมูลส่วนตัว
                     </div>
                     <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="stationCar();">สังกัดรถ</div>
+                    <div class="expandable-content" style="padding-left: 60px;<?=$menu_sub_affiliation;?>" onclick="stationCar();">สังกัดรถ</div>
                     <?php 
                     	$this->db->select('id');
 						$this->db->where('driver_id = '.$_COOKIE['detect_user']);
 						$query = $this->db->get('web_bank_driver');
 						$num_bank = $query->num_rows();
                     ?>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="myAccountBank();">บัญชีธนาคาร (<span id="num_bank_home">
+                    <div class="expandable-content" style="padding-left: 60px;<?=$menu_sub_bank;?>" onclick="myAccountBank();">บัญชีธนาคาร (<span id="num_bank_home">
                             <?=$num_bank;?></span> บัญชี)</div>
                     <div class="right arr" id="list_profile">
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="myCar();">
+				<ons-list-item expandable style="<?=$menu_lab;?>">
+                    <div class="left">
+                        <i class="icon-new-uniF133-2 list-item__icon"></i>
+                    </div>
+                    <div class="center" onclick="arrowChange('list_lab');">
+                        Lab
+                    </div>
+                    <div class="expandable-content" style="padding-left: 60px;" onclick="taxiList();">รายชื่อสมาชิก</div>
+                    <div class="right arr" id="list_lab">
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                </ons-list-item>
+                <ons-list-item onclick="myCar();" style="<?=$menu_car;?>">
                     <?php 
                     	$this->db->select('id');
 						$this->db->where('drivername = '.$_COOKIE['detect_user']);
@@ -249,26 +285,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                             <?=$num;?></span>&nbsp;คัน)
                     </div>
                 </ons-list-item>
-                <!--<ons-list-item expandable>
-                    <div class="left">
-                       <i class="icon-new-uniF10A-9 list-item__icon"></i>
-                    </div>
-                    <div class="center" onclick="arrowChange('list_car_info');">
-                        ข้อมูลรถ
-                    </div>
-                    <?php 
-                    	$this->db->select('id');
-						$this->db->where('status = 1 and drivername = '.$_COOKIE['detect_user']);
-						$query = $this->db->get('web_carall');
-						$num = $query->num_rows();
-                    ?>
-                    <div class="expandable-content" style="padding-left: 60px;" onclick="myCar();">รถใช้งาน (<?=$num;?> คัน)</div>
-                    <div class="expandable-content" style="padding-left: 60px;">เพิ่มรถ</div>
-                    <div class="right arr" id="list_car_info">
-                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                </ons-list-item>-->
-                <ons-list-item expandable>
+                <ons-list-item expandable style="<?=$menu_income;?>">
                     <div class="left">
                         <i class="icon-new-uniF121-10 list-item__icon "></i>
                     </div>
@@ -281,7 +298,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="wallet();">
+                <ons-list-item onclick="wallet();" style="<?=$menu_wallet;?>">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
                     </div>
@@ -289,7 +306,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         กระเป๋าเงิน
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="reference();">
+                <ons-list-item onclick="reference();" style="<?=$menu_ref;?>">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;margin-left: 2px;"></i></span>
                     </div>
@@ -297,7 +314,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         แนะนำเพื่อน
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')">
+                <ons-list-item onclick="fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')" style="<?=$menu_noti_line;?>">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <ons-icon fixed-width class="list-item__icon " icon="fa-link" style="margin-left: 2px;"></ons-icon>
                     </div>
@@ -305,7 +322,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         แจ้งเตือนผ่านไลน์
                     </div>
                 </ons-list-item>
-                <ons-list-item onclick="contrac_us();">
+                <ons-list-item onclick="contrac_us();" style="<?=$menu_contect;?>">
                     <div class="left" style="<?=$border_menu_color;?>">
                         <i class="material-icons list-item__icon <?=$menu_ion_class;?>">contact_phone</i>
                     </div>
