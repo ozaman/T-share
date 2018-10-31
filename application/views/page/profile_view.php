@@ -473,8 +473,8 @@ if($this->Mobile_model->version('Android')){
 //	console.log(ISO8601(new Date(res[0],res[1],res[2])));
 	document.getElementById('ex_iddriving').value = ISO8601(new Date(res[0],res[1],res[2]));
 	
-	var idcard = '<?=$driver->iddriving;?>';
-	alert(idcard);
+	var idcard = '<?=$driver->iddriving_finish;?>';
+//	alert(idcard);
 	var res_idcard = idcard.split("-");
 	document.getElementById('ex_idcard').value = ISO8601(new Date(res_idcard[0],res_idcard[1],res_idcard[2]));
 </script>
