@@ -60,12 +60,24 @@
    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
    <div class="box-shop">
-       <?php 
+   <?php 
    	  	if($_GET[wait_trans]==""){ ?>
 		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
 	<?php	}
    	  ?>
-      <span class="font-18"><b>ติดต่อ</b></span>
+   	<table width="100%">
+   		<tr>
+   			<td><span class="font-18"><b>ติดต่อ</b></span></td>
+   			<?php 
+   	  	if($_GET[wait_trans]!=""){ ?>
+		 <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
+	<?php	}
+   	  ?>
+   		</tr>
+   	</table>
+       
+      
+      
       <table width="100%"  >
          <tr>
             <td colspan="2">
