@@ -5,7 +5,12 @@ $_where = array();
 $_where['member'] = $_COOKIE[detect_user];
 $_where['status'] = 1;
 $STATION = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
-
+// echo '---------------------';
+if ( count($STATION) == 0) {
+ 	$none = 'none';
+ }
+ else{
+ 	$none = 'block';
 $_where = array();
 			$_where['id'] = $STATION->station;
 			$OTHRET = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
@@ -31,11 +36,13 @@ $PROVINCE = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where);
 $_where = array();
 $_where[PROVINCE_ID] = $OTHRET->province;
 $AMPHUR = $this->Main_model->rowdata(TBL_WEB_AMPHUR,$_where);
+ }
+
 
 
 ?>
 
-<div class="card">
+<div class="card" style="display: <?=$none;?>">
 	<ons-list-header class="list-header font-17" style="    padding: 5px 0px;
     padding-left: 15px;">
      <span>ข้อมูลต้นสังกัด</span> 
@@ -53,7 +60,11 @@ $AMPHUR = $this->Main_model->rowdata(TBL_WEB_AMPHUR,$_where);
 	<table class="tb_form" width="100%" id="" style="display: nones;" cellpadding="3" cellspacing="3">
 		
 		<?php
-		if ($STATION->station == 0) {
+		
+			# code...
+		
+		if ($STATION->station == 0 ) {
+			if (count($STATION) != 0) {
 			$_where = array();
 $_where['id'] = 4;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
@@ -69,7 +80,8 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 				</td>
 			</tr>
 
-	 <?php	}
+	 <?php	}}
+
 		else{
 		foreach($STATION_FIELD as $row){
 			$field = $row->s_field_show;
@@ -119,6 +131,24 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 	</table>
 </div>
 
-<div style="margin: 10px 10px" id="btb__station_new">
+<div style="margin: 10px 10px" id="btb__station_new" style="display: <?=$none;?>">
 	<ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="add_btb__station_new();" style="background-color: #fff;">ค้นหา / ย้ายสังกัด / เพิ่ม</ons-button>
 </div>
+<script type="text/javascript">
+	
+
+		setTimeout(function() {
+			var q = '<?=count($STATION);?>';
+			console.log('********')
+			if (q == 0) {
+			// $('#btb__station_new').hide()
+			console.log('********')
+			console.log(q)
+
+            	
+add_btb__station_new();
+          
+		
+	}
+	 }, 1000);
+</script>

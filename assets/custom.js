@@ -1744,6 +1744,42 @@ function get_station() {
 } 
 var ckstation = 1;
 function selectTypeCarPlace_edit(type) {
+    var region = $('#region').val();
+    var province = $('#province').val();
+    var amphur = $('#amphur').val();
+    var member = $.cookie("detect_user");
+    if (region == '') {
+        ons.notification.alert({
+          message: 'ภูมิภาค',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (province == '') {
+        ons.notification.alert({
+          message: 'จังหวัด',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#type_topic_'+id).prop("checked", false);
+        return false;
+    }
+    if (amphur == '') {
+        ons.notification.alert({
+          message: 'อำเภอ',
+          title: "กรุณาเลือก",
+          buttonLabel: "ตกลง"
+      })
+        modal.hide();
+        $('#radio-'+id).prop("checked", false);
+        $('#type_topic_'+id).prop("checked", false);
+
+        return false;
+    }
     if (type == 4) {
         $('#box_station_others').hide();
         $('#shop_station_field').hide();

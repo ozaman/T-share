@@ -9,7 +9,7 @@ $MEMBER = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION,$_where);
   // 
   // 
 if (count($MEMBER)!= 0) {
-	
+	// $cnone = 'block';
 	$res = array();
 	$_where = array();
     // $_where['product_id'] = $_GET[id];
@@ -21,6 +21,10 @@ if (count($MEMBER)!= 0) {
 	$_where[id] = $MEMBER->station;
 	$OTHERT = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_OTHRET,$_where);
 }
+else{
+	// $cnone = 'none';
+}
+
 
 ?>
 <script>
@@ -29,18 +33,18 @@ if (count($MEMBER)!= 0) {
 		$('#check_get_have').val(0);
 		var chek_data = '<?=count($MEMBER);?>';
 		if (chek_data == 0) {
-			$('#check_get_have').val(2);
-			$('#btb_submit_form_station_new').show()
+			// $('#check_get_have').val(2);
+			// $('#btb_submit_form_station_new').show()
 
-			$('#form_addstation_div').hide()
-			$('#btb_submit_form_station').hide()
-			var area = $('#place_area').val();
-			var pv = $('#place_province').val();
+			// $('#form_addstation_div').hide()
+			// $('#btb_submit_form_station').hide()
+			// var area = $('#place_area').val();
+			// var pv = $('#place_province').val();
 
 
 			
 			
-			_province(pv);
+			// _province(pv);
 
 
 		}
@@ -88,7 +92,7 @@ if (count($MEMBER)!= 0) {
 
 <input type="hidden" name="id_station" id="id_station" value="<?=$MEMBER->station;?>">
 <!-- <input type="submit"> -->
-<div id="body_car_station"></div>
+<div id="body_car_station" style="display: <?=$cnone;?>"></div>
 <div id="form_addstation_div" style="display: <?=$cnone;?>">
 	
 
@@ -119,6 +123,11 @@ if (count($MEMBER)!= 0) {
 		if (chek_data == 0) {
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
+			$.post("car/body_car_station", {
+				id_user: $.cookie("detect_user")
+			}, function(res) {
+				$('#body_car_station').html(res);
+			});
 		}
 		else{
 			$('#btb_submit_form_station').hide();
