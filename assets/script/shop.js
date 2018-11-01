@@ -2586,4 +2586,3 @@ function completedJobShop(id){
 	});
 	
 }
-

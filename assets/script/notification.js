@@ -334,18 +334,20 @@ function switchSetting(type, status){
 		user_id : detect_user,
 		status : status
 	}
+	var url = "main/switch_setting?type=" + type;
+	console.log(url)
 	$.ajax({
-        url: "main/switch_setting?type" + type, // point to server-side PHP script 
+        url: url, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
         type: 'post',
         data: param,
         success: function(res) {
             console.log(res);
-            if (res.result == true) {
+            /*if (res.result == true) {
                 setCountNotification();
                 $('#card-ac_' + id).css('background-color', '#edf2fa');
                 app.hideFromTemplate();
-            }
+            }*/
         }
     });
 }

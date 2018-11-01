@@ -1433,7 +1433,7 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
      notification : param_aan2
  };
  console.log(param_all);
- $.ajax({
+ 		$.ajax({
 						url: "main/recordActivityAndNoti", // point to server-side PHP script 
 						dataType: 'json', // what to expect back from the PHP script, if anything
 						type: 'post',
@@ -1442,8 +1442,8 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 							console.log(res);
 							setTimeout(function(){ setCountNotification(); }, 1500);
 //							return res;
-}
-});
+						}
+			});
 
 }
 

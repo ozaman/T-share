@@ -1,5 +1,5 @@
 <?php 
-	$query = $this->db->query("select * from app_user_setting where i_driver = ".$_COOKIE[detect_user]);
+	$query = $this->db->query("select * from app_user_setting where i_user = ".$_COOKIE[detect_user]);
 	$check_row = $query->num_rows();
 	if($check_row>0){
 		$row = $query->row();
@@ -44,6 +44,7 @@
         </label>
         <div class="right">
           <ons-switch id="model-switch" input-id="switch1" <?=$checked_shop;?> onchange="switchSetting('i_noti_shop','<?=$val_shop;?>');"></ons-switch>
+          <input type="hidden" value="<?=$val_shop;?>" id="onoff_shop" />
         </div>
       </ons-list-item>
       <ons-list-item>
@@ -52,6 +53,7 @@
         </label>
         <div class="right">
           <ons-switch id="disabled-switch" input-id="switch2" <?=$checked_trans;?> onchange="switchSetting('i_noti_transfer','<?=$val_trans;?>');"></ons-switch>
+          <input type="hidden" value="<?=$val_trans;?>" id="onoff_trans" />
         </div>
       </ons-list-item>
       <ons-list-item>
@@ -60,6 +62,7 @@
         </label>
         <div class="right">
           <ons-switch id="disabled-switch" input-id="switch2" <?=$checked_wallet;?> onchange="switchSetting('i_noti_wallet','<?=$val_wallet;?>');"></ons-switch>
+          <input type="hidden" value="<?=$val_wallet;?>" id="onoff_wallet" />
         </div>
       </ons-list-item>
 </ons-list>
