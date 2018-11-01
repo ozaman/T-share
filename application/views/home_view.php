@@ -23,7 +23,7 @@ $menu_ion_class = "icon-menu-android";
 $border_menu_color = "#eee";
 }
 else {
-$fontmobile=6;	
+$fontmobile=6;  
 $detectname='Other';
 $menu_ion_class = "icon-menu-ios";
 $border_menu_color = "#ccc";
@@ -80,37 +80,37 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </div>
 </ons-modal>
 <script>
-	var modal = document.querySelector('#modal_load');
-//		modal.show();
-	var today = "<?=date('Y-m-d');?>";
+    var modal = document.querySelector('#modal_load');
+//      modal.show();
+    var today = "<?=date('Y-m-d');?>";
     var detect_mb = "<?=$detectname;?>";
     var detect_user = $.cookie("detect_user");
-   	  var class_user = $.cookie("detect_userclass");
+      var class_user = $.cookie("detect_userclass");
       var username = $.cookie("detect_username");
       console.log(detect_mb+" : "+class_user+" : "+username);
-	  if(username=="" || typeof username == 'undefined'){
-			window.location = "../TShare_new/material/login/index.php";
-	  }else{
-	  		username = username.toUpperCase();
-	  }
-	  var get_order_id = '<?=$_GET[order_id];?>';
+      if(username=="" || typeof username == 'undefined'){
+            window.location = "../TShare_new/material/login/index.php";
+      }else{
+            username = username.toUpperCase();
+      }
+      var get_order_id = '<?=$_GET[order_id];?>';
         var status = '<?=$_GET[status];?>';
         var open_ic = '<?=$_GET[open_ic];?>';
 var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
   +'<circle class="progress-circular__background"/>'
   +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
   +'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
-+'</svg></div>';	  
++'</svg></div>';      
 </script>
 <style>
     .icon-menu-ios{
-		    margin-left: 7px;
-    		padding-right: 10px;
-	}
-	.icon-menu-android{
-		    margin-left: 7px;
-    		padding-right: 20px;
-	}
+            margin-left: 7px;
+            padding-right: 10px;
+    }
+    .icon-menu-android{
+            margin-left: 7px;
+            padding-right: 20px;
+    }
 </style>
 
 <body>
@@ -148,42 +148,42 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-tabbar>
             <script>
                 ons.getScriptPage().addEventListener('prechange', function(event) {
-			        if (event.target.matches('#appTabbar')) {
-			        	var page_main = event.tabItem.getAttribute('page');
-			        	if(page_main == "notification.html"){
-							loadNotificationPage();
-							$('#side_pf').hide();
-							$('#side_more').show();
-							
-						}
-						else if(page_main == "activity.html"){
-							loadActivityPage();
-							$('#side_pf').show();
-							$('#side_more').hide();
-						}
-						else{
-							$('#side_pf').show();
-							$('#side_more').hide();
-						}
-			          event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-			          
-			        }
-			       
-		       });
-		       var showPopover = function(target, id) {
-				  document
-				    .getElementById(id)
-				    .show(target);
-				};
+                    if (event.target.matches('#appTabbar')) {
+                        var page_main = event.tabItem.getAttribute('page');
+                        if(page_main == "notification.html"){
+                            loadNotificationPage();
+                            $('#side_pf').hide();
+                            $('#side_more').show();
+                            
+                        }
+                        else if(page_main == "activity.html"){
+                            loadActivityPage();
+                            $('#side_pf').show();
+                            $('#side_more').hide();
+                        }
+                        else{
+                            $('#side_pf').show();
+                            $('#side_more').hide();
+                        }
+                      event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+                      
+                    }
+                   
+               });
+               var showPopover = function(target, id) {
+                  document
+                    .getElementById(id)
+                    .show(target);
+                };
 
-				var hidePopover = function(id) {
-						  document.getElementById(id).hide();
-				};
-		    </script>
+                var hidePopover = function(id) {
+                          document.getElementById(id).hide();
+                };
+            </script>
         </ons-page>
     </template>
     
-	<ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
+    <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
       <ons-list id="popover-list">
         <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
           <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
@@ -211,33 +211,33 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     margin-top: -20px;
     border-top-left-radius: 5px;/* pointer-events: none;*/" onclick="performClick('img_profile_home');"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
             </div>
-			<?php 
-				if($_COOKIE[detect_userclass]=="lab"){
-					$menu_profile = "";
-					$menu_car = "display:none;";
-					$menu_income = "display:none;";
-					$menu_wallet = "display:none;";
-					$menu_ref = "";
-					$menu_noti_line = "";
-					$menu_contect = "display:none;";
-					$menu_lab = "";
-					
-					$menu_sub_bank = "display:none;";
-					$menu_sub_affiliation = "display:none;";
-				}else{
-					$menu_profile = "";
-					$menu_car = "";
-					$menu_income = "";
-					$menu_wallet = "";
-					$menu_ref = "";
-					$menu_noti_line = "";
-					$menu_contect = "";
-					$menu_lab = "display:none;";
-					
-					$menu_sub_bank = "";
-					$menu_sub_affiliation = "";
-				}
-			?>
+            <?php 
+                if($_COOKIE[detect_userclass]=="lab"){
+                    $menu_profile = "";
+                    $menu_car = "display:none;";
+                    $menu_income = "display:none;";
+                    $menu_wallet = "display:none;";
+                    $menu_ref = "";
+                    $menu_noti_line = "";
+                    $menu_contect = "display:none;";
+                    $menu_lab = "";
+                    
+                    $menu_sub_bank = "display:none;";
+                    $menu_sub_affiliation = "display:none;";
+                }else{
+                    $menu_profile = "";
+                    $menu_car = "";
+                    $menu_income = "";
+                    $menu_wallet = "";
+                    $menu_ref = "";
+                    $menu_noti_line = "";
+                    $menu_contect = "";
+                    $menu_lab = "display:none;";
+                    
+                    $menu_sub_bank = "";
+                    $menu_sub_affiliation = "";
+                }
+            ?>
             <ons-list>
                 <ons-list-item expandable style="<?=$menu_profile;?>">
                     <div class="left">
@@ -249,10 +249,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
                     <div class="expandable-content" style="padding-left: 60px;<?=$menu_sub_affiliation;?>" onclick="stationCar();">สังกัดรถ</div>
                     <?php 
-                    	$this->db->select('id');
-						$this->db->where('driver_id = '.$_COOKIE['detect_user']);
-						$query = $this->db->get('web_bank_driver');
-						$num_bank = $query->num_rows();
+                        $this->db->select('id');
+                        $this->db->where('driver_id = '.$_COOKIE['detect_user']);
+                        $query = $this->db->get('web_bank_driver');
+                        $num_bank = $query->num_rows();
                     ?>
                     <div class="expandable-content" style="padding-left: 60px;<?=$menu_sub_bank;?>" onclick="myAccountBank();">บัญชีธนาคาร (<span id="num_bank_home">
                             <?=$num_bank;?></span> บัญชี)</div>
@@ -260,7 +260,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
                 </ons-list-item>
-				<ons-list-item expandable style="<?=$menu_lab;?>">
+                <ons-list-item expandable style="<?=$menu_lab;?>">
                     <div class="left">
                         <i class="icon-new-uniF133-2 list-item__icon"></i>
                     </div>
@@ -274,10 +274,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </ons-list-item>
                 <ons-list-item onclick="myCar();" style="<?=$menu_car;?>">
                     <?php 
-                    	$this->db->select('id');
-						$this->db->where('drivername = '.$_COOKIE['detect_user']);
-						$query = $this->db->get('web_carall');
-						$num = $query->num_rows();
+                        $this->db->select('id');
+                        $this->db->where('drivername = '.$_COOKIE['detect_user']);
+                        $query = $this->db->get('web_carall');
+                        $num = $query->num_rows();
                     ?>
                     <div class="left" style="border-bottom: 1px solid #ccc;">
                         <i class="icon-new-uniF10A-9 list-item__icon"></i>
@@ -386,7 +386,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <?php $this->load->view('information_view'); ?>
         </ons-page>
     </template>
-    <template id="notification.html">	
+    <template id="notification.html">   
         <ons-page>
             <div id="body_load_notification">
                 
@@ -401,7 +401,27 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>
         </ons-action-sheet>
     </template>
-    <template id="activity.html">	
+    <template id="imageslider.html">   
+    <ons-page id="imageslider">
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="prev()">
+            <ons-icon icon="md-chevron-left"></ons-icon>
+        </ons-toolbar-button>
+    </div>
+    <div class="center">โบรชัวร์ / รูป</div>
+    <div class="right">
+      <ons-toolbar-button onclick="next()">
+        <ons-icon icon="md-chevron-right"></ons-icon>
+    </ons-toolbar-button>
+</div>
+</ons-toolbar>
+<ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
+    
+</ons-carousel>
+</ons-page>
+</template>
+    <template id="activity.html">   
         <ons-page>
             <div id="body_load_activity">
                 
@@ -467,10 +487,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center">ข้อมูลบัญชี</div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_profile_view">
                 <?php //include("application/views/page/profile_view.php"); ?>
@@ -490,10 +510,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center">ข้อมูลรถ</div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_account_bank">
             </div>
@@ -503,7 +523,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
       }
     </script>
         </ons-page>
-    </template>	
+    </template> 
     <template id="car_manage.html">
         <ons-page>
             <ons-toolbar>
@@ -512,17 +532,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center">ข้อมูลรถ</div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_car_manage">
             </div>
             <template id="action-sheet.html">
                 <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
                     <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
-			    <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
+                <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
                     <!--<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">Cancel</ons-action-sheet-button>-->
                 </ons-action-sheet>
             </template>
@@ -533,7 +553,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </script>
         </ons-page>
     </template>
-	
+    
     <template id="shopping.html">
         <ons-page>
             <ons-toolbar>
@@ -542,13 +562,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			        	<!--<i class="fa fa-home" style="font-size:26px;" aria-hidden="true"></i>-->
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                        <!--<i class="fa fa-home" style="font-size:26px;" aria-hidden="true"></i>-->
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
-			<ons-card id="box-shop_date" class="card" style="/*margin-bottom: 20px*/padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;">
+            <ons-card id="box-shop_date" class="card" style="/*margin-bottom: 20px*/padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;">
                             <ons-list-item class="input-items list-item p-l-0">
                                 <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
                                     <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
@@ -563,16 +583,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-tabbar swipeable position="top">
                     <?php 
                     if($_COOKIE[detect_userclass]=="lab"){ 
-                    	$active_add = "";
-                    	$active_mn = "active";
-                    	$display_none_num_shop = "";
+                        $active_add = "";
+                        $active_mn = "active";
+                        $display_none_num_shop = "";
                      }else{ 
-                     	$active_add = "active";
-                     	$active_mn = "";
-                     	$display_none_num_shop = "display:none;";
+                        $active_add = "active";
+                        $active_mn = "";
+                        $display_none_num_shop = "display:none;";
                      }
                     ?>
-                    	<ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
+                        <ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
                         <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> badge="" >
                             <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
                         </ons-tab>
@@ -592,15 +612,28 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         </div>
                     </ons-page>
                 </template>
-                			
-				<template id="shop_manage.html">
+                            
+                <template id="shop_manage.html">
                     <ons-page id="shop_manage">
                     </ons-page>
                 </template>
                 
                 <template id="shop_wait.html">
-                    <ons-page id="shop_wait">
-                        <div>
+                    <ons-page >
+                    	<ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
+							<ons-col width="33%">
+							<ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_wait_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_wait_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_wait_com"></span></ons-button>
+							</ons-col>
+							<ons-col width="33%">
+							<ons-button class="shop-his-btn font-16" id="btn_shop_wait_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_wait_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_wait_cancel"></span></ons-button>
+							</ons-col>
+							<ons-col width="33%">
+							<ons-button onclick="filterHistoryStatus('','btn_shop_wait_all');" id="btn_shop_wait_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_wait_all"></span>
+							
+							</ons-button>
+							</ons-col>
+						</ons-row>
+                        <div id="shop_wait">
                         </div>
                     </ons-page>
                 </template>
@@ -608,23 +641,23 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
                        
-						<ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
-							<ons-col width="33%">
-							<ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
-								
-							</ons-col>
-							<ons-col width="33%">
-							<ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
-							</ons-col>
-							<ons-col width="33%">
-							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
-							
-							</ons-button>
-							</ons-col>
-						</ons-row>		
-						<?php 
-						$margin_his = "margin-top: 5px;";
-						
+                        <ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
+                            <ons-col width="33%">
+                            <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                                
+                            </ons-col>
+                            <ons-col width="33%">
+                            <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+                            </ons-col>
+                            <ons-col width="33%">
+                            <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
+                            
+                            </ons-button>
+                            </ons-col>
+                        </ons-row>      
+                        <?php 
+                        $margin_his = "margin-top: 5px;";
+                        
                         ?>
                         <input type="hidden" id="check_filter_his" value="" />
                         <input type="hidden" id="first_run_his" value="0" />
@@ -634,52 +667,54 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 
             </div>
-			<style>
-				.img-type-map{
-					    position: absolute;
-					    left: 20px;
-					    margin-top: 10px;
-					   
-				}
-			</style>	
-			<template id="select_type_map-action-sheet.html">
-			  <ons-action-sheet id="sheet" cancelable>
-			    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
-			    <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" style=" width: 25px;" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
-			    <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
-			    <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
-			  </ons-action-sheet>
-			</template>
-            <script>
-            	var app_shop = {};
 
-				ons.ready(function () {
-				  ons.createElement('select_type_map-action-sheet.html', { append: true })
-				    .then(function (sheet) {
-				      app_shop.showSelectTypeMapShop = sheet.show.bind(sheet);
-				      app_shop.hideSelectTypeMapShop = sheet.hide.bind(sheet);
-				    });
-				});
+            <style>
+                .img-type-map{
+                        position: absolute;
+                        left: 20px;
+                        margin-top: 10px;
+                       
+                }
+            </style>    
+            <template id="select_type_map-action-sheet.html">
+              <ons-action-sheet id="sheet" cancelable>
+                <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
+                <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" style=" width: 25px;" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
+                <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
+                <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
+              </ons-action-sheet>
+            </template>
+
+            <script>
+                var app_shop = {};
+
+                ons.ready(function () {
+                  ons.createElement('select_type_map-action-sheet.html', { append: true })
+                    .then(function (sheet) {
+                      app_shop.showSelectTypeMapShop = sheet.show.bind(sheet);
+                      app_shop.hideSelectTypeMapShop = sheet.hide.bind(sheet);
+                    });
+                });
                 ons.getScriptPage().onInit = function() {
-			    window.fn.showDialog = function(id) {
-			        var elem = document.getElementById(id);
-			        if (id === 'popover-dialog') {
-			            elem.show(infoButton);
-			        } else {
-			            elem.show();
-			            if (id === 'modal-dialog') {
-			                clearTimeout(timeoutID);
-			                timeoutID = setTimeout(function() {
-			                    fn.hideDialog(id)
-			                }, 2000);
-			            }
-			        }
-			    };
-			    window.fn.hideDialog = function(id) {
-			        document.getElementById(id).hide();
-			    };
-			    this.querySelector('ons-toolbar div.center').textContent = this.data.title;
-			}
+                window.fn.showDialog = function(id) {
+                    var elem = document.getElementById(id);
+                    if (id === 'popover-dialog') {
+                        elem.show(infoButton);
+                    } else {
+                        elem.show();
+                        if (id === 'modal-dialog') {
+                            clearTimeout(timeoutID);
+                            timeoutID = setTimeout(function() {
+                                fn.hideDialog(id)
+                            }, 2000);
+                        }
+                    }
+                };
+                window.fn.hideDialog = function(id) {
+                    document.getElementById(id).hide();
+                };
+                this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+            }
     </script>
         </ons-page>
     </template>
@@ -691,10 +726,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -724,20 +759,20 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     document.addEventListener('prechange', function(event) {
-						var page_trans = event.tabItem.getAttribute('page');
-						if(page_trans=="transfer_manage.html"){
-							var url = "page/transfer_manage";
-				            $.post(url,function(html){
-				            	$('#transfer_manage').html(html);
-				            	callApiManage();
-				            });
-						}else if(page_trans=="transfer_income.html"){
-						}else if(page_trans=="transfer_job.html"){
-						}
-				 /* document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				</script>
+                        var page_trans = event.tabItem.getAttribute('page');
+                        if(page_trans=="transfer_manage.html"){
+                            var url = "page/transfer_manage";
+                            $.post(url,function(html){
+                                $('#transfer_manage').html(html);
+                                callApiManage();
+                            });
+                        }else if(page_trans=="transfer_income.html"){
+                        }else if(page_trans=="transfer_job.html"){
+                        }
+                 /* document.querySelector('ons-toolbar .center')
+                    .innerHTML = event.tabItem.getAttribute('label');*/
+                });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -754,10 +789,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -793,10 +828,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     document.addEventListener('prechange', function(event) {
-				  /*document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				</script>
+                  /*document.querySelector('ons-toolbar .center')
+                    .innerHTML = event.tabItem.getAttribute('label');*/
+                });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -813,10 +848,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -850,11 +885,11 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     document.addEventListener('prechange', function(event) {
-						console.log(event.page)
-				  /*document.querySelector('ons-toolbar .center')
-				    .innerHTML = event.tabItem.getAttribute('label');*/
-				});
-				</script>
+                        console.log(event.page)
+                  /*document.querySelector('ons-toolbar .center')
+                    .innerHTML = event.tabItem.getAttribute('label');*/
+                });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -871,10 +906,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_popup1">
             </div>
@@ -893,10 +928,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_popup2">
             </div>
@@ -915,16 +950,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_qrcode">
                 <?php 
-//            	include("application/views/page/qrcode_ref.php"); 
-				$this->load->view('page/qrcode_ref');
-				?>
+//              include("application/views/page/qrcode_ref.php"); 
+                $this->load->view('page/qrcode_ref');
+                ?>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -942,15 +977,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_line">
                 <?php 
 //                include("application/views/page/line_noti.php"); 
-				  $this->load->view('page/line_noti');
+                  $this->load->view('page/line_noti');
                 ?>
             </div>
             <script>
@@ -968,10 +1003,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_contract">
             </div>
@@ -990,10 +1025,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -1003,7 +1038,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         <ons-tab id="tab-trans_ic" page="trans_ic.html" label="ให้บริการรถ">
                         </ons-tab>
                         <!--<ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ" >
-				    </ons-tab>-->
+                    </ons-tab>-->
                     </ons-tabbar>
                 </ons-page>
                 <template id="shop_ic.html">
@@ -1042,19 +1077,19 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     var frist_ic = true;
-					document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						if(page == "trans_ic.html" && frist_ic == true){
-							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
-						    	$('#trans_ic').html(ele);
-						    	renderTransferJob();
-						    });
-							frist_ic = false;
-						}
-					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
-					});
-				</script>
+                    document.addEventListener('prechange', function(event) {
+                        var page = event.tabItem.getAttribute('page');
+                        console.log(page);
+                        if(page == "trans_ic.html" && frist_ic == true){
+                            $.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+                                $('#trans_ic').html(ele);
+                                renderTransferJob();
+                            });
+                            frist_ic = false;
+                        }
+                        /*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
+                    });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -1071,10 +1106,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <ons-page>
@@ -1105,18 +1140,18 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						/*if(page == "trans_ic.html" && frist_ic == true){
-							$.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
-						    	$('#trans_ic').html(ele);
-						    	renderTransferJob();
-						    });
-							frist_ic = false;
-						}*/
-					  	/*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
-					});
-				</script>
+                        var page = event.tabItem.getAttribute('page');
+                        console.log(page);
+                        /*if(page == "trans_ic.html" && frist_ic == true){
+                            $.post("page/call_page",{ path: "statement/trans_ic" },function(ele){
+                                $('#trans_ic').html(ele);
+                                renderTransferJob();
+                            });
+                            frist_ic = false;
+                        }*/
+                        /*document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');*/
+                    });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -1133,17 +1168,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_transfer">
                 <?php 
         $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
-		$query = $this->db->query($select);
-		$data_deposit = $query->row();
-            	?>
+        $query = $this->db->query($select);
+        $data_deposit = $query->row();
+                ?>
                 <div id="show_balance" style="z-index: 1;
     background-color: #ececec;
     position: fixed;
@@ -1222,19 +1257,19 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 <script>
                     var frist_ic = true;
-					document.addEventListener('prechange', function(event) {
-						var page = event.tabItem.getAttribute('page');
-						console.log(page);
-						if(page=='add.html'){
-							console.log('add');
-						}else if(page=='history.html'){
-							history_wallet();
-						}else if(page=='withdraw.html'){
-							withdraw();
-						}
-//					  	document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-					});
-				</script>
+                    document.addEventListener('prechange', function(event) {
+                        var page = event.tabItem.getAttribute('page');
+                        console.log(page);
+                        if(page=='add.html'){
+                            console.log('add');
+                        }else if(page=='history.html'){
+                            history_wallet();
+                        }else if(page=='withdraw.html'){
+                            withdraw();
+                        }
+//                      document.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+                    });
+                </script>
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
@@ -1251,10 +1286,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_place_company">
             </div>
@@ -1295,17 +1330,17 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
         </ons-alert-dialog>
     </template>
     <template id="confirm_checkin-dialog.html">
-	  <ons-alert-dialog id="confirm_checkin-alert-dialog" modifier="rowfooter">
-	    <div class="alert-dialog-title" id="checkin_txt_title">ยืนยันถึงสถานที่</div>
-	    <div class="alert-dialog-content" id="checkin_txt_content">
-	      แน่ใจหรือไม่ ว่าต้องการยืนยันถึงสถานที่ส่งแขก
-	    </div>
-	    <div class="alert-dialog-footer">
-	      <ons-alert-dialog-button onclick="document.getElementById('confirm_checkin-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-	      <ons-alert-dialog-button id="btn_ok_topoint" onclick="saveShop_action_pay();document.getElementById('confirm_checkin-alert-dialog').hide();">ยืนยัน</ons-alert-dialog-button>
-	    </div>
-	  </ons-alert-dialog>
-	</template>
+      <ons-alert-dialog id="confirm_checkin-alert-dialog" modifier="rowfooter">
+        <div class="alert-dialog-title" id="checkin_txt_title">ยืนยันถึงสถานที่</div>
+        <div class="alert-dialog-content" id="checkin_txt_content">
+          แน่ใจหรือไม่ ว่าต้องการยืนยันถึงสถานที่ส่งแขก
+        </div>
+        <div class="alert-dialog-footer">
+          <ons-alert-dialog-button onclick="document.getElementById('confirm_checkin-alert-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+          <ons-alert-dialog-button id="btn_ok_topoint" onclick="saveShop_action_pay();document.getElementById('confirm_checkin-alert-dialog').hide();">ยืนยัน</ons-alert-dialog-button>
+        </div>
+      </ons-alert-dialog>
+    </template>
     <template id="signout-dialog.html">
         <ons-alert-dialog id="signout-alert-dialog" modifier="rowfooter">
             <div class="alert-dialog-title" id="signout-submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -1326,18 +1361,18 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <div id="body_option">
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
-	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
-	      }
-	    </script>
+            this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+          }
+        </script>
         </ons-page>
     </template>
     <template id="popup_shop_checkin.html">
@@ -1348,26 +1383,26 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button onclick="reloadApp();">
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button onclick="reloadApp();">
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
             <input type="hidden" id="type_checkin" value="xx" />
             <div id="body_shop_checkin">
             </div>
             <script>
                 ons.getScriptPage().onInit = function () {
-	        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
-	      }
-	    </script>
+            this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+          }
+        </script>
         </ons-page>
     </template>
     
     <style>
-    	.dialog{
-			min-height: 460px !important;
-		}
+        .dialog{
+            min-height: 460px !important;
+        }
     </style>
     <ons-dialog id="cancel-shop-dialog" cancelable style="min-height: 430px;">
         <!-- Optional page. This could contain a Navigator as well. -->
@@ -1386,16 +1421,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <input type="hidden" name="typname_2" value="แขกไม่ไป" />
                     <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
                     <?php 
-                    	$query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
-						foreach ($query->result() as $row){ ?>
-						       <ons-list-item tappable>
-			                        <label class="left">
-			                            <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
-			                        </label>
-			                        <label for="cancel_<?=$row->id;?>" class="center"><?=$row->s_topic;?></label>
-			                    </ons-list-item> 
-			                    <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
-					<?	}
+                        $query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
+                        foreach ($query->result() as $row){ ?>
+                               <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
+                                    </label>
+                                    <label for="cancel_<?=$row->id;?>" class="center"><?=$row->s_topic;?></label>
+                                </ons-list-item> 
+                                <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
+                    <?  }
                     ?>
 
                 </div>
@@ -1420,7 +1455,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             </ons-button>
         </ons-dialog>
     </template>
-	<template id="test_swp.html">
+    <template id="test_swp.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1428,18 +1463,18 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </div>
                 <div class="center"></div>
                 <div class="right">
-			      <ons-toolbar-button>
-			        <ons-icon icon="ion-home, material:md-home"></ons-icon>
-			      </ons-toolbar-button>
-			    </div>
+                  <ons-toolbar-button>
+                    <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
             </ons-toolbar>
           
-	
+    
             <script>
                 ons.getScriptPage().onInit = function () {
              
-		        this.querySelector('ons-toolbar div.center').textContent = this.data.title;
-		      }
+                this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+              }
     </script>
         </ons-page>
     </template>
@@ -1450,29 +1485,29 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <input type="hidden" id="lng" value="0" />
     
     <input type="hidden"  id="place_lat" value=""/>
-	<input type="hidden"  id="place_lng" value=""/>
-	<input type="hidden" id="place_area" value=""/>
-	<input type="hidden" id="place_province" value=""/>
-	
-	<ons-modal direction="up" id="modal_photo">
-	  <div style="text-align: center">
-	  	<a style=" position: absolute;top: 10px; right: 20px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
-	    <div id="body_load_photo">
-	    	<div>
-	    		<img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
-	    		<div style="background-color: #000;color: #fff;">
-	    			<b style="font-size: 34px;" id="text_name_approved">เบิร์ด</b>
-	    		</div>
-	    	</div>
-	    </div>
-	  </div>
-	</ons-modal>
-	
+    <input type="hidden"  id="place_lng" value=""/>
+    <input type="hidden" id="place_area" value=""/>
+    <input type="hidden" id="place_province" value=""/>
+    
+    <ons-modal direction="up" id="modal_photo">
+      <div style="text-align: center">
+        <a style=" position: absolute;top: 10px; right: 20px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
+        <div id="body_load_photo">
+            <div>
+                <img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
+                <div style="background-color: #000;color: #fff;">
+                    <b style="font-size: 34px;" id="text_name_approved">เบิร์ด</b>
+                </div>
+            </div>
+        </div>
+      </div>
+    </ons-modal>
+    
 </body>
 </html>
 
 <script>
-	  var hideCustomDialog = function(id) {
+      var hideCustomDialog = function(id) {
   document
     .getElementById(id)
     .hide();
@@ -1491,149 +1526,149 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     window.fn.pushPage = function(page, anim) {
         console.log(page);
         if(page.id=="option.html"){
-			console.log("option");
-			if(page.open=="car_brand"){
-				$.ajax({
-	            url: "main/data_car_brand", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {
-	            	var d1 = [],d2 = [];
-	            	$.each(res, function( index, value ) {
-					  	if(value.popular>0){
-							d1.push(value);
-						}else{
-							d2.push(value);
-						}
-					});
-					var param = { data2 : d2, data1 : d1};
-					console.log(param);
-	                $.post("component/cpn_car_brand",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="car_type"){
-				$.ajax({
-	            url: "main/data_car_type", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_car_type",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="car_color"){
-				$.ajax({
-	            url: "main/data_car_color", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_car_color?plate=0",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="plate_color"){
-				$.ajax({
-	            url: "main/data_car_plate", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_car_plate",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="car_province"){
-				$.ajax({
-	            url: "main/data_car_province", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-	            	console.log(res);
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_user_province?type=car",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="user_province"){
-				$.ajax({
-	            url: "main/data_user_province", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-	            	console.log(res);
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_user_province?type=user",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="bank_list"){
-				$.ajax({
-	            url: "main/data_bank_list", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-	            	console.log(res);
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_bank_list",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="car_ins"){
-				$.ajax({
-	            url: "main/data_car_ins_list", // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-	            	console.log(res);
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_car_ins",param,function(el){
-						$('#body_option').html(el);
-					});
-	             }
-	        	});
-			}
-			else if(page.open=="car_gen"){
-				
-				$.ajax({
-	            url: "main/data_car_gen?i_brand="+$('#car_brand').val(), // point to server-side PHP script 
-	            dataType: 'json', // what to expect back from the PHP script, if anything
-	            type: 'post',
-	            success: function(res) {	
-	            	console.log(res);
-					var param = { data : res };
-					console.log(param);
-	                $.post("component/cpn_car_gen",param,function(el){
-						$('#body_option').html(el);
-						$('#car_brand_in_gen').text($('#txt_car_brand').text());
-					});
-	             }
-	        	});
-			}
-		}
+            console.log("option");
+            if(page.open=="car_brand"){
+                $.ajax({
+                url: "main/data_car_brand", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {
+                    var d1 = [],d2 = [];
+                    $.each(res, function( index, value ) {
+                        if(value.popular>0){
+                            d1.push(value);
+                        }else{
+                            d2.push(value);
+                        }
+                    });
+                    var param = { data2 : d2, data1 : d1};
+                    console.log(param);
+                    $.post("component/cpn_car_brand",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="car_type"){
+                $.ajax({
+                url: "main/data_car_type", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_car_type",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="car_color"){
+                $.ajax({
+                url: "main/data_car_color", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_car_color?plate=0",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="plate_color"){
+                $.ajax({
+                url: "main/data_car_plate", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_car_plate",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="car_province"){
+                $.ajax({
+                url: "main/data_car_province", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    console.log(res);
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_user_province?type=car",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="user_province"){
+                $.ajax({
+                url: "main/data_user_province", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    console.log(res);
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_user_province?type=user",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="bank_list"){
+                $.ajax({
+                url: "main/data_bank_list", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    console.log(res);
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_bank_list",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="car_ins"){
+                $.ajax({
+                url: "main/data_car_ins_list", // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    console.log(res);
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_car_ins",param,function(el){
+                        $('#body_option').html(el);
+                    });
+                 }
+                });
+            }
+            else if(page.open=="car_gen"){
+                
+                $.ajax({
+                url: "main/data_car_gen?i_brand="+$('#car_brand').val(), // point to server-side PHP script 
+                dataType: 'json', // what to expect back from the PHP script, if anything
+                type: 'post',
+                success: function(res) {    
+                    console.log(res);
+                    var param = { data : res };
+                    console.log(param);
+                    $.post("component/cpn_car_gen",param,function(el){
+                        $('#body_option').html(el);
+                        $('#car_brand_in_gen').text($('#txt_car_brand').text());
+                    });
+                 }
+                });
+            }
+        }
         if (anim) {
             document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
@@ -1642,7 +1677,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 animation: anim
             });
         } 
-		else {
+        else {
             document.getElementById('appNavigator').pushPage(page.id, {
                 data: {
                     title: page.title
@@ -1652,28 +1687,28 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     };
     
     function arrowChange(id){
-    	var check = $('#'+id+' i').hasClass('fa-chevron-down');
-    	console.log(id+' : '+check);
-		if(check==true){
-			$('#'+id+' i').removeClass('fa-chevron-down');
-			$('#'+id+' i').addClass('fa-chevron-up');
-		}else{
-			$('#'+id+' i').addClass('fa-chevron-down');
-			$('#'+id+' i').removeClass('fa-chevron-up');
-		}
-		$('.arr').each (function() {
-//			console.log($(this).attr('id'));
-			if($(this).attr('id')==id){
-//				console.log(1);
-			}else{
-				$(this).find('i').removeClass('fa-chevron-up');
-				$(this).find('i').addClass('fa-chevron-down');
-			}
-		}); 
-		
-//		$( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
-//		$( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
-	}
+        var check = $('#'+id+' i').hasClass('fa-chevron-down');
+        console.log(id+' : '+check);
+        if(check==true){
+            $('#'+id+' i').removeClass('fa-chevron-down');
+            $('#'+id+' i').addClass('fa-chevron-up');
+        }else{
+            $('#'+id+' i').addClass('fa-chevron-down');
+            $('#'+id+' i').removeClass('fa-chevron-up');
+        }
+        $('.arr').each (function() {
+//          console.log($(this).attr('id'));
+            if($(this).attr('id')==id){
+//              console.log(1);
+            }else{
+                $(this).find('i').removeClass('fa-chevron-up');
+                $(this).find('i').addClass('fa-chevron-down');
+            }
+        }); 
+        
+//      $( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
+//      $( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
+    }
 </script>
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
@@ -1694,37 +1729,37 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script>
-	if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
+    if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
        /* $(window).load(function() {
 //            $("#load_material").fadeOut(500);
-			modal.hide();
+            modal.hide();
             setTimeout(function() {
-//            	alert(class_user);
+//              alert(class_user);
                 sendTagIOS(class_user, username);
                 setCountNotification();
             }, 1500);
         });*/
 
         $(window).on('load', function(){ 
-        	 $("#load_material").fadeOut(500);
-			modal.hide();
+             $("#load_material").fadeOut(500);
+            modal.hide();
             setTimeout(function() {
-//            	alert(class_user);
+//              alert(class_user);
                 sendTagIOS(class_user, username);
                 setCountNotification();
                 
                 var check_new_user = '<?=$_GET[check_new_user];?>';
-			    var regis_linenoti = '<?=$_GET[regis];?>';
-				
-			    /*if (check_new_user != "") {
-			       profileInfo('lift-ios');
-			    }*/
-			    /*if (regis_linenoti != "") {
-			        $("#main_load_mod_popup").toggle();
-			        var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
-			        $('#load_mod_popup').html(load_main_mod);
-			        $('#load_mod_popup').load(url_load);
-			    }*/
+                var regis_linenoti = '<?=$_GET[regis];?>';
+                
+                /*if (check_new_user != "") {
+                   profileInfo('lift-ios');
+                }*/
+                /*if (regis_linenoti != "") {
+                    $("#main_load_mod_popup").toggle();
+                    var url_load = "load_page_mod.php?name=user&file=notiline&regis=linenoti&state=one";
+                    $('#load_mod_popup').html(load_main_mod);
+                    $('#load_mod_popup').load(url_load);
+                }*/
                 
             }, 1500);
         });

@@ -295,6 +295,9 @@ class Shop extends CI_Controller {
 			$query = $this->db->query("select id from order_booking where check_guest_register = 1 and check_tran_job = 1 and drivername = ".$_GET[driver_id]);
 			echo $query->num_rows();
 		}
+		public function imageslider(){
+		$this->load->view('shop/page_imageslider');
+	}
 		
 	}
 	?>

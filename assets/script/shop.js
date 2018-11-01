@@ -2024,7 +2024,7 @@ if (page == "shop_manage.html") {
     $('#date_shop_his').val(today);
 }else if (page == "shop_wait.html"){
 	waitTransShop();
-	$('#box-shop_date').fadeOut(300);
+	$('#box-shop_date').fadeIn(300);
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/
