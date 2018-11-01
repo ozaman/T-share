@@ -1118,6 +1118,7 @@ countWaitTransShop();
 function countWaitTransShop(){
 	setTimeout(function(){ 
 	var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
+	console.log(url);
 	$.ajax({
 		        url: url, 
 		        dataType: 'json', 

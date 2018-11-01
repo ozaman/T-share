@@ -1981,6 +1981,11 @@ function waitTransShop(){
 
 var url_his = 'api/shop_wait_trans_shop';
 console.log(url_his);
+	if(class_user=="taxi"){
+	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+username;
+	}else{
+		var url_his = 'api/shop_wait_trans_shop';
+	}
 
 	$.post(url_his,function(res){
 	   

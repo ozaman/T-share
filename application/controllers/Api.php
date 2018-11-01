@@ -137,8 +137,9 @@ $url = "http://www.welovetaxi.com:3000/getOrderbookingcom";
 $ch = curl_init($url);
 
 //setup request to send json via POST
-
-//$curl_post_data2 = '{"date":"'.$_POST[date].'", "status":"'.$_POST[status].'"}';
+if($_GET[driver_id]!=""){
+	$curl_post_data2 = '{"date":"'.$_GET[driver_id].'"}';
+}
 
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
