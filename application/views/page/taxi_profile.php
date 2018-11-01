@@ -59,7 +59,7 @@ input[type="text"]:disabled {
                 <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><!--<span class="txt-important">*</span>-->
             </div>
             <label class="center list-item__center">
-                <ons-input id="username-input" float="" maxlength="30" placeholder="<?=$username;?>" name="username" style="width:100%;" disabled value="<?=$driver->username;?>">
+                <ons-input id="username-input" class="font-17" float="" maxlength="30" placeholder="<?=$username;?>" name="username" style="width:100%;" disabled value="<?=$driver->username;?>">
                     <input type="text" class="text-input" maxlength="30" placeholder="<?=$username;?>" name="username" >
                     <span class="text-input__label">
                         <?=$username;?></span>

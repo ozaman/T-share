@@ -1139,7 +1139,7 @@ if (obj.check_driver_pay_report == 1) {
 /*checkPhotoCheckIn('driver_topoint', obj.id);
 checkPhotoCheckIn('guest_receive', obj.id);
 checkPhotoCheckIn('driver_pay_report', obj.id);*/
-checkPhotoCheckIn('guest_register', obj.id);
+//checkPhotoCheckIn('guest_register', obj.id);
 $('#check_open_shop_id').val(obj.id);
 });
 //          $('#body_popup1').html(res);
@@ -1570,6 +1570,24 @@ else if (type == "guest_register") {
 				}
 		});
 	}
+	$.ajax({
+	    url: '../data/fileupload/store/' + type + '_' + id + '.jpg',
+	    type: 'HEAD',
+	    error: function() {
+	        console.log('Error file');
+
+	        $('#photo_' + type + '_yes').hide();
+	        $('#photo_' + type + '_no').show();
+	        },
+	        success: function() {
+	            //file exists
+	            console.log('success file');
+
+	            $('#photo_' + type + '_yes').show();
+	            $('#photo_' + type + '_no').hide();
+
+	        }
+	    });
 } 
 
 //$('#' + type + '_locat_off').hide();
@@ -2477,6 +2495,7 @@ function confirmGetIncome(id, invoice, driver){
 				   		sendSocket(id);
 				   		
 				   		completedJobShop(id);
+				   		countWaitTransShop(); 
 				   		shopFuncNotiActi(id, "driver_pay_approve");
 			           $.ajax({
 			               url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
