@@ -64,9 +64,11 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
   foreach($FILE_IMG as $key=>$row){
     ?>
     <ons-carousel-item style="">
+      <a href="https://www.welovetaxi.com/app/data/pic/place/<?=$row->s_name;?>" data-size="1600x1600" data-med="https://www.welovetaxi.com/app/data/pic/place/<?=$row->s_name;?>" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--mainss">
       <!-- <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;"> -->
         <img src="https://www.welovetaxi.com/app/data/pic/place/<?=$row->s_name;?>" width="100%">
         <!-- </div> -->
+      </a>
       </ons-carousel-item>
 
     <?php } ?>
@@ -74,6 +76,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
   </ons-carousel>
   <style type="text/css">
   .social_box{
+        margin: 5px;
     text-align: center;
     list-style: none;
     padding-left: 0;
@@ -87,6 +90,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
    position: relative;
    padding: 5px;
    border-radius: 4px;
+   margin: auto;
  }
  .bg_fb{
   background: #3F51B5;

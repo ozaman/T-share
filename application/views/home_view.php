@@ -1742,7 +1742,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 
         <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
-        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
 
         <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
