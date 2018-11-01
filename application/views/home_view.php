@@ -578,6 +578,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                                 </div>
                                 <div class="center list-item__center" style="background-image: none;">
                                     <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
+                                    
+                                    <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                                 </div>
                             </ons-list-item>
              </ons-card>
@@ -623,8 +625,8 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 
                 <template id="shop_wait.html">
 
-                    <ons-page id="shop_wait">
-                        <div>
+                    <ons-page style="overflow-y: scroll;">
+                        <div  id="shop_wait" style="margin-top: 65px;">
                         </div>
                     </ons-page>
                 </template>

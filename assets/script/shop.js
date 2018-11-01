@@ -1980,11 +1980,12 @@ $.ajax({
 function waitTransShop(){
 
 var url_his = 'api/shop_wait_trans_shop';
+var date = $('#date_shop_wait').val();
 console.log(url_his);
 	if(class_user=="taxi"){
-	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+detect_user;
+	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+detect_user+'&date='+date;
 	}else{
-		var url_his = 'api/shop_wait_trans_shop';
+		var url_his = 'api/shop_wait_trans_shop&date='+date;
 	}
 
 	$.post(url_his,function(res){
@@ -2021,9 +2022,14 @@ if (page == "shop_manage.html") {
 //    historyShop($('#date_shop_his').val());
 	filterHistoryStatus('COMPLETE','btn_shop_his_com');
     $('#box-shop_date').fadeIn(300);
+    $('#date_shop_his').show();
+    $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
 }else if (page == "shop_wait.html"){
 	waitTransShop();
+	$('#date_shop_wait').val(today);
+	$('#date_shop_wait').show();
+	$('#date_shop_his').hide();
 	$('#box-shop_date').fadeIn(300);
 }
     /*document.querySelector('ons-toolbar .center')
