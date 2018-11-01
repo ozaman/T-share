@@ -64,11 +64,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
    setTimeout(function() {
-     
+
     var dataorder = {
         order: '<?=$_COOKIE[detect_user];?>',
     };
-    
+
     socket.emit('adduser', dataorder);
 }, 1000);
 </script>
@@ -156,7 +156,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 					    */
                       width: 35px;
                       height: 35px;
-                      margin-top: -4px;
+                      margin-top: -3px;
                   }
               </style>
               <ons-tabbar swipeable id="appTabbar" position="auto">
@@ -185,9 +185,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                             $('#side_more').hide();
                         }
                         event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
-                        
+
                     }
-                    
+
                 });
                 var showPopover = function(target, id) {
                   document
@@ -201,7 +201,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
           </script>
       </ons-page>
   </template>
-  
+
   <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
       <ons-list id="popover-list">
         <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
@@ -240,7 +240,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             $menu_noti_line = "";
             $menu_contect = "display:none;";
             $menu_lab = "";
-            
+
             $menu_sub_bank = "display:none;";
             $menu_sub_affiliation = "display:none;";
         }else{
@@ -252,7 +252,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             $menu_noti_line = "";
             $menu_contect = "";
             $menu_lab = "display:none;";
-            
+
             $menu_sub_bank = "";
             $menu_sub_affiliation = "";
         }
@@ -394,7 +394,7 @@ ons-list-item {
 </template>
 <template id="home.html">
     <ons-page>
-     
+
         <?php 
 //            include("application/views/main_body_view.php"); 
         $this->load->view('main_body_view');
@@ -409,7 +409,7 @@ ons-list-item {
 <template id="notification.html">   
     <ons-page>
         <div id="body_load_notification">
-            
+
         </div>
     </ons-page>
 </template>
@@ -424,18 +424,18 @@ ons-list-item {
 <template id="imageslider.html">   
     <ons-page id="imageslider">
       <ons-toolbar>       
-         
-         
+
+
         <div class="left">
            <ons-back-button>กลับ</ons-back-button>
-           
+
        </div>
        <div class="center">โบรชัวร์ / รูป</div>
-       
+
    </ons-toolbar>
 
    <div id="boby_imageslider">
-    
+
    </div>
 
 </ons-page>
@@ -447,7 +447,7 @@ ons-list-item {
 <template id="activity.html">   
     <ons-page>
         <div id="body_load_activity">
-            
+
         </div>
     </ons-page>
 </template>
@@ -576,7 +576,7 @@ ons-list-item {
                 </script>
             </ons-page>
         </template>
-        
+
         <template id="shopping.html">
             <ons-page>
                 <ons-toolbar>
@@ -598,7 +598,7 @@ ons-list-item {
                     </div>
                     <div class="center list-item__center" style="background-image: none;padding: 0px 6px 0px 0;">
                         <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
-                        
+
                         <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                     </div>
                 </ons-list-item>
@@ -653,24 +653,24 @@ ons-list-item {
 
 <template id="shop_history.html">
     <ons-page style="overflow-y: scroll;">
-     
+
         <ons-row style="width: 100%;margin-top: 48px; margin-bottom: 20px;">
             <ons-col>
                 <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
-                
+
             </ons-col>
             <ons-col>
                 <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
             </ons-col>
             <ons-col>
                 <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
-                    
+
                 </ons-button>
             </ons-col>
         </ons-row>      
         <?php 
         $margin_his = "margin-top: 5px;";
-        
+
         ?>
         <input type="hidden" id="check_filter_his" value="COMPLETED" />
         <input type="hidden" id="first_run_his" value="0" />
@@ -686,7 +686,7 @@ ons-list-item {
     position: absolute;
     left: 20px;
     margin-top: 10px;
-    
+
 }
 </style>    
 <template id="select_type_map-action-sheet.html">
@@ -1481,11 +1481,11 @@ ons-splitter-side[animation=overlay] {
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
-    
+
     
     <script>
         ons.getScriptPage().onInit = function () {
-           
+
             this.querySelector('ons-toolbar div.center').textContent = this.data.title;
         }
     </script>
@@ -1665,7 +1665,7 @@ window.fn.pushPage = function(page, anim) {
             });
         }
         else if(page.open=="car_gen"){
-            
+
             $.ajax({
                 url: "main/data_car_gen?i_brand="+$('#car_brand').val(), // point to server-side PHP script 
                 dataType: 'json', // what to expect back from the PHP script, if anything
@@ -1718,7 +1718,7 @@ if($(this).attr('id')==id){
     $(this).find('i').addClass('fa-chevron-down');
 }
 }); 
-    
+
 //      $( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
 //      $( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
 }
