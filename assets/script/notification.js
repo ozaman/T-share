@@ -330,10 +330,12 @@ function CheckTimeNotification(d1, d2) {
 }
 
 function switchSetting(type, ip){
-	var status = $('#onoff_shop').val();
+	var status = $('#'+ip).val();
+//	console.log()
 	if(status==0){
 		$('#'+ip).val(1);
-	}else{
+	}
+	else{
 		$('#'+ip).val(0);
 	}
 	var param = {
