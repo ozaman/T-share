@@ -404,23 +404,26 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     <template id="imageslider.html">   
     <ons-page id="imageslider">
       <ons-toolbar>
+         
+                   
+               
         <div class="left">
-          <ons-toolbar-button onclick="prev()">
-            <ons-icon icon="md-chevron-left"></ons-icon>
-        </ons-toolbar-button>
+             <ons-back-button>กลับ</ons-back-button>
+          
     </div>
     <div class="center">โบรชัวร์ / รูป</div>
-    <div class="right">
-      <ons-toolbar-button onclick="next()">
-        <ons-icon icon="md-chevron-right"></ons-icon>
-    </ons-toolbar-button>
-</div>
-</ons-toolbar>
-<ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
     
-</ons-carousel>
+</ons-toolbar>
+
+<div id="boby_imageslider">
+    
+</div>
+
 </ons-page>
 </template>
+<script type="text/javascript">
+
+</script>
     <template id="activity.html">   
         <ons-page>
             <div id="body_load_activity">
