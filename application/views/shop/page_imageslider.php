@@ -30,6 +30,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
     
       <script src="<?=base_url();?>assets/photoswipe/photoswipe.min17e2.js?v=4.1.1-1.0.4"></script>
       <script src="<?=base_url();?>assets/photoswipe/photoswipe-ui-default.min17e2.js?v=4.1.1-1.0.4"></script>
+      <!-- <span class="pull-right"><i class="fa fa-share-square-o" aria-hidden="true"></i></span> -->
    <ul class="social_box table" id="social-btn" data-type="news"> 
     <li class="table-cell bg_fb"> 
       <a href="https://www.facebook.com/sharer.php?u=https://www.welovetaxi.com/app/data/pic/place/<?=$FILE_IMG[0]->s_name;?>" target="_blank" class="set-share-social" data-type="facebook" id="facebook-shear"> <span class="fa fa-facebook" style="color: #FFF;"></span> </a> 
