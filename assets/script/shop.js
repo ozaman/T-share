@@ -2020,11 +2020,12 @@ if (page == "shop_manage.html") {
     $('#box-shop_date').fadeOut(300);
 }else if (page == "shop_history.html") {
 //    historyShop($('#date_shop_his').val());
-	filterHistoryStatus('COMPLETE','btn_shop_his_com');
+	
     $('#box-shop_date').fadeIn(300);
     $('#date_shop_his').show();
     $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
+    filterHistoryStatus('COMPLETE','btn_shop_his_com');
 }else if (page == "shop_wait.html"){
 	
 	$('#date_shop_wait').val(today);
@@ -2268,16 +2269,17 @@ else{
     status : type_status
 	};
 }
-console.log(data);
+//console.log(data);
 var success = [];
 var fail = [];
 var first_run_his = $('#first_run_his').val();
-//alert(first_run_his);
+
 $.post(url_his,data,function(res){
    console.log(res);
+//   console.log(8888888888888888888888888888888);
     var all = res.data.length;
     $.each(res.data, function( index, value ) {
-	  	if(value.status=="COMPLETE"){
+	  	if(value.status=="COMPLETED"){
 			success.push(value);
 		}else if(value.status=="CANCEL"){
 			fail.push(value);

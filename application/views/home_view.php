@@ -636,7 +636,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                        
                         <ons-row style="width: 100%;margin-top: 48px; margin-bottom: 20px;">
                             <ons-col>
-                            <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                            <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
                                 
                             </ons-col>
                             <ons-col>
