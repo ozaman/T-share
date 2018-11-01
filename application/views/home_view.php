@@ -652,7 +652,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         $margin_his = "margin-top: 5px;";
                         
                         ?>
-                        <input type="hidden" id="check_filter_his" value="" />
+                        <input type="hidden" id="check_filter_his" value="COMPLETED" />
                         <input type="hidden" id="first_run_his" value="0" />
                         <div id="shop_history" style="<?=$margin_his;?>">
                         </div>

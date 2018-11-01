@@ -468,7 +468,7 @@ socket.on('notification', function(data) {
 var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
-    console.log(data.booking)
+//    console.log(data.booking)
     
     array_data = [];
     var done = [];

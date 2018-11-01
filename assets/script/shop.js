@@ -2025,7 +2025,8 @@ if (page == "shop_manage.html") {
     $('#date_shop_his').show();
     $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
-    filterHistoryStatus('COMPLETE','btn_shop_his_com');
+//    filterHistoryStatus('COMPLETE','btn_shop_his_com');
+    historyShop($('#date_shop_his').val());
 }else if (page == "shop_wait.html"){
 	
 	$('#date_shop_wait').val(today);
@@ -2269,7 +2270,7 @@ else{
     status : type_status
 	};
 }
-//console.log(data);
+console.log(data);
 var success = [];
 var fail = [];
 var first_run_his = $('#first_run_his').val();
@@ -2285,6 +2286,7 @@ $.post(url_his,data,function(res){
 			fail.push(value);
 		}
 	});
+	alert(all+"||"+success.length+"||"+fail.length)
 	if(first_run_his==0){
 		$('#num_his_all').text("("+all+")");
    		$('#num_his_com').text("("+success.length+")");
@@ -2452,7 +2454,6 @@ function filterHistoryStatus(type, id){
 	$('.shop-his-btn').removeClass('his-shop-active');
 	$('#'+id).addClass('his-shop-active');
 	
-	historyShop($('#date_shop_his').val());
 }
 
 function selectPlanRegis(id){
