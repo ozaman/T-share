@@ -56,5 +56,5 @@ class Notification extends CI_Controller {
   		$data['res'] = $this->Notification_model->show_notification_hide();
   		echo json_encode($data['res']);
   }
-  
+
 }

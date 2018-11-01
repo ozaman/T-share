@@ -142,7 +142,7 @@ if($_GET[driver_id]!=""){
 }else{
 	$dv = "";
 }
-$curl_post_data2 = '{"driver_id":"'.$dv.'"}';
+$curl_post_data2 = '{"driver_id":"'.$dv.'","date":"'.$_GET[date].'"}';
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
 //set the content type to application/json

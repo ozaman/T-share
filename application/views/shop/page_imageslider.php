@@ -1,11 +1,13 @@
 <?php 
 $_where = array();
+
 $_where[product_id] = $_GET[shop_id];
 $_select = array('*');
 $_order = array();
 $_order[i_index] = 'asc';
 $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_where,$_select,$_order);
 ?>
+
  <!-- <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -95,6 +97,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
   background: #1da1f2;
   color: #fff;
 }
+
 .bg_line{
   background: #00b900;
 
@@ -465,4 +468,4 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
 
     })();
     </script>
-   
+

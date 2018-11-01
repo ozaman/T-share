@@ -1,28 +1,30 @@
 var app = {};
 
-ons.ready(function () {
-  ons.createElement('action-sheet.html', { append: true })
-    .then(function (sheet) {
-      app.showFromTemplate = sheet.show.bind(sheet);
-      app.hideFromTemplate = sheet.hide.bind(sheet);
-    });
+ons.ready(function() {
+    ons.createElement('action-sheet.html', {
+            append: true
+        })
+        .then(function(sheet) {
+            app.showFromTemplate = sheet.show.bind(sheet);
+            app.hideFromTemplate = sheet.hide.bind(sheet);
+        });
 });
 
-function showNotiHidden(){
-	$.ajax({
-			url: "notification/show_notification_hide?user_id="+detect_user, // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-//			data: data,
-			success: function(res) {
-				console.log(res);
-				loadNotificationPage();
-			}
-	});
+function showNotiHidden() {
+    $.ajax({
+        url: "notification/show_notification_hide?user_id=" + detect_user, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        //			data: data,
+        success: function(res) {
+            console.log(res);
+            loadNotificationPage();
+        }
+    });
 }
 
-function settingNoti(){
-	fn.pushPage({
+function settingNoti() {
+    fn.pushPage({
         'id': 'popup2.html',
         'title': 'ตั้งค่าการแจ้งเตือน'
     }, 'lift-ios');
@@ -33,249 +35,246 @@ function settingNoti(){
     });
 }
 
-function hiddenNotiAll(){
-	$.ajax({
-			url: "notification/hide_notification_all?user_id="+detect_user, // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-//			data: data,
-			success: function(res) {
-				console.log(res);
-				$('.card-activity').css('background-color','#fff');
-				setCountNotification();
-			}
-	});
+function hiddenNotiAll() {
+    $.ajax({
+        url: "notification/hide_notification_all?user_id=" + detect_user, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        //			data: data,
+        success: function(res) {
+            console.log(res);
+            $('.card-activity').css('background-color', '#fff');
+            setCountNotification();
+        }
+    });
 }
 
-function hiddenNotification(id){
-	console.log("+"+id);
+function hiddenNotification(id) {
+    console.log("+" + id);
 }
 
-function deletedNotification(id){
-	console.log("+"+id);
+function deletedNotification(id) {
+    console.log("+" + id);
 }
 
-function openNotification(id, type, txt_type, i_event){
-	console.log(id+" : "+type+ " || "+i_event);
-	fn.pushPage({
+function openNotification(id, type, txt_type, i_event) {
+    console.log(id + " : " + type + " || " + i_event);
+    fn.pushPage({
         'id': 'popup1.html',
         'title': txt_type
     }, 'lift-ios');
     makeReadNotification(id);
-    
-	if(type==1){
-		openShopNotification(i_event);
-	}
-	else if(type==2){
-		openTransferNotification(i_event);
-	}
-	else if(type==3){
-		openIncomeNotification(i_event);
-	}
-	else if(type==4){
-		openPayNotification(i_event);
-	}
-	else if(type==5){
-		openInformMoneyNotification(i_event);
-	}
-	else if(type==6){
-		openWithdrawMoneyNotification(i_event);
-	}
-    
+
+    if (type == 1) {
+        openShopNotification(i_event);
+    } else if (type == 2) {
+        openTransferNotification(i_event);
+    } else if (type == 3) {
+        openIncomeNotification(i_event);
+    } else if (type == 4) {
+        openPayNotification(i_event);
+    } else if (type == 5) {
+        openInformMoneyNotification(i_event);
+    } else if (type == 6) {
+        openWithdrawMoneyNotification(i_event);
+    }
+
 }
 
-function openWithdrawMoneyNotification(i_event){
-	
-    
+function openWithdrawMoneyNotification(i_event) {
+
+
 }
 
-function openInformMoneyNotification(i_event){
-	$('#body_popup1').html(progress_circle);
-	var url = "page/call_page?deposit_id="+i_event;
-    $.post(url,{ path: "wallet/detail_history" },function(ele){
-    	$('#body_popup1').html(ele);
+function openInformMoneyNotification(i_event) {
+    $('#body_popup1').html(progress_circle);
+    var url = "page/call_page?deposit_id=" + i_event;
+    $.post(url, {
+        path: "wallet/detail_history"
+    }, function(ele) {
+        $('#body_popup1').html(ele);
     });
 }
 
-function openPayNotification(i_event){
-	
-}	
+function openPayNotification(i_event) {
 
-function openIncomeNotification(i_event){
-	
 }
 
-function openTransferNotification(i_event){
-	
+function openIncomeNotification(i_event) {
+
 }
 
-function openShopNotification(i_event){
-	var data = {
-		id : i_event
-	}
-	$.ajax({
-			url: "shop/get_data_shop", // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-			data: data,
-			success: function(detailObj) {
-				console.log(detailObj);
-				var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
-			    $.post(url, detailObj, function(data) {
-			        $('#body_popup1').html(data);
-			        
-			        var obj = detailObj;
-			        console.log(obj);
-			        changeApprovedIncome(obj.check_lab_pay);
-			        if (obj.check_driver_topoint == 1) {
-			            console.log("driver_topoint");
-			            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
-			        }
-			        if (obj.check_guest_receive == 1) {
-			            console.log("guest_receive");
-			            changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
-			        }
-			        if (obj.check_guest_register == 1) {
-			            console.log("guest_register");
-			            changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
-			        }
-			        if (obj.check_driver_pay_report == 1) {
-			            console.log("driver_pay_report");
-			            changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
-			        }
-			        /*checkPhotoCheckIn('driver_topoint', obj.id);
-			        checkPhotoCheckIn('guest_receive', obj.id);
-			        checkPhotoCheckIn('guest_register', obj.id);
-			        checkPhotoCheckIn('driver_pay_report', obj.id);*/
-			    });
-			    $('#check_open_shop_id').val(detailObj.id);
-			}
-	});
+function openTransferNotification(i_event) {
+
 }
 
-function makeReadNotification(id){
-	var data = {
-		i_active : 1
-	};
-	$.ajax({
-			url: "notification/read_notification?id="+id, // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-			data: data,
-			success: function(res) {
-				console.log(res);
-				if(res.result==true){
-					setCountNotification();
-					$('#card-ac_'+id).css('background-color','#fff');
-				}
-			}
-	});
+function openShopNotification(i_event) {
+    var data = {
+        id: i_event
+    }
+    $.ajax({
+        url: "shop/get_data_shop", // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: data,
+        success: function(detailObj) {
+            console.log(detailObj);
+            var url = "shop/detail_shop" + "?user_id=" + $.cookie("detect_user");
+            $.post(url, detailObj, function(data) {
+
+                $('#body_popup1').html(data);
+
+                var obj = detailObj;
+
+                if (obj.check_driver_topoint == 1) {
+                    console.log("driver_topoint");
+                    changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+                }
+                if (obj.check_guest_receive == 1) {
+                    console.log("guest_receive");
+                    changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+                }
+                if (obj.check_guest_register == 1) {
+                    console.log("guest_register");
+                    changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+                }
+                if (obj.check_driver_pay_report == 1) {
+                    console.log("driver_pay_report");
+                    changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+                }
+                checkPhotoCheckIn('guest_register', obj.id);
+                /*$('.page').animate({
+        scrollTop: $( '#btn_driver_topoint' ).offset().top
+    }, 500);*/
+            });
+            $('#check_open_shop_id').val(detailObj.id);
+        }
+    });
 }
 
-function makeUnReadNotification(){
-	var id = $('#id_notification_select').val();
-	var data = {
-		i_active : 0
-	};
-	$.ajax({
-			url: "notification/read_notification?id="+id, // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-			data: data,
-			success: function(res) {
-				console.log(res);
-				if(res.result==true){
-					setCountNotification();
-					$('#card-ac_'+id).css('background-color','#edf2fa');
-					app.hideFromTemplate();
-				}
-			}
-	});
+function makeReadNotification(id) {
+    var data = {
+        i_active: 1
+    };
+    $.ajax({
+        url: "notification/read_notification?id=" + id, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: data,
+        success: function(res) {
+            console.log(res);
+            if (res.result == true) {
+                setCountNotification();
+                $('#card-ac_' + id).css('background-color', '#fff');
+            }
+        }
+    });
 }
 
-function deleteNotification(){
-	modal.show();
-	var id = $('#id_notification_select').val();
-	var data = {
-		id : id
-	};
-	$.ajax({
-			url: "notification/delete_notification", // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-			data: data,
-			success: function(res) {
-				console.log(res);
-				if(res.deleted==true){
-					loadNotificationPage();
-					setCountNotification();
-//					$('#card-ac_'+id).remove();
-					app.hideFromTemplate();
-					modal.hide();
-				}
-			}
-	});
+function makeUnReadNotification() {
+    var id = $('#id_notification_select').val();
+    var data = {
+        i_active: 0
+    };
+    $.ajax({
+        url: "notification/read_notification?id=" + id, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: data,
+        success: function(res) {
+            console.log(res);
+            if (res.result == true) {
+                setCountNotification();
+                $('#card-ac_' + id).css('background-color', '#edf2fa');
+                app.hideFromTemplate();
+            }
+        }
+    });
 }
 
-function changeStatusNotification(status){
-	var id = $('#id_notification_select').val();
-	var data = {
-		i_status : status
-	};
-	$.ajax({
-			url: "notification/change_status_notification?id="+id, // point to server-side PHP script 
-			dataType: 'json', // what to expect back from the PHP script, if anything
-			type: 'post',
-			data: data,
-			success: function(res) {
-				console.log(res);
-				if(res.result==true){
-//					loadNotificationPage();
-					$('#card-ac_'+id).fadeOut(1000);
-					setCountNotification();
-					app.hideFromTemplate();
-				}
-			}
-	});
+function deleteNotification() {
+    modal.show();
+    var id = $('#id_notification_select').val();
+    var data = {
+        id: id
+    };
+    $.ajax({
+        url: "notification/delete_notification", // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: data,
+        success: function(res) {
+            console.log(res);
+            if (res.deleted == true) {
+                loadNotificationPage();
+                setCountNotification();
+                //					$('#card-ac_'+id).remove();
+                app.hideFromTemplate();
+                modal.hide();
+            }
+        }
+    });
 }
 
-function loadMoreNoti(){
+function changeStatusNotification(status) {
+    var id = $('#id_notification_select').val();
+    var data = {
+        i_status: status
+    };
+    $.ajax({
+        url: "notification/change_status_notification?id=" + id, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: data,
+        success: function(res) {
+            console.log(res);
+            if (res.result == true) {
+                //					loadNotificationPage();
+                $('#card-ac_' + id).fadeOut(1000);
+                setCountNotification();
+                app.hideFromTemplate();
+            }
+        }
+    });
+}
 
-	$('#icons_load_more_noti').show();
-	$('#btn_load_more_noti').attr('disabled','disabled');
+function loadMoreNoti() {
 
-	var start = $('#check_data_load_start').val();
+    $('#icons_load_more_noti').show();
+    $('#btn_load_more_noti').attr('disabled', 'disabled');
 
-	var limit = $('#check_data_load_limit').val();
+    var start = $('#check_data_load_start').val();
 
-	$.ajax({
-			url: "notification/load_more_noti?start="+start+"&limit="+limit, 
-			dataType: 'json',
-			type: 'get',
-//			data: data,
-			success: function(res) {
-				console.log(res);
-				
-				if(res.numrow<=0){
-					return;
-				}
-				$.each(res.data, function( index, value ) {
-//					console.log(value.id);
-					$.post("component/list_notification",value,function(cpn){
-				    	$("#list_noti_data").append(cpn);
-				    });
-				});
-				$('#check_data_load_start').val(parseInt(start) + parseInt(limit));
-				if(res.rest<=0){
-					$('#box_load_more_noti').fadeOut(700);
-				}
-				/*$('#btn_load_more_noti').show();
-				$('#progress_load_more_noti').hide();*/
-//				$('#txt_load_more_noti').show();
-				$('#icons_load_more_noti').hide();
-				$("#btn_load_more_noti").removeAttr("disabled");
-			}
-	});
+    var limit = $('#check_data_load_limit').val();
+
+    $.ajax({
+        url: "notification/load_more_noti?start=" + start + "&limit=" + limit,
+        dataType: 'json',
+        type: 'get',
+        //			data: data,
+        success: function(res) {
+            console.log(res);
+
+            if (res.numrow <= 0) {
+                return;
+            }
+            $.each(res.data, function(index, value) {
+                //					console.log(value.id);
+                $.post("component/list_notification", value, function(cpn) {
+                    $("#list_noti_data").append(cpn);
+                });
+            });
+            $('#check_data_load_start').val(parseInt(start) + parseInt(limit));
+            if (res.rest <= 0) {
+                $('#box_load_more_noti').fadeOut(700);
+            }
+            /*$('#btn_load_more_noti').show();
+            $('#progress_load_more_noti').hide();*/
+            //				$('#txt_load_more_noti').show();
+            $('#icons_load_more_noti').hide();
+            $("#btn_load_more_noti").removeAttr("disabled");
+        }
+    });
 }
 
 function CheckTimeNotification(d1, d2) {
@@ -301,17 +300,17 @@ function CheckTimeNotification(d1, d2) {
     if (mnts < 10) mnts = "0" + mnts;
     if (secs < 10) secs = "0" + secs;
     var final_txt, day_txt, h_txy, m_txt, old_txt;
-    
+
     if (days == 0) {
         day_txt = '';
     } else {
         day_txt = days + ' วัน';
     }
-    
-    if(days>=1){
-		return day_txt+"ที่แล้ว";
-	}
-	
+
+    if (days >= 1) {
+        return day_txt + "ที่แล้ว";
+    }
+
     if (hrs_d_bc == 0) {
         h_txy = '';
     } else {
@@ -328,4 +327,25 @@ function CheckTimeNotification(d1, d2) {
         return "ไม่กี่วินาทีที่ผ่านมา";
     }
     return final_txt + "ที่ผ่านมา";
+}
+
+function switchSetting(type, status){
+	var param = {
+		user_id : detect_user,
+		status : status
+	}
+	$.ajax({
+        url: "main/switch_setting?type" + type, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        type: 'post',
+        data: param,
+        success: function(res) {
+            console.log(res);
+            if (res.result == true) {
+                setCountNotification();
+                $('#card-ac_' + id).css('background-color', '#edf2fa');
+                app.hideFromTemplate();
+            }
+        }
+    });
 }

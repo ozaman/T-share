@@ -1979,14 +1979,14 @@ $.ajax({
 
 function waitTransShop(){
 
-var url_his = 'api/shop_wait_trans_shop';
-console.log(url_his);
-	if(class_user=="taxi"){
-	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+detect_user;
-	}else{
-		var url_his = 'api/shop_wait_trans_shop';
-	}
+var date = $('#date_shop_wait').val();
 
+	if(class_user=="taxi"){
+	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+detect_user+'&date='+date;
+	}else{
+		var url_his = 'api/shop_wait_trans_shop?date='+date;
+	}
+console.log(url_his);
 	$.post(url_his,function(res){
 	   
 	   var pass = {
@@ -2019,12 +2019,20 @@ if (page == "shop_manage.html") {
     $('#box-shop_date').fadeOut(300);
 }else if (page == "shop_history.html") {
 //    historyShop($('#date_shop_his').val());
-	filterHistoryStatus('COMPLETE','btn_shop_his_com');
+	
     $('#box-shop_date').fadeIn(300);
+    $('#date_shop_his').show();
+    $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
+//    filterHistoryStatus('COMPLETE','btn_shop_his_com');
+    historyShop($('#date_shop_his').val());
 }else if (page == "shop_wait.html"){
+	
+	$('#date_shop_wait').val(today);
+	$('#date_shop_wait').show();
+	$('#date_shop_his').hide();
+	$('#box-shop_date').fadeIn(300);
 	waitTransShop();
-	$('#box-shop_date').fadeOut(300);
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/
@@ -2265,17 +2273,19 @@ console.log(data);
 var success = [];
 var fail = [];
 var first_run_his = $('#first_run_his').val();
-//alert(first_run_his);
+
 $.post(url_his,data,function(res){
    console.log(res);
+//   console.log(8888888888888888888888888888888);
     var all = res.data.length;
     $.each(res.data, function( index, value ) {
-	  	if(value.status=="COMPLETE"){
+	  	if(value.status=="COMPLETED"){
 			success.push(value);
 		}else if(value.status=="CANCEL"){
 			fail.push(value);
 		}
 	});
+//	alert(all+"||"+success.length+"||"+fail.length)
 	if(first_run_his==0){
 		$('#num_his_all').text("("+all+")");
    		$('#num_his_com').text("("+success.length+")");
@@ -2443,7 +2453,6 @@ function filterHistoryStatus(type, id){
 	$('.shop-his-btn').removeClass('his-shop-active');
 	$('#'+id).addClass('his-shop-active');
 	
-	historyShop($('#date_shop_his').val());
 }
 
 function selectPlanRegis(id){

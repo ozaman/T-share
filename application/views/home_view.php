@@ -140,8 +140,27 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
+           <!-- <img src="assets/images/logo.png" width="30px" />-->
+           <style>
+           		 .fa-tshareiconv5 {
+					     display: inline-block;
+					     background: url('assets/images/logo2.png') no-repeat;
+					     overflow: hidden;
+					     text-indent: -9999px;
+					     text-align: left;
+					    background-repeat: no-repeat;
+					     background-size: 100% 100%;
+					}
+					 .fa-tshareiconv5 {
+					    /*background-position: -0px -30px;
+					    */
+					     width: 45px;
+					     height: 45px;
+					     margin-top: -7px;
+					}
+           </style>
             <ons-tabbar swipeable id="appTabbar" position="auto">
-                <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
+                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
                 <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
                 <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
                 <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
@@ -375,6 +394,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="home.html">
         <ons-page>
+       
             <?php 
 //            include("application/views/main_body_view.php"); 
             $this->load->view('main_body_view');
@@ -403,8 +423,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="imageslider.html">   
     <ons-page id="imageslider">
-      <ons-toolbar>
-         
+      <ons-toolbar>       
                    
                
         <div class="left">
@@ -424,6 +443,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
 <script type="text/javascript">
 
 </script>
+
     <template id="activity.html">   
         <ons-page>
             <div id="body_load_activity">
@@ -576,8 +596,10 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                                 <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
                                     <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                                 </div>
-                                <div class="center list-item__center" style="background-image: none;">
+                                <div class="center list-item__center" style="background-image: none;padding: 0px 6px 0px 0;">
                                     <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
+                                    
+                                    <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                                 </div>
                             </ons-list-item>
              </ons-card>
@@ -622,8 +644,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 
                 <template id="shop_wait.html">
-                    <ons-page id="shop_wait">
-                        <div>
+
+                    <ons-page style="overflow-y: scroll;">
+                        <div  id="shop_wait" style="margin-top: 55px;">
                         </div>
                     </ons-page>
                 </template>
@@ -631,15 +654,15 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 <template id="shop_history.html">
                     <ons-page style="overflow-y: scroll;">
                        
-                        <ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
-                            <ons-col width="33%">
-                            <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                        <ons-row style="width: 100%;margin-top: 48px; margin-bottom: 20px;">
+                            <ons-col>
+                            <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
                                 
                             </ons-col>
-                            <ons-col width="33%">
+                            <ons-col>
                             <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
                             </ons-col>
-                            <ons-col width="33%">
+                            <ons-col>
                             <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
                             
                             </ons-button>
@@ -649,7 +672,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                         $margin_his = "margin-top: 5px;";
                         
                         ?>
-                        <input type="hidden" id="check_filter_his" value="" />
+                        <input type="hidden" id="check_filter_his" value="COMPLETED" />
                         <input type="hidden" id="first_run_his" value="0" />
                         <div id="shop_history" style="<?=$margin_his;?>">
                         </div>
@@ -657,6 +680,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 
             </div>
+
             <style>
                 .img-type-map{
                         position: absolute;
@@ -673,6 +697,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
               </ons-action-sheet>
             </template>
+
             <script>
                 var app_shop = {};
 

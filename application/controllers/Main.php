@@ -12,6 +12,13 @@ class Main extends CI_Controller {
 
   }
   
+  public function switch_setting(){
+	$data[$_POST[type]] = $_POST[status];
+  	$this->db->where('i_user', $_POST[user_id]);
+	$data[result] = $this->db->update("app_user_setting", $data); 
+	echo json_encode($data);	
+  }
+  
   public function check_idcard(){
   	$data['res'] = $this->Main_model->check_idcard_overlap();
   	header('Content-Type: application/json');
