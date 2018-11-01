@@ -1979,15 +1979,14 @@ $.ajax({
 
 function waitTransShop(){
 
-var url_his = 'api/shop_wait_trans_shop';
 var date = $('#date_shop_wait').val();
-console.log(url_his);
+
 	if(class_user=="taxi"){
 	   	var url_his = 'api/shop_wait_trans_shop?driver_id='+detect_user+'&date='+date;
 	}else{
 		var url_his = 'api/shop_wait_trans_shop?date='+date;
 	}
-
+console.log(url_his);
 	$.post(url_his,function(res){
 	   
 	   var pass = {
@@ -2286,7 +2285,7 @@ $.post(url_his,data,function(res){
 			fail.push(value);
 		}
 	});
-	alert(all+"||"+success.length+"||"+fail.length)
+//	alert(all+"||"+success.length+"||"+fail.length)
 	if(first_run_his==0){
 		$('#num_his_all').text("("+all+")");
    		$('#num_his_com').text("("+success.length+")");
