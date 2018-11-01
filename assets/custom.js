@@ -468,7 +468,7 @@ socket.on('notification', function(data) {
 var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
-    //console.log(data.booking)
+    console.log(data.booking)
     
     array_data = [];
     var done = [];
@@ -1118,6 +1118,7 @@ countWaitTransShop();
 function countWaitTransShop(){
 	setTimeout(function(){ 
 	var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
+	console.log(url);
 	$.ajax({
 		        url: url, 
 		        dataType: 'json', 
@@ -1492,6 +1493,7 @@ function checkzoon(argument) {
 // arm++;
 
 }
+
 function _province(itm) {
     if (pro > 0) {
         $('#box_form_toshow').hide()
@@ -1526,6 +1528,7 @@ function _province(itm) {
    });
     pro ++;
 }
+
 function _body_car_station(body){
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();

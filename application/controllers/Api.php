@@ -87,7 +87,7 @@ public function shop_history_driver(){
 
 	//setup request to send json via POST
 
-	$curl_post_data2 = '{"driver": '.$_POST[driver].',"date":"'.$_POST[date].'"}';
+	$curl_post_data2 = '{"driver": '.$_POST[driver].',"date":"'.$_POST[date].'", "status":"'.$_POST[status].'"}';
 
 	//attach encoded JSON string to the POST fields
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
@@ -137,9 +137,12 @@ $url = "http://www.welovetaxi.com:3000/getOrderbookingcom";
 $ch = curl_init($url);
 
 //setup request to send json via POST
-
-//$curl_post_data2 = '{"date":"'.$_POST[date].'", "status":"'.$_POST[status].'"}';
-
+if($_GET[driver_id]!=""){
+	$dv = $_GET[driver_id];
+}else{
+	$dv = "";
+}
+$curl_post_data2 = '{"driver_id":"'.$dv.'"}';
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
 //set the content type to application/json
