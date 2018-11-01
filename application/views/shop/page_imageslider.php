@@ -111,7 +111,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
 }
 </style>
 <script type="text/javascript">
-  // $('#gallery').show()
+   $('#esc').show()
     (function() {
 
     var initPhotoSwipeFromDOM = function(gallerySelector) {
