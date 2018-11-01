@@ -112,14 +112,15 @@ class Send_onesignal_model extends CI_Model {
 		$cl = "พนักงาน";
 	}
 	$type_txt = "รายการส่งแขกนี้ถูกยกเลิกแล้ว กรุณาตรวจสอบ ยกเลิกโดย ".$cl;
-	
-		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_qr->drivername."' ";
- 		$query_dv = $this->db->query($sql_dv);
- 		$res_dv = $query_dv->row();
- 		
+		$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
+	 	$query_dv = $this->db->query($sql_dv);
+	 	$res_dv = $query_dv->row();
+	  	if($res_dv->i_noti_shop<=0){
+	 		$driver_arry = array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username);
+		}
     	$tag = array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab") ,array("operator" => "OR"), 
-								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username)
+								$driver_arry
 								);
 		$content  = array(
         "en" => "ทะเบียน ".$type_txt
@@ -218,7 +219,7 @@ class Send_onesignal_model extends CI_Model {
  		$query_shop = $this->db->query($sql_shop);
  		$res_shop = $query_shop->row();
 		
-		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_book->drivername."' ";
+		$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
  		$query_dv = $this->db->query($sql_dv);
  		$res_dv = $query_dv->row();
  		
