@@ -13,9 +13,11 @@ class Main extends CI_Controller {
   }
   
   public function switch_setting(){
-	$data[$_POST[type]] = $_POST[status];
+	$data[$_GET[type]] = $_POST[status];
   	$this->db->where('i_user', $_POST[user_id]);
 	$data[result] = $this->db->update("app_user_setting", $data); 
+	$data[type] = $_GET[type];
+	$data[user] = $_POST[user_id];
 	echo json_encode($data);	
   }
   
@@ -150,12 +152,11 @@ class Main extends CI_Controller {
 
    if(isset($param[notification])){
 
-//			$data['notification'] = $this->Notification_model->add_notification($param[notification]);
      if($_COOKIE[detect_userclass]=="taxi"){
-      $data['notification'] = $this->Notification_model->add_notification_lab($param[notification]);
-    }else{
-      $data['notification'] = $this->Notification_model->add_notification_taxi($param[notification]);
-    }
+      	$data['notification'] = $this->Notification_model->add_notification_lab($param[notification]);
+     }else{
+      	$data['notification'] = $this->Notification_model->add_notification_taxi($param[notification]);
+     }
   }
   echo json_encode($data);
 }

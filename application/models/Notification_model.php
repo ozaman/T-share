@@ -3,54 +3,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Notification_model extends CI_Model {
 
   public function add_notification_taxi($data){
-  		$_POST = $data;
-  		$to_table = "notification_event_taxi";
-  		$data[i_type] = $_POST[i_type];
-  		$data[i_event] = $_POST[i_event];
-  		$data[i_user] = $_POST[i_user];
-  		$data[s_class_user] = $_POST[s_class_user];
-  		$data[s_topic] = $_POST[s_topic];
-  		$data[s_message] = $_POST[s_message];
-  		$data[i_active] = 0;
-  		$data[i_status] = 1;
-  		$data[s_posted] = $_POST[s_posted];
-  		$data[s_post_date] = time();
-  		$data[s_last_update] = time();  		
+  		if($_POST[i_type]==1){
+			$setting_col = "i_noti_shop";
+		}else if($_POST[i_type]==2){
+			$setting_col = "i_noti_transfer";
+		}else if($_POST[i_type]==5 or $_POST[i_type]==6){
+			$setting_col = "i_noti_wallet";
+		}
+  		$query = $this->db->query("select ".$setting_col." as noti_set from app_user_setting where i_user = ".$_POST[i_user]);
+  		$row = $query->row();
+  		if($row->noti_set>0){
+	  		$_POST = $data;
+	  		$to_table = "notification_event_taxi";
+	  		$data[i_type] = $_POST[i_type];
+	  		$data[i_event] = $_POST[i_event];
+	  		$data[i_user] = $_POST[i_user];
+	  		$data[s_class_user] = $_POST[s_class_user];
+	  		$data[s_topic] = $_POST[s_topic];
+	  		$data[s_message] = $_POST[s_message];
+	  		$data[i_active] = 0;
+	  		$data[i_status] = 1;
+	  		$data[s_posted] = $_POST[s_posted];
+	  		$data[s_post_date] = time();
+	  		$data[s_last_update] = time();  		
+	  		
+	  		$result = $this->db->insert($to_table, $data);
+	  		$data[result] = $result;
+	  		return $data;
+		}else{
+			$ret[result] = false;
+			$ret[result] = false;
+			$ret[mgs] = "this user off noti";
+			return $ret;
+		}
   		
-  		$result = $this->db->insert($to_table, $data);
-  		$data[result] = $result;
-  		return $data;
   }
   
-   public function add_notification_lab($data){
+  public function add_notification_lab($data){
   		$_POST = $data;
   		$to_table = "notification_event_lab";
-  		$query = $this->db->query("select id from web_driver where username LIKE '%lab%' ");
+  		if($_POST[i_type]==1){
+			$setting_col = "i_noti_shop";
+		}else if($_POST[i_type]==2){
+			$setting_col = "i_noti_transfer";
+		}else if($_POST[i_type]==5 or $_POST[i_type]==6){
+			$setting_col = "i_noti_wallet";
+		}
+  		$query = $this->db->query("select t1.id, t2.".$setting_col." as noti_set from web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user where t1.username LIKE '%lab%'  ");
   		$key = 0;
 		foreach ($query->result() as $row)
 		{
-			if($_POST[i_user]!=$row->id){
+			if($row->noti_set>0){
 				
-		        $data[i_type] = $_POST[i_type];
-		  		$data[i_event] = $_POST[i_event];
-		  		$data[i_user] = $row->id;
-		  		$data[s_class_user] = $_POST[s_class_user];
-		  		$data[s_topic] = $_POST[s_topic];
-		  		$data[s_message] = $_POST[s_message];
-		  		$data[i_active] = 0;
-		  		$data[i_status] = 1;
-		  		$data[s_posted] = $_POST[s_posted];
-		  		$data[s_post_date] = time();
-		  		$data[s_last_update] = time();  		
-		  		
-		  		$result = $this->db->insert($to_table, $data);
-		  		$return[$key][result] = $result;
-		  		$return[$key][data] = $data;
-		  		$key++;
-		  		
+				if($_POST[i_user]!=$row->id){
+					
+			        $data[i_type] = $_POST[i_type];
+			  		$data[i_event] = $_POST[i_event];
+			  		$data[i_user] = $row->id;
+			  		$data[s_class_user] = $_POST[s_class_user];
+			  		$data[s_topic] = $_POST[s_topic];
+			  		$data[s_message] = $_POST[s_message];
+			  		$data[i_active] = 0;
+			  		$data[i_status] = 1;
+			  		$data[s_posted] = $_POST[s_posted];
+			  		$data[s_post_date] = time();
+			  		$data[s_last_update] = time();  		
+			  		
+			  		$result = $this->db->insert($to_table, $data);
+			  		$return[$key][result] = $result;
+			  		$return[$key][data] = $data;
+			  		$key++;
+			  		
+				}else{
+					$return[$key][result] = TRUE;
+					$return[$key][mgs] = "this user off noti";
+				}
+				
 			}
 		}
-
   		return $return;
   } 
 

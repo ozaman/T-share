@@ -329,23 +329,31 @@ function CheckTimeNotification(d1, d2) {
     return final_txt + "ที่ผ่านมา";
 }
 
-function switchSetting(type, status){
+function switchSetting(type, ip){
+	var status = $('#onoff_shop').val();
+	if(status==0){
+		$('#'+ip).val(1);
+	}else{
+		$('#'+ip).val(0);
+	}
 	var param = {
 		user_id : detect_user,
 		status : status
 	}
+	var url = "main/switch_setting?type=" + type;
+	console.log(url)
 	$.ajax({
-        url: "main/switch_setting?type" + type, // point to server-side PHP script 
+        url: url, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
         type: 'post',
         data: param,
         success: function(res) {
             console.log(res);
-            if (res.result == true) {
+            /*if (res.result == true) {
                 setCountNotification();
                 $('#card-ac_' + id).css('background-color', '#edf2fa');
                 app.hideFromTemplate();
-            }
+            }*/
         }
     });
 }

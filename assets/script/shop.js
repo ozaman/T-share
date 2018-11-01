@@ -2196,7 +2196,7 @@ $.ajax({
     type: 'post',
     dataType: 'json',
     success: function(res) {
-        console.log(res);
+//        console.log(res);
 //        if(res.result==true)
         $.ajax({
            url: "send_onesignal/acknowledge?order_id="+id+"&driver="+driver_id+"&vc="+invoice,
@@ -2204,7 +2204,7 @@ $.ajax({
            type: 'post',
            dataType: 'json',
            success: function(res) {
-               console.log(res);
+//               console.log(res);
                sendSocket(id);
                var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรายการส่งแขกแล้ว";
                var ac = {
@@ -2586,4 +2586,3 @@ function completedJobShop(id){
 	});
 	
 }
-

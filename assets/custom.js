@@ -15,15 +15,15 @@ function setCountNotification(){
 			        dataType: 'json', // what to expect back from the PHP script, if anything
 			        type: 'post',
 			        success: function(num) {
-//			        	console.log(num);
+			        	console.log(num);
 //			        	num = 0;
-if(num>0){
-   $('.fa-bell').addClass('bell');		    
-   $('#tab_notification').attr('badge', num);
-}else{
-   $('.fa-bell').removeClass('bell');		    
-   $('#tab_notification').attr('badge', '');
-}
+					if(num>0){
+					   $('.fa-bell').addClass('bell');		    
+					   $('#tab_notification').attr('badge', num);
+					}else{
+					   $('.fa-bell').removeClass('bell');		    
+					   $('#tab_notification').attr('badge', '');
+					}
 
 }
 });
@@ -691,7 +691,7 @@ success: function(res) {
 //        shopManage();
 
 }
-
+	setCountNotification();
 });
 
 socket.on('updatedriver', function(username, data) {
@@ -1433,7 +1433,7 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
      notification : param_aan2
  };
  console.log(param_all);
- $.ajax({
+ 		$.ajax({
 						url: "main/recordActivityAndNoti", // point to server-side PHP script 
 						dataType: 'json', // what to expect back from the PHP script, if anything
 						type: 'post',
@@ -1442,8 +1442,8 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 							console.log(res);
 							setTimeout(function(){ setCountNotification(); }, 1500);
 //							return res;
-}
-});
+						}
+			});
 
 }
 

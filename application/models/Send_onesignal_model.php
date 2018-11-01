@@ -386,10 +386,13 @@ class Send_onesignal_model extends CI_Model {
   public function acknowledge(){
   
 	
-	$sql_dv = "SELECT username FROM  web_driver  where id = '".$_GET[driver]."'  ";
+	$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$_GET[driver]."'  ";
  	$query_dv = $this->db->query($sql_dv);
  	$res_dv = $query_dv->row();
- 		
+ 	if($res_dv->i_noti_shop<=0){
+ 		$response[msg] = "this user turn off noti";
+		return $response;
+	}	
 	$invoice = $_GET[vc];
 	$order_id = $_GET[order_id];
 	$type_txt = "พนักงานรับทราบ";
