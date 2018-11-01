@@ -2018,7 +2018,8 @@ if (page == "shop_manage.html") {
     shopManage();
     $('#box-shop_date').fadeOut(300);
 }else if (page == "shop_history.html") {
-    historyShop($('#date_shop_his').val());
+//    historyShop($('#date_shop_his').val());
+	filterHistoryStatus('COMPLETE','btn_shop_his_com');
     $('#box-shop_date').fadeIn(300);
     $('#date_shop_his').val(today);
 }else if (page == "shop_wait.html"){
@@ -2249,7 +2250,8 @@ if(class_user=="taxi"){
 	//          var driver = detect_user;
 	var data = {
 	    date : date_rp,
-	    driver : detect_user
+	    driver : detect_user,
+	    status : type_status
 	};
 }
 else{

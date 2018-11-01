@@ -609,19 +609,18 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     <ons-page style="overflow-y: scroll;">
                        
 						<ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
-						<ons-col width="33%">
-							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="his-shop-active shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
-							
-							</ons-button>
-							</ons-col>
 							<ons-col width="33%">
-							<ons-button class="shop-his-btn font-16" id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+							<ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
 								
 							</ons-col>
 							<ons-col width="33%">
 							<ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
 							</ons-col>
+							<ons-col width="33%">
+							<ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
 							
+							</ons-button>
+							</ons-col>
 						</ons-row>		
 						<?php 
 						$margin_his = "margin-top: 5px;";
