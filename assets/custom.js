@@ -691,7 +691,7 @@ success: function(res) {
 //        shopManage();
 
 }
-
+	setCountNotification();
 });
 
 socket.on('updatedriver', function(username, data) {

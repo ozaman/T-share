@@ -329,7 +329,13 @@ function CheckTimeNotification(d1, d2) {
     return final_txt + "ที่ผ่านมา";
 }
 
-function switchSetting(type, status){
+function switchSetting(type, ip){
+	var status = $('#onoff_shop').val();
+	if(status==0){
+		$('#'+ip).val(1);
+	}else{
+		$('#'+ip).val(0);
+	}
 	var param = {
 		user_id : detect_user,
 		status : status
