@@ -403,24 +403,27 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="imageslider.html">   
     <ons-page id="imageslider">
-      <ons-toolbar>
+      <ons-toolbar>       
+                   
+               
         <div class="left">
-          <ons-toolbar-button onclick="prev()">
-            <ons-icon icon="md-chevron-left"></ons-icon>
-        </ons-toolbar-button>
+             <ons-back-button>กลับ</ons-back-button>
+          
     </div>
     <div class="center">โบรชัวร์ / รูป</div>
-    <div class="right">
-      <ons-toolbar-button onclick="next()">
-        <ons-icon icon="md-chevron-right"></ons-icon>
-    </ons-toolbar-button>
-</div>
-</ons-toolbar>
-<ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
     
-</ons-carousel>
+</ons-toolbar>
+
+<div id="boby_imageslider">
+    
+</div>
+
 </ons-page>
 </template>
+<script type="text/javascript">
+
+</script>
+
     <template id="activity.html">   
         <ons-page>
             <div id="body_load_activity">
@@ -619,21 +622,9 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                 </template>
                 
                 <template id="shop_wait.html">
-                    <ons-page >
-                    	<ons-row style="width: 100%;margin-top: 58px; margin-bottom: 20px;">
-							<ons-col width="33%">
-							<ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_wait_com" onclick="filterHistoryStatus('COMPLETE','btn_shop_wait_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_wait_com"></span></ons-button>
-							</ons-col>
-							<ons-col width="33%">
-							<ons-button class="shop-his-btn font-16" id="btn_shop_wait_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_wait_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_wait_cancel"></span></ons-button>
-							</ons-col>
-							<ons-col width="33%">
-							<ons-button onclick="filterHistoryStatus('','btn_shop_wait_all');" id="btn_shop_wait_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_wait_all"></span>
-							
-							</ons-button>
-							</ons-col>
-						</ons-row>
-                        <div id="shop_wait">
+
+                    <ons-page id="shop_wait">
+                        <div>
                         </div>
                     </ons-page>
                 </template>
