@@ -64,11 +64,11 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
      setTimeout(function() {
-            console.log('aaaaaaaa')
+           
             var dataorder = {
     order: '<?=$_COOKIE[detect_user];?>',
 };
-            console.log( '<?=$_COOKIE[detect_user];?>')
+          
         socket.emit('adduser', dataorder);
          }, 1000);
 </script>
