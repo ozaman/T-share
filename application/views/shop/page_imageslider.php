@@ -38,11 +38,12 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
     <li class="table-cell bg_line"> 
       <a href="https://timeline.line.me/social-plugin/share?url=https://www.welovetaxi.com/app/data/pic/place/<?=$FILE_IMG[0]->s_name;?>" target="_blank" class="set-share-social" data-type="line" id="line-shear"> <span class="fa fa-faceboo" style="font-family: inherit;
     color: #FFF;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;">LINE</span> </a> 
     </li> 
     <li class="table-cell bg_mail"> <a href="https://twitter.com/intent/tweet?url=https://www.welovetaxi.com/app/data/pic/place/<?=$FILE_IMG[0]->s_name;?>" target="_blank" class="set-share-social" data-type="twitter"> <span class="fa fa-twitter" style="color: #FFF;"></span> </a> 
     </li> 
+
   </ul>
 </section>
 <span class="left" style="position: absolute; z-index: 5;">
@@ -110,6 +111,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
 }
 </style>
 <script type="text/javascript">
+  // $('#gallery').show()
     (function() {
 
     var initPhotoSwipeFromDOM = function(gallerySelector) {
