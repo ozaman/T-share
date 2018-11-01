@@ -140,8 +140,27 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
+           <!-- <img src="assets/images/logo.png" width="30px" />-->
+           <style>
+           		 .fa-tshareiconv5 {
+					     display: inline-block;
+					     background: url('assets/images/logo2.png') no-repeat;
+					     overflow: hidden;
+					     text-indent: -9999px;
+					     text-align: left;
+					    background-repeat: no-repeat;
+					     background-size: 100% 100%;
+					}
+					 .fa-tshareiconv5 {
+					    /*background-position: -0px -30px;
+					    */
+					     width: 45px;
+					     height: 45px;
+					     margin-top: -7px;
+					}
+           </style>
             <ons-tabbar swipeable id="appTabbar" position="auto">
-                <ons-tab label="หน้าหลัก" icon="ion-home" page="home.html" active></ons-tab>
+                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
                 <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
                 <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
                 <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
@@ -375,6 +394,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     </template>
     <template id="home.html">
         <ons-page>
+       
             <?php 
 //            include("application/views/main_body_view.php"); 
             $this->load->view('main_body_view');
