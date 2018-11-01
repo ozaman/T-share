@@ -409,7 +409,7 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
             <ons-icon icon="md-chevron-left"></ons-icon>
         </ons-toolbar-button>
     </div>
-    <div class="center">โบรชัวร์</div>
+    <div class="center">โบรชัวร์ / รูป</div>
     <div class="right">
       <ons-toolbar-button onclick="next()">
         <ons-icon icon="md-chevron-right"></ons-icon>
