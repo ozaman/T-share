@@ -364,6 +364,12 @@ public function change_plan(){
 			}else{
 				$data[$s_col] =  $value->i_price;
 			}
+			if($value->s_topic_en=="comision"){
+				$data[check_tran_job] = 1;
+			}else{
+				$data[check_tran_job] = 0;
+			}
+			
 		}
 	 /*$data[price_person_unit] = $_POST[price_person_unit];
 	 $data[price_park_unit] = $_POST[price_park_unit];

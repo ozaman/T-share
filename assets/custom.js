@@ -1492,6 +1492,7 @@ function checkzoon(argument) {
 // arm++;
 
 }
+
 function _province(itm) {
     if (pro > 0) {
         $('#box_form_toshow').hide()
@@ -1526,6 +1527,7 @@ function _province(itm) {
    });
     pro ++;
 }
+
 function _body_car_station(body){
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();

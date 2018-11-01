@@ -244,8 +244,8 @@ class Shop extends CI_Controller {
 		public function check_commission_plan(){
 			$return[result] = false;
 			$query = $this->db->query("select plan_id from order_booking where id = ".$_GET[order_id]);
-			$row = $query->row();
-			$query = $this->db->query("select s_topic_en from shop_country_com_list_price_taxi where i_shop_country_com_list = ".$row->plan_id);
+			$row_plan = $query->row();
+			$query = $this->db->query("select s_topic_en from shop_country_com_list_price_taxi where i_shop_country_com_list = ".$row_plan->plan_id);
 			foreach ($query->result() as $row){
 				if($row->s_topic_en == "comision"){
 					$return[result] = true;
@@ -253,8 +253,9 @@ class Shop extends CI_Controller {
 				$data[] = $row;
 			}
 			
-			$return[plan_id] = $_GET[plan_id];
+			$return[plan_id] = $row_plan->plan_id;
 			$return[row] = $data;
+			$return[order] = $_GET[order_id];
 			echo json_encode($return);
 		}
 		
