@@ -138,9 +138,11 @@ $ch = curl_init($url);
 
 //setup request to send json via POST
 if($_GET[driver_id]!=""){
-	$curl_post_data2 = '{"date":"'.$_GET[driver_id].'"}';
+	$dv = $_GET[driver_id];
+}else{
+	$dv = "";
 }
-
+$curl_post_data2 = '{"driver_id":"'.$dv.'"}';
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
 //set the content type to application/json
