@@ -15,15 +15,15 @@ function setCountNotification(){
 			        dataType: 'json', // what to expect back from the PHP script, if anything
 			        type: 'post',
 			        success: function(num) {
-//			        	console.log(num);
+			        	console.log(num);
 //			        	num = 0;
-if(num>0){
-   $('.fa-bell').addClass('bell');		    
-   $('#tab_notification').attr('badge', num);
-}else{
-   $('.fa-bell').removeClass('bell');		    
-   $('#tab_notification').attr('badge', '');
-}
+					if(num>0){
+					   $('.fa-bell').addClass('bell');		    
+					   $('#tab_notification').attr('badge', num);
+					}else{
+					   $('.fa-bell').removeClass('bell');		    
+					   $('#tab_notification').attr('badge', '');
+					}
 
 }
 });

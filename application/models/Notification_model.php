@@ -11,6 +11,7 @@ class Notification_model extends CI_Model {
 			$setting_col = "i_noti_wallet";
 		}
   		$query = $this->db->query("select ".$setting_col." as noti_set from app_user_setting where i_user = ".$_POST[i_user]);
+  		$row = $query->row();
   		if($row->noti_set>0){
 	  		$_POST = $data;
 	  		$to_table = "notification_event_taxi";
@@ -28,11 +29,14 @@ class Notification_model extends CI_Model {
 	  		
 	  		$result = $this->db->insert($to_table, $data);
 	  		$data[result] = $result;
+	  		return $data;
 		}else{
-			$data[result] = TRUE;
-			$data[mgs] = "this user off noti";
+			$ret[result] = false;
+			$ret[result] = false;
+			$ret[mgs] = "this user off noti";
+			return $ret;
 		}
-  		return $data;
+  		
   }
   
   public function add_notification_lab($data){

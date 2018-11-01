@@ -31,10 +31,10 @@
 		$val_wallet = 0;
 		$val_trans = 0;
 		$val_shop = 0;
-		$data[i_driver] = $_COOKIE[detect_user];
-		$this->db->insert('app_user_setting', $data);
+		$data[i_user] = $_COOKIE[detect_user];
+		$result = $this->db->insert('app_user_setting', $data);
 	}
-	
+//	echo $check_row."+++";
 ?>
 <ons-list>
     <ons-list-header>รายการตั้งค่าแจ้งเตือน</ons-list-header>
