@@ -2071,4 +2071,20 @@ function taxiList(){
 //        console.log(array_rooms);
     });
 }
+function fun_imageslider(id){
+    
+    modal.show();
+    fn.pushPage({
+        'id': 'imageslider.html',
+        'title': 'โบรชัวร์'
+    }, 'lift-ios');
+//  $('#body_popup1').html(progress_circle);
+    
+    $.post("shop/imageslider?shop_id="+id, function(ele) {
+        modal.hide();
+        $('#carousel').html(ele);
+       
+//        console.log(array_rooms);
+    });
+}
 
