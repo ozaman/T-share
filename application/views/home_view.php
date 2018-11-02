@@ -111,8 +111,13 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
     margin-left: 7px;
     padding-right: 20px;
 }
+ons-splitter-side[animation=overlay] {
+    border-left: 1px solid #bbb;
+}
+.dialog{
+    min-height: 460px !important;
+}
 </style>
-
 <body>
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
         <ons-page>
@@ -140,7 +145,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                    </ons-toolbar-button>
                </div>
            </ons-toolbar>
-           <!-- <img src="assets/images/logo.png" width="30px" />-->
            <style>
            .fa-tshareiconv5 {
               display: inline-block;
@@ -160,13 +164,27 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                   }
               </style>
               <ons-tabbar swipeable id="appTabbar" position="auto">
-                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
-                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
-                <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
-                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
-            </ons-tabbar>
+	                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
+	                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
+	                <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+	                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
+	            </ons-tabbar>
+	            <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
+				      <ons-list id="popover-list">
+				        <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
+				          <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
+				      </ons-list-item>
+				      <ons-list-item class="more-options" tappable onclick="hiddenNotiAll();hidePopover('popover-noti');">
+				          <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
+				      </ons-list-item>
+				      <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
+				          <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
+				      </ons-list-item>
+				  </ons-list>
+	</ons-popover>
             <script>
                 ons.getScriptPage().addEventListener('prechange', function(event) {
+                	var title = event.tabItem.getAttribute('label');
                     if (event.target.matches('#appTabbar')) {
                         var page_main = event.tabItem.getAttribute('page');
                         if(page_main == "notification.html"){
@@ -180,11 +198,16 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
                             $('#side_pf').show();
                             $('#side_more').hide();
                         }
+                        else if(page_main == "home.html"){
+                            $('#side_pf').show();
+                            $('#side_more').hide();
+                            title = "หน้าหลัก";
+                        }
                         else{
                             $('#side_pf').show();
                             $('#side_more').hide();
                         }
-                        event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+                        event.currentTarget.querySelector('ons-toolbar .center').innerHTML = title
 
                     }
 
@@ -201,20 +224,6 @@ var progress_circle = '<div align="center" style="margin: 20%;"><svg style="heig
           </script>
       </ons-page>
   </template>
-
-  <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
-      <ons-list id="popover-list">
-        <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
-          <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
-      </ons-list-item>
-      <ons-list-item class="more-options" tappable onclick="hiddenNotiAll();hidePopover('popover-noti');">
-          <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
-      </ons-list-item>
-      <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
-          <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
-      </ons-list-item>
-  </ons-list>
-</ons-popover>
 
 <template id="sidemenu.html">
     <ons-page>
@@ -440,10 +449,6 @@ ons-list-item {
 
 </ons-page>
 </template>
-<script type="text/javascript">
-
-</script>
-
 <template id="activity.html">   
     <ons-page>
         <div id="body_load_activity">
@@ -576,8 +581,7 @@ ons-list-item {
                 </script>
             </ons-page>
         </template>
-
-        <template id="shopping.html">
+<template id="shopping.html">
             <ons-page>
                 <ons-toolbar>
                     <div class="left">
@@ -1111,7 +1115,7 @@ ons-list-item {
             </script>
         </ons-page>
     </template>
-    <template id="expenditure.html">
+<template id="expenditure.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1173,7 +1177,7 @@ ons-list-item {
             </script>
         </ons-page>
     </template>
-    <template id="wallet.html">
+<template id="wallet.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1313,11 +1317,6 @@ ons-list-item {
     </script>
 </ons-page>
 </template>
-<style>
-ons-splitter-side[animation=overlay] {
-    border-left: 1px solid #bbb;
-}
-</style>
 <template id="shop_add-dialog.html">
     <ons-alert-dialog id="shop_add-alert-dialog" modifier="rowfooter">
         <div class="alert-dialog-title" id="submit-dialog-title">คุณแน่ใจหรือไม่</div>
@@ -1411,12 +1410,6 @@ ons-splitter-side[animation=overlay] {
     </script>
 </ons-page>
 </template>
-
-<style>
-.dialog{
-    min-height: 460px !important;
-}
-</style>
 <ons-dialog id="cancel-shop-dialog" cancelable style="min-height: 430px;">
     <!-- Optional page. This could contain a Navigator as well. -->
     <ons-page>
@@ -1890,15 +1883,21 @@ var id = detect_user;
 var dataorder = {
     order: parseInt(id),
 };
-socket.emit('sendchat', '');
-socket.emit('adduser', dataorder);
 
+socket.on('connect', function(){
+	  // call the server-side function 'adduser' and send one parameter (value of prompt)
+	  // socket.emit('addroom', prompt("What's your name?"));
+//	  socket.emit('addroom', name);
+//	  socket.emit('sendchat', '');
+	  socket.emit('adduser', dataorder);
+});
+	 
 function addUser() {
     var id = detect_user;
     var dataorder = {
         order: parseInt(id),
     };
-
+	
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
