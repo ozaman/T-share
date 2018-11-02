@@ -163,10 +163,12 @@ ons-splitter-side[animation=overlay] {
                       margin-top: -3px;
                   }
               </style>
+              <!-- <i class="fa " aria-hidden="true"></i> -->
               <ons-tabbar swipeable id="appTabbar" position="auto">
 	                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
 	                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
-	                <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+                    <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+	                <ons-tab id="tab_contact" label="แจ้งปัญหา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
 	                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
 	            </ons-tabbar>
 	            <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
@@ -197,6 +199,12 @@ ons-splitter-side[animation=overlay] {
                             loadActivityPage();
                             $('#side_pf').show();
                             $('#side_more').hide();
+                        }
+                     else if(page_main == "contact.html"){
+                            loadcontactChat();
+                            $('#side_pf').hide();
+                            $('#side_more').show();
+                            
                         }
                         else if(page_main == "home.html"){
                             $('#side_pf').show();
@@ -418,6 +426,13 @@ ons-list-item {
 <template id="notification.html">   
     <ons-page>
         <div id="body_load_notification">
+
+        </div>
+    </ons-page>
+</template>
+<template id="contact.html">   
+    <ons-page>
+        <div id="body_contact">
 
         </div>
     </ons-page>
@@ -2120,6 +2135,7 @@ socket.on('updatedriver', function(username, data) {
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/chat.js?v=<?=time();?>"></script>
 <script>
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
         $(window).on('load', function(){ 

@@ -8,6 +8,9 @@ class Chat extends CI_Controller {
 	public function chatRooms(){
 		$this->load->view('chat/chat');
 	}
+	public function contactChat(){
+		$this->load->view('chat/chat');
+	}
 	
 }
 ?>

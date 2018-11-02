@@ -360,13 +360,13 @@
 	 }
 
 .shotcut-profile{
-	height: 40px;
-	width: 40px;
-/*    width: auto;*/
-	margin-top: 0px; 
-	margin-left: 0px; 
-	border-radius: 25px; 
-	box-shadow: 2px 2px 5px #9E9E9E;
+	    /* height: 40px; */
+    width: 35px;
+    /* width: auto; */
+    margin-top: 4px;
+    margin-left: 0px;
+    border-radius: 25px;
+    /* box-shadow: 2px 2px 5px #9E9E9E; */
 }
 .tb-txt-left td{
 		text-align: left;
