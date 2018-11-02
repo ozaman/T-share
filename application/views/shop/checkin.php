@@ -227,7 +227,7 @@ $btn_pay_com_color = "background-color:#666666";
                               </td>
                            </tr>
                            <tr id="tr_show_pax_regis_<?=$arr[book][id];?>" style="display: none;" >
-
+								
                               <td colspan="3" align="center">
                                  <div style="padding: 5px;">
 
@@ -247,7 +247,11 @@ $btn_pay_com_color = "background-color:#666666";
                                    if($_COOKIE[detect_userclass]=="lab" and $arr[book][check_guest_register]==0){
                                    ?>
                                     <td class="font-17 text-cap">
-                                  
+                                  		<style>
+                                  			input[type="text"]:disabled {
+											    color: #000 !important;
+											}
+                                  		</style>
                                        <span  align="center" onclick="editBook2('<?=$arr[book][id];?>');" class="btn-eb2" style="background: #3b5998;
                                        color: #fff;
                                        padding: 5px;

@@ -63,7 +63,7 @@
 		$display_none_change_plan = "display:none;";
 		$color_titel = "";
 	}else{
-		$titel = "เปลี่ยน".t_work_remuneration;
+		$titel = "เปลี่ยนแปลง".t_work_remuneration;
 		$display_none_change_plan = "";
 		$color_titel = "color: #f00 !important;";
 	}
