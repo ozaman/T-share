@@ -41,11 +41,11 @@
 			<?php 
 			$run_num = 1 ;
 			foreach ($data as $key=>$row){ ?>
-		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
-		      <div class="left">
+		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>" >
+		      <div class="left" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span style="width: 30px;"><?=$run_num++;?></span>&nbsp;<ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
 		      </div>
-		      <div class="center">
+		      <div class="center" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
 		      </div>
 		      <div class="right">
@@ -63,11 +63,11 @@
 		<ons-list>
 			<ons-list-header>ออฟไลน์</ons-list-header>
 			<?php foreach ($data2 as $key2=>$row){ ?>
-		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
-		      <div class="left">
+		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>">
+		      <div class="left"  onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		       <span style="width: 30px;"><?=$run_num++;?></span> <ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
 		      </div>
-		      <div class="center">
+		      <div class="center"  onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
 		      </div>
 		      <div class="right">
