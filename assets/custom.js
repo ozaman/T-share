@@ -17,13 +17,13 @@ function setCountNotification(){
 			        success: function(num) {
 //			        	console.log(num);
 //			        	num = 0;
-					if(num>0){
-					   $('.fa-bell').addClass('bell');		    
-					   $('#tab_notification').attr('badge', num);
-					}else{
-					   $('.fa-bell').removeClass('bell');		    
-					   $('#tab_notification').attr('badge', '');
-					}
+if(num>0){
+    $('.fa-bell').addClass('bell');		    
+    $('#tab_notification').attr('badge', num);
+}else{
+    $('.fa-bell').removeClass('bell');		    
+    $('#tab_notification').attr('badge', '');
+}
 
 }
 });
@@ -318,7 +318,7 @@ function logOut() {
         setTimeout(function(){ window.location = "../TShare_new/material/login/index.php"; }, 2000);
     }
 
-function openNotifyline() {
+    function openNotifyline() {
         location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
     }
 
@@ -339,7 +339,7 @@ function openNotifyline() {
         maximumAge: 0
     };
 
-function success(pos) {
+    function success(pos) {
         if (first_get_pos == true) {
             current = {
                 lat: parseFloat(pos.coords.latitude),
@@ -428,17 +428,17 @@ function updatePlaceNum(province) {
         //        var obj = JSON.parse(data);
         console.log(obj);
         if(obj.length<=0){
-         return;
-     }
-     var province = obj[0].id;
-     var area = obj[0].area;
-     $('#place_province').val(province);
-     $('#place_area').val(area);
+           return;
+       }
+       var province = obj[0].id;
+       var area = obj[0].area;
+       $('#place_province').val(province);
+       $('#place_area').val(area);
         //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
         var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
         $.post(url2, function(data2) {
 //         console.log(data2);
-     });
+});
     });
 }
 var array_rooms;
@@ -469,29 +469,29 @@ var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
 //    console.log(data.booking)
-    
-    array_data = [];
-    var done = [];
-    var none = [];
-    $.each(data.booking, function(index, value) {
-        var current = formatDate(new Date());
-        var db = formatDate(value.transfer_date);
-        if (value.driver_complete == 0) {
-            if (class_user == "lab") {
-                if (db == current) {
-                    done.push(value);
-                }
-            } else {
-                if (db == current && value.drivername == detect_user) {
-                    done.push(value);
-                }
+
+array_data = [];
+var done = [];
+var none = [];
+$.each(data.booking, function(index, value) {
+    var current = formatDate(new Date());
+    var db = formatDate(value.transfer_date);
+    if (value.driver_complete == 0) {
+        if (class_user == "lab") {
+            if (db == current) {
+                done.push(value);
+            }
+        } else {
+            if (db == current && value.drivername == detect_user) {
+                done.push(value);
             }
         }
-    });
-    array_data = {
-        manage: done,
-        history: none
-    };
+    }
+});
+array_data = {
+    manage: done,
+    history: none
+};
 
 
 //                console.log(array_data.manage);
@@ -567,9 +567,9 @@ socket.emit('adduser', dataorder);
 function addUser(){
 	var id = detect_user;
 	var dataorder = {
-     order: parseInt(id),
- };
- 
+       order: parseInt(id),
+   };
+   
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
@@ -609,14 +609,14 @@ $('#num_edit_persion2').val(value.pax_regis);
 }
 
 if(value.check_driver_pay==1 && value.check_lab_pay==1){
-   loadBoxConfirmPay(value.id);
-   return;
+ loadBoxConfirmPay(value.id);
+ return;
 }
 if(value.check_driver_pay==1){
-   loadBoxConfirmPay(value.id);
+ loadBoxConfirmPay(value.id);
 }
 if(value.check_lab_pay==1){
-   loadBoxConfirmPay(value.id);
+ loadBoxConfirmPay(value.id);
 }
 
 }
@@ -628,52 +628,52 @@ if(value.check_lab_pay==1){
 
             if(value.lab_approve_job==1){
               if(value.check_driver_topoint == 1){
-                 $('#btn_manage_topoint_'+value.id).hide();
-                 $('#btn_manage_'+value.id).show();
+               $('#btn_manage_topoint_'+value.id).hide();
+               $('#btn_manage_'+value.id).show();
 
 
-             }else{
-                 $('#btn_manage_topoint_'+value.id).show();
-                 $('#btn_manage_'+value.id).hide();
-             }
-             $('#date_approved_job_'+value.id).show();
-             $('#txt_date_approved_job_'+value.id).text(timestampToDate(value.lab_approve_job_date,'time'));
-             $('#txt_wait_'+value.id).hide();
-             $('#td_cancel_book_'+value.id).hide();
-             $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+           }else{
+               $('#btn_manage_topoint_'+value.id).show();
+               $('#btn_manage_'+value.id).hide();
+           }
+           $('#date_approved_job_'+value.id).show();
+           $('#txt_date_approved_job_'+value.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+           $('#txt_wait_'+value.id).hide();
+           $('#td_cancel_book_'+value.id).hide();
+           $('#status_book_'+value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
-             $('#view_lab_approve_'+value.id).show();
+           $('#view_lab_approve_'+value.id).show();
 
 
-             $.ajax({
-                url: "main/get_data_user?id="+value.lab_approve_job_post,
+           $.ajax({
+            url: "main/get_data_user?id="+value.lab_approve_job_post,
 //					           data: pass,
 type: 'post',
 dataType: 'json',
 success: function(res) {
- console.log(res);
- var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
- $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
+   console.log(res);
+   var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg?v="+$.now();
+   $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("'+url_photo_lab+','+res.nickname+'");');
 			//					               $('#text_name_approved').text(res.nickname);
-     }
- });
+       }
+   });
 
 
 
-         }
-         else{
+       }
+       else{
 
 
-            $('#btn_manage_topoint_'+value.id).hide();
-            $('#txt_wait_'+value.id).show();
-            $('#td_cancel_book_'+value.id).show();
-            $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-            $('#view_lab_approve_'+value.id).hide();
-        }
+        $('#btn_manage_topoint_'+value.id).hide();
+        $('#txt_wait_'+value.id).show();
+        $('#td_cancel_book_'+value.id).show();
+        $('#status_book_'+value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+        $('#view_lab_approve_'+value.id).hide();
+    }
 
-        if(value.status != $('#check_status_'+value.id).val()){
-         var pass = {
+    if(value.status != $('#check_status_'+value.id).val()){
+       var pass = {
           data: value
       };
       console.log(pass);
@@ -691,7 +691,7 @@ success: function(res) {
 //        shopManage();
 
 }
-	setCountNotification();
+setCountNotification();
 });
 
 socket.on('updatedriver', function(username, data) {
@@ -742,18 +742,18 @@ if ($('#open_shop_manage').val() == 1) {
     if(data.lab_approve_job==1){
         if(data.check_driver_topoint == 1){
 
-         $('#btn_manage_topoint_'+data.id).hide();
-         $('#btn_manage_'+data.id).show();
+           $('#btn_manage_topoint_'+data.id).hide();
+           $('#btn_manage_'+data.id).show();
 
-     }else{
-         $('#btn_manage_topoint_'+data.id).show();
-         $('#btn_manage_'+data.id).hide();
-     }
-     $('#date_approved_job_'+data.id).show();
-     $('#txt_date_approved_job_'+data.id).text(timestampToDate(value.lab_approve_job_date,'time'));
-     $('#txt_wait_'+data.id).hide();
-     $('#td_cancel_book_'+data.id).hide();
-     $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+       }else{
+           $('#btn_manage_topoint_'+data.id).show();
+           $('#btn_manage_'+data.id).hide();
+       }
+       $('#date_approved_job_'+data.id).show();
+       $('#txt_date_approved_job_'+data.id).text(timestampToDate(value.lab_approve_job_date,'time'));
+       $('#txt_wait_'+data.id).hide();
+       $('#td_cancel_book_'+data.id).hide();
+       $('#status_book_'+data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
           /*$('#view_lab_approve_'+value.id).show();
@@ -804,9 +804,9 @@ function openOrderFromAndroid(id, status, open_ic) {
     //    alert("id = " + id+" status = "+status+" open_ic = "+open_ic);
     var check_open_shop_id = $('#check_open_shop_id').val();
     if(check_open_shop_id==id){
-       return;
-   }
-   if (status == "his") {
+     return;
+ }
+ if (status == "his") {
 
     openOrderFromAndroidHistory(id, status, open_ic)
 } else {
@@ -841,10 +841,10 @@ $.ajax({
     dataType: 'json',
     type: 'post',
     success: function(res) {
-     console.log(res);
-     openDetailBookinghistory('', '', res.invoice);
-     modal.hide();
- }
+       console.log(res);
+       openDetailBookinghistory('', '', res.invoice);
+       modal.hide();
+   }
 });
 
 }
@@ -976,16 +976,16 @@ function beforeSendShop(){
                 })
                 .then(function() {
 
-                   addCarForSendShop();
+                 addCarForSendShop();
 
-               });
+             });
                 return;
             }else{
-               sendShop2();
-               setTimeout(function(){ shopManage(); }, 2000);
+             sendShop2();
+             setTimeout(function(){ shopManage(); }, 2000);
 
-           }
-       });
+         }
+     });
 
     }else{
       sendShop2();
@@ -1043,26 +1043,26 @@ $.post(urlo, function(res) {
                     modal.hide();
                     $('#shop_add').html(ele2);
                     if (class_user == "taxi"){
-                     $.ajax({
-                       url: "main/check_num_car_station",
-                       data: pass,
-                       type: 'post',
-                       success: function(res) {
-                         console.log("car station number : "+res)
-                         if (res == 0) {
-                           stationCar();
-                       }else{
+                       $.ajax({
+                         url: "main/check_num_car_station",
+                         data: pass,
+                         type: 'post',
+                         success: function(res) {
+                           console.log("car station number : "+res)
+                           if (res == 0) {
+                             stationCar();
+                         }else{
 
-                       }
+                         }
 
+                     }
+                 });
                    }
-               });
-                 }
 
 
 
 
-                 var pass = {
+                   var pass = {
                     date: moment().format('YYYY-MM-DD'),
                     driver: $.cookie("detect_user"),
                     type: 'his'
@@ -1117,21 +1117,21 @@ countWaitTransShop();
 
 function countWaitTransShop(){
 	setTimeout(function(){ 
-	var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
-	console.log(url);
-	$.ajax({
-		        url: url, 
-		        dataType: 'json', 
-		        type: 'post',
-		        success: function(res) {
-		                console.log(res);
-		                if(res>0){
-							$('#tab_shop_wait').attr('badge',res);
-						}
-		                
-		        }
-	});
-	}, 1500);
+       var url = "shop/count_wait_trans_shop_"+class_user+"?driver_id="+detect_user;
+       console.log(url);
+       $.ajax({
+          url: url, 
+          dataType: 'json', 
+          type: 'post',
+          success: function(res) {
+              console.log(res);
+              if(res>0){
+                 $('#tab_shop_wait').attr('badge',res);
+             }
+             
+         }
+     });
+   }, 1500);
 }
 
 function callpop() {
@@ -1231,8 +1231,8 @@ function myAccountBank() {
     }, function(ele) {
         $('#body_account_bank').html(ele);
         setTimeout(function(){
-           setnumbank();
-           if($('#detect_num_bank').val()==0){
+         setnumbank();
+         if($('#detect_num_bank').val()==0){
             addBank();
         }
     }, 500);
@@ -1410,10 +1410,10 @@ function clearCookieAll() {
     for (var cookie in cookies) {
         console.log(cookie);
         if(cookie != "app_remember_user" && cookie!= "app_remember_pass"){
-           $.removeCookie(cookie, {
-             path: '/'
-         });
-       }
+         $.removeCookie(cookie, {
+           path: '/'
+       });
+     }
         //	   $.removeCookie(cookie);
         
     }
@@ -1429,11 +1429,11 @@ function expenditure() {
 function apiRecordActivityAndNotification(param_aan, param_aan2){
 
     var param_all = {
-     activity : param_aan,
-     notification : param_aan2
- };
- console.log(param_all);
- 		$.ajax({
+       activity : param_aan,
+       notification : param_aan2
+   };
+   console.log(param_all);
+   $.ajax({
 						url: "main/recordActivityAndNoti", // point to server-side PHP script 
 						dataType: 'json', // what to expect back from the PHP script, if anything
 						type: 'post',
@@ -1442,8 +1442,8 @@ function apiRecordActivityAndNotification(param_aan, param_aan2){
 							console.log(res);
 							setTimeout(function(){ setCountNotification(); }, 1500);
 //							return res;
-						}
-			});
+}
+});
 
 }
 
@@ -1630,13 +1630,13 @@ if (check_get_have == 1) {
     return false;
 }*/
 $.ajax({
- url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
- data:  $('#form_addstation').serialize(),
- type: 'post',
- dataType: 'json',
- success: function(res) {
-     console.log(res);
-     if (res.status == true ) {
+   url: "main/submitadd_station?id_user="+$.cookie("detect_user"),
+   data:  $('#form_addstation').serialize(),
+   type: 'post',
+   dataType: 'json',
+   success: function(res) {
+       console.log(res);
+       if (res.status == true ) {
 
 
          // beforeSendShop()
@@ -1705,9 +1705,9 @@ function stationCaragain(){
 
 function stationCar(){
 	fn.pushPage({
-     'id': 'popup1.html',
-     'title': 'ข้อมูลสังกัดรถ'
- }, 'lift-ios');
+       'id': 'popup1.html',
+       'title': 'ข้อมูลสังกัดรถ'
+   }, 'lift-ios');
 	var area = $('#place_area').val();
 	var pv = $('#place_province').val();
     $.post("car/edit_form_station?area="+area+"&pv="+pv, {
@@ -1976,9 +1976,9 @@ function selectTypeCarPlace(id){
 function add_btb__station_new(){
     ckstation = 0;
     fn.pushPage({
-     'id': 'popup2.html',
-     'title': 'ข้อมูลสังกัดรถ'
- }, 'lift-ios');
+       'id': 'popup2.html',
+       'title': 'ข้อมูลสังกัดรถ'
+   }, 'lift-ios');
     $('#check_get_have').val(2)
     // $('#body_car_station').hide()
 
@@ -1999,9 +1999,9 @@ function add_btb__station_new(){
 function view_station_his() {
     modal.show();
     fn.pushPage({
-     'id': 'popup2.html',
-     'title': 'ข้อมูลประวัติสังกัดรถ'
- }, 'lift-ios');
+       'id': 'popup2.html',
+       'title': 'ข้อมูลประวัติสังกัดรถ'
+   }, 'lift-ios');
     console.log('aaaaa')
     $.post("car/station_his", function(res) {
         //console.log(res);
@@ -2012,15 +2012,15 @@ function view_station_his() {
 }
 
 function move_station(station){
- modal.show();
-    $.ajax({
-     url: "main/move_station?station="+station,
+   modal.show();
+   $.ajax({
+       url: "main/move_station?station="+station,
    // data:  $('#form_addstation').serialize(),
    type: 'post',
    dataType: 'json',
    success: function(res) {
-     console.log(res);
-     if (res.status == true ) {
+       console.log(res);
+       if (res.status == true ) {
 
 
          // beforeSendShop()
@@ -2048,7 +2048,7 @@ function move_station(station){
           title: "กรุณาตรวจสอบ",
           buttonLabel: "ตกลง"
       })
-       
+        
         
 
     }
@@ -2064,15 +2064,15 @@ function taxiList(){
         'title': 'รายชื่อสมาชิก'
     }, 'lift-ios');
 //	$('#body_popup1').html(progress_circle);
-	
-    $.post("page/call_page", {
-        path: "page/taxi_list", online : array_rooms
-    }, function(ele) {
-    	modal.hide();
-        $('#body_popup1').html(ele);
-        eachTaxiList();
+
+$.post("page/call_page", {
+    path: "page/taxi_list", online : array_rooms
+}, function(ele) {
+   modal.hide();
+   $('#body_popup1').html(ele);
+   eachTaxiList();
 //        console.log(array_rooms);
-    });
+});
 }
 function fun_imageslider(id){
     
@@ -2082,17 +2082,17 @@ function fun_imageslider(id){
         'title': 'โบรชัวร์'
     }, 'lift-ios');
 //  $('#body_popup1').html(progress_circle);
-    
-    $.post("shop/imageslider?shop_id="+id, function(ele) {
-        modal.hide();
-        $('#boby_imageslider').html(ele);
 
-       
+$.post("shop/imageslider?shop_id="+id, function(ele) {
+    modal.hide();
+    $('#boby_imageslider').html(ele);
+
+    
 //        console.log(array_rooms);
-    });
+});
 }
 
-    var prev = function() {
+var prev = function() {
   var carousel = document.getElementById('carousel');
   carousel.prev();
 };
@@ -2103,14 +2103,14 @@ var next = function() {
 };
 
 ons.ready(function() {
-   
-  var carousel = document.addEventListener('postchange', function(event) {
-$('.arrow').removeClass('arrow_s');
-
-  
-    $('#arrow_'+event.activeIndex).addClass('arrow_s');
  
-    console.log('Changed to ' + event.activeIndex)
-  });
+  var carousel = document.addEventListener('postchange', function(event) {
+    $('.arrow').removeClass('arrow_s');
+
+    
+    $('#arrow_'+event.activeIndex).addClass('arrow_s');
+    
+    // console.log('Changed to ' + event.activeIndex)
+});
 });
 
