@@ -1781,47 +1781,6 @@ if($(this).attr('id')==id){
 
 
 </div>
-
-<!-- Pricing Tables -->
-<div class="hiddendiv common"></div>
-<div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;">
-</div>
-<?php   $lng_map = $google_map_api_lng;?>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
-<input type="hidden" value="0" id="check_custome_js" />
-<script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
-<script src="<?=base_url();?>assets/script/activity.js?v=<?=time()?>"></script>
-<script src="<?=base_url();?>assets/script/profile.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
-<!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
-<script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
-<script>
-    if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
-        $(window).on('load', function(){ 
-           $("#load_material").fadeOut(500);
-           modal.hide();
-           setTimeout(function() {
-//              alert(class_user);
-			sendTagIOS(class_user, username);
-			setCountNotification();
-
-			var check_new_user = '<?=$_GET[check_new_user];?>';
-			var regis_linenoti = '<?=$_GET[regis];?>';
-
-            }, 1500);
-       });
-    }
-
-    if (detect_mb == "Android") {
-        sendTagOs(class_user, username);
-    }
-    var modal_photo = document.querySelector('#modal_photo');
-</script>
 <script>
 	var array_rooms;
 var res_socket;
@@ -2143,4 +2102,44 @@ socket.on('updatedriver', function(username, data) {
     }
 
 });
+</script>
+<!-- Pricing Tables -->
+<div class="hiddendiv common"></div>
+<div class="drag-target" data-sidenav="slide-out" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 10px; left: 0px;">
+</div>
+<?php   $lng_map = $google_map_api_lng;?>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
+<input type="hidden" value="0" id="check_custome_js" />
+<script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/script/activity.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/script/profile.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
+<!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
+<script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
+<script>
+    if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
+        $(window).on('load', function(){ 
+           $("#load_material").fadeOut(500);
+           modal.hide();
+           setTimeout(function() {
+//              alert(class_user);
+			sendTagIOS(class_user, username);
+			setCountNotification();
+
+			var check_new_user = '<?=$_GET[check_new_user];?>';
+			var regis_linenoti = '<?=$_GET[regis];?>';
+
+            }, 1500);
+       });
+    }
+
+    if (detect_mb == "Android") {
+        sendTagOs(class_user, username);
+    }
+    var modal_photo = document.querySelector('#modal_photo');
 </script>
