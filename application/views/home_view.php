@@ -1740,7 +1740,7 @@ if($(this).attr('id')==id){
 
             <div class="pswp__counter"></div>
 
-            <button class="pswp__button pswp__button--close" title="Close (Esc)" id="ecs" style="display: none;"></button>
+            <button class="pswp__button pswp__button--close" title="Close (Esc)" id="ecs" style="display: nones;"></button>
 
             <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
 
