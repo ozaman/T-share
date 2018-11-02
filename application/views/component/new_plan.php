@@ -107,7 +107,7 @@
      		</tr>
      		<tr style="<?=$display_com;?>">
      			<td width="35%"><span class="font-17">ค่าคอม</span></td>
-     			<td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+     			<td align="right"><?=$com_progress;?>&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                 </td>
                 <td width="10%">
                 </td>

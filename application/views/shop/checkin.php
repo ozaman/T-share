@@ -229,7 +229,7 @@ $btn_pay_com_color = "background-color:#666666";
                            <tr id="tr_show_pax_regis_<?=$arr[book][id];?>" style="display: none;" >
 
                               <td colspan="3" align="center">
-                                 <div style="padding: 10px;">
+                                 <div style="padding: 5px;">
 
                                    <table width="100%">
                                      <tr>
