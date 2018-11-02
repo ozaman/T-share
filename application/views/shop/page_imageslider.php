@@ -46,25 +46,52 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
 
   </ul>
 </section>
-<span class="left" style="position: absolute; z-index: 5;">
+<!-- <span class="left" style="position: absolute; z-index: 5;">
 
   <ons-toolbar-button onclick="prev()">
     <ons-icon icon="md-chevron-left" style="    font-size: 31px;
     margin-top: 40vh;"></ons-icon>
   </ons-toolbar-button>
-</span>
-<span class="pull-right" style="right: 0px; position: absolute; z-index: 5;">
+</span> -->
+<!-- <span class="pull-right" style="right: 0px; position: absolute; z-index: 5;">
   <ons-toolbar-button onclick="next()">
     <ons-icon icon="md-chevron-right" style="    font-size: 31px;
     margin-top: 40vh;"></ons-icon>
   </ons-toolbar-button>
-</span>
+</span> -->
+<style>
+  .arrow{
+        display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50px;
+  }
+  .arrow_s{
+        background: #9E9E9E;
+  }
+</style>
+<div style="text-align: center;
+    z-index: 5555;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;">
+<?php
+ foreach($FILE_IMG as $key=>$row){
+
+    ?>
+<div class="arrow" id="arrow_<?=$key;?>" ></div>
+<?php } ?>
+</div>
 <ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel" class="gallery">
 
 
   <?php
   foreach($FILE_IMG as $key=>$row){
+
     ?>
+
     <ons-carousel-item style="">
       <a href="https://www.welovetaxi.com/app/data/pic/place/<?=$row->s_name;?>" data-size="1600x1600" data-med="https://www.welovetaxi.com/app/data/pic/place/<?=$row->s_name;?>" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--mainss">
       <!-- <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;"> -->
@@ -111,9 +138,9 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
 }
 </style>
 <script type="text/javascript">
-    $('#ecs').show()
+    
     (function() {
-
+ $('#arrow_0').addClass('arrow_s');
     var initPhotoSwipeFromDOM = function(gallerySelector) {
 
       var parseThumbnailElements = function(el) {
