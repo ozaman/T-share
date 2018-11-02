@@ -1744,9 +1744,9 @@ if($(this).attr('id')==id){
 
             <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
 
-            <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+            <!-- <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> -->
 
-            <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+            <!-- <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> -->
 
             <div class="pswp__preloader">
               <div class="pswp__preloader__icn">

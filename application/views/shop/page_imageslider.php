@@ -8,6 +8,7 @@ $_order[i_index] = 'asc';
 $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_where,$_select,$_order);
 ?>
 
+
  <!-- <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
