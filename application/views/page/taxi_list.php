@@ -49,7 +49,7 @@
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
 		      </div>
 		      <div class="right">
-		        <span class="sp_phone"  role="<?=$row->id;?>" ><?=$row->phone;?></span>
+		        <a href="tel:<?=$row->phone;?>" class="sp_phone" role="<?=$row->id;?>" ><?=$row->phone;?></a>
 		      </div>
 		    </ons-list-item>
 		    <?php } ?>
@@ -71,7 +71,7 @@
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
 		      </div>
 		      <div class="right">
-		        <span class="sp_phone"  role="<?=$row->id;?>" ><?=$row->phone;?></span>
+		        <a href="tel:<?=$row->phone;?>"  class="sp_phone"  role="<?=$row->id;?>" ><?=$row->phone;?></a>
 		      </div>
 		    </ons-list-item>
 		    <?php } ?>
