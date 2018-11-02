@@ -70,6 +70,7 @@ $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->ma
 $shopmain = $this->db->query($sql_shopmain);
 $data_shopmain = $shopmain->row();
 ?>
+
 <div style="height: 100%;">
 	<input type="hidden" value="<?=$data_place->topic_th;?>" id="place_name_select" />
   <form name="form_booking" id="form_booking">

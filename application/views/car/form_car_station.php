@@ -321,6 +321,7 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
             success: function(res){
             	ckstation = 0;
             	console.log(res)
+            	// _region(res.OTHRET.region)
             	//var count = '<?=count($MEMBER);?>'
 
             	$('#id_station').val(res.OTHRET.id)

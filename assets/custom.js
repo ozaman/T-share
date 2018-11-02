@@ -2000,7 +2000,7 @@ function view_station_his() {
     modal.show();
     fn.pushPage({
      'id': 'popup2.html',
-     'title': 'ข้อมูลประวัตสังกัดรถ'
+     'title': 'ข้อมูลประวัติสังกัดรถ'
  }, 'lift-ios');
     console.log('aaaaa')
     $.post("car/station_his", function(res) {
@@ -2103,7 +2103,13 @@ var next = function() {
 };
 
 ons.ready(function() {
+   
   var carousel = document.addEventListener('postchange', function(event) {
+$('.arrow').removeClass('arrow_s');
+
+  
+    $('#arrow_'+event.activeIndex).addClass('arrow_s');
+ 
     console.log('Changed to ' + event.activeIndex)
   });
 });

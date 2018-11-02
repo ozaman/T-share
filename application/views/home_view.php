@@ -1740,13 +1740,13 @@ if($(this).attr('id')==id){
 
             <div class="pswp__counter"></div>
 
-            <button class="pswp__button pswp__button--close" title="Close (Esc)" id="ecs" style="display: nones;"></button>
+            <button class="pswp__button pswp__button--close" title="Close (Esc)" ></button>
 
             <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
 
-            <!-- <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> -->
+            <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
-            <!-- <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> -->
+            <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
             <div class="pswp__preloader">
               <div class="pswp__preloader__icn">
@@ -1769,8 +1769,8 @@ if($(this).attr('id')==id){
       </div>
   </div>
 
-  <!-- <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> -->
-  <!-- <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button> -->
+  <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+  <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
   <div class="pswp__caption">
       <div class="pswp__caption__center">
       </div>
