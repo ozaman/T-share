@@ -1516,7 +1516,7 @@ ons-list-item {
     <div id="body_load_photo">
         <div>
             <img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
-            <div style="background-color: #000;color: #fff;">
+            <div style="color: #fff;">
                 <b style="font-size: 34px;" id="text_name_approved">เบิร์ด</b>
             </div>
         </div>

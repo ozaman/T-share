@@ -149,8 +149,9 @@ where t1.member = '".$val[drivername]."' ");
 				}else{
 					$hide_btn_photo = "display:none;";
 				  }
+				  $path_img = "../data/pic/driver/small/".$res_l->username.".jpg?v=<?=time();?>";
                	?>
-			   	<i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('../data/pic/driver/small/<?=$res_l->username;?>.jpg?v=<?=time();?>','<?=$res_l->nickname;?>');" >account_circle</i>
+			   	<i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('<?=$path_img;?>','<?=$res_l->nickname;?>');" >account_circle</i>
 			   
             </td>
          </tr>
