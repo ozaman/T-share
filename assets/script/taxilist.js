@@ -34,6 +34,19 @@ function searchDvName(txt_ip){
 		});
 }
 
+function searchDvUserName(txt_ip){
+		console.log(txt_ip);
+	  	$('.sp_username').each(function() {
+			var txt_name = $(this).text();
+			var row_id = $(this).attr('role');
+			 if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
+		       	$('#list_id_'+row_id).show();
+		      } else {
+		        $('#list_id_'+row_id).hide();
+		      }
+		});
+}
+
 function searchDvPhone(txt_ip){
 //		console.log(txt_ip);
 	  	$('.sp_phone').each(function() {

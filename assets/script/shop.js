@@ -2522,14 +2522,6 @@ function confirmGetIncome(id, invoice, driver){
 			               success: function(res) {
 			                   console.log(res);
 			                   sendSocket(id);
-			                   ons.notification.alert({
-			                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
-			                      title: "สำเร็จ",
-			                      buttonLabel: "ตกลง"
-			                  })
-			                   .then(function() {
-			                    reloadIncomeShop(id);
-			                });
 			               }
 			           });
 				   		
@@ -2584,6 +2576,25 @@ function completedJobShop(id){
 		        type: 'post',
 		        success: function(data) {
 		        		console.log(data)
+		        		if(data.check==true){
+							ons.notification.alert({
+			                      message: 'ยืนยันการรับเงินสดแล้ว กรุณารอแจ้งโอนจากค่าคอมมิชชั่น',
+			                      title: "สำเร็จ",
+			                      buttonLabel: "ตกลง"
+				                  })
+				                   .then(function() {
+				                    reloadIncomeShop(id);
+				                });
+						}else{
+							ons.notification.alert({
+			                      message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
+			                      title: "สำเร็จ",
+			                      buttonLabel: "ตกลง"
+				                  })
+				                   .then(function() {
+				                    reloadIncomeShop(id);
+				                });
+						}
 		        }
 	});
 	

@@ -31,6 +31,9 @@
 	  <ons-col style="padding: 5px;"><input type="text" placeholder="ค้นหาจากชื่อ" value="" class="font-17 search-taxi-list" id="search_dv_name" onkeyup="searchDvName(this.value);"  /></ons-col>
 	  <ons-col style="padding: 5px;"><input type="text" placeholder="ค้นหาจากเบอร์โทร" value="" class="font-17 search-taxi-list" id="search_dv_phone" onkeyup="searchDvPhone(this.value);"  /></ons-col>
 	</ons-row>
+	<ons-row>
+	  <ons-col style="padding: 5px;"><input type="text" placeholder="ค้นหาจากชื่อผู้ใช้" value="" class="font-17 search-taxi-list" id="search_dv_username" onkeyup="searchDvUserName(this.value);"  /></ons-col>
+	</ons-row>
 	<h3>จำนวนสมาชิก <?=$num;?> คน</h3>
 </div>
 
@@ -43,10 +46,11 @@
 			foreach ($data as $key=>$row){ ?>
 		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>" >
 		      <div class="left" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
-		        <span style="width: 30px;"><?=$run_num++;?></span>&nbsp;<ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
+		        <span style="width: 15px;"><?=$run_num++;?></span>&nbsp;<ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
 		      </div>
 		      <div class="center" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
+		        <span style="display: none;" class="sp_username" role="<?=$row->id;?>"><?=$row->username;?>&nbsp;<?=$row->username;?></span>
 		      </div>
 		      <div class="right">
 		        <a href="tel:<?=$row->phone;?>" class="sp_phone" role="<?=$row->id;?>" ><?=$row->phone;?></a>
@@ -65,10 +69,11 @@
 			<?php foreach ($data2 as $key2=>$row){ ?>
 		    <ons-list-item style="padding: 0 0 0 10px;" id="list_id_<?=$row->id;?>">
 		      <div class="left"  onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
-		       <span style="width: 30px;"><?=$run_num++;?></span> <ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
+		       <span style="width: 20px;"><?=$run_num++;?></span> <ons-icon icon="md-face" style="font-size: 26px;" class="list-item__icon" id="icon_online_<?=$row->id;?>"></ons-icon>
 		      </div>
 		      <div class="center"  onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
+		        <span style="display: none;" class="sp_username" role="<?=$row->id;?>"><?=$row->username;?>&nbsp;<?=$row->username;?></span>
 		      </div>
 		      <div class="right">
 		        <a href="tel:<?=$row->phone;?>"  class="sp_phone"  role="<?=$row->id;?>" ><?=$row->phone;?></a>

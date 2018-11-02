@@ -1883,15 +1883,21 @@ var id = detect_user;
 var dataorder = {
     order: parseInt(id),
 };
-socket.emit('sendchat', '');
-socket.emit('adduser', dataorder);
 
+socket.on('connect', function(){
+	  // call the server-side function 'adduser' and send one parameter (value of prompt)
+	  // socket.emit('addroom', prompt("What's your name?"));
+//	  socket.emit('addroom', name);
+//	  socket.emit('sendchat', '');
+	  socket.emit('adduser', dataorder);
+});
+	 
 function addUser() {
     var id = detect_user;
     var dataorder = {
         order: parseInt(id),
     };
-
+	
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
