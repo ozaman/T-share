@@ -1,5 +1,5 @@
 <?php 
-	$query = $this->db->query("select id, name, nickname, phone from web_driver where status = 1 and id != '".$_COOKIE[detect_user]."' order by id desc");
+	$query = $this->db->query("select id, name, nickname, phone, username from web_driver where status = 1 and id != '".$_COOKIE[detect_user]."' order by id desc");
 	$index = 0;
 	$num = $query->num_rows();
 	
@@ -50,7 +50,7 @@
 		      </div>
 		      <div class="center" onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
-		        <span style="display: none;" class="sp_username" role="<?=$row->id;?>"><?=$row->username;?>&nbsp;<?=$row->username;?></span>
+		        <input type="hidden" class="sp_username" role="<?=$row->id;?>" value="<?=$row->username;?>" />
 		      </div>
 		      <div class="right">
 		        <a href="tel:<?=$row->phone;?>" class="sp_phone" role="<?=$row->id;?>" ><?=$row->phone;?></a>
@@ -73,7 +73,7 @@
 		      </div>
 		      <div class="center"  onclick="openDetailDv('<?=$row->id;?>','<?=$row->nickname;?>');">
 		        <span class="sp_name" role="<?=$row->id;?>"><?=$row->name;?>&nbsp;<?=$row->nickname;?></span>
-		        <span style="display: none;" class="sp_username" role="<?=$row->id;?>"><?=$row->username;?>&nbsp;<?=$row->username;?></span>
+		        <input type="hidden" class="sp_username" role="<?=$row->id;?>" value="<?=$row->username;?>" />
 		      </div>
 		      <div class="right">
 		        <a href="tel:<?=$row->phone;?>"  class="sp_phone"  role="<?=$row->id;?>" ><?=$row->phone;?></a>
