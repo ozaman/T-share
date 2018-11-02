@@ -55,6 +55,10 @@
  	
  	$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = '".$res_log_change->cause_change."' ");
  	$res_type_change = $query->row();
+ 	if($res_type_change->s_topic==""){
+		$res_type_change->s_topic = "คนขับเปลี่ยนใจ";
+	}
+ 	
  	
  	$query = $this->db->query("select * from change_plan_logs where order_id = ".$data->id);
  	$check_change_plan = $query->num_rows();

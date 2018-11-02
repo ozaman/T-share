@@ -168,7 +168,7 @@ else if($arr[book][status]=='COMPLETED'){
   
 }?>
 
-	<div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
+	<div id="status_booking_detail" align="right" class="font-26" style=""><b><?=$status_txt;?></b></div>
 	<span class="font-20"><?=$res_ps->$place_shopping;?></span>
 		
 	<table width="100%" border="0" cellspacing="1" cellpadding="1">
