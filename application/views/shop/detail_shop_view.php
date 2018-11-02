@@ -459,7 +459,7 @@ else if($arr[book][status]=='COMPLETED'){
      			<td  width="35%">รวม</td>
      			<td align="right">
 	     			<span class="16" id="txt_all_total">
-	     				<?=number_format($all_total);?>
+	     				<?=number_format($all_total,0);?>
 	     			</span>
      			</td>
      			 <td width="90">

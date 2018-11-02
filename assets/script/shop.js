@@ -2033,6 +2033,8 @@ if (page == "shop_manage.html") {
 	$('#date_shop_his').hide();
 	$('#box-shop_date').fadeIn(300);
 	waitTransShop();
+}else{
+	 $('#box-shop_date').fadeOut(300);
 }
     /*document.querySelector('ons-toolbar .center')
     .innerHTML = event.tabItem.getAttribute('label');*/
