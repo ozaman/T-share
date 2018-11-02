@@ -9,7 +9,7 @@ function loadcontactChat() {
             // var urlcounthis = ""
             $.ajax({
                 url: "chat/contactChat",
-                data: pass,
+                // data: pass,
                 type: 'post',
                 success: function(res) {
                     // console.log(res);
