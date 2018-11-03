@@ -203,7 +203,7 @@ ons-splitter-side[animation=overlay] {
                      else if(page_main == "contact.html"){
                             loadcontactChat();
                             $('#side_pf').hide();
-                            $('#side_more').show();
+                            $('#side_more').hide();
                             
                         }
                         else if(page_main == "home.html"){

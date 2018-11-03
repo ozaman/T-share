@@ -9,7 +9,160 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 
 ?>
-<script>
+
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+	<b>ROOMS</b>
+	<div id="rooms"></div>
+</div>
+<!-- <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+	
+	<input id="data" style="width:200px;" />
+	
+</div> -->
+<div id="shopee-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="shopee-chat-root ember-application"><div id="ember306" class="ember-view">    
+	<div class="shopee-chat-container expanded">
+
+		<div class="conversation-window">
+			
+			<div id="ember549" class="chat-window ember-view"><!---->
+				<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
+					<div class="shopee-chat__scrollable-inner">
+
+				<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
+					<div id="conversation"></div>
+				<!-- </div>
+				</div> -->
+			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
+					<div class="col-1">
+						<div class="avatar">
+							<img src="//cf.shopee.co.th/file/a11f0af894b74bcd870ea8af4a36b2a7_tn" height="37">
+						</div>
+					</div>
+					<div class="col-15 message-content reverse">
+						<div class="chat-bubble from">
+							<div class="overflow-wrapper">
+								ได้รับสินค้าหรือยังครับ
+							</div>
+						</div>
+						<div class="timestamp">
+							09-02-2018 11:47
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<div id="ember728" class="chat-message ember-view">
+					<div class="shopee-chat-grid">
+						<div class="col-15 message-content ">
+							<div class="chat-bubble to">
+								<div class="overflow-wrapper">
+									ได้รับเรียบร้อยแล้วครับ
+								</div>
+							</div>
+							<div class="timestamp">
+								09-02-2018 11:48
+							</div>
+						</div>
+						<div class="col-1">
+							<div class="avatar">
+								<img src="//cf.shopee.co.th/file/8be478795103c875c924bdd65849615d_tn">
+							</div>
+						</div>
+					</div>
+				</div>
+ -->
+
+
+
+
+			</div>
+		</div>
+		<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+				<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
+				<div class="chat-toolbar">
+					<div class="clearfix" style="    padding: 0 5px;">
+           <!--  <div style="position: relative; top: 7px;" class="left">
+                  <div class="popover-button popup-parent">
+                 <div class="popover-button-inner " data-ember-action="" data-ember-action-572="572">
+                      <div class="ic ic_emoji "></div>
+                      สติ๊กเกอร์
+                    </div>
+                  </div>
+                <div class="popover-button " data-ember-action="" data-ember-action-567="567">
+                    <div class="ic ic_pic"></div>
+                  รูปภาพ
+                </div>
+                <div class="popover-button popup-parent">
+                   <div class="popover-button-inner " data-ember-action="" data-ember-action-568="568">
+                        <div class="ic ic_product "></div>
+                      สินค้า
+                    </div>
+                </div>
+                <div class="popover-button popup-parent">
+                  <div class="popover-button-inner " data-ember-action="" data-ember-action-569="569">
+                        <div class="ic ic_order "></div>
+                      คำสั่งซื้อ
+                    </div>
+                </div>
+            </div> -->
+            <table width="100%">
+				<tr>
+					<td>
+						<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
+    width: 100%;
+    height: 38px;
+    padding: 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+">
+					</td>
+					<td valign="center"> 
+						<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+    width: 40px;
+    text-align: center;
+    padding: 9px 13px;
+        margin: 0px 2px 0;
+    border-radius: 4px;
+    border: none;
+    background: linear-gradient(#0076ff,#0076ff);">
+						<!-- <button  class="shopee-chat__primary" id="datasend">ส่ง</button> -->
+						<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
+					</td>
+					<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
+    cursor: pointer;
+    /* width: 28px; */
+    text-align: center;
+    padding: 0 0;
+    margin: 0px 0 0;
+    border-radius: 4px;
+    border: none;
+    color: #9E9E9E;
+    font-size: 45px;
+    margin-top: 3px;
+    /* background: linear-gradient(#0076ff,#0076ff); */
+"></i></div></td>
+				</tr>
+			</table>
+           <!--  <div class="right">
+            	<input  class="shopee-chat__primary" type="button" id="datasend" value="send" />
+            	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
+</div>
+</div>
+<div class="liquid-modal liquid-modal--closed">
+	<div class="liquid-child">
+		<div class="lm-container">
+			<div role="dialog" class="lf-dialog">
+				<!---->            </div>
+			</div>
+			<span class="lf-overlay"></span>
+		</div>
+	</div></div></div>
+	<script>
 	
 	var name = '<?=$user->id;?>';
 	var socket = io.connect('https://www.welovetaxi.com:8080');
@@ -26,31 +179,56 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	var from_to,reverse,img,utc;
 	socket.on('updatechat', function (username, data) {
 		utc = '';
-		utc = new Date().toJSON().slice(0,19).replace(/-/g,'/'); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
+		utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
 		console.log(username)
 		if (username == 'SERVER') {
-			msg = '<div id="ember728" class="chat-message ember-view">'
+
+
+			msg = '<div id="ember726" class="chat-message ember-view">'
 			+'<div class="shopee-chat-grid">'
-			+'<div class="col-15 message-content ">'
-			+ '<div class="chat-bubble to">'
-			+'<div class="overflow-wrapper">'
-			+data
-			+'</div>'
-			+ '</div>'
-			+'<div class="timestamp">'
-			+ utc
-			+'</div>'
-			+'</div>'
-			+'<div class="col-1">'
-			// +'<span>'+res.nickname+'</span>'
-			+'<div class="avatar">'
-			
-			+'<img src="<?=base_url();?>assets/images/service.png?v=<?=time();?>" height="37">'
-			+'</div>'
-			+'</div>'
-			+'</div>'
+					+'<div class="col-1">'
+					// +'<span>'+res.nickname+'</span>'
+						+'<div class="avatar">'
+						
+							+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" height="37">'
+						+'</div>'
+					+'</div>'
+					+'<div class="col-15 message-content reverse">'
+						+'<div class="chat-bubble from">'
+							+'<div class="overflow-wrapper">'
+								+data
+							+'</div>'
+						+'</div>'
+						+'<div class="timestamp">'
+							+ utc
+						+'</div>'
+					+'</div>'
+				+'</div>'
 			+'</div>';
+
+
+			// msg = '<div id="ember728" class="chat-message ember-view">'
+			// +'<div class="shopee-chat-grid">'
+			// +'<div class="col-15 message-content ">'
+			// + '<div class="chat-bubble to">'
+			// +'<div class="overflow-wrapper">'
+			// +data
+			// +'</div>'
+			// + '</div>'
+			// +'<div class="timestamp">'
+			// + utc
+			// +'</div>'
+			// +'</div>'
+			// +'<div class="col-1">'
+			// // +'<span>'+res.nickname+'</span>'
+			// +'<div class="avatar">'
+			
+			// +'<img src="<?=base_url();?>assets/images/service.png?v=<?=time();?>" height="37">'
+			// +'</div>'
+			// +'</div>'
+			// +'</div>'
+			// +'</div>';
 
 			$('#conversation').append(msg);
 		}
@@ -126,7 +304,78 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 		// $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
 	});
+	socket.on('come image', function (username, base64Image) {
+		console.log(username)
+		console.log(base64Image)
+		utc = '';
+		utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
+		console.log(username)
+		
+			$.ajax({
+            url: 'chat/search_user?id='+username, //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            // data: req,
+            success: function(res){
+            		console.log(res)
+            		img = res.username;
+            		if (username != name) {
+			
+
+			msg = '<div id="ember726" class="chat-message ember-view">'
+			+'<div class="shopee-chat-grid">'
+					+'<div class="col-1">'
+					// +'<span>'+res.nickname+'</span>'
+						+'<div class="avatar">'
+						
+							+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
+						+'</div>'
+					+'</div>'
+					+'<div class="col-15 message-content reverse">'
+						+'<div class=" from">'
+							+'<div class="overflow-wrapper">'
+								+'<img src="' + base64Image + '" style="width:150px; border-radius: 10px;">'
+							+'</div>'
+						+'</div>'
+						+'<div class="timestamp">'
+							+ utc
+						+'</div>'
+					+'</div>'
+				+'</div>'
+			+'</div>';
+		}
+		else{
+			
+			msg = '<div id="ember728" class="chat-message ember-view">'
+			+'<div class="shopee-chat-grid">'
+			+'<div class="col-15 message-content ">'
+			+ '<div class=" to">'
+			+'<div class="overflow-wrapper">'
+			+'<img src="' + base64Image + '" style="width:150px; border-radius: 10px;"/>'
+			+'</div>'
+			+ '</div>'
+			+'<div class="timestamp">'
+			+ utc
+			+'</div>'
+			+'</div>'
+			+'<div class="col-1">'
+			// +'<span>'+res.nickname+'</span>'
+			+'<div class="avatar">'
+			
+			+'<img src="../data/pic/driver/small/'+img+'.jpg" >'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'</div>';
+		}
+		$('#conversation').append(msg);
+            	}
+            });
+		
+
+	});
+ // socket.on('user image', image);
 	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 	socket.on('updaterooms', function(rooms, current_room) {
 		$('#rooms').empty();
@@ -139,7 +388,11 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			}
 		});
 	});
-
+function image (from, base64Image) {
+	console.log(from)
+	console.log(base64Image)
+    $('#lines').append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
+  }
 	function switchRoom(room){
 		socket.emit('switchRoom', room);
 	}
@@ -165,140 +418,19 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 				$('#datasend').focus().click();
 			}
 		});
+		$('#imagefile').bind('change', function(e){
+      var data = e.originalEvent.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(evt){
+        // image('me', evt.target.result);
+        socket.emit('user image', evt.target.result);
+      };
+      reader.readAsDataURL(data);
+      
+    });
 	});
 
 </script>
-<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-	<b>ROOMS</b>
-	<div id="rooms"></div>
-</div>
-<!-- <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-	
-	<input id="data" style="width:200px;" />
-	
-</div> -->
-<div id="shopee-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="shopee-chat-root ember-application"><div id="ember306" class="ember-view">    
-	<div class="shopee-chat-container expanded">
-
-		<div class="conversation-window">
-			
-			<div id="ember549" class="chat-window ember-view"><!---->
-				<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
-					<div class="shopee-chat__scrollable-inner">
-
-				<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
-					<div id="conversation"></div>
-				<!-- </div>
-				</div> -->
-			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
-					<div class="col-1">
-						<div class="avatar">
-							<img src="//cf.shopee.co.th/file/a11f0af894b74bcd870ea8af4a36b2a7_tn" height="37">
-						</div>
-					</div>
-					<div class="col-15 message-content reverse">
-						<div class="chat-bubble from">
-							<div class="overflow-wrapper">
-								ได้รับสินค้าหรือยังครับ
-							</div>
-						</div>
-						<div class="timestamp">
-							09-02-2018 11:47
-						</div>
-					</div>
-				</div>
-			</div>
-
-				<div id="ember728" class="chat-message ember-view">
-					<div class="shopee-chat-grid">
-						<div class="col-15 message-content ">
-							<div class="chat-bubble to">
-								<div class="overflow-wrapper">
-									ได้รับเรียบร้อยแล้วครับ
-								</div>
-							</div>
-							<div class="timestamp">
-								09-02-2018 11:48
-							</div>
-						</div>
-						<div class="col-1">
-							<div class="avatar">
-								<img src="//cf.shopee.co.th/file/8be478795103c875c924bdd65849615d_tn">
-							</div>
-						</div>
-					</div>
-				</div>
- -->
-
-
-
-
-			</div>
-		</div>
-		<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
-				<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
-				<div class="chat-toolbar">
-					<div class="clearfix">
-           <!--  <div style="position: relative; top: 7px;" class="left">
-                  <div class="popover-button popup-parent">
-                 <div class="popover-button-inner " data-ember-action="" data-ember-action-572="572">
-                      <div class="ic ic_emoji "></div>
-                      สติ๊กเกอร์
-                    </div>
-                  </div>
-                <div class="popover-button " data-ember-action="" data-ember-action-567="567">
-                    <div class="ic ic_pic"></div>
-                  รูปภาพ
-                </div>
-                <div class="popover-button popup-parent">
-                   <div class="popover-button-inner " data-ember-action="" data-ember-action-568="568">
-                        <div class="ic ic_product "></div>
-                      สินค้า
-                    </div>
-                </div>
-                <div class="popover-button popup-parent">
-                  <div class="popover-button-inner " data-ember-action="" data-ember-action-569="569">
-                        <div class="ic ic_order "></div>
-                      คำสั่งซื้อ
-                    </div>
-                </div>
-            </div> -->
-            <table width="100%">
-				<tr>
-					<td>
-						<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="
-    font-size: 17px;
-    width: 100%;
-    padding: 4px 15px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-">
-					</td>
-					<td> 
-						<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" />
-						<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
-					</td>
-				</tr>
-			</table>
-           <!--  <div class="right">
-            	<input  class="shopee-chat__primary" type="button" id="datasend" value="send" />
-            	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
-            </div> -->
-        </div>
-    </div>
-</div>
-<input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
-</div>
-</div>
-<div class="liquid-modal liquid-modal--closed">
-	<div class="liquid-child">
-		<div class="lm-container">
-			<div role="dialog" class="lf-dialog">
-				<!---->            </div>
-			</div>
-			<span class="lf-overlay"></span>
-		</div>
-	</div></div></div>
 	<style>
 
 
@@ -356,7 +488,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
     border-radius: 4px;
     border: none;
     
-    background:linear-gradient(#fdfdfd,#f6f6f6)}
+    background:linear-gradient(#0076ff,#0076ff)}
 	.shopee-chat-root button.shopee-chat__primary,.shopee-chat-root input[type=button].shopee-chat__primary,.shopee-chat-root input[type=submit].shopee-chat__primary,.shopee-chat-root input[type=reset].shopee-chat__primary{color:#fff;background:#0076ff}
 	.shopee-chat-root button .disabled,.shopee-chat-root button:disabled,.shopee-chat-root input[type=button] .disabled,.shopee-chat-root input[type=button]:disabled,.shopee-chat-root input[type=submit] .disabled,.shopee-chat-root input[type=submit]:disabled,.shopee-chat-root input[type=reset] .disabled,.shopee-chat-root input[type=reset]:disabled{background:#a6a6a6!important}
 	.shopee-chat-root hr{margin:0;padding:0}
@@ -444,20 +576,20 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	.shopee-chat-root .chat-header{background:#00bfa5;-ms-flex:0 0 35px;flex:0 0 35px;height:35px;width:100%;border-right:1px solid #00ab93;border-top:1px solid #00ab93}
 	.shopee-chat-root .chat-header.first{border-left:1px solid #00ab93}
 	.shopee-chat-root .chat-content{-ms-flex:1;flex:1;padding:5px 25px;overflow-y:auto;overflow-x:hidden}
-	.shopee-chat-root .chat-panel{-ms-flex:0 0 125px;flex:0 0 60px;/*height:125px;*/border-top:1px solid #e8e8e8}
+	.shopee-chat-root .chat-panel{-ms-flex:0 0 125px;flex:0 0 65px;/*height:125px;*/border-top:1px solid #e8e8e8}
 	.shopee-chat-root .chat-panel textarea{display:block;width:100%;outline:0;border:0;padding:10px;resize:none}
 	.shopee-chat-root .chat-input:after,.shopee-chat-root .clearfix:after,.shopee-chat-root .shopee-chat-grid:after{display:table;content:'';clear:both}
 	.shopee-chat-root .chat-panel textarea::-webkit-input-placeholder{color:#bababa}
 	.shopee-chat-root .chat-panel textarea::-moz-placeholder{color:#bababa}
 	.shopee-chat-root .chat-panel textarea:-ms-input-placeholder{color:#bababa}
 	.shopee-chat-root .chat-panel textarea:-moz-placeholder{color:#bababa}
-	.shopee-chat-root .chat-panel .chat-toolbar{bottom: 6px;
+	.shopee-chat-root .chat-panel .chat-toolbar{    bottom: 6px;
     /* padding: 9px; */
     position: absolute;
     width: 100%;
     /* height: 45px; */
-    padding: 4px 10px 6px 5px;
-    /*background: #fff;*/}
+    /* padding: 4px 10px 6px 5px; */
+    /* background: #fff; */}
 	.shopee-chat-root .chat-section-header{margin:20px 10px 0;color:#757575}
 	.shopee-chat-root .divider{width:100%;height:24px;position:relative;text-align:center}
 	.shopee-chat-root .divider .line{position:absolute;left:0;top:0;width:100%;height:12px;border-bottom:.1rem solid #e8e8e8}
@@ -585,5 +717,29 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	.product-order-card{background:#fff;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.12);margin:0 -15px}
 	.product-order-card .shopee-chat__offer-button{position:absolute;bottom:10px;right:10px}
 	.chat-window{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex:1;flex:1;min-height:1px}
+	.filebutton input#imagefile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+}
+#send-message input {
+    border: none;
+    height: 40px;
+    position: relative;
+    font-size: 14px;
+    color: #777;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
+    padding: 0 10px;
+    line-height: 30px;
+    vertical-align: middle;
+    width: 580px;
+    z-index: 100;
+}
 
 </style>
