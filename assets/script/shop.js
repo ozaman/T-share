@@ -1103,7 +1103,7 @@ function openDetailShopWaitTrans(invoice){
 
 var url = "shop/detail_shop_his";
 var param = {
-    user_id: $.cookie("detect_user"),
+    user_id: detect_user,
     invoice: invoice,
 };
 //    console.log(param);
