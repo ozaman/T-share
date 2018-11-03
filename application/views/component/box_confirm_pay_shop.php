@@ -1,3 +1,19 @@
+<style>
+  @keyframes blink { 
+   50% { 
+     border-color: #ff0000; 
+     color : #ff0000;   } 
+  }
+  .red-blink{ /*or other element you want*/
+      animation-name: blink ;
+      animation-duration: .5s ;
+      animation-timing-function: step-end ;
+      animation-iteration-count: infinite ;
+      animation-direction: alternate ;
+      
+  }
+</style>
+
 <?php 
 $data = $this->Main_model->rowdata(TBL_ORDER_BOOKING, array('id' => $_GET[id]), array('*'));
 if($data->check_driver_pay==0){
@@ -56,7 +72,7 @@ if($data->check_driver_pay==0){
 							 			 <div id="status_get_<?=$data->id;?>" style="<?=$status_taxi_ap;?>">
 							 			<b class="font-16" style="color: #59AA47;">ยืนยันรับเงิน เวลา <span id="text_confirm_date_<?=$data->id;?>"><?=date('H:i',$data->driver_pay_report_date);?></span> น.</b>
 							 			</div>
-				                  <ons-button id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="border-radius: 25px; margin-top: 0px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
+				                  <ons-button class="red-blink" id="btn_confirm_get_<?=$data->id;?>" onclick="confirmGetIncome('<?=$data->id;?>','<?=$data->invoice;?>','<?=$data->drivername;?>');" style="width: 100%; text-align: center;border-radius: 25px; margin-top: 0px;background-color: #fff;<?=$btn_confirm_taxi;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการรับเงิน</span> </ons-button>
 							 <?php }
 								
 								else{  
