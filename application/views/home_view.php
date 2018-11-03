@@ -667,7 +667,7 @@ ons-list-item {
 <template id="shop_wait.html">
 
     <ons-page style="overflow-y: scroll;">
-        <div  id="shop_wait" style="margin-top: 55px;">
+        <div  id="shop_wait" style="margin-top: 0px;">
         </div>
     </ons-page>
 </template>
