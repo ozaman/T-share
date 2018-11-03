@@ -295,7 +295,7 @@
 //		createSheetOftenCar();
 	}, 500);
 	
-</script>
+</script> 
 
 <template id="confirm-car.html">
   <ons-alert-dialog id="confirm-car-dialog" modifier="rowfooter">
