@@ -16,7 +16,7 @@
    	    box-shadow: 1px 1px 3px #cacaca;
    }
 </style>
-
+ 
 <?php 
       	$sql = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt FROM web_carall as t1 left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' order by status_usecar desc, status desc  ";
       	$query_car = $this->db->query($sql);
