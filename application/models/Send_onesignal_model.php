@@ -433,7 +433,7 @@ class Send_onesignal_model extends CI_Model {
     
     $res = curl_exec($ch);
     $response["allresponses"] = json_decode($res);
-    
+    $response["setting"] = $res_dv->i_noti_shop;
     curl_close($ch);
     
     return $response;

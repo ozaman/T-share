@@ -2055,12 +2055,18 @@ socket.on('updatedriver', function(username, data) {
             if (data.check_driver_topoint == 1) {
                 console.log("driver_topoint");
                 changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
+                $('.page').animate({
+                    scrollTop: $(document).height()+700
+                  }, 500);
             }
             if (data.check_guest_receive == 1) {
                 console.log("guest_receive");
                 changeHtml("guest_receive", data.id, timestampToDate(data.guest_receive_date, "time"));
 
                 $('#step_guest_register').show();
+                $('.page').animate({
+                    scrollTop: $(document).height()+700
+                }, 500);
             }
             if (data.check_guest_register == 1) {
                 console.log("guest_register");
