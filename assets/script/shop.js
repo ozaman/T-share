@@ -1086,8 +1086,8 @@ $.post(url, detailObj, function(data) {
 	}
 	checkPhotoCheckIn('guest_register', obj.id);
 	$('.page').animate({
-        scrollTop: $( '#btn_driver_topoint' ).offset().top
-    }, 500);
+                    scrollTop: $(document).height()+700
+                }, 500);
 	if(type=="ios"){
 	 modal.hide();
 	}
@@ -1666,8 +1666,6 @@ function saveShop_action_pay(poppage) {
         // .then(function() {
         //     callpop();
         // });
-        shopFuncNotiActi(id_send, type_send);
-		
     } else {  }
 	 modal.hide();
 });
@@ -1742,6 +1740,10 @@ function sendCheckIn(id, type) {
    	url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
 	saveShop_action_pay(0);
    }
+   $('.page').animate({
+                    scrollTop: $(document).height()+700
+       }, 500);
+   
 }
 
 function checkinAndOpenDetail(id, key){
