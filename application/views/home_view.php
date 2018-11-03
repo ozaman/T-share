@@ -2092,7 +2092,7 @@ socket.on('updatedriver', function(username, data) {
                 $('#btn_manage_' + data.id).hide();
             }
             $('#date_approved_job_' + data.id).show();
-            $('#txt_date_approved_job_' + data.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
+            $('#txt_date_approved_job_' + data.id).text(timestampToDate(data.lab_approve_job_date, 'time'));
             $('#txt_wait_' + data.id).hide();
             $('#td_cancel_book_' + data.id).hide();
             $('#status_book_' + data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
