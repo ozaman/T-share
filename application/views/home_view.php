@@ -44,7 +44,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
     <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
-    <link href="<?=base_url();?>assets/EasyAutocomplete/easy-autocomplete.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=time()?>">
+    <!-- <link href="<?=base_url();?>assets/imageViewer/easy-autocomplete.min.css" rel="stylesheet" type="text/css"> -->
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 </head> 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
@@ -58,6 +59,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
 <link rel="stylesheet" href="<?=base_url();?>assets/plugin/jquery-ui.css?v=<?=time()?>"/>
 <script src="<?=base_url();?>assets/plugin/jquery-ui.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/imageViewer/imageviewer.js?v=<?=time()?>"></script>
 
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 

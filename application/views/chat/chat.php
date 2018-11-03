@@ -1,5 +1,5 @@
 <!-- <script src="/socket.io/socket.io.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
 <script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 <?php 
 $_where = array();
@@ -28,8 +28,8 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 				<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
 					<div class="shopee-chat__scrollable-inner">
 
-				<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
-					<div id="conversation"></div>
+						<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
+							<div id="conversation"></div>
 				<!-- </div>
 				</div> -->
 			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
@@ -70,17 +70,17 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 						</div>
 					</div>
 				</div>
- -->
+			-->
 
 
 
 
-			</div>
 		</div>
-		<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
-				<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
-				<div class="chat-toolbar">
-					<div class="clearfix" style="    padding: 0 5px;">
+	</div>
+	<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+		<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
+		<div class="chat-toolbar">
+			<div class="clearfix" style="    padding: 0 5px;">
            <!--  <div style="position: relative; top: 7px;" class="left">
                   <div class="popover-button popup-parent">
                  <div class="popover-button-inner " data-ember-action="" data-ember-action-572="572">
@@ -106,51 +106,51 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
                 </div>
             </div> -->
             <table width="100%">
-				<tr>
-					<td>
-						<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
-    width: 100%;
-    height: 38px;
-    padding: 0px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-">
-					</td>
-					<td valign="center"> 
-						<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
-    width: 40px;
-    text-align: center;
-    padding: 9px 13px;
-        margin: 0px 2px 0;
-    border-radius: 4px;
-    border: none;
-    background: linear-gradient(#0076ff,#0076ff);">
-						<!-- <button  class="shopee-chat__primary" id="datasend">ส่ง</button> -->
-						<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
-					</td>
-					<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
-    cursor: pointer;
-    /* width: 28px; */
-    text-align: center;
-    padding: 0 0;
-    margin: 0px 0 0;
-    border-radius: 4px;
-    border: none;
-    color: #9E9E9E;
-    font-size: 45px;
-    margin-top: 3px;
-    /* background: linear-gradient(#0076ff,#0076ff); */
-"></i></div></td>
-				</tr>
-			</table>
+            	<tr>
+            		<td>
+            			<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
+            			width: 100%;
+            			height: 38px;
+            			padding: 0px 10px;
+            			border: 1px solid #ccc;
+            			border-radius: 5px;
+            			">
+            		</td>
+            		<td valign="center"> 
+            			<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+            			width: 40px;
+            			text-align: center;
+            			padding: 9px 13px;
+            			margin: 0px 2px 0;
+            			border-radius: 4px;
+            			border: none;
+            			background: linear-gradient(#0076ff,#0076ff);">
+            			<!-- <button  class="shopee-chat__primary" id="datasend">ส่ง</button> -->
+            			<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
+            		</td>
+            		<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
+            		cursor: pointer;
+            		/* width: 28px; */
+            		text-align: center;
+            		padding: 0 0;
+            		margin: 0px 0 0;
+            		border-radius: 4px;
+            		border: none;
+            		color: #9E9E9E;
+            		font-size: 45px;
+            		margin-top: 3px;
+            		/* background: linear-gradient(#0076ff,#0076ff); */
+            		"></i></div></td>
+            	</tr>
+            </table>
            <!--  <div class="right">
             	<input  class="shopee-chat__primary" type="button" id="datasend" value="send" />
             	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
-            </div> -->
+            	</div> -->
+            </div>
         </div>
     </div>
-</div>
-<input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
+    <input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
 </div>
 </div>
 <div class="liquid-modal liquid-modal--closed">
@@ -163,9 +163,9 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 		</div>
 	</div></div></div>
 	<script>
-	
-	var name = '<?=$user->id;?>';
-	var socket = io.connect('https://www.welovetaxi.com:8080');
+
+		var name = '<?=$user->id;?>';
+		var socket = io.connect('https://www.welovetaxi.com:8080');
 	// var socket = io.connect('http://localhost:8080');
 
 	// on connection to server, ask for user's name with an anonymous callback
@@ -187,25 +187,25 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 			msg = '<div id="ember726" class="chat-message ember-view">'
 			+'<div class="shopee-chat-grid">'
-					+'<div class="col-1">'
+			+'<div class="col-1">'
 					// +'<span>'+res.nickname+'</span>'
-						+'<div class="avatar">'
-						
-							+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" height="37">'
-						+'</div>'
+					+'<div class="avatar">'
+
+					+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" height="37">'
+					+'</div>'
 					+'</div>'
 					+'<div class="col-15 message-content reverse">'
-						+'<div class="chat-bubble from">'
-							+'<div class="overflow-wrapper">'
-								+data
-							+'</div>'
-						+'</div>'
-						+'<div class="timestamp">'
-							+ utc
-						+'</div>'
+					+'<div class="chat-bubble from">'
+					+'<div class="overflow-wrapper">'
+					+data
 					+'</div>'
-				+'</div>'
-			+'</div>';
+					+'</div>'
+					+'<div class="timestamp">'
+					+ utc
+					+'</div>'
+					+'</div>'
+					+'</div>'
+					+'</div>';
 
 
 			// msg = '<div id="ember728" class="chat-message ember-view">'
@@ -239,48 +239,48 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
             type: 'POST',
             // data: req,
             success: function(res){
-            		console.log(res)
-            		img = res.username;
-            		if (username != name) {
-			
+            	console.log(res)
+            	img = res.username;
+            	if (username != name) {
 
-			msg = '<div id="ember726" class="chat-message ember-view">'
-			+'<div class="shopee-chat-grid">'
-					+'<div class="col-1">'
+
+            		msg = '<div id="ember726" class="chat-message ember-view">'
+            		+'<div class="shopee-chat-grid">'
+            		+'<div class="col-1">'
 					// +'<span>'+res.nickname+'</span>'
-						+'<div class="avatar">'
-						
-							+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
-						+'</div>'
+					+'<div class="avatar">'
+
+					+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
+					+'</div>'
 					+'</div>'
 					+'<div class="col-15 message-content reverse">'
-						+'<div class="chat-bubble from">'
-							+'<div class="overflow-wrapper">'
-								+data
-							+'</div>'
-						+'</div>'
-						+'<div class="timestamp">'
-							+ utc
-						+'</div>'
+					+'<div class="chat-bubble from">'
+					+'<div class="overflow-wrapper">'
+					+data
 					+'</div>'
-				+'</div>'
-			+'</div>';
-		}
-		else{
-			
-			msg = '<div id="ember728" class="chat-message ember-view">'
-			+'<div class="shopee-chat-grid">'
-			+'<div class="col-15 message-content ">'
-			+ '<div class="chat-bubble to">'
-			+'<div class="overflow-wrapper">'
-			+data
-			+'</div>'
-			+ '</div>'
-			+'<div class="timestamp">'
-			+ utc
-			+'</div>'
-			+'</div>'
-			+'<div class="col-1">'
+					+'</div>'
+					+'<div class="timestamp">'
+					+ utc
+					+'</div>'
+					+'</div>'
+					+'</div>'
+					+'</div>';
+				}
+				else{
+
+					msg = '<div id="ember728" class="chat-message ember-view">'
+					+'<div class="shopee-chat-grid">'
+					+'<div class="col-15 message-content ">'
+					+ '<div class="chat-bubble to">'
+					+'<div class="overflow-wrapper">'
+					+data
+					+'</div>'
+					+ '</div>'
+					+'<div class="timestamp">'
+					+ utc
+					+'</div>'
+					+'</div>'
+					+'<div class="col-1">'
 			// +'<span>'+res.nickname+'</span>'
 			+'<div class="avatar">'
 			
@@ -291,8 +291,10 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			+'</div>';
 		}
 		$('#conversation').append(msg);
-            	}
-            });
+		$('.shopee-chat-root').get(0).scrollTop = 10000000;
+		
+	}
+});
 		}
 		
 		
@@ -312,56 +314,57 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 		console.log(username)
 		
-			$.ajax({
+		$.ajax({
             url: 'chat/search_user?id='+username, //Controller where search is performed
             dataType: 'json',
             type: 'POST',
             // data: req,
             success: function(res){
-            		console.log(res)
-            		img = res.username;
-            		if (username != name) {
-			
+            	console.log(res)
+            	msg = '';
+            	img = res.username;
+            	if (username != name) {
 
-			msg = '<div id="ember726" class="chat-message ember-view">'
-			+'<div class="shopee-chat-grid">'
-					+'<div class="col-1">'
+
+            		msg = '<div id="ember726" class="chat-message ember-view">'
+            		+'<div class="shopee-chat-grid">'
+            		+'<div class="col-1">'
 					// +'<span>'+res.nickname+'</span>'
-						+'<div class="avatar">'
-						
-							+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
-						+'</div>'
+					+'<div class="avatar">'
+
+					+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
+					+'</div>'
 					+'</div>'
 					+'<div class="col-15 message-content reverse">'
-						+'<div class=" from">'
-							+'<div class="overflow-wrapper">'
-								+'<img src="' + base64Image + '" style="width:150px; border-radius: 10px;">'
-							+'</div>'
-						+'</div>'
-						+'<div class="timestamp">'
-							+ utc
-						+'</div>'
+					+'<div class=" from">'
+					+'<div class="overflow-wrapper cf">'
+					+'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
 					+'</div>'
-				+'</div>'
-			+'</div>';
-		}
-		else{
-			
-			msg = '<div id="ember728" class="chat-message ember-view">'
-			+'<div class="shopee-chat-grid">'
-			+'<div class="col-15 message-content ">'
-			+ '<div class=" to">'
-			+'<div class="overflow-wrapper">'
-			+'<img src="' + base64Image + '" style="width:150px; border-radius: 10px;"/>'
-			+'</div>'
-			+ '</div>'
-			+'<div class="timestamp">'
-			+ utc
-			+'</div>'
-			+'</div>'
-			+'<div class="col-1">'
+					+'</div>'
+					+'<div class="timestamp">'
+					+ utc
+					+'</div>'
+					+'</div>'
+					+'</div>'
+					+'</div>';
+				}
+				else{
+
+					msg = '<div id="ember728" class="chat-message ember-view">'
+					+'<div class="shopee-chat-grid">'
+					+'<div class="col-15 message-content ">'
+					+ '<div class=" to">'
+					+'<div class="overflow-wrapper cf">'
+					+'<img class="chat_gallery_items" onclick="chat_gallery_items(this)" src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer"/>'
+					+'</div>'
+					+ '</div>'
+					+'<div class="timestamp">'
+					+ utc
+					+'</div>'
+					+'</div>'
+					+'<div class="col-1">'
 			// +'<span>'+res.nickname+'</span>'
-			+'<div class="avatar">'
+			+'<div class="avatar ">'
 			
 			+'<img src="../data/pic/driver/small/'+img+'.jpg" >'
 			+'</div>'
@@ -370,8 +373,9 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			+'</div>';
 		}
 		$('#conversation').append(msg);
-            	}
-            });
+		$('.shopee-chat-root').get(0).scrollTop = 10000000;
+	}
+});
 		
 
 	});
@@ -388,17 +392,33 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			}
 		});
 	});
-function image (from, base64Image) {
-	console.log(from)
-	console.log(base64Image)
-    $('#lines').append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
-  }
+	function chat_gallery_items(item) {
+		console.log(item)
+		var imgSrc = item.src,
+			highResolutionImage = $(this).data('high-res-img');
+
+			viewer.show(imgSrc, highResolutionImage);
+	}
+	function image (from, base64Image) {
+		console.log(from)
+		console.log(base64Image)
+		$('#lines').append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
+	}
 	function switchRoom(room){
 		socket.emit('switchRoom', room);
 	}
 
 	// on load of page
+	var viewer = ImageViewer();
+		$('.chat_gallery_items').click(function () {
+			console.log('aaaaa')
+			var imgSrc = this.src,
+			highResolutionImage = $(this).data('high-res-img');
+
+			viewer.show(imgSrc, highResolutionImage);
+		});
 	$(function(){
+		
 		// when the client clicks SEND
 		$('#datasend').click( function() {
 			var message = $('#data').val();
@@ -419,76 +439,79 @@ function image (from, base64Image) {
 			}
 		});
 		$('#imagefile').bind('change', function(e){
-      var data = e.originalEvent.target.files[0];
-      var reader = new FileReader();
-      reader.onload = function(evt){
+			var data = e.originalEvent.target.files[0];
+			var reader = new FileReader();
+			reader.onload = function(evt){
         // image('me', evt.target.result);
+
         socket.emit('user image', evt.target.result);
-      };
-      reader.readAsDataURL(data);
-      
-    });
+    };
+    reader.readAsDataURL(data);
+
+});
+
+
 	});
 
 </script>
-	<style>
+<style>
 
 
 
-	.shopee-chat-root .ic_block{background-position:-17px 0;width:16px;height:16px}
-	.shopee-chat-root .ic_chat{background-position:0 -34px;width:28px;height:28px}
-	.shopee-chat-root .ic_emoji{background-position:-51px -21px;width:20px;height:20px}
-	.shopee-chat-root .ic_emoji.active,.shopee-chat-root .ic_emoji_click{background-position:-51px 0;width:20px;height:20px}
-	.shopee-chat-root .ic_model_close{background-position:-51px -42px;width:18px;height:18px}
-	.shopee-chat-root .ic_msg{background-position:-72px -19px;width:20px;height:20px}
-	.shopee-chat-root .ic_msg.active,.shopee-chat-root .ic_msg_click{background-position:-72px -59px;width:20px;height:20px}
-	.shopee-chat-root .ic_order{background-position:-34px 0;width:16px;height:19px}
-	.shopee-chat-root .ic_order.active,.shopee-chat-root .ic_order_click{background-position:-34px -37px;width:15px;height:18px}
-	.shopee-chat-root .ic_pic{background-position:-41px -63px;width:20px;height:18px}
-	.shopee-chat-root .ic_pic.active,.shopee-chat-root .ic_pic_click{background-position:0 -63px;width:20px;height:18px}
-	.shopee-chat-root .ic_product{background-position:-72px 0;width:20px;height:18px}
-	.shopee-chat-root .ic_product.active,.shopee-chat-root .ic_product_click{background-position:-72px -40px;width:20px;height:18px}
-	.shopee-chat-root .ic_report{background-position:0 0;width:16px;height:16px}
-	.shopee-chat-root .ic_user{background-position:-34px -20px;width:15px;height:16px}
-	.shopee-chat-root .webchat_close{background-position:-17px -17px;width:16px;height:16px}
-	.shopee-chat-root .webchat_search{background-position:0 -17px;width:16px;height:16px}
-	.shopee-chat-root .ic_block{background-position:-139px -138px}
-	.shopee-chat-root .ic_chat{background-position:0 0}
-	.shopee-chat-root .ic_emoji{background-position:-98px -74px}
-	.shopee-chat-root .ic_emoji.active,.shopee-chat-root .ic_emoji_click{background-position:0 -57px}
-	.shopee-chat-root .ic_model_close{background-position:-39px -135px}
-	.shopee-chat-root .ic_msg{background-position:-57px 0}
-	.shopee-chat-root .ic_msg.active,.shopee-chat-root .ic_msg_click{background-position:-57px -41px}
-	.shopee-chat-root .ic_order{background-position:-139px 0}
-	.shopee-chat-root .ic_order.active,.shopee-chat-root .ic_order_click{background-position:-76px -135px}
-	.shopee-chat-root .ic_pic{background-position:0 -98px}
-	.shopee-chat-root .ic_pic.active,.shopee-chat-root .ic_pic_click{background-position:-98px -37px}
-	.shopee-chat-root .ic_product{background-position:-98px 0}
-	.shopee-chat-root .ic_product.active,.shopee-chat-root .ic_product_click{background-position:-41px -98px}
-	.shopee-chat-root .ic_report{background-position:-139px -39px}
-	.shopee-chat-root .ic_user{background-position:-107px -135px}
-	.shopee-chat-root .webchat_close{background-position:-139px -72px}
-	.shopee-chat-root .webchat_search{background-position:-139px -105px}
-	.shopee-chat-root .webchat_search_black{background-position:0 -135px}}
-	.lm-container{overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;top:0;left:0;z-index:24}
-	.lf-overlay{top:0;left:0;background-color:#000;opacity:.5;z-index:23}
-	.lf-dialog{position:relative;border:0;width:100%;max-width:none;padding:0;margin-left:auto;margin-right:auto;background:0}@keyframes modal-fade{0%{opacity:0}100%{opacity:1}}
-	.TW .shopee-chat-root{font-family:'Source Sans Pro',"文泉驛正黑","WenQuanYi Zen Hei","Hiragino Sans GB","儷黑 Pro","LiHei Pro","Heiti TC","微軟正黑體","Microsoft JhengHei UI","Microsoft JhengHei",san-serif}
-	.shopee-chat-root,ul.context-menu-list{font-family:'Source Sans Pro','Helvetica Neue',Helvetica,RobotoRegular,'Droid Sans',Arial,sans-serif}ul.context-menu-list{position:absolute;display:block;list-style:none;background:#fff;padding:0;box-shadow:0 1px 2px rgba(0,0,0,.2)}ul.context-menu-list>li{cursor:pointer;font-size:12px;padding:13px 10px;border:1px solid transparent;width:100px}ul.context-menu-list>li:hover{background:#f5f5f5;border:1px solid #e8e8e8}
-	.shopee-chat-root{font-size:14px}
-	.shopee-chat-root *{box-sizing:border-box}
-	.shopee-chat-root a{text-decoration:none;color:#ff5722}
-	.shopee-chat-root .liquid-modal{display:none;transform:none!important;z-index:25;position:absolute;left:0;top:0;width:100%;height:100%}
-	.shopee-chat-root .liquid-modal--open{display:block;animation:modal-fade .25s ease-in-out}
-	.shopee-chat-root button,.shopee-chat-root input[type=button],.shopee-chat-root input[type=submit],.shopee-chat-root input[type=reset]{idth: 100%;
-    cursor: pointer;
-    text-align: center;
-    padding: 5px 13px;
-    margin: 0px 0 0;
-    border-radius: 4px;
-    border: none;
-    
-    background:linear-gradient(#0076ff,#0076ff)}
+.shopee-chat-root .ic_block{background-position:-17px 0;width:16px;height:16px}
+.shopee-chat-root .ic_chat{background-position:0 -34px;width:28px;height:28px}
+.shopee-chat-root .ic_emoji{background-position:-51px -21px;width:20px;height:20px}
+.shopee-chat-root .ic_emoji.active,.shopee-chat-root .ic_emoji_click{background-position:-51px 0;width:20px;height:20px}
+.shopee-chat-root .ic_model_close{background-position:-51px -42px;width:18px;height:18px}
+.shopee-chat-root .ic_msg{background-position:-72px -19px;width:20px;height:20px}
+.shopee-chat-root .ic_msg.active,.shopee-chat-root .ic_msg_click{background-position:-72px -59px;width:20px;height:20px}
+.shopee-chat-root .ic_order{background-position:-34px 0;width:16px;height:19px}
+.shopee-chat-root .ic_order.active,.shopee-chat-root .ic_order_click{background-position:-34px -37px;width:15px;height:18px}
+.shopee-chat-root .ic_pic{background-position:-41px -63px;width:20px;height:18px}
+.shopee-chat-root .ic_pic.active,.shopee-chat-root .ic_pic_click{background-position:0 -63px;width:20px;height:18px}
+.shopee-chat-root .ic_product{background-position:-72px 0;width:20px;height:18px}
+.shopee-chat-root .ic_product.active,.shopee-chat-root .ic_product_click{background-position:-72px -40px;width:20px;height:18px}
+.shopee-chat-root .ic_report{background-position:0 0;width:16px;height:16px}
+.shopee-chat-root .ic_user{background-position:-34px -20px;width:15px;height:16px}
+.shopee-chat-root .webchat_close{background-position:-17px -17px;width:16px;height:16px}
+.shopee-chat-root .webchat_search{background-position:0 -17px;width:16px;height:16px}
+.shopee-chat-root .ic_block{background-position:-139px -138px}
+.shopee-chat-root .ic_chat{background-position:0 0}
+.shopee-chat-root .ic_emoji{background-position:-98px -74px}
+.shopee-chat-root .ic_emoji.active,.shopee-chat-root .ic_emoji_click{background-position:0 -57px}
+.shopee-chat-root .ic_model_close{background-position:-39px -135px}
+.shopee-chat-root .ic_msg{background-position:-57px 0}
+.shopee-chat-root .ic_msg.active,.shopee-chat-root .ic_msg_click{background-position:-57px -41px}
+.shopee-chat-root .ic_order{background-position:-139px 0}
+.shopee-chat-root .ic_order.active,.shopee-chat-root .ic_order_click{background-position:-76px -135px}
+.shopee-chat-root .ic_pic{background-position:0 -98px}
+.shopee-chat-root .ic_pic.active,.shopee-chat-root .ic_pic_click{background-position:-98px -37px}
+.shopee-chat-root .ic_product{background-position:-98px 0}
+.shopee-chat-root .ic_product.active,.shopee-chat-root .ic_product_click{background-position:-41px -98px}
+.shopee-chat-root .ic_report{background-position:-139px -39px}
+.shopee-chat-root .ic_user{background-position:-107px -135px}
+.shopee-chat-root .webchat_close{background-position:-139px -72px}
+.shopee-chat-root .webchat_search{background-position:-139px -105px}
+.shopee-chat-root .webchat_search_black{background-position:0 -135px}}
+.lm-container{overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;top:0;left:0;z-index:24}
+.lf-overlay{top:0;left:0;background-color:#000;opacity:.5;z-index:23}
+.lf-dialog{position:relative;border:0;width:100%;max-width:none;padding:0;margin-left:auto;margin-right:auto;background:0}@keyframes modal-fade{0%{opacity:0}100%{opacity:1}}
+.TW .shopee-chat-root{font-family:'Source Sans Pro',"文泉驛正黑","WenQuanYi Zen Hei","Hiragino Sans GB","儷黑 Pro","LiHei Pro","Heiti TC","微軟正黑體","Microsoft JhengHei UI","Microsoft JhengHei",san-serif}
+.shopee-chat-root,ul.context-menu-list{font-family:'Source Sans Pro','Helvetica Neue',Helvetica,RobotoRegular,'Droid Sans',Arial,sans-serif}ul.context-menu-list{position:absolute;display:block;list-style:none;background:#fff;padding:0;box-shadow:0 1px 2px rgba(0,0,0,.2)}ul.context-menu-list>li{cursor:pointer;font-size:12px;padding:13px 10px;border:1px solid transparent;width:100px}ul.context-menu-list>li:hover{background:#f5f5f5;border:1px solid #e8e8e8}
+.shopee-chat-root{font-size:14px}
+.shopee-chat-root *{box-sizing:border-box}
+.shopee-chat-root a{text-decoration:none;color:#ff5722}
+.shopee-chat-root .liquid-modal{display:none;transform:none!important;z-index:25;position:absolute;left:0;top:0;width:100%;height:100%}
+.shopee-chat-root .liquid-modal--open{display:block;animation:modal-fade .25s ease-in-out}
+.shopee-chat-root button,.shopee-chat-root input[type=button],.shopee-chat-root input[type=submit],.shopee-chat-root input[type=reset]{idth: 100%;
+	cursor: pointer;
+	text-align: center;
+	padding: 5px 13px;
+	margin: 0px 0 0;
+	border-radius: 4px;
+	border: none;
+
+	background:linear-gradient(#0076ff,#0076ff)}
 	.shopee-chat-root button.shopee-chat__primary,.shopee-chat-root input[type=button].shopee-chat__primary,.shopee-chat-root input[type=submit].shopee-chat__primary,.shopee-chat-root input[type=reset].shopee-chat__primary{color:#fff;background:#0076ff}
 	.shopee-chat-root button .disabled,.shopee-chat-root button:disabled,.shopee-chat-root input[type=button] .disabled,.shopee-chat-root input[type=button]:disabled,.shopee-chat-root input[type=submit] .disabled,.shopee-chat-root input[type=submit]:disabled,.shopee-chat-root input[type=reset] .disabled,.shopee-chat-root input[type=reset]:disabled{background:#a6a6a6!important}
 	.shopee-chat-root hr{margin:0;padding:0}
@@ -584,12 +607,12 @@ function image (from, base64Image) {
 	.shopee-chat-root .chat-panel textarea:-ms-input-placeholder{color:#bababa}
 	.shopee-chat-root .chat-panel textarea:-moz-placeholder{color:#bababa}
 	.shopee-chat-root .chat-panel .chat-toolbar{    bottom: 6px;
-    /* padding: 9px; */
-    position: absolute;
-    width: 100%;
-    /* height: 45px; */
-    /* padding: 4px 10px 6px 5px; */
-    /* background: #fff; */}
+		/* padding: 9px; */
+		position: absolute;
+		width: 100%;
+		/* height: 45px; */
+		/* padding: 4px 10px 6px 5px; */
+	/* background: #fff; */}
 	.shopee-chat-root .chat-section-header{margin:20px 10px 0;color:#757575}
 	.shopee-chat-root .divider{width:100%;height:24px;position:relative;text-align:center}
 	.shopee-chat-root .divider .line{position:absolute;left:0;top:0;width:100%;height:12px;border-bottom:.1rem solid #e8e8e8}
@@ -718,28 +741,28 @@ function image (from, base64Image) {
 	.product-order-card .shopee-chat__offer-button{position:absolute;bottom:10px;right:10px}
 	.chat-window{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex:1;flex:1;min-height:1px}
 	.filebutton input#imagefile {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 100%;
-    opacity: 0;
-    margin: 0;
-}
-#send-message input {
-    border: none;
-    height: 40px;
-    position: relative;
-    font-size: 14px;
-    color: #777;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
-    padding: 0 10px;
-    line-height: 30px;
-    vertical-align: middle;
-    width: 580px;
-    z-index: 100;
-}
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 50px;
+		height: 100%;
+		opacity: 0;
+		margin: 0;
+	}
+	#send-message input {
+		border: none;
+		height: 40px;
+		position: relative;
+		font-size: 14px;
+		color: #777;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
+		padding: 0 10px;
+		line-height: 30px;
+		vertical-align: middle;
+		width: 580px;
+		z-index: 100;
+	}
 
 </style>
