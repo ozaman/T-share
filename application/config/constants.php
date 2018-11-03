@@ -104,6 +104,9 @@ define('TBL_PLACE_CAR_STATION_TYPE','place_car_station_type');
 define('TBL_SHOP_STATION','shop_station');
 define('TBL_SHOP_STATION_FIELD','shop_station_field');
 define('TBL_SHOP_DOCCUMENT_FILE_IMG','shop_document_file_img');
+define('TBL_CHAT_IMAGE','chat_image');
+define('TBL_CHAT_MESSAGE','chat_message');
+
 
 
 
