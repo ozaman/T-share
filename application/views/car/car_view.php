@@ -61,9 +61,9 @@
 				?>
 				
 			<p class="intro" style=" color: #4CAF50;font-weight: bold;">ใช้งาน <span id="txt_num_car_open">0</span> คัน</p>	
-		<?		}else{ ?>
+		<?php		}else{ ?>
 			<p class="intro"  style=" color: #F44336;font-weight: bold;">หยุดใช้งาน <span id="txt_num_car_close">0</span> คัน</p>	
-	<?	}
+	<?php	}
 			}
 		
 			if($row->s_car_act!=""){
@@ -132,7 +132,7 @@
 		                                          <span style="padding-bottom:20px;" class="font-16">  ใช้งาน  </span>
 		                                       </center>
 		                                    </button>
-                                 		<? }else{ ?>
+                                 		<?php }else{ ?>
 											<button type="button" class="button btn-action-car" onclick="changeCarStatus('<?=$row->id;?>',1,<?=$row->status_usecar;?>)" style="width:100%">
 		                                       <center>
 		                                          <div class="font-30"><i class="fa fa-car " style="color:#FF0000"></i></div>

@@ -11,7 +11,7 @@
 	            </div>
 	            <div class="center list-item__center"><?=$val[name_th];?></div>
 	    </ons-list-item>
-<?	}
+<?php	}
 
 ?>
 	<ons-list-item id="item_bank_list_0" class="list-item" onclick="selectCarIns('0','อื่นๆ');" data-name="อื่นๆ">

@@ -131,8 +131,8 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                               </td>
                            </tr>
                      </table>
-               <? }else{
-               	if()
+               <?php }else{
+               	if(1==1)
                	$sql_l = "SELECT username,name FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
 			    $query_l = $this->db->query($sql_l);
 			    $res_l = $query_l->row();
@@ -171,7 +171,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                </div>
             </td>
          </tr>
-         <?  }
+         <?php  }
             ?>
          <tr>
             <td>
@@ -180,11 +180,11 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                   <?php 
                      if($val[adult]>0){ ?>
                   ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
-                  <? } ?>
+                  <?php } ?>
                   <?php 
                      if($val[child]>0){ ?>
                   เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
-                  <? }
+                  <?php }
                      ?>
                </div>
             </td>
@@ -241,7 +241,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
-                        <? 
+                        <?php 
                            }
                            else if($data_user_class == "taxi"){
                                   if ($val[check_guest_register] == 1) {
@@ -281,7 +281,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
                            <?=$text_mn;?></span> 
                            </ons-button>
                         <div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
-                        <?				
+                        <?php				
                            }
                                     ?>
                      </td>
@@ -316,7 +316,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
          			</table>
          		</td>
          	</tr>
-        <? }?>
+        <?php }?>
       </table>
    </div>
 </div>

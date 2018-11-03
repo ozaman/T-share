@@ -1453,7 +1453,7 @@ ons-list-item {
                     <label for="cancel_<?=$row->id;?>" class="center"><?=$row->s_topic;?></label>
                 </ons-list-item> 
                 <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
-            <?  }
+            <?php  }
             ?>
 
         </div>

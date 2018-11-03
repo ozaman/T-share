@@ -12,7 +12,7 @@
 	            <div class="center list-item__center"><?=$val[name_en];?></div>
 	    </ons-list-item>
 
-<? }
+<?php }
 ?>
 	
 </ons-list>

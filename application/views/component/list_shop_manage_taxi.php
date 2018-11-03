@@ -125,7 +125,7 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
                   </tbody>
                </table>
             </td>
-         </tr> 
+         </tr>
          <tr>
             <td width="70%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
             <td width="30%" align="center" rowspan="1">
@@ -153,11 +153,11 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
                   <?php 
                      if($val[adult]>0){ ?>
                   ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
-                  <? } ?>
+                  <?php } ?>
                   <?php 
                      if($val[child]>0){ ?>
                   เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
-                  <? }
+                  <?php }
                      ?>
                </div>
             </td>
@@ -280,7 +280,7 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
          			</table>
          		</td>
          	</tr>
-			<? }else{ ?>
+			<?php }else{ ?>
 				<tr>
          		<td colspan="2">
          			<table width="100%" >

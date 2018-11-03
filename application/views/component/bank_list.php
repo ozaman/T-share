@@ -11,7 +11,7 @@
 	            </div>
 	            <div class="center list-item__center"><?=$val[name_th];?></div>
 	    </ons-list-item>
-<?	}
+<?php	}
 
 ?>
 	
