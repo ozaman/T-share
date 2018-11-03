@@ -23,7 +23,17 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<div class="shopee-chat-container expanded">
 
 		<div class="conversation-window">
-			
+			<div class="chat-header">
+ 
+  <div id="ember878" class="user-menu ember-view" id="online_ser" style="    text-align: center;">
+
+<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
+
+<!----></div>
+</div>
 			<div id="ember549" class="chat-window ember-view"><!---->
 				<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
 					<div class="shopee-chat__scrollable-inner">
@@ -191,7 +201,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 					// +'<span>'+res.nickname+'</span>'
 					+'<div class="avatar">'
 
-					+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" height="37">'
+					+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" style="height: 37px;">'
 					+'</div>'
 					+'</div>'
 					+'<div class="col-15 message-content reverse">'
@@ -292,7 +302,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 		}
 		$('#conversation').append(msg);
 		$('.shopee-chat-root').get(0).scrollTop = 10000000;
-		
+
 	}
 });
 		}
@@ -455,7 +465,23 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 </script>
 <style>
-
+/*FF9800,32bf38*/
+.online_ser{
+display: inline-block;
+    border: 1px solid #FF9800;
+    margin: 9px 3px;
+    padding: 8px;
+    border-radius: 50px;
+}
+.boll_online_ser{
+	width: 13px;
+    height: 13px;
+    background: #FF9800;
+    border-radius: 50px;
+    position: absolute;
+    top: 7px;
+    margin-left: 17px;
+}
 
 
 .shopee-chat-root .ic_block{background-position:-17px 0;width:16px;height:16px}
@@ -596,7 +622,13 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	.shopee-chat-root .buddy-list .list{position:relative;overflow:hidden;-ms-flex:1;flex:1;border-right:1px solid #ddd;border-left:1px solid #ddd;display:-ms-flexbox;display:flex}
 	.shopee-chat-root .buddy-list .list>.ember-view>.ember-view{right:-17px!important}
 	.shopee-chat-root .conversation-window{position:absolute;overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;height:100%;background:#f6f6f6;top:0;left:0;right:0;padding-left:0px}
-	.shopee-chat-root .chat-header{background:#00bfa5;-ms-flex:0 0 35px;flex:0 0 35px;height:35px;width:100%;border-right:1px solid #00ab93;border-top:1px solid #00ab93}
+	.shopee-chat-root .chat-header{background: #ffffff;
+    -ms-flex: 0 0 35px;
+    flex: 0 0 50px;
+    height: 57px;
+    width: 100%;
+    /* border-right: 1px solid #00ab93; */
+    /* border-top: 1px solid #00ab93; */}
 	.shopee-chat-root .chat-header.first{border-left:1px solid #00ab93}
 	.shopee-chat-root .chat-content{-ms-flex:1;flex:1;padding:5px 25px;overflow-y:auto;overflow-x:hidden}
 	.shopee-chat-root .chat-panel{-ms-flex:0 0 125px;flex:0 0 65px;/*height:125px;*/border-top:1px solid #e8e8e8}
