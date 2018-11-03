@@ -10,7 +10,7 @@ function reloadApp() {
 
 function setCountNotification() {
     $.ajax({
-        url: "notification/count_notification?id_user=" + $.cookie("detect_user"), // point to server-side PHP script 
+        url: "notification/count_notification?id_user=" + detect_user, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
         type: 'post',
         success: function(num) {
