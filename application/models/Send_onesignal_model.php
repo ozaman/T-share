@@ -390,10 +390,13 @@ class Send_onesignal_model extends CI_Model {
 	$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$_GET[driver]."'  ";
  	$query_dv = $this->db->query($sql_dv);
  	$res_dv = $query_dv->row();
- 	if($res_dv->i_noti_shop<=0){
- 		$response[msg] = "this user turn off noti";
-		return $response;
-	}	
+    if($res_dv->id>0){
+        if($res_dv->i_noti_shop<=0){
+          $response[msg] = "this user turn off noti";
+          return $response;
+      }	
+    }
+ 	
 	$invoice = $_GET[vc];
 	$order_id = $_GET[order_id];
 	$type_txt = "พนักงานรับทราบ";
@@ -410,7 +413,7 @@ class Send_onesignal_model extends CI_Model {
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => $tag,
 			'data' => array("order_id" => $order_id, "status" => "manage", "open_ic" => 0),
-//			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1&open_ic=0",
+			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1&open_ic=0",
 			'contents' => $content,
 			'headings' => $heading,
 			'ios_badgeType' => 'Increase',
