@@ -27,10 +27,10 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
  
   <div id="ember878" class="user-menu ember-view" id="online_ser" style="    text-align: center;">
 
-<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
-<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
-<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
-<div class="online_ser" ><img src="https://www.welovetaxi.com/app/T-share/assets/images/service2.png?v=1541241764" style="width: 20px;"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="../data/pic/driver/small/HKT0164.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="../data/pic/driver/small/HKT0153.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
+<div class="online_ser" ><img src="../data/pic/driver/small/PKT0472.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
+
 
 <!----></div>
 </div>
@@ -218,29 +218,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 					+'</div>';
 
 
-			// msg = '<div id="ember728" class="chat-message ember-view">'
-			// +'<div class="shopee-chat-grid">'
-			// +'<div class="col-15 message-content ">'
-			// + '<div class="chat-bubble to">'
-			// +'<div class="overflow-wrapper">'
-			// +data
-			// +'</div>'
-			// + '</div>'
-			// +'<div class="timestamp">'
-			// + utc
-			// +'</div>'
-			// +'</div>'
-			// +'<div class="col-1">'
-			// // +'<span>'+res.nickname+'</span>'
-			// +'<div class="avatar">'
-			
-			// +'<img src="<?=base_url();?>assets/images/service.png?v=<?=time();?>" height="37">'
-			// +'</div>'
-			// +'</div>'
-			// +'</div>'
-			// +'</div>';
-
-			$('#conversation').append(msg);
+			// $('#conversation').append(msg);
 		}
 		else{
 			$.ajax({
@@ -467,20 +445,28 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 <style>
 /*FF9800,32bf38*/
 .online_ser{
-display: inline-block;
+width: 45px;
+    height: 45px;
+    display: inline-block;
     border: 1px solid #FF9800;
-    margin: 9px 3px;
-    padding: 8px;
+    margin: 5px 3px;
+    padding: 3px;
     border-radius: 50px;
 }
 .boll_online_ser{
-	width: 13px;
+	    width: 13px;
     height: 13px;
     background: #FF9800;
     border-radius: 50px;
     position: absolute;
-    top: 7px;
-    margin-left: 17px;
+    top: 2px;
+    margin-left: 25px;
+}
+.online_ser_img{
+	   width: 100%;
+    height: 100%;
+    border-radius: 50px;
+
 }
 
 
