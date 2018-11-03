@@ -2034,6 +2034,7 @@ if (page == "shop_manage.html") {
 	$('#date_shop_wait').show();
 	$('#date_shop_his').hide();
 //	$('#box-shop_date').fadeIn(300);
+    $('#box-shop_date').fadeOut(300);
 	waitTransShop();
 }else{
 	 $('#box-shop_date').fadeOut(300);
