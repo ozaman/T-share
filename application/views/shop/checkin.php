@@ -85,7 +85,7 @@ $btn_pay_com_color = "background-color:#666666";
                                  <td>
                                  	<a href="tel:<?=$arr[book][phone];?>"><i id="driver_topoint_pf" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
                                  </td>
-								<?	}
+								<?php	}
                                  ?>
                               <!--<td>
                                  <i id="driver_topoint_locat_off" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">location_on</i>
@@ -150,7 +150,7 @@ $btn_pay_com_color = "background-color:#666666";
 		                                 <td>
 		                                 	<a id="guest_receive_phone" href="tel:<?=$arr[book][phone];?>"><i class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
 		                                 </td>
-										<?	}
+										<?php	}
 		                                 ?>
                                        <!--<tr>
                                           <td>
@@ -212,7 +212,7 @@ $btn_pay_com_color = "background-color:#666666";
 		                                 	<a id="guest_register_phone" href="tel:<?=$arr[book][phone];?>"><i  class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
 		                                 </td>
 		                                 <td>&nbsp;</td>
-										<?	}                          ?>
+										<?php	}                          ?>
                                           </td>
                                           <td>
                                              <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgba(59, 89, 152, 0.48);">photo_camera</i>

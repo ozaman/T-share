@@ -248,4 +248,4 @@ if($_GET[user_sc]!=""){	?>
   console.log(chk)
    }, 700);
 </script>
-<? }	?>
+<?php }	?>

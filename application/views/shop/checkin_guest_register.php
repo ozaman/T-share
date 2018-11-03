@@ -214,7 +214,7 @@
 				      </label>
 				      <label for="radio-<?=$val->id;?>" class="center"><?=$val->s_topic;?></label>
 				    </ons-list-item>
-		<?	}
+		<?php	}
 		 		
 	 	?>
 	   

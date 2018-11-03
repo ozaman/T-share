@@ -24,7 +24,7 @@
 		<div class="txt-caption font-24" align="center">
 		 <?=$txt_date;?>
 		</div>
-		<?
+		<?php
 	}?>
 	<img src="<?=$_GET[path]."?v=".time();?>" width="100%;" class="photo-preview" />
 	<?php 

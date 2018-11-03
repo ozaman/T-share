@@ -219,7 +219,7 @@ input[type="text"]:disabled {
 				 }
             	 ?>
 			      <option value="<?=$val->id;?>" <?=$select_em;?> ><?=$val->name_th;?></option>  	
-			    <?    }
+			    <?php    }
             	?>
 				</ons-select>
             </div>
