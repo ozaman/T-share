@@ -139,7 +139,7 @@
 		                                          <span style="padding-bottom:20px;" class="font-16">  หยุดใช้งาน  </span>
 		                                       </center>
 		                                    </button>
-										<? }
+										<?php }
                                  	?>
                                     
                                  </td>
