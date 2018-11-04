@@ -274,7 +274,7 @@ if (1==1) {
 if($query->num_rows()>=1){
 
   ?>
-  <div class="card borderBlink" onclick="checformadd('box_car')" id="box_car">
+  <div class="card borderBlink"  id="box_car">
     <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
     <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
     <div style="padding: 0px;margin-top: 0px;" >
@@ -284,7 +284,7 @@ if($query->num_rows()>=1){
 
         $bg_plate_color = "background-color: ".$val->plate_color;
         ?>
-        <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" onclick="selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick_s('car','<?=$val->id; ?>');">
+        <a id="car_<?=$val->id; ?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" >
           <input type="hidden" id="value_car_<?=$val->id; ?>" data-plate_num="<?=$val->plate_num; ?>" />
           <?php if($val->status_usecar == 1){
             $calss_box = 'cus_focus';
@@ -296,7 +296,7 @@ if($query->num_rows()>=1){
           <table width="100%" border="0" id="div_car_<?=$val->id; ?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
             <tbody>
               <tr>
-                <td width="30">
+                <td width="30" onclick="checformadd('box_car');selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick_s('car','<?=$val->id; ?>');">
                   <?php 
 
                   if($val->status_usecar == 1 && count($query->result()) == 1){
@@ -319,7 +319,7 @@ if($query->num_rows()>=1){
                   <?php }
                   ?>
                 </td>
-                <td>
+                <td onclick="checformadd('box_car');selectCarShops('<?=$val->id; ?>', '<?=$val->car_type; ?>', '<?=$val->car_type_txt; ?>');handleClick_s('car','<?=$val->id; ?>');">
                   <table width="100%" cellpadding="1" cellspacing="2">
                     <tbody>
                       <tr>
@@ -332,7 +332,9 @@ if($query->num_rows()>=1){
                     </table>
 
                   </td>
-
+                  <td width="45">
+                    <button onclick="editCar('<?=$val->id;?>','shop_add');" type="button" class="button--cta" style="padding: 0px 7px;"><span class="font-16">แก้ไข</span></button>
+                  </td>
                 </tr>
               </tbody>
             </table>

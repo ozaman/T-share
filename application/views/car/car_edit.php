@@ -392,3 +392,4 @@
 			  <input type="file" class="cropit-image-input" accept="image/*" id="img_car_insurance"  style="opacity: 0;position: absolute;" onchange="readURLother(this,'img_car_insurance','edit','car_insurance');">
 			</div>
 </form>
+<input type="hidden" value="<?=$_GET[by];?>" id="open_by" />
