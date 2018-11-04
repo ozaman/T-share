@@ -139,9 +139,9 @@ ons-splitter-side[animation=overlay] {
                 </div>
                 <div class="center">หน้าหลัก</div>
                 <div class="right">
-                    <ons-toolbar-button onclick="profileInfo('lift-ios')" id="side_pf">
+<!--                    <ons-toolbar-button onclick="profileInfo('lift-ios')" id="side_pf">
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
-                    </ons-toolbar-button>
+                    </ons-toolbar-button>-->
                     <ons-toolbar-button  onclick="showPopover(this,'popover-noti')" id="side_more" style="display: none;">
                        <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
                    </ons-toolbar-button>
