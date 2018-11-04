@@ -88,7 +88,7 @@
             </div>
             <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'option.html', 'title': 'ประเภทรถ', 'open':'car_type'}, 'lift-ios')">
                 <span id="txt_car_type" ><?=$txt_type;?></span>
-                <input type="hidden" name="car_type" id="car_type" value="<?=$data_car->car_type;?>" />
+                <input type="hidden" name="car_type" id="car_type_edit" value="<?=$data_car->car_type;?>" />
             </div>
         </ons-list-item>
         <ons-list-item class="input-items list-item p-l-0">

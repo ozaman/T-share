@@ -728,6 +728,7 @@ function submitAddCarForShop() {
 }
 
 function submitEditCar() {
+  console.log('0000');
   if ($('input[name="plate_num"]').val() == "") {
     ons
             .notification.alert({
@@ -742,7 +743,7 @@ function submitEditCar() {
     return;
   }
 
-  if ($('#car_type').val() == "") {
+  if ($('#car_type_edit').val() == "") {
     ons
             .notification.alert({
               message: 'กรุณาเลือกประเภทรถ',
