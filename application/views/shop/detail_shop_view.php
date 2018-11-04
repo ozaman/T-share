@@ -4,7 +4,7 @@ $data_user_class = $_COOKIE[detect_userclass];
 $main_color = "#3b5998";
 $arr[book] = $_POST;
 
-$sql_od = "SELECT car_plate, car_type FROM  order_booking  where id = '".$arr[book][id]."'  ";
+$sql_od = "SELECT car_plate FROM  order_booking  where id = '".$arr[book][id]."'  ";
 $query_od = $this->db->query($sql_od);
 $res_od = $query_od->row();
 
@@ -126,6 +126,7 @@ foreach ($query_price->result() as $row_price) {
     $com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
   }
 }
+
 $all_total = $park_total + $person_total + $com_total;
 
 $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$plan_id."'    ";
@@ -142,6 +143,7 @@ else {
   $time->add(new DateInterval('PT'.$minutes_to_add.'M'));
 }
 $stamp = $time->format('H:i');
+
 ?>
 <script>
   $('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));

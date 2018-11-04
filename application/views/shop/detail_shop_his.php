@@ -4,7 +4,7 @@ $data_user_class = $_COOKIE[detect_userclass];
 $main_color = "#3b5998";
 $arr[book] = $_POST;
 
-$sql_od = "SELECT car_plate, car_type FROM  order_booking  where id = '".$arr[book][id]."'  ";
+$sql_od = "SELECT car_plate FROM  order_booking  where id = '".$arr[book][id]."'  ";
 $query_od = $this->db->query($sql_od);
 $res_od = $query_od->row();
 
