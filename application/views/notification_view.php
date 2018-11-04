@@ -21,7 +21,7 @@
 	}
 	if($num<=0){ ?>
 		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีการแจ้งเตือน</strong></div>
-	<? }
+	<?php }
 	foreach ($query->result() as $row){ 
 //		$hours = date('H',$row->s_post_date);
 		
@@ -99,7 +99,7 @@
 	$('#txt_date_diff_nt_<?=$row->id;?>').text(CheckTimeNotification(d1,d2));
 	
 </script>	   
-<?	}	?>
+<?php	}	?>
 
 </div>
 <div style="<?=$display_box_load_more_noti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_noti">

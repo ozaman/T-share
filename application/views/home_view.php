@@ -1999,11 +1999,10 @@ socket.on('datalab', function(username, data) {
                     success: function(res) {
                         console.log(res);
                         var url_photo_lab = "../data/pic/driver/small/" + res.username + ".jpg?v=" + $.now();
-                        $('#view_lab_approve_' + value.id).attr('onclick', 'modalShowImg("' + url_photo_lab + ',' + res.nickname + '");');
+                        $('#view_lab_approve_' + value.id).attr('onclick', 'modalShowImg(\'' + url_photo_lab + '\',\'' + res.nickname + '\');');
                         //					               $('#text_name_approved').text(res.nickname);
                     }
                 });
-
 
 
             } else {

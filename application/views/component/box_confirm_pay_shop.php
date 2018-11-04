@@ -104,7 +104,7 @@ else {
         <ons-button class="red-blink" id="confirm_lab_pay_<?=$data->id;?>" onclick="confirmPayIncome('<?=$data->id;?>', '<?=$data->invoice;?>', '<?=$data->drivername;?>');" style="width: 100%; text-align: center;border-radius: 25px;margin-top: 0px;background-color: #fff;<?=$btn_confirm_lab;?>" modifier="outline" class="button-margin button button--outline button--large"><span class="font-17">ยืนยันการจ่ายเงิน</span> </ons-button>
 
         <div id="status_pay_<?=$data->id;?>" style="<?=$status_lab_pay;?>">
-          <b class="font-16" style="color: #0076ff;">ยืนยันการจ่ายเงิน เวลา <span id="text_lab_pay_time_<?=$data->id;?>"><?=date('H:i',$data->driver_payment_date);?></span> น.</b>
+          <b class="font-16" style="color: #0076ff;">ยืนยันการจ่ายเงิน เวลา <span id="text_lab_pay_time_<?=$data->id;?>"><?=date('H:i',$data->driver_payment_date)." น.";?></span></b>
         </div>
 
       <!--<div id="status_taxi_get_<?=$data->id;?>" style="<?=$txt_taxi_get;?>">
