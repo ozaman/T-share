@@ -1501,7 +1501,7 @@ function contactDriver(call, type, shop_id, order_id){
 
 function changeHtml(type, id, st) {
 //	new Date(unixtimestamp*1000);
-$('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา ' + st + '</span></div>');
+$('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span>เวลา ' + st + '</span></div>');
 $('#iconchk_' + type).attr("src", "assets/images/yes.png");
 $("#number_" + type).removeClass('step-booking');
 $("#number_" + type).addClass('step-booking-active');
