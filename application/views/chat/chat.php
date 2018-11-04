@@ -24,22 +24,31 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 		<div class="conversation-window">
 			<div class="chat-header">
- 
-  <div id="ember878" class="user-menu ember-view" id="online_ser" style="    text-align: center;">
 
-<div class="online_ser" ><img src="../data/pic/driver/small/HKT0164.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
-<div class="online_ser" ><img src="../data/pic/driver/small/HKT0153.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
-<div class="online_ser" ><img src="../data/pic/driver/small/PKT0472.jpg?v=1541241764"  class="online_ser_img"><div class="boll_online_ser "></div></div>
+				<div class="user-menu ember-view" id="online_ser" style="    text-align: center;">
+
+					<!-- <div class="default_ser" id="online_ser_164" onclick="switchRoom(164)" >
+						<img src="../data/pic/driver/small/HKT0164.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_164"></div>
+					</div>
+					<div class="default_ser" id="online_ser_153">
+						<img src="../data/pic/driver/small/HKT0153.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_153"></div>
+					</div>
+					<div class="default_ser" id="online_ser_472">
+						<img src="../data/pic/driver/small/PKT0472.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_472"></div>
+					</div> -->
 
 
-<!----></div>
-</div>
-			<div id="ember549" class="chat-window ember-view"><!---->
-				<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
-					<div class="shopee-chat__scrollable-inner">
+					<!----></div>
+				</div>
+				<div id="ember549" class="chat-window ember-view"><!---->
+					<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
+						<div class="shopee-chat__scrollable-inner">
 
-						<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
-							<div id="conversation"></div>
+							<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
+								<div id="conversation"></div>
 				<!-- </div>
 				</div> -->
 			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
@@ -172,300 +181,58 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			<span class="lf-overlay"></span>
 		</div>
 	</div></div></div>
-	<script>
-
-		var name = '<?=$user->id;?>';
-		var socket = io.connect('https://www.welovetaxi.com:8080');
-	// var socket = io.connect('http://localhost:8080');
-
-	// on connection to server, ask for user's name with an anonymous callback
-	socket.on('connect', function(){
-		// call the server-side function 'adduser' and send one parameter (value of prompt)
-		// socket.emit('addroom', prompt("What's your name?"));
-		socket.emit('addroom', name);
-	});
-
-	// listener, whenever the server emits 'updatechat', this updates the chat body
-	var from_to,reverse,img,utc;
-	socket.on('updatechat', function (username, data) {
-		utc = '';
-		utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
-
-		console.log(username)
-		if (username == 'SERVER') {
-
-
-			msg = '<div id="ember726" class="chat-message ember-view">'
-			+'<div class="shopee-chat-grid">'
-			+'<div class="col-1">'
-					// +'<span>'+res.nickname+'</span>'
-					+'<div class="avatar">'
-
-					+'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" style="height: 37px;">'
-					+'</div>'
-					+'</div>'
-					+'<div class="col-15 message-content reverse">'
-					+'<div class="chat-bubble from">'
-					+'<div class="overflow-wrapper">'
-					+data
-					+'</div>'
-					+'</div>'
-					+'<div class="timestamp">'
-					+ utc
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'</div>';
-
-
-			// $('#conversation').append(msg);
-		}
-		else{
-			$.ajax({
-            url: 'chat/search_user?id='+username, //Controller where search is performed
-            dataType: 'json',
-            type: 'POST',
-            // data: req,
-            success: function(res){
-            	console.log(res)
-            	img = res.username;
-            	if (username != name) {
-
-
-            		msg = '<div id="ember726" class="chat-message ember-view">'
-            		+'<div class="shopee-chat-grid">'
-            		+'<div class="col-1">'
-					// +'<span>'+res.nickname+'</span>'
-					+'<div class="avatar">'
-
-					+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
-					+'</div>'
-					+'</div>'
-					+'<div class="col-15 message-content reverse">'
-					+'<div class="chat-bubble from">'
-					+'<div class="overflow-wrapper">'
-					+data
-					+'</div>'
-					+'</div>'
-					+'<div class="timestamp">'
-					+ utc
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'</div>';
-				}
-				else{
-
-					msg = '<div id="ember728" class="chat-message ember-view">'
-					+'<div class="shopee-chat-grid">'
-					+'<div class="col-15 message-content ">'
-					+ '<div class="chat-bubble to">'
-					+'<div class="overflow-wrapper">'
-					+data
-					+'</div>'
-					+ '</div>'
-					+'<div class="timestamp">'
-					+ utc
-					+'</div>'
-					+'</div>'
-					+'<div class="col-1">'
-			// +'<span>'+res.nickname+'</span>'
-			+'<div class="avatar">'
-			
-			+'<img src="../data/pic/driver/small/'+img+'.jpg">'
-			+'</div>'
-			+'</div>'
-			+'</div>'
-			+'</div>';
-		}
-		$('#conversation').append(msg);
-		$('.shopee-chat-root').get(0).scrollTop = 10000000;
-
-	}
-});
-		}
-		
-		
-		
-
-
-
-
-
-		// $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-	});
-	socket.on('come image', function (username, base64Image) {
-		console.log(username)
-		console.log(base64Image)
-		utc = '';
-		utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
-
-		console.log(username)
-		
-		$.ajax({
-            url: 'chat/search_user?id='+username, //Controller where search is performed
-            dataType: 'json',
-            type: 'POST',
-            // data: req,
-            success: function(res){
-            	console.log(res)
-            	msg = '';
-            	img = res.username;
-            	if (username != name) {
-
-
-            		msg = '<div id="ember726" class="chat-message ember-view">'
-            		+'<div class="shopee-chat-grid">'
-            		+'<div class="col-1">'
-					// +'<span>'+res.nickname+'</span>'
-					+'<div class="avatar">'
-
-					+'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
-					+'</div>'
-					+'</div>'
-					+'<div class="col-15 message-content reverse">'
-					+'<div class=" from">'
-					+'<div class="overflow-wrapper cf">'
-					+'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
-					+'</div>'
-					+'</div>'
-					+'<div class="timestamp">'
-					+ utc
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'</div>';
-				}
-				else{
-
-					msg = '<div id="ember728" class="chat-message ember-view">'
-					+'<div class="shopee-chat-grid">'
-					+'<div class="col-15 message-content ">'
-					+ '<div class=" to">'
-					+'<div class="overflow-wrapper cf">'
-					+'<img class="chat_gallery_items" onclick="chat_gallery_items(this)" src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer"/>'
-					+'</div>'
-					+ '</div>'
-					+'<div class="timestamp">'
-					+ utc
-					+'</div>'
-					+'</div>'
-					+'<div class="col-1">'
-			// +'<span>'+res.nickname+'</span>'
-			+'<div class="avatar ">'
-			
-			+'<img src="../data/pic/driver/small/'+img+'.jpg" >'
-			+'</div>'
-			+'</div>'
-			+'</div>'
-			+'</div>';
-		}
-		$('#conversation').append(msg);
-		$('.shopee-chat-root').get(0).scrollTop = 10000000;
-	}
-});
-		
-
-	});
- // socket.on('user image', image);
-	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
-	socket.on('updaterooms', function(rooms, current_room) {
-		$('#rooms').empty();
-		$.each(rooms, function(key, value) {
-			if(value == current_room){
-				$('#rooms').append('<div>' + value + '</div>');
-			}
-			else {
-				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
-			}
-		});
-	});
-	function chat_gallery_items(item) {
-		console.log(item)
-		var imgSrc = item.src,
-			highResolutionImage = $(this).data('high-res-img');
-
-			viewer.show(imgSrc, highResolutionImage);
-	}
-	function image (from, base64Image) {
-		console.log(from)
-		console.log(base64Image)
-		$('#lines').append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
-	}
-	function switchRoom(room){
-		socket.emit('switchRoom', room);
-	}
-
-	// on load of page
-	var viewer = ImageViewer();
-		$('.chat_gallery_items').click(function () {
-			console.log('aaaaa')
-			var imgSrc = this.src,
-			highResolutionImage = $(this).data('high-res-img');
-
-			viewer.show(imgSrc, highResolutionImage);
-		});
-	$(function(){
-		
-		// when the client clicks SEND
-		$('#datasend').click( function() {
-			var message = $('#data').val();
-			if (message != '') {
-				socket.emit('sendchat', message);
-				$('#data').val('');
-			}
-			
-			// tell server to execute 'sendchat' and send along one parameter
-			
-		});
-
-		// when the client hits ENTER on their keyboard
-		$('#data').keypress(function(e) {
-			if(e.which == 13) {
-				$(this).blur();
-				$('#datasend').focus().click();
-			}
-		});
-		$('#imagefile').bind('change', function(e){
-			var data = e.originalEvent.target.files[0];
-			var reader = new FileReader();
-			reader.onload = function(evt){
-        // image('me', evt.target.result);
-
-        socket.emit('user image', evt.target.result);
-    };
-    reader.readAsDataURL(data);
-
-});
-
-
-	});
-
-</script>
+	
 <style>
 /*FF9800,32bf38*/
+.default_ser{
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+	border: 1px solid #FF9800;
+	margin: 5px 3px;
+	padding: 3px;
+	border-radius: 50px;
+}
 .online_ser{
-width: 45px;
-    height: 45px;
-    display: inline-block;
-    border: 1px solid #FF9800;
-    margin: 5px 3px;
-    padding: 3px;
-    border-radius: 50px;
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+	border: 2px solid #32bf38;
+	margin: 5px 3px;
+	padding: 3px;
+	border-radius: 50px;
+}
+.ofline_ser{
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+	border: 2px solid #FF9800;
+	margin: 5px 3px;
+	padding: 3px;
+	border-radius: 50px;
 }
 .boll_online_ser{
-	    width: 13px;
-    height: 13px;
-    background: #FF9800;
-    border-radius: 50px;
-    position: absolute;
-    top: 2px;
-    margin-left: 25px;
+	width: 13px;
+	height: 13px;
+	background: #32bf38;
+	border-radius: 50px;
+	position: absolute;
+	top: 2px;
+	margin-left: 25px;
+}
+.boll_ofline_ser{
+	width: 13px;
+	height: 13px;
+	background: #FF9800;
+	border-radius: 50px;
+	position: absolute;
+	top: 2px;
+	margin-left: 25px;
 }
 .online_ser_img{
-	   width: 100%;
-    height: 100%;
-    border-radius: 50px;
+	width: 100%;
+	height: 100%;
+	border-radius: 50px;
 
 }
 
@@ -609,12 +376,12 @@ width: 45px;
 	.shopee-chat-root .buddy-list .list>.ember-view>.ember-view{right:-17px!important}
 	.shopee-chat-root .conversation-window{position:absolute;overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;height:100%;background:#f6f6f6;top:0;left:0;right:0;padding-left:0px}
 	.shopee-chat-root .chat-header{background: #ffffff;
-    -ms-flex: 0 0 35px;
-    flex: 0 0 50px;
-    height: 57px;
-    width: 100%;
-    /* border-right: 1px solid #00ab93; */
-    /* border-top: 1px solid #00ab93; */}
+		-ms-flex: 0 0 35px;
+		flex: 0 0 50px;
+		height: 57px;
+		width: 100%;
+		/* border-right: 1px solid #00ab93; */
+	/* border-top: 1px solid #00ab93; */}
 	.shopee-chat-root .chat-header.first{border-left:1px solid #00ab93}
 	.shopee-chat-root .chat-content{-ms-flex:1;flex:1;padding:5px 25px;overflow-y:auto;overflow-x:hidden}
 	.shopee-chat-root .chat-panel{-ms-flex:0 0 125px;flex:0 0 65px;/*height:125px;*/border-top:1px solid #e8e8e8}
