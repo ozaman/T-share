@@ -1,6 +1,5 @@
 <!-- <script src="/socket.io/socket.io.js"></script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
-<script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 <?php 
 $_where = array();
 $_where['id'] = $_COOKIE[detect_user];
@@ -181,7 +180,364 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			<span class="lf-overlay"></span>
 		</div>
 	</div></div></div>
+	<script>
+setTimeout(function(){
+	// socket2.on('connect', function(){
+        // call the server-side function 'adduser' and send one parameter (value of prompt)
+        // socket.emit('addroom', prompt("What's your name?"));
+        socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
+    // });
+    // 
+}, 1000);
+
+socket2.on('updatechat', function (username, data) {
+        utc = '';
+        utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
+        console.log(username)
+        if (username == 'SERVER') {
+
+
+            msg = '<div id="ember726" class="chat-message ember-view">'
+            +'<div class="shopee-chat-grid">'
+            +'<div class="col-1">'
+                    // +'<span>'+res.nickname+'</span>'
+                    +'<div class="avatar">'
+
+                    +'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" style="height: 37px;">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-15 message-content reverse">'
+                    +'<div class="chat-bubble from">'
+                    +'<div class="overflow-wrapper">'
+                    +data
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="timestamp">'
+                    + utc
+                    +'</div>'
+                    +'</div>'
+                    +'</div>'
+                    +'</div>';
+
+
+            // $('#conversation').append(msg);
+        }
+        else{
+            $.ajax({
+            url: 'chat/search_user?id='+username, //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            // data: req,
+            success: function(res){
+                console.log(res)
+                img = res.username;
+                if (username != name) {
+
+
+                    msg = '<div id="ember726" class="chat-message ember-view">'
+                    +'<div class="shopee-chat-grid">'
+                    +'<div class="col-1">'
+                    // +'<span>'+res.nickname+'</span>'
+                    +'<div class="avatar">'
+
+                    +'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-15 message-content reverse">'
+                    +'<div class="chat-bubble from">'
+                    +'<div class="overflow-wrapper">'
+                    +data
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="timestamp">'
+                    + utc
+                    +'</div>'
+                    +'</div>'
+                    +'</div>'
+                    +'</div>';
+                }
+                else{
+
+                    msg = '<div id="ember728" class="chat-message ember-view">'
+                    +'<div class="shopee-chat-grid">'
+                    +'<div class="col-15 message-content ">'
+                    + '<div class="chat-bubble to">'
+                    +'<div class="overflow-wrapper">'
+                    +data
+                    +'</div>'
+                    + '</div>'
+                    +'<div class="timestamp">'
+                    + utc
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-1">'
+            // +'<span>'+res.nickname+'</span>'
+            +'<div class="avatar">'
+            
+            +'<img src="../data/pic/driver/small/'+img+'.jpg">'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>';
+        }
+        $('#conversation').append(msg);
+        $('.shopee-chat-root').get(0).scrollTop = 10000000;
+
+    }
+});
+        }
+        
+        
+        
+
+
+
+
+
+        // $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+    });
+    socket2.on('come image', function (username, base64Image) {
+        console.log(username)
+        console.log(base64Image)
+        utc = '';
+        utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
+        console.log(username)
+        
+        $.ajax({
+            url: 'chat/search_user?id='+username, //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            // data: req,
+            success: function(res){
+                console.log(res)
+                msg = '';
+                img = res.username;
+                if (username != name) {
+
+
+                    msg = '<div id="ember726" class="chat-message ember-view">'
+                    +'<div class="shopee-chat-grid">'
+                    +'<div class="col-1">'
+                    // +'<span>'+res.nickname+'</span>'
+                    +'<div class="avatar">'
+
+                    +'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-15 message-content reverse">'
+                    +'<div class=" from">'
+                    +'<div class="overflow-wrapper cf">'
+                    +'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="timestamp">'
+                    + utc
+                    +'</div>'
+                    +'</div>'
+                    +'</div>'
+                    +'</div>';
+                }
+                else{
+
+                    msg = '<div id="ember728" class="chat-message ember-view">'
+                    +'<div class="shopee-chat-grid">'
+                    +'<div class="col-15 message-content ">'
+                    + '<div class=" to">'
+                    +'<div class="overflow-wrapper cf">'
+                    +'<img class="chat_gallery_items" onclick="chat_gallery_items(this)" src="' + base64Image + '" data-high-res-src="'+base64Image+'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer"/>'
+                    +'</div>'
+                    + '</div>'
+                    +'<div class="timestamp">'
+                    + utc
+                    +'</div>'
+                    +'</div>'
+                    +'<div class="col-1">'
+            // +'<span>'+res.nickname+'</span>'
+            +'<div class="avatar ">'
+            
+            +'<img src="../data/pic/driver/small/'+img+'.jpg" >'
+            +'</div>'
+            +'</div>'
+            +'</div>'
+            +'</div>';
+        }
+        $('#conversation').append(msg);
+        $('.shopee-chat-root').get(0).scrollTop = 10000000;
+    }
+});
+        
+
+    });
+ // socket.on('user image', image);
+    // listener, whenever the server emits 'updaterooms', this updates the room the client is in
+    socket2.on('updateroom', function(rooms, current_room) {
+        // $('#online_ser').remove()
+        $('#online_ser').empty();
+        var roomssli = [];
+        var roomsf = [];
+        console.log('****************** room *********************')
+        console.log(rooms)
+        var sunnumservice = 3;
+        console.log(current_room)
+        var roomlenght = rooms.length;
+        console.log(roomlenght+'-----------roomlenght---------')
+        roomsf = [164,153,472];
+        // roomssli = [164,153,472];
+        var numf =roomsf.length;
+        console.log(roomsf.length+'------------roomsf.length------')
+        // $('#rooms').empty();
+        var textomline = '';
+
+        for (var i = 0; i < sunnumservice; i++) {
+            if (i<roomlenght) {
+                
+                $.ajax({
+                    url: 'chat/search_user?id='+rooms[i],
+                    dataType: 'json',
+                    type: 'POST',
+                     // data: req,
+                    success: function(res){
+                        var img = res.username;
+                        textomline = '<div class="online_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                        +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+                        +'<div class="boll_online_ser " id="boll_online_ser_'+res.id+'"></div>'
+                        +'</div>';
+
+$('#online_ser').append(textomline);
+                        
+                        
+                    }
+                });
+                
+            
+            }
+            for (var x = 0; x < numf; x++) {
+                // console.log(rooms[i] +'=='+ roomsf[x])
+                if (parseInt(rooms[i]) == parseInt(roomsf[x])) {
+                    var index = roomsf.indexOf(rooms[i]);
+                    // console.log(index+'***index')
+                    console.log('incase')
+                    roomsf.splice(x, 1);
+                }
+            }
+        }
+        console.log('**********roomssli***********')
+        var chkon = roomsf.length;
+        console.log(chkon)
+        console.log(roomsf)
+        
+
+        if (chkon != 0) {
+            for (var x = 0; x < chkon; x++) {
+                
+                
+                    $.ajax({
+                        url: 'chat/search_user?id='+roomsf[x], 
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(res){
+                            var img = res.username;
+                            textomline = '<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                            +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+                            +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
+                            +'</div>';
+                            $('#online_ser').append(textomline);
+                        }
+                    });
+                
+                
+                            
+            }
+        }
+        
+                // console.log(roomssli.length)
+                
+                
+
+        // $.each(rooms, function(key, value) {
+        //  console.log(value)
+        //  $('#online_ser_'+value).addClass('online_ser')
+        //  $('#online_ser_'+value).removeClass('default_ser')
+
+        //  $('#boll_online_ser_'+value).addClass('boll_online_ser')
+
+        //  $('#boll_online_ser_'+value).removeClass('boll_ofline_ser')
+
+        //  // if(value == current_room){
+        //  //  $('#rooms').append('<div>' + value + '</div>');
+        //  // }
+        //  // else {
+        //  //  $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+        //  // }
+        // });
+    });
+    function chat_gallery_items(item) {
+        console.log(item)
+        var imgSrc = item.src,
+        highResolutionImage = $(this).data('high-res-img');
+
+        viewer.show(imgSrc, highResolutionImage);
+    }
+    function image (from, base64Image) {
+        console.log(from)
+        console.log(base64Image)
+        $('#lines').append($('<p>').append($('<b>').text(from), '<img src="' + base64Image + '"/>'));
+    }
+    function switchRoom(room){
+        console.log(room)
+        socket2.emit('switchRoom', room);
+    }
+
+    // on load of page
+    var viewer = ImageViewer();
+    $('.chat_gallery_items').click(function () {
+        console.log('aaaaa')
+        var imgSrc = this.src,
+        highResolutionImage = $(this).data('high-res-img');
+
+        viewer.show(imgSrc, highResolutionImage);
+    });
+    $(function(){
+        
+        // when the client clicks SEND
+        $('#datasend').click( function() {
+            var message = $('#data').val();
+            if (message != '') {
+                socket2.emit('sendchat', message);
+                $('#data').val('');
+            }
+            
+            // tell server to execute 'sendchat' and send along one parameter
+            
+        });
+
+        // when the client hits ENTER on their keyboard
+        $('#data').keypress(function(e) {
+            if(e.which == 13) {
+                $(this).blur();
+                $('#datasend').focus().click();
+            }
+        });
+        $('#imagefile').bind('change', function(e){
+            var data = e.originalEvent.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(evt){
+        // image('me', evt.target.result);
+
+        socket2.emit('user image', evt.target.result);
+    };
+    reader.readAsDataURL(data);
+
+});
+
+
+    });
+
 	
+
+</script>
 <style>
 /*FF9800,32bf38*/
 .default_ser{
