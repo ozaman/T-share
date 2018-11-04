@@ -112,12 +112,14 @@ class Send_onesignal_model extends CI_Model {
 		$cl = "พนักงาน";
 	}
 	$type_txt = "รายการส่งแขกนี้ถูกยกเลิกแล้ว กรุณาตรวจสอบ ยกเลิกโดย ".$cl;
-		$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
+		$sql_dv = "SELECT t1.username, t2.i_noti_shop, t1.id FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
 	 	$query_dv = $this->db->query($sql_dv);
 	 	$res_dv = $query_dv->row();
-	  	if($res_dv->i_noti_shop<=0){
-	 		$driver_arry = array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username);
-		}
+        if($res_dv->id>0){
+          if($res_dv->i_noti_shop<=0){
+              $driver_arry = array("field" => "tag", "key" => "username", "relation" => "=", "value" => $res_dv->username);
+          }
+        }
     	$tag = array(
 								array("field" => "tag", "key" => "class", "relation" => "=", "value" => "lab") ,array("operator" => "OR"), 
 								$driver_arry
@@ -219,10 +221,15 @@ class Send_onesignal_model extends CI_Model {
  		$query_shop = $this->db->query($sql_shop);
  		$res_shop = $query_shop->row();
 		
-		$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
+		$sql_dv = "SELECT t1.username, t2.i_noti_shop,t1.id FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
  		$query_dv = $this->db->query($sql_dv);
  		$res_dv = $query_dv->row();
- 		
+ 		if($res_dv->id>0){
+            if($res_dv->i_noti_shop<=0){
+              $response[msg] = "this user turn off noti";
+              return $response;
+          }	
+        }
  		$invoice = $res_book->invoice;
 		$order_id = $_GET[id];
   		$type_txt = "พนักงานรับแขกแล้ว";
@@ -277,10 +284,16 @@ class Send_onesignal_model extends CI_Model {
  		$query_shop = $this->db->query($sql_shop);
  		$res_shop = $query_shop->row();
 		
-		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_book->drivername."' ";
+//		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_book->drivername."' ";
+        $sql_dv = "SELECT t1.username, t2.i_noti_shop,t1.id FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$res_book->drivername."'  ";
  		$query_dv = $this->db->query($sql_dv);
  		$res_dv = $query_dv->row();
- 		
+ 		if($res_dv->id>0){
+            if($res_dv->i_noti_shop<=0){
+              $response[msg] = "this user turn off noti";
+              return $response;
+          }	
+        }
  		 $invoice = $res_book->invoice;
 		 $order_id = $_GET[id];
   		 $type_txt = "ลงทะเบียนเรียบร้อยแล้ว";
@@ -338,7 +351,12 @@ class Send_onesignal_model extends CI_Model {
 		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$res_book->drivername."' ";
  		$query_dv = $this->db->query($sql_dv);
  		$res_dv = $query_dv->row();
- 		
+ 		if($res_dv->id>0){
+            if($res_dv->i_noti_shop<=0){
+              $response[msg] = "this user turn off noti";
+              return $response;
+          }	
+        }
  		$invoice = $res_book->invoice;
 		$order_id = $_GET[id];
   		$type_txt = "พนักงานทำการแจ้งยอดรายได้แล้ว";
@@ -387,7 +405,7 @@ class Send_onesignal_model extends CI_Model {
   public function acknowledge(){
   
 	
-	$sql_dv = "SELECT t1.username, t2.i_noti_shop FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$_GET[driver]."'  ";
+	$sql_dv = "SELECT t1.username, t2.i_noti_shop,t1.id FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$_GET[driver]."'  ";
  	$query_dv = $this->db->query($sql_dv);
  	$res_dv = $query_dv->row();
     if($res_dv->id>0){
@@ -443,10 +461,11 @@ class Send_onesignal_model extends CI_Model {
   }
 
   public function lab_pay_approved(){
-  		$sql_dv = "SELECT username FROM web_driver  WHERE id='".$_GET[driver]."' ";
+  		$sql_dv = "SELECT t1.username, t2.i_noti_shop,t1.id FROM  web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user  where t1.id = '".$_GET[driver]."'  ";
  		$query_dv = $this->db->query($sql_dv);
  		$res_dv = $query_dv->row();
- 		
+//         echo $res_dv->i_noti_shop;
+//         exit();
   		$invoice = $_GET[vc];
 		$order_id = $_GET[order_id];
 		$open_ic = $_GET[open_ic];
@@ -456,6 +475,12 @@ class Send_onesignal_model extends CI_Model {
   		$content  = array(
         "en" => 'พนักงานยืนยันการจ่ายเงินแล้ว'
    		 );
+        if($res_dv->id>0){
+            if($res_dv->i_noti_shop<=0){
+              $response[msg] = "this user turn off noti";
+              return $response;
+          }	
+        }
    		 $fields = array(
 			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
 			'filters' => array(
