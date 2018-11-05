@@ -384,8 +384,9 @@ function submitAddBank() {
           var url = "component/box_select_bank_shop";
           $.post(url, function (ele) {
             $('#load_select_bank').html(ele);
-
+            modal.hide();
           });
+          return;
         }
         ons
                 .notification.alert({
