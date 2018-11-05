@@ -96,5 +96,10 @@ public function cpn_car_type()
 	{
 		$this->load->view('component/box_shop_bank');
 	}
+    
+     public function box_status_trans_shop()
+	{
+		$this->load->view('component/box_status_transfer_shop');
+	}
 }
 ?>

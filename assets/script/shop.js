@@ -7,8 +7,18 @@ function check_com_plan(id) {
       console.log(chk);
       if (chk.result == true) {
         $('#step_driver_pay_com').show();
+        load_status_trans(id);
       }
     }
+  });
+}
+
+function load_status_trans(id){
+  $.post("component/box_status_trans_shop?order_id="+id,function(html){
+    $('#step_driver_pay_com').html(html);
+    $('.page').animate({
+      scrollTop: $(document).height() + 700
+    }, 500);
   });
 }
 
@@ -1525,7 +1535,8 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } else if (type == "guest_receive") {
+  } 
+  else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1547,7 +1558,8 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } else if (type == "guest_register") {
+  } 
+  else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     loadBoxConfirmPay(id);
