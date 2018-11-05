@@ -18,16 +18,16 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<input id="data" style="width:200px;" />
 	
 </div> -->
-<div id="shopee-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="shopee-chat-root ember-application"><div id="ember306" class="ember-view">    
-	<div class="shopee-chat-container expanded">
+<div id="t-share-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="t-share-chat-root ember-application"><div id="ember306" class="ember-view">    
+	<div class="t-share-chat-container expanded">
 
 		<div class="conversation-window">
 			
 				<div id="ember549" class="chat-window ember-view"><!---->
-					<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
-						<div class="shopee-chat__scrollable-inner">
+					<div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view" style="padding: 0px 25px;">
+						<div class="t-share-chat__scrollable-inner">
 
-							<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
+							<!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
 								<div id="conversation"></div>
 			
 
@@ -52,7 +52,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
             			">
             		</td>
             		<td valign="center"> 
-            			<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+            			<input  class="t-share-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
             			width: 40px;
             			text-align: center;
             			padding: 9px 13px;
@@ -60,7 +60,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
             			border-radius: 4px;
             			border: none;
             			background: linear-gradient(#0076ff,#0076ff);">
-            			<!-- <button  class="shopee-chat__primary" id="datasend">ส่ง</button> -->
+            			<!-- <button  class="t-share-chat__primary" id="datasend">ส่ง</button> -->
             			<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
             		</td>
             		<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
@@ -79,7 +79,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
             	</tr>
             </table>
            <!--  <div class="right">
-            	<input  class="shopee-chat__primary" type="button" id="datasend" value="send" />
+            	<input  class="t-share-chat__primary" type="button" id="datasend" value="send" />
             	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
             	</div> -->
             </div>
@@ -100,7 +100,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<script>
 setTimeout(function(){
 	
-        socket2.emit('addroom', '<?=$_GET[detect_user];?>');
+        socket2.emit('addroom', detect_user);
 
          
 }, 50);
@@ -122,7 +122,7 @@ socket2.on('updateroom', function(rooms, current_room) {
                      // data: req,
                     success: function(res){
                         var img = res.username;
-                        textomline'<div><table "width="100%" >'
+                        textomline = '<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
                         +'<div class=""  style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
@@ -152,7 +152,7 @@ socket2.on('updateroom', function(rooms, current_room) {
                         success: function(res){
                             var img = res.username;
                           
-                            textomline += '<div><table "width="100%" >'
+                            textomline = '<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
                             +'<div class="" style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
@@ -180,35 +180,36 @@ socket2.on('updatechat', function (username, data) {
         utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
         console.log(username)
-        if (username == 'SERVER') {
+        console.log(detect_user)
+        // if (username == 'SERVER') {
 
 
-            msg = '<div id="ember726" class="chat-message ember-view">'
-            +'<div class="shopee-chat-grid">'
-            +'<div class="col-1">'
-                    // +'<span>'+res.nickname+'</span>'
-                    +'<div class="avatar">'
+        //     msg = '<div id="ember726" class="chat-message ember-view">'
+        //     +'<div class="t-share-chat-grid">'
+        //     +'<div class="col-1">'
+        //             // +'<span>'+res.nickname+'</span>'
+        //             +'<div class="avatar">'
 
-                    +'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" style="height: 37px;">'
-                    +'</div>'
-                    +'</div>'
-                    +'<div class="col-15 message-content reverse">'
-                    +'<div class="chat-bubble from">'
-                    +'<div class="overflow-wrapper">'
-                    +data
-                    +'</div>'
-                    +'</div>'
-                    +'<div class="timestamp">'
-                    + utc
-                    +'</div>'
-                    +'</div>'
-                    +'</div>'
-                    +'</div>';
+        //             +'<img src="<?=base_url();?>assets/images/service2.png?v=<?=time();?>" style="height: 37px;">'
+        //             +'</div>'
+        //             +'</div>'
+        //             +'<div class="col-15 message-content reverse">'
+        //             +'<div class="chat-bubble from">'
+        //             +'<div class="overflow-wrapper">'
+        //             +data
+        //             +'</div>'
+        //             +'</div>'
+        //             +'<div class="timestamp">'
+        //             + utc
+        //             +'</div>'
+        //             +'</div>'
+        //             +'</div>'
+        //             +'</div>';
 
 
             // $('#conversation').append(msg);
-        }
-        else{
+        // }
+        // else{
             $.ajax({
             url: 'chat/search_user?id='+username, //Controller where search is performed
             dataType: 'json',
@@ -217,11 +218,11 @@ socket2.on('updatechat', function (username, data) {
             success: function(res){
                 console.log(res)
                 img = res.username;
-                if (username != name) {
+                if (username != detect_user) {
 
 
                     msg = '<div id="ember726" class="chat-message ember-view">'
-                    +'<div class="shopee-chat-grid">'
+                    +'<div class="t-share-chat-grid">'
                     +'<div class="col-1">'
                     // +'<span>'+res.nickname+'</span>'
                     +'<div class="avatar">'
@@ -245,7 +246,7 @@ socket2.on('updatechat', function (username, data) {
                 else{
 
                     msg = '<div id="ember728" class="chat-message ember-view">'
-                    +'<div class="shopee-chat-grid">'
+                    +'<div class="t-share-chat-grid">'
                     +'<div class="col-15 message-content ">'
                     + '<div class="chat-bubble to">'
                     +'<div class="overflow-wrapper">'
@@ -267,11 +268,11 @@ socket2.on('updatechat', function (username, data) {
             +'</div>';
         }
         $('#conversation').append(msg);
-        $('.shopee-chat-root').get(0).scrollTop = 10000000;
+        $('.t-share-chat-root').get(0).scrollTop = 10000000;
 
     }
 });
-        }
+        // }
         
         
         
@@ -303,7 +304,7 @@ socket2.on('updatechat', function (username, data) {
 
 
                     msg = '<div id="ember726" class="chat-message ember-view">'
-                    +'<div class="shopee-chat-grid">'
+                    +'<div class="t-share-chat-grid">'
                     +'<div class="col-1">'
                     // +'<span>'+res.nickname+'</span>'
                     +'<div class="avatar">'
@@ -327,7 +328,7 @@ socket2.on('updatechat', function (username, data) {
                 else{
 
                     msg = '<div id="ember728" class="chat-message ember-view">'
-                    +'<div class="shopee-chat-grid">'
+                    +'<div class="t-share-chat-grid">'
                     +'<div class="col-15 message-content ">'
                     + '<div class=" to">'
                     +'<div class="overflow-wrapper cf">'
@@ -349,7 +350,7 @@ socket2.on('updatechat', function (username, data) {
             +'</div>';
         }
         $('#conversation').append(msg);
-        $('.shopee-chat-root').get(0).scrollTop = 10000000;
+        $('.t-share-chat-root').get(0).scrollTop = 10000000;
     }
 });
         
