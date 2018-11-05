@@ -233,7 +233,7 @@ else {
                     <td>
                       <span class="input-group-text">คน</span>
                     </td>
-                    <td>
+                   
                       <?php
                       if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
                         ?>
@@ -259,13 +259,14 @@ else {
                         </span>
                       </td>
                     <?php }?>
-                    </td>
+                    
                   </tr>
                 </table>
 
                 <div id="load_new_plan">
 
                 </div>
+                
               </div>
             </td>
           </tr>
