@@ -155,7 +155,9 @@ class Shop_model extends CI_Model {
 //		"posted" = "$_SESSION[data_user_driver]";
 		$data["post_date"] = time();
 		$data["update_date"] = time();
-
+        if($_POST[bank_user_select]){
+          $data[bank_taxi_id] = $_POST[bank_user_select];
+        }
 //		if($_POST[nation]==1){
 //			$data["num_ch"] = $_POST[persion_china];
 //		}else if($_POST[nation]==2){
