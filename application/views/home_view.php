@@ -469,6 +469,25 @@ ons-list-item {
 
 </ons-page>
 </template>
+<template id="chatroom.html">   
+    <ons-page id="pagechatroom">
+      <ons-toolbar>       
+
+
+        <div class="left">
+           <ons-back-button>กลับ</ons-back-button>
+
+       </div>
+       <div class="center">โบรชัวร์ / รูป</div>
+
+   </ons-toolbar>
+
+   <div id="boby_chatroom">
+
+   </div>
+
+</ons-page>
+</template>
 <template id="activity.html">   
     <ons-page>
         <div id="body_load_activity">

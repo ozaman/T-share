@@ -22,6 +22,9 @@ class Chat extends CI_Controller {
 		// $data = $this->Main_model->search_select( $id );
 		echo json_encode($data);
 	}
+	public function chatroom(){
+		$this->load->view('chat/chatroom');
+	}
 	
 }
 ?>
