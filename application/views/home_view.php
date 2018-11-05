@@ -478,7 +478,9 @@ ons-list-item {
            <ons-back-button>กลับ</ons-back-button>
 
        </div>
-       <div class="center" id="user_tochat"></div>
+       <div class="" id="user_tochat" style="    position: absolute;
+    margin-left: 75px;width:100%;
+"></div>
 
    </ons-toolbar>
 
@@ -2164,9 +2166,22 @@ socket.on('updatedriver', function(username, data) {
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/chat.js?v=<?=time();?>"></script>
-<script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 
+<!--============================================= CALL CHAT ========================================== -->
+<script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
+<script >
+     var socket2 = io.connect('https://www.welovetaxi.com:8080');
+        
+   
+    var from_to,reverse,img,utc;
+    socket2.on('connect', function(){
+        // call the server-side function 'adduser' and send one parameter (value of prompt)
+        // socket.emit('addroom', prompt("What's your name?"));
+        socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
+    });
+</script>
+<script src="<?=base_url();?>assets/script/chat.js?v=<?=time();?>"></script>
+<!-- ======================================= END =========================================================== -->
 <script>
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
         $(window).on('load', function(){ 
@@ -2196,23 +2211,6 @@ socket.on('updatedriver', function(username, data) {
 <script>
 
         // var name = '<?=$user->id;?>';
-        var socket2 = io.connect('https://www.welovetaxi.com:8080');
-        
-    // var socket = io.connect('http://localhost:8080');
-
-    // on connection to server, ask for user's name with an anonymous callback
-    // socket.on('connect', function(){
-    //     // call the server-side function 'adduser' and send one parameter (value of prompt)
-    //     // socket.emit('addroom', prompt("What's your name?"));
-    //     socket.emit('addroom', name);
-    // });
-
-    // listener, whenever the server emits 'updatechat', this updates the chat body
-    var from_to,reverse,img,utc;
-    socket2.on('connect', function(){
-        // call the server-side function 'adduser' and send one parameter (value of prompt)
-        // socket.emit('addroom', prompt("What's your name?"));
-        socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
-    });
+       
     
 </script>

@@ -99,29 +99,11 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	</div></div></div>
 	<script>
 setTimeout(function(){
-	// socket2.on('connect', function(){
-        // call the server-side function 'adduser' and send one parameter (value of prompt)
-        // socket.emit('addroom', prompt("What's your name?"));
+	
         socket2.emit('addroom', '<?=$_GET[detect_user];?>');
 
-          // $.ajax({
-          //               url: 'chat/search_user?id='+'<?=$_COOKIE[detect_user];?>', 
-          //               dataType: 'json',
-          //               type: 'POST',
-          //               success: function(res){
-          //                   var img = res.username;
-          //                   textomline = '<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
-          //                   +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
-          //                   +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
-          //                   +'<div class="boll_ofline_ " id="boll_online_name'+res.name+'"></div>'
-          //                   +'</div>';
-          //                   $('#online_ser_me').append(textomline);
-          //               }
-          //           });
-    // });
-    // });
-    // 
-}, 1000);
+         
+}, 50);
 socket2.on('updateroom', function(rooms, current_room) {
         // $('#online_ser').remove()
         $('#user_tochat').empty();
@@ -140,17 +122,17 @@ socket2.on('updateroom', function(rooms, current_room) {
                      // data: req,
                     success: function(res){
                         var img = res.username;
-                        textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
+                        textomline'<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
-                        +'<div class="online_ser" id="online_ser_'+res.id+'"  >'
+                        +'<div class=""  style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
                         +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
-                        +'<div class="boll_online_ser " id="boll_online_ser_'+res.id+'"></div>'
+                        +'<div class="boll_online_user_room "></div>'
                         // +'<span class=" " id="'+res.name+'"></span>'
                         +'</div>'
                             +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
-                             +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
+                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
+                             +'</td>'
                             +'</tr>'
                             +'</table></div>';
                     }
@@ -170,17 +152,17 @@ socket2.on('updateroom', function(rooms, current_room) {
                         success: function(res){
                             var img = res.username;
                           
-                            textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
+                            textomline += '<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
-                            +'<div class="default_ser" id="online_ser_'+res.id+'"  >'
+                            +'<div class="" style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
                             +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
-                            +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
+                           +'<div class="boll_online_user_room "></div>'
 
                             +'</div>'
                             +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
-                            +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: #FF9800; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
+                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span  style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
+                            +'</td>'
                             +'</tr>'
                             +'</table></div>';
                         }, async: false
@@ -423,3 +405,14 @@ socket2.on('updatechat', function (username, data) {
 	
 
 </script>
+<style>
+    .boll_online_user_room{
+        width: 10px;
+    height: 10px;
+    background: #32bf38;
+    border-radius: 50px;
+    position: relative;
+    margin-top: -12px;
+    margin-left: 20px;
+    }
+</style>
