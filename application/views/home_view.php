@@ -478,7 +478,7 @@ ons-list-item {
            <ons-back-button>กลับ</ons-back-button>
 
        </div>
-       <div class="center">โบรชัวร์ / รูป</div>
+       <div id="user_tochat"></div>
 
    </ons-toolbar>
 
