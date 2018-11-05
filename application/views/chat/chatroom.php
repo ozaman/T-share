@@ -2,7 +2,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
 <?php 
 $_where = array();
-$_where['id'] = $_GET[room];
+$_where['id'] = $_COOKIE[detect_user];
 // $_where['status'] = 1;
 $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
