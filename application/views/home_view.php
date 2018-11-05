@@ -119,6 +119,9 @@ ons-splitter-side[animation=overlay] {
 .dialog{
     min-height: 460px !important;
 }
+.fa-bell{
+  font-size: 20px !important;
+}
 </style>
 <body>
     <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
