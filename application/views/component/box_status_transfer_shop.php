@@ -24,6 +24,10 @@ else {
   $title_pay = "รอโอนค่าคอมมิชชั่น";
   $btn_pay_com_color = "background-color:#666666";
 }
+
+$query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
+$check_trans_pay = $query->num_rows();
+
 ?>
 <td class="font-16">
     <div class="div-all-checkin">
@@ -92,6 +96,15 @@ else {
               </div>
           </td>
         </tr>
+        <?php 
+            if($check_trans_pay>0){ ?>
+        <tr>
+          <td colspan="2">
+            
+          </td>
+        </tr>  
+        <?php    }
+        ?>
         </tbody>
       </table>  
       
