@@ -288,52 +288,6 @@ $.ajax({
        
     }
 
-    // on load of page
-    var viewer = ImageViewer();
-    $('.chat_gallery_items').click(function () {
-        console.log('aaaaa')
-        var imgSrc = this.src,
-        highResolutionImage = $(this).data('high-res-img');
-
-        viewer.show(imgSrc, highResolutionImage);
-    });
-    $(function(){
-        
-        // when the client clicks SEND
-        $('#datasend').click( function() {
-            var message = $('#data').val();
-            if (message != '') {
-                socket2.emit('sendchat', message);
-                $('#data').val('');
-            }
-            
-            // tell server to execute 'sendchat' and send along one parameter
-            
-        });
-
-        // when the client hits ENTER on their keyboard
-        $('#data').keypress(function(e) {
-            if(e.which == 13) {
-                $(this).blur();
-                $('#datasend').focus().click();
-            }
-        });
-        $('#imagefile').bind('change', function(e){
-            var data = e.originalEvent.target.files[0];
-            var reader = new FileReader();
-            reader.onload = function(evt){
-        // image('me', evt.target.result);
-
-        socket2.emit('user image', evt.target.result);
-    };
-    reader.readAsDataURL(data);
-
-});
-
-
-    });
-
-	
 
 </script>
 <style>
