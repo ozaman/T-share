@@ -485,7 +485,21 @@ socket2.on('updatechat', function (username, data) {
     }
     function switchRoom(room){
         console.log(room)
-        socket2.emit('switchRoom', room);
+         modal.show();
+    fn.pushPage({
+        'id': 'chatroom.html',
+        'title': ''
+    }, 'lift-ios');
+    //  $('#body_popup1').html(progress_circle);
+
+    $.post("shop/chatroom?room=" + room, function(ele) {
+        modal.hide();
+        $('#boby_chatroom').html(ele);
+ socket2.emit('switchRoom', room);
+
+        //        console.log(array_rooms);
+    });
+       
     }
 
     // on load of page
