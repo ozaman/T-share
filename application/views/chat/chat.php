@@ -18,8 +18,8 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<input id="data" style="width:200px;" />
 	
 </div> -->
-<div id="shopee-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="shopee-chat-root ember-application"><div id="ember306" class="ember-view">    
-	<div class="shopee-chat-container expanded">
+<div id="t-share-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="t-share-chat-root ember-application"><div id="ember306" class="ember-view">    
+	<div class="t-share-chat-container expanded">
 
 		<div class="conversation-window">
 			<!-- <div class="chat-header">
@@ -42,17 +42,17 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 					</div>
 				</div> -->
 				<div id="ember549" class="chat-window ember-view"><!---->
-					<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
-						<div class="shopee-chat__scrollable-inner">
+					<div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view">
+						<div class="t-share-chat__scrollable-inner">
 
-							<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
+							<!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
 								<div id="online_ser"></div>
 				<!-- </div>
 				</div> -->
-			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
+			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="t-share-chat-grid">
 					<div class="col-1">
 						<div class="avatar">
-							<img src="//cf.shopee.co.th/file/a11f0af894b74bcd870ea8af4a36b2a7_tn" height="37">
+							<img src="//cf.t-share.co.th/file/a11f0af894b74bcd870ea8af4a36b2a7_tn" height="37">
 						</div>
 					</div>
 					<div class="col-15 message-content reverse">
@@ -69,7 +69,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 			</div>
 
 				<div id="ember728" class="chat-message ember-view">
-					<div class="shopee-chat-grid">
+					<div class="t-share-chat-grid">
 						<div class="col-15 message-content ">
 							<div class="chat-bubble to">
 								<div class="overflow-wrapper">
@@ -82,7 +82,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 						</div>
 						<div class="col-1">
 							<div class="avatar">
-								<img src="//cf.shopee.co.th/file/8be478795103c875c924bdd65849615d_tn">
+								<img src="//cf.t-share.co.th/file/8be478795103c875c924bdd65849615d_tn">
 							</div>
 						</div>
 					</div>

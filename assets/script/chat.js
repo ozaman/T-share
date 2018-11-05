@@ -82,9 +82,14 @@ console.log(detect_user)
 
 }
 
+
+
+
 (function() {
 
-
+$('.t-share-chat__scrollable').animate({
+      scrollTop: $(document).height() + 700
+    }, 500);
 
 
 
