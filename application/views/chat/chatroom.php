@@ -102,10 +102,96 @@ setTimeout(function(){
 	// socket2.on('connect', function(){
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
-        socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
+        socket2.emit('addroom', '<?=$_GET[detect_user];?>');
+
+          // $.ajax({
+          //               url: 'chat/search_user?id='+'<?=$_COOKIE[detect_user];?>', 
+          //               dataType: 'json',
+          //               type: 'POST',
+          //               success: function(res){
+          //                   var img = res.username;
+          //                   textomline = '<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+          //                   +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+          //                   +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
+          //                   +'<div class="boll_ofline_ " id="boll_online_name'+res.name+'"></div>'
+          //                   +'</div>';
+          //                   $('#online_ser_me').append(textomline);
+          //               }
+          //           });
+    // });
     // });
     // 
 }, 1000);
+socket2.on('updateroom', function(rooms, current_room) {
+        // $('#online_ser').remove()
+        $('#user_tochat').empty();
+        
+        var roomlenght = rooms.length;
+        var textomline = '';
+        var ckroomuse = '<?=$_GET[room];?>'
+        var chekhane = false;
+        for (var i = 0; i < roomlenght; i++) {
+            if (ckroomuse == rooms[i]) {
+                chekhane == true;
+                $.ajax({
+                    url: 'chat/search_user?id='+rooms[i],
+                    dataType: 'json',
+                    type: 'POST',
+                     // data: req,
+                    success: function(res){
+                        var img = res.username;
+                        textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
+                            +'<tr>'
+                            +'<td width="50">'
+                        +'<div class="online_ser" id="online_ser_'+res.id+'"  >'
+                        +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+                        +'<div class="boll_online_ser " id="boll_online_ser_'+res.id+'"></div>'
+                        // +'<span class=" " id="'+res.name+'"></span>'
+                        +'</div>'
+                            +'</td>'
+                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
+                             +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
+                            +'</tr>'
+                            +'</table></div>';
+                    }
+                    ,  async: false
+                });
+
+
+            }
+          
+        }
+        if (chekhane == false) {
+           
+                    $.ajax({
+                        url: 'chat/search_user?id='+ckroomuse,
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function(res){
+                            var img = res.username;
+                          
+                            textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
+                            +'<tr>'
+                            +'<td width="50">'
+                            +'<div class="default_ser" id="online_ser_'+res.id+'"  >'
+                            +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+                            +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
+
+                            +'</div>'
+                            +'</td>'
+                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
+                            +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: #FF9800; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
+                            +'</tr>'
+                            +'</table></div>';
+                        }, async: false
+                    });
+            
+        }
+
+
+
+         $('#user_tochat').html(textomline);
+    });
 
 socket2.on('updatechat', function (username, data) {
         utc = '';

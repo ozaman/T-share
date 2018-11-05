@@ -179,10 +179,10 @@ $.ajax({
                      // data: req,
                     success: function(res){
                         var img = res.username;
-                        textomline += '<table "width="100%">'
+                        textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
                             +'<tr>'
                             +'<td width="50">'
-                        +'<div class="online_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                        +'<div class="online_ser" id="online_ser_'+res.id+'"  >'
                         +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
                         +'<div class="boll_online_ser " id="boll_online_ser_'+res.id+'"></div>'
                         // +'<span class=" " id="'+res.name+'"></span>'
@@ -191,7 +191,7 @@ $.ajax({
                             +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
                              +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
                             +'</tr>'
-                            +'</table>';
+                            +'</table></div>';
 
         // console.log(textomline)
          // $('#online_ser').html(textomline);
@@ -228,10 +228,10 @@ $.ajax({
                         success: function(res){
                             var img = res.username;
                             ddd = res.username
-                            textomline += '<table "width="100%">'
+                            textomline += '<div><table "width="100%" onclick="switchRoom('+res.id+')">'
                             +'<tr>'
                             +'<td width="50">'
-                            +'<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                            +'<div class="default_ser" id="online_ser_'+res.id+'"  >'
                             +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
                             +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
 
@@ -240,7 +240,7 @@ $.ajax({
                             +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
                             +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: #FF9800; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
                             +'</tr>'
-                            +'</table>';
+                            +'</table></div>';
                            // calluser();
         // console.log(textomline)
                         }, async: false
