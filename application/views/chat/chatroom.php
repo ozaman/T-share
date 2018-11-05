@@ -100,7 +100,7 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<script>
 setTimeout(function(){
 	
-        socket2.emit('addroom', '<?=$_GET[detect_user];?>');
+        socket2.emit('addroom', detect_user);
 
          
 }, 50);
@@ -122,7 +122,7 @@ socket2.on('updateroom', function(rooms, current_room) {
                      // data: req,
                     success: function(res){
                         var img = res.username;
-                        textomline'<div><table "width="100%" >'
+                        textomline = '<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
                         +'<div class=""  style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
@@ -152,7 +152,7 @@ socket2.on('updateroom', function(rooms, current_room) {
                         success: function(res){
                             var img = res.username;
                           
-                            textomline += '<div><table "width="100%" >'
+                            textomline = '<div><table "width="100%" >'
                             +'<tr>'
                             +'<td width="50">'
                             +'<div class="" style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'

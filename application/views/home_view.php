@@ -2167,6 +2167,7 @@ socket.on('updatedriver', function(username, data) {
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 
+<!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
 <script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script >

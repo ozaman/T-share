@@ -1,7 +1,7 @@
 
 
 function loadcontactChat() {
-
+console.log(detect_user)
 
     $.ajax({
         url: 'chat/search_user?id='+detect_user,
@@ -10,16 +10,16 @@ function loadcontactChat() {
 
         success: function(res){
           if (res.s_service == 'service') {
-fn.pushPage({
-                'id': 'chatroom.html',
-                'title': ''
-            }, 'lift-ios');
+// fn.pushPage({
+//                 'id': 'chatroom.html',
+//                 'title': ''
+//             }, 'lift-ios');
     //  $('#body_popup1').html(progress_circle);
 
     $.post("chat/chatroom?room=" + detect_user, function(ele) {
         modal.hide();
-        $('#boby_chatroom').html(ele);
-        socket2.emit('switchRoom', room);
+        $('#body_contact').html(ele);
+        // socket2.emit('switchRoom', room);
 
         //        console.log(array_rooms);
     });
