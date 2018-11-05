@@ -629,7 +629,7 @@ else {
           <!-- </div> -->
         </div>
         
-        <div class="card" style="display:none;" id="box_bank"> 
+        <div class="card" style="display:none;" id="box_bank" onclick=""> 
           <div id="load_select_bank">
             
           </div>

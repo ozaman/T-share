@@ -7,10 +7,16 @@
         if($num_bank<=0){ ?>
     <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_add');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
         <?php }
-		foreach ($query_bank->result()  as $row){ ?>
-			<ons-list-item tappable onclick="">
+		foreach ($query_bank->result()  as $row){ 
+          if($row->status_often==1){
+              $checked = "checked";
+          }else{
+              $checked = "";
+          }
+          ?>
+			<ons-list-item tappable onclick="selectBankForCom('<?=$row->id;?>');">
 	        <label class="left">
-	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
+	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select" <?=$checked;?> ></ons-radio>
 	        </label>
 	        <label for="radio-<?=$row->id;?>" class="center">
 	        <table width="100%">
@@ -24,3 +30,9 @@
 	      </ons-list-item>
 	<?php	}	?>
   </div>
+
+<script>
+  function selectBankForCom(bank_id){
+    
+  }
+</script>
