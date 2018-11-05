@@ -86,3 +86,4 @@
 	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitAddBank();" style="background-color: #fff;">เพิ่มข้อมูลบัญชี</ons-button>
 </div>
 <input type="hidden" id="img_book_bank_check" value="0" />
+<input type="hidden" id="open_by" value="<?=$_GET[open_by];?>" />
