@@ -2,7 +2,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
 <?php 
 $_where = array();
-$_where['id'] = $_COOKIE[detect_user];
+$_where['id'] = $_GET[room];
 // $_where['status'] = 1;
 $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
@@ -22,31 +22,32 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 	<div class="shopee-chat-container expanded">
 
 		<div class="conversation-window">
-			<!-- <div class="chat-header">
+			<div class="chat-header">
 
-				<div class="user-menu ember-view" id="online_ser_me" >
+				<div class="user-menu ember-view" id="online_ser" style="    text-align: center;">
 
-					<div class="online_ser_me" style="width: 30px;
-    height: 30px;
-    /* display: inline-block; */
-    border: 2px solid #32bf38;
-    margin: 5px 3px;
-    padding: 3px;
-    border-radius: 50px;
-    display: inline-block;">
-						<img src="../data/pic/driver/small/<?=$user->username;?>.jpg?v=1541241764"  class="online_ser_img">
-						<div class="boll_ofline_ser " id=""></div>
+					<!-- <div class="default_ser" id="online_ser_164" onclick="switchRoom(164)" >
+						<img src="../data/pic/driver/small/HKT0164.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_164"></div>
 					</div>
-					<span><?=$user->name;?></span>
-				
+					<div class="default_ser" id="online_ser_153">
+						<img src="../data/pic/driver/small/HKT0153.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_153"></div>
 					</div>
-				</div> -->
+					<div class="default_ser" id="online_ser_472">
+						<img src="../data/pic/driver/small/PKT0472.jpg?v=1541241764"  class="online_ser_img">
+						<div class="boll_ofline_ser " id="boll_online_ser_472"></div>
+					</div> -->
+
+
+					<!----></div>
+				</div>
 				<div id="ember549" class="chat-window ember-view"><!---->
 					<div id="ember560" class="chat-content shopee-chat__scrollable chat-content ember-view">
 						<div class="shopee-chat__scrollable-inner">
 
 							<!-- <div id="ember697" class="chat-message ember-view"><div class="shopee-chat-grid"> -->
-								<div id="online_ser"></div>
+								<div id="conversation"></div>
 				<!-- </div>
 				</div> -->
 			<!-- 	<div id="ember726" class="chat-message ember-view"><div class="shopee-chat-grid">
@@ -94,7 +95,79 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 		</div>
 	</div>
-	
+	<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+		<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
+		<div class="chat-toolbar">
+			<div class="clearfix" style="    padding: 0 5px;">
+           <!--  <div style="position: relative; top: 7px;" class="left">
+                  <div class="popover-button popup-parent">
+                 <div class="popover-button-inner " data-ember-action="" data-ember-action-572="572">
+                      <div class="ic ic_emoji "></div>
+                      สติ๊กเกอร์
+                    </div>
+                  </div>
+                <div class="popover-button " data-ember-action="" data-ember-action-567="567">
+                    <div class="ic ic_pic"></div>
+                  รูปภาพ
+                </div>
+                <div class="popover-button popup-parent">
+                   <div class="popover-button-inner " data-ember-action="" data-ember-action-568="568">
+                        <div class="ic ic_product "></div>
+                      สินค้า
+                    </div>
+                </div>
+                <div class="popover-button popup-parent">
+                  <div class="popover-button-inner " data-ember-action="" data-ember-action-569="569">
+                        <div class="ic ic_order "></div>
+                      คำสั่งซื้อ
+                    </div>
+                </div>
+            </div> -->
+            <table width="100%">
+            	<tr>
+            		<td>
+            			<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
+            			width: 100%;
+            			height: 38px;
+            			padding: 0px 10px;
+            			border: 1px solid #ccc;
+            			border-radius: 5px;
+            			">
+            		</td>
+            		<td valign="center"> 
+            			<input  class="shopee-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+            			width: 40px;
+            			text-align: center;
+            			padding: 9px 13px;
+            			margin: 0px 2px 0;
+            			border-radius: 4px;
+            			border: none;
+            			background: linear-gradient(#0076ff,#0076ff);">
+            			<!-- <button  class="shopee-chat__primary" id="datasend">ส่ง</button> -->
+            			<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
+            		</td>
+            		<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
+            		cursor: pointer;
+            		/* width: 28px; */
+            		text-align: center;
+            		padding: 0 0;
+            		margin: 0px 0 0;
+            		border-radius: 4px;
+            		border: none;
+            		color: #9E9E9E;
+            		font-size: 45px;
+            		margin-top: 3px;
+            		/* background: linear-gradient(#0076ff,#0076ff); */
+            		"></i></div></td>
+            	</tr>
+            </table>
+           <!--  <div class="right">
+            	<input  class="shopee-chat__primary" type="button" id="datasend" value="send" />
+            	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
+            	</div> -->
+            </div>
+        </div>
+    </div>
     <input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
 </div>
 </div>
@@ -113,37 +186,8 @@ setTimeout(function(){
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
         socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
-          // $.ajax({
-          //               url: 'chat/search_user?id='+'<?=$_COOKIE[detect_user];?>', 
-          //               dataType: 'json',
-          //               type: 'POST',
-          //               success: function(res){
-          //                   var img = res.username;
-          //                   textomline = '<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
-          //                   +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
-          //                   +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
-          //                   +'<div class="boll_ofline_ " id="boll_online_name'+res.name+'"></div>'
-          //                   +'</div>';
-          //                   $('#online_ser_me').append(textomline);
-          //               }
-          //           });
     // });
     // 
-    var it_works = false;
-
-$.ajax({
-  type: "POST",
-  url: 'chat/search_user?id=153',
-  success: function (data) {
-    it_works = true;
-  }, 
-  async: false // <- this turns it into synchronous
-});
-
-// Execution is BLOCKED until request finishes.
-
-// it_works is available
-// alert(it_works);
 }, 1000);
 
 socket2.on('updatechat', function (username, data) {
@@ -326,7 +370,6 @@ socket2.on('updatechat', function (username, data) {
         
 
     });
-    var ddd;
  // socket.on('user image', image);
     // listener, whenever the server emits 'updaterooms', this updates the room the client is in
     socket2.on('updateroom', function(rooms, current_room) {
@@ -346,7 +389,6 @@ socket2.on('updatechat', function (username, data) {
         console.log(roomsf.length+'------------roomsf.length------')
         // $('#rooms').empty();
         var textomline = '';
-        
 
         for (var i = 0; i < sunnumservice; i++) {
             if (i<roomlenght) {
@@ -358,30 +400,18 @@ socket2.on('updatechat', function (username, data) {
                      // data: req,
                     success: function(res){
                         var img = res.username;
-                        textomline += '<table "width="100%">'
-                            +'<tr>'
-                            +'<td width="50">'
-                        +'<div class="online_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                        textomline = '<div class="online_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
                         +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
                         +'<div class="boll_online_ser " id="boll_online_ser_'+res.id+'"></div>'
-                        // +'<span class=" " id="'+res.name+'"></span>'
-                        +'</div>'
-                            +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
-                             +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: rgb(66, 183, 42); border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
-                            +'</tr>'
-                            +'</table>';
+                        +'</div>';
 
-        // console.log(textomline)
-         // $('#online_ser').html(textomline);
-
-
-
+$('#online_ser').append(textomline);
+                        
+                        
                     }
-                    ,  async: false
                 });
-
-
+                
+            
             }
             for (var x = 0; x < numf; x++) {
                 // console.log(rooms[i] +'=='+ roomsf[x])
@@ -409,38 +439,18 @@ socket2.on('updatechat', function (username, data) {
                         type: 'POST',
                         success: function(res){
                             var img = res.username;
-                            ddd = res.username
-                            textomline += '<table "width="100%">'
-                            +'<tr>'
-                            +'<td width="50">'
-                            +'<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
+                            textomline = '<div class="default_ser" id="online_ser_'+res.id+'" onclick="switchRoom('+res.id+')" >'
                             +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
                             +'<div class="boll_ofline_ser " id="boll_online_ser_'+res.id+'"></div>'
-                         
-                            +'</div>'
-                            +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span>'+res.name+'</span></div>'
-                            +'<div class="_5bon"><div class="_568z"><div class="_568-"></div><span aria-label="กำลังใช้งานอยู่" style="background: #FF9800; border-radius: 50%; display: inline-block; height: 6px; margin-left: 4px; width: 6px;"></span></div></div></td>'
-                            +'</tr>'
-                            +'</table>';
-                           // calluser();
-        // console.log(textomline)
-        
-                      
-                           
-                        }, async: false
+                            +'</div>';
+                            $('#online_ser').append(textomline);
+                        }
                     });
-
                 
                 
                             
             }
-            
-        
         }
-
-
-
         
                 // console.log(roomssli.length)
                 
@@ -462,15 +472,7 @@ socket2.on('updatechat', function (username, data) {
         //  //  $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
         //  // }
         // });
-        // console.log('****************************')
-        // console.log(textomline)
-         $('#online_ser').html(textomline);
     });
- 
-// function calluser() {
-// 	alert(ddd)
-// 	 // $('#online_ser').html(textomline);
-// }
     function chat_gallery_items(item) {
         console.log(item)
         var imgSrc = item.src,
@@ -542,7 +544,7 @@ socket2.on('updatechat', function (username, data) {
 	width: 45px;
 	height: 45px;
 	display: inline-block;
-	/*border: 1px solid #FF9800;*/
+	border: 1px solid #FF9800;
 	margin: 5px 3px;
 	padding: 3px;
 	border-radius: 50px;
@@ -551,8 +553,7 @@ socket2.on('updatechat', function (username, data) {
 	width: 45px;
 	height: 45px;
 	display: inline-block;
-	/*display: inline-block;*/
-	/*border: 2px solid #32bf38;*/
+	border: 2px solid #32bf38;
 	margin: 5px 3px;
 	padding: 3px;
 	border-radius: 50px;
@@ -561,28 +562,28 @@ socket2.on('updatechat', function (username, data) {
 	width: 45px;
 	height: 45px;
 	display: inline-block;
-	/*border: 2px solid #FF9800;*/
+	border: 2px solid #FF9800;
 	margin: 5px 3px;
 	padding: 3px;
 	border-radius: 50px;
 }
 .boll_online_ser{
-	    width: 13px;
-    height: 13px;
-    background: #32bf38;
-    border-radius: 50px;
-    position: relative;
-    margin-top: -11px;
-    margin-left: 25px;
+	width: 13px;
+	height: 13px;
+	background: #32bf38;
+	border-radius: 50px;
+	position: absolute;
+	top: 2px;
+	margin-left: 25px;
 }
 .boll_ofline_ser{
-	    width: 13px;
-    height: 13px;
-    background: #FF9800;
-    border-radius: 50px;
-    position: relative;
-    margin-top: -11px;
-    margin-left: 25px;
+	width: 13px;
+	height: 13px;
+	background: #FF9800;
+	border-radius: 50px;
+	position: absolute;
+	top: 2px;
+	margin-left: 25px;
 }
 .online_ser_img{
 	width: 100%;
@@ -590,12 +591,7 @@ socket2.on('updatechat', function (username, data) {
 	border-radius: 50px;
 
 }
-._5bon {
-    float: right;
-    line-height: 32px;
-    margin: 0 1px 0 4px;
-    text-align: right;
-}
+
 
 .shopee-chat-root .ic_block{background-position:-17px 0;width:16px;height:16px}
 .shopee-chat-root .ic_chat{background-position:0 -34px;width:28px;height:28px}
@@ -743,7 +739,7 @@ socket2.on('updatechat', function (username, data) {
 		/* border-right: 1px solid #00ab93; */
 	/* border-top: 1px solid #00ab93; */}
 	.shopee-chat-root .chat-header.first{border-left:1px solid #00ab93}
-	.shopee-chat-root .chat-content{-ms-flex:1;flex:1;padding:5px;overflow-y:auto;overflow-x:hidden}
+	.shopee-chat-root .chat-content{-ms-flex:1;flex:1;padding:5px 25px;overflow-y:auto;overflow-x:hidden}
 	.shopee-chat-root .chat-panel{-ms-flex:0 0 125px;flex:0 0 65px;/*height:125px;*/border-top:1px solid #e8e8e8}
 	.shopee-chat-root .chat-panel textarea{display:block;width:100%;outline:0;border:0;padding:10px;resize:none}
 	.shopee-chat-root .chat-input:after,.shopee-chat-root .clearfix:after,.shopee-chat-root .shopee-chat-grid:after{display:table;content:'';clear:both}
@@ -884,14 +880,7 @@ socket2.on('updatechat', function (username, data) {
 	.shopee-chat-root .buddy-item:hover .shopee-chat__close{display:block}
 	.product-order-card{background:#fff;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.12);margin:0 -15px}
 	.product-order-card .shopee-chat__offer-button{position:absolute;bottom:10px;right:10px}
-	.chat-window{
-		display:-ms-flexbox;
-		display:flex;
-	-ms-flex-direction:column;
-	flex-direction:column;
-	-ms-flex:1;flex:1;min-height:1px;
-	background: #ffffff;
-}
+	.chat-window{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex:1;flex:1;min-height:1px}
 	.filebutton input#imagefile {
 		position: absolute;
 		top: 0;
