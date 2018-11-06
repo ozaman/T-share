@@ -47,8 +47,8 @@ sort($MESSAGE);
 
 		<div class="conversation-window">
 			
-            <div  class="chat-window ember-view"><!---->
-             <div class="t-share-chat_scrollable" style="padding-right: 25px;padding-left: 5px;">
+            <div id="ember549" class="chat-window ember-view"><!---->
+             <div id="ember560" class="t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
               <!-- <div class="t-share-chat__scrollable-inner"> -->
 
                <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
@@ -78,7 +78,7 @@ sort($MESSAGE);
                     .'</div>'
                     .'</div>'
                     .'<div class="timestamp">'
-                    . $value->s_time
+                     .date('Y-m-d H:i:s',$value->s_time/1000)
                     .'</div>'
                     .'</div>'
                     .'</div>'
@@ -97,7 +97,7 @@ sort($MESSAGE);
                     .'</div>'
                     . '</div>'
                     .'<div class="timestamp">'
-                    . $value->s_time
+                    .date('Y-m-d H:i:s',$value->s_time/1000)
                     .'</div>'
                     .'</div>'
                     .'<div class="col-1">'
@@ -132,7 +132,7 @@ sort($MESSAGE);
                   .'</div>'
                   .'</div>'
                   .'<div class="timestamp">'
-                  . $value->s_time
+                  .date('Y-m-d H:i:s',$value->s_time/1000)
                   .'</div>'
                   .'</div>'
                   .'</div>'
@@ -149,7 +149,7 @@ sort($MESSAGE);
                 .'</div>'
                 . '</div>'
                 .'<div class="timestamp">'
-                . $value->s_time
+               .date('Y-m-d H:i:s',$value->s_time/1000)
                 .'</div>'
                 .'</div>'
                 .'<div class="col-1">'
@@ -244,6 +244,8 @@ sort($MESSAGE);
         setTimeout(function(){
 
             socket2.emit('addroom', detect_user);
+
+
 
 
         }, 50);

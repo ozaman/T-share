@@ -210,7 +210,7 @@ img[src=""] {
   .t-share-chat-root .t-share-chat-no-unread img{margin-bottom:10px}
   .t-share-chat-root .t-share-chat-button-group button,.t-share-chat-root .t-share-chat-button-group input[type=button],.t-share-chat-root .t-share-chat-button-group input[type=submit],.t-share-chat-root .t-share-chat-button-group input[type=reset]{display:block;width:100%;border-radius:0;padding:.8em 0;margin:0;background:#fff;color:#ff5722}
   .t-share-chat-root .t-share-chat-button-group>*+*{border-left:1px solid transparent}
-  .t-share-chat_scrollable{max-height:100%;overflow:auto}
+  .t-share-chat-root .t-share-chat_scrollable{max-height:100%;overflow:auto}
   .t-share-chat-root .lf-overlay,.t-share-chat-root .lm-container{position:absolute}
   .t-share-chat-root .lf-dialog{border:0;border-radius:8px;box-shadow:0 1.6rem 3.2rem rgba(0,0,0,.09);max-width:none;padding:0;width:286px;overflow:hidden;background:#fff}
   .t-share-chat-root .lf-dialog .center{text-align:center}
