@@ -9,16 +9,27 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 
 $_where = array();
-$_where['s_room'] = $_GET[room];
-$_where['i_member'] =  $_COOKIE[detect_user];
+if ($user->s_service == 'service') {
+    $_where['s_room'] = $_GET[room];
+    // $_where['i_member'] =  $_COOKIE[detect_user];
+}
+else{
+    // $this->db->where('Age', 12);
+ // $_where['s_room'] = $_GET[room];
+ // $this->
+ $this->db->where("s_room=".$_GET[room]." OR i_member=".$_COOKIE[detect_user]);
+    // $_where['i_member'] =  $_COOKIE[detect_user];
+}
+
 $_select = array('*');
 $_order = array();
-$_order['id'] = 'ASC';
+$_order['id'] = 'DESC';
 // print_r(json_encode($_where));
 // echo TBL_CHAT_MESSAGE.'888888888888888888888888888888888888888888888888888888888888888';
 
 $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select,$_order);
 
+sort($MESSAGE);
 
 ?>
 
@@ -36,21 +47,21 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
 
 		<div class="conversation-window">
 			
-            <div id="ember549" class="chat-window ember-view"><!---->
-             <div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
-              <div class="t-share-chat__scrollable-inner">
+            <div  class="chat-window ember-view"><!---->
+             <div class="t-share-chat_scrollable" style="padding-right: 25px;padding-left: 5px;">
+              <!-- <div class="t-share-chat__scrollable-inner"> -->
 
                <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
                 <?php 
-                foreach ($MESSAGE as $key => $value) {
+                foreach ($MESSAGE as $value) {
                     // echo $value->id;
-                
+
                  if ($value->s_type == 'img') {
  $_where = array();
                  $_where['i_message'] = $value->id;
 // $_where['status'] = 1;
                  $IMAGE = $this->Main_model->rowdata(TBL_CHAT_IMAGE,$_where);
-                   if ($value->s_room != $_COOKIE[detect_user]) {
+                   if ($value->i_member != $_COOKIE[detect_user]) {
                     $mag = '<div id="ember726" class="chat-message ember-view">'
                     .'<div class="t-share-chat-grid">'
                     .'<div class="col-1">'
@@ -74,7 +85,7 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
                     .'</div>';
                     echo $msg ;
 
-                    
+
                 }
                 else{
                     $msg = '<div id="ember728" class="chat-message ember-view">'
@@ -92,7 +103,7 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
                     .'<div class="col-1">'
             // .'<span>'.res.nickname.'</span>'
                     .'<div class="avatar ">'
-                    
+
                     .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" >'
                     .'</div>'
                     .'</div>'
@@ -100,11 +111,11 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
                     .'</div>';
                     echo $msg ;
                 }
-                
+
                        // echo '<img src="'.$IMAGE->s_topic .'"/>';
             }
             else{
-                if ($value->s_room != $_COOKIE[detect_user]) {
+                if ($value->i_member != $_COOKIE[detect_user]) {
                   $msg =  '<div id="ember726" class="chat-message ember-view">'
                   .'<div class="t-share-chat-grid">'
                   .'<div class="col-1">'
@@ -165,7 +176,7 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
 
 
 
-</div>
+<!-- </div> -->
 </div>
 <div class="chat-panel" data-ember-action="" data-ember-action-561="561">
   <!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
@@ -343,6 +354,7 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
             var data = e.originalEvent.target.files[0];
             var reader = new FileReader();
             reader.onload = function(evt){
+                console.log(evt.target.result)
         // image('me', evt.target.result);
 
         socket2.emit('user image', evt.target.result);
