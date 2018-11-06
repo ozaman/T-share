@@ -285,9 +285,27 @@ $('.t-share-chat__scrollable').animate({
 
     });
 
-
+$(document).ready(function(){
+    $(".t-share-chat__scrollable").scroll(function(){
+        aler('sssss')
+        console.log($(this).scrollTop())
+    });
+});
 (function() {
-
+$('.t-share-chat__scrollable').scroll(function() {
+    console.log($(this).scrollTop())
+    // if( $(this).scrollTop() >= 100 ) {
+    //     if( !fixed ) {
+    //         fixed = true;
+    //         $('#logo-scroll').css({position:'fixed', display:'visible !important'});
+    //     }
+    // } else {
+    //     if( fixed ) {
+    //         fixed = false;
+    //         $('#logo-scroll').css({display:'none'});
+    //     }
+    // }
+});
 
 
 
