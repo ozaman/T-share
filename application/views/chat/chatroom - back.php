@@ -9,33 +9,30 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 ?>
 
-<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-	<b>ROOMS</b>
-	<div id="rooms"></div>
-</div>
+
 <!-- <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
 	
 	<input id="data" style="width:200px;" />
 	
 </div> -->
-<div id="t-share-chat-embedded" style="z-index: 1000; position: fixeds; right: 10px; bottom: 0;" class="t-share-chat-root ember-application"><div id="ember306" class="ember-view">    
-	<div class="t-share-chat-container expanded">
 
-		<div class="conversation-window">
 			
-				<div id="ember549" class="chat-window ember-view"><!---->
-					<div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
-						<div class="t-share-chat__scrollable-inner">
+			
+					<!-- <div  class="chat-content t-share-chat__scrollable chat-content ember-view" style="    padding-right: 25px;"> -->
+						<!-- <div class="t-share-chat__scrollable-inner"> -->
 
 							<!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
-								<div id="conversation"></div>
+								<div id="conversation" style="margin-bottom: 50px;
+    padding: 5px;
+    padding-right: 25px; "></div>
+    <!-- background: url('assets/images/bg_chat.jpg') no-repeat; -->
 			
 
 
 
-		</div>
-	</div>
-	<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+		<!-- </div> -->
+	<!-- </div> -->
+	<!-- <div class="chat-panel" data-ember-action="" data-ember-action-561="561"> -->
 		<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
 		<div class="chat-toolbar">
 			<div class="clearfix" style="    padding: 0 5px;">
@@ -84,22 +81,12 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
             	</div> -->
             </div>
         </div>
-    </div>
+    <!-- </div> -->
     <input type="file" multiple="" accept=".png,.jpg,.jpeg,.gif" style="display:none;"></div>
-</div>
-</div>
-<div class="liquid-modal liquid-modal--closed">
-	<div class="liquid-child">
-		<div class="lm-container">
-			<div role="dialog" class="lf-dialog">
-				<!---->            </div>
-			</div>
-			<span class="lf-overlay"></span>
-		</div>
-	</div></div></div>
+
 	<script>
 setTimeout(function(){
-    
+	
         socket2.emit('addroom', detect_user);
 
          
@@ -222,7 +209,7 @@ socket2.on('updateroom', function(rooms, current_room) {
 
     });
 
-    
+	
 
 </script>
 <style>
@@ -235,4 +222,41 @@ socket2.on('updateroom', function(rooms, current_room) {
     margin-top: -12px;
     margin-left: 20px;
     }
+    .chat-toolbar{
+       position: fixed;
+    width: 100%;
+    bottom: 0; 
+        background: #fff;
+}
+.boll_ofline_user_room{
+        width: 10px;
+    height: 10px;
+    background: #FF9800;
+    border-radius: 50px;
+    position: relative;
+    margin-top: -12px;
+    margin-left: 20px;
+    }
+    .chat-toolbar{
+       position: fixed;
+    width: 100%;
+    bottom: 0; 
+        background: #fff;
+}
+.col-16{width:100%!important}
+   .col-15{width:93.75%!important}
+   .col-14{width:87.5%!important}
+   .col-13{width:81.25%!important}
+   .col-12{width:75%!important}
+   .col-11{width:68.75%!important}
+   .col-10{width:62.5%!important}
+   .col-9{width:56.25%!important}
+   .col-8{width:50%!important}
+   .col-7{width:43.75%!important}
+   .col-6{width:37.5%!important}
+   .col-5{width:31.25%!important}
+   .col-4{width:25%!important}
+   .col-3{width:18.75%!important}
+   .col-2{width:12.5%!important}
+   .col-1{width:6.25%!important}
 </style>
