@@ -1,5 +1,5 @@
 <?php
-$query = $this->db->query("select id,bank_taxi_id from order_booking where id = ".$_GET[order_id]);
+$query = $this->db->query("select id,bank_taxi_id, driver_complete from order_booking where id = ".$_GET[order_id]);
 $data = $query->row();
 
 $query_bank = $this->db->query("SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.id = '".$data->bank_taxi_id."' ");
@@ -13,29 +13,33 @@ $txt_bank_num = $xxx."".substr($data_bank->bank_number,-3);
 //echo strlen($txt_bank_num)." || ".strlen($data_bank->bank_number);
 //echo $xxx;
 //exit();
-if ($_COOKIE[detect_userclass] == "taxi") {
-
-  $title_pay = "รอโอนค่าคอมมิชชั่น";
-  $btn_pay_com_color = "background-color:#666666";
-}
-else {
-
-  $title_pay = "รอโอนค่าคอมมิชชั่น";
-  $btn_pay_com_color = "background-color:#666666";
-}
-
 $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
 $check_trans_pay = $query->num_rows();
-if($check_trans_pay>0){
-   $data_trans_pay = $query->row();
+if ($check_trans_pay > 0) {
+  $data_trans_pay = $query->row();
   $icons_p = "yes.png?v=".time();
   $class_status = "step-booking-active";
   $time_status = '<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา '.date('H:i',$data_trans_pay->last_update).' น.</span></div>';
-}else{
+
+  if ($_COOKIE[detect_userclass] == "taxi") {
+    $title_pay = "โอนค่าคอมมิชชั่นแล้ว";
+  }
+  else {
+    $title_pay = "โอนค่าคอมมิชชั่นแล้ว";
+  }
+}
+else {
   $icons_p = "no.png?v=".time();
   $class_status = "step-booking";
-  $time_status = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i><strong><font color="#FF0000">รอดำเนินการ</font></strong>';
+  $time_status = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i><strong><font color="#FF0000"> รอดำเนินการ</font></strong>';
+  if ($_COOKIE[detect_userclass] == "taxi") {
+    $title_pay = "รอโอนค่าคอมมิชชั่น";
+  }
+  else {
+    $title_pay = "รอโอนค่าคอมมิชชั่น";
+  }
 }
+$btn_pay_com_color = "background-color:#666666";
 ?>
 <td class="font-16">
   <div class="div-all-checkin">
@@ -111,10 +115,10 @@ if($check_trans_pay>0){
         <td colspan="2">
           <div style="padding: 5px;">
             <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>   
-              <?php if ($check_trans_pay > 0) {        ?>
+            <?php if ($check_trans_pay > 0) {?>
               <table width="100%">
                 <tr>
-                  <td><span class="font-16">สถานะ</span></td>
+                  <td width="35%"><span class="font-16">สถานะ</span></td>
                   <td><span class="font-16"><i class="fa fa-check" style="color: #59aa47;"></i> โอนเงินแล้ว</span></td>
                 </tr>
                 <tr>
@@ -122,15 +126,39 @@ if($check_trans_pay>0){
                   <td><span class="font-16"><?=$data_trans_pay->price_pay_driver_com." บ.";?></span></td>
                 </tr>
                 <tr>
+                  <td><span class="font-16">เวลา</span></td>
+                  <td><span class="font-16"><?=date('Y-m-d',$data_trans_pay->last_update)." ".$data_trans_pay->trans_hh.":".$data_trans_pay->trans_mm." น.";?></span></td>
+                </tr>
+                <tr>
                   <td><span class="font-16">สลิปโอนเงิน</span></td>
                   <td>
-                  <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data_trans_pay->id.".jpg?v=".time();?>','<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
+                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data_trans_pay->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
                   </td>
                 </tr>
+                <?php
+                if($data->driver_complete<1){ ?>
+                <tr>
+                  <td align="center" colspan="2">
+                <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
+                  </td>
+                </tr>
+                <?php }
+                ?>
               </table>
             <?php }
-            else {  ?>
-              
+            else {
+              ?>
+            <table width="100%">
+              <tr>
+                  <td width="35%"><span class="font-16">สถานะ</span></td>
+                  <td><span class="font-16" style="color:#FF0000;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> รอโอนเงิน</span></td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <span class="font-16">&nbsp; จะโอนเงินไม่เกินวันพรุ่งนี้เวลา 15.00 น. หากติดวันเสาร์อาทิตย์ หรือวันหยุดนักขัตฤกษ์ จะทำการโอนในวันถัดไป</span>
+                  </td>
+                </tr>
+            </table>
             <?php }
             ?>
           </div>

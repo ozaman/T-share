@@ -1948,12 +1948,15 @@ socket.on('updaterooms', function(rooms, current_room) {
     console.log(current_room)
 });
 
-socket.on('datalab', function(username, data) {
+socket.on('datalab', function(socket_class, data) {
     console.log('***********************datalab***************************')
-    console.log(username)
+    console.log(class_user.toUpperCase()+" || "+socket_class.toUpperCase())
     console.log(data)
+    if(class_user.toUpperCase()!= socket_class.toUpperCase()){
+      console.log("No lab");
+      return;
+    }
 
-    //console.log(data[0].id);
     var check_open = $('#check_open_shop_id').val();
     if (check_open != 0) {
         $.each(data, function(index, value) {
@@ -2001,7 +2004,8 @@ socket.on('datalab', function(username, data) {
                     $('#btn_manage_' + value.id).show();
 
 
-                } else {
+                } 
+                else {
                     $('#btn_manage_topoint_' + value.id).show();
                     $('#btn_manage_' + value.id).hide();
                 }
@@ -2061,11 +2065,14 @@ socket.on('datalab', function(username, data) {
     setCountNotification();
 });
 
-socket.on('updatedriver', function(username, data) {
+socket.on('updatedriver', function(socket_class, data) {
     //	alert(data.pax_regis);
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-    console.log(username)
+    console.log(class_user+" || "+socket_class)
     console.log(data)
+//    if(class_user.toUpperCase() != class_name){
+//      return;
+//    }
     //console.log(array_rooms)
     var check_open = $('#check_open_shop_id').val();
 
@@ -2098,6 +2105,20 @@ socket.on('updatedriver', function(username, data) {
                 $('#num_edit_persion2').val(data.pax_regis);
                 //            $('#step_driver_pay_report').show();
             }
+            
+            if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
+                    loadBoxConfirmPay(data.id);
+                    return;
+             }
+             if (data.check_driver_pay == 1) {
+                    loadBoxConfirmPay(data.id);
+             }
+             if (data.check_lab_pay == 1) {
+                    loadBoxConfirmPay(data.id);
+             }
+             if(data.transfer_money==1){
+               load_status_trans(data.id);
+             }
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
                 changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
@@ -2108,7 +2129,7 @@ socket.on('updatedriver', function(username, data) {
     }
 
     console.log($('#open_shop_manage').val());
-    //    alert($('#open_shop_manage').val())
+
     if ($('#open_shop_manage').val() == 1) {
         console.log("*************************************");
 
@@ -2118,7 +2139,8 @@ socket.on('updatedriver', function(username, data) {
                 $('#btn_manage_topoint_' + data.id).hide();
                 $('#btn_manage_' + data.id).show();
 
-            } else {
+            } 
+            else {
                 $('#btn_manage_topoint_' + data.id).show();
                 $('#btn_manage_' + data.id).hide();
             }

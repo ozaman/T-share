@@ -1992,7 +1992,7 @@ function shopManage() {
 function waitTransShop() {
 
   var date = $('#date_shop_wait').val();
-
+  countWaitTransShop();
   if (class_user == "taxi") {
     var url_his = 'api/shop_wait_trans_shop?driver_id=' + detect_user + '&date=' + date;
   } else {
@@ -2089,24 +2089,24 @@ function openViewPrice(id) {
     'id': 'popup_shop_checkin.html',
     'title': "รายได้"
   }, 'lift-ios');
-  reloadIncomeShop(id);
+//  reloadIncomeShop(id);
 }
 
-function reloadIncomeShop(id) {
-  var url = "page/call_page?&id=" + id;
-  console.log(url);
-  if (class_user == "taxi") {
-    var path = "shop/income_driver_taxi";
-  } else {
-    var path = "shop/income_driver_lab";
-  }
-
-  $.post(url, {
-    path: path
-  }, function (ele) {
-    $('#body_shop_checkin').html(ele);
-  });
-}
+//function reloadIncomeShop(id) {
+//  var url = "page/call_page?&id=" + id;
+//  console.log(url);
+//  if (class_user == "taxi") {
+//    var path = "shop/income_driver_taxi";
+//  } else {
+//    var path = "shop/income_driver_lab";
+//  }
+//
+//  $.post(url, {
+//    path: path
+//  }, function (ele) {
+//    $('#body_shop_checkin').html(ele);
+//  });
+//}
 
 function ex_booking() {
   var url = "shop/shop_history";
@@ -2594,22 +2594,49 @@ function completedJobShop(id) {
         ons.notification.alert({
           message: 'ยืนยันการรับเงินสดแล้ว กรุณารอแจ้งโอนจากค่าคอมมิชชั่น',
           title: "สำเร็จ",
-          buttonLabel: "ตกลง"
+          buttonLabel: "ปิด"
         })
                 .then(function () {
-                  reloadIncomeShop(id);
+//                  reloadIncomeShop(id);
                 });
       } else {
         ons.notification.alert({
           message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
           title: "สำเร็จ",
-          buttonLabel: "ตกลง"
+          buttonLabel: "ปิด"
         })
                 .then(function () {
-                  reloadIncomeShop(id);
+//                  reloadIncomeShop(id);
                 });
       }
     }
   });
 
+}
+
+function confirmGetTransCom(order_id){
+//  $('#get_trans_com_'+order_id).prop('disabled', false);
+  $('#get_trans_com_'+order_id).attr('disabled', 'disabled');
+  var url_complete = "shop/get_trans_com?id=" + order_id;
+  $.ajax({
+    url: url_complete,
+    dataType: 'json',
+    type: 'post',
+    success: function (data) {
+      console.log(data)
+      if(data.order.result==true){
+        ons.notification.alert({
+          message: 'ยืนยันรัยเงินค่าคอมมิชชั่นแล้ว งานของคุณเสร็จสมบรูณ์',
+          title: "สำเร็จ",
+          buttonLabel: "ปิด"
+        })
+                .then(function () {
+                    waitTransShop();
+                    callpop();
+                });
+          
+      }
+    }
+  });
+  
 }
