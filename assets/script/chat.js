@@ -177,9 +177,15 @@ socket2.on('updatechat', function (username, data) {
         }
         $('#conversation').append(msg);
         $('.t-share-chat-root').get(0).scrollTop = 10000000;
-       $('.page').animate({
+//        $('.page').animate({
    
-      scrollTop: $(document).height()+10000000
+//       scrollTop: $(document).height()+10000000
+//     }, 500);
+//     }
+// });
+$('.t-share-chat__scrollable').animate({
+   
+      scrollTop: 10000000
     }, 500);
     }
 });
@@ -263,9 +269,15 @@ socket2.on('updatechat', function (username, data) {
         $('#conversation').append(msg);
         $('.t-share-chat-root').get(0).scrollTop = 10000000;
         console.log($('').height())
-$('.page').animate({
+// $('.page').animate({
    
-      scrollTop: $(document).height()+10000000
+//       scrollTop: $(document).height()+10000000
+//     }, 500);
+//     }
+// });
+$('.t-share-chat__scrollable').animate({
+   
+      scrollTop: 10000000
     }, 500);
     }
 });
@@ -275,7 +287,7 @@ $('.page').animate({
 
 
 (function() {
- 
+
 
 
 
