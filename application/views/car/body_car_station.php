@@ -17,24 +17,27 @@ $_where = array();
 
 
 $_where = array();
-$_where['id'] = $OTHRET->type;
+$_where['id'] = $STATION->type;
 $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 
 
 $_where = array();
 $_where[user_class] = $_COOKIE['detect_userclass'];
-$_where[i_station_type] = $OTHRET->type;
+// if ($STATION->station == 4) {
+// 	# code...
+// }
+$_where[i_station_type] = $STATION->type;
 $_select = array('*');
 $_order = array();
 $_order[i_index] = 'asc';
 $STATION_FIELD = $this->Main_model->fetch_data('','',TBL_SHOP_STATION_FIELD,$_where,$_select,$_order);
 
 $_where = array();
-$_where[area] = $OTHRET->region;
+$_where[area] = $STATION->region;
 $PROVINCE = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where);
 
 $_where = array();
-$_where[PROVINCE_ID] = $OTHRET->province;
+$_where[PROVINCE_ID] = $STATION->province;
 $AMPHUR = $this->Main_model->rowdata(TBL_WEB_AMPHUR,$_where);
  }
 
@@ -80,7 +83,8 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
 				</td>
 			</tr>
 
-	 <?php	}}
+	 <?php	}
+	}
 
 		else{
 		foreach($STATION_FIELD as $row){
