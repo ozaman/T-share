@@ -7,6 +7,19 @@ $_where['id'] = $_COOKIE[detect_user];
 $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 
+
+$_where = array();
+$_where['s_room'] = $_GET[room];
+$_where['i_member'] =  $_COOKIE[detect_user];
+$_select = array('*');
+$_order = array();
+$_order['id'] = 'ASC';
+// print_r(json_encode($_where));
+// echo TBL_CHAT_MESSAGE.'888888888888888888888888888888888888888888888888888888888888888';
+
+$MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select,$_order);
+
+
 ?>
 
 <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
@@ -23,61 +36,99 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 
 		<div class="conversation-window">
 			
-				<div id="ember549" class="chat-window ember-view"><!---->
-					<div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
-						<div class="t-share-chat__scrollable-inner">
+            <div id="ember549" class="chat-window ember-view"><!---->
+             <div id="ember560" class="chat-content t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
+              <div class="t-share-chat__scrollable-inner">
 
-							<!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
-								<div id="conversation"></div>
-			
+               <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
+                <?php 
+                foreach ($MESSAGE as $key => $value) {
+                    echo $value->id;
+                    if ($value->s_type == 'img') {
+                       $_where = array();
+                       $_where['i_message'] = $value->id;
+// $_where['status'] = 1;
+                       $IMAGE = $this->Main_model->rowdata(TBL_CHAT_IMAGE,$_where);
+                        $msg = '<div id="ember726" class="chat-message ember-view">'
+                    .'<div class="t-share-chat-grid">'
+                    .'<div class="col-1">'
+                    // .'<span>'.res.nickname.'</span>'
+                    .'<div class="avatar">'
+
+                    .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" height="37">'
+                    .'</div>'
+                    .'</div>'
+                    .'<div class="col-15 message-content reverse">'
+                    .'<div class=" from">'
+                    .'<div class="overflow-wrapper cf">'
+                    .'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' . $IMAGE->s_topic . '" data-high-res-src="'.$IMAGE->s_topic.'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
+                    .'</div>'
+                    .'</div>'
+                    .'<div class="timestamp">'
+                    . $value->s_time
+                    .'</div>'
+                    .'</div>'
+                    .'</div>'
+                    .'</div>';
+                    echo $msg ;
+                       // echo '<img src="'.$IMAGE->s_topic .'"/>';
+                   }
+
+               }
+
+               ?>
+               <div id="conversation">
+
+               </div>
 
 
 
-		</div>
-	</div>
-	<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
-		<!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
-		<div class="chat-toolbar">
-			<div class="clearfix" style="    padding: 0 5px;">
-          
+
+           </div>
+       </div>
+       <div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+          <!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
+          <div class="chat-toolbar">
+           <div class="clearfix" style="    padding: 0 5px;">
+
             <table width="100%">
-            	<tr>
-            		<td>
-            			<input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
-            			width: 100%;
-            			height: 38px;
-            			padding: 0px 10px;
-            			border: 1px solid #ccc;
-            			border-radius: 5px;
-            			">
-            		</td>
-            		<td valign="center"> 
-            			<input  class="t-share-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
-            			width: 40px;
-            			text-align: center;
-            			padding: 9px 13px;
-            			margin: 0px 2px 0;
-            			border-radius: 4px;
-            			border: none;
-            			background: linear-gradient(#0076ff,#0076ff);">
-            			<!-- <button  class="t-share-chat__primary" id="datasend">ส่ง</button> -->
-            			<!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
-            		</td>
-            		<td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
-            		cursor: pointer;
-            		/* width: 28px; */
-            		text-align: center;
-            		padding: 0 0;
-            		margin: 0px 0 0;
-            		border-radius: 4px;
-            		border: none;
-            		color: #9E9E9E;
-            		font-size: 45px;
-            		margin-top: 3px;
-            		/* background: linear-gradient(#0076ff,#0076ff); */
-            		"></i></div></td>
-            	</tr>
-            </table>
+             <tr>
+              <td>
+               <input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
+               width: 100%;
+               height: 38px;
+               padding: 0px 10px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               ">
+           </td>
+           <td valign="center"> 
+               <input  class="t-share-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+               width: 40px;
+               text-align: center;
+               padding: 9px 13px;
+               margin: 0px 2px 0;
+               border-radius: 4px;
+               border: none;
+               background: linear-gradient(#0076ff,#0076ff);">
+               <!-- <button  class="t-share-chat__primary" id="datasend">ส่ง</button> -->
+               <!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
+           </td>
+           <td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
+           cursor: pointer;
+           /* width: 28px; */
+           text-align: center;
+           padding: 0 0;
+           margin: 0px 0 0;
+           border-radius: 4px;
+           border: none;
+           color: #9E9E9E;
+           font-size: 45px;
+           margin-top: 3px;
+           /* background: linear-gradient(#0076ff,#0076ff); */
+           "></i></div></td>
+       </tr>
+   </table>
            <!--  <div class="right">
             	<input  class="t-share-chat__primary" type="button" id="datasend" value="send" />
             	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
@@ -98,13 +149,13 @@ $user = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
 		</div>
 	</div></div></div>
 	<script>
-setTimeout(function(){
-    
-        socket2.emit('addroom', detect_user);
+        setTimeout(function(){
 
-         
-}, 50);
-socket2.on('updateroom', function(rooms, current_room) {
+            socket2.emit('addroom', detect_user);
+
+
+        }, 50);
+        socket2.on('updateroom', function(rooms, current_room) {
         // $('#online_ser').remove()
         $('#user_tochat').empty();
         
@@ -120,62 +171,62 @@ socket2.on('updateroom', function(rooms, current_room) {
                     dataType: 'json',
                     type: 'POST',
                      // data: req,
-                    success: function(res){
+                     success: function(res){
                         var img = res.username;
                         textomline = '<div><table "width="100%" >'
-                            +'<tr>'
-                            +'<td width="50">'
+                        +'<tr>'
+                        +'<td width="50">'
                         +'<div class=""  style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
                         +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
                         +'<div class="boll_online_user_room "></div>'
                         // +'<span class=" " id="'+res.name+'"></span>'
                         +'</div>'
-                            +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
-                             +'</td>'
-                            +'</tr>'
-                            +'</table></div>';
+                        +'</td>'
+                        +'<td width="100%"><div class=" " id="" style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
+                        +'</td>'
+                        +'</tr>'
+                        +'</table></div>';
                     }
                     ,  async: false
                 });
 
 
             }
-          
+
         }
         if (chekhane == false) {
-           
-                    $.ajax({
-                        url: 'chat/search_user?id='+ckroomuse,
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function(res){
-                            var img = res.username;
-                          
-                            textomline = '<div><table "width="100%" >'
-                            +'<tr>'
-                            +'<td width="50">'
-                            +'<div class="" style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
-                            +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
-                           +'<div class="boll_ofline_user_room "></div>'
 
-                            +'</div>'
-                            +'</td>'
-                            +'<td width="100%"><div class=" " id="" style="display:inline-block"><span  style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
-                            +'</td>'
-                            +'</tr>'
-                            +'</table></div>';
-                        }, async: false
-                    });
+            $.ajax({
+                url: 'chat/search_user?id='+ckroomuse,
+                dataType: 'json',
+                type: 'POST',
+                success: function(res){
+                    var img = res.username;
+
+                    textomline = '<div><table "width="100%" >'
+                    +'<tr>'
+                    +'<td width="50">'
+                    +'<div class="" style="width: 30px; height: 30px;display: inline-block; margin: 3px 3px;    border-radius: 50px;"  >'
+                    +'<img src="../data/pic/driver/small/'+img+'.jpg?v=1541241764"  class="online_ser_img">'
+                    +'<div class="boll_ofline_user_room "></div>'
+
+                    +'</div>'
+                    +'</td>'
+                    +'<td width="100%"><div class=" " id="" style="display:inline-block"><span  style="display:inline-block"><span style="font-size: 15px;color: #616161;">'+res.name+'</span></div>'
+                    +'</td>'
+                    +'</tr>'
+                    +'</table></div>';
+                }, async: false
+            });
             
         }
 
 
 
-         $('#user_tochat').html(textomline);
+        $('#user_tochat').html(textomline);
     });
 
- 
+
 
     // on load of page
     var viewer = ImageViewer();
@@ -187,7 +238,7 @@ socket2.on('updateroom', function(rooms, current_room) {
         viewer.show(imgSrc, highResolutionImage);
     });
     $(function(){
-        
+
         // when the client clicks SEND
         $('#datasend').click( function() {
             var message = $('#data').val();
@@ -226,13 +277,13 @@ socket2.on('updateroom', function(rooms, current_room) {
 
 </script>
 <style>
-    .boll_online_user_room{
-        width: 10px;
+.boll_online_user_room{
+    width: 10px;
     height: 10px;
     background: #32bf38;
     border-radius: 50px;
     position: relative;
     margin-top: -12px;
     margin-left: 20px;
-    }
+}
 </style>
