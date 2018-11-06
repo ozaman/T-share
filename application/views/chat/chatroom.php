@@ -43,13 +43,14 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
                <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
                 <?php 
                 foreach ($MESSAGE as $key => $value) {
-                    echo $value->id;
+                    // echo $value->id;
                     if ($value->s_type == 'img') {
                        $_where = array();
                        $_where['i_message'] = $value->id;
 // $_where['status'] = 1;
                        $IMAGE = $this->Main_model->rowdata(TBL_CHAT_IMAGE,$_where);
-                        $msg = '<div id="ember726" class="chat-message ember-view">'
+                       if ($value->id == $_COOKIE[detect_user]) {
+                         $msg = '<div id="ember726" class="chat-message ember-view">'
                     .'<div class="t-share-chat-grid">'
                     .'<div class="col-1">'
                     // .'<span>'.res.nickname.'</span>'
@@ -71,6 +72,11 @@ $MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select
                     .'</div>'
                     .'</div>';
                     echo $msg ;
+                       }
+                       else{
+                        echo 'ffff';
+                       }
+                        
                        // echo '<img src="'.$IMAGE->s_topic .'"/>';
                    }
 
