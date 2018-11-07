@@ -136,7 +136,7 @@ $btn_pay_com_color = "background-color:#666666";
                   </td>
                 </tr>
                 <?php
-                if($data->driver_complete<1){ ?>
+                if($data->driver_approve<1){ ?>
                 <tr>
                   <td align="center" colspan="2">
                 <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>','<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>

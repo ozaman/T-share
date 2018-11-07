@@ -2576,7 +2576,7 @@ function confirmGetTransCom(order_id, invoice) {
     type: 'post',
     success: function (data) {
       console.log(data)
-      if (data.order.result == true) {
+      if (data.pay_his.order.result == true) {
         ons.notification.alert({
           message: 'ยืนยันรัยเงินค่าคอมมิชชั่นแล้ว งานของคุณเสร็จสมบรูณ์',
           title: "สำเร็จ",
@@ -2610,6 +2610,8 @@ function confirmGetTransCom(order_id, invoice) {
 //        };
         var nc = {};
         apiRecordActivityAndNotification(ac, nc);     
+      }else{
+        
       }
     }
   });

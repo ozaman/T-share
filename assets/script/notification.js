@@ -166,6 +166,7 @@ function makeReadNotification(id) {
             if (res.result == true) {
                 setCountNotification();
                 $('#card-ac_' + id).css('background-color', '#fff');
+                $('#icon_read_'+id).hide();
             }
         }
     });
@@ -186,6 +187,7 @@ function makeUnReadNotification() {
             if (res.result == true) {
                 setCountNotification();
                 $('#card-ac_' + id).css('background-color', '#edf2fa');
+                $('#icon_read_'+id).show();
                 app.hideFromTemplate();
             }
         }

@@ -211,11 +211,11 @@ foreach ($_POST[data] as $key => $val) {
             $titel = t_work_remuneration;
             $display_none_change_plan = "display:none;";
             $color_titel = "";
-           
-            if($data->check_driver_pay==0){
+
+            if ($data->check_driver_pay == 0) {
               $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
             }
-            else{
+            else {
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
             ?>
@@ -240,12 +240,12 @@ foreach ($_POST[data] as $key => $val) {
                 </tr>
                 <tr style="<?=$display_park;?>">
                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?></span></td>
+                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
                 </tr>
                 <tr style="<?=$display_person;?>">
                   <td width="35%"><span class="font-17">ค่าหัว</span></td>
-                  <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?></span></td>
+                  <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
                 </tr>
                 <?php if ($data->transfer_money == 0) {?>
@@ -257,23 +257,24 @@ foreach ($_POST[data] as $key => $val) {
                       <?=$com_progress;?>
                     </td>
                   </tr>
-                <?php
+                  <?php
                 }
                 else {
-                  if($data->driver_approve==0){
-                      $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
-                  }else{
-                      $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+                  if ($data->driver_approve == 0) {
+                    $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+                  }
+                  else {
+                    $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
                   }
                   $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
                   $data_trans_pay = $query->row();
                   ?>
                   <tr style="<?=$display_com;?>">
                     <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
-                    <td align="right"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?></span>
+                    <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
                     </td>
                     <td align="right" width="20%">
-                      <?=$txt_com_status;?>
+    <?=$txt_com_status;?>
                     </td>
                   </tr>
                 <?php }

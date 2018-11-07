@@ -578,12 +578,21 @@ public function taxi_approved_cancel(){
 }
 
 public function get_trans_com(){
+    $order['driver_approve'] = 1;
+    $order['driver_approve_pay_date'] = time();
+	$this->db->where('id', $_GET[id]);
+	$order[result] = $this->db->update('order_booking', $order); 
+    
     $data['driver_approve'] = 1;
-    $data['driver_approve_date'] = time();
+    $data['driver_approve_pay_date'] = time();
 	$this->db->where('order_id', $_GET[id]);
+   
 	$data[result] = $this->db->update('pay_history_driver_shopping', $data); 
     
-    return $data;
+    $return[order] = $order;
+    $return[his] = $data;
+    $return['id'] = $_GET[id];
+    return $return;
 }
 
   /**
