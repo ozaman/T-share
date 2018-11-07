@@ -1974,18 +1974,23 @@ socket.on('datalab', function(socket_class, data) {
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
                     changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
-
+                    $('.page').animate({
+                        scrollTop: $(document).height()+700
+                    }, 500);
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
                     //					alert(value.pax_regis);
                     $('#num_edit_persion2').val(value.pax_regis);
+                    $('.page').animate({
+                        scrollTop: $(document).height()+700
+                    }, 500);
                 }
 
                 if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
-                    return;
+//                    return;
                 }
                 if (value.check_driver_pay == 1) {
                     loadBoxConfirmPay(value.id);
@@ -1993,7 +1998,10 @@ socket.on('datalab', function(socket_class, data) {
                 if (value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
                 }
-
+                if(data.transfer_money==1){
+                  load_status_trans(data.id);
+                  loadNewPlan(data.id)
+                }
             }
         });
     }
@@ -2112,7 +2120,7 @@ socket.on('updatedriver', function(socket_class, data) {
             
             if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
                     loadBoxConfirmPay(data.id);
-                    return;
+//                    return;
              }
              if (data.check_driver_pay == 1) {
                     loadBoxConfirmPay(data.id);
@@ -2122,6 +2130,7 @@ socket.on('updatedriver', function(socket_class, data) {
              }
              if(data.transfer_money==1){
                load_status_trans(data.id);
+               loadNewPlan(data.id)
              }
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");

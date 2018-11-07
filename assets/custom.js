@@ -798,6 +798,8 @@ function countWaitTransShop() {
                 console.log(res);
                 if (res > 0) {
                     $('#tab_shop_wait').attr('badge', res);
+                }else{
+                    $('#tab_shop_wait').removeAttr("badge");
                 }
 
             }

@@ -13,8 +13,8 @@ function check_com_plan(id) {
   });
 }
 
-function load_status_trans(id){
-  $.post("component/box_status_trans_shop?order_id="+id,function(html){
+function load_status_trans(id) {
+  $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
     $('.page').animate({
       scrollTop: $(document).height() + 700
@@ -505,24 +505,24 @@ function handleClick_s(tax, name) {
     }
     // checformadd('box_com')
     $.ajax({
-    url: "shop/check_commission_plan?order_id=" + name,
-    dataType: 'json',
-    type: 'post',
-    success: function (chk) {
-      console.log(chk);
-      if (chk.result == true) {
-        $('#box_bank').show();
-        var url = "component/box_select_bank_shop";
-        $.post(url, function (ele) {
+      url: "shop/check_commission_plan?order_id=" + name,
+      dataType: 'json',
+      type: 'post',
+      success: function (chk) {
+        console.log(chk);
+        if (chk.result == true) {
+          $('#box_bank').show();
+          var url = "component/box_select_bank_shop";
+          $.post(url, function (ele) {
 //          console.log(ele);
-          $('#load_select_bank').html(ele);
+            $('#load_select_bank').html(ele);
 
-        });
-        
-      }else{
-        $('#box_bank').hide();
+          });
+
+        } else {
+          $('#box_bank').hide();
+        }
       }
-    }
     });
   }
 
@@ -2268,23 +2268,23 @@ function approveBook(id, invoice, driver_id) {
 }
 
 function historyShop() {
-  if($('#cehck_filter_date').val()==1){
+  if ($('#cehck_filter_date').val() == 1) {
     var date = $('#date_shop_his').val();
     var date_rp = date.replace("-", "/");
     date_rp = date_rp.replace("-", "/");
-  }else{
+  } else {
     var date_rp = "";
   }
   var type_status = $('#check_filter_his').val();
-  
+
   var url_his = "api/shop_history_fix";
   var data = {
-      date: date_rp,
-      driver: detect_user,
-      status: type_status,
-      class_name: class_user
-    };
-  
+    date: date_rp,
+    driver: detect_user,
+    status: type_status,
+    class_name: class_user
+  };
+
 //  if (class_user == "taxi") {
 //    var url_his = 'api/shop_history_driver';
 //    //          var driver = detect_user;
@@ -2557,6 +2557,8 @@ function confirmGetIncome(id, invoice, driver) {
             sendSocket(id);
           }
         });
+        
+        test_load_list(id);
 
       }
     }
@@ -2633,9 +2635,9 @@ function completedJobShop(id) {
 
 }
 
-function confirmGetTransCom(order_id){
+function confirmGetTransCom(order_id) {
 //  $('#get_trans_com_'+order_id).prop('disabled', false);
-  $('#get_trans_com_'+order_id).attr('disabled', 'disabled');
+  $('#get_trans_com_' + order_id).attr('disabled', 'disabled');
   var url_complete = "shop/get_trans_com?id=" + order_id;
   $.ajax({
     url: url_complete,
@@ -2643,33 +2645,65 @@ function confirmGetTransCom(order_id){
     type: 'post',
     success: function (data) {
       console.log(data)
-      if(data.order.result==true){
+      if (data.order.result == true) {
         ons.notification.alert({
           message: 'ยืนยันรัยเงินค่าคอมมิชชั่นแล้ว งานของคุณเสร็จสมบรูณ์',
           title: "สำเร็จ",
           buttonLabel: "ปิด"
         })
                 .then(function () {
-                    waitTransShop();
-                    callpop();
+                  waitTransShop();
+                  callpop();
                 });
-          
+
       }
     }
   });
-  
+
 }
 
-function showFilterdate(){
+function showFilterdate() {
   $('#btn_toshow_date').hide();
   $('#box-shop_date').fadeIn(500);
   $('#cehck_filter_date').val(1);
   historyShop();
 }
 
-function hideFilterdate(){
+function hideFilterdate() {
   $('#box-shop_date').hide();
   $('#btn_toshow_date').show();
   $('#cehck_filter_date').val(0);
   historyShop();
+}
+
+function load_component_list_manage(value) {
+  var pass = {
+    data: value
+  };
+  console.log(pass);
+  var url = "component/list_shop_manage";
+  $.ajax({
+    url: url,
+    data: pass,
+    type: 'post',
+    success: function (ele) {
+      $('#list_shop_manage_' + value.id).html(ele);
+    }
+  });
+}
+
+function test_load_list(id){
+  var orderid = {
+          id : id
+        };
+        $.ajax({
+          url: "shop/get_data_shop",
+          data: orderid,
+          dataType: 'json',
+          type: 'post',
+          success: function (value) {
+            console.log(value);
+            load_component_list_manage(value);
+          }
+        });
 }

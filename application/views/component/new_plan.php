@@ -126,10 +126,10 @@ else {
       ?>
       <tr style="<?=$display_com;?>">
         <td width="35%"><span class="font-17">ค่าคอม</span></td>
-        <td align=""><?=$com_persent;?> %</span>
+        <td align="right"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?></span>
         </td>
         <td width="10%">
-          <span><?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
+          <span>บ.</span>
         </td>
       </tr>
     <?php }
