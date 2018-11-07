@@ -650,9 +650,9 @@ function beforeSendShop() {
                 return;
             } else {
                 sendShop2();
-                setTimeout(function() {
-                    shopManage();
-                }, 2000);
+//                setTimeout(function() {
+//                    shopManage();
+//                }, 2000);
 
             }
         });

@@ -254,7 +254,7 @@ if ($res_dv->nickname != "") {
                 <?php
                 }
                 else {
-                  if($data->driver_approve){
+                  if($data->driver_approve==0){
                       $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
                   }else{
                     $txt_com_status = "<span class='font-17' style='color: #8dc63f;;'>รับแล้ว</span>";

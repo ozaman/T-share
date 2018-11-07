@@ -1,4 +1,5 @@
 <input type="hidden" id="open_shop_manage" value="1" />
+<input type="hidden" id="open_shop_wait_trans" value="0" />
 <?php 
    $data_user_class = $_COOKIE[detect_userclass];
     if(count($_POST[data])<=0){ 
@@ -244,7 +245,7 @@
                 <?php
                 }
                 else {
-                  if($data->driver_approve){
+                  if($data->driver_approve==0){
                       $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
                   }else{
                     $txt_com_status = "<span class='font-17' style='color: #8dc63f;;'>รับแล้ว</span>";

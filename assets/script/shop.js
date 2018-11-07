@@ -2029,10 +2029,12 @@ document.addEventListener('prechange', function (event) {
   if (page == "shop_manage.html") {
     shopManage();
     $('#open_shop_manage').val(1);
+    $('#open_shop_wait_trans').val(0);
     $('#box-shop_filter').fadeOut(300);
   } else if (page == "shop_history.html") {
 //    historyShop($('#date_shop_his').val());
     $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
     $('#box-shop_filter').fadeIn(300);
     $('#date_shop_his').show();
     $('#date_shop_wait').hide();
@@ -2040,7 +2042,8 @@ document.addEventListener('prechange', function (event) {
 //    filterHistoryStatus('COMPLETE','btn_shop_his_com');
     historyShop();
   } else if (page == "shop_wait.html") {
-    $('#open_shop_manage').val(1);
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(1);
     $('#date_shop_wait').val(today);
     $('#date_shop_wait').show();
     $('#date_shop_his').hide();
@@ -2049,6 +2052,7 @@ document.addEventListener('prechange', function (event) {
     waitTransShop();
   } else {
     $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
     $('#box-shop_filter').fadeOut(300);
   }
   /*document.querySelector('ons-toolbar .center')

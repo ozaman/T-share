@@ -2055,24 +2055,29 @@ socket.on('datalab', function(socket_class, data) {
                 $('#view_lab_approve_' + value.id).hide();
             }
 
-            if (value.status != $('#check_status_' + value.id).val()) {
-                var pass = {
-                    data: value
+        });
+        
+        //        shopManage();
+
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
+        if(data.transfer_money==1){
+            var pass = {
+                    data: data
                 };
                 console.log(pass);
-                var url = "component/list_shop_manage";
+                var url = "component/list_shop_manage?wait_trans=1";
                 $.ajax({
                     url: url,
                     data: pass,
                     type: 'post',
                     success: function(ele) {
-                        $('#list_shop_manage_' + value.id).html(ele);
+                        $('#list_shop_manage_' + data.id).html(ele);
                     }
                 });
-            }
-        });
-        //        shopManage();
-
+                
+        }
     }
     setCountNotification();
 });
@@ -2175,12 +2180,16 @@ socket.on('updatedriver', function(socket_class, data) {
             $('#td_cancel_book_' + data.id).show();
             $('#status_book_' + data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
+
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
         if(data.transfer_money==1){
             var pass = {
                     data: data
                 };
                 console.log(pass);
-                var url = "component/list_shop_manage";
+                var url = "component/list_shop_manage?wait_trans=1";
                 $.ajax({
                     url: url,
                     data: pass,
@@ -2189,6 +2198,7 @@ socket.on('updatedriver', function(socket_class, data) {
                         $('#list_shop_manage_' + data.id).html(ele);
                     }
                 });
+                
         }
     }
     setCountNotification();
