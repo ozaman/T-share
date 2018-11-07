@@ -2268,6 +2268,7 @@ function approveBook(id, invoice, driver_id) {
 }
 
 function historyShop() {
+  countHistoryTypeAll();
   if ($('#cehck_filter_date').val() == 1) {
     var date = $('#date_shop_his').val();
     var date_rp = date.replace("-", "/");
@@ -2303,29 +2304,12 @@ function historyShop() {
 //  }
 
   console.log(data);
-  var success = [];
-  var fail = [];
   var first_run_his = $('#first_run_his').val();
 
   $.post(url_his, data, function (res) {
     var res = JSON.parse(res);
     console.log(res);
-//   console.log(8888888888888888888888888888888);
-    var all = res.data.length;
-    $.each(res.data, function (index, value) {
-      if (value.status == "COMPLETED") {
-        success.push(value);
-      } else if (value.status == "CANCEL") {
-        fail.push(value);
-      }
-    });
-//	alert(all+"||"+success.length+"||"+fail.length)
-    if (first_run_his == 0) {
-      $('#num_his_all').text("(" + all + ")");
-      $('#num_his_com').text("(" + success.length + ")");
-      $('#num_his_cancel').text("(" + fail.length + ")");
-      $('#first_run_his').val(1);
-    }
+
     var url = "shop/shop_history";
     $.post(url, {data: res.data}, function (html) {
       $('#shop_history').html(html);
@@ -2335,88 +2319,31 @@ function historyShop() {
 
 }
 
-/*function approvePayDriverByLab(id, invoice, driver){
- console.log("Lab approved pay");
- 
- var param = {
- order_id : id
- }
- 
- $.ajax({
- url: "shop/lab_approved_pay",
- data: param,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- shopFuncNotiActi(id, "lab_pay_approve");
- $.ajax({
- url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- sendSocket(id);
- 
- ons.notification.alert({
- message: 'ยืนยันการจ่ายเงินแล้ว',
- title: "สำเร็จ",
- buttonLabel: "ตกลง"
- })
- .then(function() {
- 
- reloadIncomeShop(id);
- });
- }
- });
- }
- });
- }
- 
- function approvePayDriverByTaxi(id, invoice, driver){
- console.log("Driver approved pay");
- 
- var param = {
- order_id : id
- }
- 
- $.ajax({
- url: "shop/driver_approved_pay",
- data: param,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- $.ajax({
- url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val()+'&remark_pay='+$('#remark_pay').val(),
- //                 data: param,
- type: 'post',
- dataType: 'json',
- success: function(com) { 
- console.log(com);
- }
- });
- shopFuncNotiActi(id, "driver_pay_approve");
- $.ajax({
- url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- sendSocket(id);
- ons.notification.alert({
- message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
- title: "สำเร็จ",
- buttonLabel: "ตกลง"
- })
- .then(function() {
- reloadIncomeShop(id);
- });
- }
- });
- }
- });
- }*/
+function countHistoryTypeAll(){
+    var date_rp = "";
+    if($('#cehck_filter_date').val()==1){
+     var date = $('#date_shop_his').val();
+      var date_rp = date.replace("-", "/");
+      date_rp = date_rp.replace("-", "/");
+    }
+    var param = {
+        class_name : class_user,
+        driver : detect_user,
+        date : date_rp
+    };
+    $.ajax({
+          url: "shop/count_his_all_status",
+          data: param,
+          dataType: 'json',
+          type: 'post',
+          success: function (value) {
+            console.log(value);
+            $('#num_his_com').text("("+value.success+")");
+            $('#num_his_cancel').text("("+value.fail+")");
+            $('#num_his_all').text("("+value.all+")");
+          }
+        });
+}
 
 function maxLengthCheck(object) {
   if (object.value.length > 3)

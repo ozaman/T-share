@@ -318,6 +318,26 @@ class Shop extends CI_Controller {
   public function imageslider() {
     $this->load->view('shop/page_imageslider');
   }
+  
+  public function count_his_all_status(){
+    $date = $_POST[date];
+    $class_name = $_POST[class_name];
+    if($date!=""){
+      $sql_date = " and transfer_date = '".$date."' ";
+    }
+    if($class_name=="taxi"){
+      $sql_dv = " and drivername = '".$_POST[driver]."' ";
+    }
+    $query_all = $this->db->query("select id from order_booking where driver_complete = 1".$sql_date.$sql_dv);
+    $query_success = $this->db->query("select id from order_booking where driver_complete = 1 and status = 'COMPLETED' ".$sql_date.$sql_dv);
+    $query_fail = $this->db->query("select id from order_booking where driver_complete = 1 and status = 'CANCEL' ".$sql_date.$sql_dv);
+    
+    $return[all] = $query_all->num_rows();
+    $return[success] = $query_success->num_rows();
+    $return[fail] = $query_fail->num_rows();
+    echo json_encode($return);
+    
+  }
 
 }
 
