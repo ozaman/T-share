@@ -2036,7 +2036,8 @@ socket.on('datalab', function(socket_class, data) {
                 });
 
 
-            } else {
+            } 
+            else {
 
 
                 $('#btn_manage_topoint_' + value.id).hide();
@@ -2158,13 +2159,28 @@ socket.on('updatedriver', function(socket_class, data) {
             var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
             $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
 
-        } else {
+        } 
+        else {
             $('#btn_manage_' + data.id).hide();
             $('#txt_wait_' + data.id).show();
             $('#td_cancel_book_' + data.id).show();
             $('#status_book_' + data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
-
+        if(data.transfer_money==1){
+            var pass = {
+                    data: data
+                };
+                console.log(pass);
+                var url = "component/list_shop_manage";
+                $.ajax({
+                    url: url,
+                    data: pass,
+                    type: 'post',
+                    success: function(ele) {
+                        $('#list_shop_manage_' + data.id).html(ele);
+                    }
+                });
+        }
     }
     setCountNotification();
     if ($('#check_open_noti_menu').val() == 1) {

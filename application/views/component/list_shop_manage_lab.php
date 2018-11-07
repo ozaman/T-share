@@ -75,7 +75,7 @@ if ($res_dv->nickname != "") {
     <?php if ($_GET[wait_trans] == "") {?>
       <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
       <?php
-      $width = "60";
+      $width = "50";
     }
     ?>
    	<table width="100%">
@@ -149,8 +149,94 @@ if ($res_dv->nickname != "") {
           </table>
         </td>
       </tr>
-
-      < <tr>
+      
+      
+      <!----------------------------------------------------------------------------------------------------------------------------->
+        <?php
+        $plan = "";
+        $num = 0;
+        $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$val[plan_id]."' ");
+        foreach ($query_price->result() as $row_price) {
+          if ($num >= 1) {
+            $push = " + ";
+          }
+          else {
+            $push = "";
+          }
+          $plan .= $push.$row_price->s_topic_th;
+          $num++;
+        }
+        ?>
+        <tr>
+          <td colspan="2"><span class="font-17">ค่าตอบแทน : <?=$plan;?></span></td>
+        </tr>
+        <?php 
+        if (1==1) {
+          if($val[transfer_money]==0){
+            $status_com = '';
+          }else{
+            $status_com = $val[total_commission]." บ.";
+          }
+          if($val[check_driver_pay]==1){
+            $txt_driver_get_cash = "<span style='color:#639a17;'>รับแล้ว</span>";
+          }else{
+            $txt_driver_get_cash = "<span style='color:#ff0000;'>ยังไม่รับ</span>";
+          }
+          
+        ?>
+        <tr>
+          <td colspan="2">
+            <table width="100%">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">รับเงินสด :</span></td>
+                <td style="padding: 0;" align="right"><span class="font-17"><?=$val[price_park_unit];?> บ.</span></td>
+                <td style="padding: 0;" width="60"><span class="font-17"><?=$txt_driver_get_cash;?></span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <?php 
+          if($val[transfer_money]==0){
+          ?>
+          <!---->
+          <td colspan="2">
+            <table width="100%">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">โอนเงิน :</span></td>
+                <td style="padding: 0;"></td>
+                <td style="padding: 0;" width="60" ><span class="font-17" style="color:#FF0000">รอโอน</span></td>
+              </tr>
+            </table>
+          </td>
+          <?php }else{ 
+            if($val[driver_approve]==1){
+              $txt_driver_get_trans = "<span style='color:#639a17;'>รับแล้ว</span>";
+            }else{
+              $txt_driver_get_trans = "<span style='color:#ff0000;'>ยังไม่รับ</span>";
+            }
+            ?>
+          <td colspan="2">
+            <table width="100%">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">โอนเงิน :</span></td>
+                <td style="padding: 0;" align="right"><span class="font-17"><?=$val[total_commission]." บ.";?></span></td>
+                <td style="padding: 0;" align="" width="60"><span class="font-17"><?=$txt_driver_get_trans;?></span></td>
+              </tr>
+              <tr>
+                <td style="padding: 0;"><span class="font-17">สลิปโอน :</span></td>
+                <td style="padding: 0;" align="right"><i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$val[id];?>.jpg?v=1541566599', '2018-11-07 10:38');">photo_album</i></td>
+              </tr>
+            </table>
+          </td>
+         <?php } ?>
+          
+        </tr>
+        <?php } ?>
+        <!----------------------------------------------------------------------------------------------------------------------------->
+		 
+      
+       <tr>
         <td><?="จ.".$row_q->province_name." อ.".$row_q->area;?></td>
         <td>
 
@@ -255,7 +341,7 @@ if ($res_dv->nickname != "") {
             ?>  		
         <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
                     style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
-        <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" style="padding: 13px;
+        <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" style="padding: 15px;
                     border-radius: 5px;
                     line-height: 0;<?=$btn_manage;?>
                     " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
