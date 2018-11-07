@@ -2309,7 +2309,7 @@ function historyShop() {
 
   console.log(data);
   var first_run_his = $('#first_run_his').val();
-
+  $('#shop_history').html(progress_circle);
   $.post(url_his, data, function (res) {
     var res = JSON.parse(res);
     console.log(res);

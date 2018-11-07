@@ -216,7 +216,7 @@ foreach ($_POST[data] as $key => $val) {
               $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
             }
             else{
-              $txt_get_cash = "<span class='font-17' style='color: #8dc63f;;'>รับแล้ว</span>";
+              $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
             ?>
             <div style="padding: 0px 0px;">
@@ -263,13 +263,13 @@ foreach ($_POST[data] as $key => $val) {
                   if($data->driver_approve==0){
                       $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
                   }else{
-                      $txt_com_status = "<span class='font-17' style='color: #8dc63f;;'>รับแล้ว</span>";
+                      $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
                   }
                   $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
                   $data_trans_pay = $query->row();
                   ?>
                   <tr style="<?=$display_com;?>">
-                    <td width="35%"><span class="font-17">ค่าคอม</span></td>
+                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
                     <td align="right"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?></span>
                     </td>
                     <td align="right" width="20%">
