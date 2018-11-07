@@ -2566,7 +2566,7 @@ function completedJobShop(id) {
 
 }
 
-function confirmGetTransCom(order_id) {
+function confirmGetTransCom(order_id, invoice) {
 //  $('#get_trans_com_'+order_id).prop('disabled', false);
   $('#get_trans_com_' + order_id).attr('disabled', 'disabled');
   var url_complete = "shop/get_trans_com?id=" + order_id;
@@ -2586,7 +2586,30 @@ function confirmGetTransCom(order_id) {
                   waitTransShop();
                   callpop();
                 });
+        var txt_long_ac = invoice + " : " + "คุณทำการยืนยันรับเงินโอน ";
+        var ac = {
+          i_type: 1,
+          i_sub_type: 1,
+          i_event: order_id,
+          i_user: detect_user,
+          s_topic: "งานส่งแขก",
+          s_message: txt_long_ac,
+          s_posted: username
+        };
 
+//        var txt_long_nc = response.update.invoice + " : " + username + " เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+//        var nc = {
+//          i_type: 1,
+//          i_event: response.last_id,
+//          i_user: 0,
+//          s_class_user: "lab",
+//          s_topic: "งานส่งแขก",
+//          s_sub_topic: "เช็คอิน",
+//          s_message: txt_long_nc,
+//          s_posted: username
+//        };
+        var nc = {};
+        apiRecordActivityAndNotification(ac, nc);     
       }
     }
   });
