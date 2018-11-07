@@ -176,11 +176,11 @@
                   <?php 
                      if($val[adult]>0){ ?>
                   ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
-                  <? } ?>
+                  <?php } ?>
                   <?php 
                      if($val[child]>0){ ?>
                   เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
-                  <? }
+                  <?php }
                      ?>
                </div>
             </td>
@@ -204,6 +204,26 @@
 		               <font color="#000;" style="position: absolute;right: 25px;" id="txt_date_approved_job_<?=$val[id];?>" ><?=date('H:i',$val[lab_approve_job_date])." น.";?></font>
 		            </td>
 		</tr>
+        <?php
+        $plan = "";
+        if ($_GET[wait_trans] != "") {
+          $num = 0;
+          $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$val[plan_id]."' ");
+          foreach ($query_price->result() as $row_price) {
+            if ($num >= 1) {
+              $push = " + ";
+            }
+            else {
+              $push = "";
+            }
+            $plan .= $push.$row_price->s_topic_th;
+            $num++;
+          }
+            ?>
+            <tr>
+              <td colspan="2">ค่าตอบแทน : <?=$plan;?></td>
+            </tr>
+          <?php }?>   
          <?php 
          
          if($val[status]!="CANCEL"){
@@ -280,7 +300,7 @@
          			</table>
          		</td>
          	</tr>
-        <? }else{ ?>
+        <?php }else{ ?>
 			<tr>
          		<td colspan="2">
          			<table width="100%" >
@@ -296,7 +316,7 @@
          			</table>
          		</td>
          	</tr>
-		<?	}
+		<?php	}
 		
          }
 		 
@@ -316,5 +336,5 @@
 	   $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
 	}
 </script>
-<?    
+<?php    
    } ?>
