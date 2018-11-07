@@ -156,7 +156,55 @@ foreach ($_POST[data] as $key => $val) {
 
           </td>
         </tr>
-
+        <!----------------------------------------------------------------------------------------------------------------------------->
+        <?php
+        $plan = "";
+        $num = 0;
+        $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$val[plan_id]."' ");
+        foreach ($query_price->result() as $row_price) {
+          if ($num >= 1) {
+            $push = " + ";
+          }
+          else {
+            $push = "";
+          }
+          $plan .= $push.$row_price->s_topic_th;
+          $num++;
+        }
+        ?>
+        <tr>
+          <td colspan="2">ค่าตอบแทน : <?=$plan;?></td>
+        </tr>
+        <?php 
+        if ($_GET[wait_trans] != "") {
+          if($val[transfer_money]==0){
+            $status_com = '';
+          }else{
+            $status_com = $val[total_commission]." บ.";
+          }
+        ?>
+        <tr>
+          <td colspan="2">
+            รับเงินสด : <?=$val[price_park_unit];?> บ.
+          </td>
+        </tr>
+        <tr>
+          <?php 
+          if($val[transfer_money]==0){
+          ?>
+          <td colspan="2">
+            โอนเงิน : <span class="font-16" style="color:#FF0000;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> รอโอน</span>
+          </td>
+          <?php }else{ ?>
+           <td colspan="2">
+            โอนเงิน : <?=$val[total_commission]." บ.";?>
+            <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$val[id];?>.jpg?v=1541566599', '2018-11-07 10:38');">attachment</i>
+          </td>
+         <?php } ?>
+          
+        </tr>
+        <?php } ?>
+        <!----------------------------------------------------------------------------------------------------------------------------->
         <tr>
           <td>
             <div class="font-17">
@@ -193,160 +241,140 @@ foreach ($_POST[data] as $key => $val) {
           </td>
         </tr>
         <?php
-        $plan = "";
-        if ($_GET[wait_trans] != "") {
-          $num = 0;
-          $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$val[plan_id]."' ");
-          foreach ($query_price->result() as $row_price) {
-            if ($num >= 1) {
-              $push = " + ";
-            }
-            else {
-              $push = "";
-            }
-            $plan .= $push.$row_price->s_topic_th;
-            $num++;
-          }
-            ?>
-            <tr>
-              <td colspan="2">ค่าตอบแทน : <?=$plan;?></td>
-            </tr>
-          <?php }?>    
-          <?php
-          if ($val[status] != "CANCEL") {
-            ?>
-            <tr>
-              <td colspan="2">
-                <table width="100%">
-                  <tr>
-                    <?php
-                    $txt_cancel = t_cancel;
-                    if ($val[lab_approve_job] == 0) {
-                      $btn_cancel_taxi = "";
-                    }
-                    else {
-                      $btn_cancel_taxi = "display:none;";
-                    }
-                    ?>
-                    <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
-                  <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
-                              border-radius: 5px;
-                              line-height: 0;
-                              border: 1px solid #fe3824;
-                              color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
-                    <span class="font-17 text-cap"><?=$txt_cancel;?></span>
-                  </ons-button>
-              </td>
-              <td width="65%">
-                <?php
-                if ($val[check_guest_register] == 1) {
-                  $text_mn = 'เช็คยอดรายได้';
-                  # code...
-                }
+        if ($val[status] != "CANCEL") {
+          ?>
+          <tr>
+            <td colspan="2">
+              <table width="100%">
+                <tr>
+                  <?php
+                  $txt_cancel = t_cancel;
+                  if ($val[lab_approve_job] == 0) {
+                    $btn_cancel_taxi = "";
+                  }
+                  else {
+                    $btn_cancel_taxi = "display:none;";
+                  }
+                  ?>
+                  <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
+                <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+                            border-radius: 5px;
+                            line-height: 0;
+                            border: 1px solid #fe3824;
+                            color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
+                  <span class="font-17 text-cap"><?=$txt_cancel;?></span>
+                </ons-button>
+            </td>
+            <td width="65%">
+              <?php
+              if ($val[check_guest_register] == 1) {
+                $text_mn = 'เช็คยอดรายได้';
+                # code...
+              }
 
-                if ($val[check_driver_topoint] == 0) {
-                  $text_mn = 'ถึงสถานที่ส่งแขก';
-                  $btn_manage_display = "display: none;";
-                  $btn_manage_topoint_display = "";
-                }
-                else {
-                  $text_mn = 'ตรวจสอบ';
-                  $btn_manage_display = "";
-                  $btn_manage_topoint_display = "display:none;";
-                }
-                if ($val[lab_approve_job] == 1) {
-                  $btn_manage = "";
-                  $txt_wait_approve = "display:none;";
-                }
-                else {
-                  $btn_manage = "display:none;";
-                  $txt_wait_approve = "";
-                }
-                ?>
-            <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>', '<?=$key;?>');" style="padding: 13px;border: 1px solid #0076ff;
-                        border-radius: 5px;
-                        line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
-                        " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
-              <span class="font-17 text-cap">แจ้งถึงสถานที่</span> </ons-button>   
-            <?php
-            if ($_GET[wait_trans] != "") {
-              $onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
-            }
-            else {
-              $onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
-            }
-            ?>  		
-            <ons-button onclick="<?=$onclick;?>" style="padding: 13px;border: 1px solid #0076ff;
-                        border-radius: 5px;
-                        line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
-                        " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
-                <?=$text_mn;?></span> 
-            </ons-button>
-            <div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
+              if ($val[check_driver_topoint] == 0) {
+                $text_mn = 'ถึงสถานที่ส่งแขก';
+                $btn_manage_display = "display: none;";
+                $btn_manage_topoint_display = "";
+              }
+              else {
+                $text_mn = 'ตรวจสอบ';
+                $btn_manage_display = "";
+                $btn_manage_topoint_display = "display:none;";
+              }
+              if ($val[lab_approve_job] == 1) {
+                $btn_manage = "";
+                $txt_wait_approve = "display:none;";
+              }
+              else {
+                $btn_manage = "display:none;";
+                $txt_wait_approve = "";
+              }
+              ?>
+          <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>', '<?=$key;?>');" style="padding: 13px;border: 1px solid #0076ff;
+                      border-radius: 5px;
+                      line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
+                      " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
+            <span class="font-17 text-cap">แจ้งถึงสถานที่</span> </ons-button>   
+          <?php
+          if ($_GET[wait_trans] != "") {
+            $onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
+          }
+          else {
+            $onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
+          }
+          ?>  		
+          <ons-button onclick="<?=$onclick;?>" style="padding: 13px;border: 1px solid #0076ff;
+                      border-radius: 5px;
+                      line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
+                      " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
+              <?=$text_mn;?></span> 
+          </ons-button>
+          <div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
+
+          </td>
+          </tr>
+        </table>
+        </td>
+        </tr>
+        <?php
+      }
+      else {
+        $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
+        $query_del = $this->db->query($sql_del);
+        $res_del = $query_del->row();
+
+        if ($res_del->class_user_cancel == "taxi") {
+          ?>
+          <tr>
+            <td colspan="2">
+              <table width="100%" >
+                <tr>
+                  <td width="50%">
+                    <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
+                  </td>
+                  <td align="right">
+                    <span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <? }else{ ?>
+          <tr>
+            <td colspan="2">
+              <table width="100%" >
+                <tr>
+                  <td>
+                    <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ปฏิเสธ<br/><?=$res_cancel->s_topic;?></font></b></div>
+                  </td>
+                  <td>
+                <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel('<?=$val[id];?>', '<?=$val[invoice];?>');" 
+                            style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" ><span class="font-17 text-cap">รับทราบ</span> </ons-button>
 
             </td>
-            </tr>
+          </tr>
           </table>
           </td>
           </tr>
           <?php
         }
-        else {
-          $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
-          $query_del = $this->db->query($sql_del);
-          $res_del = $query_del->row();
-
-          if ($res_del->class_user_cancel == "taxi") {
-            ?>
-            <tr>
-              <td colspan="2">
-                <table width="100%" >
-                  <tr>
-                    <td width="50%">
-                      <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
-                    </td>
-                    <td align="right">
-                      <span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-            <? }else{ ?>
-            <tr>
-              <td colspan="2">
-                <table width="100%" >
-                  <tr>
-                    <td>
-                      <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ปฏิเสธ<br/><?=$res_cancel->s_topic;?></font></b></div>
-                    </td>
-                    <td>
-                  <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel('<?=$val[id];?>', '<?=$val[invoice];?>');" 
-                              style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" ><span class="font-17 text-cap">รับทราบ</span> </ons-button>
-
-              </td>
-            </tr>
-            </table>
-            </td>
-            </tr>
-            <?php
-          }
-        }
-        ?>
-
-        </table>
-      </div>
-    </div>
-    <script>
-      var check_wait = "<?=$_GET[wait_trans];?>";
-      if (check_wait == "") {
-        var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
-        var d2 = js_yyyy_mm_dd_hh_mm_ss();
-        var check_wait = "<?=$_GET[wait_trans];?>";
-
-        $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1, d2));
-        $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
       }
-    </script>
-    <?php }
-  ?>
+      ?>
+
+      </table>
+    </div>
+  </div>
+  <script>
+    var check_wait = "<?=$_GET[wait_trans];?>";
+    if (check_wait == "") {
+      var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
+      var d2 = js_yyyy_mm_dd_hh_mm_ss();
+      var check_wait = "<?=$_GET[wait_trans];?>";
+
+      $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1, d2));
+      $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
+    }
+  </script>
+<?php }
+?>

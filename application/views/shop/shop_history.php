@@ -41,6 +41,7 @@
    <div style="padding: 5px 0px;margin: 12px 10px;">
   <div class="box-shop" >
     <?=$txt_lab_ap;?>
+    <span class="font-18"><?=date("d/m/Y",$val->post_date);?></span>
      <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
     <table width="100%"  >
           <tr>
@@ -66,11 +67,11 @@
           	<?php 
           	if($val->adult>0){ ?>
           	ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val->id;?>"><?=$val->adult;?></span> 
-          	<? } ?>
+          	<?php } ?>
           	<?php 
           	if($val->child>0){ ?>
 			เด็ก : <span id="txt_mn_child_<?=$val->id;?>"><?=$val->child;?></span></div></td>	
-			<? }
+			<?php }
           	?>
           	
           </tr>
@@ -81,7 +82,7 @@
           </tr>
           <tr>
             <td colspan="2">
-            <span class="font-17" ><?=$val->invoice;?>            
+            <span class="font-17" >เลขจอง : <?=$val->invoice;?>            
         <?php 
         $minutes_to_add = $val->airout_m;
         $time_c = date('H:i',$val->update_date); //ดึงเวลา อัพเดทเวลา ล่าสุด
@@ -124,7 +125,7 @@
 		  		</table>
 		  	</td>
 		  </tr>
-		 <? }
+		 <?php }
           ?>
 		  <tr>
 		  	<td colspan="2">

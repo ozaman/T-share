@@ -132,7 +132,7 @@ $btn_pay_com_color = "background-color:#666666";
                 <tr>
                   <td><span class="font-16">สลิปโอนเงิน</span></td>
                   <td>
-                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data_trans_pay->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
+                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
                   </td>
                 </tr>
                 <?php

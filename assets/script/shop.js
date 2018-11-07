@@ -504,10 +504,7 @@ function handleClick_s(tax, name) {
       }
     }
     // checformadd('box_com')
-
-  }
-
-  $.ajax({
+    $.ajax({
     url: "shop/check_commission_plan?order_id=" + name,
     dataType: 'json',
     type: 'post',
@@ -522,9 +519,12 @@ function handleClick_s(tax, name) {
 
         });
         
+      }else{
+        $('#box_bank').hide();
       }
     }
-  });
+    });
+  }
 
 }
 // ons-tab[page="shop_history.html"]
@@ -2028,26 +2028,26 @@ document.addEventListener('prechange', function (event) {
 //    console.log(page)
   if (page == "shop_manage.html") {
     shopManage();
-    $('#box-shop_date').fadeOut(300);
+    $('#box-shop_filter').fadeOut(300);
   } else if (page == "shop_history.html") {
 //    historyShop($('#date_shop_his').val());
 
-    $('#box-shop_date').fadeIn(300);
+    $('#box-shop_filter').fadeIn(300);
     $('#date_shop_his').show();
     $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
 //    filterHistoryStatus('COMPLETE','btn_shop_his_com');
-    historyShop($('#date_shop_his').val());
+    historyShop();
   } else if (page == "shop_wait.html") {
 
     $('#date_shop_wait').val(today);
     $('#date_shop_wait').show();
     $('#date_shop_his').hide();
 //	$('#box-shop_date').fadeIn(300);
-    $('#box-shop_date').fadeOut(300);
+    $('#box-shop_filter').fadeOut(300);
     waitTransShop();
   } else {
-    $('#box-shop_date').fadeOut(300);
+    $('#box-shop_filter').fadeOut(300);
   }
   /*document.querySelector('ons-toolbar .center')
    .innerHTML = event.tabItem.getAttribute('label');*/
@@ -2265,32 +2265,48 @@ function approveBook(id, invoice, driver_id) {
   });
 }
 
-function historyShop(date) {
+function historyShop() {
+  if($('#cehck_filter_date').val()==1){
+    var date = $('#date_shop_his').val();
+    var date_rp = date.replace("-", "/");
+    date_rp = date_rp.replace("-", "/");
+  }else{
+    var date_rp = "";
+  }
   var type_status = $('#check_filter_his').val();
-  var date_rp = date.replace("-", "/");
-  date_rp = date_rp.replace("-", "/");
-//return;
-  if (class_user == "taxi") {
-    var url_his = 'api/shop_history_driver';
-    //          var driver = detect_user;
-    var data = {
+  
+  var url_his = "api/shop_history_fix";
+  var data = {
       date: date_rp,
       driver: detect_user,
-      status: type_status
+      status: type_status,
+      class_name: class_user
     };
-  } else {
-    var url_his = 'api/shop_history_lab';
-    var data = {
-      date: date_rp,
-      status: type_status
-    };
-  }
+  
+//  if (class_user == "taxi") {
+//    var url_his = 'api/shop_history_driver';
+//    //          var driver = detect_user;
+//    var data = {
+//      date: date_rp,
+//      driver: detect_user,
+//      status: type_status
+//    };
+//  } 
+//  else {
+//    var url_his = 'api/shop_history_lab';
+//    var data = {
+//      date: date_rp,
+//      status: type_status
+//    };
+//  }
+
   console.log(data);
   var success = [];
   var fail = [];
   var first_run_his = $('#first_run_his').val();
 
   $.post(url_his, data, function (res) {
+    var res = JSON.parse(res);
     console.log(res);
 //   console.log(8888888888888888888888888888888);
     var all = res.data.length;
@@ -2465,10 +2481,11 @@ function userApproveCancel(id, invoice) {
 }
 
 function filterHistoryStatus(type, id) {
+  console.log(type);
   $('#check_filter_his').val(type);
   $('.shop-his-btn').removeClass('his-shop-active');
   $('#' + id).addClass('his-shop-active');
-
+  historyShop($('#date_shop_his').val());
 }
 
 function selectPlanRegis(id) {
@@ -2639,4 +2656,18 @@ function confirmGetTransCom(order_id){
     }
   });
   
+}
+
+function showFilterdate(){
+  $('#btn_toshow_date').hide();
+  $('#box-shop_date').fadeIn(500);
+  $('#cehck_filter_date').val(1);
+  historyShop();
+}
+
+function hideFilterdate(){
+  $('#box-shop_date').hide();
+  $('#btn_toshow_date').show();
+  $('#cehck_filter_date').val(0);
+  historyShop();
 }
