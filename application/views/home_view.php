@@ -65,6 +65,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
+    var roomOpen = false;
    setTimeout(function() {
 
     var dataorder = {
@@ -196,6 +197,7 @@ ons-splitter-side[animation=overlay] {
                         var page_main = event.tabItem.getAttribute('page');
                         if(page_main == "notification.html"){
                             loadNotificationPage();
+                            roomOpen = false;
                             $('#side_pf').hide();
                             $('#side_more').show();
                             
@@ -204,21 +206,29 @@ ons-splitter-side[animation=overlay] {
                             loadActivityPage();
                             $('#side_pf').show();
                             $('#side_more').hide();
+                            roomOpen = false;
+
                         }
                      else if(page_main == "contact.html"){
                             loadcontactChat();
                             $('#side_pf').hide();
                             $('#side_more').hide();
+                            roomOpen = true;
+
                             
                         }
                         else if(page_main == "home.html"){
                             $('#side_pf').show();
                             $('#side_more').hide();
                             title = "หน้าหลัก";
+                            roomOpen = false;
+
                         }
                         else{
                             $('#side_pf').show();
                             $('#side_more').hide();
+                            roomOpen = false;
+
                         }
                         event.currentTarget.querySelector('ons-toolbar .center').innerHTML = title
 
@@ -1553,6 +1563,11 @@ ons-list-item {
 </div>
 </ons-modal>
 
+<audio controls="" id="alert_sd">
+    <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
+  </audio>
+
+
 <ons-modal direction="up" id="welcome_modal">
   <div style="text-align: center">
     
@@ -1581,6 +1596,7 @@ ons-list-item {
     </ons-card>
   </div>
 </ons-modal>
+
 </body>
 </html>
 
@@ -2268,8 +2284,31 @@ socket.on('updatedriver', function(socket_class, data) {
     socket2.on('connect', function(){
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
+        setTimeout(function() {
+            console.log(9999999999)
         socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
+        }, 1500);
     });
+    socket2.on('checkmsg', function(count, room) {
+    // $('#rooms').empty();
+    // console.log(rooms)
+    // roomOpen
+    console.log('*************************************************************')
+    console.log(count)
+    console.log(room)
+    console.log(roomOpen)
+    if (count != 0) {
+        if (roomOpen == false) {
+        $('#tab_contact').attr('badge',count);
+
+        }
+    }
+    else{
+        $("#tab_contact").removeAttr("badge");
+    }
+    // array_rooms = rooms;
+    // console.log(current_room)
+});
 </script>
 <script src="<?=base_url();?>assets/script/chat.js?v=<?=time();?>"></script>
 <!-- ======================================= END =========================================================== -->

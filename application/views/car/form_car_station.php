@@ -45,27 +45,31 @@ $_where = array();
 if (count($MEMBER)!= 0) {
 
 	$_where[area] = $MEMBER->region;
-}
-else{
-
-	$_where[area] = $_GET[pv];//array();
-}
-$_select = array('*');
+	$_select = array('*');
 $_order = array();
 $_order['name_th'] = 'asc';
 $arr[province] = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$_where,$_select,$_order);
+}
+else{
+
+	// $_where[area] = $_GET[area];//array();
+}
+
 // print_r($arr[province]);
 $_where = array();
 if (count($MEMBER)!= 0) {
 	$_where['PROVINCE_ID'] = $MEMBER->province;
-}
-else{
-	$_where = array();
-}
-$_select = array('*');
+	$_select = array('*');
 $_order = array();
 $_order['name_th'] = 'asc';
 $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_select,$_order);
+}
+else{
+	// $_where['PROVINCE_ID'] = $_GET[pv];
+
+	// $_where = array();
+}
+
 // print_r($arr[amphur]);
 ?>
 <script type="text/javascript">
