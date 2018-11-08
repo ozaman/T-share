@@ -82,89 +82,149 @@ $btn_pay_com_color = "background-color:#666666";
         </table>
       </td>
       </tr>
-      <tr>
-        <td colspan="2">
-          <div style="padding: 5px;">
-            <ons-list-header class="list-header" style="">ธนาคารรับเงิน</ons-list-header>   
-            <table width="100%">
-              <tr>
-                <td width="35%"><span class="font-16">ธนาคาร</span></td>
-                <td>
-                  <table>
-                    <tr>
-                      <td><img src="assets/images/bank/<?=$data_bank->bank_img;?>" style="width:25px;" /></td>
-                      <td width="5"></td>
-                      <td><span class="font-16"><?=$data_bank->bank_list;?></span></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td>ชื่อบัญชี</td>
-                <td><?=$data_bank->bank_name;?></td>
-              </tr>
-              <tr>
-                <td>เลขบัญชี</td>
-                <td><?=$txt_bank_num;?></td>
-              </tr>
-            </table>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <div style="padding: 5px;">
-            <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>   
-            <?php if ($check_trans_pay > 0) {?>
+      <?php
+      $query = $this->db->query("select id from change_plan_logs where order_id = ".$data->id);
+      $check_change_plan = $query->num_rows();
+      if ($_COOKIE[detect_userclass] == "taxi" && $check_change_plan == 1 && $data->bank_taxi_id==0) {
+        ?>
+        <tr>  
+          <td colspan="2">
+            <span class="font-17">มีการเปลี่ยนแปลงค่าตอบแทน</span>
+            <div style="padding: 0px 0px;">
+              <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
+
+              <?php
+              $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 and driver_id = '".$_COOKIE[detect_user]."' order by status_often desc, status desc ";
+              $query_bank = $this->db->query($sql);
+              $num_bank = $query_bank->num_rows();
+              if ($num_bank <= 0) {
+                ?>
+                <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_wait_trans');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
+              <?php
+              }
+              else {
+                foreach ($query_bank->result() as $row) {
+                  if ($row->status_often == 1) {
+                    $select = "checked";
+                  }
+                  else {
+                    $select = "";
+                  }
+                  ?>
+                  <form id="select_bank_form">
+                    <ons-list-item tappable onclick="">
+                      <label class="left">
+                        <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select" <?=$select;?>></ons-radio>
+                      </label>
+                      <label for="radio-<?=$row->id;?>" class="center">
+                        <table width="100%">
+                          <tr>
+                            <td width="30"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;"></td>
+                            <td width="100"><span class="font-16"><?=$row->bank_list;?></span></td>
+                            <td><span class="font-16"><?=$row->bank_number;?></span></td>
+                          </tr>
+                        </table>
+                      </label>
+                    </ons-list-item>
+    <?php
+    }
+  ?>
+              </form>
+              <ons-button type="button" onclick="_confirmSelectBankAfterChangePlan('<?=$data->id;?>');$(this).attr('disabled', 'disabled');" style="margin: 5px;  background-color: #fff;  color: #f00; border: 1px solid #f00;width: 100%;text-align: center;">ยืนยันบัญชีรับเงิน</ons-button>
+            <?php } ?>
+            </div>
+          </td>
+        </tr> 
+<?php }
+      else {
+  ?>
+
+        <tr>
+          <td colspan="2">
+            <div style="padding: 5px;">
+              <ons-list-header class="list-header" style="">ธนาคารรับเงิน</ons-list-header>   
               <table width="100%">
                 <tr>
-                  <td width="35%"><span class="font-16">สถานะ</span></td>
-                  <td><span class="font-16"><i class="fa fa-check" style="color: #59aa47;"></i> โอนเงินแล้ว</span></td>
-                </tr>
-                <tr>
-                  <td><span class="font-16">จำนวน</span></td>
-                  <td><span class="font-16"><?=$data_trans_pay->price_pay_driver_com." บ.";?></span></td>
-                </tr>
-                <tr>
-                  <td><span class="font-16">เวลา</span></td>
-                  <td><span class="font-16"><?=date('Y-m-d',$data_trans_pay->last_update)." ".$data_trans_pay->trans_hh.":".$data_trans_pay->trans_mm." น.";?></span></td>
-                </tr>
-                <tr>
-                  <td><span class="font-16">สลิปโอนเงิน</span></td>
+                  <td width="35%"><span class="font-16">ธนาคาร</span></td>
                   <td>
-                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
+                    <table>
+                      <tr>
+                        <td><img src="assets/images/bank/<?=$data_bank->bank_img;?>" style="width:25px;" /></td>
+                        <td width="5"></td>
+                        <td><span class="font-16"><?=$data_bank->bank_list;?></span></td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
-                <?php
-                if($data->driver_approve<1){ ?>
                 <tr>
-                  <td align="center" colspan="2">
-                   
-                <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>','<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
-                  </td>
+                  <td>ชื่อบัญชี</td>
+                  <td><?=$data_bank->bank_name;?></td>
                 </tr>
+                <tr>
+                  <td>เลขบัญชี</td>
+                  <td><?=$txt_bank_num;?></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <div style="padding: 5px;">
+              <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>   
+  <?php if ($check_trans_pay > 0) {?>
+                <table width="100%">
+                  <tr>
+                    <td width="35%"><span class="font-16">สถานะ</span></td>
+                    <td><span class="font-16"><i class="fa fa-check" style="color: #59aa47;"></i> โอนเงินแล้ว</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="font-16">จำนวน</span></td>
+                    <td><span class="font-16"><?=$data_trans_pay->price_pay_driver_com." บ.";?></span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="font-16">เวลา</span></td>
+                    <td><span class="font-16"><?=date('Y-m-d',$data_trans_pay->last_update)." ".$data_trans_pay->trans_hh.":".$data_trans_pay->trans_mm." น.";?></span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="font-16">สลิปโอนเงิน</span></td>
+                    <td>
+                      <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">insert_photo</i>
+                    </td>
+                  </tr>
+    <?php if ($data->driver_approve < 1 && $_COOKIE[detect_userclass] == "taxi") {?>
+                    <tr>
+                      <td align="center" colspan="2">
+
+                    <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>', '<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
+                    </td>
+                    </tr>
                 <?php }
                 ?>
-              </table>
-            <?php }
-            else {
-              ?>
-            <table width="100%">
-              <tr>
-                  <td width="35%"><span class="font-16">สถานะ</span></td>
-                  <td><span class="font-16" style="color:#FF0000;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> รอโอนเงิน</span></td>
-                </tr>
-                <tr>
-                  <td colspan="2">
-                    <span class="font-16">&nbsp; จะโอนเงินไม่เกินวันพรุ่งนี้เวลา 18.00 น. หากติดวันเสาร์อาทิตย์ หรือวันหยุดนักขัตฤกษ์ จะทำการโอนในวันถัดไป</span>
-                  </td>
-                </tr>
-            </table>
-            <?php }
-            ?>
-          </div>
-        </td>
-      </tr>   
+                </table>
+    <?php
+  }
+  else {
+    ?>
+                <table width="100%">
+                  <tr>
+                    <td width="35%"><span class="font-16">สถานะ</span></td>
+                    <td><span class="font-16" style="color:#FF0000;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> รอโอนเงิน</span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <span class="font-16">&nbsp; จะโอนเงินไม่เกินวันพรุ่งนี้เวลา 18.00 น. หากติดวันเสาร์อาทิตย์ หรือวันหยุดนักขัตฤกษ์ จะทำการโอนในวันถัดไป</span>
+                    </td>
+                  </tr>
+                </table>
+        <?php }
+        ?>
+            </div>
+          </td>
+        </tr>   
+<?php }
+?>
       </tbody>
     </table>  
 

@@ -1541,7 +1541,7 @@ ons-list-item {
 
 <ons-modal direction="up" id="modal_photo">
   <div style="text-align: center">
-    <a style=" position: absolute;top: 10px; right: 20px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    <a style=" position: absolute;top: 5px; right: 5px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
     <div id="body_load_photo">
         <div>
             <img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
@@ -1555,16 +1555,31 @@ ons-list-item {
 
 <ons-modal direction="up" id="welcome_modal">
   <div style="text-align: center">
-    <a style=" position: absolute;top: 10px; right: 20px;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
-    <div style="background-color: #fff;color: #000; margin: 15px;bottom: 65px; position: relative;border-radius: 5px;    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
-      <span class="intro font-26">ยินดีต้อนรับสมาชิกใหม่</span>
-    </div>
+    <a style=" position: absolute;top: 5px; right: 5px;" onclick="welcom_modal.hide({ animation: 'fade' });updateUserInfomation();"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
+      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
+      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+        <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
+        <div class="font-17">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
+          เกี่ยวกับ เรื่องงาน เรื่องรถ และเรื่องผลประโยชน์ต่างๆที่พี่แท็กซี่ทั้งหลายจะได้รับ จึงขอเรียนเชิญ
+          ผู้นำคิว ผู้นำกลุ่ม หรือ ตัวแทน ที่สามารถมาร่วมทำความเข้าใจ และพร้อมจะร่วมงานกัน เพื่อผลประโยชน์ของพี่ๆแท็กซี่เอง
+          ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
+          นัดหมายเวลา 10.00 น.เป็นต้นไป
+          ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
+        </div>
+        <div>
+          <ons-button style="margin-top: 10px; padding: 2px 10px;" onclick="openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button>
+        </div>
+      </div>
+    </ons-card>
   </div>
 </ons-modal>
 </body>
 </html>
 
 <script>
+  
   var welcom_modal = document.querySelector('#welcome_modal');
   var hideCustomDialog = function(id) {
       document
@@ -2273,6 +2288,7 @@ socket.on('updatedriver', function(socket_class, data) {
         sendTagOs(class_user, username);
     }
     var modal_photo = document.querySelector('#modal_photo');
+    detectUserInfomation();
 </script>
 
 

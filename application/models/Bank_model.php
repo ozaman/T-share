@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Bank_model extends CI_Model {
   
   public function add_bank(){
-        $query = $this->db->query('SELECT id FROM web_bank_driver where driver_id = '.$_COOKIE[detect_user]);
+        $query = $this->db->query('SELECT id FROM web_bank_driver where status = 1 and driver_id = '.$_COOKIE[detect_user]);
         $check_row = $query->num_rows();
         if($check_row<=0){
           $bank[status_often] = 1;

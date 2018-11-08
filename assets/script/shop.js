@@ -520,6 +520,7 @@ function handleClick_s(tax, name) {
           });
 
         } else {
+          $('#load_select_bank div').remove();
           $('#box_bank').hide();
         }
       }
@@ -2660,6 +2661,20 @@ function test_load_list(id){
           success: function (value) {
             console.log(value);
             load_component_list_manage(value);
+          }
+        });
+}
+
+function _confirmSelectBankAfterChangePlan(id){
+  
+   $.ajax({
+          url: "shop/select_bank_after_change_plan?id="+id,
+          data: $('#select_bank_form').serialize(),
+          dataType: 'json',
+          type: 'post',
+          success: function (value) {
+            console.log(value);
+            load_status_trans($('#id_order').val());
           }
         });
 }
