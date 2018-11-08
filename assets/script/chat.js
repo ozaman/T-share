@@ -101,6 +101,8 @@ socket2.on('updatechat', function (username, data) {
         utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
         console.log(username)
+        console.log(data)
+
         console.log(detect_user)
         if (roomOpen == true) {
              $.ajax({

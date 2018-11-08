@@ -54,6 +54,9 @@ header('Content-Type: application/json');
   
 		// return $data;
 	}
+	public function test(){
+		$this->load->view('chat/test');
+	}
 	
 }
 ?>
