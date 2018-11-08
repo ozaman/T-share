@@ -1571,11 +1571,11 @@ ons-list-item {
           นัดหมายเวลา 10.00 น.เป็นต้นไป
           ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
         </div>
-        <div style="padding: 10px;  text-align: right;">
+        <div style="padding: 5px;  text-align: right;">
           <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
         </div>
         <div>
-          <ons-button style="margin-top: 10px; padding: 2px 10px;" onclick="openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button>
+          <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button></a>
         </div>
       </div>
     </ons-card>
