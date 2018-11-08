@@ -207,16 +207,22 @@ ons-splitter-side[animation=overlay] {
                             $('#side_pf').show();
                             $('#side_more').hide();
                             roomOpen = false;
-
+							
                         }
                      else if(page_main == "contact.html"){
                             loadcontactChat();
                             $('#side_pf').hide();
                             $('#side_more').hide();
                             roomOpen = true;
-
+							
                             
                         }
+                    else if(page_main == "information.html"){
+						welcom_modal.show({ animation: 'fade' });
+						$('#side_pf').show();
+                            $('#side_more').hide();
+                            roomOpen = false;
+					}
                         else if(page_main == "home.html"){
                             $('#side_pf').show();
                             $('#side_more').hide();
@@ -1590,7 +1596,7 @@ ons-list-item {
           <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
         </div>
         <div>
-          <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button></a>
+          <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
         </div>
       </div>
     </ons-card>
