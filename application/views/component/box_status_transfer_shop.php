@@ -1,5 +1,5 @@
 <?php
-$query = $this->db->query("select id,bank_taxi_id, driver_complete from order_booking where id = ".$_GET[order_id]);
+$query = $this->db->query("select id,bank_taxi_id, driver_complete, invoice from order_booking where id = ".$_GET[order_id]);
 $data = $query->row();
 
 $query_bank = $this->db->query("SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.id = '".$data->bank_taxi_id."' ");
@@ -132,14 +132,14 @@ $btn_pay_com_color = "background-color:#666666";
                 <tr>
                   <td><span class="font-16">สลิปโอนเงิน</span></td>
                   <td>
-                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data_trans_pay->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
+                    <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">attachment</i>
                   </td>
                 </tr>
                 <?php
-                if($data->driver_complete<1){ ?>
+                if($data->driver_approve<1){ ?>
                 <tr>
                   <td align="center" colspan="2">
-                <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
+                <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>','<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
                   </td>
                 </tr>
                 <?php }
@@ -155,7 +155,7 @@ $btn_pay_com_color = "background-color:#666666";
                 </tr>
                 <tr>
                   <td colspan="2">
-                    <span class="font-16">&nbsp; จะโอนเงินไม่เกินวันพรุ่งนี้เวลา 15.00 น. หากติดวันเสาร์อาทิตย์ หรือวันหยุดนักขัตฤกษ์ จะทำการโอนในวันถัดไป</span>
+                    <span class="font-16">&nbsp; จะโอนเงินไม่เกินวันพรุ่งนี้เวลา 18.00 น. หากติดวันเสาร์อาทิตย์ หรือวันหยุดนักขัตฤกษ์ จะทำการโอนในวันถัดไป</span>
                   </td>
                 </tr>
             </table>

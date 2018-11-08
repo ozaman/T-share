@@ -1,3 +1,6 @@
+.none-pd td{
+  padding: 0px !important;
+}
 .his-shop-active{
 	background-color: #0076ff !important;
 	color: #fff !important;

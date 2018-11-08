@@ -67,8 +67,10 @@
 		
 		if($row->i_active==1){
 			$bg = "style='background-color : #fff'";
+            $icon_read = "display:none;";
 		}else{
 			$bg = "style='background-color : #edf2fa'";
+            $icon_read = '';
 		}
 //		echo date('Y/m/d H:i:s',$row->s_post_date);
 	?>
@@ -86,7 +88,8 @@
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">
-	    			<div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                        <i id="icon_read_<?=$row->id;?>" class="fa fa-exclamation font-24" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>
+                        <div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
 	    			</td>
 	    		</tr>
 	    	</table>

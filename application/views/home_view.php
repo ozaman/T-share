@@ -636,17 +636,39 @@ ons-list-item {
                     </ons-toolbar-button>
                 </div>
             </ons-toolbar>
-            <ons-card id="box-shop_date" class="card" style="/*margin-bottom: 20px*/padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;">
-                <ons-list-item class="input-items list-item p-l-0">
+            <ons-card id="box-shop_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
+                <ons-row style="width: 100%;/*margin-top: 48px; margin-bottom: 20px;*/">
+            <ons-col>
+                <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+            </ons-col>
+            <ons-col>
+                <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+            </ons-col>
+            <ons-col>
+                <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
+
+                </ons-button>
+            </ons-col>
+                     </ons-row>     
+              <ons-row>
+                <ons-col>
+                    <ons-button id="btn_toshow_date" onclick="showFilterdate();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
+                </ons-col>
+               </ons-row>
+              <ons-list-item class="input-items list-item p-l-0" id="box-shop_date" style="display:none;">
                     <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
                         <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                     </div>
                     <div class="center list-item__center" style="background-image: none;padding: 0px 6px 0px 0;">
-                        <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop($(this).val());$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
+                        <input class="ap-date" type="date" id="date_shop_his" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop();$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
 
                         <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                     </div>
+                <div class="right list-item__right" style="padding: 5px;" >
+                      <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
+                    </div>
                 </ons-list-item>
+              <input type="hidden" value="0" id="cehck_filter_date" />
             </ons-card>
             <div id="body_shop">
                 <ons-page>
@@ -667,13 +689,9 @@ ons-list-item {
                             <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
                         </ons-tab>
                         <ons-tab page="shop_wait.html" label="รอโอน" badge="" id="tab_shop_wait"></ons-tab>
-                        <ons-tab page="shop_history.html" label="ประวัติ">
-                            <!--<span class="notification none" id="num_his" style="float: right;
-    margin-top: 15px;
-    right: 25%;"></span>-->
-</ons-tab>
-</ons-tabbar>
-</ons-page>
+                        <ons-tab page="shop_history.html" label="ประวัติ"></ons-tab>
+                    </ons-tabbar>
+                </ons-page>
 
 <template id="shop_add.html">
     <ons-page id="shop_add">
@@ -698,23 +716,8 @@ ons-list-item {
 
 <template id="shop_history.html">
     <ons-page style="overflow-y: scroll;">
-
-        <ons-row style="width: 100%;margin-top: 48px; margin-bottom: 20px;">
-            <ons-col>
-                <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
-
-            </ons-col>
-            <ons-col>
-                <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
-            </ons-col>
-            <ons-col>
-                <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
-
-                </ons-button>
-            </ons-col>
-        </ons-row>      
         <?php 
-        $margin_his = "margin-top: 5px;";
+        $margin_his = "margin-top: 100px;";
 
         ?>
         <input type="hidden" id="check_filter_his" value="COMPLETED" />
@@ -1971,18 +1974,23 @@ socket.on('datalab', function(socket_class, data) {
                 if (value.check_guest_receive == 1) {
                     console.log("guest_receive");
                     changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
-
+                    $('.page').animate({
+                        scrollTop: $(document).height()+700
+                    }, 500);
                 }
                 if (value.check_guest_register == 1) {
                     console.log("guest_register");
                     changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
                     //					alert(value.pax_regis);
                     $('#num_edit_persion2').val(value.pax_regis);
+                    $('.page').animate({
+                        scrollTop: $(document).height()+700
+                    }, 500);
                 }
 
                 if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
-                    return;
+//                    return;
                 }
                 if (value.check_driver_pay == 1) {
                     loadBoxConfirmPay(value.id);
@@ -1990,7 +1998,10 @@ socket.on('datalab', function(socket_class, data) {
                 if (value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
                 }
-
+                if(data.transfer_money==1){
+                  load_status_trans(data.id);
+                  loadNewPlan(data.id)
+                }
             }
         });
     }
@@ -2033,7 +2044,8 @@ socket.on('datalab', function(socket_class, data) {
                 });
 
 
-            } else {
+            } 
+            else {
 
 
                 $('#btn_manage_topoint_' + value.id).hide();
@@ -2043,24 +2055,29 @@ socket.on('datalab', function(socket_class, data) {
                 $('#view_lab_approve_' + value.id).hide();
             }
 
-            if (value.status != $('#check_status_' + value.id).val()) {
-                var pass = {
-                    data: value
+        });
+        
+        //        shopManage();
+
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
+        if(data.transfer_money==1){
+            var pass = {
+                    data: data
                 };
                 console.log(pass);
-                var url = "component/list_shop_manage";
+                var url = "component/list_shop_manage?wait_trans=1";
                 $.ajax({
                     url: url,
                     data: pass,
                     type: 'post',
                     success: function(ele) {
-                        $('#list_shop_manage_' + value.id).html(ele);
+                        $('#list_shop_manage_' + data.id).html(ele);
                     }
                 });
-            }
-        });
-        //        shopManage();
-
+                
+        }
     }
     setCountNotification();
 });
@@ -2108,7 +2125,7 @@ socket.on('updatedriver', function(socket_class, data) {
             
             if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
                     loadBoxConfirmPay(data.id);
-                    return;
+//                    return;
              }
              if (data.check_driver_pay == 1) {
                     loadBoxConfirmPay(data.id);
@@ -2118,6 +2135,7 @@ socket.on('updatedriver', function(socket_class, data) {
              }
              if(data.transfer_money==1){
                load_status_trans(data.id);
+               loadNewPlan(data.id)
              }
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
@@ -2155,13 +2173,33 @@ socket.on('updatedriver', function(socket_class, data) {
             var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
             $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
 
-        } else {
+        } 
+        else {
             $('#btn_manage_' + data.id).hide();
             $('#txt_wait_' + data.id).show();
             $('#td_cancel_book_' + data.id).show();
             $('#status_book_' + data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
 
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
+        if(data.transfer_money==1){
+            var pass = {
+                    data: data
+                };
+                console.log(pass);
+                var url = "component/list_shop_manage?wait_trans=1";
+                $.ajax({
+                    url: url,
+                    data: pass,
+                    type: 'post',
+                    success: function(ele) {
+                        $('#list_shop_manage_' + data.id).html(ele);
+                    }
+                });
+                
+        }
     }
     setCountNotification();
     if ($('#check_open_noti_menu').val() == 1) {

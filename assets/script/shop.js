@@ -13,8 +13,8 @@ function check_com_plan(id) {
   });
 }
 
-function load_status_trans(id){
-  $.post("component/box_status_trans_shop?order_id="+id,function(html){
+function load_status_trans(id) {
+  $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
     $('.page').animate({
       scrollTop: $(document).height() + 700
@@ -504,27 +504,27 @@ function handleClick_s(tax, name) {
       }
     }
     // checformadd('box_com')
-
-  }
-
-  $.ajax({
-    url: "shop/check_commission_plan?order_id=" + name,
-    dataType: 'json',
-    type: 'post',
-    success: function (chk) {
-      console.log(chk);
-      if (chk.result == true) {
-        $('#box_bank').show();
-        var url = "component/box_select_bank_shop";
-        $.post(url, function (ele) {
+    $.ajax({
+      url: "shop/check_commission_plan?order_id=" + name,
+      dataType: 'json',
+      type: 'post',
+      success: function (chk) {
+        console.log(chk);
+        if (chk.result == true) {
+          $('#box_bank').show();
+          var url = "component/box_select_bank_shop";
+          $.post(url, function (ele) {
 //          console.log(ele);
-          $('#load_select_bank').html(ele);
+            $('#load_select_bank').html(ele);
 
-        });
-        
+          });
+
+        } else {
+          $('#box_bank').hide();
+        }
       }
-    }
-  });
+    });
+  }
 
 }
 // ons-tab[page="shop_history.html"]
@@ -2028,26 +2028,32 @@ document.addEventListener('prechange', function (event) {
 //    console.log(page)
   if (page == "shop_manage.html") {
     shopManage();
-    $('#box-shop_date').fadeOut(300);
+    $('#open_shop_manage').val(1);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeOut(300);
   } else if (page == "shop_history.html") {
 //    historyShop($('#date_shop_his').val());
-
-    $('#box-shop_date').fadeIn(300);
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeIn(300);
     $('#date_shop_his').show();
     $('#date_shop_wait').hide();
     $('#date_shop_his').val(today);
 //    filterHistoryStatus('COMPLETE','btn_shop_his_com');
-    historyShop($('#date_shop_his').val());
+    historyShop();
   } else if (page == "shop_wait.html") {
-
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(1);
     $('#date_shop_wait').val(today);
     $('#date_shop_wait').show();
     $('#date_shop_his').hide();
 //	$('#box-shop_date').fadeIn(300);
-    $('#box-shop_date').fadeOut(300);
+    $('#box-shop_filter').fadeOut(300);
     waitTransShop();
   } else {
-    $('#box-shop_date').fadeOut(300);
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeOut(300);
   }
   /*document.querySelector('ons-toolbar .center')
    .innerHTML = event.tabItem.getAttribute('label');*/
@@ -2265,49 +2271,49 @@ function approveBook(id, invoice, driver_id) {
   });
 }
 
-function historyShop(date) {
-  var type_status = $('#check_filter_his').val();
-  var date_rp = date.replace("-", "/");
-  date_rp = date_rp.replace("-", "/");
-//return;
-  if (class_user == "taxi") {
-    var url_his = 'api/shop_history_driver';
-    //          var driver = detect_user;
-    var data = {
-      date: date_rp,
-      driver: detect_user,
-      status: type_status
-    };
+function historyShop() {
+  countHistoryTypeAll();
+  if ($('#cehck_filter_date').val() == 1) {
+    var date = $('#date_shop_his').val();
+    var date_rp = date.replace("-", "/");
+    date_rp = date_rp.replace("-", "/");
   } else {
-    var url_his = 'api/shop_history_lab';
-    var data = {
-      date: date_rp,
-      status: type_status
-    };
+    var date_rp = "";
   }
-  console.log(data);
-  var success = [];
-  var fail = [];
-  var first_run_his = $('#first_run_his').val();
+  var type_status = $('#check_filter_his').val();
 
+  var url_his = "api/shop_history_fix";
+  var data = {
+    date: date_rp,
+    driver: detect_user,
+    status: type_status,
+    class_name: class_user
+  };
+
+//  if (class_user == "taxi") {
+//    var url_his = 'api/shop_history_driver';
+//    //          var driver = detect_user;
+//    var data = {
+//      date: date_rp,
+//      driver: detect_user,
+//      status: type_status
+//    };
+//  } 
+//  else {
+//    var url_his = 'api/shop_history_lab';
+//    var data = {
+//      date: date_rp,
+//      status: type_status
+//    };
+//  }
+
+  console.log(data);
+  var first_run_his = $('#first_run_his').val();
+  $('#shop_history').html(progress_circle);
   $.post(url_his, data, function (res) {
+    var res = JSON.parse(res);
     console.log(res);
-//   console.log(8888888888888888888888888888888);
-    var all = res.data.length;
-    $.each(res.data, function (index, value) {
-      if (value.status == "COMPLETED") {
-        success.push(value);
-      } else if (value.status == "CANCEL") {
-        fail.push(value);
-      }
-    });
-//	alert(all+"||"+success.length+"||"+fail.length)
-    if (first_run_his == 0) {
-      $('#num_his_all').text("(" + all + ")");
-      $('#num_his_com').text("(" + success.length + ")");
-      $('#num_his_cancel').text("(" + fail.length + ")");
-      $('#first_run_his').val(1);
-    }
+
     var url = "shop/shop_history";
     $.post(url, {data: res.data}, function (html) {
       $('#shop_history').html(html);
@@ -2317,88 +2323,31 @@ function historyShop(date) {
 
 }
 
-/*function approvePayDriverByLab(id, invoice, driver){
- console.log("Lab approved pay");
- 
- var param = {
- order_id : id
- }
- 
- $.ajax({
- url: "shop/lab_approved_pay",
- data: param,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- shopFuncNotiActi(id, "lab_pay_approve");
- $.ajax({
- url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=lab_pay_approved&vc="+invoice+'&driver='+driver,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- sendSocket(id);
- 
- ons.notification.alert({
- message: 'ยืนยันการจ่ายเงินแล้ว',
- title: "สำเร็จ",
- buttonLabel: "ตกลง"
- })
- .then(function() {
- 
- reloadIncomeShop(id);
- });
- }
- });
- }
- });
- }
- 
- function approvePayDriverByTaxi(id, invoice, driver){
- console.log("Driver approved pay");
- 
- var param = {
- order_id : id
- }
- 
- $.ajax({
- url: "shop/driver_approved_pay",
- data: param,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- $.ajax({
- url: "shop/checkin?type=driver_complete&id="+id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val()+'&remark_pay='+$('#remark_pay').val(),
- //                 data: param,
- type: 'post',
- dataType: 'json',
- success: function(com) { 
- console.log(com);
- }
- });
- shopFuncNotiActi(id, "driver_pay_approve");
- $.ajax({
- url: "send_onesignal/send_msg_pay_shop?order_id="+id+"&type=driver_pay_approved&vc="+invoice+'&driver='+driver,
- type: 'post',
- dataType: 'json',
- success: function(res) {
- console.log(res);
- sendSocket(id);
- ons.notification.alert({
- message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
- title: "สำเร็จ",
- buttonLabel: "ตกลง"
- })
- .then(function() {
- reloadIncomeShop(id);
- });
- }
- });
- }
- });
- }*/
+function countHistoryTypeAll(){
+    var date_rp = "";
+    if($('#cehck_filter_date').val()==1){
+     var date = $('#date_shop_his').val();
+      var date_rp = date.replace("-", "/");
+      date_rp = date_rp.replace("-", "/");
+    }
+    var param = {
+        class_name : class_user,
+        driver : detect_user,
+        date : date_rp
+    };
+    $.ajax({
+          url: "shop/count_his_all_status",
+          data: param,
+          dataType: 'json',
+          type: 'post',
+          success: function (value) {
+            console.log(value);
+            $('#num_his_com').text("("+value.success+")");
+            $('#num_his_cancel').text("("+value.fail+")");
+            $('#num_his_all').text("("+value.all+")");
+          }
+        });
+}
 
 function maxLengthCheck(object) {
   if (object.value.length > 3)
@@ -2465,10 +2414,11 @@ function userApproveCancel(id, invoice) {
 }
 
 function filterHistoryStatus(type, id) {
+  console.log(type);
   $('#check_filter_his').val(type);
   $('.shop-his-btn').removeClass('his-shop-active');
   $('#' + id).addClass('his-shop-active');
-
+  historyShop($('#date_shop_his').val());
 }
 
 function selectPlanRegis(id) {
@@ -2538,6 +2488,8 @@ function confirmGetIncome(id, invoice, driver) {
             sendSocket(id);
           }
         });
+        
+        test_load_list(id);
 
       }
     }
@@ -2614,9 +2566,9 @@ function completedJobShop(id) {
 
 }
 
-function confirmGetTransCom(order_id){
+function confirmGetTransCom(order_id, invoice) {
 //  $('#get_trans_com_'+order_id).prop('disabled', false);
-  $('#get_trans_com_'+order_id).attr('disabled', 'disabled');
+  $('#get_trans_com_' + order_id).attr('disabled', 'disabled');
   var url_complete = "shop/get_trans_com?id=" + order_id;
   $.ajax({
     url: url_complete,
@@ -2624,19 +2576,90 @@ function confirmGetTransCom(order_id){
     type: 'post',
     success: function (data) {
       console.log(data)
-      if(data.order.result==true){
+      if (data.pay_his.order.result == true) {
         ons.notification.alert({
           message: 'ยืนยันรัยเงินค่าคอมมิชชั่นแล้ว งานของคุณเสร็จสมบรูณ์',
           title: "สำเร็จ",
           buttonLabel: "ปิด"
         })
                 .then(function () {
-                    waitTransShop();
-                    callpop();
+                  waitTransShop();
+                  callpop();
                 });
-          
+        var txt_long_ac = invoice + " : " + "คุณทำการยืนยันรับเงินโอน ";
+        var ac = {
+          i_type: 1,
+          i_sub_type: 1,
+          i_event: order_id,
+          i_user: detect_user,
+          s_topic: "งานส่งแขก",
+          s_message: txt_long_ac,
+          s_posted: username
+        };
+
+//        var txt_long_nc = response.update.invoice + " : " + username + " เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+//        var nc = {
+//          i_type: 1,
+//          i_event: response.last_id,
+//          i_user: 0,
+//          s_class_user: "lab",
+//          s_topic: "งานส่งแขก",
+//          s_sub_topic: "เช็คอิน",
+//          s_message: txt_long_nc,
+//          s_posted: username
+//        };
+        var nc = {};
+        apiRecordActivityAndNotification(ac, nc);     
+      }else{
+        
       }
     }
   });
-  
+
+}
+
+function showFilterdate() {
+  $('#btn_toshow_date').hide();
+  $('#box-shop_date').fadeIn(500);
+  $('#cehck_filter_date').val(1);
+  historyShop();
+}
+
+function hideFilterdate() {
+  $('#box-shop_date').hide();
+  $('#btn_toshow_date').show();
+  $('#cehck_filter_date').val(0);
+  historyShop();
+}
+
+function load_component_list_manage(value) {
+  var pass = {
+    data: value
+  };
+  console.log(pass);
+  var url = "component/list_shop_manage";
+  $.ajax({
+    url: url,
+    data: pass,
+    type: 'post',
+    success: function (ele) {
+      $('#list_shop_manage_' + value.id).html(ele);
+    }
+  });
+}
+
+function test_load_list(id){
+  var orderid = {
+          id : id
+        };
+        $.ajax({
+          url: "shop/get_data_shop",
+          data: orderid,
+          dataType: 'json',
+          type: 'post',
+          success: function (value) {
+            console.log(value);
+            load_component_list_manage(value);
+          }
+        });
 }

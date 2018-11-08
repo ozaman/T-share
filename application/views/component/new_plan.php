@@ -111,18 +111,35 @@ else {
       <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?></span></td>
       <td width="10%"><span class="font-17">บ.</span></td>
     </tr>
-    <tr style="<?=$display_com;?>">
-      <td width="35%"><span class="font-17">ค่าคอม</span></td>
-      <td align="right"><?=$com_progress;?>&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
-      </td>
-      <td width="10%">
-      </td>
-    </tr>
+    <?php if ($data->transfer_money == 0) {?>
+      <tr style="<?=$display_com;?>">
+        <td width="35%"><span class="font-17">ค่าคอม</span></td>
+        <td align="right"><?=$com_progress;?>&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+        </td>
+        <td width="10%">
+        </td>
+      </tr>
+    <?php }
+    else {
+        $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
+        $data_trans_pay = $query->row();
+      ?>
+      <tr style="<?=$display_com;?>">
+        <td width="35%"><span class="font-17">ค่าคอม</span></td>
+        <td align="right"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?></span>
+        </td>
+        <td width="10%">
+          <span>บ.</span>
+        </td>
+      </tr>
+    <?php }
+    ?>
+
     <tr>
       <td  width="35%">รวม</td>
       <td align="right">
         <span class="16" id="txt_all_total">
-          <?=number_format($all_total,0);?>
+<?=number_format($all_total,0);?>
         </span>
       </td>
       <td width="10%">
@@ -135,26 +152,27 @@ else {
 <?php if ($_COOKIE[detect_userclass] == "taxis" && $data->check_tran_job > 0) {?>
   <div style="padding: 0px 0px;">
     <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
-    <?php 
-        $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 order by status_often desc, status desc ";
-      	$query_bank = $this->db->query($sql);
-		foreach ($query_bank->result()  as $row){ ?>
-			<ons-list-item tappable onclick="">
-	        <label class="left">
-	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
-	        </label>
-	        <label for="radio-<?=$row->id;?>" class="center">
-	        <table width="100%">
-	        	<tr>
-	        		<td width="30"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;"></td>
-                    <td width="100"><span class="font-16"><?=$row->bank_list;?></span></td>
-	        		<td><span class="font-16"><?=$row->bank_number;?></span></td>
-	        	</tr>
-	        </table>
-	        </label>
-	      </ons-list-item>
-	<?php	}
-	?>
+    <?php
+    $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 order by status_often desc, status desc ";
+    $query_bank = $this->db->query($sql);
+    foreach ($query_bank->result() as $row) {
+      ?>
+      <ons-list-item tappable onclick="">
+        <label class="left">
+          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
+        </label>
+        <label for="radio-<?=$row->id;?>" class="center">
+          <table width="100%">
+            <tr>
+              <td width="30"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;"></td>
+              <td width="100"><span class="font-16"><?=$row->bank_list;?></span></td>
+              <td><span class="font-16"><?=$row->bank_number;?></span></td>
+            </tr>
+          </table>
+        </label>
+      </ons-list-item>
+    <?php }
+    ?>
   </div>
 <?php }
 ?>

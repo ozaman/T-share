@@ -68,7 +68,7 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
    	  	if($_GET[wait_trans]==""){ ?>
 		<span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
 	<?php	
-		$width = "60";
+		$width = "50";
 	}
    	  ?>
    	<table width="100%">
@@ -146,6 +146,137 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
             </td>
          </tr>
         
+         <!----------------------------------------------------------------------------------------------------------------------------->
+         <tr>
+           <td colspan="2">
+             <?php
+             $data = $this->Main_model->rowdata(TBL_ORDER_BOOKING,array('id' => $val[id]),array('*'));
+
+             $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$data->plan_id."' ");
+             $num = 0;
+
+             $display_person = "display:none";
+             $display_com = "display:none";
+             $display_park = "display:none";
+             $park_total = 0;
+             $person_total = 0;
+             $com_total = 0;
+             $plan = "";
+             foreach ($query_price->result() as $row_price) {
+               if ($num >= 1) {
+                 $push = " + ";
+               }
+               else {
+                 $push = "";
+               }
+               $plan .= $push.$row_price->s_topic_th;
+               $num++;
+
+               if ($row_price->s_topic_en == "park") {
+                 $check_type_park = 1;
+                 $display_park = "";
+                 $park_total = $data->price_park_unit;
+               }
+
+               if ($row_price->s_topic_en == "person") {
+                 $check_type_person = 1;
+                 $display_person = "";
+                 $person_total = intval($data->price_person_unit) * intval($data->adult);
+                 $cal_person = $data->price_person_unit."x".$data->adult;
+               }
+
+               if ($row_price->s_topic_en == "comision") {
+                 $check_type_com = 1;
+                 $display_com = "";
+                 $com_persent = $data->commission_persent;
+                 $com_progress = '<span style="padding-left: 0px;"><font color="#FF0000">รอโอน</font></span>';
+               }
+             }
+//            $all_total = $park_total + $person_total + $com_total;
+             $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
+             $query_country = $this->db->query($sql_country);
+             $res_country = $query_country->row();
+
+             $titel = t_work_remuneration;
+             $display_none_change_plan = "display:none;";
+             $color_titel = "";
+
+             if ($data->check_driver_pay == 0) {
+               $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+             }
+             else {
+               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+             }
+             ?>
+             <div style="padding: 0px 0px;">
+               <table width="100%" class="none-pd">
+                 <tr>
+                   <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
+                 </tr>
+                 <tr>
+                   <td colspan="3">
+                     <table>
+                       <tr>
+                         <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                         <td style="padding: 0;">
+                           <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                         </td>
+                         <td style="padding: 0;">&nbsp;</td>
+                         <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                       </tr>
+                     </table>
+                   </td>
+                 </tr>
+                 <tr style="<?=$display_park;?>">
+                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
+                   <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
+                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
+                 </tr>
+                 <tr style="<?=$display_person;?>">
+                   <td width="35%"><span class="font-17">ค่าหัว</span></td>
+                   <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
+                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
+                 </tr>
+                 <?php if ($data->transfer_money == 0) {?>
+                   <tr style="<?=$display_com;?>">
+                     <td width="35%"><span class="font-17">ค่าคอม</span></td>
+                     <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+                     </td>
+                     <td align="right" width="20%">
+                       <?=$com_progress;?>
+                     </td>
+                   </tr>
+                   <?php
+                 }
+                 else {
+                   if ($data->driver_approve == 0) {
+                     $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+                   }
+                   else {
+                     $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+                   }
+                   $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
+                   $data_trans_pay = $query->row();
+                   ?>
+                   <tr style="<?=$display_com;?>">
+                     <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
+                     <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
+                     </td>
+                     <td align="right" width="20%">
+  <?=$txt_com_status;?>
+                     </td>
+                   </tr>
+                 <?php }
+                 ?>
+
+               </table>   	
+             </div>
+
+           </td>
+         </tr>
+        <!----------------------------------------------------------------------------------------------------------------------------->
+         
+         
          <tr>
             <td>
                <div class="font-17">
@@ -240,13 +371,13 @@ where t1.member = '".$val[drivername]."' and t1.status = 1 ");
 								$onclick = "openDetailShop('".$key."','".$_GET[type]."','".$val[invoice]."');";
 							}
                          ?>  	
-                        <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>','<?=$key;?>');" style="padding: 13px;border: 1px solid #0076ff;
+                        <ons-button onclick="checkinAndOpenDetail('<?=$val[id];?>','<?=$key;?>');" style="padding: 15px;border: 1px solid #0076ff;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_topoint_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_topoint_<?=$val[id];?>">
                            <span class="font-17 text-cap">ถึงสถานที่</span> </ons-button>   
                            		
-                        <ons-button onclick="<?=$onclick;?>" style="padding: 13px;border: 1px solid #0076ff;
+                        <ons-button onclick="<?=$onclick;?>" style="padding: 15px;border: 1px solid #0076ff;
                            border-radius: 5px;
                            line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
                            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
