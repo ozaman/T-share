@@ -1553,10 +1553,19 @@ ons-list-item {
 </div>
 </ons-modal>
 
+<ons-modal direction="up" id="welcome_modal">
+  <div style="text-align: center">
+    <a style=" position: absolute;top: 10px; right: 20px;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    <div style="background-color: #fff;color: #000; margin: 15px;bottom: 65px; position: relative;border-radius: 5px;    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
+      <span class="intro font-26">ยินดีต้อนรับสมาชิกใหม่</span>
+    </div>
+  </div>
+</ons-modal>
 </body>
 </html>
 
 <script>
+  var welcom_modal = document.querySelector('#welcome_modal');
   var hideCustomDialog = function(id) {
       document
       .getElementById(id)
