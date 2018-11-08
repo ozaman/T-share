@@ -47,7 +47,8 @@ if (count($MEMBER)!= 0) {
 	$_where[area] = $MEMBER->region;
 }
 else{
-	$_where = array();
+
+	$_where[area] = $_GET[pv];//array();
 }
 $_select = array('*');
 $_order = array();
