@@ -84,7 +84,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 </ons-modal>
 <script>
     var modal = document.querySelector('#modal_load');
-//      modal.show();
+      modal.show();
 var today = "<?=date('Y-m-d');?>";
 var detect_mb = "<?=$detectname;?>";
 var detect_user = $.cookie("detect_user");
@@ -290,11 +290,11 @@ ons-splitter-side[animation=overlay] {
         }
         ?>
         <ons-list>
-            <ons-list-item expandable style="<?=$menu_profile;?>">
+            <ons-list-item expandable style="<?=$menu_profile;?>"  >
                 <div class="left">
                     <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                 </div>
-                <div class="center" onclick="arrowChange('list_profile');">
+              <div class="center" onclick="arrowChange('list_profile');" id="head_list_pf">
                     ข้อมูลส่วนตัว
                 </div>
                 <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
@@ -342,7 +342,7 @@ ons-splitter-side[animation=overlay] {
                         <div class="left">
                             <i class="icon-new-uniF121-10 list-item__icon "></i>
                         </div>
-                        <div class="center" onclick="arrowChange('list_acc');">
+                        <div class="center" onclick="arrowChange('list_acc');" id="head_list_acc">
                             การเงิน
                         </div>
                         <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
@@ -1551,7 +1551,7 @@ ons-list-item {
 
 <ons-modal direction="up" id="modal_photo">
   <div style="text-align: center">
-    <a style=" position: absolute;top: 10px; right: 20px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    <a style=" position: absolute;top: 5px; right: 5px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
     <div id="body_load_photo">
         <div>
             <img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
@@ -1562,13 +1562,47 @@ ons-list-item {
     </div>
 </div>
 </ons-modal>
+
 <audio controls="" id="alert_sd">
     <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
   </audio>
+
+
+<ons-modal direction="up" id="welcome_modal">
+  <div style="text-align: center">
+    
+    <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
+      <a style="position: absolute; margin-top: -20px;
+    padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
+    z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
+      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
+      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+        <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
+        <div class="font-17">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
+          เกี่ยวกับ เรื่องงาน เรื่องรถ และเรื่องผลประโยชน์ต่างๆที่พี่แท็กซี่ทั้งหลายจะได้รับ จึงขอเรียนเชิญ
+          ผู้นำคิว ผู้นำกลุ่ม หรือ ตัวแทน ที่สามารถมาร่วมทำความเข้าใจ และพร้อมจะร่วมงานกัน เพื่อผลประโยชน์ของพี่ๆแท็กซี่เอง
+          ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
+          นัดหมายเวลา 10.00 น.เป็นต้นไป
+          ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
+        </div>
+        <div style="padding: 10px;  text-align: right;">
+          <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
+        </div>
+        <div>
+          <ons-button style="margin-top: 10px; padding: 2px 10px;" onclick="openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button>
+        </div>
+      </div>
+    </ons-card>
+  </div>
+</ons-modal>
+
 </body>
 </html>
 
 <script>
+  
+  var welcom_modal = document.querySelector('#welcome_modal');
   var hideCustomDialog = function(id) {
       document
       .getElementById(id)
@@ -1760,13 +1794,13 @@ function arrowChange(id){
     }
     $('.arr').each (function() {
 //          console.log($(this).attr('id'));
-if($(this).attr('id')==id){
-//              console.log(1);
-}else{
-    $(this).find('i').removeClass('fa-chevron-up');
-    $(this).find('i').addClass('fa-chevron-down');
-}
-}); 
+    if($(this).attr('id')==id){
+    //              console.log(1);
+      }else{
+          $(this).find('i').removeClass('fa-chevron-up');
+          $(this).find('i').addClass('fa-chevron-down');
+      }
+    }); 
 
 //      $( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
 //      $( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
@@ -2299,6 +2333,21 @@ socket.on('updatedriver', function(socket_class, data) {
         sendTagOs(class_user, username);
     }
     var modal_photo = document.querySelector('#modal_photo');
+    detectUserInfomation();
+    $('ons-splitter-mask').click(function(){
+        console.log("++++++");
+//        arrowChange('list_profile');
+
+      var check_pf = $('#list_profile i').hasClass('fa-chevron-down');
+      if(check_pf==false){
+            performClick('head_list_pf');
+      }
+      
+      var check_pf = $('#list_acc i').hasClass('fa-chevron-down');
+      if(check_pf==false){
+            performClick('head_list_acc');
+      }
+    });
 </script>
 
 

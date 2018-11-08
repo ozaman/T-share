@@ -52,7 +52,7 @@ class Main extends CI_Controller {
   }
   
   public function get_data_user(){
-  	$query = $this->db->query("select name,nickname,username from web_driver where id = ".$_GET[id]);
+  	$query = $this->db->query("select name,nickname,username,i_information from web_driver where id = ".$_GET[id]);
    $row = $query->row();
    echo json_encode($row);
  }
@@ -256,6 +256,14 @@ public function move_station(){
 
 public function get_timestamp(){
  echo json_encode(time());
+}
+
+public function update_user_infomation(){
+  $data[i_information] = 1;
+  $this->db->where('id', $_GET[id]);
+  $data[result] = $this->db->update('web_driver', $data);
+  $data[id] = $_GET[id];
+  echo json_encode($data);
 }
 
 // public function detect

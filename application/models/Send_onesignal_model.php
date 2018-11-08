@@ -54,7 +54,6 @@ class Send_onesignal_model extends CI_Model {
 	    curl_close($ch);
 	    
 	    return $response;
-  
   }
 
   public function new_driver(){
@@ -563,6 +562,50 @@ class Send_onesignal_model extends CI_Model {
 	    return $response;
   }
   
+  public function noti_chat(){
+         $msg = $_POST[message];
+         $title = $_POST[title];
+         $username = $_POST[username];
+		 $content  = array(
+        "en" => $msg
+   		 );
+   		 $heading = array(
+		   "en" => $title
+		);
+   		 $fields = array(
+			'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
+			'filters' => array(
+//								array("field" => "tag", "key" => "username", "relation" => "=", "value" => "lab")
+								array("field" => "tag", "key" => "username", "relation" => "=", "value" => $username)
+								),
+//			'data' => array("order_id" => $order_id, "status" => "manage" ),
+//			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1",
+			'contents' => $content,
+			'headings' => $heading,
+			'ios_badgeType' => 'Increase',
+			'ios_badgeCount' => '1',
+			'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
+		);
+		$response["param"] = $fields;
+	    $fields = json_encode($fields);
+
+	    $ch = curl_init();
+	    curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+													   'Authorization: Basic N2ViZjFkZTAtN2Y1My00NDk0LWI3ZjgtOTYxYTVlNjI3OWI4'));
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+	    curl_setopt($ch, CURLOPT_POST, TRUE);
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+	    
+	    $res = curl_exec($ch);
+	    $response["allresponses"] = json_decode($res);
+	    
+	    curl_close($ch);
+	    
+	    return $response;
+  }
   /**
   * *********** End
   */

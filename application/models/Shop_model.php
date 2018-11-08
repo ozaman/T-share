@@ -595,6 +595,15 @@ public function get_trans_com(){
     return $return;
 }
 
+public function select_bank_after_change_plan(){
+    $data['bank_taxi_id'] = $_POST[bank_user_select];
+	$this->db->where('id', $_GET[id]);
+   
+	$data[result] = $this->db->update('order_booking', $data); 
+    $data[id] = $_GET[id];
+    return $data;
+}
+
   /**
   * 
   * driver_topoint

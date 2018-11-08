@@ -41,6 +41,11 @@ public function send_msg_pay_shop(){
 //  		header('Content-Type: application/json');
   		echo json_encode($data['res']);
 	}	
-	
+public function noti_chat(){
+		
+		$data['res'] = $this->Send_onesignal_model->noti_chat();
+//  		header('Content-Type: application/json');
+  		echo json_encode($data['res']);
+	}	
 }
 ?>

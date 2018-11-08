@@ -148,31 +148,3 @@ else {
     </tr>
   </table>   	
 </div>
-
-<?php if ($_COOKIE[detect_userclass] == "taxis" && $data->check_tran_job > 0) {?>
-  <div style="padding: 0px 0px;">
-    <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
-    <?php
-    $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 order by status_often desc, status desc ";
-    $query_bank = $this->db->query($sql);
-    foreach ($query_bank->result() as $row) {
-      ?>
-      <ons-list-item tappable onclick="">
-        <label class="left">
-          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
-        </label>
-        <label for="radio-<?=$row->id;?>" class="center">
-          <table width="100%">
-            <tr>
-              <td width="30"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;"></td>
-              <td width="100"><span class="font-16"><?=$row->bank_list;?></span></td>
-              <td><span class="font-16"><?=$row->bank_number;?></span></td>
-            </tr>
-          </table>
-        </label>
-      </ons-list-item>
-    <?php }
-    ?>
-  </div>
-<?php }
-?>

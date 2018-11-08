@@ -338,6 +338,11 @@ class Shop extends CI_Controller {
     echo json_encode($return);
     
   }
+  
+  public function select_bank_after_change_plan(){
+    $data = $this->Shop_model->select_bank_after_change_plan();
+    echo json_encode($data);
+  }
 
 }
 

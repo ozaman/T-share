@@ -12,15 +12,22 @@ function reloadPageBank() {
   });
 }
 function addBank(by) {
+  if(by=="shop_wait_trans"){
+    var id_popup = "popup2.html";
+    var body_popup = "body_popup2";
+  }else{
+    var id_popup = "popup1.html";
+    var body_popup = "body_popup1";
+  }
   fn.pushPage({
-    'id': 'popup1.html',
+    'id': id_popup,
     'title': 'เพิ่มข้อมูลบัญชี'
   }, 'lift-ios')
   var url = "page/call_page?open_by=" + by;
   $.post(url, {
     path: "bank/bank_add"
   }, function (ele) {
-    $('#body_popup1').html(ele);
+    $('#'+body_popup).html(ele);
 //        focusBoxBank();
   });
 }
@@ -387,6 +394,12 @@ function submitAddBank() {
             modal.hide();
           });
           return;
+        }
+        else if($('#open_by').val() == "shop_wait_trans"){
+            callpop();
+            load_status_trans($('#id_order').val());
+            modal.hide();
+            return;
         }
         ons
                 .notification.alert({
