@@ -123,7 +123,7 @@ else{
 		if (chek_data == 0) {
 			var area = $('#place_area').val();
 			var pv = $('#place_province').val();
-			$.post("car/body_car_station", {
+			$.post("car/body_car_station?pv="+pv+"&area="+area, {
 				id_user: $.cookie("detect_user")
 			}, function(res) {
 				$('#body_car_station').html(res);
