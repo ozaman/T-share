@@ -119,13 +119,22 @@ else {
         <td width="10%">
         </td>
       </tr>
-    <?php }
+      <?php
+    }
     else {
-        $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
-        $data_trans_pay = $query->row();
+      $query = $this->db->query('SELECT price_pay_driver_com, price_shopping FROM pay_history_driver_shopping where order_id = '.$data->id);
+      $data_trans_pay = $query->row();
       ?>
+<!--      <tr style="<?=$display_com;?>">
+        <td width="35%"><span class="font-17">ยอดช้อป </span></td>
+        <td align="right"><?=$data_trans_pay->price_shopping;?></span>
+        </td>
+        <td width="10%">
+          <span>บ.</span>
+        </td>
+      </tr>-->
       <tr style="<?=$display_com;?>">
-        <td width="35%"><span class="font-17">ค่าคอม</span></td>
+        <td width="35%"><span class="font-17">ค่าคอม</span><span class="font-17"><br/></span><span class="font-16">ยอด <?=$data_trans_pay->price_shopping;?></span></td>
         <td align="right"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?></span>
         </td>
         <td width="10%">
@@ -139,7 +148,7 @@ else {
       <td  width="35%">รวม</td>
       <td align="right">
         <span class="16" id="txt_all_total">
-<?=number_format($all_total,0);?>
+          <?=number_format($all_total,0);?>
         </span>
       </td>
       <td width="10%">
