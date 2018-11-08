@@ -172,7 +172,7 @@ ons-splitter-side[animation=overlay] {
               <!-- <i class="fa " aria-hidden="true"></i> -->
               <ons-tabbar swipeable id="appTabbar" position="auto">
 	                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
-	                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"></ons-tab>
+	                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge="1"></ons-tab>
                     <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
 	                <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
 	                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
