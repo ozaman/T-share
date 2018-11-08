@@ -1555,8 +1555,11 @@ ons-list-item {
 
 <ons-modal direction="up" id="welcome_modal">
   <div style="text-align: center">
-    <a style=" position: absolute;top: 5px; right: 5px;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    
     <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
+      <a style="position: absolute; margin-top: -20px;
+    padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
+    z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
       <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
       <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
         <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
