@@ -17,7 +17,8 @@ else{
     // $this->db->where('Age', 12);
  // $_where['s_room'] = $_GET[room];
  // $this->
- $this->db->where("s_room=".$_GET[room]." OR i_member=".$_COOKIE[detect_user]);
+   $this->db->where("s_room=".$_GET[room]." OR i_member=".$_COOKIE[detect_user]);
+   // $this->db->where("i_member = ".$_COOKIE[detect_user]);
     // $_where['i_member'] =  $_COOKIE[detect_user];
 }
 
@@ -27,7 +28,7 @@ $_order['id'] = 'DESC';
 // print_r(json_encode($_where));
 // echo TBL_CHAT_MESSAGE.'888888888888888888888888888888888888888888888888888888888888888';
 
-$MESSAGE = $this->Main_model->fetch_data(10,'',TBL_CHAT_MESSAGE,$_where,$_select,$_order);
+$MESSAGE = $this->Main_model->fetch_data(20,'',TBL_CHAT_MESSAGE,$_where,$_select,$_order);
 
 sort($MESSAGE);
 
@@ -48,179 +49,200 @@ sort($MESSAGE);
 		<div class="conversation-window">
 			
             <div id="ember549" class="chat-window ember-view"><!---->
-             <div id="ember560" class="t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
-              <!-- <div class="t-share-chat__scrollable-inner"> -->
+               <div id="ember560" class="t-share-chat__scrollable chat-content ember-view" style="padding-right: 25px;padding-left: 5px;">
+                  <!-- <div class="t-share-chat__scrollable-inner"> -->
 
-               <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
-                <?php 
-                foreach ($MESSAGE as $value) {
-                    // echo $value->id;
+                     <!-- <div id="ember697" class="chat-message ember-view"><div class="t-share-chat-grid"> -->
+                        <?php 
+                        foreach ($MESSAGE as $value) {
+                            $data = array();
+                            if ($value->i_read == 0) {
+                                $_where = array();
+                               $_where[id] = $_COOKIE[detect_user];
 
-                 if ($value->s_type == 'img') {
- $_where = array();
-                 $_where['i_message'] = $value->id;
+                               $DRIVER = $this->Main_model->rowdata(TBL_WEB_DRIVER,$_where);
+                               // print_r(json_encode($DRIVER).'2222222222222222222222222222222222222');
+
+                                if ($DRIVER->s_service == 'service') {
+                                    $data[i_read] = 1;
+                                }
+                                else{
+                                    $data[i_read_to] = 1;
+
+                                }
+
+
+                                $this->db->where(id, $value->id);
+                                //$this->db->where(i_member, $_COOKIE[detect_user]);
+                                $data[result] = $this->db->update(TBL_CHAT_MESSAGE, $data);
+                            }
+
+
+                            if ($value->s_type == 'img') {
+                               $_where = array();
+                               $_where['i_message'] = $value->id;
 // $_where['status'] = 1;
-                 $IMAGE = $this->Main_model->rowdata(TBL_CHAT_IMAGE,$_where);
-                   if ($value->i_member != $_COOKIE[detect_user]) {
-                    $mag = '<div id="ember726" class="chat-message ember-view">'
-                    .'<div class="t-share-chat-grid">'
-                    .'<div class="col-1">'
+                               $IMAGE = $this->Main_model->rowdata(TBL_CHAT_IMAGE,$_where);
+                               if ($value->i_member != $_COOKIE[detect_user]) {
+                                $mag = '<div id="ember726" class="chat-message ember-view">'
+                                .'<div class="t-share-chat-grid">'
+                                .'<div class="col-1">'
                     // .'<span>'.res.nickname.'</span>'
-                    .'<div class="avatar">'
+                                .'<div class="avatar" onclick="selese_private_mem('.$value->i_member.')">'
 
-                    .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" height="37">'
-                    .'</div>'
-                    .'</div>'
-                    .'<div class="col-15 message-content reverse">'
-                    .'<div class=" from">'
-                    .'<div class="overflow-wrapper cf">'
-                    .'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' . $IMAGE->s_topic . '" data-high-res-src="'.$IMAGE->s_topic.'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
-                    .'</div>'
-                    .'</div>'
-                    .'<div class="timestamp">'
-                     .date('Y-m-d H:i:s',$value->s_time/1000)
-                    .'</div>'
-                    .'</div>'
-                    .'</div>'
-                    .'</div>';
-                    echo $msg ;
+                                .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" height="37">'
+                                .'</div>'
+                                .'</div>'
+                                .'<div class="col-15 message-content reverse">'
+                                .'<div class=" from">'
+                                .'<div class="overflow-wrapper cf">'
+                                .'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' . $IMAGE->s_topic . '" data-high-res-src="'.$IMAGE->s_topic.'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
+                                .'</div>'
+                                .'</div>'
+                                .'<div class="timestamp">'
+                                .date('Y-m-d H:i:s',$value->s_time/1000)
+                                .'</div>'
+                                .'</div>'
+                                .'</div>'
+                                .'</div>';
+                                echo $msg ;
 
 
-                }
-                else{
-                    $msg = '<div id="ember728" class="chat-message ember-view">'
-                    .'<div class="t-share-chat-grid">'
-                    .'<div class="col-15 message-content ">'
-                    . '<div class=" to">'
-                    .'<div class="overflow-wrapper cf">'
-                    .'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' . $IMAGE->s_topic . '" data-high-res-src="'.$IMAGE->s_topic.'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
-                    .'</div>'
-                    . '</div>'
-                    .'<div class="timestamp">'
-                    .date('Y-m-d H:i:s',$value->s_time/1000)
-                    .'</div>'
-                    .'</div>'
-                    .'<div class="col-1">'
+                            }
+                            else{
+                                $msg = '<div id="ember728" class="chat-message ember-view">'
+                                .'<div class="t-share-chat-grid">'
+                                .'<div class="col-15 message-content ">'
+                                . '<div class=" to">'
+                                .'<div class="overflow-wrapper cf">'
+                                .'<img class="chat_gallery_items" onclick="chat_gallery_items(this)"  src="' . $IMAGE->s_topic . '" data-high-res-src="'.$IMAGE->s_topic.'" alt="" style="width:150px; border-radius: 10px;pointer-events: auto;z-index:100;cursor:pointer">'
+                                .'</div>'
+                                . '</div>'
+                                .'<div class="timestamp">'
+                                .date('Y-m-d H:i:s',$value->s_time/1000)
+                                .'</div>'
+                                .'</div>'
+                                .'<div class="col-1">'
             // .'<span>'.res.nickname.'</span>'
-                    .'<div class="avatar ">'
+                                .'<div class="avatar ">'
 
-                    .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" >'
-                    .'</div>'
-                    .'</div>'
-                    .'</div>'
-                    .'</div>';
-                    echo $msg ;
-                }
+                                .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" >'
+                                .'</div>'
+                                .'</div>'
+                                .'</div>'
+                                .'</div>';
+                                echo $msg ;
+                            }
 
                        // echo '<img src="'.$IMAGE->s_topic .'"/>';
-            }
-            else{
-                if ($value->i_member != $_COOKIE[detect_user]) {
-                  $msg =  '<div id="ember726" class="chat-message ember-view">'
-                  .'<div class="t-share-chat-grid">'
-                  .'<div class="col-1">'
+                        }
+                        else{
+                            if ($value->i_member != $_COOKIE[detect_user]) {
+                              $msg =  '<div id="ember726" class="chat-message ember-view">'
+                              .'<div class="t-share-chat-grid">'
+                              .'<div class="col-1">'
                     // .'<span>'.res.nickname.'</span>'
-                  .'<div class="avatar">'
+                              .'<div class="avatar" onclick="selese_private_mem('.$value->i_member.')">'
 
-                  .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" height="37">'
-                  .'</div>'
-                  .'</div>'
-                  .'<div class="col-15 message-content reverse">'
-                  .'<div class="chat-bubble from">'
-                  .'<div class="overflow-wrapper">'
-                  .$value->s_topic
-                  .'</div>'
-                  .'</div>'
-                  .'<div class="timestamp">'
-                  .date('Y-m-d H:i:s',$value->s_time/1000)
-                  .'</div>'
-                  .'</div>'
-                  .'</div>'
-                  .'</div>';
-                  echo $msg ;
-              }
-              else{
-                $msg = '<div id="ember728" class="chat-message ember-view">'
-                .'<div class="t-share-chat-grid">'
-                .'<div class="col-15 message-content ">'
-                . '<div class="chat-bubble to">'
-                .'<div class="overflow-wrapper">'
-                .$value->s_topic
-                .'</div>'
-                . '</div>'
-                .'<div class="timestamp">'
-               .date('Y-m-d H:i:s',$value->s_time/1000)
-                .'</div>'
-                .'</div>'
-                .'<div class="col-1">'
+                              .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg" height="37">'
+                              .'</div>'
+                              .'</div>'
+                              .'<div class="col-15 message-content reverse">'
+                              .'<div class="chat-bubble from">'
+                              .'<div class="overflow-wrapper">'
+                              .$value->s_topic
+                              .'</div>'
+                              .'</div>'
+                              .'<div class="timestamp">'
+                              .date('Y-m-d H:i:s',$value->s_time/1000)
+                              .'</div>'
+                              .'</div>'
+                              .'</div>'
+                              .'</div>';
+                              echo $msg ;
+                          }
+                          else{
+                            $msg = '<div id="ember728" class="chat-message ember-view">'
+                            .'<div class="t-share-chat-grid">'
+                            .'<div class="col-15 message-content ">'
+                            . '<div class="chat-bubble to">'
+                            .'<div class="overflow-wrapper">'
+                            .$value->s_topic
+                            .'</div>'
+                            . '</div>'
+                            .'<div class="timestamp">'
+                            .date('Y-m-d H:i:s',$value->s_time/1000)
+                            .'</div>'
+                            .'</div>'
+                            .'<div class="col-1">'
             // .'<span>'.res.nickname.'</span>'
-                .'<div class="avatar">'
+                            .'<div class="avatar">'
 
-                .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg">'
-                .'</div>'
-                .'</div>'
-                .'</div>'
-                .'</div>';
+                            .'<img src="../data/pic/driver/small/'.$value->s_member.'.jpg">'
+                            .'</div>'
+                            .'</div>'
+                            .'</div>'
+                            .'</div>';
 
-                echo $msg ;
-            }
-        }
+                            echo $msg ;
+                        }
+                    }
 
-    }
+                }
 
-    ?>
-    <div id="conversation">
+                ?>
+                <div id="conversation">
 
-    </div>
-
-
+                </div>
 
 
-<!-- </div> -->
-</div>
-<div class="chat-panel" data-ember-action="" data-ember-action-561="561">
-  <!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
-  <div class="chat-toolbar">
-   <div class="clearfix" style="    padding: 0 5px;">
 
-    <table width="100%">
-     <tr>
-      <td>
-       <input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
-       width: 100%;
-       height: 38px;
-       padding: 0px 10px;
-       border: 1px solid #ccc;
-       border-radius: 5px;
-       ">
-   </td>
-   <td valign="center"> 
-       <input  class="t-share-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
-       width: 40px;
-       text-align: center;
-       padding: 9px 13px;
-       margin: 0px 2px 0;
-       border-radius: 4px;
-       border: none;
-       background: linear-gradient(#0076ff,#0076ff);">
-       <!-- <button  class="t-share-chat__primary" id="datasend">ส่ง</button> -->
-       <!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
-   </td>
-   <td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
-   cursor: pointer;
-   /* width: 28px; */
-   text-align: center;
-   padding: 0 0;
-   margin: 0px 0 0;
-   border-radius: 4px;
-   border: none;
-   color: #9E9E9E;
-   font-size: 45px;
-   margin-top: 3px;
-   /* background: linear-gradient(#0076ff,#0076ff); */
-   "></i></div></td>
-</tr>
-</table>
+
+                <!-- </div> -->
+            </div>
+            <div class="chat-panel" data-ember-action="" data-ember-action-561="561">
+              <!-- <textarea placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view"></textarea> -->
+              <div class="chat-toolbar">
+                 <div class="clearfix" style="    padding: 0 5px;">
+
+                    <table width="100%">
+                       <tr>
+                          <td>
+                             <input type="test" class="form-control" placeholder="พิมพ์ข้อความ" maxlength="5000" id="data" class="ember-text-area ember-view" style="font-size: 16px;
+                             width: 100%;
+                             height: 38px;
+                             padding: 0px 10px;
+                             border: 1px solid #ccc;
+                             border-radius: 5px;
+                             ">
+                         </td>
+                         <td valign="center"> 
+                             <input  class="t-share-chat__primary" type="button" id="datasend" value="ส่ง" style="    cursor: pointer;
+                             width: 40px;
+                             text-align: center;
+                             padding: 9px 13px;
+                             margin: 0px 2px 0;
+                             border-radius: 4px;
+                             border: none;
+                             background: linear-gradient(#0076ff,#0076ff);">
+                             <!-- <button  class="t-share-chat__primary" id="datasend">ส่ง</button> -->
+                             <!-- <i class="fa fa-paper-plane"  id="datasend" aria-hidden="true"></i> -->
+                         </td>
+                         <td valign="center"><div class="filebutton"><input type="file" id="imagefile" accept="image/*"><i class="fa fa-plus-square-o" style="margin: auto;
+                         cursor: pointer;
+                         /* width: 28px; */
+                         text-align: center;
+                         padding: 0 0;
+                         margin: 0px 0 0;
+                         border-radius: 4px;
+                         border: none;
+                         color: #9E9E9E;
+                         font-size: 45px;
+                         margin-top: 3px;
+                         /* background: linear-gradient(#0076ff,#0076ff); */
+                         "></i></div></td>
+                     </tr>
+                 </table>
            <!--  <div class="right">
             	<input  class="t-share-chat__primary" type="button" id="datasend" value="send" />
             	<!-- <button data-ember-action="" data-ember-action-570="570">ส่ง</button>
@@ -242,13 +264,19 @@ sort($MESSAGE);
 	</div></div></div>
 	<script>
         setTimeout(function(){
+                roomOpen = true;
 
             socket2.emit('addroom', detect_user);
-
+            $("#tab_contact").removeAttr("badge");
+$('.t-share-chat__scrollable').animate({
+   
+      scrollTop: 10000000
+    }, 500);
 
 
 
         }, 50);
+
         socket2.on('updateroom', function(rooms, current_room) {
         // $('#online_ser').remove()
         $('#user_tochat').empty();
@@ -337,7 +365,12 @@ sort($MESSAGE);
         $('#datasend').click( function() {
             var message = $('#data').val();
             if (message != '') {
-                socket2.emit('sendchat', message);
+               var datamsg = {
+                        message: message,
+                        mem: private_mem
+                    };
+                    console.log(datamsg)
+                socket2.emit('sendchat',message);
                 $('#data').val('');
             }
             
@@ -358,7 +391,11 @@ sort($MESSAGE);
             reader.onload = function(evt){
                 console.log(evt.target.result)
         // image('me', evt.target.result);
-
+ var datamsg = {
+                        message: evt.target.result,
+                        mem: private_mem
+                    };
+                    console.log(datamsg)
         socket2.emit('user image', evt.target.result);
     };
     reader.readAsDataURL(data);

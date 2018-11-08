@@ -1,5 +1,5 @@
 
-
+var private_mem;
 function loadcontactChat() {
 console.log(detect_user)
 
@@ -51,6 +51,18 @@ console.log(detect_user)
             // var urlcounthis = ""
             
         }
+        //playAudio(); 
+function selese_private_mem(mem) { 
+    console.log(mem);
+    private_mem = mem
+
+    
+}
+function playAudio(vol) { 
+    var sound = document.getElementById("alert_sd"); 
+    sound.volume = 1.0; //max : 1.0 , min : 0.0
+    sound.play(); 
+}
         function chat_gallery_items(item) {
             console.log(item)
             var imgSrc = item.src,
@@ -85,10 +97,23 @@ console.log(detect_user)
 
 socket2.on('updatechat', function (username, data) {
         utc = '';
+
         utc = new Date().toLocaleString(); //'<?=date('Y-m-d H:i:s');?>'+' dsdsds'; //new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
         console.log(username)
         console.log(detect_user)
+        if (roomOpen == true) {
+             $.ajax({
+            url: 'chat/chekRead?member='+detect_user, //Controller where search is performed
+            dataType: 'json',
+            type: 'POST',
+            // data: req,
+            success: function(res){
+                        console.log(res)
+            }
+        });
+            
+        }
         // if (username == 'SERVER') {
 
 
@@ -127,13 +152,14 @@ socket2.on('updatechat', function (username, data) {
                 console.log(res)
                 img = res.username;
                 if (username != detect_user) {
-
+                    playAudio();
+                     private_mem = username
 
                     msg = '<div id="ember726" class="chat-message ember-view">'
                     +'<div class="t-share-chat-grid">'
                     +'<div class="col-1">'
                     // +'<span>'+res.nickname+'</span>'
-                    +'<div class="avatar">'
+                    +'<div class="avatar" onclick="selese_private_mem('+res.id+')">'
 
                     +'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
                     +'</div>'
@@ -183,10 +209,13 @@ socket2.on('updatechat', function (username, data) {
 //     }, 500);
 //     }
 // });
-$('.t-share-chat__scrollable').animate({
+if (roomOpen != false) {
+    $('.t-share-chat__scrollable').animate({
    
       scrollTop: 10000000
     }, 500);
+}
+
     }
 });
         // }
@@ -218,13 +247,14 @@ $('.t-share-chat__scrollable').animate({
                 msg = '';
                 img = res.username;
                 if (username != detect_user) {
+                    private_mem = username
 
-
+  playAudio();
                     msg = '<div id="ember726" class="chat-message ember-view">'
                     +'<div class="t-share-chat-grid">'
                     +'<div class="col-1">'
                     // +'<span>'+res.nickname+'</span>'
-                    +'<div class="avatar">'
+                    +'<div class="avatar" onclick="selese_private_mem('+res.id+')">'
 
                     +'<img src="../data/pic/driver/small/'+img+'.jpg" height="37">'
                     +'</div>'
@@ -275,10 +305,13 @@ $('.t-share-chat__scrollable').animate({
 //     }, 500);
 //     }
 // });
-$('.t-share-chat__scrollable').animate({
+if (roomOpen != false) {
+   $('.t-share-chat__scrollable').animate({
    
       scrollTop: 10000000
-    }, 500);
+    }, 500); 
+}
+
     }
 });
         
