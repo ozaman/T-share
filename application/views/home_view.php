@@ -83,7 +83,7 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 </ons-modal>
 <script>
     var modal = document.querySelector('#modal_load');
-//      modal.show();
+      modal.show();
 var today = "<?=date('Y-m-d');?>";
 var detect_mb = "<?=$detectname;?>";
 var detect_user = $.cookie("detect_user");
@@ -280,11 +280,11 @@ ons-splitter-side[animation=overlay] {
         }
         ?>
         <ons-list>
-            <ons-list-item expandable style="<?=$menu_profile;?>">
+            <ons-list-item expandable style="<?=$menu_profile;?>"  >
                 <div class="left">
                     <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                 </div>
-                <div class="center" onclick="arrowChange('list_profile');">
+              <div class="center" onclick="arrowChange('list_profile');" id="head_list_pf">
                     ข้อมูลส่วนตัว
                 </div>
                 <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
@@ -332,7 +332,7 @@ ons-splitter-side[animation=overlay] {
                         <div class="left">
                             <i class="icon-new-uniF121-10 list-item__icon "></i>
                         </div>
-                        <div class="center" onclick="arrowChange('list_acc');">
+                        <div class="center" onclick="arrowChange('list_acc');" id="head_list_acc">
                             การเงิน
                         </div>
                         <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
@@ -1555,7 +1555,7 @@ ons-list-item {
 
 <ons-modal direction="up" id="welcome_modal">
   <div style="text-align: center">
-    <a style=" position: absolute;top: 5px; right: 5px;" onclick="welcom_modal.hide({ animation: 'fade' });updateUserInfomation();"><i class="material-icons" style="font-size: 50px;">close</i></a>
+    <a style=" position: absolute;top: 5px; right: 5px;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
     <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
       <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
       <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
@@ -1567,6 +1567,9 @@ ons-list-item {
           ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
           นัดหมายเวลา 10.00 น.เป็นต้นไป
           ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
+        </div>
+        <div style="padding: 10px;  text-align: right;">
+          <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
         </div>
         <div>
           <ons-button style="margin-top: 10px; padding: 2px 10px;" onclick="openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตรวจสอบแผนที่</ons-button>
@@ -1772,13 +1775,13 @@ function arrowChange(id){
     }
     $('.arr').each (function() {
 //          console.log($(this).attr('id'));
-if($(this).attr('id')==id){
-//              console.log(1);
-}else{
-    $(this).find('i').removeClass('fa-chevron-up');
-    $(this).find('i').addClass('fa-chevron-down');
-}
-}); 
+    if($(this).attr('id')==id){
+    //              console.log(1);
+      }else{
+          $(this).find('i').removeClass('fa-chevron-up');
+          $(this).find('i').addClass('fa-chevron-down');
+      }
+    }); 
 
 //      $( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
 //      $( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
@@ -2289,6 +2292,20 @@ socket.on('updatedriver', function(socket_class, data) {
     }
     var modal_photo = document.querySelector('#modal_photo');
     detectUserInfomation();
+    $('ons-splitter-mask').click(function(){
+        console.log("++++++");
+//        arrowChange('list_profile');
+
+      var check_pf = $('#list_profile i').hasClass('fa-chevron-down');
+      if(check_pf==false){
+            performClick('head_list_pf');
+      }
+      
+      var check_pf = $('#list_acc i').hasClass('fa-chevron-down');
+      if(check_pf==false){
+            performClick('head_list_acc');
+      }
+    });
 </script>
 
 
