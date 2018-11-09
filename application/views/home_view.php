@@ -219,8 +219,9 @@ ons-splitter-side[animation=overlay] {
                             
                         }
                     else if(page_main == "information.html"){
-						welcom_modal.show({ animation: 'fade' });
-						$('#side_pf').show();
+//                            welcom_modal.show({ animation: 'fade' });
+                            loadInformationPage();
+                            $('#side_pf').show();
                             $('#side_more').hide();
                             roomOpen = false;
 					}
@@ -441,8 +442,9 @@ ons-list-item {
     </ons-page>
 </template>
 <template id="information.html">
-    <ons-page id="forms-page">
-        <?php $this->load->view('information_view'); ?>
+    <ons-page>
+      <div id="body_load_information"></div>
+        <?php //$this->load->view('information_view'); ?>
     </ons-page>
 </template>
 <template id="notification.html">   
@@ -1582,8 +1584,10 @@ ons-list-item {
       <a style="position: absolute; margin-top: -20px;
     padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
     z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
-      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
-      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+          <div id="body_modal_info"></div>
+<!--      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>-->
+      
+<!--      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
         <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
         <div class="font-17">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
@@ -1599,7 +1603,7 @@ ons-list-item {
         <div>
           <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
         </div>
-      </div>
+      </div>-->
     </ons-card>
   </div>
 </ons-modal>
@@ -2287,6 +2291,7 @@ socket.on('updatedriver', function(socket_class, data) {
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
 
 <!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
@@ -2300,7 +2305,7 @@ socket.on('updatedriver', function(socket_class, data) {
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
         setTimeout(function() {
-            console.log(9999999999)
+//            console.log(9999999999)
         socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
         }, 1500);
     });

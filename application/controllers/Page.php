@@ -19,6 +19,10 @@ public function shop(){
 public function activity(){
 		$this->load->view('activity_view');
 	}
+
+ public function information(){
+		$this->load->view('information_view');
+	}
 	
 public function notification(){
 		$this->load->view('notification_view');

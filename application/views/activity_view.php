@@ -57,7 +57,7 @@
        			</tr>
        			<tr>
        				<td >
-       				<span id="txt_date_diff_ac_<?=$row->id;?>" class="font-15">บันทึกเวลา <?=$save_time;?> น.</span>
+       				<span id="txt_date_diff_ac_<?=$row->id;?>" class="font-15">บันทึกเวลา <?=$save_time;?></span>
        				</td>
        			</tr>
        		</table>
