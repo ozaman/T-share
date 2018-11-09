@@ -128,6 +128,9 @@ $data_shopmain = $shopmain->row();
 else {
   $op_select = 'เลือกเวลา';
 }
+
+
+
  $_where = array();
     // $_where['product_id'] = $_GET[id];
     $_where['status'] = 1;
@@ -136,8 +139,8 @@ else {
 
 
 
-    $data = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
-    if ( $data != 1) {
+    $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+    if ( $numss != 1) {
       ?>
 <div class="card">
    <ons-row >
@@ -160,9 +163,7 @@ else {
 </div>
       <?php 
     }
-?>
-
-
+    ?>
 
 
 
@@ -185,7 +186,7 @@ else {
 
         </script>
         <input value="" id="car_id" name="check_use_car_id" type="hidden" />
-       
+
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
           <tr>
             <td width="110">
