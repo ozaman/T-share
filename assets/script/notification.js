@@ -44,6 +44,7 @@ function hiddenNotiAll() {
         success: function(res) {
             console.log(res);
             $('.card-activity').css('background-color', '#fff');
+            $('.ic-no-read').hide();
             setCountNotification();
         }
     });
