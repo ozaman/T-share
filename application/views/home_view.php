@@ -29,22 +29,23 @@ else {
     $border_menu_color = "#ccc";
 }
 $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
+$v = "1";
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>T-Share</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--<link rel="stylesheet" href="front_bank/css/thbanklogos.min.css" id="stylesheet">-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=time()?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=$v;?>" /> 
+    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=$v;?>" />
     <!-- <link href="<?=base_url();?>assets/imageViewer/easy-autocomplete.min.css" rel="stylesheet" type="text/css"> -->
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 </head> 
@@ -83,8 +84,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </div>
 </ons-modal>
 <script>
-    var modal = document.querySelector('#modal_load');
-      modal.show();
+var modal = document.querySelector('#modal_load');
+    modal.show();
 var today = "<?=date('Y-m-d');?>";
 var detect_mb = "<?=$detectname;?>";
 var detect_user = $.cookie("detect_user");
@@ -1569,7 +1570,7 @@ ons-list-item {
 </div>
 </ons-modal>
 
-<audio controls="" id="alert_sd">
+<audio controls="" id="alert_sd" style="display:none;">
     <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
   </audio>
 
