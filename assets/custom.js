@@ -1181,6 +1181,7 @@ function checkzoon(argument) {
 
 }
 
+
 function _province(itm) {
   if (pro > 0) {
     $('#box_form_toshow').hide()
@@ -1823,4 +1824,63 @@ function updateUserInfomation() {
       console.log(data);
     }
   });
+}
+
+function _region_s(itm) {
+  console.log('-----')
+  console.log(itm)
+  var htmlOption = '';
+  var url = "main/select_type?id_sub=" + itm + '&table=province';
+  console.log(url)
+  $.post(url, function (res) {
+    console.log(res)
+    htmlOption = "<option value=''>กรุณาเลือก</option>";
+    $.each(res, function (i, item) {
+      htmlOption += "<option value='" + item.id + "'>" + item.name_th + "</option>";
+    });
+    $("#province").html(htmlOption);
+    setTimeout(function(){ 
+    $("#province").val(itm);
+  },10000);
+    _province_s($("#province_s").val())
+    // $('select_type', select).remove();
+    // select.val(selectedOption);
+    // $('#select_type').html(ele);
+  });
+}
+function _province_s(itm) {
+  if (pro > 0) {
+    $('#box_form_toshow').hide()
+    $('.radio-button').prop("checked", false);
+
+  }
+
+
+  console.log(itm)
+  var url = "main/select_type?id_sub=" + itm + '&table=amphur';
+  var htmlOption = '';
+  $.post(url, function (res) {
+    console.log(res)
+    htmlOption = "<option value=''>กรุณาเลือก</option>";
+    var select;
+    $.each(res, function (i, item) {
+      if ($('#have_arm').val() == item.id) {
+        select = 'selected';
+      } else {
+        select = '';
+      }
+      htmlOption += "<option value='" + item.id + "' " + select + ">" + item.name_th + "</option>";
+    });
+    if (pro > 0) {
+      $("#amphur").html(htmlOption);
+      // $("#select_type").val();
+      // $('select_type', select).remove();
+      // select.val(selectedOption);
+      // $('#select_type').html(ele);
+      setTimeout(function(){ 
+    $("#province").val($("#amphur_s").val());
+  },10000);
+    }
+  });
+  pro++;
 }
