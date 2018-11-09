@@ -131,16 +131,16 @@ else {
 
 
 
- $_where = array();
+ // $_where = array();
     // $_where['product_id'] = $_GET[id];
-    $_where['status'] = 1;
+    // $_where['status'] = 1;
     // $_where['time_other_number'] = 2;
 
 
 
 
-    $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
-    if ( $numss != 1) {
+   // $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+    // if ( $numss != 1) {
       ?>
 <div class="card">
    <ons-row >
@@ -161,9 +161,7 @@ else {
                 </ons-col>
                </ons-row>
 </div>
-      <?php 
-    }
-    ?>
+    
 
 
 

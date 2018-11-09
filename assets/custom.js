@@ -708,91 +708,85 @@ function sendShop2() {
   $.post(urlo, function (res) {
     console.log(res)
     if (res.count == 1) {
-
-      fn.pushPage({
+       modal.hide();
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+       fn.pushPage({
         'id': 'shopping.html',
         'title': 'ส่งแขก',
         'key': 'shop'
       })
-      //                       var url = "page/call_page";
-      //   $.post(url,{ path : "car/car_view" },function(ele){
-      //    $('#body_shop').html(ele);
-      // });
-      var url2 = "shop/shop_pageadd?shop_id=" + res.shop_id;
-      var urlcount = "shop/car_count";
-
-
-      $.post(url2, function (ele2) {
-        /*if (class_user == "taxi") {
-         
-         $.post(urlcount, function(res) {
-         if (res == 0) {
-         ons.notification.alert({
-         message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
-         title: "ไม่สามารถส่งแขกได้",
-         buttonLabel: "เพิ่มรถ"
-         })
-         .then(function() {
-         // callpop();
-         callpop();
-         setTimeout(function() {
-         myCar();
-         }, 700);
-         
-         return;
-         });
-         }
-         });
-         
-         }*/
-
-        setTimeout(function () {
-          modal.hide();
-          $('#shop_add').html(ele2);
-          if (class_user == "taxi") {
-            $.ajax({
-              url: "main/check_num_car_station",
-              data: pass,
-              type: 'post',
-              success: function (res) {
-                console.log("car station number : " + res)
-                if (res == 0) {
-                  stationCar();
-                } else {
-
-                }
-
-              }
-            });
-          }
-
-
-
-
-          var pass = {
-            date: moment().format('YYYY-MM-DD'),
-            driver: $.cookie("detect_user"),
-            type: 'his'
-          };
-          console.log(pass);
-          var urlcounthis = "shop/count_his"
-          $.ajax({
-            url: urlcounthis,
-            data: pass,
-            type: 'post',
-            success: function (res) {
-              // console.log(res);
-              if (res != 0) {
-                $('#num_his').show();
-                $('#num_his').html(res);
-              }
-              // $('ons-tab[page="shop_history.html"]').attr('badge', res);
-            }
-          });
-        }, 1000);
-
-
+      var url = "shop/place_company";
+      $.post(url, function (res) {
+        // console.log(res)
+        $('#shop_add').html(res);
       });
+
+      // fn.pushPage({
+      //   'id': 'shopping.html',
+      //   'title': 'ส่งแขก',
+      //   'key': 'shop'
+      // })
+      // //                       var url = "page/call_page";
+      // //   $.post(url,{ path : "car/car_view" },function(ele){
+      // //    $('#body_shop').html(ele);
+      // // });
+      // var url2 = "shop/shop_pageadd?shop_id=" + res.shop_id;
+      // var urlcount = "shop/car_count";
+
+
+      // $.post(url2, function (ele2) {
+       
+
+      //   setTimeout(function () {
+      //     modal.hide();
+      //     $('#shop_add').html(ele2);
+      //     if (class_user == "taxi") {
+      //       $.ajax({
+      //         url: "main/check_num_car_station",
+      //         data: pass,
+      //         type: 'post',
+      //         success: function (res) {
+      //           console.log("car station number : " + res)
+      //           if (res == 0) {
+      //             stationCar();
+      //           } else {
+
+      //           }
+
+      //         }
+      //       });
+      //     }
+
+
+
+
+      //     var pass = {
+      //       date: moment().format('YYYY-MM-DD'),
+      //       driver: $.cookie("detect_user"),
+      //       type: 'his'
+      //     };
+      //     console.log(pass);
+      //     var urlcounthis = "shop/count_his"
+      //     $.ajax({
+      //       url: urlcounthis,
+      //       data: pass,
+      //       type: 'post',
+      //       success: function (res) {
+      //         // console.log(res);
+      //         if (res != 0) {
+      //           $('#num_his').show();
+      //           $('#num_his').html(res);
+      //         }
+      //         // $('ons-tab[page="shop_history.html"]').attr('badge', res);
+      //       }
+      //     });
+      //   }, 1000);
+
+
+      // });
 
 
 
