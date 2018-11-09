@@ -8,8 +8,10 @@ if($_POST[s_material_icons]==0){
 		
 		if($_POST[i_active]==1){
 			$bg = "style='background-color : #fff'";
+            $icon_read = "display:none;";
 		}else{
 			$bg = "style='background-color : #edf2fa'";
+            $icon_read = "";
 		}
 		$date1Timestamp = $_POST[s_post_date];
 		$date2Timestamp = time();
@@ -38,7 +40,8 @@ if($_POST[s_material_icons]==0){
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$_POST[id];?>);">
-	    			<div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+                        <i id="icon_read_<?=$_POST[id];?>" class="fa fa-exclamation font-24 ic-no-read" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>
+                        <div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
 	    			</td>
 	    		</tr>
 	    	</table>

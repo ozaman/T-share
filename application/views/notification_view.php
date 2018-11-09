@@ -60,7 +60,7 @@
 		$message = explode(" : ",$row->s_message);
 		
 		if($row->s_material_icons==0){
-			$icons = '<i class="'.$row->s_icons.' font-20" style="color: '.$row->s_color.';"></i>';
+			$icons = '<i class="'.$row->s_icons.' font-20 " style="color: '.$row->s_color.';"></i>';
 		}else{
 			$icons = '<i class="material-icons font-20" style="margin-right: 7px;position: relative; top: 4px;color: '.$row->s_color.';">'.$row->s_icons.'</i>';
 		}
@@ -88,7 +88,7 @@
 					    </div>
 	    			</td>
 	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">
-                        <i id="icon_read_<?=$row->id;?>" class="fa fa-exclamation font-24" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>
+                        <i id="icon_read_<?=$row->id;?>" class="fa fa-exclamation font-24 ic-no-read" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>
                         <div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
 	    			</td>
 	    		</tr>
@@ -117,4 +117,3 @@
 <input type="hidden" id="check_open_noti_menu" value="1" />
 <input type="hidden" id="check_data_load_start" value="<?=$limit;?>" />
 <input type="hidden" id="check_data_load_limit" value="<?=$limit;?>" />
-

@@ -18,7 +18,7 @@
 	
 	if($num<=0){ ?>
 		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 20px;position: absolute; width: 100%;"><strong>ไม่มีบันทึกกิจกรรม</strong></div>
-	<? }
+	<?php }
 	foreach ($query->result() as $row){ 
 		$message = explode(" : ",$row->s_message);
 		
@@ -62,7 +62,7 @@
        			</tr>
        		</table>
        </ons-list-item>
-<?	}	?>
+<?php	}	?>
 </ons-list>	
 </div>
 <div style="<?=$display_box_load_more_acti?>;padding: 10px; background-color: #efeff4; margin-top: 0px;" id="box_load_more_acti">
