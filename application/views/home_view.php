@@ -1584,7 +1584,7 @@ ons-list-item {
       <a style="position: absolute; margin-top: -20px;
     padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
     z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
-          <div id="body_modal_info"></div>
+          <div id="body_modal_info">
       <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
       
       <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
@@ -1603,6 +1603,7 @@ ons-list-item {
         <div>
           <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
         </div>
+      </div>
       </div>
     </ons-card>
   </div>
