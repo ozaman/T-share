@@ -32,6 +32,5 @@ $row = $query->row();
         <b class="font-20"> <?=$row->num_read;?> </b>
       </div>
     </ons-list-item> 
-  <?php }
-  ?>
+  <?php }  ?>
 </ons-list>
