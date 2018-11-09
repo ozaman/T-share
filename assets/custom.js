@@ -864,7 +864,7 @@ function profileInfo(animate) {
 }
 
 function sendTransfer() {
-  if(detect_user!="492"){
+  if(detect_user!=153){
     ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
     title: "ขอภัย",
