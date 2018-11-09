@@ -128,10 +128,17 @@ $data_shopmain = $shopmain->row();
 else {
   $op_select = 'เลือกเวลา';
 }
-?>
+ $_where = array();
+    // $_where['product_id'] = $_GET[id];
+    $_where['status'] = 1;
+    // $_where['time_other_number'] = 2;
 
 
 
+
+    $data = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+    if ( $data != 1) {
+      ?>
 <div class="card">
    <ons-row >
                 <ons-col>
@@ -151,6 +158,13 @@ else {
                 </ons-col>
                </ons-row>
 </div>
+      <?php 
+    }
+?>
+
+
+
+
 
       <div class="card" id="go_to_top_add">
         <script>
