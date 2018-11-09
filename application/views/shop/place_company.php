@@ -2,7 +2,7 @@
 
 foreach ($place_company as $data){
     ?>
-    <div class="card" onclick="sendShop('<?=$data->id;?>')">
+    <div class="card" onclick="sendShops('<?=$data->id;?>')">
         <table width="100%" border="0" cellspacing="" cellpadding="" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
             <tr>
                 <td width="110" valign="top">
