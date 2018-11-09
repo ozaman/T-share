@@ -47,7 +47,7 @@
 				$befordate = $date_row;
 				
 				?>
-		<ons-list-header style="font-weight: 500;"  class="font-13"><?="วันที่ ".$date_row;?></ons-list-header>
+<!--		<ons-list-header style="font-weight: 500;"  class="font-13"><?="วันที่ ".$date_row;?></ons-list-header>-->
 <?php			}	?>
 	    <ons-list-item  class="list_info_<?=$row->id;?>" style=" padding-left: 10px;<?=$bg;?>" >
             <div class="center">
@@ -62,7 +62,7 @@
        			</tr>
        			<tr>
        				<td >
-       				<span id="txt_date_diff_info_<?=$row->id;?>" class="font-15"><?=$save_time;?></span>
+       				<span id="txt_date_diff_info_<?=$row->id;?>" class="font-15"><?=$date_row;?> <?=$save_time;?></span>
        				</td>
        			</tr>
        		</table>
