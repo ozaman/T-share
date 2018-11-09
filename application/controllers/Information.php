@@ -34,6 +34,12 @@ class Information extends CI_Controller {
     echo json_encode($count);
     
   }
+  
+  public function count_each_info(){
+  	$query = $this->db->query("select id from information_reader_list where i_information = ".$_GET[id]);
+    $row = $query->num_rows();
+    echo json_encode($row);
+  }
 
   //////////////////////////// End
 }
