@@ -1,5 +1,5 @@
 <?php
- $i_d_next = date('w') + 1;
+ $i_d_next = date('w');
 $weekdays = Array();
 $weekdays[0] = "Sun";
 $weekdays[1] = "Mon";
