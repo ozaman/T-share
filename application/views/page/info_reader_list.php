@@ -13,7 +13,7 @@ $row = $query->row();
     if ($row->nickname != "") {
       $nickname = "(".$row->nickname.")";
     }
-    if (file_exists("test.txt")) {
+    if (file_exists("../data/pic/driver/small/".$row->username.".jpg")) {
       $path_pf = "../data/pic/driver/small/".$row->username.".jpg?v=".$row->update_date;
     }
     else {
