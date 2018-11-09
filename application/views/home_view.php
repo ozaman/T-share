@@ -1612,7 +1612,7 @@ ons-list-item {
 </html>
 
 <script>
-  
+  window.fn = {};
   var welcom_modal = document.querySelector('#welcome_modal');
   var hideCustomDialog = function(id) {
       document
@@ -1621,6 +1621,7 @@ ons-list-item {
   };
   window.fn = {};
   window.fn.toggleMenu = function() {
+    console.log('************************')
     document.getElementById('appSplitter').left.toggle();
 };
 window.fn.loadView = function(index) {
@@ -1630,6 +1631,13 @@ window.fn.loadView = function(index) {
 window.fn.loadLink = function(url) {
     window.open(url, '_blank');
 };
+var chkpage = false;
+window.fn.popPage = function() {
+  var content = document.getElementById('appNavigator');
+  console.log(content)
+  // content.popPage();
+};
+
 window.fn.pushPage = function(page, anim) {
     console.log(page);
     if(page.id=="option.html"){

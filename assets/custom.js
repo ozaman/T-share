@@ -578,16 +578,33 @@ function hideRes(id) {
   }
 }
 /*************************** Menu function *********************************/
+function selesecompany() {
+   modal.show();
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+      
+      var url = "shop/place_company";
+      $.post(url, function (res) {
+        // console.log(res)
+        $('#shop_add').html(res);
+         modal.hide();
+      });
+}
 function sendShops(company) {
-  fn.pushPage({
-    'id': 'shopping.html',
-    'title': 'ส่งแขก',
-    'key': 'shop'
-  })
+   modal.show();
+  // fn.pushPage({
+  //   'id': 'shopping.html',
+  //   'title': 'ส่งแขก',
+  //   'key': 'shop'
+  // })
   //                       var url = "page/call_page";
   //   $.post(url,{ path : "car/car_view" },function(ele){
   //    $('#body_shop').html(ele);
   // });
+  // chkpage = true;
+  // $('.toolbar__left').attr('onclick','sendShop2()');
   var url2 = "shop/shop_pageadd?shop_id=" + company;
   var urlcount = "shop/car_count";
 
@@ -619,9 +636,10 @@ function sendShops(company) {
 
     }
     setTimeout(function () {
-      modal.hide();
+     
 
       $('#shop_add').html(ele2);
+       modal.hide();
       var pass = {
         date: moment().format('YYYY-MM-DD'),
         driver: $.cookie("detect_user"),
@@ -781,14 +799,19 @@ function sendShop2() {
 
     } else {
       modal.hide();
-      fn.pushPage({
-        'id': 'place_company.html',
-        'title': 'ส่งแขก'
-      }, 'slide-ios')
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+       fn.pushPage({
+        'id': 'shopping.html',
+        'title': 'ส่งแขก',
+        'key': 'shop'
+      })
       var url = "shop/place_company";
       $.post(url, function (res) {
         // console.log(res)
-        $('#body_place_company').html(res);
+        $('#shop_add').html(res);
       });
     }
     // $('#body_place_company').html(res);

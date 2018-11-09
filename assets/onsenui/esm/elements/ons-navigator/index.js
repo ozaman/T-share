@@ -356,6 +356,7 @@ var NavigatorElement = function (_BaseElement) {
                   // Animator is swipeable
                   var animation = (_this2.topPage.pushedOptions || {}).animation || _this2.animatorFactory._animation;
                   var Animator = _animatorDict[animation] instanceof Function ? _animatorDict[animation].call() : _animatorDict[animation];
+                  
 
                   if (typeof Animator !== 'undefined' && Animator.swipeable) {
                     swipeAnimator = new Animator(); // Prepare for the swipe
