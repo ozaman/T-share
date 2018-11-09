@@ -132,7 +132,7 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_wher
                  <ons-button onclick="fun_imageslider('<?=$data->id;?>');" style="padding: 15px;border: 1px solid #0076ff;
                       border-radius: 5px;
                       line-height: 0; " modifier="outline" class="button-margin button button--outline button--large">
-                      <span class="font-17 text-cap">  รายละเอียด</span> 
+                      <span class="font-17 text-cap">  ข้อมูล</span> 
           </ons-button>
             </td>
             <td width="50%">
