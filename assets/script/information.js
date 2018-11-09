@@ -27,21 +27,24 @@ function makeReadInformation(id) {
             if (res.read_user.result == true) {
                 $('.list_info_'+id).css('background-color','#fff');
                 $('#tr_icon_read_'+id).hide();
-                countReadInformation(id);
+                countReadInformation();
             }
         }
     });
 }
 
-function countReadInformation(id){
+function countReadInformation(){
   $.ajax({
-        url: "information/count_info?id=" + id, // point to server-side PHP script 
+        url: "information/count_info", // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
         type: 'post',
-        success: function(res) {
-            console.log(res);
-//            alert(res);
-            $('#num_read_all_'+id).text(res);
+        success: function(counts) {
+            console.log(counts);
+            if(counts>0){
+              $('#tab_information').attr('badge',counts);
+            }else{
+              $("#tab_information").removeAttr("badge");
+            }
           }
     });
 }
