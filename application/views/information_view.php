@@ -67,14 +67,16 @@
        			</tr>
        		</table>
             </div>  
-          <div class="right" style=" margin-right: 0px;">
-            <table onclick="viewReaderList(<?=$row->id;?>);">
+          <div class="right" style=" margin-right: 0px; padding-right: 5px;">
+            <table width="100%" >
               <tr class="ic-no-read" style="<?=$icon_read;?>" id="tr_icon_read_<?=$row->id;?>">
                 <td align="center"><i id="" class="fa fa-exclamation font-24 " aria-hidden="true" style="color: #f00;"></i></td>
               </tr>
               <tr>
                 <td align="center">
-              <ons-button style="padding: 0px 10px;"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<span class="font-20" id="num_read_all_<?=$row->id;?>"><?=$num_read_all;?></span></ons-button>
+                  <ons-button onclick="viewReaderList('<?=$row->id;?>');" style="width: 80px;padding: 0px 10px; background-color: #fff; color: #0076ff; border: 1px solid;">
+                  <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<span class="font-17" id="num_read_all_<?=$row->id;?>"><?=$num_read_all;?></span>
+                  </ons-button>
                   </td>
               </tr>
             </table>
