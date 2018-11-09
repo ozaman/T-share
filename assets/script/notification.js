@@ -196,6 +196,7 @@ function makeUnReadNotification() {
 }
 
 function deleteNotification() {
+    app.hideFromTemplate();
     modal.show();
     var id = $('#id_notification_select').val();
     var data = {
@@ -212,7 +213,7 @@ function deleteNotification() {
                 loadNotificationPage();
                 setCountNotification();
                 //					$('#card-ac_'+id).remove();
-                app.hideFromTemplate();
+                
                 modal.hide();
             }
         }

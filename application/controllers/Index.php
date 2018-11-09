@@ -10,6 +10,12 @@ class Index extends CI_Controller {
 
 public function index()
 	{
+        $query = $this->db->query("select * from app_user_setting where i_user = ".$_COOKIE[detect_user]);
+        $check_row = $query->num_rows();
+        if($check_row<=0){
+          $data[i_user] = $_COOKIE[detect_user];
+          $result = $this->db->insert('app_user_setting', $data);
+        }
 		$this->load->view('home_view');
 	}
 

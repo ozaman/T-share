@@ -12,6 +12,7 @@ class Notification_model extends CI_Model {
 		}
   		$query = $this->db->query("select ".$setting_col." as noti_set from app_user_setting where i_user = ".$_POST[i_user]);
   		$row = $query->row();
+        
   		if($row->noti_set>0){
 	  		$_POST = $data;
 	  		$to_table = "notification_event_taxi";
@@ -31,7 +32,6 @@ class Notification_model extends CI_Model {
 	  		$data[result] = $result;
 	  		return $data;
 		}else{
-			$ret[result] = false;
 			$ret[result] = false;
 			$ret[mgs] = "this user off noti";
 			return $ret;
