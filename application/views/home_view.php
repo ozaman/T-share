@@ -1570,7 +1570,7 @@ ons-list-item {
 </div>
 </ons-modal>
 
-<audio controls="" id="alert_sd">
+<audio controls="" id="alert_sd" style="display:none;">
     <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
   </audio>
 
