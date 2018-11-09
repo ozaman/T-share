@@ -33,7 +33,7 @@
             	 foreach($query->result() as $val){ 
             	 ?>
 			      <option value="<?=$val->id;?>" data-acc="<?=$val->bank_number;?>"  data-name="<?=$val->bank_acount;?>" ><?=$val->bank_company;?></option>  	
-			    <?    }
+			    <?php    }
             	?>
 				</ons-select>
 				<input type="hidden" id="deposit_bank" name="deposit_bank" value="" />

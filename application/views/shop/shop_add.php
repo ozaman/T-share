@@ -128,10 +128,40 @@ $data_shopmain = $shopmain->row();
 else {
   $op_select = 'เลือกเวลา';
 }
-?>
 
 
 
+ // $_where = array();
+    // $_where['product_id'] = $_GET[id];
+    // $_where['status'] = 1;
+    // $_where['time_other_number'] = 2;
+
+
+
+
+   // $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+    // if ( $numss != 1) {
+      ?>
+<div class="card">
+   <ons-row >
+                <ons-col>
+                    <ons-button id="btn_toshow_date" onclick="selesecompany();" class="button button--outline" style="width: 100%;
+                    padding: 0; height: 35px; text-align: center;"><span class="back-button__icon pull-left" style="    margin-left: 6px;"><!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ios-back-button-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="toolbar-back-button" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="ios" transform="translate(-34.000000, -30.000000)">
+            <polygon id="ios-back-button-icon" points="34 40.5 44.5 30 46.5 32 38 40.5 46.5 49 44.5 51"></polygon>
+        </g>
+    </g>
+</svg>
+</span>เลือกสถานที่อื่น</ons-button>
+                </ons-col>
+               </ons-row>
+</div>
+    
 
 
 

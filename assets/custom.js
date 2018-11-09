@@ -46,6 +46,15 @@ function loadActivityPage() {
   });
 }
 
+function loadInformationPage() {
+  //	$('#body_load_activity').html(progress_circle);
+  var url = "page/information";
+  $.post(url, function (html) {
+    $('#body_load_information').html(html);
+
+  });
+}
+
 var delay = (function () {
   var timer = 0;
   return function (callback, ms) {
@@ -569,16 +578,33 @@ function hideRes(id) {
   }
 }
 /*************************** Menu function *********************************/
+function selesecompany() {
+   modal.show();
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+      
+      var url = "shop/place_company";
+      $.post(url, function (res) {
+        // console.log(res)
+        $('#shop_add').html(res);
+         modal.hide();
+      });
+}
 function sendShops(company) {
-  fn.pushPage({
-    'id': 'shopping.html',
-    'title': 'ส่งแขก',
-    'key': 'shop'
-  })
+   modal.show();
+  // fn.pushPage({
+  //   'id': 'shopping.html',
+  //   'title': 'ส่งแขก',
+  //   'key': 'shop'
+  // })
   //                       var url = "page/call_page";
   //   $.post(url,{ path : "car/car_view" },function(ele){
   //    $('#body_shop').html(ele);
   // });
+  // chkpage = true;
+  // $('.toolbar__left').attr('onclick','sendShop2()');
   var url2 = "shop/shop_pageadd?shop_id=" + company;
   var urlcount = "shop/car_count";
 
@@ -610,9 +636,10 @@ function sendShops(company) {
 
     }
     setTimeout(function () {
-      modal.hide();
+     
 
       $('#shop_add').html(ele2);
+       modal.hide();
       var pass = {
         date: moment().format('YYYY-MM-DD'),
         driver: $.cookie("detect_user"),
@@ -681,105 +708,104 @@ function sendShop2() {
   $.post(urlo, function (res) {
     console.log(res)
     if (res.count == 1) {
-
-      fn.pushPage({
+       modal.hide();
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+       fn.pushPage({
         'id': 'shopping.html',
         'title': 'ส่งแขก',
         'key': 'shop'
       })
-      //                       var url = "page/call_page";
-      //   $.post(url,{ path : "car/car_view" },function(ele){
-      //    $('#body_shop').html(ele);
-      // });
-      var url2 = "shop/shop_pageadd?shop_id=" + res.shop_id;
-      var urlcount = "shop/car_count";
-
-
-      $.post(url2, function (ele2) {
-        /*if (class_user == "taxi") {
-         
-         $.post(urlcount, function(res) {
-         if (res == 0) {
-         ons.notification.alert({
-         message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
-         title: "ไม่สามารถส่งแขกได้",
-         buttonLabel: "เพิ่มรถ"
-         })
-         .then(function() {
-         // callpop();
-         callpop();
-         setTimeout(function() {
-         myCar();
-         }, 700);
-         
-         return;
-         });
-         }
-         });
-         
-         }*/
-
-        setTimeout(function () {
-          modal.hide();
-          $('#shop_add').html(ele2);
-          if (class_user == "taxi") {
-            $.ajax({
-              url: "main/check_num_car_station",
-              data: pass,
-              type: 'post',
-              success: function (res) {
-                console.log("car station number : " + res)
-                if (res == 0) {
-                  stationCar();
-                } else {
-
-                }
-
-              }
-            });
-          }
-
-
-
-
-          var pass = {
-            date: moment().format('YYYY-MM-DD'),
-            driver: $.cookie("detect_user"),
-            type: 'his'
-          };
-          console.log(pass);
-          var urlcounthis = "shop/count_his"
-          $.ajax({
-            url: urlcounthis,
-            data: pass,
-            type: 'post',
-            success: function (res) {
-              // console.log(res);
-              if (res != 0) {
-                $('#num_his').show();
-                $('#num_his').html(res);
-              }
-              // $('ons-tab[page="shop_history.html"]').attr('badge', res);
-            }
-          });
-        }, 1000);
-
-
+      var url = "shop/place_company";
+      $.post(url, function (res) {
+        // console.log(res)
+        $('#shop_add').html(res);
       });
+
+      // fn.pushPage({
+      //   'id': 'shopping.html',
+      //   'title': 'ส่งแขก',
+      //   'key': 'shop'
+      // })
+      // //                       var url = "page/call_page";
+      // //   $.post(url,{ path : "car/car_view" },function(ele){
+      // //    $('#body_shop').html(ele);
+      // // });
+      // var url2 = "shop/shop_pageadd?shop_id=" + res.shop_id;
+      // var urlcount = "shop/car_count";
+
+
+      // $.post(url2, function (ele2) {
+       
+
+      //   setTimeout(function () {
+      //     modal.hide();
+      //     $('#shop_add').html(ele2);
+      //     if (class_user == "taxi") {
+      //       $.ajax({
+      //         url: "main/check_num_car_station",
+      //         data: pass,
+      //         type: 'post',
+      //         success: function (res) {
+      //           console.log("car station number : " + res)
+      //           if (res == 0) {
+      //             stationCar();
+      //           } else {
+
+      //           }
+
+      //         }
+      //       });
+      //     }
+
+
+
+
+      //     var pass = {
+      //       date: moment().format('YYYY-MM-DD'),
+      //       driver: $.cookie("detect_user"),
+      //       type: 'his'
+      //     };
+      //     console.log(pass);
+      //     var urlcounthis = "shop/count_his"
+      //     $.ajax({
+      //       url: urlcounthis,
+      //       data: pass,
+      //       type: 'post',
+      //       success: function (res) {
+      //         // console.log(res);
+      //         if (res != 0) {
+      //           $('#num_his').show();
+      //           $('#num_his').html(res);
+      //         }
+      //         // $('ons-tab[page="shop_history.html"]').attr('badge', res);
+      //       }
+      //     });
+      //   }, 1000);
+
+
+      // });
 
 
 
 
     } else {
       modal.hide();
-      fn.pushPage({
-        'id': 'place_company.html',
-        'title': 'ส่งแขก'
-      }, 'slide-ios')
+      // fn.pushPage({
+      //   'id': 'place_company.html',
+      //   'title': 'ส่งแขก'
+      // }, 'slide-ios')
+       fn.pushPage({
+        'id': 'shopping.html',
+        'title': 'ส่งแขก',
+        'key': 'shop'
+      })
       var url = "shop/place_company";
       $.post(url, function (res) {
         // console.log(res)
-        $('#body_place_company').html(res);
+        $('#shop_add').html(res);
       });
     }
     // $('#body_place_company').html(res);
@@ -838,13 +864,16 @@ function profileInfo(animate) {
 }
 
 function sendTransfer() {
-  ons.notification.alert({
+  if(detect_user!=153){
+    ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
     title: "ขอภัย",
     buttonLabel: "ตกลง"
   })
           .then(function () {});
-  return;
+    return;
+  }
+  
   fn.pushPage({
     'id': 'transfer.html',
     'title': 'ให้บริการรถ',
@@ -1180,6 +1209,7 @@ function checkzoon(argument) {
   // arm++;
 
 }
+
 
 function _province(itm) {
   if (pro > 0) {
@@ -1823,4 +1853,68 @@ function updateUserInfomation() {
       console.log(data);
     }
   });
+}
+
+function _region_s(itm) {
+  console.log('-----')
+  console.log(itm)
+  var htmlOption = '';
+  var url = "main/select_type?id_sub=" + itm + '&table=province';
+  console.log(url)
+  $.post(url, function (res) {
+    console.log(res)
+    htmlOption = "<option value=''>กรุณาเลือก</option>";
+    $.each(res, function (i, item) {
+      if ($("#province_s").val() == item.id) {
+        select = 'selected';
+      } else {
+        select = '';
+      }
+      htmlOption += "<option value='" + item.id + "'  " + select + ">" + item.name_th + "</option>";
+    });
+    $("#province").html(htmlOption);
+    setTimeout(function(){ 
+    $("#province").val(itm);
+  },10000);
+    _province_s($("#province_s").val())
+    // $('select_type', select).remove();
+    // select.val(selectedOption);
+    // $('#select_type').html(ele);
+  });
+}
+function _province_s(itm) {
+  if (pro > 0) {
+    $('#box_form_toshow').hide()
+    $('.radio-button').prop("checked", false);
+
+  }
+
+
+  console.log(itm)
+  var url = "main/select_type?id_sub=" + itm + '&table=amphur';
+  var htmlOption = '';
+  $.post(url, function (res) {
+    console.log(res)
+    htmlOption = "<option value=''>กรุณาเลือก</option>";
+    var select;
+    $.each(res, function (i, item) {
+      if ($("#amphur_s").val() == item.id) {
+        select = 'selected';
+      } else {
+        select = '';
+      }
+      htmlOption += "<option value='" + item.id + "' " + select + ">" + item.name_th + "</option>";
+    });
+    if (pro > 0) {
+      $("#amphur").html(htmlOption);
+      // $("#select_type").val();
+      // $('select_type', select).remove();
+      // select.val(selectedOption);
+      // $('#select_type').html(ele);
+     
+    }
+    selectTypeCarPlace_edit($("#selectTypeCarPlace_edit").val())
+
+  });
+  pro++;
 }

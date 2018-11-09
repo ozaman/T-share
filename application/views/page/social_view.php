@@ -19,7 +19,7 @@ else {
 if ($_GET[type] == "phone") {
   ?>
   <div style="margin-top: 0px;">
-    <?
+    <?php
     /*$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
     $res[contact] = $db->select_query("SELECT id,phone,name FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
     while($arr[contact] = $db->fetch($res[contact])){ */ 
@@ -48,7 +48,7 @@ if ($_GET[type] == "phone") {
                     <tr>
                       <td style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none;">
 
-                        <? 
+                        <?php 
                         $_where = array();
                         $_where['id'] = $row->usertype; 
                         $_select = array('*');
@@ -66,9 +66,9 @@ if ($_GET[type] == "phone") {
         </table>
       </div>
     </a>
-    <? } ?>
+    <?php } ?>
   </div>
-  <? }
+  <?php }
 
   else if($_GET[type]=="zello"){ 
   ?>
@@ -120,9 +120,9 @@ if ($_GET[type] == "phone") {
           </table>
         </div>
       </a>
-      <? } ?>
+      <?php } ?>
     </div>
-    <? }
+    <?php }
 
     else if($_GET[type]=="line"){ 
     ?>
@@ -169,7 +169,7 @@ if ($_GET[type] == "phone") {
       </table>
     </div>
   </a>
-  <? } ?>
+  <?php } ?>
 </div>
-<? }
+<?php }
 ?>

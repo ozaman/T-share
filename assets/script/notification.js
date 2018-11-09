@@ -44,6 +44,7 @@ function hiddenNotiAll() {
         success: function(res) {
             console.log(res);
             $('.card-activity').css('background-color', '#fff');
+            $('.ic-no-read').hide();
             setCountNotification();
         }
     });
@@ -195,6 +196,7 @@ function makeUnReadNotification() {
 }
 
 function deleteNotification() {
+    app.hideFromTemplate();
     modal.show();
     var id = $('#id_notification_select').val();
     var data = {
@@ -211,7 +213,7 @@ function deleteNotification() {
                 loadNotificationPage();
                 setCountNotification();
                 //					$('#card-ac_'+id).remove();
-                app.hideFromTemplate();
+                
                 modal.hide();
             }
         }

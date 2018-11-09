@@ -15,7 +15,7 @@
   <ons-col style="margin: 10px;">
    <center>
 	  	<div onclick="sendTransfer();" class="circle-menu-home" style="    background-color: #F7941D;">
-	  	  <span id="number_tbooking" class="badge badge-custom font-18 pulse" style="">2</span>
+	  	  <span id="number_tbooking" class="badge badge-custom font-18 pulse" style="">0</span>
 	      <div class="content">
 	     	<i class="icon-new-uniF10A-9" style="font-size: 28px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>

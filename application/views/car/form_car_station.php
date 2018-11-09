@@ -237,6 +237,12 @@ else{
 
 </div>
 </div>
+<input type="hidden" name="region_s" id="region_s">
+<input type="hidden" name="province_s" id="province_s">
+<input type="hidden" name="amphur_s" id="amphur_s">
+<input type="hidden" name="selectTypeCarPlace_edit" id="selectTypeCarPlace_edit">
+
+
 </form>
 
 <div style="margin: 10px 10px" id="btb_submit_form_station" style="display: <?=$cnone;?>">
@@ -326,7 +332,7 @@ else{
             success: function(res){
             	ckstation = 0;
             	console.log(res)
-            	// _region(res.OTHRET.region)
+            	 _region_s(res.OTHRET.region)
             	//var count = '<?=count($MEMBER);?>'
 
             	$('#id_station').val(res.OTHRET.id)
@@ -334,7 +340,12 @@ else{
             	$('#region').val(res.OTHRET.region)
             	$('#province').val(res.OTHRET.province)
             	$('#amphur').val(res.OTHRET.amphur)
-            	selectTypeCarPlace_edit(res.OTHRET.type);
+            	$('#region_s').val(res.OTHRET.region)
+            	$('#province_s').val(res.OTHRET.province)
+            	$('#amphur_s').val(res.OTHRET.amphur)
+            	$('#selectTypeCarPlace_edit').val(res.OTHRET.type)
+            	
+            	// selectTypeCarPlace_edit(res.OTHRET.type);
 
             setTimeout(function() {
 

@@ -29,22 +29,23 @@ else {
     $border_menu_color = "#ccc";
 }
 $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
+$v = "1";
 ?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>T-Share</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!--<link rel="stylesheet" href="front_bank/css/thbanklogos.min.css" id="stylesheet">-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=time()?>">
-    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=time()?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=$v;?>" /> 
+    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=$v;?>" />
     <!-- <link href="<?=base_url();?>assets/imageViewer/easy-autocomplete.min.css" rel="stylesheet" type="text/css"> -->
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 </head> 
@@ -83,8 +84,8 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
     </div>
 </ons-modal>
 <script>
-    var modal = document.querySelector('#modal_load');
-      modal.show();
+var modal = document.querySelector('#modal_load');
+    modal.show();
 var today = "<?=date('Y-m-d');?>";
 var detect_mb = "<?=$detectname;?>";
 var detect_user = $.cookie("detect_user");
@@ -172,7 +173,7 @@ ons-splitter-side[animation=overlay] {
               <!-- <i class="fa " aria-hidden="true"></i> -->
               <ons-tabbar swipeable id="appTabbar" position="auto">
 	                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
-	                <ons-tab label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge="1"></ons-tab>
+	                <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge=""></ons-tab>
                     <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
 	                <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
 	                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
@@ -218,8 +219,9 @@ ons-splitter-side[animation=overlay] {
                             
                         }
                     else if(page_main == "information.html"){
-						welcom_modal.show({ animation: 'fade' });
-						$('#side_pf').show();
+//                            welcom_modal.show({ animation: 'fade' });
+                            loadInformationPage();
+                            $('#side_pf').show();
                             $('#side_more').hide();
                             roomOpen = false;
 					}
@@ -440,8 +442,9 @@ ons-list-item {
     </ons-page>
 </template>
 <template id="information.html">
-    <ons-page id="forms-page">
-        <?php $this->load->view('information_view'); ?>
+    <ons-page>
+      <div id="body_load_information"></div>
+        <?php //$this->load->view('information_view'); ?>
     </ons-page>
 </template>
 <template id="notification.html">   
@@ -1569,7 +1572,7 @@ ons-list-item {
 </div>
 </ons-modal>
 
-<audio controls="" id="alert_sd">
+<audio controls="" id="alert_sd" style="display:none;">
     <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
   </audio>
 
@@ -1581,7 +1584,9 @@ ons-list-item {
       <a style="position: absolute; margin-top: -20px;
     padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
     z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
+          <div id="body_modal_info">
       <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
+      
       <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
         <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
         <div class="font-17">
@@ -1599,6 +1604,7 @@ ons-list-item {
           <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
         </div>
       </div>
+      </div>
     </ons-card>
   </div>
 </ons-modal>
@@ -1607,7 +1613,7 @@ ons-list-item {
 </html>
 
 <script>
-  
+  window.fn = {};
   var welcom_modal = document.querySelector('#welcome_modal');
   var hideCustomDialog = function(id) {
       document
@@ -1616,6 +1622,7 @@ ons-list-item {
   };
   window.fn = {};
   window.fn.toggleMenu = function() {
+    console.log('************************')
     document.getElementById('appSplitter').left.toggle();
 };
 window.fn.loadView = function(index) {
@@ -1625,6 +1632,13 @@ window.fn.loadView = function(index) {
 window.fn.loadLink = function(url) {
     window.open(url, '_blank');
 };
+var chkpage = false;
+window.fn.popPage = function() {
+  var content = document.getElementById('appNavigator');
+  console.log(content)
+  // content.popPage();
+};
+
 window.fn.pushPage = function(page, anim) {
     console.log(page);
     if(page.id=="option.html"){
@@ -2278,6 +2292,7 @@ socket.on('updatedriver', function(socket_class, data) {
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
 
 <!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
@@ -2291,7 +2306,7 @@ socket.on('updatedriver', function(socket_class, data) {
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
         setTimeout(function() {
-            console.log(9999999999)
+//            console.log(9999999999)
         socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
         }, 1500);
     });
@@ -2323,14 +2338,14 @@ socket.on('updatedriver', function(socket_class, data) {
         $(window).on('load', function(){ 
            $("#load_material").fadeOut(500);
            modal.hide();
+           countReadInformation();
+           setCountNotification();
            setTimeout(function() {
 //              alert(class_user);
 			sendTagIOS(class_user, username);
-			setCountNotification();
-
 			var check_new_user = '<?=$_GET[check_new_user];?>';
 			var regis_linenoti = '<?=$_GET[regis];?>';
-
+            
             }, 1500);
        });
     }
