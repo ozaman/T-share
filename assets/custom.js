@@ -1836,7 +1836,12 @@ function _region_s(itm) {
     console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     $.each(res, function (i, item) {
-      htmlOption += "<option value='" + item.id + "'>" + item.name_th + "</option>";
+      if ($("#province_s").val() == item.id) {
+        select = 'selected';
+      } else {
+        select = '';
+      }
+      htmlOption += "<option value='" + item.id + "'  " + select + ">" + item.name_th + "</option>";
     });
     $("#province").html(htmlOption);
     setTimeout(function(){ 
@@ -1864,7 +1869,7 @@ function _province_s(itm) {
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     var select;
     $.each(res, function (i, item) {
-      if ($('#have_arm').val() == item.id) {
+      if ($("#amphur_s").val() == item.id) {
         select = 'selected';
       } else {
         select = '';
@@ -1877,10 +1882,10 @@ function _province_s(itm) {
       // $('select_type', select).remove();
       // select.val(selectedOption);
       // $('#select_type').html(ele);
-      setTimeout(function(){ 
-    $("#province").val($("#amphur_s").val());
-  },10000);
+     
     }
+    selectTypeCarPlace_edit($("#selectTypeCarPlace_edit").val())
+
   });
   pro++;
 }
