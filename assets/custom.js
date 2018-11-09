@@ -46,6 +46,15 @@ function loadActivityPage() {
   });
 }
 
+function loadInformationPage() {
+  //	$('#body_load_activity').html(progress_circle);
+  var url = "page/information";
+  $.post(url, function (html) {
+    $('#body_load_information').html(html);
+
+  });
+}
+
 var delay = (function () {
   var timer = 0;
   return function (callback, ms) {
