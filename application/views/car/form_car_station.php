@@ -240,6 +240,8 @@ else{
 <input type="hidden" name="region_s" id="region_s">
 <input type="hidden" name="province_s" id="province_s">
 <input type="hidden" name="amphur_s" id="amphur_s">
+<input type="hidden" name="selectTypeCarPlace_edit" id="selectTypeCarPlace_edit">
+
 
 </form>
 
@@ -341,7 +343,9 @@ else{
             	$('#region_s').val(res.OTHRET.region)
             	$('#province_s').val(res.OTHRET.province)
             	$('#amphur_s').val(res.OTHRET.amphur)
-            	selectTypeCarPlace_edit(res.OTHRET.type);
+            	$('#selectTypeCarPlace_edit').val(res.OTHRET.type)
+            	
+            	// selectTypeCarPlace_edit(res.OTHRET.type);
 
             setTimeout(function() {
 
