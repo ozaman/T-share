@@ -24,7 +24,7 @@ $FILE_IMG = $this->Main_model->fetch_data('','',TBL_SHOP_DOCCUMENT_FILE_IMG,$_wh
     data-layout="button_count">
   </div> -->
   <section>
-    <link href="<?=base_url();?>assets/photoswipe/site17e2.css?v=4.1.1-1.0.4" rel="stylesheet" />
+    <!-- <link href="<?=base_url();?>assets/photoswipe/site17e2.css?v=4.1.1-1.0.4" rel="stylesheet" /> -->
     <link href="<?=base_url();?>assets/photoswipe/photoswipe17e2.css?v=4.1.1-1.0.4" rel="stylesheet" />
     <link href="<?=base_url();?>assets/photoswipe/default-skin/default-skin17e2.css?v=4.1.1-1.0.4" rel="stylesheet" />
     
