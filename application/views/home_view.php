@@ -1585,9 +1585,9 @@ ons-list-item {
     padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
     z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
           <div id="body_modal_info"></div>
-<!--      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>-->
+      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
       
-<!--      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
         <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
         <div class="font-17">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
@@ -1603,7 +1603,7 @@ ons-list-item {
         <div>
           <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
         </div>
-      </div>-->
+      </div>
     </ons-card>
   </div>
 </ons-modal>
