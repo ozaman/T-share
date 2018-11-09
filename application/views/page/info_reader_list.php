@@ -12,6 +12,8 @@ $row = $query->row();
   foreach ($query->result() as $row) {
     if ($row->nickname != "") {
       $nickname = "(".$row->nickname.")";
+    }else{
+      $nickname = "";
     }
     if (file_exists("../data/pic/driver/small/".$row->username.".jpg")) {
       $path_pf = "../data/pic/driver/small/".$row->username.".jpg?v=".$row->update_date;
