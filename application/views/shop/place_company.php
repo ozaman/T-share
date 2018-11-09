@@ -28,7 +28,7 @@ foreach ($place_company as $data){
             </tr>
         </table>
     </div>
-<? } ?>
+<?php } ?>
 <style>
 .btn_detail{
         margin-top: 20px;
