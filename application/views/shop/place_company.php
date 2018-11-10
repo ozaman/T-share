@@ -139,10 +139,10 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_wher
                         <ons-button modifier="outline"  onclick="sendShops('<?=$data->id;?>');" class="button-margin button button--outline button--large" style="padding: 15px;border: 1px solid #0076ff;
                       border-radius: 5px;
                       line-height: 0; ">
-            <span class="font-17 text-cap">ส่งแขก</span> </ons-button>   
+            <span class="font-17 text-cap">ส่งแขก</span> </ons-button>
 
 
-        
+
 
           </td>
           </tr>
