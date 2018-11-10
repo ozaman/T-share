@@ -4,7 +4,7 @@ $date = explode("-",$date);
 $year = $date[0];
 $month = $date[1];
 //echo $year." ".$month;
-$select = "select * from deposit_history where driver = '".$_COOKIE[detect_user]."' and (MONTH(deposit_date) = '".$month."' and YEAR(deposit_date) = '".$year."') and (type = 'ADD' or type = 'WITHDRAW')  order by deposit_date desc, id desc  ";
+$select = "select * from deposit_history where driver = '".$_COOKIE[detect_user]."' and (MONTH(post_date_f) = '".$month."' and YEAR(post_date_f) = '".$year."') and (type = 'ADD' or type = 'WITHDRAW')  order by deposit_date desc, id desc  ";
 
 		$query = $this->db->query($select);
 		$befordate = '';
