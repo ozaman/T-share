@@ -864,13 +864,16 @@ function profileInfo(animate) {
 }
 
 function sendTransfer() {
-  ons.notification.alert({
+  if(detect_user!=153){
+    ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
     title: "ขอภัย",
     buttonLabel: "ตกลง"
   })
           .then(function () {});
-  return;
+    return;
+  }
+  
   fn.pushPage({
     'id': 'transfer.html',
     'title': 'ให้บริการรถ',
