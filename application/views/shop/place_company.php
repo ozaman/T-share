@@ -4,7 +4,9 @@
             <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
                 <span>หมวดหมู่ </span>
             </div>
-            <div class="" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open':'shopcategory'}, 'lift-ios')" id="car_brand_box" style="background-image:none;">
+            <div class="" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open':'shopcategory'}, 'lift-ios')" id="car_brand_box" style="    background-image: none;
+    padding: 0px;
+    width: 100%;">
                 
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"></span>
                 <span id="txt_shopcategory">เลือก</span>
@@ -18,7 +20,9 @@
             <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
                 <span>ประเภท </span>
             </div>
-            <div class="" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open':'shoptype'}, 'lift-ios')" id="car_brand_box" style="background-image:none;">
+            <div class="" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open':'shoptype'}, 'lift-ios')" id="car_brand_box" style="    background-image: none;
+    padding: 0px;
+    width: 100%;">
                 
                 <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"></span>
                 <span id="txt_shoptype">เลือก</span>
