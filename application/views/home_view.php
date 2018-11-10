@@ -2394,12 +2394,11 @@ socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
            countReadInformation();
            setCountNotification();
            setTimeout(function() {
-//              alert(class_user);
-sendTagIOS(class_user, username);
-var check_new_user = '<?=$_GET[check_new_user];?>';
-var regis_linenoti = '<?=$_GET[regis];?>';
+            sendTagIOS(class_user, username);
+            var check_new_user = '<?=$_GET[check_new_user];?>';
+            var regis_linenoti = '<?=$_GET[regis];?>';
 
-}, 1500);
+            }, 1500);
        });
     }
 
@@ -2407,7 +2406,7 @@ var regis_linenoti = '<?=$_GET[regis];?>';
         sendTagOs(class_user, username);
     }
     var modal_photo = document.querySelector('#modal_photo');
-    detectUserInfomation();
+//    detectUserInfomation();
     $('ons-splitter-mask').click(function(){
         console.log("++++++");
 //        arrowChange('list_profile');
