@@ -16,6 +16,36 @@ $weekdays[6] = "Sat";
         $weekdays2[4] = "วันพฤหัส";
         $weekdays2[5] = "วันศุกร์";
         $weekdays2[6] = "วันเสาร์";
+?>
+<div class="card">
+<ons-list-item class="input-items list-item  button button--outline" >
+            <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+                <span>หมวดหมู่ </span>
+            </div>
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open':'shopcategory'}, 'lift-ios')" id="car_brand_box">
+                
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"></span>
+                <span id="txt_shopcategory">เลือก</span>
+                <!-- <input type="hidden" name="shop_category" id="shop_category" value=""> -->
+                <!-- <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value=""> -->
+            </div>
+        </ons-list-item>
+    </div>
+    <div class="card">
+        <ons-list-item class="input-items list-item  button button--outline">
+            <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+                <span>ประเภท </span>
+            </div>
+            <div class="center list-item__center custom-sl-pd" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open':'shoptype'}, 'lift-ios')" id="car_brand_box">
+                
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"></span>
+                <span id="txt_shoptype">เลือก</span>
+                <!-- <input type="hidden" name="car_brand" id="car_brand" value=""> -->
+                <!-- <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value=""> -->
+            </div>
+        </ons-list-item>
+    </div>
+<?php 
 
 foreach ($place_company as $data){
     $_where = array();
