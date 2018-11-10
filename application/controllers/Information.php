@@ -20,18 +20,21 @@ class Information extends CI_Controller {
   }
   
   public function count_info(){
+    $count = 0;
     $query = $this->db->query("select id from information_list");
     foreach ($query->result() as $val){
-        $query_read = $this->db->query("SELECT id FROM information_reader_list where i_information = ".$val->id." and i_user = ".$_COOKIE[detect_user]." and i_status = 1");
+        $query_read = $this->db->query("SELECT id FROM information_reader_list where i_information = ".$val->id." and i_user = ".$_COOKIE[detect_user]." and i_status = 1 ");
         $check_read = $query_read->num_rows();
         if($check_read<=0){
-          $count =+ 1;
+          $count = $count + 1;
+//            echo "+<br/>";
         }else{
-          $count = 0;
+//          $count =+ 1;
         }
     }
     
     echo json_encode($count);
+//    echo $count;
     
   }
   
