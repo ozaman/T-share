@@ -7,7 +7,7 @@ $row = $query->row();
 <ons-list-header>ผู้อ่าน : <?=$row->s_topic;?></ons-list-header>
 <ons-list>
   <?php
-  $sql = 'SELECT t1.d_read_time,count(t1.i_user) as num_read ,t2.name, t2.nickname, t2.phone, t2.username,t2.update_date FROM information_reader_list as t1 left join web_driver as t2 on t1.i_user = t2.id where t1.i_information = '.$_GET[id].' GROUP BY t1.i_user';
+  $sql = 'SELECT t1.d_read_time,count(t1.i_user) as num_read ,t2.name, t2.nickname, t2.phone, t2.username,t2.update_date FROM information_reader_list as t1 left join web_driver as t2 on t1.i_user = t2.id where t1.i_information = '.$_GET[id].' and t1.i_status = 1 GROUP BY t1.i_user';
   $query = $this->db->query($sql);
   foreach ($query->result() as $row) {
     if ($row->nickname != "") {

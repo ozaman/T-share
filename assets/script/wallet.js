@@ -204,7 +204,7 @@ function sendWithdraw(){
                     buttonLabel: "รับทราบ"
                 })
                 .then(function() {
-                    $('#tab-history-wallet').click();
+                    performClick('tab-history-wallet');
                 });
 			}
 			

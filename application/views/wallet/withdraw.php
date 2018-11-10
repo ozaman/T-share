@@ -1,18 +1,26 @@
 <?php 
-		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id order by status_often desc, status desc ";
+		$sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where driver_id = ".$_COOKIE[detect_user]." order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
 ?>
 <form id="withdraw_money_form" name="withdraw_money_form" enctype="multipart/form-data">
 <input type="hidden" value="<?=$_COOKIE['detect_user'];?>" name="driver" id="driver" />
 <input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
-<input type="hidden" value="" name="bank_user" id="bank_user"/>
+
 <ons-card class="card">
 <ons-list-header>เลือกบัญชีที่จะรับเงิน</ons-list-header>
 	<?php 
-		foreach ($query_bank->result()  as $row){ ?>
+		foreach ($query_bank->result()  as $row){ 
+          if($row->status_often==1){
+            $select_b = "checked";
+            $id_often = $row->id;
+          }else{
+            $select_b = "";
+//            $id_often = "";
+          }
+          ?>
 			<ons-list-item tappable onclick="$('#bank_user').val('<?=$row->id;?>')">
 	        <label class="left">
-	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select"></ons-radio>
+	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select" <?=$select_b;?>></ons-radio>
 	        </label>
 	        <label for="radio-<?=$row->id;?>" class="center">
 	        <table>
@@ -27,6 +35,7 @@
 	<?php	}
 	?>
 </ons-card>
+<input type="hidden" value="<?=$id_often;?>" name="bank_user" id="bank_user"/>
 
 <ons-card class="card">
 <ons-list-header>รายละเอียด</ons-list-header>

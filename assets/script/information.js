@@ -28,6 +28,7 @@ function makeReadInformation(id) {
                 $('.list_info_'+id).css('background-color','#fff');
                 $('#tr_icon_read_'+id).hide();
                 countEachInformation(id);
+                countReadInformation();
             }
         }
     });

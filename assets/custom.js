@@ -1005,7 +1005,7 @@ function wallet() {
     'id': 'wallet.html',
     'title': 'กระเป๋าเงิน'
   }, 'slide-ios');
-
+  auto_money();
 }
 
 function contrac_us() {
