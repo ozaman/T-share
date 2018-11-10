@@ -420,6 +420,21 @@ class Shop extends CI_Controller {
     // print_r(json_encode($array_main));
       $this->load->view('component/shop_type',$res);
     }
+    public function get_shop_all_company(){
+      $arr_where = array();
+      $arr_select = array('*');
+      $arr_where['status'] = 1;
+    if ($_GET[opt] != 'ALL') {
+      $arr_where['sub'] = $_GET[sub];
+      $arr_where['main'] = $_GET[main];
+    }
+   
+    $arr_order = array();
+    $arr_order['id'] = 'ASC';
+    $data['place_company'] = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT,$arr_where,$arr_select,$arr_order);
+      $this->load->view('shop/shop_all_company',$data);
+
+    }
 
   }
 

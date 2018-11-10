@@ -715,7 +715,7 @@ function sendShop2() {
   $.post(urlo, function (res) {
     console.log(res)
     if (res.count == 1) {
-     modal.hide();
+     // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
       //   'title': 'ส่งแขก'
@@ -732,6 +732,7 @@ function sendShop2() {
        setTimeout(function () {
         // console.log(res)
         $('#shop_add').html(res);
+        get_shop_all_company('ALL')
       }, 1000);
      });
       
@@ -804,7 +805,7 @@ function sendShop2() {
 
 
     } else {
-      modal.hide();
+      // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
       //   'title': 'ส่งแขก'
@@ -820,6 +821,7 @@ function sendShop2() {
         setTimeout(function () {
 
          $('#shop_add').html(res);
+         get_shop_all_company('ALL')
        }, 1000);
         
       });
