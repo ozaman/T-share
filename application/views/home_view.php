@@ -67,14 +67,14 @@ $v = "1";
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
     var roomOpen = false;
-   setTimeout(function() {
+    setTimeout(function() {
 
-    var dataorder = {
-        order: '<?=$_COOKIE[detect_user];?>',
-    };
+        var dataorder = {
+            order: '<?=$_COOKIE[detect_user];?>',
+        };
 
-    socket.emit('adduser', dataorder);
-}, 1000);
+        socket.emit('adduser', dataorder);
+    }, 1000);
 </script>
 <ons-modal direction="up" id="modal_load">
     <div style="text-align: center;">
@@ -84,27 +84,27 @@ $v = "1";
     </div>
 </ons-modal>
 <script>
-var modal = document.querySelector('#modal_load');
+    var modal = document.querySelector('#modal_load');
     modal.show();
-var today = "<?=date('Y-m-d');?>";
-var detect_mb = "<?=$detectname;?>";
-var detect_user = $.cookie("detect_user");
-var class_user = $.cookie("detect_userclass");
-var username = $.cookie("detect_username");
-console.log(detect_mb+" : "+class_user+" : "+username);
-if(username=="" || typeof username == 'undefined'){
-    window.location = "../TShare_new/material/login/index.php";
-}else{
-    username = username.toUpperCase();
-}
-var get_order_id = '<?=$_GET[order_id];?>';
-var status = '<?=$_GET[status];?>';
-var open_ic = '<?=$_GET[open_ic];?>';
-var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
-+'<circle class="progress-circular__background"/>'
-+'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
-+'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
-+'</svg></div>';      
+    var today = "<?=date('Y-m-d');?>";
+    var detect_mb = "<?=$detectname;?>";
+    var detect_user = $.cookie("detect_user");
+    var class_user = $.cookie("detect_userclass");
+    var username = $.cookie("detect_username");
+    console.log(detect_mb+" : "+class_user+" : "+username);
+    if(username=="" || typeof username == 'undefined'){
+        window.location = "../TShare_new/material/login/index.php";
+    }else{
+        username = username.toUpperCase();
+    }
+    var get_order_id = '<?=$_GET[order_id];?>';
+    var status = '<?=$_GET[status];?>';
+    var open_ic = '<?=$_GET[open_ic];?>';
+    var progress_circle = '<div align="center" style="margin: 20%;"><svg style="height: 72px;width: 72px;" class="progress-circular progress-circular--indeterminate">'
+    +'<circle class="progress-circular__background"/>'
+    +'<circle class="progress-circular__primary progress-circular--indeterminate__primary"/>'
+    +'<circle class="progress-circular__secondary progress-circular--indeterminate__secondary"/>'
+    +'</svg></div>';      
 </script>
 <style>
 .icon-menu-ios{
@@ -148,21 +148,21 @@ ons-splitter-side[animation=overlay] {
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>-->
                     <ons-toolbar-button  onclick="showPopover(this,'popover-noti')" id="side_more" style="display: none;">
-                       <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
-                   </ons-toolbar-button>
-               </div>
-           </ons-toolbar>
-           <style>
-           .fa-tshareiconv5 {
-              display: inline-block;
-              background: url('assets/images/logo2.png') no-repeat;
-              overflow: hidden;
-              text-indent: -9999px;
-              text-align: left;
-              background-repeat: no-repeat;
-              background-size: 100% 100%;
-          }
-          .fa-tshareiconv5 {
+                     <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
+                 </ons-toolbar-button>
+             </div>
+         </ons-toolbar>
+         <style>
+         .fa-tshareiconv5 {
+          display: inline-block;
+          background: url('assets/images/logo2.png') no-repeat;
+          overflow: hidden;
+          text-indent: -9999px;
+          text-align: left;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+      }
+      .fa-tshareiconv5 {
 					    /*background-position: -0px -30px;
 					    */
                       width: 35px;
@@ -172,89 +172,89 @@ ons-splitter-side[animation=overlay] {
               </style>
               <!-- <i class="fa " aria-hidden="true"></i> -->
               <ons-tabbar swipeable id="appTabbar" position="auto">
-	                <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
-	                <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge=""></ons-tab>
-                    <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
-	                <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
-	                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
-	            </ons-tabbar>
-	            <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
-				      <ons-list id="popover-list">
-				        <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
-				          <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
-				      </ons-list-item>
-				      <ons-list-item class="more-options" tappable onclick="hiddenNotiAll();hidePopover('popover-noti');">
-				          <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
-				      </ons-list-item>
-				      <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
-				          <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
-				      </ons-list-item>
-				  </ons-list>
-	</ons-popover>
-            <script>
-                ons.getScriptPage().addEventListener('prechange', function(event) {
-                	var title = event.tabItem.getAttribute('label');
-                    if (event.target.matches('#appTabbar')) {
-                        var page_main = event.tabItem.getAttribute('page');
-                        if(page_main == "notification.html"){
-                            loadNotificationPage();
-                            roomOpen = false;
-                            $('#side_pf').hide();
-                            $('#side_more').show();
-                            
-                        }
-                        else if(page_main == "activity.html"){
-                            loadActivityPage();
-                            $('#side_pf').show();
-                            $('#side_more').hide();
-                            roomOpen = false;
-							
-                        }
-                     else if(page_main == "contact.html"){
-                            loadcontactChat();
-                            $('#side_pf').hide();
-                            $('#side_more').hide();
-                            roomOpen = true;
-							
-                            
-                        }
-                    else if(page_main == "information.html"){
+               <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
+               <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge=""></ons-tab>
+               <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+               <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
+               <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
+           </ons-tabbar>
+           <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
+              <ons-list id="popover-list">
+                <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
+                  <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
+              </ons-list-item>
+              <ons-list-item class="more-options" tappable onclick="hiddenNotiAll();hidePopover('popover-noti');">
+                  <div class="center" style="padding-left: 14px;">ทำเครื่องหมายอ่านแล้วทั้งหมด</div>
+              </ons-list-item>
+              <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
+                  <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
+              </ons-list-item>
+          </ons-list>
+      </ons-popover>
+      <script>
+        ons.getScriptPage().addEventListener('prechange', function(event) {
+           var title = event.tabItem.getAttribute('label');
+           if (event.target.matches('#appTabbar')) {
+            var page_main = event.tabItem.getAttribute('page');
+            if(page_main == "notification.html"){
+                loadNotificationPage();
+                roomOpen = false;
+                $('#side_pf').hide();
+                $('#side_more').show();
+
+            }
+            else if(page_main == "activity.html"){
+                loadActivityPage();
+                $('#side_pf').show();
+                $('#side_more').hide();
+                roomOpen = false;
+
+            }
+            else if(page_main == "contact.html"){
+                loadcontactChat();
+                $('#side_pf').hide();
+                $('#side_more').hide();
+                roomOpen = true;
+
+
+            }
+            else if(page_main == "information.html"){
 //                            welcom_modal.show({ animation: 'fade' });
-                            loadInformationPage();
-                            $('#side_pf').show();
-                            $('#side_more').hide();
-                            roomOpen = false;
-					}
-                        else if(page_main == "home.html"){
-                            $('#side_pf').show();
-                            $('#side_more').hide();
-                            title = "หน้าหลัก";
-                            roomOpen = false;
+loadInformationPage();
+$('#side_pf').show();
+$('#side_more').hide();
+roomOpen = false;
+}
+else if(page_main == "home.html"){
+    $('#side_pf').show();
+    $('#side_more').hide();
+    title = "หน้าหลัก";
+    roomOpen = false;
 
-                        }
-                        else{
-                            $('#side_pf').show();
-                            $('#side_more').hide();
-                            roomOpen = false;
+}
+else{
+    $('#side_pf').show();
+    $('#side_more').hide();
+    roomOpen = false;
 
-                        }
-                        event.currentTarget.querySelector('ons-toolbar .center').innerHTML = title
+}
+event.currentTarget.querySelector('ons-toolbar .center').innerHTML = title
 
-                    }
+}
 
-                });
-                var showPopover = function(target, id) {
-                  document
-                  .getElementById(id)
-                  .show(target);
-              };
+});
+        var showPopover = function(target, id) {
+          document
+          .getElementById(id)
+          .show(target);
+      };
 
-              var hidePopover = function(id) {
-                  document.getElementById(id).hide();
-              };
-          </script>
-      </ons-page>
-  </template>
+      var hidePopover = function(id) {
+          document.getElementById(id).hide();
+      };
+  </script>
+</ons-page>
+</template>
 
 <template id="sidemenu.html">
     <ons-page>
@@ -302,7 +302,7 @@ ons-splitter-side[animation=overlay] {
                 <div class="left">
                     <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                 </div>
-              <div class="center" onclick="arrowChange('list_profile');" id="head_list_pf">
+                <div class="center" onclick="arrowChange('list_profile');" id="head_list_pf">
                     ข้อมูลส่วนตัว
                 </div>
                 <div class="expandable-content" style="padding-left: 60px;" onclick="profileInfo('slide-ios');">ข้อมูลส่วนตัว</div>
@@ -444,8 +444,8 @@ ons-list-item {
 <template id="information.html">
     <ons-page>
       <div id="body_load_information"></div>
-        <?php //$this->load->view('information_view'); ?>
-    </ons-page>
+      <?php //$this->load->view('information_view'); ?>
+  </ons-page>
 </template>
 <template id="notification.html">   
     <ons-page>
@@ -475,16 +475,16 @@ ons-list-item {
 
 
         <div class="left">
-           <ons-back-button>กลับ</ons-back-button>
+         <ons-back-button>กลับ</ons-back-button>
 
-       </div>
-       <div class="center">โบรชัวร์ / รูป</div>
+     </div>
+     <div class="center">โบรชัวร์ / รูป</div>
 
-   </ons-toolbar>
+ </ons-toolbar>
 
-   <div id="boby_imageslider">
+ <div id="boby_imageslider">
 
-   </div>
+ </div>
 
 </ons-page>
 </template>
@@ -494,18 +494,18 @@ ons-list-item {
 
 
         <div class="left">
-           <ons-back-button>กลับ</ons-back-button>
+         <ons-back-button>กลับ</ons-back-button>
 
-       </div>
-       <div class="" id="user_tochat" style="    position: absolute;
-    margin-left: 75px;width:100%;
-"></div>
+     </div>
+     <div class="" id="user_tochat" style="    position: absolute;
+     margin-left: 75px;width:100%;
+     "></div>
 
-   </ons-toolbar>
+ </ons-toolbar>
 
-   <div id="boby_chatroom">
+ <div id="boby_chatroom">
 
-   </div>
+ </div>
 
 </ons-page>
 </template>
@@ -517,54 +517,54 @@ ons-list-item {
     </ons-page>
 </template>
 <template id="change-time.html">
- <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
-  <div class="alert-dialog-title">แก้ไขเวลา</div>
-  <div class="alert-dialog-content">
-   <input type="hidden" value="0" id="order_id_change_time" />
-   <div style="margin: 0px 5px;margin-bottom: 10px;">
-    <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-     <option value="0">-- เลือกเวลา --</option>
-     <?php
-     $time = array("5" => "5 นาที",
-        "10" => "10 นาที",
-        "15" => "15 นาที",
-        "20" => "20 นาที",
-        "25" => "25 นาที",
-        "30" => "30 นาที",
-        "35" => "35 นาที",
-        "40" => "40 นาที",
-        "45" => "45 นาที",
-        "50" => "50 นาที",
-        "55" => "55 นาที",
-        "60" => "1 ชัวโมง.",
-        "90" => "1 ชัวโมง 30 นาที",
-        "120" => "2 ชัวโมง",
-        "150" => "2 ชัวโมง 30 นาที",
-        "180" => "3 ชัวโมง",
-        "210" => "3 ชัวโมง 30 นาที",
-        "240" => "4 ชัวโมง",
-        "270" => "4 ชัวโมง 30 นาที",
-        "300" => "5 ชัวโมง",
-        "330" => "5 ชัวโมง 30 นาที",
-        "360" => "6 ชัวโมง",
-        "390" => "6 ชัวโมง 30 นาที",
-        "420" => "7 ชัวโมง",
-        "450" => "7 ชัวโมง 30 นาที",
-        "490" => "8 ชัวโมง");
-     $mm = 5;
-     ?>
-     <?php foreach ($time as $key => $at) { ?>
-         <option value="<?=$key; ?>"><?=$at; ?></option>
-     <?php }
-     ?>
- </select>
-</div>
-<span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
-</div>
-<div class="alert-dialog-footer">
-   <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-   <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">ตกลง</ons-alert-dialog-button>
-</div>
+   <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
+      <div class="alert-dialog-title">แก้ไขเวลา</div>
+      <div class="alert-dialog-content">
+         <input type="hidden" value="0" id="order_id_change_time" />
+         <div style="margin: 0px 5px;margin-bottom: 10px;">
+            <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+               <option value="0">-- เลือกเวลา --</option>
+               <?php
+               $time = array("5" => "5 นาที",
+                "10" => "10 นาที",
+                "15" => "15 นาที",
+                "20" => "20 นาที",
+                "25" => "25 นาที",
+                "30" => "30 นาที",
+                "35" => "35 นาที",
+                "40" => "40 นาที",
+                "45" => "45 นาที",
+                "50" => "50 นาที",
+                "55" => "55 นาที",
+                "60" => "1 ชัวโมง.",
+                "90" => "1 ชัวโมง 30 นาที",
+                "120" => "2 ชัวโมง",
+                "150" => "2 ชัวโมง 30 นาที",
+                "180" => "3 ชัวโมง",
+                "210" => "3 ชัวโมง 30 นาที",
+                "240" => "4 ชัวโมง",
+                "270" => "4 ชัวโมง 30 นาที",
+                "300" => "5 ชัวโมง",
+                "330" => "5 ชัวโมง 30 นาที",
+                "360" => "6 ชัวโมง",
+                "390" => "6 ชัวโมง 30 นาที",
+                "420" => "7 ชัวโมง",
+                "450" => "7 ชัวโมง 30 นาที",
+                "490" => "8 ชัวโมง");
+               $mm = 5;
+               ?>
+               <?php foreach ($time as $key => $at) { ?>
+                   <option value="<?=$key; ?>"><?=$at; ?></option>
+               <?php }
+               ?>
+           </select>
+       </div>
+       <span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
+   </div>
+   <div class="alert-dialog-footer">
+     <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+     <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">ตกลง</ons-alert-dialog-button>
+ </div>
 </ons-alert-dialog>
 </template>
 <template id="pf.html">
@@ -641,7 +641,7 @@ ons-list-item {
                 </script>
             </ons-page>
         </template>
-<template id="shopping.html">
+        <template id="shopping.html">
             <ons-page>
                 <ons-toolbar>
                     <div class="left">
@@ -657,24 +657,24 @@ ons-list-item {
             </ons-toolbar>
             <ons-card id="box-shop_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
                 <ons-row style="width: 100%;/*margin-top: 48px; margin-bottom: 20px;*/">
-            <ons-col>
-                <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
-            </ons-col>
-            <ons-col>
-                <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
-            </ons-col>
-            <ons-col>
-                <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
+                    <ons-col>
+                        <ons-button class="shop-his-btn font-16 his-shop-active " id="btn_shop_his_com" onclick="filterHistoryStatus('COMPLETED','btn_shop_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                    </ons-col>
+                    <ons-col>
+                        <ons-button class="shop-his-btn font-16" id="btn_shop_his_cancel" onclick="filterHistoryStatus('CANCEL','btn_shop_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+                    </ons-col>
+                    <ons-col>
+                        <ons-button onclick="filterHistoryStatus('','btn_shop_his_all');" id="btn_shop_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="shop-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
 
-                </ons-button>
-            </ons-col>
-                     </ons-row>     
-              <ons-row>
-                <ons-col>
-                    <ons-button id="btn_toshow_date" onclick="showFilterdate();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
-                </ons-col>
-               </ons-row>
-              <ons-list-item class="input-items list-item p-l-0" id="box-shop_date" style="display:none;">
+                        </ons-button>
+                    </ons-col>
+                </ons-row>     
+                <ons-row>
+                    <ons-col>
+                        <ons-button id="btn_toshow_date" onclick="showFilterdate();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
+                    </ons-col>
+                </ons-row>
+                <ons-list-item class="input-items list-item p-l-0" id="box-shop_date" style="display:none;">
                     <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
                         <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                     </div>
@@ -683,86 +683,86 @@ ons-list-item {
 
                         <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                     </div>
-                <div class="right list-item__right" style="padding: 5px;" >
+                    <div class="right list-item__right" style="padding: 5px;" >
                       <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
-                    </div>
-                </ons-list-item>
+                  </div>
+              </ons-list-item>
               <input type="hidden" value="0" id="cehck_filter_date" />
-            </ons-card>
-            <div id="body_shop">
-                <ons-page>
-                    <ons-tabbar swipeable position="top">
-                        <?php 
-                        if($_COOKIE[detect_userclass]=="lab"){ 
-                            $active_add = "";
-                            $active_mn = "active";
-                            $display_none_num_shop = "";
-                        }else{ 
-                            $active_add = "active";
-                            $active_mn = "";
-                            $display_none_num_shop = "display:none;";
-                        }
-                        ?>
-                        <ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
-                        <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> badge="" >
-                            <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
-                        </ons-tab>
-                        <ons-tab page="shop_wait.html" label="รอโอน" badge="" id="tab_shop_wait"></ons-tab>
-                        <ons-tab page="shop_history.html" label="ประวัติ"></ons-tab>
-                    </ons-tabbar>
+          </ons-card>
+          <div id="body_shop">
+            <ons-page>
+                <ons-tabbar swipeable position="top">
+                    <?php 
+                    if($_COOKIE[detect_userclass]=="lab"){ 
+                        $active_add = "";
+                        $active_mn = "active";
+                        $display_none_num_shop = "";
+                    }else{ 
+                        $active_add = "active";
+                        $active_mn = "";
+                        $display_none_num_shop = "display:none;";
+                    }
+                    ?>
+                    <ons-tab page="shop_add.html" label="ส่งแขก" <?=$active_add;?>></ons-tab>
+                    <ons-tab page="shop_manage.html" label="จัดการ" id="tab_shop_mn" <?=$active_mn;?> badge="" >
+                        <span class="notification none" id="num_manage" style="    float: right; margin-top: 15px; right: 15px;" <?=$display_none_num_shop;?>></span>
+                    </ons-tab>
+                    <ons-tab page="shop_wait.html" label="รอโอน" badge="" id="tab_shop_wait"></ons-tab>
+                    <ons-tab page="shop_history.html" label="ประวัติ"></ons-tab>
+                </ons-tabbar>
+            </ons-page>
+
+            <template id="shop_add.html">
+                <ons-page id="shop_add">
+                    <div>
+                        <!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
+                    </div>
                 </ons-page>
+            </template>
 
-<template id="shop_add.html">
-    <ons-page id="shop_add">
-        <div>
-            <!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
+            <template id="shop_manage.html">
+                <ons-page id="shop_manage">
+                </ons-page>
+            </template>
+
+            <template id="shop_wait.html">
+
+                <ons-page style="overflow-y: scroll;">
+                    <div  id="shop_wait" style="margin-top: 0px;">
+                    </div>
+                </ons-page>
+            </template>
+
+            <template id="shop_history.html">
+                <ons-page style="overflow-y: scroll;">
+                    <?php 
+                    $margin_his = "margin-top: 100px;";
+
+                    ?>
+                    <input type="hidden" id="check_filter_his" value="COMPLETED" />
+                    <input type="hidden" id="first_run_his" value="0" />
+                    <div id="shop_history" style="<?=$margin_his;?>">
+                    </div>
+                </ons-page>
+            </template>
+
         </div>
-    </ons-page>
-</template>
 
-<template id="shop_manage.html">
-    <ons-page id="shop_manage">
-    </ons-page>
-</template>
+        <style>
+        .img-type-map{
+            position: absolute;
+            left: 20px;
+            margin-top: 10px;
 
-<template id="shop_wait.html">
-
-    <ons-page style="overflow-y: scroll;">
-        <div  id="shop_wait" style="margin-top: 0px;">
-        </div>
-    </ons-page>
-</template>
-
-<template id="shop_history.html">
-    <ons-page style="overflow-y: scroll;">
-        <?php 
-        $margin_his = "margin-top: 100px;";
-
-        ?>
-        <input type="hidden" id="check_filter_his" value="COMPLETED" />
-        <input type="hidden" id="first_run_his" value="0" />
-        <div id="shop_history" style="<?=$margin_his;?>">
-        </div>
-    </ons-page>
-</template>
-
-</div>
-
-<style>
-.img-type-map{
-    position: absolute;
-    left: 20px;
-    margin-top: 10px;
-
-}
-</style>    
-<template id="select_type_map-action-sheet.html">
-  <ons-action-sheet id="sheet" cancelable>
-    <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
-    <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" style=" width: 25px;" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
-    <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
-    <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
-</ons-action-sheet>
+        }
+    </style>    
+    <template id="select_type_map-action-sheet.html">
+      <ons-action-sheet id="sheet" cancelable>
+        <ons-action-sheet-button icon="md-square-o" onclick="openMapPlace();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/map.png" style=" width: 30px;" class="img-type-map">ดูตำแหน่งถึงสถานที่ส่ง</ons-action-sheet-button>
+        <ons-action-sheet-button icon="md-square-o" onclick="openMapNav();app_shop.hideSelectTypeMapShop();"><img src="assets/images/map/navigator.png" style=" width: 25px;" class="img-type-map">นำทางไปสถานที่ส่ง</ons-action-sheet-button>
+        <!--<ons-action-sheet-button icon="md-square-o" onclick="" modifier="destructive"><img src="assets/images/map/car.png" class="img-type-map">แจ้งแก้ไขตำแหน่ง</ons-action-sheet-button>-->
+        <ons-action-sheet-button icon="md-close" onclick="app_shop.hideSelectTypeMapShop();">ยกเลิก</ons-action-sheet-button>
+    </ons-action-sheet>
 </template>
 
 <script>
@@ -1178,7 +1178,7 @@ ons-list-item {
             </script>
         </ons-page>
     </template>
-<template id="expenditure.html">
+    <template id="expenditure.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1240,7 +1240,7 @@ ons-list-item {
             </script>
         </ons-page>
     </template>
-<template id="wallet.html">
+    <template id="wallet.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
@@ -1473,6 +1473,29 @@ ons-list-item {
     </script>
 </ons-page>
 </template>
+<template id="shopcategory.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button class="option-back">กลับ</ons-back-button>
+            </div>
+            <div class="center"></div>
+           <!--  <div class="right">
+              <ons-toolbar-button onclick="reloadApp();">
+                <ons-icon icon="ion-home, material:md-home"></ons-icon>
+            </ons-toolbar-button>
+        </div> -->
+    </ons-toolbar>
+    <div id="body_category">
+    </div>
+    <script>
+        ons.getScriptPage().onInit = function () {
+            this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+        }
+    </script>
+</ons-page>
+</template>
+
 <ons-dialog id="cancel-shop-dialog" cancelable style="min-height: 430px;">
     <!-- Optional page. This could contain a Navigator as well. -->
     <ons-page>
@@ -1492,7 +1515,7 @@ ons-list-item {
                 <?php 
                 $query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
                 foreach ($query->result() as $row){ ?>
-                 <ons-list-item tappable>
+                   <ons-list-item tappable>
                     <label class="left">
                         <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
                     </label>
@@ -1574,39 +1597,39 @@ ons-list-item {
 
 <audio controls="" id="alert_sd" style="display:none;">
     <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
-  </audio>
+    </audio>
 
 
-<ons-modal direction="up" id="welcome_modal">
-  <div style="text-align: center">
-    
-    <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
-      <a style="position: absolute; margin-top: -20px;
-    padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
-    z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
+    <ons-modal direction="up" id="welcome_modal">
+      <div style="text-align: center">
+
+        <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
+          <a style="position: absolute; margin-top: -20px;
+          padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
+          z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
           <div id="body_modal_info">
-      <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
-      
-      <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
-        <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
-        <div class="font-17">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
-          เกี่ยวกับ เรื่องงาน เรื่องรถ และเรื่องผลประโยชน์ต่างๆที่พี่แท็กซี่ทั้งหลายจะได้รับ จึงขอเรียนเชิญ
-          ผู้นำคิว ผู้นำกลุ่ม หรือ ตัวแทน ที่สามารถมาร่วมทำความเข้าใจ และพร้อมจะร่วมงานกัน เพื่อผลประโยชน์ของพี่ๆแท็กซี่เอง
-          ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
-          นัดหมายเวลา 10.00 น.เป็นต้นไป
-          ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
-        </div>
-        <div style="padding: 5px;  text-align: right;">
-          <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
-        </div>
-        <div>
-          <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
-        </div>
+              <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
+
+              <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
+                <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
+                <div class="font-17">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
+                  เกี่ยวกับ เรื่องงาน เรื่องรถ และเรื่องผลประโยชน์ต่างๆที่พี่แท็กซี่ทั้งหลายจะได้รับ จึงขอเรียนเชิญ
+                  ผู้นำคิว ผู้นำกลุ่ม หรือ ตัวแทน ที่สามารถมาร่วมทำความเข้าใจ และพร้อมจะร่วมงานกัน เพื่อผลประโยชน์ของพี่ๆแท็กซี่เอง
+                  ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
+                  นัดหมายเวลา 10.00 น.เป็นต้นไป
+                  ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
+              </div>
+              <div style="padding: 5px;  text-align: right;">
+                  <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br/><a href="tel:061-181-3772">061-181-3772</a></span>
+              </div>
+              <div>
+                  <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank"><ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button></a>
+              </div>
+          </div>
       </div>
-      </div>
-    </ons-card>
-  </div>
+  </ons-card>
+</div>
 </ons-modal>
 
 </body>
@@ -1785,6 +1808,27 @@ window.fn.pushPage = function(page, anim) {
             });
         }
     }
+    if(page.id=="shopcategory.html"){
+       if(page.open=="shopcategory"){
+
+           
+                    var param = { data : 'res' };
+                    console.log(param);
+                    $.post("shop/shopcategory",param,function(el){
+                        $('#body_category').html(el);
+                        $('#car_brand_in_gen').text($('#text_shopcategory').text());
+                    });
+            
+        }
+        else if(page.open=="shoptype"){
+                    var param = { data : 'res' };
+                    console.log(param);
+                    $.post("shop/shoptype",param,function(el){
+                        $('#body_category').html(el);
+                        $('#car_brand_in_gen').text($('#txt_shoptype').text());
+                    });
+        }
+    }
     if (anim) {
         document.getElementById('appNavigator').pushPage(page.id, {
             data: {
@@ -1814,13 +1858,13 @@ function arrowChange(id){
     }
     $('.arr').each (function() {
 //          console.log($(this).attr('id'));
-    if($(this).attr('id')==id){
+if($(this).attr('id')==id){
     //              console.log(1);
-      }else{
-          $(this).find('i').removeClass('fa-chevron-up');
-          $(this).find('i').addClass('fa-chevron-down');
-      }
-    }); 
+}else{
+  $(this).find('i').removeClass('fa-chevron-up');
+  $(this).find('i').addClass('fa-chevron-down');
+}
+}); 
 
 //      $( ".arr i" ).not( document.getElementById( id ) ).removeClass('fa-chevron-up');
 //      $( ".arr i" ).not( document.getElementById( id ) ).addClass('fa-chevron-down');
@@ -1886,9 +1930,9 @@ function arrowChange(id){
 </div>
 <script>
 	var array_rooms;
-var res_socket;
-var socket = io.connect('https://www.welovetaxi.com:3443');
-var check_run_shop = 0;
+    var res_socket;
+    var socket = io.connect('https://www.welovetaxi.com:3443');
+    var check_run_shop = 0;
 //on message received we print all the data inside the #container div
 socket.on('notification', function(data) {
     //          console.log("Start Socket");
@@ -1965,13 +2009,13 @@ socket.on('getbookinglab', function(data) {
         var url = new URL(url_string);
 
 //        console.log(get_order_id);
-        if (get_order_id != "") {
-            if (status == "his") {
-                openOrderFromAndroidHistory(get_order_id, status, open_ic);
-            } else {
+if (get_order_id != "") {
+    if (status == "his") {
+        openOrderFromAndroidHistory(get_order_id, status, open_ic);
+    } else {
 
-                $.each(array_data.manage, function(index, value) {
-                    if (value.id == get_order_id) {
+        $.each(array_data.manage, function(index, value) {
+            if (value.id == get_order_id) {
                         //                    	 alert(123);
                         console.log(value.id + " : " + index);
                         $('#check_open_num_detail').val(index)
@@ -1984,10 +2028,10 @@ socket.on('getbookinglab', function(data) {
                         openDetailShop(index, type_m);
                     }
                 });
-            }
-        }
-        frist_socket = false;
     }
+}
+frist_socket = false;
+}
 });
 var id = detect_user;
 var dataorder = {
@@ -1999,15 +2043,15 @@ socket.on('connect', function(){
 	  // socket.emit('addroom', prompt("What's your name?"));
 //	  socket.emit('addroom', name);
 //	  socket.emit('sendchat', '');
-	  socket.emit('adduser', dataorder);
+socket.emit('adduser', dataorder);
 });
-	 
+
 function addUser() {
     var id = detect_user;
     var dataorder = {
         order: parseInt(id),
     };
-	
+
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
@@ -2024,29 +2068,29 @@ socket.on('datalab', function(socket_class, data) {
     if(class_user.toUpperCase()!= socket_class.toUpperCase()){
       console.log("No lab");
       return;
-    }
+  }
 
-    var check_open = $('#check_open_shop_id').val();
-    if (check_open != 0) {
-        $.each(data, function(index, value) {
-            console.log(data)
-            if (value.id == check_open) {
-                console.log(value);
+  var check_open = $('#check_open_shop_id').val();
+  if (check_open != 0) {
+    $.each(data, function(index, value) {
+        console.log(data)
+        if (value.id == check_open) {
+            console.log(value);
 
-                if (value.check_driver_topoint == 1) {
-                    console.log("driver_topoint");
-                    changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
-                }
-                if (value.check_guest_receive == 1) {
-                    console.log("guest_receive");
-                    changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
-                    $('.page').animate({
-                        scrollTop: $(document).height()+700
-                    }, 500);
-                }
-                if (value.check_guest_register == 1) {
-                    console.log("guest_register");
-                    changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
+            if (value.check_driver_topoint == 1) {
+                console.log("driver_topoint");
+                changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
+            }
+            if (value.check_guest_receive == 1) {
+                console.log("guest_receive");
+                changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
+                $('.page').animate({
+                    scrollTop: $(document).height()+700
+                }, 500);
+            }
+            if (value.check_guest_register == 1) {
+                console.log("guest_register");
+                changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
                     //					alert(value.pax_regis);
                     $('#num_edit_persion2').val(value.pax_regis);
                     $('.page').animate({
@@ -2057,47 +2101,47 @@ socket.on('datalab', function(socket_class, data) {
                 if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
 //                    return;
-                }
-                if (value.check_driver_pay == 1) {
-                    loadBoxConfirmPay(value.id);
-                }
-                if (value.check_lab_pay == 1) {
-                    loadBoxConfirmPay(value.id);
-                }
-                if(data.transfer_money==1){
-                  load_status_trans(data.id);
-                  loadNewPlan(data.id)
-                }
+}
+if (value.check_driver_pay == 1) {
+    loadBoxConfirmPay(value.id);
+}
+if (value.check_lab_pay == 1) {
+    loadBoxConfirmPay(value.id);
+}
+if(data.transfer_money==1){
+  load_status_trans(data.id);
+  loadNewPlan(data.id)
+}
+}
+});
+}
+
+if ($('#open_shop_manage').val() == 1) {
+    $.each(data, function(index, value) {
+
+        if (value.lab_approve_job == 1) {
+            if (value.check_driver_topoint == 1) {
+                $('#btn_manage_topoint_' + value.id).hide();
+                $('#btn_manage_' + value.id).show();
+
+
+            } 
+            else {
+                $('#btn_manage_topoint_' + value.id).show();
+                $('#btn_manage_' + value.id).hide();
             }
-        });
-    }
-
-    if ($('#open_shop_manage').val() == 1) {
-        $.each(data, function(index, value) {
-
-            if (value.lab_approve_job == 1) {
-                if (value.check_driver_topoint == 1) {
-                    $('#btn_manage_topoint_' + value.id).hide();
-                    $('#btn_manage_' + value.id).show();
+            $('#date_approved_job_' + value.id).show();
+            $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
+            $('#txt_wait_' + value.id).hide();
+            $('#td_cancel_book_' + value.id).hide();
+            $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
-                } 
-                else {
-                    $('#btn_manage_topoint_' + value.id).show();
-                    $('#btn_manage_' + value.id).hide();
-                }
-                $('#date_approved_job_' + value.id).show();
-                $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
-                $('#txt_wait_' + value.id).hide();
-                $('#td_cancel_book_' + value.id).hide();
-                $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+            $('#view_lab_approve_' + value.id).show();
 
 
-                $('#view_lab_approve_' + value.id).show();
-
-
-                $.ajax({
-                    url: "main/get_data_user?id=" + value.lab_approve_job_post,
+            $.ajax({
+                url: "main/get_data_user?id=" + value.lab_approve_job_post,
                     //					           data: pass,
                     type: 'post',
                     dataType: 'json',
@@ -2110,19 +2154,19 @@ socket.on('datalab', function(socket_class, data) {
                 });
 
 
-            } 
-            else {
+        } 
+        else {
 
 
-                $('#btn_manage_topoint_' + value.id).hide();
-                $('#txt_wait_' + value.id).show();
-                $('#td_cancel_book_' + value.id).show();
-                $('#status_book_' + value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-                $('#view_lab_approve_' + value.id).hide();
-            }
+            $('#btn_manage_topoint_' + value.id).hide();
+            $('#txt_wait_' + value.id).show();
+            $('#td_cancel_book_' + value.id).show();
+            $('#status_book_' + value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+            $('#view_lab_approve_' + value.id).hide();
+        }
 
-        });
-        
+    });
+
         //        shopManage();
 
     }
@@ -2130,19 +2174,19 @@ socket.on('datalab', function(socket_class, data) {
     if($('#open_shop_wait_trans').val() == 1){
         if(data.transfer_money==1){
             var pass = {
-                    data: data
-                };
-                console.log(pass);
-                var url = "component/list_shop_manage?wait_trans=1";
-                $.ajax({
-                    url: url,
-                    data: pass,
-                    type: 'post',
-                    success: function(ele) {
-                        $('#list_shop_manage_' + data.id).html(ele);
-                    }
-                });
-                
+                data: data
+            };
+            console.log(pass);
+            var url = "component/list_shop_manage?wait_trans=1";
+            $.ajax({
+                url: url,
+                data: pass,
+                type: 'post',
+                success: function(ele) {
+                    $('#list_shop_manage_' + data.id).html(ele);
+                }
+            });
+
         }
     }
     setCountNotification();
@@ -2170,7 +2214,7 @@ socket.on('updatedriver', function(socket_class, data) {
                 changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
                 $('.page').animate({
                     scrollTop: $(document).height()+700
-                  }, 500);
+                }, 500);
             }
             if (data.check_guest_receive == 1) {
                 console.log("guest_receive");
@@ -2190,19 +2234,19 @@ socket.on('updatedriver', function(socket_class, data) {
             }
             
             if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
-                    loadBoxConfirmPay(data.id);
+                loadBoxConfirmPay(data.id);
 //                    return;
-             }
-             if (data.check_driver_pay == 1) {
-                    loadBoxConfirmPay(data.id);
-             }
-             if (data.check_lab_pay == 1) {
-                    loadBoxConfirmPay(data.id);
-             }
-             if(data.transfer_money==1){
-               load_status_trans(data.id);
-               loadNewPlan(data.id)
-             }
+}
+if (data.check_driver_pay == 1) {
+    loadBoxConfirmPay(data.id);
+}
+if (data.check_lab_pay == 1) {
+    loadBoxConfirmPay(data.id);
+}
+if(data.transfer_money==1){
+ load_status_trans(data.id);
+ loadNewPlan(data.id)
+}
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
                 changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
@@ -2252,19 +2296,19 @@ socket.on('updatedriver', function(socket_class, data) {
     if($('#open_shop_wait_trans').val() == 1){
         if(data.transfer_money==1){
             var pass = {
-                    data: data
-                };
-                console.log(pass);
-                var url = "component/list_shop_manage?wait_trans=1";
-                $.ajax({
-                    url: url,
-                    data: pass,
-                    type: 'post',
-                    success: function(ele) {
-                        $('#list_shop_manage_' + data.id).html(ele);
-                    }
-                });
-                
+                data: data
+            };
+            console.log(pass);
+            var url = "component/list_shop_manage?wait_trans=1";
+            $.ajax({
+                url: url,
+                data: pass,
+                type: 'post',
+                success: function(ele) {
+                    $('#list_shop_manage_' + data.id).html(ele);
+                }
+            });
+
         }
     }
     setCountNotification();
@@ -2298,19 +2342,19 @@ socket.on('updatedriver', function(socket_class, data) {
 <!--============================================= CALL CHAT ========================================== -->
 <script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script >
-     var socket2 = io.connect('https://www.welovetaxi.com:8080');
-        
+   var socket2 = io.connect('https://www.welovetaxi.com:8080');
+
    
-    var from_to,reverse,img,utc;
-    socket2.on('connect', function(){
+   var from_to,reverse,img,utc;
+   socket2.on('connect', function(){
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
         setTimeout(function() {
 //            console.log(9999999999)
-        socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
-        }, 1500);
+socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
+}, 1500);
     });
-    socket2.on('checkmsg', function(count, room) {
+   socket2.on('checkmsg', function(count, room) {
     // $('#rooms').empty();
     // console.log(rooms)
     // roomOpen
@@ -2320,7 +2364,7 @@ socket.on('updatedriver', function(socket_class, data) {
     console.log(roomOpen)
     if (count != 0) {
         if (roomOpen == false) {
-        $('#tab_contact').attr('badge',count);
+            $('#tab_contact').attr('badge',count);
 
         }
     }
@@ -2336,18 +2380,18 @@ socket.on('updatedriver', function(socket_class, data) {
 <script>
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
         $(window).on('load', function(){ 
-           $("#load_material").fadeOut(500);
-           modal.hide();
-           countReadInformation();
-           setCountNotification();
-           setTimeout(function() {
+         $("#load_material").fadeOut(500);
+         modal.hide();
+         countReadInformation();
+         setCountNotification();
+         setTimeout(function() {
 //              alert(class_user);
-			sendTagIOS(class_user, username);
-			var check_new_user = '<?=$_GET[check_new_user];?>';
-			var regis_linenoti = '<?=$_GET[regis];?>';
-            
-            }, 1500);
-       });
+sendTagIOS(class_user, username);
+var check_new_user = '<?=$_GET[check_new_user];?>';
+var regis_linenoti = '<?=$_GET[regis];?>';
+
+}, 1500);
+     });
     }
 
     if (detect_mb == "Android") {
@@ -2359,16 +2403,16 @@ socket.on('updatedriver', function(socket_class, data) {
         console.log("++++++");
 //        arrowChange('list_profile');
 
-      var check_pf = $('#list_profile i').hasClass('fa-chevron-down');
-      if(check_pf==false){
-            performClick('head_list_pf');
-      }
-      
-      var check_pf = $('#list_acc i').hasClass('fa-chevron-down');
-      if(check_pf==false){
-            performClick('head_list_acc');
-      }
-    });
+var check_pf = $('#list_profile i').hasClass('fa-chevron-down');
+if(check_pf==false){
+    performClick('head_list_pf');
+}
+
+var check_pf = $('#list_acc i').hasClass('fa-chevron-down');
+if(check_pf==false){
+    performClick('head_list_acc');
+}
+});
 </script>
 
 
@@ -2377,6 +2421,6 @@ socket.on('updatedriver', function(socket_class, data) {
 <script>
 
         // var name = '<?=$user->id;?>';
-       
-    
-</script>
+
+
+    </script>

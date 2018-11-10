@@ -2678,3 +2678,12 @@ function _confirmSelectBankAfterChangePlan(id){
           }
         });
 }
+function selectcategory(id) {
+  var name = $('#item_category_' + id).data('name');
+  // console.log(name + " " + id);
+
+  // $('#car_type').val(id);
+  $('#txt_shopcategory').text(name);
+  callpop();
+  // focusBoxCar2();
+}
