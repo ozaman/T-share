@@ -2689,12 +2689,34 @@ function selectcategory(id) {
   // focusBoxCar2();
 }
 function selecttype(id) {
-  // id_category = id;
+  modal.show()
+  id_cate_type = id;
   var name = $('#item_type_' + id).data('name');
   // console.log(name + " " + id);
 
   // $('#car_type').val(id);
   $('#txt_shoptype').text(name);
   callpop();
+  get_shop_all_company('TYPE');
   // focusBoxCar2();
+}
+function get_shop_all_company(opt) {
+  if (opt == 'ALL') {
+  var url = "shop/get_shop_all_company?opt="+opt;
+
+  }
+  else{
+  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type;
+
+  }
+      $.post(url, function (res) {
+        // console.log(res)
+        // setTimeout(function () {
+
+         $('#shop_all_company').html(res);
+         modal.hide()
+         // get_shop_all_company('ALL')
+       // }, 1000);
+        
+      });
 }
