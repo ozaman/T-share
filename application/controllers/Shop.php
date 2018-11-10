@@ -383,16 +383,42 @@ class Shop extends CI_Controller {
     $this->load->view('component/shop_category',$res);
     }
     public function shoptype() {
+
+
+      $data = array();
       $arr_where = array();
-      $arr_where['status'] = 1;
+      $arr_where[status] = 1;
+      $arr_where[sub] = $_GET[main];
       $arr_select = array('*');
       $arr_order = array();
       $arr_order['id'] = 'ASC';
       $PRODUCT = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT,$arr_where,$arr_select,$arr_order);
     // $data['place_company'] = $this->Shop_model->place_company();
-    // header('Content-Type: application/json');
-    // echo json_encode($data);
-      $this->load->view('shop/place_company',$data);
+      // header('Content-Type: application/json');
+      $array_main = array();
+      foreach ($PRODUCT as $row) {
+        $array_main[] = $row->sub;
+     //  if (!in_array($row->main, $array_temp))
+     // {
+     //   $array_temp[] = $val;
+     // }
+     // else
+     // {
+     //   echo 'duplicate = ' . $val . '<br />';
+     // }
+     // 
+      }
+       // print_r(json_encode($array_main));
+      foreach (array_unique($array_main) as $row) {
+        $_where = array();
+        $_where['id'] = $row; 
+        $_select = array('*');
+        $data[] = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where);
+        // array_push($data , $re);
+      }
+    $res[TYPE] = $data;
+    // print_r(json_encode($array_main));
+      $this->load->view('component/shop_type',$res);
     }
 
   }

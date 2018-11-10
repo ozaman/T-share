@@ -1,4 +1,6 @@
 //setInterval(function(){ addUser(); }, 10000);
+//
+var id_category;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	console.log(newURL);
@@ -698,7 +700,7 @@ function beforeSendShop() {
   } else {
  sendShop2();
     setTimeout(function () {
-      
+
        shopManage();
 
     }, 2000);

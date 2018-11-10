@@ -148,21 +148,21 @@ ons-splitter-side[animation=overlay] {
                         <img src="../data/pic/driver/small/default-avatar.jpg" class="shotcut-profile" />
                     </ons-toolbar-button>-->
                     <ons-toolbar-button  onclick="showPopover(this,'popover-noti')" id="side_more" style="display: none;">
-                     <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
-                 </ons-toolbar-button>
-             </div>
-         </ons-toolbar>
-         <style>
-         .fa-tshareiconv5 {
-          display: inline-block;
-          background: url('assets/images/logo2.png') no-repeat;
-          overflow: hidden;
-          text-indent: -9999px;
-          text-align: left;
-          background-repeat: no-repeat;
-          background-size: 100% 100%;
-      }
-      .fa-tshareiconv5 {
+                       <ons-toolbar-button id="info-button" >เพิ่มเติม</ons-toolbar-button>
+                   </ons-toolbar-button>
+               </div>
+           </ons-toolbar>
+           <style>
+           .fa-tshareiconv5 {
+              display: inline-block;
+              background: url('assets/images/logo2.png') no-repeat;
+              overflow: hidden;
+              text-indent: -9999px;
+              text-align: left;
+              background-repeat: no-repeat;
+              background-size: 100% 100%;
+          }
+          .fa-tshareiconv5 {
 					    /*background-position: -0px -30px;
 					    */
                       width: 35px;
@@ -172,13 +172,13 @@ ons-splitter-side[animation=overlay] {
               </style>
               <!-- <i class="fa " aria-hidden="true"></i> -->
               <ons-tabbar swipeable id="appTabbar" position="auto">
-               <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
-               <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge=""></ons-tab>
-               <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
-               <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
-               <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
-           </ons-tabbar>
-           <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
+                 <ons-tab label="" icon="tshareiconv5" page="home.html" active></ons-tab>
+                 <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html"  badge=""></ons-tab>
+                 <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
+                 <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
+                 <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
+             </ons-tabbar>
+             <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
               <ons-list id="popover-list">
                 <ons-list-item class="more-options" tappable onclick="showNotiHidden();hidePopover('popover-noti');">
                   <div class="center" style="padding-left: 14px;">แสดงข้อความที่ซ่อน</div>
@@ -193,8 +193,8 @@ ons-splitter-side[animation=overlay] {
       </ons-popover>
       <script>
         ons.getScriptPage().addEventListener('prechange', function(event) {
-           var title = event.tabItem.getAttribute('label');
-           if (event.target.matches('#appTabbar')) {
+         var title = event.tabItem.getAttribute('label');
+         if (event.target.matches('#appTabbar')) {
             var page_main = event.tabItem.getAttribute('page');
             if(page_main == "notification.html"){
                 loadNotificationPage();
@@ -475,16 +475,16 @@ ons-list-item {
 
 
         <div class="left">
-         <ons-back-button>กลับ</ons-back-button>
+           <ons-back-button>กลับ</ons-back-button>
 
-     </div>
-     <div class="center">โบรชัวร์ / รูป</div>
+       </div>
+       <div class="center">โบรชัวร์ / รูป</div>
 
- </ons-toolbar>
+   </ons-toolbar>
 
- <div id="boby_imageslider">
+   <div id="boby_imageslider">
 
- </div>
+   </div>
 
 </ons-page>
 </template>
@@ -494,18 +494,18 @@ ons-list-item {
 
 
         <div class="left">
-         <ons-back-button>กลับ</ons-back-button>
+           <ons-back-button>กลับ</ons-back-button>
 
-     </div>
-     <div class="" id="user_tochat" style="    position: absolute;
-     margin-left: 75px;width:100%;
-     "></div>
+       </div>
+       <div class="" id="user_tochat" style="    position: absolute;
+       margin-left: 75px;width:100%;
+       "></div>
 
- </ons-toolbar>
+   </ons-toolbar>
 
- <div id="boby_chatroom">
+   <div id="boby_chatroom">
 
- </div>
+   </div>
 
 </ons-page>
 </template>
@@ -517,54 +517,54 @@ ons-list-item {
     </ons-page>
 </template>
 <template id="change-time.html">
-   <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
-      <div class="alert-dialog-title">แก้ไขเวลา</div>
-      <div class="alert-dialog-content">
-         <input type="hidden" value="0" id="order_id_change_time" />
-         <div style="margin: 0px 5px;margin-bottom: 10px;">
-            <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
-               <option value="0">-- เลือกเวลา --</option>
-               <?php
-               $time = array("5" => "5 นาที",
-                "10" => "10 นาที",
-                "15" => "15 นาที",
-                "20" => "20 นาที",
-                "25" => "25 นาที",
-                "30" => "30 นาที",
-                "35" => "35 นาที",
-                "40" => "40 นาที",
-                "45" => "45 นาที",
-                "50" => "50 นาที",
-                "55" => "55 นาที",
-                "60" => "1 ชัวโมง.",
-                "90" => "1 ชัวโมง 30 นาที",
-                "120" => "2 ชัวโมง",
-                "150" => "2 ชัวโมง 30 นาที",
-                "180" => "3 ชัวโมง",
-                "210" => "3 ชัวโมง 30 นาที",
-                "240" => "4 ชัวโมง",
-                "270" => "4 ชัวโมง 30 นาที",
-                "300" => "5 ชัวโมง",
-                "330" => "5 ชัวโมง 30 นาที",
-                "360" => "6 ชัวโมง",
-                "390" => "6 ชัวโมง 30 นาที",
-                "420" => "7 ชัวโมง",
-                "450" => "7 ชัวโมง 30 นาที",
-                "490" => "8 ชัวโมง");
-               $mm = 5;
-               ?>
-               <?php foreach ($time as $key => $at) { ?>
-                   <option value="<?=$key; ?>"><?=$at; ?></option>
-               <?php }
-               ?>
-           </select>
-       </div>
-       <span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
-   </div>
-   <div class="alert-dialog-footer">
-     <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-     <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">ตกลง</ons-alert-dialog-button>
- </div>
+ <ons-alert-dialog id="change-time-dialog" modifier="rowfooter">
+  <div class="alert-dialog-title">แก้ไขเวลา</div>
+  <div class="alert-dialog-content">
+   <input type="hidden" value="0" id="order_id_change_time" />
+   <div style="margin: 0px 5px;margin-bottom: 10px;">
+    <select class="select-input font-17" name="time_num_change_time" id="time_num_change_time" value="" onchange="calTime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+     <option value="0">-- เลือกเวลา --</option>
+     <?php
+     $time = array("5" => "5 นาที",
+        "10" => "10 นาที",
+        "15" => "15 นาที",
+        "20" => "20 นาที",
+        "25" => "25 นาที",
+        "30" => "30 นาที",
+        "35" => "35 นาที",
+        "40" => "40 นาที",
+        "45" => "45 นาที",
+        "50" => "50 นาที",
+        "55" => "55 นาที",
+        "60" => "1 ชัวโมง.",
+        "90" => "1 ชัวโมง 30 นาที",
+        "120" => "2 ชัวโมง",
+        "150" => "2 ชัวโมง 30 นาที",
+        "180" => "3 ชัวโมง",
+        "210" => "3 ชัวโมง 30 นาที",
+        "240" => "4 ชัวโมง",
+        "270" => "4 ชัวโมง 30 นาที",
+        "300" => "5 ชัวโมง",
+        "330" => "5 ชัวโมง 30 นาที",
+        "360" => "6 ชัวโมง",
+        "390" => "6 ชัวโมง 30 นาที",
+        "420" => "7 ชัวโมง",
+        "450" => "7 ชัวโมง 30 นาที",
+        "490" => "8 ชัวโมง");
+     $mm = 5;
+     ?>
+     <?php foreach ($time as $key => $at) { ?>
+         <option value="<?=$key; ?>"><?=$at; ?></option>
+     <?php }
+     ?>
+ </select>
+</div>
+<span id="txt_show_to_time" class="font-17" style="display: none;">จะถึงใน <span id="show_to_time" style="color: #ff0000;">17:37</span> น.</span>
+</div>
+<div class="alert-dialog-footer">
+   <ons-alert-dialog-button onclick="document.getElementById('change-time-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
+   <ons-alert-dialog-button onclick="submitChangeTimeToPlace();">ตกลง</ons-alert-dialog-button>
+</div>
 </ons-alert-dialog>
 </template>
 <template id="pf.html">
@@ -1515,7 +1515,7 @@ ons-list-item {
                 <?php 
                 $query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
                 foreach ($query->result() as $row){ ?>
-                   <ons-list-item tappable>
+                 <ons-list-item tappable>
                     <label class="left">
                         <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
                     </label>
@@ -1809,41 +1809,50 @@ window.fn.pushPage = function(page, anim) {
         }
     }
     if(page.id=="shopcategory.html"){
-       if(page.open=="shopcategory"){
+     if(page.open=="shopcategory"){
 
-           
-                    var param = { data : 'res' };
-                    console.log(param);
-                    $.post("shop/shopcategory",param,function(el){
-                        $('#body_category').html(el);
-                        $('#car_brand_in_gen').text($('#text_shopcategory').text());
+
+        var param = { data : 'res' };
+        console.log(param);
+        $.post("shop/shopcategory",param,function(el){
+            $('#body_category').html(el);
+                        // $('#car_brand_in_gen').text($('#text_shopcategory').text());
                     });
-            
+
+    }
+    else if(page.open=="shoptype"){
+        if (id_category == undefined) {
+            ons.notification.alert({
+              message: 'หมวดหมู่',
+              title: "กรุณาเลือก",
+              buttonLabel: "ตกลง"
+          })
+            return false;
         }
-        else if(page.open=="shoptype"){
-                    var param = { data : 'res' };
-                    console.log(param);
-                    $.post("shop/shoptype",param,function(el){
-                        $('#body_category').html(el);
-                        $('#car_brand_in_gen').text($('#txt_shoptype').text());
+        var param = { data : 'res' };
+        console.log(param);
+        console.log(id_category)
+        $.post("shop/shoptype?main="+id_category,function(el){
+            $('#body_category').html(el);
+                        // $('#car_brand_in_gen').text($('#txt_shoptype').text());
                     });
+    }
+}
+if (anim) {
+    document.getElementById('appNavigator').pushPage(page.id, {
+        data: {
+            title: page.title
+        },
+        animation: anim
+    });
+} 
+else {
+    document.getElementById('appNavigator').pushPage(page.id, {
+        data: {
+            title: page.title
         }
-    }
-    if (anim) {
-        document.getElementById('appNavigator').pushPage(page.id, {
-            data: {
-                title: page.title
-            },
-            animation: anim
-        });
-    } 
-    else {
-        document.getElementById('appNavigator').pushPage(page.id, {
-            data: {
-                title: page.title
-            }
-        });
-    }
+    });
+}
 };
 
 function arrowChange(id){
@@ -2244,8 +2253,8 @@ if (data.check_lab_pay == 1) {
     loadBoxConfirmPay(data.id);
 }
 if(data.transfer_money==1){
- load_status_trans(data.id);
- loadNewPlan(data.id)
+   load_status_trans(data.id);
+   loadNewPlan(data.id)
 }
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
@@ -2342,11 +2351,11 @@ if(data.transfer_money==1){
 <!--============================================= CALL CHAT ========================================== -->
 <script src="https://www.welovetaxi.com:8080/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script >
-   var socket2 = io.connect('https://www.welovetaxi.com:8080');
+ var socket2 = io.connect('https://www.welovetaxi.com:8080');
 
-   
-   var from_to,reverse,img,utc;
-   socket2.on('connect', function(){
+
+ var from_to,reverse,img,utc;
+ socket2.on('connect', function(){
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
         setTimeout(function() {
@@ -2354,7 +2363,7 @@ if(data.transfer_money==1){
 socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
 }, 1500);
     });
-   socket2.on('checkmsg', function(count, room) {
+ socket2.on('checkmsg', function(count, room) {
     // $('#rooms').empty();
     // console.log(rooms)
     // roomOpen
@@ -2380,18 +2389,18 @@ socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
 <script>
     if ('<?=$_GET[status];?>' != "his") { //เช็คว่าสเตตัสที่ส่งมาเป็น ประวัติ หรือ กำลังจัดการ
         $(window).on('load', function(){ 
-         $("#load_material").fadeOut(500);
-         modal.hide();
-         countReadInformation();
-         setCountNotification();
-         setTimeout(function() {
+           $("#load_material").fadeOut(500);
+           modal.hide();
+           countReadInformation();
+           setCountNotification();
+           setTimeout(function() {
 //              alert(class_user);
 sendTagIOS(class_user, username);
 var check_new_user = '<?=$_GET[check_new_user];?>';
 var regis_linenoti = '<?=$_GET[regis];?>';
 
 }, 1500);
-     });
+       });
     }
 
     if (detect_mb == "Android") {
