@@ -159,7 +159,7 @@ $stamp = $time->format('H:i');
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
   <?php
 //  echo $arr[book][plan_id];
-  if ($arr[book][check_guest_register] != 1) {
+  if ($arr[book][check_guest_register] != 1 && $arr[book][status]!="CANCEL") {
 
     if ($_COOKIE[detect_userclass] == "lab") {
       ?>
