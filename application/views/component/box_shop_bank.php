@@ -1,12 +1,14 @@
   <div style="padding: 0px 0px;">
     <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
+<!--      <ons-button >จัดการบัญชี</ons-button>-->
     <?php 
         $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.driver_id = ".$_COOKIE[detect_user]." and t1.status = 1 order by status_often desc, status desc ";
       	$query_bank = $this->db->query($sql);
         $num_bank = $query_bank->num_rows();
         if($num_bank<=0){ ?>
     <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_add');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
-        <?php }
+        
+      <?php }
 		foreach ($query_bank->result()  as $row){ 
           if($row->status_often==1){
               $checked = "checked";
