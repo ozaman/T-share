@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-$config['base_url'] = 'http://localhost/T-share/';
+$config['base_url'] = 'http://localhost/00000NUT2-SERVER/T-share/';
 
 
 

@@ -21,7 +21,7 @@ class Information extends CI_Controller {
   
   public function count_info(){
     $count = 0;
-    $query = $this->db->query("select id from information_list");
+    $query = $this->db->query("select id from information_list where i_status = 1");
     foreach ($query->result() as $val){
         $query_read = $this->db->query("SELECT id FROM information_reader_list where i_information = ".$val->id." and i_user = ".$_COOKIE[detect_user]." and i_status = 1 ");
         $check_read = $query_read->num_rows();
@@ -39,7 +39,7 @@ class Information extends CI_Controller {
   }
   
   public function count_each_info(){
-  	$query = $this->db->query("select id from information_reader_list where i_information = ".$_GET[id]);
+  	$query = $this->db->query("select id from information_reader_list where i_information = ".$_GET[id]." and i_status = 1");
     $row = $query->num_rows();
     echo json_encode($row);
   }
