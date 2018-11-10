@@ -47,7 +47,7 @@ class Wallet_model extends CI_Model {
 	 	
 	 	$deposit[result] = $this->db->insert('deposit_history', $withdraw);
 	 	
-  	return $withdraw;
+  	return $deposit;
   }
   
   /**

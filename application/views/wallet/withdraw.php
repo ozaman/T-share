@@ -5,15 +5,17 @@
 <form id="withdraw_money_form" name="withdraw_money_form" enctype="multipart/form-data">
 <input type="hidden" value="<?=$_COOKIE['detect_user'];?>" name="driver" id="driver" />
 <input type="hidden" value="<?=$_COOKIE['detect_username'];?>" name="username" id="username" />
-<input type="hidden" value="" name="bank_user" id="bank_user"/>
+
 <ons-card class="card">
 <ons-list-header>เลือกบัญชีที่จะรับเงิน</ons-list-header>
 	<?php 
 		foreach ($query_bank->result()  as $row){ 
           if($row->status_often==1){
             $select_b = "checked";
+            $id_often = $row->id;
           }else{
             $select_b = "";
+//            $id_often = "";
           }
           ?>
 			<ons-list-item tappable onclick="$('#bank_user').val('<?=$row->id;?>')">
@@ -33,6 +35,7 @@
 	<?php	}
 	?>
 </ons-card>
+<input type="hidden" value="<?=$id_often;?>" name="bank_user" id="bank_user"/>
 
 <ons-card class="card">
 <ons-list-header>รายละเอียด</ons-list-header>
