@@ -35,11 +35,11 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_wher
     
     ?>
     <div>
-        <div class="card" id="go_to_top_add">
+        <div class="card shop_company_box_<?=$data->id;?>" id="shop_company_box_<?=$data->id;?>" >
        
-        <input value="107" id="car_id" name="check_use_car_id" type="hidden">
+        <input value="107" id="comshop_id" name="check_use_car_id" value="<?=$data->id;?>" type="hidden">
         
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_<?=$data->id;?>">
           <tbody><tr>
             <td width="110">
               <img src="../data/pic/place/<?=$data->id;?>_logo.jpg" width="100px" alt="" style=" border-radius:  8px; border: 1px solid #ddd; ">
@@ -48,7 +48,7 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_wher
               <div class="element_to_find">
                 <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
                 <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span><!-- <span class="pull-right" onclick="fun_imageslider('<?=$data->id;?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span> --><br>
-                <span class="font-17" style="color:#333333"><b> <?=$data->topic_th;?> </b></span>
+                <span class="font-17"  style="color:#333333"><b class="txt_topic_company " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </b></span>
 
                 <input type="hidden" value=" " id="1">
 
