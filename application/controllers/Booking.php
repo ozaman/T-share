@@ -7,10 +7,11 @@ class Booking extends CI_Controller {
 	}
 
 
-	public function add_car(){
-		$data['res'] = $this->Car_model->add_car();
-		header('Content-Type: application/json');
-		echo json_encode($data['res']);
+	public function index(){
+		// $data['res'] = $this->Car_model->add_car();
+		// header('Content-Type: application/json');
+		// echo json_encode($data['res']);
+		$this->load->view('booking/index');
 	}
 	
 	public function add_car_shop(){

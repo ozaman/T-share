@@ -892,11 +892,9 @@ ons-list-item {
                 </p>
             </ons-page>
         </template>
-        <template id="tab2.html">
-            <ons-page id="Tab2">
-                <p style="text-align: center;">
-                    This is the second page 2.
-                </p>
+        <template id="bookingss.html">
+            <ons-page id="body_bookingss">
+               
             </ons-page>
         </template>
         <template id="tab3.html">
@@ -938,7 +936,7 @@ ons-list-item {
             <ons-tabbar swipeable position="top">
                 <ons-tab page="tab1.html" label="ประวัติ">
                 </ons-tab>
-                <ons-tab page="tab2.html" label="จองรถ" active>
+                <ons-tab page="booking.html" label="จองรถ" active>
                 </ons-tab>
                 <ons-tab page="tab3.html" label="รายจ่าย">
                 </ons-tab>
@@ -951,9 +949,9 @@ ons-list-item {
                 </p>
             </ons-page>
         </template>
-        <template id="tab2.html">
-            <ons-page id="Tab2">
-                <div></div>
+        <template id="booking.html">
+            <ons-page id="body_booking">
+               
             </ons-page>
         </template>
         <template id="tab3.html">
@@ -1838,6 +1836,16 @@ window.fn.pushPage = function(page, anim) {
                     });
     }
 }
+else if (page.id == 'book_trans.html') {
+
+    console.log('aaaa')
+  //   fn.pushPage({
+  //   'id': 'book_trans.html',
+  //   'title': 'จองรถ',
+  //   'key': 'book_trans'
+  // })
+
+}
 if (anim) {
     document.getElementById('appNavigator').pushPage(page.id, {
         data: {
@@ -2333,6 +2341,9 @@ if(data.transfer_money==1){
 </div>
 <?php   $lng_map = $google_map_api_lng;?>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?=$lng_map;?>"  type="text/javascript" async defer> </script> -->
+    <!-- <script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js?v=<?=time();?>"></script> -->
+    <script src="https://apis.google.com/js/api:client.js"></script>
 <input type="hidden" value="0" id="check_custome_js" />
 <script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
@@ -2346,6 +2357,7 @@ if(data.transfer_money==1){
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/booking.js?v=<?=time();?>"></script>
 
 <!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
