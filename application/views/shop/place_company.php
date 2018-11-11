@@ -1,6 +1,13 @@
 
 <div class="card">
-<ons-list-item class="input-items list-item  button button--outline" >
+   
+<ons-search-input placeholder="ค้นหา" style="width: 100%; margin-bottom: 10px;" onkeyup="searchTopiccompany(this.value);">
+  <input type="search" class="search-input" placeholder="ค้นหา" id="search_info_topic">
+</ons-search-input>
+
+<!-- </div>
+<div class="card"> -->
+<ons-list-item class="input-items list-item  button button--outline" style="    margin-bottom: 10px;">
             <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
                 <span>หมวดหมู่ </span>
             </div>
@@ -14,8 +21,8 @@
                 <!-- <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value=""> -->
             </div>
         </ons-list-item>
-    </div>
-    <div class="card">
+    <!-- </div>
+    <div class="card"> -->
         <ons-list-item class="input-items list-item  button button--outline">
             <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
                 <span>ประเภท </span>
