@@ -2430,11 +2430,9 @@ if(data.transfer_money==1){
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
-<<<<<<< HEAD
 <script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
-=======
 <script src="<?=base_url();?>assets/script/booking.js?v=<?=time();?>"></script>
->>>>>>> 0fec2127928a0521ec8b0370b28a6f82b39acf13
+
 
 <!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
