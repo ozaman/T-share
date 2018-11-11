@@ -250,7 +250,9 @@ $("#currentPosId").click(function() {
         typeFrom = addr;
         $('#locationfrom').html(addr)
         start = pos;
+        console.log(currentPosId)
         console.log(pos)
+        console.log(start)
         selectMyPlace('current', addr, start.lat, start.lng)    
     }
     else{
@@ -326,20 +328,30 @@ function initialize() {
     });   
     a(map);
 }
-
+function successCallback(){
+    console.log('a888')
+}
+function errorCallback(){
+    console.log('a8xxxx88')
+}
 function a(map) {
+     modal.hide();
     createAllMarker();
     google.maps.event.addListener(map, 'dragend', function() {
         $('#btn_CurrentLocation').show('500');
     });
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
+    console.log(navigator.geolocation)
+    // navigator.geolocation.getCurrentPosition(successCallback,errorCallback,{timeout:10000});
     if (navigator.geolocation) {
-        options = { enableHighAccuracy: true, timeout: 6000 };
+        options = { enableHighAccuracy: true, timeout: 10000 };
         navigator.geolocation.getCurrentPosition(function(position, status) {
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            start = pos;           
+            start = pos; 
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
             console.log(start);           
             markerCircle.setPosition(pos);
             var curPosition = new google.maps.LatLng(pos);
@@ -347,6 +359,7 @@ function a(map) {
             /*  markerTest.setPosition(curPosition);*/
             map.setCenter(pos);
             $('#marker').show();
+
             $('.btn-realtime').click();
 
             geocoder = new google.maps.Geocoder;
@@ -536,8 +549,18 @@ function a(map) {
                 dist = Math.acos(dist)
                 dist = dist * 180 / Math.PI
                 dist = dist * 60 * 1.609344;
-                $('#edit_pin_pop').show(500);                
-                infowindowDetailTravel = new google.maps.InfoWindow({ maxWidth: 200 });
+                // $('#edit_pin_pop').show(500);                
+    //             ons.notification.alert({
+    //   message: '',
+    //   title: "เส้นทางที่คุณเลือกถูกต้องหรือไม่?",
+    //   buttonLabel: "ตกลง"
+    // })
+    //         .then(function () {
+    //           $('#car_type').focus();
+    //           location.href = "#box_car";
+    //         });
+             func_firstsearch();
+              infowindowDetailTravel = new google.maps.InfoWindow({ maxWidth: 200 });
                 infowindowDetailTravel.setContent('<div><p> ' + lng_distance + ' ' + distance + '</p><p>' + lng_usetime + ' ' + duration + '</p></div>');
                 infowindowDetailTravel.open(map, endMarker);
                 directionsDisplay.setDirections(response);
@@ -556,12 +579,45 @@ function a(map) {
         });
     });
 }
+function func_firstsearch() {
+     ons.openActionSheet({
+    title: 'เส้นทางที่คุณเลือกถูกต้องหรือไม่?',
+    cancelable: true,
+    buttons: [
+      {
+        label: 'แก้ไขเส้นทางใหม่',
+         modifier: 'destructive'
+      },
+      {
+        label: 'ถูกต้อง',
+        icon: 'md-close'
+       
+        
+      }
+    ]
+  }).then(function (opt) {
+    if (opt == 0) {
+        // btn_yes_position()
+     btn_no_position();
+            
+    }
+    else{
+        btn_yes_position()
+        // ;
+    }
+    // btn_no_position();
+
+    // btn_yes_position()
+   console.log('opt: ', opt) 
+})
+     
+}
 function btn_no_position(){
     $('#clear-all').click();
-    $('#edit_pin_pop').hide(500)    
+    // $('#edit_pin_pop').hide(500)    
 }
 function btn_yes_position(){
-    $('#edit_pin_pop').hide(500)
+    // $('#edit_pin_pop').hide(500)
     console.log(lat_f)
     console.log(lng_f)
     console.log(dist)
@@ -660,7 +716,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
     var id_placefrom, id_placeto;
     $.ajax({
         type: 'POST',
-        url: base_url+'service/getPlaceId.php',
+        url: base_url_tr+'service/getPlaceId.php',
         data: { 'lat_c': lat_f, 'lng_c': lng_f },
         //contentType: "application/json",
         dataType: 'json',
@@ -672,7 +728,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
 
     $.ajax({
         type: 'POST',
-        url: base_url+'service/getPlaceId.php',
+        url: base_url_tr+'service/getPlaceId.php',
         data: { 'lat_c': lat_t, 'lng_c': lng_t },
         //contentType: "application/json",
         dataType: 'json',
@@ -685,7 +741,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
 
     $.ajax({
         type: 'POST',
-        url: base_url+'service/servicereltime.php',
+        url: base_url_tr+'service/servicereltime.php',
         data: { 'lat_f': lat_f, 'lng_f': lng_f, 'distance': dist, 'lat_t': lat_t, 'lng_t': lng_t },
         //contentType: "application/json",
         dataType: 'json',
@@ -697,7 +753,7 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
             console.log(parame)
             $.ajax({
                 type: 'POST',
-                url: base_url+'service/service.php',
+                url: base_url_tr+'service/service.php',
                 data: parame,
                 //contentType: "application/json",
                 dataType: 'json',
@@ -753,7 +809,11 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
                         console.log(datasort)
                         $('#get_history_pop').hide()
                         $('#get_historylist_pop').hide()                
-                        $('#box-pax-rel').show(500)
+                        $('#box_pax_rel').show()
+      //                    ons.createElement('dialog.html', { append: true })
+      // .then(function(dialog) {
+      //   dialog.show();
+      // });
                         if(check_his == true){                   
                             console.log(his_place_from)
                             console.log(his_place_to)
@@ -1123,7 +1183,7 @@ function sendpaxrel(x) {
     console.log(compae1join);
     console.log(compae1private)
     var car_topic, cartype, pax,lngcapacityinfo,lngfacilities;
-    var urlicon = base_url + 'files/images/carmodelicon/';
+    var urlicon = base_url_tr + 'files/images/carmodelicon/';
     $.each(compae1private, function(i, val) {
         var indexs = parseInt(i) + 1;
         if ($.cookie("lng") == 'cn') {
@@ -1409,14 +1469,14 @@ function confirmhistory(){
     
     $.ajax({
         type: 'POST',
-        url: base_url+'my_place_often/savehistory',
+        url: base_url_tr+'my_place_often/savehistory',
         data: datalocation,
         //contentType: "application/json",
         dataType: 'json',
         success: function(data) {
             console.log(data)
             getDetailbook(his_from,his_to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,his_fashion,his_transfer_id)
-    //window.location.href = base_url + 'book?data=' + his_transfer_id + '&from=' + his_from + '&to=' + his_to + '&lat_f='+his_lat_t+'&lng_f='+his_lng_f+'&lat_t='+his_lat_t+'&lng_t='+his_lng_t+'&book='+his_fashion;
+    //window.location.href = base_url_tr + 'book?data=' + his_transfer_id + '&from=' + his_from + '&to=' + his_to + '&lat_f='+his_lat_t+'&lng_f='+his_lng_f+'&lat_t='+his_lat_t+'&lng_t='+his_lng_t+'&book='+his_fashion;
     
     
     
@@ -1427,7 +1487,7 @@ function cancelhistory(){
     $('#history_pop').hide() 
     $('#get_html_book').show(500)    
     console.log(his_transfer_id+'-'+his_from+'-'+his_to+'-'+his_lat_f+'-'+his_lng_f+'-'+his_lat_t+'-'+his_lng_t+'-'+his_fashion)
-    //window.location.href = base_url + 'book?data=' + his_transfer_id + '&from=' + his_from + '&to=' + his_to + '&lat_f='+his_lat_t+'&lng_f='+his_lng_f+'&lat_t='+his_lat_t+'&lng_t='+his_lng_t+'&book='+his_fashion;
+    //window.location.href = base_url_tr + 'book?data=' + his_transfer_id + '&from=' + his_from + '&to=' + his_to + '&lat_f='+his_lat_t+'&lng_f='+his_lng_f+'&lat_t='+his_lat_t+'&lng_t='+his_lng_t+'&book='+his_fashion;
     getDetailbook(his_from,his_to,his_lat_f,his_lng_f,his_lat_t,his_lng_t,his_fashion,his_transfer_id)
 }
 
@@ -1629,7 +1689,7 @@ function addPlaceOfften(type_place,type_call) {
         $('#loading').css('display', 'block');
         // setTimeout(function() {
 
-        //     window.location.href = base_url + "register";
+        //     window.location.href = base_url_tr + "register";
         // }, 500);
         
         $('#popup-login').show(500);
@@ -1639,7 +1699,7 @@ function addPlaceOfften(type_place,type_call) {
         }, 500);
         // $('#loading').css('display', 'block');
         // setTimeout(function() {
-        //     window.location.href = base_url + "register";
+        //     window.location.href = base_url_tr + "register";
         // }, 500);
         $('#often_edit_home').hide()
         $('#often_edit_office').hide()
@@ -1697,6 +1757,7 @@ function addPlaceOfften(type_place,type_call) {
         $('#boxForAutoCom').hide();
         $('#clear-all').show(500);
         $('#map').show();
+
         infowindow = new google.maps.InfoWindow({ maxWidth: 200 });
         $('#search-raeltime').hide(500);
         $('#btn_CurrentLocation').show(500);
@@ -1875,7 +1936,7 @@ function selectEditPlaceOfften(type_place) {
         $('#loading').css('display', 'block');
         // setTimeout(function() {
 
-        //     window.location.href = base_url + "register";
+        //     window.location.href = base_url_tr + "register";
         // }, 500);
         
         $('#popup-login').show(500);
@@ -1971,7 +2032,7 @@ function deleteMyPlace(id,type_place) {
 }
 function createAllMarker() {
     pin = {
-        url: base_url+'pic/marker_often.png',
+        url: base_url_tr+'pic/marker_often.png',
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
@@ -2210,6 +2271,7 @@ function setPinLocation() {
     $('#clear-all').show(500);
     $('#outNearby').show(500);    
     $('#map').show();
+
     infowindow = new google.maps.InfoWindow({ maxWidth: 200 });
     $('#btn_CurrentLocation').show(500);
     markerPlaceOfften.setMap(map);

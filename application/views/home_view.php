@@ -61,7 +61,9 @@ $v = "1";
 <link rel="stylesheet" href="<?=base_url();?>assets/plugin/jquery-ui.css?v=<?=time()?>"/>
 <script src="<?=base_url();?>assets/plugin/jquery-ui.js?v=<?=time()?>"></script>
 <script src="<?=base_url();?>assets/imageViewer/imageviewer.js?v=<?=time()?>"></script>
-
+<script type="text/javascript">
+    var base_url = '<?=base_url();?>';
+</script>
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
@@ -2416,7 +2418,7 @@ if(data.transfer_money==1){
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?= $lng_map; ?>"></script>
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJa08ZMaSnJP5A6EsL9wxqdDderh7zU90&libraries=places&language=<?=$lng_map;?>"  type="text/javascript" async defer> </script> -->
     <!-- <script src="https://cdn.rawgit.com/googlemaps/js-rich-marker/gh-pages/src/richmarker.js?v=<?=time();?>"></script> -->
-    <script src="https://apis.google.com/js/api:client.js"></script>
+   
 <input type="hidden" value="0" id="check_custome_js" />
 <script src="<?=base_url();?>assets/custom.js?<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/notification.js?v=<?=time()?>"></script>
