@@ -4,11 +4,11 @@
     font-size: 17px !important;
   }
 </style>
-<p style="text-align: center; margin: 7px;" >
+<div style="text-align: center; margin: 7px;" onclick="//performClick('search_info_topic');" >
 <ons-search-input placeholder="ค้นหา" style="" onkeyup="searchTopicInfo(this.value);" >
-  <input type="search" class="search-input" placeholder="ค้นหา" id="search_info_topic">
+  <input type="search" class="search-input" placeholder="ค้นหา" id="search_info_topic" style="height: 40px !important;">
 </ons-search-input>
-</p>
+</div>
 <div style="padding: 0px;background-color:#fff;height: auto;" >
 <ons-list id="list_acti_data">	 
 <?php 
