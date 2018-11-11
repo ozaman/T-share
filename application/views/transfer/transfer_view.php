@@ -13,8 +13,8 @@
       </span>
     </div>
     <div class="alert-dialog-footer">
-      <ons-alert-dialog-button onclick="hideAlertDeposit();">ปิด</ons-alert-dialog-button>
-      <ons-alert-dialog-button onclick="hideAlertDeposit();">เติมเงิน</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick=" document.getElementById('transfer-alert-dialog').hide();">ปิด</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="gotoWallet();">เติมเงิน</ons-alert-dialog-button>
     </div>
   </ons-alert-dialog>
 </template>
@@ -32,14 +32,6 @@
 	  }
 	};
 
-	var hideAlertDeposit = function() {
-	  document
-	    .getElementById('transfer-alert-dialog')
-	    .hide();
-	};
-	
-</script>
-<script>
  var dataHistoryA;
  var txt_pay_cash = '';
  var txt_pay_trans = '';
@@ -93,101 +85,6 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
 function openMoneytransfer(){
 	$('#material_dialog').modal('close');
 	money_transfer();
-}
-
-function readDataBooking(){
-	console.log("Read Booking+++++++++++++++");
-	console.log(res_socket);
-      var num = 0;
-   //	 	$('#load_booking_data .box_book').remove();
-   $('#load_booking_data div').remove();
-   $('#number_book').text(res_socket.length);
-   if(res_socket.length<=0){
-   	$('#load_booking_data').append('<div class="font-22" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
-   	return;
-   }
-	   $.each(res_socket,function(index,res){
-
-	var d_db = timestampToDate(res.post_date);
-	var d_cr = js_yyyy_mm_dd_hh_mm_ss();
-
-	    if(d_cr>d_db){
-		var time_post = CheckTime(d_db,d_cr);
-		}else{
-			var time_post = CheckTime(d_cr,d_db);
-		}
-
-       var program = res.program.topic_en;
-       var pickup_place = res.pickup_place.topic;
-       var to_place = res.to_place.topic;
-       var outdate = res.outdate;
-       var type = res.program.area;
-       var time = res.airout_time;
-       var id = 'id_list_'+num;
-       var s_pay = res.s_status_pay;
-       var cost = res.cost;
-       var s_cost = res.s_cost;
-       var pax = res.pax;
-       var remark = res.remark;
-       var car_type;
-       if($.cookie("lng")=='en'){
-         var car_type = res.car_type.topic_en;
-       }else if($.cookie("lng")=='cn'){
-         var car_type = res.car_type.topic_cn;
-       }else if($.cookie("lng")=='th'){
-         var car_type = res.car_type.topic_th;
-       }else{
-
-         var car_type = res.car_type.topic_th;
-       }
-       if(s_pay==0){
-        var type_pay = '<?=t_get_cash;?>';
-      }else{
-        var type_pay = '<?=t_transfer_to_account;?>';
-      }
-      var component2 = 
-      '<div class="box_book">'
-      +'<span class="font-14 time-post">'+time_post+'</span>'
-      +'<button class="mof " id="id_list_'+num+'" onclick="openDetailBooking('+num+','+s_pay+','+s_cost+','+cost+');" style="padding: 0px;">'
-      +'<div class="bar-item">'
-      +'<table width="100%">'
-      +'<tbody>'
-               +'<tr>'
-               +'<td>'
-               +'<table width="100%" class="tb-txt-left" >'
-               +'<tr style="line-height: 1.5;" >'
-               +'<td width="100%"><span class="font-16" colspan="2">'+pickup_place+'</span></td>'
-               +'</tr>'
-               +'<tr style="line-height: 1.5;">'
-               +'<td width="100%"><span class="font-16" colspan="2">'+to_place+'</span></td>'
-               +'</tr>'
-               +'<tr>'
-               +'<td><strong><span class="font-14 ">'+type_pay+'</span>&nbsp;&nbsp;<span class="font-14" style="position: absolute;right: 15px;margin-top: 7px;">'+addCommas(cost)+'(-'+s_cost+')'+ '<?=t_THB;?></span></strong></td>'
-               +'</tr>'
-               +'<tr>'
-               +'<td><span class="font-14 ">'+outdate+'&nbsp;&nbsp;'+time+'</span></td>'					              
-               +'</tr>'
-               +'<tr>'
-               +'<td><span class="font-14">'+car_type+'</span><button class="btn-approve-job" ><span class="font-14"><?=t_accept_order;?></span></button></td>'	
-               +'</tr>'
-               +'<tr>'
-               +'<td><span class="font-14 ">จำนวนแขก&nbsp;&nbsp;'+pax+' คน</span></td>'					              
-               +'</tr>'
-               +'<tr>'
-               +'<td><span class="font-14 " style="color:red">Remark&nbsp;&nbsp;'+remark+'</span></td>'                       
-               +'</tr>'
-               +'</table>'
-               +'</td>'
-               +'</tr>'
-               +'</tbody>'
-               +'</table>'
-               +'</div>'
-               +'</button>'
-               +'</div>';
-              
-               $('#load_booking_data').append(component2);
-               num++;
-             });
 }
 
 function selectjob(orderid, idorder, invoice, code, program, p_place, to_place, agent, airout_time, airin_time, cost, s_cost, outdate, ondate, s_status_pay, idbookcar, a, b, c, d) {
@@ -313,33 +210,7 @@ function selectjob(orderid, idorder, invoice, code, program, p_place, to_place, 
             });
         });
 }
-
-function mapsSelector(lat,lng) {
-  if /* if we're on iOS, open in Apple Maps */
-    ((navigator.platform.indexOf("iPhone") != -1) || 
-     (navigator.platform.indexOf("iPad") != -1) || 
-     (navigator.platform.indexOf("iPod") != -1))
-  window.open("maps://maps.google.com/maps?daddr="+lat+","+lng+"&amp;ll=");
-  else /* else use Google */
-    window.open("https://maps.google.com/maps?daddr="+lat+","+lng+"&amp;ll=");
-}
-
-function hideDetail(){
-// $('#load_mod_popup_clean').css('animation','unset'); 
- console.log('hideDetail');
- $('#main_load_mod_popup_clean').hide(); 
- $('#show_main_tool_bottom').fadeIn(500); 
-   //		$('#main_component').addClass('w3-animate-left');
- }
-
-function ViewPhoto(id,type,date){
-   var url = 'load_page_photo.php?name=tbooking/load&file=iframe_photo&id='+id+'&type='+type+'&date='+date;
-   console.log(url);
-   $( "#load_mod_popup_photo" ).toggle();
-   $('#load_mod_popup_photo').html(load_main_mod);
-   $('#load_mod_popup_photo').load(url); 
-   // 	 $('#text_mod_topic_action_photo-txt').text('crfdfdsdsf'); 
- }		
+	
 
 function CheckTime(d1,d2){
 //      console.log(d1+" = "+d2);

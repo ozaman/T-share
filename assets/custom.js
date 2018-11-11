@@ -1,5 +1,3 @@
-//setInterval(function(){ addUser(); }, 10000);
-//
 var id_category;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
@@ -299,9 +297,9 @@ function createSignOut() {
     ons.createElement('signout-dialog.html', {
       append: true
     })
-    .then(function (dialog) {
-      dialog.show();
-    });
+            .then(function (dialog) {
+              dialog.show();
+            });
   }
 }
 
@@ -316,7 +314,7 @@ function logOut() {
    });
    $.removeCookie('detect_username', {
    path: '/'
- });*/
+   });*/
   //                    clearCookieAll();
   /*ons.notification.alert({
    message: 'ออกจากระบบสำเร็จ',
@@ -327,16 +325,16 @@ function logOut() {
    
    
    });*/
-   clearCookieAll();
-   deleteTagOs("Test Text");
-   deleteTagIOS(class_user, username);
+  clearCookieAll();
+  deleteTagOs("Test Text");
+  deleteTagIOS(class_user, username);
 
-   setTimeout(function () {
+  setTimeout(function () {
     window.location = "../TShare_new/material/login/index.php";
   }, 2000);
- }
+}
 
- function openNotifyline() {
+function openNotifyline() {
   location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
 }
 
@@ -382,11 +380,11 @@ function success(pos) {
   var m = dist * 1000;
   //        console.log(m);
   //		if( JSON.stringify(current) != JSON.stringify(start) ){
-    if (m > 50) {
-      showPosition(pos)
-      console.log(m);
-      current = crd;
-    } else {
+  if (m > 50) {
+    showPosition(pos)
+    console.log(m);
+    current = crd;
+  } else {
     //			return false;
   }
 }
@@ -424,7 +422,7 @@ function showPosition(position) {
     } else {
       //            console.log(data.results);
       /*console.log(data.results.length-2);
-      console.log(data.results[data.results.length-2].address_components[0].long_name);*/
+       console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length - 2].address_components[0].long_name;
       $('#province_text').text(province);
       $('#now_province').val(province);
@@ -462,9 +460,9 @@ function updatePlaceNum(province) {
 
 function formatDate(date) {
   var d = new Date(date),
-  month = '' + (d.getMonth() + 1),
-  day = '' + d.getDate(),
-  year = d.getFullYear();
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
   if (month.length < 2)
     month = '0' + month;
   if (day.length < 2)
@@ -474,8 +472,8 @@ function formatDate(date) {
 
 function formatTime(date) {
   var d = new Date(date),
-  hour = '' + d.getHours(),
-  minutes = d.getMinutes();
+          hour = '' + d.getHours(),
+          minutes = d.getMinutes();
   if (hour < 10) {
     hour = "0" + hour;
   }
@@ -511,9 +509,9 @@ function openOrderFromAndroid(id, status, open_ic) {
          openViewPrice();
          console.log('Open Income')
          }
-       });*/
-       openDetailShop(index, 'android');
-       $('#check_open_shop_id').val(value.id);
+         });*/
+        openDetailShop(index, 'android');
+        $('#check_open_shop_id').val(value.id);
         //                    modal.hide();
       }
     });
@@ -581,21 +579,21 @@ function hideRes(id) {
 }
 /*************************** Menu function *********************************/
 function selesecompany() {
- modal.show();
-      // fn.pushPage({
-      //   'id': 'place_company.html',
-      //   'title': 'ส่งแขก'
-      // }, 'slide-ios')
-      
-      var url = "shop/place_company";
-      $.post(url, function (res) {
-        // console.log(res)
-        $('#shop_add').html(res);
-        modal.hide();
-      });
-    }
-    function sendShops(company) {
-     modal.show();
+  modal.show();
+  // fn.pushPage({
+  //   'id': 'place_company.html',
+  //   'title': 'ส่งแขก'
+  // }, 'slide-ios')
+
+  var url = "shop/place_company";
+  $.post(url, function (res) {
+    // console.log(res)
+    $('#shop_add').html(res);
+    modal.hide();
+  });
+}
+function sendShops(company) {
+  modal.show();
   // fn.pushPage({
   //   'id': 'shopping.html',
   //   'title': 'ส่งแขก',
@@ -623,7 +621,7 @@ function selesecompany() {
             title: "ไม่สามารถส่งแขกได้",
             buttonLabel: "เพิ่มรถ"
           })
-          .then(function () {
+                  .then(function () {
                     // callpop();
                     callpop();
                     setTimeout(function () {
@@ -636,20 +634,19 @@ function selesecompany() {
         }
       });
 
+    } else {
+      // shopManage();
     }
-    else{
-    // shopManage();
-  }
-  setTimeout(function () {
+    setTimeout(function () {
 
 
-    $('#shop_add').html(ele2);
-    modal.hide();
-    var pass = {
-      date: moment().format('YYYY-MM-DD'),
-      driver: $.cookie("detect_user"),
-      type: 'his'
-    };
+      $('#shop_add').html(ele2);
+      modal.hide();
+      var pass = {
+        date: moment().format('YYYY-MM-DD'),
+        driver: $.cookie("detect_user"),
+        type: 'his'
+      };
       // console.log(pass);
       var urlcounthis = "shop/count_his"
       $.ajax({
@@ -668,7 +665,7 @@ function selesecompany() {
     }, 1000);
 
 
-});
+  });
 }
 
 function beforeSendShop() {
@@ -682,11 +679,11 @@ function beforeSendShop() {
           title: "ไม่สามารถส่งแขกได้",
           buttonLabel: "เพิ่มรถ"
         })
-        .then(function () {
+                .then(function () {
 
-          addCarForSendShop();
+                  addCarForSendShop();
 
-        });
+                });
         return;
       } else {
         sendShop2();
@@ -694,14 +691,14 @@ function beforeSendShop() {
 //                    shopManage();
 //                }, 2000);
 
-}
-});
+      }
+    });
 
   } else {
- sendShop2();
+    sendShop2();
     setTimeout(function () {
 
-       shopManage();
+      shopManage();
 
     }, 2000);
   }
@@ -715,7 +712,7 @@ function sendShop2() {
   $.post(urlo, function (res) {
     console.log(res)
     if (res.count == 1) {
-     // modal.hide();
+      // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
       //   'title': 'ส่งแขก'
@@ -729,13 +726,13 @@ function sendShop2() {
 
       var url = "shop/place_company";
       $.post(url, function (res) {
-       setTimeout(function () {
-        // console.log(res)
-        $('#shop_add').html(res);
-        get_shop_all_company('ALL')
-      }, 1000);
-     });
-      
+        setTimeout(function () {
+          // console.log(res)
+          $('#shop_add').html(res);
+          get_shop_all_company('ALL')
+        }, 1000);
+      });
+
 
       // fn.pushPage({
       //   'id': 'shopping.html',
@@ -820,10 +817,10 @@ function sendShop2() {
         // console.log(res)
         setTimeout(function () {
 
-         $('#shop_add').html(res);
-         get_shop_all_company('ALL')
-       }, 1000);
-        
+          $('#shop_add').html(res);
+          get_shop_all_company('ALL')
+        }, 1000);
+
       });
     }
     // $('#body_place_company').html(res);
@@ -882,22 +879,23 @@ function profileInfo(animate) {
 }
 
 function sendTransfer() {
-  if(detect_user!=153){
-    ons.notification.alert({
-      message: 'ยังไม่เปิดให้บริการ',
-      title: "ขอภัย",
-      buttonLabel: "ตกลง"
-    })
-    .then(function () {});
-    return;
-  }
-  
+//  if (detect_user != 153 ) {
+//    ons.notification.alert({
+//      message: 'ให้บริการรถจะเปิดให้บริการในวันที่ 1 ธันวาคม 2561',
+//      title: "ขอภัย",
+//      buttonLabel: "ตกลง"
+//    })
+//            .then(function () {});
+//    return;
+//  }
+
   fn.pushPage({
     'id': 'transfer.html',
     'title': 'ให้บริการรถ',
     'key': 'transfer'
   })
   var url = "page/transfer";
+  $('#transfer_job').html(progress_circle);
   $('#check_open_worktbooking').val(1);
   $.post(url, function (html) {
     $('#transfer_job').html(html);
@@ -910,7 +908,7 @@ function booking() {
     title: "ขอภัย",
     buttonLabel: "ตกลง"
   })
-  .then(function () {});
+          .then(function () {});
   return;
   fn.pushPage({
     'id': 'book_trans.html',
@@ -925,7 +923,7 @@ function tour() {
     title: "ขอภัย",
     buttonLabel: "ตกลง"
   })
-  .then(function () {});
+          .then(function () {});
   return;
   fn.pushPage({
     'id': 'book_tour.html',
@@ -940,7 +938,7 @@ function pay() {
     title: "ขอภัย",
     buttonLabel: "ตกลง"
   })
-  .then(function () {});
+          .then(function () {});
   return;
   fn.pushPage({
     'id': 'popup1.html',
@@ -1084,7 +1082,7 @@ function modalShowImg(path, cap) {
   /* var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
    $.post(url_load, function(ele) {
    $('#body_load_photo').html(ele);
- });*/
+   });*/
 }
 
 function readURLprofileHome(input, type) {
@@ -1117,7 +1115,7 @@ function readURLprofileHome(input, type) {
             title: "สำเร็จ",
             buttonLabel: "ตกลง"
           })
-          .then(function () {});
+                  .then(function () {});
         },
         error: function (e) {
           console.log(e)
@@ -1221,7 +1219,7 @@ function checkzoon(argument) {
   $('#box_station_others').hide()
   $('#box_form_toshow').hide()
   // if (arm > 0) {
-    $('.radio-button').prop("checked", false);
+  $('.radio-button').prop("checked", false);
 
   // }
   // arm++;
@@ -1293,15 +1291,15 @@ function _form_car_station(body) {
 var id_type_station, check_get_have = 0,
         type_name; //check_get_station :no = 0, have = 1 addnwe, 2 have, addnew 3 search,
 
-        function submitadd_station() {
-          var form = document.getElementById("form_addstation");
-          if (check_get_have != 0) {
-            if (id_type_station != 4) {
-              console.log(form.elements["station_other"].value)
-              var station_other = form.elements["station_other"].value;
-            }
+function submitadd_station() {
+  var form = document.getElementById("form_addstation");
+  if (check_get_have != 0) {
+    if (id_type_station != 4) {
+      console.log(form.elements["station_other"].value)
+      var station_other = form.elements["station_other"].value;
+    }
 
-          }
+  }
   //
   // return false;
   modal.show();
@@ -1363,15 +1361,15 @@ var id_type_station, check_get_have = 0,
    buttonLabel: "ตกลง"
    })
    return false;
- }*/
- $.ajax({
-  url: "main/submitadd_station?id_user=" + $.cookie("detect_user"),
-  data: $('#form_addstation').serialize(),
-  type: 'post',
-  dataType: 'json',
-  success: function (res) {
-    console.log(res);
-    if (res.status == true) {
+   }*/
+  $.ajax({
+    url: "main/submitadd_station?id_user=" + $.cookie("detect_user"),
+    data: $('#form_addstation').serialize(),
+    type: 'post',
+    dataType: 'json',
+    success: function (res) {
+      console.log(res);
+      if (res.status == true) {
 
 
         // beforeSendShop()
@@ -1848,15 +1846,15 @@ function openMapPlaceCustom(lat, lng) {
   window.open(url_map_place);
 }
 
-function detectUserInfomation(){
+function detectUserInfomation() {
   $.ajax({
     url: "main/get_data_user?id=" + detect_user,
     dataType: 'json',
     type: 'post',
     success: function (data) {
       console.log(data);
-      if(data.i_information==0){
-        welcom_modal.show({ animation: 'fade' });
+      if (data.i_information == 0) {
+        welcom_modal.show({animation: 'fade'});
       }
     }
   });
@@ -1891,9 +1889,9 @@ function _region_s(itm) {
       htmlOption += "<option value='" + item.id + "'  " + select + ">" + item.name_th + "</option>";
     });
     $("#province").html(htmlOption);
-    setTimeout(function(){ 
+    setTimeout(function () {
       $("#province").val(itm);
-    },10000);
+    }, 10000);
     _province_s($("#province_s").val())
     // $('select_type', select).remove();
     // select.val(selectedOption);

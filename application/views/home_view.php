@@ -641,7 +641,7 @@ ons-list-item {
                 </script>
             </ons-page>
         </template>
-        <template id="shopping.html">
+<template id="shopping.html">
             <ons-page>
                 <ons-toolbar>
                     <div class="left">
@@ -795,9 +795,46 @@ ons-list-item {
         };
         this.querySelector('ons-toolbar div.center').textContent = this.data.title;
     }
+    document.addEventListener('prechange', function (event) {
+  console.log(event);
+  var page = event.tabItem.getAttribute('page');
+    console.log(page)
+  if (page == "shop_manage.html") {
+    shopManage();
+    $('#open_shop_manage').val(1);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeOut(300);
+  } 
+  else if (page == "shop_history.html") {
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeIn(300);
+    $('#date_shop_his').show();
+    $('#date_shop_wait').hide();
+    $('#date_shop_his').val(today);
+    historyShop();
+  } 
+  else if (page == "shop_wait.html") {
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(1);
+    $('#date_shop_wait').val(today);
+    $('#date_shop_wait').show();
+    $('#date_shop_his').hide();
+    $('#box-shop_filter').fadeOut(300);
+    waitTransShop();
+  } 
+  else {
+    $('#open_shop_manage').val(0);
+    $('#open_shop_wait_trans').val(0);
+    $('#box-shop_filter').fadeOut(300);
+  }
+  /*document.querySelector('ons-toolbar .center')
+   .innerHTML = event.tabItem.getAttribute('label');*/
+});
 </script>
 </ons-page>
 </template>
+  
 <template id="transfer.html">
     <ons-page>
         <ons-toolbar>
@@ -811,6 +848,40 @@ ons-list-item {
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
+     <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
+                <ons-row style="width: 100%;">
+                    <ons-col>
+                        <ons-button class="trans-his-btn font-16 his-trans-active " id="btn_trans_his_com" onclick="" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                    </ons-col>
+                    <ons-col>
+                        <ons-button class="trans-his-btn font-16" id="btn_trans_his_cancel" onclick="" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+                    </ons-col>
+                    <ons-col>
+                        <ons-button onclick="" id="btn_trans_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="trans-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
+
+                        </ons-button>
+                    </ons-col>
+                </ons-row>     
+                <ons-row>
+                    <ons-col>
+                        <ons-button id="btn_toshow_date" onclick="showFilterdate();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
+                    </ons-col>
+                </ons-row>
+                <ons-list-item class="input-items list-item p-l-0" id="box-trans_date" style="display:none;">
+                    <div class="left list-item__left" style="margin-left: 4px; padding-right: 12px;">
+                        <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
+                    </div>
+                    <div class="center list-item__center" style="background-image: none;padding: 0px 6px 0px 0;">
+                        <input class="ap-date" type="date" id="date_trans_his" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop();$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
+
+                        <input class="ap-date" type="date" id="date_trans_wait" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
+                    </div>
+                    <div class="right list-item__right" style="padding: 5px;" >
+                      <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
+                  </div>
+              </ons-list-item>
+              <input type="hidden" value="0" id="cehck_filter_date" />
+          </ons-card>
     <div id="body_transfer">
         <ons-page>
             <ons-tabbar swipeable position="top">
@@ -818,7 +889,7 @@ ons-list-item {
                 </ons-tab>
                 <ons-tab id="tab-trans_job" page="transfer_job.html" label="ให้บริการรถ" active badge="0">
                 </ons-tab>
-                <ons-tab id="tab-trans_income" page="transfer_income.html" label="ประวัติ">
+                <ons-tab id="tab-trans_his" page="transfer_his.html" label="ประวัติ">
                 </ons-tab>
             </ons-tabbar>
         </ons-page>
@@ -830,24 +901,26 @@ ons-list-item {
             <ons-page id="transfer_job">
             </ons-page>
         </template>
-        <template id="transfer_income.html">
-            <ons-page id="transfer_income">
-                <p style="text-align: center;">
-                    This is the second page 3.
-                </p>
+        <template id="transfer_his.html">
+            <ons-page>
+              <div id="transfer_income" style="margin-top:100px;">xx</div>
             </ons-page>
         </template>
         <script>
             document.addEventListener('prechange', function(event) {
                 var page_trans = event.tabItem.getAttribute('page');
+//                console.log()
                 if(page_trans=="transfer_manage.html"){
                     var url = "page/transfer_manage";
                     $.post(url,function(html){
                         $('#transfer_manage').html(html);
                         callApiManage();
                     });
-                }else if(page_trans=="transfer_income.html"){
+                    $('#box-trans_filter').fadeOut(500);
+                }else if(page_trans=="transfer_his.html"){
+                  $('#box-trans_filter').fadeIn(500);
                 }else if(page_trans=="transfer_job.html"){
+                  $('#box-trans_filter').fadeOut(500);
                 }
                  /* document.querySelector('ons-toolbar .center')
                  .innerHTML = event.tabItem.getAttribute('label');*/
@@ -2346,6 +2419,7 @@ if(data.transfer_money==1){
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
+<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
 
 <!-- ==================================================================================================-->
 <!--============================================= CALL CHAT ========================================== -->
