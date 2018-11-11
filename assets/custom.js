@@ -908,45 +908,6 @@ function sendTransfer() {
  
 }
 
-function booking() {
-  if(detect_user == 153 || detect_user == 164 || detect_user == 129){
-
-  //    fn.pushPage({
-  //   'id': 'transfer.html',
-  //   'title': 'ให้บริการรถ',
-  //   'key': 'transfer'
-  // })
-
-  fn.pushPage({
-    'id': 'book_trans.html',
-    'title': 'จองรถ',
-    'key': 'book_trans'
-  })
-  var url = "page/transfer";
-
-  // $('#check_open_worktbooking').val(1);
-
-  $.post(url, function (html) {
-    $('#transfer_job').html(html);
-  });
-    
-  }
-  else{
-    ons.notification.alert({
-    message: 'ยังไม่เปิดให้บริการ',
-    title: "ขอภัย",
-    buttonLabel: "ตกลง"
-  })
-
-  .then(function () {});
-  
-    return false;
-  }
-
-
-  
-
-}
 
 function tour() {
   ons.notification.alert({
