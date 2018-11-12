@@ -850,6 +850,23 @@ ons-list-item {
             </ons-toolbar-button>
         </div>
     </ons-toolbar>
+      <?php 
+            $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
+            $query = $this->db->query($select);
+            $data_deposit = $query->row();
+            ?>
+            <div id="show_balance_trans" style="z-index: 1;
+            background-color: #ececec;
+            position: fixed;
+            padding: 5px;
+            width: 100%;
+            font-size: 18px;
+            text-align: center;">
+            <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt_trans">
+                <?=number_format($data_deposit->balance,2);?></span>
+                <input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val_trans" name="balance_val" />
+                <ons-button onclick="wallet();" class="font-16" style=" padding: 0px 15px; position: absolute;  left: 0px;  top: 0px; border-radius: 0;">เติมเงิน</ons-button>
+            </div>
      <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
                 <ons-row style="width: 100%;">
                     <ons-col>
@@ -884,15 +901,9 @@ ons-list-item {
               </ons-list-item>
               <input type="hidden" value="0" id="cehck_filter_date" />
           </ons-card>
-      <ons-card id="box-deposit_user" class="card" style="padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px; padding-left: 0; padding-right: 0px;">
-        <ons-row style="width: 100%;">
-          <ons-col>
-            <span class="font-20">ยอดเงินของคุณ</span>
-          </ons-col>
-        </ons-row>
-      </ons-card>
+     
     <div id="body_transfer">
-        <ons-page>
+        <ons-page style="margin-top: 30px;" id="ons-page_body_trans">
             <ons-tabbar swipeable position="top">
                 <ons-tab id="tab-trans_manage" page="transfer_manage.html" label="จัดการ">
                 </ons-tab>
@@ -908,14 +919,14 @@ ons-list-item {
         </template>
         <template id="transfer_job.html">
             <ons-page>
-              <div style="margin-top: 60px;" id="transfer_job">
+              <div style="margin-top: 35px;" id="transfer_job">
                 
               </div>
             </ons-page>
         </template>
         <template id="transfer_his.html">
             <ons-page>
-              <div id="transfer_income" style="margin-top:100px;">xx</div>
+              <div id="transfer_income" style="margin-top:100px;"></div>
             </ons-page>
         </template>
       <script>
@@ -928,16 +939,19 @@ ons-list-item {
                       $('#transfer_manage').html(html);
                       callApiManage();
                   });
-                  $('#box-trans_filter').fadeOut(500);
-                  $('#box-deposit_user').fadeOut(500);
+                  $('#box-trans_filter').hide();
                     
               }else if(page_trans=="transfer_his.html"){
                   $('#box-trans_filter').fadeIn(500);
-                  $('#box-deposit_user').fadeOut(500);
+                  
+                  $('#show_balance_trans').hide();
+                  $('#ons-page_body_trans').css('margin-top',0);
                   
               }else if(page_trans=="transfer_job.html"){
-                  $('#box-trans_filter').fadeOut(500);
-                  $('#box-deposit_user').fadeIn(500);
+                  $('#box-trans_filter').hide();
+                  
+                  $('#show_balance_trans').show();
+                  $('#ons-page_body_trans').css('margin-top','30px');
                   
               }
                /* document.querySelector('ons-toolbar .center')
@@ -1360,8 +1374,8 @@ ons-list-item {
                 <?=number_format($data_deposit->balance,2);?></span>
                 <input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val" name="balance_val" />
             </div>
-            <ons-page>
-                <ons-tabbar swipeable position="top" style="margin-top: 35px;">
+            <ons-page style="margin-top: 30px;">
+                <ons-tabbar swipeable position="top" >
                     <ons-tab id="tab-add-wallet" page="add.html" label="เติมเงิน" active>
                     </ons-tab>
                     <ons-tab id="tab-withdraw-wallet" page="withdraw.html" label="ถอนเงิน">

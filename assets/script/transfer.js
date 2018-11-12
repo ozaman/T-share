@@ -66,7 +66,7 @@ function eachObjManage() {
             '<div class="box_his">'
             + '<span class="font-20 time-post">' + "รับเมื่อ " + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + " น." + '</span>'
             + '<a class="mof ripple" id="btn_' + index + '" onclick="openSheetHandle(' + index + ',1);" style="padding: 0px; background: #fbfbfb;">'
-            + '<div class="bar-item">'
+            + '<div>'
             + '<table width="100%" >'
             + '<tbody>'
             + '<tr>'
@@ -184,7 +184,7 @@ function readDataBooking() {
   }
   $.each(res_socket, function (index, res) {
 
-    var d_db = timestampToDate(res.post_date);
+    var d_db = timestampToDate(res.post_date, "date");
     var d_cr = js_yyyy_mm_dd_hh_mm_ss();
 
     if (d_cr > d_db) {
@@ -266,7 +266,48 @@ function readDataBooking() {
   });
 }
 
-function gotoWallet(){
+function gotoWallet() {
   wallet();
   document.getElementById('transfer-alert-dialog').hide();
+}
+
+function openDetailBooking(index, s_pay, s_cost, cost) {
+  var dv_cost = $('#balance').val();
+  console.log(dv_cost + " : " + s_cost + " type = " + s_pay);
+  /*     fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
+   return;*/
+  if (s_pay == 0) {
+    if (class_user == "lab") {
+      $('#header_clean').text('งานรถรับ-ส่ง')
+      var url = "page/booking_detail";
+      var post = res_socket[index];
+      $.post(url, post, function (data) {
+        $('#load_mod_popup_clean').html(data);
+        $('#main_load_mod_popup_clean').show();
+
+      });
+      return;
+    }
+    if (dv_cost < s_cost) {
+      alertDeposit();
+      return;
+    } else {
+      fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
+//			return;
+      var url = "page/booking_detail";
+      var post = res_socket[index];
+      $.post(url, post, function (data) {
+        $('#body_popup1').html(data);
+      });
+    }
+  } else {
+    $('#header_clean').text('งานรถรับ-ส่ง')
+    var url = "page/booking_detail";
+    var post = res_socket[index];
+    $.post(url, post, function (data) {
+      $('#load_mod_popup_clean').html(data);
+      $('#main_load_mod_popup_clean').show();
+    });
+  }
+
 }
