@@ -100,9 +100,6 @@ function eachObjManage() {
   });
 }
 
-
-
-
 function openSheetHandle(index, type) {
   $('#header_clean').text('จัดการงาน')
   var post = manageObj[index];
