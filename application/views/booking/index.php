@@ -261,7 +261,7 @@
 	-webkit-overflow-scrolling: touch;
 }
 </style>
-<div id="foget-password">
+<div id="foget-password" style="display: none;">
 	<div class="box-in-foget" >
 		<div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px;   margin-bottom: 10px;">
 
@@ -1136,7 +1136,7 @@ else if($_COOKIE['lng'] == 'cn'){
                     	<div class="textInput"  id="selectproto"></div>
                     	<div  class="textInput" value="All Type" id="selectype" style="display:none"></div>
                     </div>
-        <div id="foget-password">
+        <div id="foget-password" style="display: none">
         	<div class="box-in-foget" >
         		<div  id="pax-box">
         			<div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">

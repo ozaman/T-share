@@ -997,7 +997,7 @@ ons-list-item {
     <ons-page>
         <ons-toolbar>
             <div class="left">
-                <ons-back-button>กลับ</ons-back-button>
+                <ons-back-button onclick="$('#check_open_worktbooking').val(0);">กลับ</ons-back-button>
             </div>
             <div class="center"></div>
             <div class="right">
@@ -1009,9 +1009,10 @@ ons-list-item {
     <div id="body_transfer">
         <ons-page>
             <ons-tabbar swipeable position="top">
-                <ons-tab page="tab1.html" label="ประวัติ">
-                </ons-tab>
+               
                 <ons-tab page="booking.html" label="จองรถ" active>
+                </ons-tab>
+                 <ons-tab page="tab1.html" label="ประวัติ">
                 </ons-tab>
                 <ons-tab page="tab3.html" label="รายจ่าย">
                 </ons-tab>
