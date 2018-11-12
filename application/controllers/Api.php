@@ -186,7 +186,36 @@ class Api extends CI_Controller {
     $return[sql] = $sql;
     echo json_encode($return);
   }
-
+  
+  public function detect_driver_approve_transfer(){
+    $url = "http://www.welovetaxi.com:3000/recheckBooking";  
+	$curl_post_data = '{"idorder": '.$_POST[idorder].' }';                            
+	$ch = curl_init($url);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	$decode = 	json_decode($result);
+//	header('Content-Type: application/json');
+	echo json_encode($decode);
+//    echo $decode;
+  }
+  
+  public function getjob_booking_transfer(){
+    $url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              
+	//create a new cURL resource
+	$ch = curl_init($url);
+	$curl_post_data3 = json_encode($_POST);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data3);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch);
+	curl_close($ch);
+	$decode = 	json_decode($result);
+//	header('Content-Type: application/json');
+	echo json_encode($decode);	
+  }
 }
 
 ?>
