@@ -48,7 +48,7 @@ else {
               </table>
             </div>
           </td>
-          <td width="100" height="30" valign="top" style="background-color:#F3F3F3; padding-top:8px; padding-left:10px;  ">
+          <td width="100" height="30" valign="top" style="background-color:#ffffff; padding-top:8px; padding-left:10px;  ">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tbody>
                 <tr>

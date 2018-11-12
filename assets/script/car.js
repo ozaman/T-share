@@ -1170,6 +1170,7 @@ function selectCarType(id) {
   console.log(name + " " + id);
 
   $('#car_type').val(id);
+  $('#car_type_edit').val(id);
   $('#txt_car_type').text(name);
   callpop();
   focusBoxCar2();
