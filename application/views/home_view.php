@@ -915,6 +915,9 @@ ons-list-item {
         </ons-page>
         <template id="transfer_manage.html">
             <ons-page id="transfer_manage">
+              <div id="load_manage_data"  style="padding:0px; margin: 12px 0;display: nones;" class=""  align="center">
+
+              </div>
             </ons-page>
         </template>
         <template id="transfer_job.html">
@@ -934,11 +937,12 @@ ons-list-item {
               var page_trans = event.tabItem.getAttribute('page');
               console.log(page_trans);
               if(page_trans=="transfer_manage.html"){
-                  var url = "page/transfer_manage";
-                  $.post(url,function(html){
-                      $('#transfer_manage').html(html);
-                      callApiManage();
-                  });
+//                  var url = "page/transfer_manage";
+//                  $.post(url,function(html){
+//                      $('#transfer_manage').html(html);
+//                      callApiManage();
+//                  });
+                  callApiManage();
                   $('#box-trans_filter').hide();
                     
               }else if(page_trans=="transfer_his.html"){

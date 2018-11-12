@@ -12,7 +12,7 @@ function callApiManage() {
 
   var url_action = "api/transfer_booking";
   var data_param = {driver: driver, date: date, driver_checkcar: 0};
-  console.log(data_param);
+//  console.log(data_param);
 //		return;
   $.post(url_action, data_param, function (data, textStatus, jQxhr) {
 
@@ -22,9 +22,9 @@ function callApiManage() {
     var m = [];
     if (data.status == "200") {
       manageObj = data.data.result;
-      console.log("manage : " + manageObj.length)
+//      console.log("manage : " + manageObj.length)
 //		   			if(manageObj.length>0){
-      $('#number_manage').text(manageObj.length);
+//      $('#number_manage').text(manageObj.length);
 
 //					}
       eachObjManage();
@@ -36,9 +36,9 @@ function callApiManage() {
 }
 
 function eachObjManage() {
-//   	$('#load_manage_data .box_his').remove();
-  $('#load_manage_data div').remove();
-  console.log(manageObj.length + "++++++++++");
+   	$('#load_manage_data ons-card').remove();
+//  $('#load_manage_data').html(progress_circle);
+//  $('#load_manage_data')
   if (manageObj.length <= 0) {
     $('#load_manage_data').append('<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
     return;
@@ -62,40 +62,41 @@ function eachObjManage() {
     } else {
       var type_pay = '<?=t_transfer_to_account;?>';
     }
-    var component2 =
-            '<div class="box_his">'
-            + '<span class="font-20 time-post">' + "รับเมื่อ " + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + " น." + '</span>'
-            + '<a class="mof ripple" id="btn_' + index + '" onclick="openSheetHandle(' + index + ',1);" style="padding: 0px; background: #fbfbfb;">'
-            + '<div>'
-            + '<table width="100%" >'
-            + '<tbody>'
-            + '<tr>'
-
-            + '<td>'
-            + '<table width="100%" class="tb-txt-left" >'
-            + '<tr style="line-height: 1.5;" >'
-            + '<td width="100%"><span class="font-24" colspan="2">' + pickup_place + '</span></td>'
-            + '</tr>'
-            + '<tr style="line-height: 1.5;">'
-            + '<td width="100%"><span class="font-24" colspan="2">' + to_place + '</span></td>'
-            + '</tr>'
-            + '<tr>'
-            + '<td><strong><span class="font-22 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">' + addCommas(cost) + ' <?=t_THB;?>' + '</span></strong></td>'
-
-            + '</tr>'
-            + '<tr>'
-            + '<td><span class="font-20 ">' + outdate + '&nbsp;&nbsp;' + time + '</span></td>'
-            + '<td></td>'
-            + '</tr>'
-            + '</table>'
-            + '</td>'
-            + '</tr>'
-            + '</tbody>'
-            + '</table>'
-            + '</div>'
-            + '</a>'
-            + '</a>'
-            + '</div>';
+//    var component2 =
+//            '<div class="box_his">'
+//            + '<span class="font-20 time-post">' + "รับเมื่อ " + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + " น." + '</span>'
+//            + '<a class="mof ripple" id="btn_' + index + '" onclick="openSheetHandle(' + index + ',1);" style="padding: 0px; background: #fbfbfb;">'
+//            + '<div>'
+//            + '<table width="100%" >'
+//            + '<tbody>'
+//            + '<tr>'
+//
+//            + '<td>'
+//            + '<table width="100%" class="tb-txt-left" >'
+//            + '<tr style="line-height: 1.5;" >'
+//            + '<td width="100%"><span class="font-24" colspan="2">' + pickup_place + '</span></td>'
+//            + '</tr>'
+//            + '<tr style="line-height: 1.5;">'
+//            + '<td width="100%"><span class="font-24" colspan="2">' + to_place + '</span></td>'
+//            + '</tr>'
+//            + '<tr>'
+//            + '<td><strong><span class="font-22 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">' + addCommas(cost) + ' <?=t_THB;?>' + '</span></strong></td>'
+//
+//            + '</tr>'
+//            + '<tr>'
+//            + '<td><span class="font-20 ">' + outdate + '&nbsp;&nbsp;' + time + '</span></td>'
+//            + '<td></td>'
+//            + '</tr>'
+//            + '</table>'
+//            + '</td>'
+//            + '</tr>'
+//            + '</tbody>'
+//            + '</table>'
+//            + '</div>'
+//            + '</a>'
+//            + '</a>'
+//            + '</div>';
+    var component2 = "<ons-card class='card'>" + pickup_place + "</ons-card>";
     $('#load_manage_data').append(component2);
   });
 }
@@ -225,7 +226,7 @@ function readDataBooking() {
             '<div class="box_book">'
             + '<span class="font-14 time-post">' + time_post + '</span>'
             + '<button class="mof " id="id_list_' + num + '" onclick="openDetailBooking(' + num + ',' + s_pay + ',' + s_cost + ',' + cost + ');" style="padding: 0px;">'
-            + '<div class="bar-item">'
+            + '<div class="">'
             + '<table width="100%">'
             + '<tbody>'
             + '<tr>'
@@ -272,42 +273,19 @@ function gotoWallet() {
 }
 
 function openDetailBooking(index, s_pay, s_cost, cost) {
-  var dv_cost = $('#balance').val();
+  var dv_cost = $('#balance_val_trans').val();
   console.log(dv_cost + " : " + s_cost + " type = " + s_pay);
-  /*     fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
-   return;*/
-  if (s_pay == 0) {
-    if (class_user == "lab") {
-      $('#header_clean').text('งานรถรับ-ส่ง')
-      var url = "page/booking_detail";
-      var post = res_socket[index];
-      $.post(url, post, function (data) {
-        $('#load_mod_popup_clean').html(data);
-        $('#main_load_mod_popup_clean').show();
 
-      });
-      return;
-    }
-    if (dv_cost < s_cost) {
-      alertDeposit();
-      return;
-    } else {
-      fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
-//			return;
-      var url = "page/booking_detail";
-      var post = res_socket[index];
-      $.post(url, post, function (data) {
-        $('#body_popup1').html(data);
-      });
-    }
+  if (dv_cost < s_cost) {
+    alertDeposit();
+    return;
   } else {
-    $('#header_clean').text('งานรถรับ-ส่ง')
+    fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
+//			return;
     var url = "page/booking_detail";
     var post = res_socket[index];
     $.post(url, post, function (data) {
-      $('#load_mod_popup_clean').html(data);
-      $('#main_load_mod_popup_clean').show();
+      $('#body_popup1').html(data);
     });
   }
-
 }
