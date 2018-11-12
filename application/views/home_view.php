@@ -1013,7 +1013,7 @@ ons-list-item {
     <ons-page>
         <ons-toolbar>
             <div class="left">
-                <ons-back-button onclick="$('#check_open_worktbooking').val(0);">กลับ</ons-back-button>
+                <ons-back-button>กลับ</ons-back-button>
             </div>
             <div class="center"></div>
             <div class="right">
