@@ -839,7 +839,7 @@ ons-list-item {
   
 <template id="transfer.html">
     <ons-page>
-        <ons-toolbar>
+     <ons-toolbar>
             <div class="left">
                 <ons-back-button onclick="$('#check_open_worktbooking').val(0);">กลับ</ons-back-button>
             </div>
@@ -884,6 +884,13 @@ ons-list-item {
               </ons-list-item>
               <input type="hidden" value="0" id="cehck_filter_date" />
           </ons-card>
+      <ons-card id="box-deposit_user" class="card" style="padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px; padding-left: 0; padding-right: 0px;">
+        <ons-row style="width: 100%;">
+          <ons-col>
+            <span class="font-20">ยอดเงินของคุณ</span>
+          </ons-col>
+        </ons-row>
+      </ons-card>
     <div id="body_transfer">
         <ons-page>
             <ons-tabbar swipeable position="top">
@@ -900,7 +907,10 @@ ons-list-item {
             </ons-page>
         </template>
         <template id="transfer_job.html">
-            <ons-page id="transfer_job">
+            <ons-page>
+              <div style="margin-top: 60px;" id="transfer_job">
+                
+              </div>
             </ons-page>
         </template>
         <template id="transfer_his.html">
@@ -908,26 +918,32 @@ ons-list-item {
               <div id="transfer_income" style="margin-top:100px;">xx</div>
             </ons-page>
         </template>
-        <script>
-            document.addEventListener('prechange', function(event) {
-                var page_trans = event.tabItem.getAttribute('page');
-//                console.log()
-                if(page_trans=="transfer_manage.html"){
-                    var url = "page/transfer_manage";
-                    $.post(url,function(html){
-                        $('#transfer_manage').html(html);
-                        callApiManage();
-                    });
-                    $('#box-trans_filter').fadeOut(500);
-                }else if(page_trans=="transfer_his.html"){
-                  $('#box-trans_filter').fadeIn(500);
-                }else if(page_trans=="transfer_job.html"){
+      <script>
+          document.addEventListener('prechange', function(event) {
+              var page_trans = event.tabItem.getAttribute('page');
+              console.log(page_trans);
+              if(page_trans=="transfer_manage.html"){
+                  var url = "page/transfer_manage";
+                  $.post(url,function(html){
+                      $('#transfer_manage').html(html);
+                      callApiManage();
+                  });
                   $('#box-trans_filter').fadeOut(500);
-                }
-                 /* document.querySelector('ons-toolbar .center')
-                 .innerHTML = event.tabItem.getAttribute('label');*/
-             });
-         </script>
+                  $('#box-deposit_user').fadeOut(500);
+                    
+              }else if(page_trans=="transfer_his.html"){
+                  $('#box-trans_filter').fadeIn(500);
+                  $('#box-deposit_user').fadeOut(500);
+                  
+              }else if(page_trans=="transfer_job.html"){
+                  $('#box-trans_filter').fadeOut(500);
+                  $('#box-deposit_user').fadeIn(500);
+                  
+              }
+               /* document.querySelector('ons-toolbar .center')
+               .innerHTML = event.tabItem.getAttribute('label');*/
+           });
+      </script>
      </div>
      <script>
         ons.getScriptPage().onInit = function () {
@@ -2428,7 +2444,6 @@ if(data.transfer_money==1){
 <script src="<?=base_url();?>assets/script/bank.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/car.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/shop.js?v=<?=time();?>"></script>
-<!--<script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>-->
 <script src="<?=base_url();?>assets/script/income.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/wallet.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
