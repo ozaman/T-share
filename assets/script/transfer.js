@@ -1,6 +1,7 @@
 var dataHistoryA;
 var manageObj = [];
 var driver = detect_user;
+var orderid, idorder, invoice, code, program, p_place, to_place, agent, airout_time, airin_time, cost, s_cost, outdate, ondate, s_status_pay, idbookcar, a, b, c, d;
 //	$('#btn_manage').click();
 //	callApiManage();
 function callApiManage() {
@@ -36,7 +37,7 @@ function callApiManage() {
 }
 
 function eachObjManage() {
-   	$('#load_manage_data ons-card').remove();
+  $('#load_manage_data ons-card').remove();
 //  $('#load_manage_data').html(progress_circle);
 //  $('#load_manage_data')
   if (manageObj.length <= 0) {
@@ -173,8 +174,8 @@ function openPointMapsTransfer(type, lat, lng) {
 }
 
 function readDataBooking() {
-  console.log("Read Booking+++++++++++++++");
-  console.log(res_socket);
+//  console.log("Read Booking+++++++++++++++");
+//  console.log(res_socket);
   var num = 0;
   //	 	$('#load_booking_data .box_book').remove();
   $('#load_booking_data div').remove();
@@ -284,8 +285,187 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
 //			return;
     var url = "page/booking_detail";
     var post = res_socket[index];
+    console.log(post);
     $.post(url, post, function (data) {
       $('#body_popup1').html(data);
     });
   }
+}
+
+function confirmGetJobTrans() {
+  var url_cja = "api/detect_driver_approve_transfer";
+  /* check job approve */
+  console.log(idorder);
+//  return false;
+  $.post(url_cja, {
+    idorder: idorder
+  }, function (res_check) {
+    res_check = JSON.parse(res_check);
+    console.log(res_check);
+
+    if (res_check.data.result.length > 0) { // check this job have driver approve ?
+      var data = {
+        "idorder": idorder,
+        "orderid": orderid,
+        "invoice": invoice,
+        "code": code,
+        "program": program,
+        "driver": driver,
+        "carid": $('#car_id_trans_select').val(),
+        "cartype": $('#car_type_trans_select').val(),
+        "pickup_place": p_place,
+        "to_place": to_place,
+        "agent": agent,
+        "airout_time": airout_time,
+        "airin_time": airin_time,
+        "cost": cost,
+        "s_cost": s_cost,
+        "outdate": outdate,
+        "ondate": ondate
+      };
+      var urltime = "main/get_timestamp";
+      
+//      console.log(deposit_time_st);
+//      console.log(deposit_date_st);
+//      return;
+      var url = "api/getjob_booking_transfer";
+      var bank_account = "Goldenbeach Tour";
+      var deposit_bank = "กสิกรไทย";
+      var bank_number = "909-609-6699";
+//      var deposit_date = deposit_date_st[0];
+//      var deposit_time = deposit_time_st[0];
+//      var username = username;
+      var deposit = s_cost;
+      var his_ap = {
+        driver: driver,
+        idorder: idorder,
+        username: username,
+        deposit: deposit,
+//        deposit_date: deposit_time,
+        type: "APPROVEJOB",
+        deposit_bank: deposit_bank,
+        bank_account: bank_account,
+        bank_number: bank_number,
+//        deposit_date: deposit_date,
+//        deposit_time: deposit_time,
+//        post_date: na,
+//        post_date_f: deposit_date
+      };
+      console.log(data);
+
+
+      $.ajax({
+        url: url,
+        data: data,
+        dataType: 'json',
+        type: 'post',
+        success: function (res) {
+          console.log(res);
+          if (res.status == "200") {
+            if (s_status_pay == 0) { // Pay Cash
+              
+              $.ajax({
+                url: "transfer/approve_job",
+                dataType: 'json',
+                data: his_ap,
+                type: 'post',
+                success: function (logdata) {
+                  console.log(logdata);
+                }
+              });
+            } 
+            else {
+
+            }
+          } else {
+
+            ons.notification.alert({
+              message: 'กรุณาลองอีกครั้ง',
+              title: "ไม่สามารถรับงานได้",
+              buttonLabel: "ปิด"
+            }).then(function () { });
+          }
+        }
+      });
+
+    } else {
+      ons.notification.alert({
+        message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
+        title: "ไม่สามารถรับงานได้",
+        buttonLabel: "ปิด"
+      }).then(function () { });
+      hideDetail();
+    }
+  });
+}
+
+var dataHistoryA;
+var txt_pay_cash = '';
+var txt_pay_trans = '';
+
+function selectjob(orderid_p, idorder_p, invoice_p, code_p, program_p, p_place_p, to_place_p, agent_p, airout_time_p, airin_time_p, cost_p, s_cost_p, outdate_p, ondate_p, s_status_pay_p, idbookcar_p, a_p, b_p, c_p, d_p) {
+  orderid = orderid_p;
+  idorder = idorder_p;
+//  console.log(idorder+" xxx");
+  invoice = invoice_p;
+  code = code_p;
+  program = program_p;
+  p_place = p_place_p;
+  to_place = to_place_p;
+  agent = agent_p;
+  airout_time = airout_time_p;
+  airin_time = airin_time_p;
+  cost = cost_p;
+  s_cost = s_cost_p;
+  outdate = outdate_p;
+  ondate = ondate_p;
+  s_status_pay = s_status_pay_p;
+  idbookcar = idbookcar_p;
+  a = a_p;
+  b = b_p;
+  c = c_p;
+  d = d_p;
+  var carid = $('#car_id_trans_select').val();
+  var cartype = $('#car_type_trans_select').val();
+  console.log("Type Pay : " + s_status_pay)
+  console.log(idbookcar + '**************************************' + cartype)
+//    if (parseInt(idbookcar) != parseInt(cartype)) {
+//      swal('ไม่สามารถรับงานได้', 'งานนี้ใช้' + a + b + ' ' + 'คุณใช้' + c + d, 'error');
+//      return;
+//    }
+  if (carid == '') {
+    ons.notification.alert({
+      message: 'กรุณาเลือกรถที่ใช้งาน',
+      title: "ขออภัย",
+      buttonLabel: "ปิด"
+    })
+            .then(function () {
+//                  reloadIncomeShop(id);
+            });
+    return;
+  }
+
+  var driver = $('#driver').val();
+  var finalcost = parseInt(cost) - parseInt(s_cost);
+  console.log(finalcost)
+  var txt_warning;
+  txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน ' + addCommas(s_cost) + ' บาท';
+  txt_pay_trans = 'งานนี้แขกจ่ายเงินเข้าในระบบแล้ว' + "ยอดเงินทั้งหมดจะทำการโอนเงินทั้งหมดเข้าในกระเป๋าเงินของคุณ " + finalcost + " " + "บาท";
+  if (s_status_pay == 0) {
+    txt_warning = txt_pay_cash;
+  } else {
+    txt_warning = txt_pay_trans;
+  }
+
+  var dialog_confirm = document.getElementById('confirm_get_job-dialog');
+
+  if (dialog_confirm) {
+    dialog_confirm.show();
+  } else {
+    ons.createElement('confirm_get_job.html', {append: true})
+            .then(function (dialog_confirm) {
+              dialog_confirm.show();
+            });
+  }
+
 }
