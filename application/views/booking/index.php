@@ -739,44 +739,8 @@ textarea:-ms-input-placeholder {
 <!-- book -->
 <?php 
 
-if($_COOKIE['lng']){
 
-       // echo  $_COOKIE['lng'].'unde';
-	$lng_all_type = 'All Type';
-	$lag_search_from = 'From: Type airport,hotel name, or location.';
-	$lag_search_to = 'To: Type airport,hotel name, or location.';
-	$lag_go_txt = 'Where are you going? ';
-	$lag_from_txt = 'Departure Location...';
-	$lng_from = 'From';
-	$lng_to = 'To';
-	$lng_from_pro = 'From Province';
-	$lng_to_pro = 'To Province';
-	$click_save_place_txt = "No record (Click to save)";
-
-	$select_type = "Select Types";
-	$hospital = "Hospital";
-	$store = "Store";
-	$airport = "Airport";
-	$cafe = "Cafe";
-	$spa = "Spa";
-	$bank = "Bank";
-	$depart_store = "Department Store";
-	$h_r = "Hotel,Resort";
-	$newname = 'New name';
-	$phoneplace = 'Phone';
-	$search_position = 'Find a location';
-
-	/************book********* */
-	$lng_your_country = 'Your country';
-	$lng_fiast_name = 'First Name';
-	$lng_last_name = 'Last Name';
-	$lng_phone = 'Phone';
-	$lng_email = 'Email';
-	$lng_other = 'Other';
-	$lng_flight = 'Flight';  
-
-}
-else if($_COOKIE['lng'] == 'en'){
+if($_COOKIE['lng'] == 'en'){
         //echo 'en';
 	$lng_all_type = 'All Type';
 	$lag_search_from = 'From: Type airport,hotel name, or location.';
@@ -814,7 +778,7 @@ else if($_COOKIE['lng'] == 'en'){
 
 
 }
-else if(!$_COOKIE['lng'] == 'th'){
+else if($_COOKIE['lng']== 'th'){
         //echo 'th';
 	$lng_all_type = 'ทุกประเภท';
 	$lag_search_from = 'จาก: สนามบินประเภทชื่อโรงแรมหรือสถานที่ตั้ง';
