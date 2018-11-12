@@ -208,9 +208,11 @@ else {
         <ons-button style="padding:0px 10px;margin:10px;" onclick="myCar();">จัดการข้อมูลรถ</ons-button>
         <div style="margin-top:0px;">
           <?php
+          $query = $this->db->query("SELECT i_car_use_type FROM web_carall_type where id = ".$_POST[car_type][id]);
+          $row = $query->row();
           $i = 1;
           $select = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt,tb_pro.id as tb_pro_id, tb_pro.name as tb_pro_name, tb_pro.name_th as tb_pro_name_th, tb_pro.name_cn as tb_pro_name_cn FROM web_carall as t1 left join web_province as tb_pro on t1.i_province = tb_pro.id    left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id "
-                  . "where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 and t1.car_type = ".$_POST[car_type][id]." ORDER BY t1.status_usecar  DESC";
+                  . "where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 and t1.car_type = ".$row->i_car_use_type." ORDER BY t1.status_usecar  DESC";
           $query = $this->db->query($select);
           $check = $query->num_rows();
           if($check<=0){ ?>
