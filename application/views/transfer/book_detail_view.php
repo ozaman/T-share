@@ -205,6 +205,7 @@ else {
         <td>
       <ons-card>
         <ons-list-header><i class="fa fa-car" style="color:#c1c1c1;padding: 0px 7px;"></i><?=t_select_your_car;?></ons-list-header>
+        <ons-button>จัดการข้อมูลรถ</ons-button>
         <div style="margin-top:7px;">
           <?php
           $i = 1;
