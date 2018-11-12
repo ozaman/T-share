@@ -970,6 +970,28 @@ ons-list-item {
     </script>
 </ons-page>
 </template>
+<template id="transfer_detail.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button>กลับ</ons-back-button>
+            </div>
+            <div class="center"></div>
+            <div class="right">
+              <ons-toolbar-button onclick="reloadApp();">
+                <ons-icon icon="ion-home, material:md-home"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div id="body_transfer_detail">
+    </div>
+    <script>
+        ons.getScriptPage().onInit = function () {
+            this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+        }
+    </script>
+</ons-page>
+</template>  
 <template id="book_tour.html">
     <ons-page>
         <ons-toolbar>

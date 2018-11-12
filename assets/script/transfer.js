@@ -281,13 +281,13 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
     alertDeposit();
     return;
   } else {
-    fn.pushPage({'id': 'popup1.html', 'title': 'รับงาน'}, 'lift-ios');
+    fn.pushPage({'id': 'transfer_detail.html', 'title': 'รับงาน'}, 'lift-ios');
 //			return;
     var url = "page/booking_detail";
     var post = res_socket[index];
     console.log(post);
     $.post(url, post, function (data) {
-      $('#body_popup1').html(data);
+      $('#body_transfer_detail').html(data);
     });
   }
 }
