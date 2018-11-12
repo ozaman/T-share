@@ -2489,7 +2489,7 @@ if(data.transfer_money==1){
 <script src="<?=base_url();?>assets/script/taxilist.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/information.js?v=<?=time();?>"></script>
 <script src="<?=base_url();?>assets/script/transfer.js?v=<?=time();?>"></script>
-<script src="<?=base_url();?>assets/script/booking.js?v=<?=time();?>"></script>
+<!-- <script src="<?=base_url();?>assets/script/booking.js?v=<?=time();?>"></script> -->
 
 
 <!-- ==================================================================================================-->

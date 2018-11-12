@@ -28,13 +28,15 @@
 <ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
 	  <center>
-	  	<div onclick="booking();" class="circle-menu-home" style="    background-color: #1CC1A4;" >
+	  	<a href="https://www.welovetaxi.com/app/booking2/">
+	  	<div onclick="//booking();" class="circle-menu-home" style="    background-color: #1CC1A4;" >
 	      
 	      <div class="content">
 	     	<i class="fa fa-taxi" style="font-size: 24px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>
 	    </div>
 	    <span class="txt-dark">เรียกรถ</span>
+	    </a>
 	    </center>
   </ons-col>
 

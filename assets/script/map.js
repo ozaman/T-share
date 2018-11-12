@@ -69,7 +69,7 @@ if ($.cookie("lng") == 'cn') {
 
     success = '成功';
     error = '错误';
-} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+} else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
     please_login_txt = "กรุณาเข้าสู่ระบบ";
     click_save_place_txt = "ไม่มีบันทึก (กดเพื่อบันทึก)";
     lang_to_map = 'th';
@@ -80,7 +80,7 @@ if ($.cookie("lng") == 'cn') {
     lng_price = 'Price';
     success = 'สำเร็จ';
     error = 'ผิดพลาด';
-} else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+} else if ($.cookie("lng") == 'en' ) {
     please_login_txt = "Please login";
     click_save_place_txt = "No record (Click to save)";
     lang_to_map = 'en';
@@ -706,10 +706,10 @@ function getProduct(lat_f, lng_f, dist, lat_t, lng_t) {
     console.log(lat_f+'-'+lng_f+'-'+dist+'-'+lat_t+'-'+lng_t)
     if ($.cookie("lng") == 'cn') {
         notfound = '产品没有找到';
-    } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+    } else if ($.cookie("lng") == 'en' ) {
 
         notfound = 'Product not Found';
-    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+    } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
         notfound = 'ไม่พบผลิตภัณฑ์';
 
     }
@@ -1729,9 +1729,9 @@ function addPlaceOfften(type_place,type_call) {
             var btn_color = "btn-success";
             if ($.cookie("lng") == 'cn') {
                 txt_save = "记录";
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 txt_save = "บันทึก";
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 txt_save = "Record";
             } 
         } else if (type_call == "edit") {
@@ -1742,12 +1742,12 @@ function addPlaceOfften(type_place,type_call) {
                 set_name = '集名称';
                 phoneplace = '电话';
                 
-            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH') {
+            } else if ($.cookie("lng") == 'th' || $.cookie("lng") == 'th-TH' || $.cookie("lng") == undefined) {
                 txt_save = "บันทึก";
                 set_name = 'ตั้งชื่อ';
                 phoneplace = 'โทรศัพท์';
                 
-            } else if ($.cookie("lng") == 'en' || $.cookie("lng") == undefined) {
+            } else if ($.cookie("lng") == 'en' ) {
                 txt_save = "Record";
                 set_name = 'Set name';
                 phoneplace = 'Phone';                
