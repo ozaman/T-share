@@ -915,8 +915,8 @@ ons-list-item {
         </ons-page>
         <template id="transfer_manage.html">
             <ons-page id="transfer_manage">
-              <div id="load_manage_data"  style="padding:0px; margin: 12px 0;display: nones;" class=""  align="center">
-
+              <div id="load_manage_data"  style="margin-top: 25px;" align="center">
+                
               </div>
             </ons-page>
         </template>
