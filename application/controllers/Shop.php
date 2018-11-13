@@ -474,7 +474,7 @@ class Shop extends CI_Controller {
     else if ($_GET[opt] == 'PROVINCE') {
      
     }
-    else if ($_GET[opt == 'CATE']) {
+    else if ($_GET[opt] == 'CATE') {
       $arr_where['main'] = $_GET[main];
     }
 
