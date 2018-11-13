@@ -47,9 +47,11 @@ function eachObjManage() {
   console.log(manageObj.length)
   $.each(manageObj, function (index, value) {
     console.log(value);
+//    var program = value.program.topic_en;
+//    var pickup_place = value.pickup_place.topic;
     var program = value.program.topic_en;
-    var pickup_place = value.pickup_place.topic;
-    var to_place = value.to_place.topic;
+    var pickup_place = value.address_from;
+    var to_place = value.address_to;
     var outdate = value.outdate;
 
     var type = value.program.area;
@@ -59,63 +61,74 @@ function eachObjManage() {
     var cost = value.cost - value.s_cost;
     var s_cost = value.s_cost;
     if (s_pay == 0) {
-      var type_pay = '<?=t_get_cash;?>';
+      var type_pay = 'จ่ายเงินสด';
     } else {
-      var type_pay = '<?=t_transfer_to_account;?>';
+      var type_pay = 'โอนเข้ากระเป๋า';
     }
-//    var component2 =
-//            '<div class="box_his">'
-//            + '<span class="font-20 time-post">' + "รับเมื่อ " + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + " น." + '</span>'
-//            + '<a class="mof ripple" id="btn_' + index + '" onclick="openSheetHandle(' + index + ',1);" style="padding: 0px; background: #fbfbfb;">'
-//            + '<div>'
-//            + '<table width="100%" >'
-//            + '<tbody>'
-//            + '<tr>'
-//
-//            + '<td>'
-//            + '<table width="100%" class="tb-txt-left" >'
-//            + '<tr style="line-height: 1.5;" >'
-//            + '<td width="100%"><span class="font-24" colspan="2">' + pickup_place + '</span></td>'
-//            + '</tr>'
-//            + '<tr style="line-height: 1.5;">'
-//            + '<td width="100%"><span class="font-24" colspan="2">' + to_place + '</span></td>'
-//            + '</tr>'
-//            + '<tr>'
-//            + '<td><strong><span class="font-22 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-22" style="position: fixed;right: 25px;">' + addCommas(cost) + ' <?=t_THB;?>' + '</span></strong></td>'
-//
-//            + '</tr>'
-//            + '<tr>'
-//            + '<td><span class="font-20 ">' + outdate + '&nbsp;&nbsp;' + time + '</span></td>'
-//            + '<td></td>'
-//            + '</tr>'
-//            + '</table>'
-//            + '</td>'
-//            + '</tr>'
-//            + '</tbody>'
-//            + '</table>'
-//            + '</div>'
-//            + '</a>'
-//            + '</a>'
-//            + '</div>';
-    var component2 = "<ons-card class='card'>" + pickup_place + "</ons-card>";
+    var component2 =
+            '<ons-card class="box_his card" style="margin-top: 30px;margin-bottom: 30px;"><span class="font-15 time-post">รับเมื่อ ' + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + ' น.</span>'
+            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ');" style="padding: 5px;margin-top: 5px;">'
+            + '<table width="100%">'
+            + '<tr>'
+            + '<td>'
+            + '<table width="100%">'
+            + '<tbody>'
+            + '<tr>'
+            + '<td width="10">'
+            + '<div style="width: 10px; height: 10px;border-radius: 1px; background: #555;"></div>'
+            + '</td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeFrom" style="text-align: center;">' + pickup_place + '</span></td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td colspan="2" style="padding: 3px 0px;"></td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td width="10">'
+            + '<div style="width: 10px;height: 10px;border-radius: 1px; background: #3b5998;"></div>'
+            + '</td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeTo" style="text-align: center;">' + to_place + '</span></td>'
+            + '</tr>'
+            + '</tbody>'
+            + '</table>'
+            + '</td>'
+            + '</tr>'
+            + '</table>'
+            + '<div style="margin: 0px;">'
+            + '<ons-row>'
+            + '<ons-col><span class="font-17">ช่องทางรับเงิน</span></ons-col>'
+            + '<ons-col><span class="font-17">' + type_pay + '</span></ons-col>'
+            + '</ons-row>'
+            + '<ons-row>'
+            + '<ons-col><span class="font-17">จำนวน</span></ons-col>'
+            + '<ons-col><span class="font-17" style="color: #16B3B1;font-weight: 600;">' + addCommas(cost) + ' ฿</span></ons-col>'
+            + '</ons-row>'
+            + '<ons-row>'
+            + '<ons-col>วันเวลา</ons-col>'
+            + '<ons-col>' + outdate + '&nbsp;&nbsp;' + time + ' น.</ons-col>'
+            + '</ons-row>'
+//                      +'<ons-row>'
+//                        +'<ons-col>ประเภทรถ</ons-col>'
+//                        +'<ons-col>'++'</ons-col>'
+//                      +'</ons-row>'
+            + '</div>'
+            + '</div>'
+            + '</ons-card>';
     $('#load_manage_data').append(component2);
+//    return false;
   });
 }
 
-function openSheetHandle(index, type) {
-  $('#header_clean').text('จัดการงาน')
+function openSheetHandleTransfer(index) {
+  $('#body_popup1').html(progress_circle);
+  fn.pushPage({
+    'id': 'popup1.html',
+    'title': 'จัดการงาน'
+  }, 'slide-ios');
   var post = manageObj[index];
-
-
-
-
-  var url = "empty_style.php?name=tbooking&file=sheet_handle";
-
-
+  console.log(post);
+  var url = "transfer/sheet_handle";
   $.post(url, post, function (data) {
-    $('#load_mod_popup_clean').html(data);
-    $('#main_load_mod_popup_clean').show();
-    $('#main_component').removeClass('w3-animate-left');
+    $('#body_popup1').html(data);
   });
 
 }
@@ -325,7 +338,7 @@ function confirmGetJobTrans() {
         "outdate": outdate,
         "ondate": ondate
       };
-      
+
       var url = "api/getjob_booking_transfer";
       var bank_account = "Goldenbeach Tour";
       var deposit_bank = "กสิกรไทย";
@@ -339,6 +352,7 @@ function confirmGetJobTrans() {
         idorder: idorder,
         username: username,
         deposit: deposit,
+        i_deposit_before: $('#balance_val_trans').val(),
 //        deposit_date: deposit_time,
         type: "APPROVEJOB",
         deposit_bank: deposit_bank,
@@ -355,11 +369,11 @@ function confirmGetJobTrans() {
       $.ajax({
         url: url,
         data: data,
-        dataType: 'text',
+        dataType: 'json',
         type: 'post',
         success: function (res) {
           console.log(res);
-          return;
+//          return;
           if (res.status == "200") {
             if (s_status_pay == 0) { // Pay Cash
 
@@ -372,15 +386,15 @@ function confirmGetJobTrans() {
                   console.log(logdata);
                   if (logdata.deposit.result == true) {
                     $('#balance_txt_trans').text(logdata.deposit.balance);
+                    $('#balance_val_trans').val(logdata.deposit.balance);
                     modal.hide();
                     performClick('tab-trans_manage');
                     callpop();
-                    
+
                   }
                 }
               });
-            } 
-            else {
+            } else {
 
             }
           } else {
@@ -389,13 +403,12 @@ function confirmGetJobTrans() {
               message: 'กรุณาลองอีกครั้ง',
               title: "ไม่สามารถรับงานได้",
               buttonLabel: "ปิด"
-            }).then(function () {  });
+            }).then(function () { });
           }
         }
       });
 
-    } 
-    else {
+    } else {
       modal.hide();
       ons.notification.alert({
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
@@ -476,4 +489,57 @@ function selectjob(orderid_p, idorder_p, invoice_p, code_p, program_p, p_place_p
             });
   }
 
+}
+
+function trans_driver_topoint(id) {
+  submitCheckIn('driver_topoint');
+}
+
+function trans_driver_pickup(id) {
+  submitCheckIn('driver_topoint');
+}
+
+function trans_driver_pickup(id) {
+  submitCheckIn('driver_topoint');
+}
+
+function submitCheckIn(type_step) {
+  var lat = $('#lat').val();
+  var lng = $('#lng').val();
+  var type_pay = $('#type_customer_pay').val();
+  var idorder = $('#idorder').val();
+//  var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi=" + idorder + "&type_pay=" + type_pay;
+  var url = "api/checkin_transfer?step=" + type_step+"&type_pay="+type_pay;
+  console.log(url);
+  var data = {idorder: idorder,
+    lat: lat,
+    lng: lng,
+    cost: $('#cost').val(),
+    s_cost: $('#s_cost').val(),
+    invoice: $('#invoice').val(),
+    driver_id: $('#driver_id_trans').val()}
+  
+  console.log();
+  console.log(data);
+  return false;
+  
+  $.ajax({
+    url: url,
+    dataType: 'json',
+    data: data,
+    type: 'post',
+    success: function (res) {
+      console.log(res);
+      if (res.api.status == "ok") {
+        if (res.api.data.status == "200") {
+//          $("#close_dialog_custom").click();
+//          afterAction(type_pay);
+        } else {
+//          swal("Error");
+        }
+      }
+      $('#btn_manage').click();
+      callApiLog();
+    }
+  });
 }

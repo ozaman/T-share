@@ -164,13 +164,13 @@ class Api extends CI_Controller {
   public function shop_history_fix() {
     $date = $_POST[date];
     $status = $_POST[status];
-    if($_POST[class_name]=="taxi"){
+    if ($_POST[class_name] == "taxi") {
       $sql_class = " and drivername = '".$_POST[driver]."' ";
     }
-    if($date!=""){
+    if ($date != "") {
       $sql_date = " and transfer_date = '".$date."' ";
     }
-    if($status!=""){
+    if ($status != "") {
       $sql_status = " and status = '".$status."' ";
     }$sql = "select * from order_booking where driver_complete = 1 ".$sql_date.$sql_status.$sql_class." order by id desc";
     $query = $this->db->query($sql);
@@ -178,43 +178,142 @@ class Api extends CI_Controller {
     foreach ($query->result() as $row) {
       $data[] = $row;
     }
-    if(count($data)>0){
+    if (count($data) > 0) {
       $return[data] = $data;
-    }else{
+    }
+    else {
       $return[data] = "";
     }
     $return[sql] = $sql;
     echo json_encode($return);
   }
-  
-  public function detect_driver_approve_transfer(){
-    $url = "http://www.welovetaxi.com:3000/recheckBooking";  
-	$curl_post_data = '{"idorder": '.$_POST[idorder].' }';                            
-	$ch = curl_init($url);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	$decode = 	json_decode($result);
+
+  public function detect_driver_approve_transfer() {
+    $url = "http://www.welovetaxi.com:3000/recheckBooking";
+    $curl_post_data = '{"idorder": '.$_POST[idorder].' }';
+    $ch = curl_init($url);
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$curl_post_data);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type:application/json'));
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $decode = json_decode($result);
 //	header('Content-Type: application/json');
-	echo json_encode($decode);
+    echo json_encode($decode);
 //    echo $decode;
   }
-  
-  public function getjob_booking_transfer(){
-    $url = "http://www.welovetaxi.com:3000/updateDriverlogs";                              
-	//create a new cURL resource
-	$ch = curl_init($url);
-	$curl_post_data3 = json_encode($_POST);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data3);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	$decode = 	json_decode($result);
+
+  public function getjob_booking_transfer() {
+    $url = "http://www.welovetaxi.com:3000/updateDriverlogs";
+    //create a new cURL resource
+    $ch = curl_init($url);
+    $curl_post_data3 = json_encode($_POST);
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$curl_post_data3);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type:application/json'));
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $decode = json_decode($result);
 //	header('Content-Type: application/json');
-	echo $result;
+    echo json_encode($decode);
   }
+
+  public function checkin_transfer() {
+    $typ_pay = $_GET[type_pay];
+    $step = $_GET[step];
+    if ($step == "driver_checkcar") {
+//	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
+      if ($typ_pay == 1) {
+        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+        $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+        $dv_dp = $dv_dp->row();
+
+        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+        $deposit_update = intval($dv_dp->balance) + intval($pay_driver);
+
+        $data[order_id] = $_POST[idorder];
+        $data[deposit_pay] = $pay_driver;
+        $data[balance_before] = $dv_dp->balance;
+        $data[status] = 1;
+        $data[post_date] = time();
+        $data[last_update] = time();
+        $data[type_pay] = 1;
+        $data[type_job] = "transfer";
+        $data[driver_id] = $_POST[driver_id];
+        $data[result] = $this->db->insert('history_pay_driver_deposit', $data);
+        $return[deposit] = $data;
+
+        $update[balance] = $deposit_update;
+        $update[last_update] = time();
+        $this->db->where('id', $dv_dp->id);
+        $update[result] = $this->db->update('deposit');
+        $update[id] = $dv_dp->id;
+        $return[update_balance] = $update;
+      }
+      else {
+
+        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
+//        $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+//        $arr[dv_dp] = $db->fetch($res[dv_dp]);
+        $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+        $dv_dp = $dv_dp->row();
+
+        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+        $deposit_update = intval($dv_dp->balance) - intval($dv_dp->s_cost);
+
+        $data[order_id] = $_POST[idorder];
+        $data[s_cost] = $_POST[s_cost];
+        $data[deposit_pay] = $pay_driver;
+        $data[balance_before] = $dv_dp->balance;
+        $data[status] = 1;
+        $data[post_date] = time();
+        $data[last_update] = time();
+        $data[type_pay] = 0;
+        $data[type_job] = "transfer";
+        $data[driver_id] = $_POST[driver_id];
+    //        $data[result] = $db->add_db("history_pay_driver_deposit",$data);
+        $data[result] = $this->db->insert('history_pay_driver_deposit', $data);
+        $return[deposit] = $data;
+
+        $update[balance] = $deposit_update;
+        $update[last_update] = time();
+//        $update[result] = $db->update_db("deposit",$update,"id = '".$dv_dp->id."' ");
+        $this->db->where('id', $dv_dp->id);
+        $update[result] = $this->db->update('deposit');
+        $update[id] = $dv_dp->id;
+        $return[update_balance] = $update;
+      }
+      /**
+       * 
+       * @var update ap_order status
+       * 
+       */
+      $up_order[status] = 1;
+      $db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
+      $up_order[result] = $db->update_db("ap_order",$up_order," 	invoice = '".$_POST[invoice]."' ");
+      $db->closedb();
+      $return[update_ap_order] = $up_order;
+    }
+    
+    $f_date = $step."_date";
+    $f_lat = $step."_lat";
+    $f_lng = $step."_lng";
+    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+    $url = "http://www.welovetaxi.com:3000/updateJobstatus";
+
+    $ch = curl_init($url);
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$curl_post_data2);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type:application/json'));
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $decode = json_decode($result);
+
+    $return[api] = $decode;
+    header('Content-Type: application/json');
+    echo json_encode($return);
+  }
+
 }
+
 ?>

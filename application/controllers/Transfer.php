@@ -10,7 +10,11 @@ class Transfer extends CI_Controller {
   }
 
   public function transfer_job() {
-    $this->load->view('page/transfer_view',$data);
+    $this->load->view('transfer/transfer_view',$data);
+  }
+  
+  public function sheet_handle() {
+    $this->load->view('transfer/sheet_handle',$data);
   }
 
   public function approve_job() {
