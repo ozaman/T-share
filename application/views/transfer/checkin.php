@@ -7,6 +7,10 @@ $title_pickup = "เช็คชื่อแขก";
 $btn_pickup_color = "background-color:#3b5998";
 $txt_wait_pickup = 'รอดำเนินการ';
 
+
+$title_checkcar = "งานสำเร็จ";
+$btn_checkcar_color = "background-color:#3b5998";
+$txt_wait_checkcar = 'รอดำเนินการ';
 ?>
 <div style="padding: 5px">
   
@@ -130,21 +134,21 @@ $txt_wait_pickup = 'รอดำเนินการ';
       <tbody>
         <tr>
           <td width="50" rowspan="2">
-            <div class="step-booking" id="number_driver_pickup">2</div>
+            <div class="step-booking" id="number_driver_pickup">3</div>
             <div style="position:absolute; margin-top:-40px; margin-left: -5px;">
               <img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pickup">
             </div>
           </td>
           <td colspan="2">
             <button id="btn_driver_pickup" onclick="trans_driver_pickup('<?=$_POST[id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pickup_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  
-                <span id="txt_btn_driver_pickup"><?=$title_pickup;?></span></span></button>
+                <span id="txt_btn_driver_pickup"><?=$title_checkcar;?></span></span></button>
           </td>
         </tr>
         <tr>
           <td style="height:30px;">
             <div id="status_driver_pickup">
               <div class="font-16">
-                <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_pickup;?></font></strong>
+                <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_checkcar;?></font></strong>
               </div>
             </div>
           </td>

@@ -499,7 +499,7 @@ function trans_driver_pickup(id) {
   submitCheckIn('driver_topoint');
 }
 
-function trans_driver_pickup(id) {
+function trans_driver_checkcar(id) {
   submitCheckIn('driver_topoint');
 }
 
