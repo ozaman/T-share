@@ -293,6 +293,8 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
 }
 
 function confirmGetJobTrans() {
+  document.getElementById('confirm_get_job-dialog').hide();
+  modal.show();
   var url_cja = "api/detect_driver_approve_transfer";
   /* check job approve */
   console.log(idorder);
@@ -323,11 +325,7 @@ function confirmGetJobTrans() {
         "outdate": outdate,
         "ondate": ondate
       };
-      var urltime = "main/get_timestamp";
       
-//      console.log(deposit_time_st);
-//      console.log(deposit_date_st);
-//      return;
       var url = "api/getjob_booking_transfer";
       var bank_account = "Goldenbeach Tour";
       var deposit_bank = "กสิกรไทย";
@@ -357,13 +355,14 @@ function confirmGetJobTrans() {
       $.ajax({
         url: url,
         data: data,
-        dataType: 'json',
+        dataType: 'text',
         type: 'post',
         success: function (res) {
           console.log(res);
+          return;
           if (res.status == "200") {
             if (s_status_pay == 0) { // Pay Cash
-              
+
               $.ajax({
                 url: "transfer/approve_job",
                 dataType: 'json',
@@ -371,6 +370,13 @@ function confirmGetJobTrans() {
                 type: 'post',
                 success: function (logdata) {
                   console.log(logdata);
+                  if (logdata.deposit.result == true) {
+                    $('#balance_txt_trans').text(logdata.deposit.balance);
+                    modal.hide();
+                    performClick('tab-trans_manage');
+                    callpop();
+                    
+                  }
                 }
               });
             } 
@@ -378,17 +384,19 @@ function confirmGetJobTrans() {
 
             }
           } else {
-
+            modal.hide();
             ons.notification.alert({
               message: 'กรุณาลองอีกครั้ง',
               title: "ไม่สามารถรับงานได้",
               buttonLabel: "ปิด"
-            }).then(function () { });
+            }).then(function () {  });
           }
         }
       });
 
-    } else {
+    } 
+    else {
+      modal.hide();
       ons.notification.alert({
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
         title: "ไม่สามารถรับงานได้",

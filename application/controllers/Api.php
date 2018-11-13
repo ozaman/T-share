@@ -214,8 +214,7 @@ class Api extends CI_Controller {
 	curl_close($ch);
 	$decode = 	json_decode($result);
 //	header('Content-Type: application/json');
-	echo json_encode($decode);	
+	echo $result;
   }
 }
-
 ?>
