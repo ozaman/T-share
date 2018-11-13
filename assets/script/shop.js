@@ -2642,9 +2642,25 @@ function _confirmSelectBankAfterChangePlan(id){
           }
         });
 }
+function selectprovince(id) {
+  // alert(id)
+  id_province = id;
+  var name = $('#item_province_' + id).data('name');
+  // console.log(name + " " + id);
+
+  // $('#car_type').val(id);
+  get_shop_all_company('PROVINCE');
+  
+  $('#txt_province').text(name);
+  callpop();
+  
+  // focusBoxCar2();
+}
 function selectcategory(id) {
   id_category = id;
   var name = $('#item_category_' + id).data('name');
+  get_shop_all_company('CATE');
+
   // console.log(name + " " + id);
 
   // $('#car_type').val(id);
@@ -2665,14 +2681,24 @@ function selecttype(id) {
   // focusBoxCar2();
 }
 function get_shop_all_company(opt) {
+  console.log(opt)
+  console.log(id_province)
   if (opt == 'ALL') {
-  var url = "shop/get_shop_all_company?opt="+opt;
+  var url = "shop/get_shop_all_company?opt="+opt+"&pv="+$('#place_province').val();
 
   }
-  else{
-  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type;
+    else if (opt == 'PROVINCE') {
+  var url = "shop/get_shop_all_company?opt="+opt+"&pv="+id_province;
+
+    }
+  else if(opt == 'TYPE'){
+  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type+"&pv="+id_province;
+  }
+  else if (opt == 'CATE') {
+  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&pv="+id_province;
 
   }
+
       $.post(url, function (res) {
         // console.log(res)
         // setTimeout(function () {

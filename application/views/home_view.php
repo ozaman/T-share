@@ -1710,7 +1710,7 @@ ons-list-item {
 <input type="hidden"  id="place_lng" value=""/>
 <input type="hidden" id="place_area" value=""/>
 <input type="hidden" id="place_province" value=""/>
-
+<input type="hidden" name="" id="province_text_input">
 <ons-modal direction="up" id="modal_photo">
   <div style="text-align: center">
     <a style=" position: absolute;top: 5px; right: 5px;" onclick="modal_photo.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 50px;">close</i></a>
@@ -1940,11 +1940,20 @@ window.fn.pushPage = function(page, anim) {
     }
     if(page.id=="shopcategory.html"){
      if(page.open=="shopcategory"){
-
+        if (id_province == undefined) {
+            ons.notification.alert({
+              message: 'จังหวัด',
+              title: "กรุณาเลือก",
+              buttonLabel: "ตกลง"
+          })
+            return false;
+        }
+            console.log('-----------------------------------')
+            console.log($('#place_province').val())
 
         var param = { data : 'res' };
         console.log(param);
-        $.post("shop/shopcategory",param,function(el){
+        $.post("shop/shopcategory?pv="+$('#place_province').val(),param,function(el){
             $('#body_category').html(el);
                         // $('#car_brand_in_gen').text($('#text_shopcategory').text());
                     });
@@ -1962,7 +1971,17 @@ window.fn.pushPage = function(page, anim) {
         var param = { data : 'res' };
         console.log(param);
         console.log(id_category)
-        $.post("shop/shoptype?main="+id_category,function(el){
+        $.post("shop/shoptype?pv="+$('#place_province').val()+"&main="+id_category,function(el){
+            $('#body_category').html(el);
+                        // $('#car_brand_in_gen').text($('#txt_shoptype').text());
+                    });
+    }
+    else if(page.open=="province"){
+        
+        var param = { data : 'res' };
+        console.log(param);
+        console.log(id_category)
+        $.post("shop/shopprovince",function(el){
             $('#body_category').html(el);
                         // $('#car_brand_in_gen').text($('#txt_shoptype').text());
                     });

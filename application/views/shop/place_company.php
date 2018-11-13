@@ -7,6 +7,21 @@
 
 <!-- </div>
 <div class="card"> -->
+    <ons-list-item class="input-items list-item  button button--outline" style="    margin-bottom: 10px;">
+            <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+                <span>จังหวัด </span>
+                <?php // print_r($_GET[pv_text]); ?>
+            </div>
+            <div class="" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'จังหวัด', 'open':'province'}, 'lift-ios')" id="car_brand_box" style="    background-image: none;
+    padding: 0px;
+    width: 100%;">
+                
+                <span class="brand-small list-item__thumbnail" id="img_car_brand_show" style="margin-right: 10px;display: none;"></span>
+                <span id="txt_province"><?=$_GET[pv_text];?></span>
+                <!-- <input type="hidden" name="shop_category" id="shop_category" value=""> -->
+                <!-- <input type="hidden" name="car_brand_txt" id="car_brand_txt_input" value=""> -->
+            </div>
+        </ons-list-item>
 <ons-list-item class="input-items list-item  button button--outline" style="    margin-bottom: 10px;">
             <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
                 <span>หมวดหมู่ </span>

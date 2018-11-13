@@ -355,6 +355,7 @@ class Shop extends CI_Controller {
       // header('Content-Type: application/json');
       $array_main = array();
       foreach ($PRODUCT as $row) {
+        //print_r($row->main);
         $array_main[] = $row->main;
      //  if (!in_array($row->main, $array_temp))
      // {
@@ -366,7 +367,7 @@ class Shop extends CI_Controller {
      // }
      // 
       }
-       // print_r(json_encode($array_main));
+       // print_r(json_encode($PRODUCT));
       foreach (array_unique($array_main) as $row) {
         $_where = array();
         $_where['id'] = $row; 
@@ -388,7 +389,7 @@ class Shop extends CI_Controller {
       $data = array();
       $arr_where = array();
       $arr_where[status] = 1;
-      $arr_where[sub] = $_GET[main];
+      $arr_where[main] = $_GET[main];
       $arr_select = array('*');
       $arr_order = array();
       $arr_order['id'] = 'ASC';
@@ -420,14 +421,66 @@ class Shop extends CI_Controller {
     // print_r(json_encode($array_main));
       $this->load->view('component/shop_type',$res);
     }
+
+    public function shopprovince() {
+
+
+      $data = array();
+      $arr_where = array();
+      $arr_where[status] = 1;
+      // $arr_where[province] = $_GET[pv];
+      $arr_select = array('*');
+      $arr_order = array();
+      $arr_order['id'] = 'ASC';
+      $PRODUCT = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT,$arr_where,$arr_select,$arr_order);
+    // $data['place_company'] = $this->Shop_model->place_company();
+      // header('Content-Type: application/json');
+      $array_main = array();
+      foreach ($PRODUCT as $row) {
+        $array_main[] = $row->province;
+        // print_r($row->province);
+     //  if (!in_array($row->main, $array_temp))
+     // {
+     //   $array_temp[] = $val;
+     // }
+     // else
+     // {
+     //   echo 'duplicate = ' . $val . '<br />';
+     // }
+     // 
+      }
+       // print_r(json_encode($array_main));
+      foreach (array_unique($array_main) as $row) {
+        $_where = array();
+        $_where['id'] = $row; 
+        $_select = array('*');
+        $data[] = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where);
+        // array_push($data , $re);
+      }
+    $res[PROVINCE] = $data;
+    // print_r(json_encode($array_main));
+      $this->load->view('component/shop_province',$res);
+    }
     public function get_shop_all_company(){
       $arr_where = array();
       $arr_select = array('*');
       $arr_where['status'] = 1;
-    if ($_GET[opt] != 'ALL') {
+      $arr_where['province'] = $_GET[pv];
+
+    if ($_GET[opt] == 'TYPE') {
       $arr_where['sub'] = $_GET[sub];
+      
+    }
+    else if ($_GET[opt] == 'PROVINCE') {
+     
+    }
+    else if ($_GET[opt == 'CATE']) {
       $arr_where['main'] = $_GET[main];
     }
+
+    
+
+    
    
     $arr_order = array();
     $arr_order['id'] = 'ASC';
