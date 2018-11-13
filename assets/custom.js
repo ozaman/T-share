@@ -1,4 +1,4 @@
-var id_category;
+var id_category,id_province;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	console.log(newURL);
@@ -425,6 +425,7 @@ function showPosition(position) {
        console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length - 2].address_components[0].long_name;
       $('#province_text').text(province);
+      
       $('#now_province').val(province);
       if (run_num_place == true) {
         updatePlaceNum(province);
@@ -446,10 +447,15 @@ function updatePlaceNum(province) {
     if (obj.length <= 0) {
       return;
     }
+    console.log('----------------------------------888-------------')
     var province = obj[0].id;
     var area = obj[0].area;
+    var provincename = obj[0].name_th;
+    console.log(provincename)
     $('#place_province').val(province);
     $('#place_area').val(area);
+    $('#province_text_input').val(provincename);
+    id_province = province;
     //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
     var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
     $.post(url2, function (data2) {
@@ -717,14 +723,15 @@ function sendShop2() {
       //   'id': 'place_company.html',
       //   'title': 'ส่งแขก'
       // }, 'slide-ios')
-      fn.pushPage({
-        'id': 'shopping.html',
-        'title': 'ส่งแขก',
-        'key': 'shop'
-      })
+      // fn.pushPage({
+      //   'id': 'shopping.html',
+      //   'title': 'ส่งแขก',
+      //   'key': 'shop'
+      // })
 
 
-      var url = "shop/place_company";
+      var url = "shop/place_company?pv_text="+$('#province_text_input').val();
+      // alert(url)
       $.post(url, function (res) {
         setTimeout(function () {
           // console.log(res)
@@ -812,7 +819,7 @@ function sendShop2() {
         'title': 'ส่งแขก',
         'key': 'shop'
       })
-      var url = "shop/place_company";
+      var url = "shop/place_company?pv_text="+$('#province_text_input').val();
       $.post(url, function (res) {
         // console.log(res)
         setTimeout(function () {

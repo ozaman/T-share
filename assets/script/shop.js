@@ -2642,6 +2642,16 @@ function _confirmSelectBankAfterChangePlan(id){
           }
         });
 }
+function selectprovince(id) {
+  id_province = id;
+  var name = $('#item_province_' + id).data('name');
+  // console.log(name + " " + id);
+
+  // $('#car_type').val(id);
+  $('#txt_province').text(name);
+  callpop();
+  // focusBoxCar2();
+}
 function selectcategory(id) {
   id_category = id;
   var name = $('#item_category_' + id).data('name');
@@ -2666,11 +2676,11 @@ function selecttype(id) {
 }
 function get_shop_all_company(opt) {
   if (opt == 'ALL') {
-  var url = "shop/get_shop_all_company?opt="+opt;
+  var url = "shop/get_shop_all_company?opt="+opt+"&pv="+$('#place_province').val();
 
   }
   else{
-  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type;
+  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type+"&pv="+id_province;
 
   }
       $.post(url, function (res) {

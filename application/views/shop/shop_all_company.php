@@ -19,6 +19,8 @@ $weekdays[6] = "Sat";
         $weekdays2[6] = "วันเสาร์";
 
 foreach ($place_company as $data){
+  // print_r($data->main);
+  // print_r($data->sub);
     $_where = array();
 $_where['id'] = $data->province; 
 $_select = array('*');
@@ -31,7 +33,11 @@ $arr_where['product_day'] = $weekdays[date('w')];
 $arr_select = array('finish_h','finish_m','start_h','start_m',);
 
 $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_where,$arr_select,'');
-// print_r(json_encode($datatime));
+// print_r(json_encode($data));
+ $_where = array();
+$_where['id'] = $data->sub; 
+$_select = array('*');
+$SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where);
     
     ?>
     <div>
@@ -47,7 +53,7 @@ $datatime = $this->Main_model->fetch_data('','',TBL_SHOPPING_OPEN_TIME,$arr_wher
             <td>
               <div class="element_to_find">
                 <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
-                <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span><!-- <span class="pull-right" onclick="fun_imageslider('<?=$data->id;?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span> --><br>
+                <span class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?> </span><!-- <span class="pull-right" onclick="fun_imageslider('<?=$data->id;?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span> --><br>
                 <span class="font-17"  style="color:#333333"><b class="txt_topic_company " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </b></span>
 
                 <input type="hidden" value=" " id="1">
