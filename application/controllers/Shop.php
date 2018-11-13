@@ -467,10 +467,20 @@ class Shop extends CI_Controller {
       $arr_where['status'] = 1;
       $arr_where['province'] = $_GET[pv];
 
-    if ($_GET[opt] != 'ALL') {
+    if ($_GET[opt] == 'TYPE') {
       $arr_where['sub'] = $_GET[sub];
+      
+    }
+    else if ($_GET[opt] == 'PROVINCE') {
+     
+    }
+    else if ($_GET[opt == 'CATE']) {
       $arr_where['main'] = $_GET[main];
     }
+
+    
+
+    
    
     $arr_order = array();
     $arr_order['id'] = 'ASC';
