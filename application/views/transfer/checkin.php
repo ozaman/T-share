@@ -15,7 +15,7 @@ $txt_wait_checkcar = 'รอดำเนินการ';
 <div style="padding: 5px">
   
   <ons-list-header class="list-header"> ข้อมูลการเช็คอิน</ons-list-header>
-  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;">
+  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;" id="step_trans_topoint">
     <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_topoint">
       <tbody>
         <tr>
@@ -72,7 +72,7 @@ $txt_wait_checkcar = 'รอดำเนินการ';
   </div>
   
   
-  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;">
+  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;display: none;" id="step_trans_pickup">
     <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_pickup">
       <tbody>
         <tr>
@@ -83,7 +83,7 @@ $txt_wait_checkcar = 'รอดำเนินการ';
             </div>
           </td>
           <td colspan="2">
-            <button id="btn_driver_pickup" onclick="trans_driver_pickup('<?=$_POST[id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pickup_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  
+            <button id="btn_driver_pickup" onclick="trans_driver_pickup('<?=$_POST[id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pickup_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF159-5" style="width:10px;"></i>  
                 <span id="txt_btn_driver_pickup"><?=$title_pickup;?></span></span></button>
           </td>
         </tr>
@@ -129,39 +129,39 @@ $txt_wait_checkcar = 'รอดำเนินการ';
   </div>
   
   
-  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;">
-    <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_pickup">
+  <div class="div-all-checkin" style="margin-top: 15px;margin-bottom :15px;display: none;" id="step_trans_complete">
+    <table width="100%" border="0" cellspacing="2" cellpadding="0" class=" border-alert" id="box_driver_complete">
       <tbody>
         <tr>
           <td width="50" rowspan="2">
-            <div class="step-booking" id="number_driver_pickup">3</div>
+            <div class="step-booking" id="number_driver_complete">3</div>
             <div style="position:absolute; margin-top:-40px; margin-left: -5px;">
-              <img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_pickup">
+              <img src="<?=base_url();?>assets/images/no.png" align="absmiddle" id="iconchk_driver_complete">
             </div>
           </td>
           <td colspan="2">
-            <button id="btn_driver_pickup" onclick="trans_driver_pickup('<?=$_POST[id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pickup_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  
-                <span id="txt_btn_driver_pickup"><?=$title_checkcar;?></span></span></button>
+            <button id="btn_driver_complete" onclick="trans_driver_complete('<?=$_POST[id];?>')" type="button" class="btn  btn-info " style="width:100%;text-align:left;padding:5px; <?=$btn_pickup_color;?>;  border-radius: 20px; border:none;color: #fff; "><span class="font-20 text-cap"><i class="icon-new-uniF12D-1" style="width:10px;"></i>  
+                <span id="txt_btn_driver_complete"><?=$title_checkcar;?></span></span></button>
           </td>
         </tr>
         <tr>
           <td style="height:30px;">
-            <div id="status_driver_pickup">
+            <div id="status_driver_complete">
               <div class="font-16">
                 <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_checkcar;?></font></strong>
               </div>
             </div>
           </td>
-          <td width="30" id="pm_driver_pickup" style="display: none;">
+          <td width="30" id="pm_driver_complete" style="display: none;">
             <table width="100%">
               <tbody>
                 <tr>
                   <?php if ($_COOKIE[detect_userclass] == "lab") {?>
                     <td>
-                      <i id="driver_pickup_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg', '<?=$name_dv;?>');">account_circle</i>
+                      <i id="driver_complete_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg', '<?=$name_dv;?>');">account_circle</i>
                     </td>
                     <td>
-                      <a href="tel:<?=$_POST[phone];?>"><i id="driver_pickup_pf" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
+                      <a href="tel:<?=$_POST[phone];?>"><i id="driver_complete_pf" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
                     </td>
                   <?php }
                   ?>
@@ -181,7 +181,7 @@ $txt_wait_checkcar = 'รอดำเนินการ';
         </tr>
       </tbody>
     </table>
-    <input type="hidden" value="<?=$_POST[driver_pickup];?>" id="driver_pickup_check_click">
+    <input type="hidden" value="<?=$_POST[driver_checkcar];?>" id="driver_complete_check_click">
     <input type="hidden" id="check_code" value="<?=$_POST[id];?>">
   </div>
 </div>

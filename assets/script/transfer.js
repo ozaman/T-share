@@ -7,27 +7,13 @@ var orderid, idorder, invoice, code, program, p_place, to_place, agent, airout_t
 function callApiManage() {
 
   var date = $('#date_report').val();
-
-//    	console.log(date+" "+driver);
-
-
   var url_action = "api/transfer_booking";
   var data_param = {driver: driver, date: date, driver_checkcar: 0};
-//  console.log(data_param);
-//		return;
   $.post(url_action, data_param, function (data, textStatus, jQxhr) {
-
-//			var data = JSON.parse(data);
     console.log(data)
-
     var m = [];
     if (data.status == "200") {
       manageObj = data.data.result;
-//      console.log("manage : " + manageObj.length)
-//		   			if(manageObj.length>0){
-//      $('#number_manage').text(manageObj.length);
-
-//					}
       eachObjManage();
     }
   }, 'json')
@@ -129,6 +115,7 @@ function openSheetHandleTransfer(index) {
   var url = "transfer/sheet_handle";
   $.post(url, post, function (data) {
     $('#body_popup1').html(data);
+    actionProgress(post);
   });
 
 }
@@ -301,6 +288,7 @@ function openDetailBooking(index, s_pay, s_cost, cost) {
     console.log(post);
     $.post(url, post, function (data) {
       $('#body_transfer_detail').html(data);
+
     });
   }
 }
@@ -496,11 +484,11 @@ function trans_driver_topoint(id) {
 }
 
 function trans_driver_pickup(id) {
-  submitCheckIn('driver_topoint');
+  submitCheckIn('driver_pickup');
 }
 
-function trans_driver_checkcar(id) {
-  submitCheckIn('driver_topoint');
+function trans_driver_complete(id) {
+  submitCheckIn('driver_complete');
 }
 
 function submitCheckIn(type_step) {
@@ -509,8 +497,11 @@ function submitCheckIn(type_step) {
   var type_pay = $('#type_customer_pay').val();
   var idorder = $('#idorder').val();
 //  var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi=" + idorder + "&type_pay=" + type_pay;
-  var url = "api/checkin_transfer?step=" + type_step+"&type_pay="+type_pay;
-  console.log(url);
+  var url = "api/checkin_transfer?step=" + type_step + "&type_pay=" + type_pay;
+  if(type_step=="driver_complete"){
+    var url = "api/checkin_transfer?step="+"driver_checkcar"+"&type_pay=" + type_pay;
+  }
+//  console.log(url);
   var data = {idorder: idorder,
     lat: lat,
     lng: lng,
@@ -518,11 +509,11 @@ function submitCheckIn(type_step) {
     s_cost: $('#s_cost').val(),
     invoice: $('#invoice').val(),
     driver_id: $('#driver_id_trans').val()}
-  
-  console.log();
+
+  console.log(url);
   console.log(data);
-  return false;
-  
+//  return false;
+
   $.ajax({
     url: url,
     dataType: 'json',
@@ -532,14 +523,63 @@ function submitCheckIn(type_step) {
       console.log(res);
       if (res.api.status == "ok") {
         if (res.api.data.status == "200") {
+          $.post('main/get_timestamp', function (res) {
+            changeHtmlTrans(type_step, idorder, timestampToDate(res, "time"));
+            callApiManage();
+            if(type_step=="driver_complete"){
+//              if()
+            }
+          });
 //          $("#close_dialog_custom").click();
 //          afterAction(type_pay);
         } else {
 //          swal("Error");
         }
       }
-      $('#btn_manage').click();
-      callApiLog();
+//      $('#btn_manage').click();
+//      callApiLog();
     }
   });
+}
+
+
+/******* <!-------- Change html CheckIn ------------> *******/
+
+function changeHtmlTrans(type, id, st) {
+//	new Date(unixtimestamp*1000);
+  $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span>  เวลา ' + st + '</span></div>');
+  $('#iconchk_' + type).attr("src", "assets/images/yes.png");
+  $("#number_" + type).removeClass('step-booking');
+  $("#number_" + type).addClass('step-booking-active');
+
+  $("#btn_" + type).css('background-color', '#666666');
+  $('#pm_' + type).show();
+
+  if (type == "driver_topoint") {
+
+    $('#step_trans_pickup').show();
+
+  } else if (type == "driver_pickup") {
+    $('#step_trans_complete').show();
+
+  } else if (type == "guest_register") {
+
+  }
+  $('#' + type + '_check_click').val(1);
+  $("#box_" + type).removeClass('border-alert');
+}
+
+function actionProgress(obj) {
+  if (obj.driver_topoint == 1) {
+    console.log("driver_topoint");
+    changeHtmlTrans("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+  }
+  if (obj.driver_pickup == 1) {
+    console.log("driver_pickup");
+    changeHtmlTrans("driver_pickup", obj.id, timestampToDate(obj.driver_pickup_date, "time"));
+  }
+//  if (obj.driver_complete == 1) {
+//    console.log("driver_complete");
+//    changeHtmlTrans("driver_complete", obj.id, timestampToDate(obj.driver_complete_date, "time"));
+//  }
 }

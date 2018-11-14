@@ -219,12 +219,14 @@ class Api extends CI_Controller {
   }
 
   public function checkin_transfer() {
+//    
+//    echo json_encode($_GET);
+//    exit();
     $typ_pay = $_GET[type_pay];
     $step = $_GET[step];
     if ($step == "driver_checkcar") {
 //	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
       if ($typ_pay == 1) {
-        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
         $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
         $dv_dp = $dv_dp->row();
 
@@ -252,9 +254,6 @@ class Api extends CI_Controller {
       }
       else {
 
-        $db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
-//        $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
-//        $arr[dv_dp] = $db->fetch($res[dv_dp]);
         $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
         $dv_dp = $dv_dp->row();
 
@@ -271,13 +270,11 @@ class Api extends CI_Controller {
         $data[type_pay] = 0;
         $data[type_job] = "transfer";
         $data[driver_id] = $_POST[driver_id];
-    //        $data[result] = $db->add_db("history_pay_driver_deposit",$data);
         $data[result] = $this->db->insert('history_pay_driver_deposit', $data);
         $return[deposit] = $data;
 
         $update[balance] = $deposit_update;
         $update[last_update] = time();
-//        $update[result] = $db->update_db("deposit",$update,"id = '".$dv_dp->id."' ");
         $this->db->where('id', $dv_dp->id);
         $update[result] = $this->db->update('deposit');
         $update[id] = $dv_dp->id;
@@ -289,9 +286,8 @@ class Api extends CI_Controller {
        * 
        */
       $up_order[status] = 1;
-      $db->connectdb(DB_NAME_BOOK,DB_USERNAME,DB_PASSWORD);
-      $up_order[result] = $db->update_db("ap_order",$up_order," 	invoice = '".$_POST[invoice]."' ");
-      $db->closedb();
+      $this->db->where('invoice', '"'.$_POST[invoice].'"');
+      $up_order[result] = $this->db->update('ap_order');
       $return[update_ap_order] = $up_order;
     }
     
