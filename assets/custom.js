@@ -1827,7 +1827,16 @@ function taxiList() {
 }
 
 function fun_imageslider(id) {
+  $.ajax({
+      url: "",
+      type: 'HEAD',
+      error: function () {
 
+      },
+      success: function () {
+      }
+  });
+    
   modal.show();
   fn.pushPage({
     'id': 'imageslider.html',
