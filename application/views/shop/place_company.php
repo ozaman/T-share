@@ -1,14 +1,14 @@
 
 <div class="card">
 
-  <ons-search-input placeholder="ค้นหา" style="width: 100%; margin-bottom: 10px;" onkeyup="searchTopiccompany(this.value);">
-    <input type="search" class="search-input" placeholder="ค้นหา" id="search_info_topic">
+  <ons-search-input placeholder="ค้นหา ชื่อร้านค้า" style="width: 100%; margin-bottom: 10px;" onkeyup="searchTopiccompany(this.value);">
+    <input type="search" class="search-input font-17" placeholder="ค้นหา" id="search_info_topic" style="height: 35px;">
   </ons-search-input>
 
   <!-- </div>
   <div class="card"> -->
   <ons-list-item class="input-items list-item  button button--outline" 
-                 style="margin-bottom: 10px;" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'จังหวัด', 'open': 'province'}, 'lift-ios');">
+                 style="margin-bottom: 10px;" onclick="shop_filter_pv();">
     <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
       <span>จังหวัด </span>
       <?php // print_r($_GET[pv_text]); ?>
@@ -25,7 +25,7 @@
   </ons-list-item>
   
   <ons-list-item class="input-items list-item  button button--outline" 
-                 style="    margin-bottom: 10px;" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open': 'shopcategory'}, 'lift-ios')">
+                 style="    margin-bottom: 10px;" onclick="shop_filter_main();">
     <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
       <span>หมวดหมู่ </span>
     </div>
@@ -41,7 +41,8 @@
   </ons-list-item>
   <!-- </div>
   <div class="card"> -->
-  <ons-list-item class="input-items list-item  button button--outline" onclick="fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open': 'shoptype'}, 'lift-ios')">
+  <ons-list-item class="input-items list-item  button button--outline" 
+                 onclick="shop_filter_sub();">
     <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
       <span>ประเภท </span>
     </div>

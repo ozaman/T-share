@@ -143,7 +143,7 @@ $SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where);
           </ons-button>
             </td>
             <td width="50%">
-                        <ons-button modifier="outline"  onclick="sendShops('<?=$data->id;?>');" class="button-margin button button--outline button--large" style="padding: 15px;border: 1px solid #0076ff;
+                        <ons-button modifier="outline"  onclick="checkPricePlan('<?=$data->id;?>');" class="button-margin button button--outline button--large" style="padding: 15px;border: 1px solid #0076ff;
                       border-radius: 5px;
                       line-height: 0; ">
             <span class="font-17 text-cap">ส่งแขก</span> </ons-button>

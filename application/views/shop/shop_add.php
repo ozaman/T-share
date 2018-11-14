@@ -56,18 +56,18 @@ $query_dv = $this->db->query($sql_dv);
 $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
-
 $sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]." AND price_plan > 0";
-$query_place = $this->db->query($sql_place);
+$query_place = $this->db->query($sql_place); 
 $data_place = $query_place->row();
 
-$sql_pv = "SELECT name FROM web_province  WHERE id=".$data_place->province." ";
+$sql_pv = "SELECT name FROM web_province  WHERE id= ".$data_place->province." ";
 $query_pv = $this->db->query($sql_pv);
 $data_pv = $query_pv->row();
 
 $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->main";
 $shopmain = $this->db->query($sql_shopmain);
 $data_shopmain = $shopmain->row();
+
 ?>
 
 <div style="height: 100%;">

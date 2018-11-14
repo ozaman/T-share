@@ -686,7 +686,7 @@ ons-list-item {
                         <input class="ap-date" type="date" id="date_shop_wait" name="date_shop_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
                     </div>
                     <div class="right list-item__right" style="padding: 5px;" >
-                      <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
+                      <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ทั้งหมด</ons-button>
                   </div>
               </ons-list-item>
               <input type="hidden" value="0" id="cehck_filter_date" />
@@ -715,11 +715,13 @@ ons-list-item {
             </ons-page>
 
             <template id="shop_add.html">
-                <ons-page id="shop_add">
-                    <div>
+                <ons-page >
+                    <div id="shop_add">
                         <!-- <?php //include("application/views/shop/shop_add.php"); ?> -->
                     </div>
+                  <div id="shop_filter" style="display:none;"> </div>
                 </ons-page>
+                
             </template>
 
             <template id="shop_manage.html">

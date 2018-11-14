@@ -2657,10 +2657,11 @@ function selectprovince(id) {
   // focusBoxCar2();
 }
 function selectcategory(id) {
+  $('#txt_shoptype').text('เลือก');
   id_category = id;
   var name = $('#item_category_' + id).data('name');
   get_shop_all_company('CATE');
-
+  
   // console.log(name + " " + id);
 
   // $('#car_type').val(id);
@@ -2727,4 +2728,16 @@ function searchTopiccompany(txt_ip){
             $('.shop_company_box_'+row_id).hide();
           }
     });
+}
+
+function shop_filter_pv(){
+  fn.pushPage({'id': 'shopcategory.html', 'title': 'จังหวัด', 'open': 'province'}, 'lift-ios');
+}
+
+function shop_filter_main(){
+  fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open': 'shopcategory'}, 'lift-ios');
+}
+
+function shop_filter_sub(){
+  fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open': 'shoptype'}, 'lift-ios')
 }

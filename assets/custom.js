@@ -1,4 +1,4 @@
-var id_category,id_province;
+var id_category, id_province;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	console.log(newURL);
@@ -425,7 +425,7 @@ function showPosition(position) {
        console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length - 2].address_components[0].long_name;
       $('#province_text').text(province);
-      
+
       $('#now_province').val(province);
       if (run_num_place == true) {
         updatePlaceNum(province);
@@ -585,6 +585,9 @@ function hideRes(id) {
 }
 /*************************** Menu function *********************************/
 function selesecompany() {
+  $('#shop_add').hide();
+  $('#shop_filter').show();
+  return;
   modal.show();
   // fn.pushPage({
   //   'id': 'place_company.html',
@@ -598,6 +601,27 @@ function selesecompany() {
     modal.hide();
   });
 }
+
+function checkPricePlan(id) {
+  $.ajax({
+    url: "shop/get_data_product?id=" + id,
+    dataType: 'json',
+    type: 'post',
+    success: function (value) {
+      console.log(value);
+      if (value.price_plan == "") {
+        ons.notification.alert({message: 'สถานที่นี้ยังไม่มีค่าตอบแทน โปรดเลือกสถานที่อื่น', title: "ขออภัย", buttonLabel: "ปิด"});
+        modal.hide();
+        return false;
+      } else {
+        sendShops(id);
+        $('#shop_add').show();
+        $('#shop_filter').hide();
+      }
+    }
+  });
+}
+
 function sendShops(company) {
   modal.show();
   // fn.pushPage({
@@ -730,7 +754,7 @@ function sendShop2() {
       // })
 
 
-      var url = "shop/place_company?pv_text="+$('#province_text_input').val();
+      var url = "shop/place_company?pv_text=" + $('#province_text_input').val();
       // alert(url)
       $.post(url, function (res) {
         setTimeout(function () {
@@ -808,7 +832,8 @@ function sendShop2() {
 
 
 
-    } else {
+    } 
+    else {
       // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
@@ -819,12 +844,14 @@ function sendShop2() {
         'title': 'ส่งแขก',
         'key': 'shop'
       })
-      var url = "shop/place_company?pv_text="+$('#province_text_input').val();
+      var url = "shop/place_company?pv_text=" + $('#province_text_input').val();
       $.post(url, function (res) {
         // console.log(res)
         setTimeout(function () {
 
-          $('#shop_add').html(res);
+          $('#shop_filter').html(res);
+          $('#shop_filter').show();
+          $('#shop_add').hide();
           get_shop_all_company('ALL')
         }, 1000);
 
@@ -888,31 +915,30 @@ function profileInfo(animate) {
 function sendTransfer() {
 
   console.log(detect_user)
-  if(detect_user == 153 || detect_user == 164 || detect_user == 129 || detect_user == 492){
+  if (detect_user == 153 || detect_user == 164 || detect_user == 129 || detect_user == 492) {
 
-     fn.pushPage({
-    'id': 'transfer.html',
-    'title': 'ให้บริการรถ',
-    'key': 'transfer'
-  })
-  var url = "page/transfer";
-  $('#check_open_worktbooking').val(1);
-  $.post(url, function (html) {
-    $('#transfer_job').html(html);
-  });
-    
-  }
-  else{
+    fn.pushPage({
+      'id': 'transfer.html',
+      'title': 'ให้บริการรถ',
+      'key': 'transfer'
+    })
+    var url = "page/transfer";
+    $('#check_open_worktbooking').val(1);
+    $.post(url, function (html) {
+      $('#transfer_job').html(html);
+    });
+
+  } else {
     ons.notification.alert({
       message: 'ยังไม่เปิดให้บริการ จะเปิดบริการในวันที่ 1 ธันวาคมนี้',
       title: "ขอภัย",
       buttonLabel: "ตกลง"
     })
-    .then(function () {});
+            .then(function () {});
     return false;
   }
-  
- 
+
+
 }
 
 
