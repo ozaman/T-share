@@ -1,7 +1,7 @@
 
 <div class="card">
 
-  <ons-search-input placeholder="ค้นหา ชื่อร้านค้า" style="width: 100%; margin-bottom: 10px;" onkeyup="searchTopiccompany(this.value);">
+  <ons-search-input placeholder="ค้นหาจากชื่อ" style="width: 100%; margin-bottom: 10px;" onkeyup="searchTopiccompany(this.value);">
     <input type="search" class="search-input font-17" placeholder="ค้นหา" id="search_info_topic" style="height: 35px;">
   </ons-search-input>
 

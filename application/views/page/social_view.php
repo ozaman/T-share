@@ -25,6 +25,7 @@ if ($_GET[type] == "phone") {
     while($arr[contact] = $db->fetch($res[contact])){ */ 
     $query = $this->db->query("SELECT id,phone,name,usertype FROM shopping_contact  WHERE product_id='".$_GET[shop_id]."' and type='phone' and status=1");
     foreach ($query->result() as $row){
+//      echo $row->id;
     ?>
     <a  href="tel://<?=$row->phone;?>"  id="tel"   style=" font-size:16px; margin-left:0px; padding:0px;   text-transform:uppercase; color:#000000; text-decoration:none;">
       <div style="padding:5px; margin-top:10px; " class="div-all-zello"  >

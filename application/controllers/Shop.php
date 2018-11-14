@@ -494,6 +494,18 @@ class Shop extends CI_Controller {
     $row = $query->row();
     echo json_encode($row);
   }
+  
+  public function count_place_document_file() {
+    $query = $this->db->query("select id from place_document_file where product_id = ".$_GET[id]);
+//    $row = $query->row();
+//    $re[num] = $query->num_rows();
+    echo $query->num_rows();
+  }
+  
+  public function count_phone_place() {
+    $query = $this->db->query("SELECT id FROM shopping_contact  WHERE product_id ='".$_GET[id]."' and type='phone' and status=1");
+    echo json_encode($query->num_rows());
+  }
 
 }
 

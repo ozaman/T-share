@@ -1828,29 +1828,55 @@ function taxiList() {
 
 function fun_imageslider(id) {
   $.ajax({
-      url: "",
-      type: 'HEAD',
-      error: function () {
+    url: "shop/count_place_document_file?id=" + id,
+    type: "json",
+    success: function (ccc) {
+      console.log(ccc);
+      if (ccc.num <= 0) {
+        ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
+        return;
+      } else {
+        modal.show();
+        fn.pushPage({
+          'id': 'imageslider.html',
+          'title': 'โบรชัวร์'
+        }, 'lift-ios');
+        //  $('#body_popup1').html(progress_circle);
 
-      },
-      success: function () {
+        $.post("shop/imageslider?shop_id=" + id, function (ele) {
+          modal.hide();
+          $('#boby_imageslider').html(ele);
+
+
+          //        console.log(array_rooms);
+        });
       }
+    }
   });
+$.post("shop/count_place_document_file?id=" + id, function (num) {
+         console.log(num);
+         if (num <= 0) {
+        ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
+        return;
+      } else {
+        modal.show();
+        fn.pushPage({
+          'id': 'imageslider.html',
+          'title': 'โบรชัวร์'
+        }, 'lift-ios');
+        //  $('#body_popup1').html(progress_circle);
+
+        $.post("shop/imageslider?shop_id=" + id, function (ele) {
+          modal.hide();
+          $('#boby_imageslider').html(ele);
+
+
+          //        console.log(array_rooms);
+        });
+      }
+});
     
-  modal.show();
-  fn.pushPage({
-    'id': 'imageslider.html',
-    'title': 'โบรชัวร์'
-  }, 'lift-ios');
-  //  $('#body_popup1').html(progress_circle);
-
-  $.post("shop/imageslider?shop_id=" + id, function (ele) {
-    modal.hide();
-    $('#boby_imageslider').html(ele);
-
-
-    //        console.log(array_rooms);
-  });
+  
 }
 
 var prev = function () {
