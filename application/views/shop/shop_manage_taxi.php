@@ -99,7 +99,7 @@ foreach ($_POST[data] as $key => $val) {
                   <tr>
                     <td colspan="2">
                       <div class="element_to_find" align="center" style="margin-top: 10px; margin-bottom: 5px;">
-                        <span class="font-17" style="color:#333333"><span class="font-17 " data-role="1"><?=$res_ps->topic_th;?></span></span>
+                        <strong class="font-17 " style="color:#333333;"><?=$res_ps->topic_th;?></strong>
                         <input type="hidden" value=" " id="1">
                       </div>
                     </td>
@@ -158,10 +158,21 @@ foreach ($_POST[data] as $key => $val) {
 <!--        <tr>
           <td width="70%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
         </tr>-->
-        <!----------------------------------------------------------------------------------------------------------------------------->
         <tr>
-          <td colspan="2">
-            <?php
+          <td>
+            <div class="font-17">
+              จำนวน : 
+              <?php if ($val[adult] > 0) {?>
+                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
+              <?php }?>
+              <?php if ($val[child] > 0) {?>
+                เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
+              <?php }
+              ?>
+            </div>
+          </td>
+        </tr>
+        <?php
             $data = $this->Main_model->rowdata(TBL_ORDER_BOOKING,array('id' => $val[id]),array('*'));
 
             $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$data->plan_id."' ");
@@ -220,6 +231,24 @@ foreach ($_POST[data] as $key => $val) {
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
             ?>
+        <tr>
+            <td colspan="3">
+              <table style="margin-left: -2px;">
+                <tr>
+                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                  <td style="padding: 0;">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  </td>
+                  <td style="padding: 0;">&nbsp;</td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        <!----------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+          <td colspan="2">
+            
             <div style="padding: 0px 0px;">
               <table width="100%" class="none-pd">
                 <tr>
@@ -290,34 +319,6 @@ foreach ($_POST[data] as $key => $val) {
           </td>
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
-        <tr>
-            <td colspan="3">
-              <table style="margin-left: -2px;">
-                <tr>
-                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                  <td style="padding: 0;">
-                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                  </td>
-                  <td style="padding: 0;">&nbsp;</td>
-                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        <tr>
-          <td>
-            <div class="font-17">
-              จำนวน : 
-              <?php if ($val[adult] > 0) {?>
-                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
-              <?php }?>
-              <?php if ($val[child] > 0) {?>
-                เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
-              <?php }
-              ?>
-            </div>
-          </td>
-        </tr>
         <tr>
           <td colspan="2">
             <span class="font-17" >เลขจอง : <?=$val[invoice];?></span>
