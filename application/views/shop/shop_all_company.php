@@ -88,7 +88,7 @@ foreach ($place_company as $data) {
             <span class="font-17" style="color: #2b2828;">วันนี้  
               <span id="date_open"><?=$weekdays2[$i_d_next];?></span> 
               <span id="time_open" style="color: #24b968;">เวลาเปิด <?=$datatime[0]->start_h;?>:<?=$datatime[0]->start_m;?></span>
-              <span id="time_close" style="color: #ca1a1a;">เวลาปิด <?=$datatime[0]->finish_h;?>:<?=$datatime[0]->finish_h;?></span> 
+              <span id="time_close" style="color: #ca1a1a;">เวลาปิด <?=$datatime[0]->finish_h;?>:<?=$datatime[0]->finish_m;?></span> 
             </span>
 
 
