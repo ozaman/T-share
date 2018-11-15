@@ -1,4 +1,5 @@
 <?php
+print_r(json_encode($place_company));
 $i_d_next = date('w');
 $weekdays = Array();
 $weekdays[0] = "Sun";
@@ -18,8 +19,8 @@ $weekdays2[5] = "วันศุกร์";
 $weekdays2[6] = "วันเสาร์";
 
 foreach ($place_company as $data) {
-  // print_r($data->main);
-  // print_r($data->sub);
+  print_r($data->main);
+  print_r($data->sub);
   $_where = array();
   $_where['id'] = $data->province;
   $_select = array('*');
@@ -74,7 +75,7 @@ foreach ($place_company as $data) {
             <div class="element_to_find" align="center" style="margin-top: 10px;">
               <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
 
-              <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
+              <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
 
               <input type="hidden" value=" " id="1">
 
