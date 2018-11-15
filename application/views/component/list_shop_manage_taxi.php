@@ -89,7 +89,7 @@ $val = $_POST[data];
                   <tr>
                     <td colspan="2">
                       <div class="element_to_find" align="center" style="margin-top: 10px; margin-bottom: 5px;">
-                        <span class="font-17" style="color:#333333"><span class="font-17 " data-role="1"><?=$res_ps->topic_th;?></span></span>
+                        <strong class="font-17 " style="color:#333333;"><?=$res_ps->topic_th;?></strong>
                         <input type="hidden" value=" " id="1">
                       </div>
                     </td>
@@ -145,29 +145,24 @@ $val = $_POST[data];
             </table>
           </td>
         </tr>
-        <tr>
+<!--        <tr>
           <td width="70%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
-          <td width="30%" align="center" rowspan="1">
-            <?php
-            if ($val[lab_approve_job] == 1) {
-              $hide_btn_photo = "";
-              $sql_l = "SELECT username,name,nickname FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
-              $query_l = $this->db->query($sql_l);
-              $res_l = $query_l->row();
-            }
-            else {
-              $hide_btn_photo = "display:none;";
-            }
-            $path_img = "../data/pic/driver/small/".$res_l->username.".jpg?v=".time();
-            ?>
-            <i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('<?=$path_img;?>', '<?=$res_l->nickname;?>');" >account_circle</i>
-
+        </tr>-->
+        <tr>
+          <td>
+            <div class="font-17">
+              จำนวน : 
+              <?php if ($val[adult] > 0) {?>
+                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
+              <?php }?>
+              <?php if ($val[child] > 0) {?>
+                เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
+              <?php }
+              ?>
+            </div>
           </td>
         </tr>
-        <!----------------------------------------------------------------------------------------------------------------------------->
-        <tr>
-          <td colspan="2">
-            <?php
+        <?php
             $data = $this->Main_model->rowdata(TBL_ORDER_BOOKING,array('id' => $val[id]),array('*'));
 
             $query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$data->plan_id."' ");
@@ -226,10 +221,44 @@ $val = $_POST[data];
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
             ?>
+        <tr>
+            <td colspan="3">
+              <table style="margin-left: -2px;">
+                <tr>
+                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                  <td style="padding: 0;">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  </td>
+                  <td style="padding: 0;">&nbsp;</td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        <!----------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+          <td colspan="2">
+            
             <div style="padding: 0px 0px;">
               <table width="100%" class="none-pd">
                 <tr>
-                  <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
+                  <td colspan="2"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
+                  <td width="30%" align="right" rowspan="1">
+            <?php
+            if ($val[lab_approve_job] == 1) {
+              $hide_btn_photo = "";
+              $sql_l = "SELECT username,name,nickname FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
+              $query_l = $this->db->query($sql_l);
+              $res_l = $query_l->row();
+            }
+            else {
+              $hide_btn_photo = "display:none;";
+            }
+            $path_img = "../data/pic/driver/small/".$res_l->username.".jpg?v=".time();
+            ?>
+            <i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('<?=$path_img;?>', '<?=$res_l->nickname;?>');" >account_circle</i>
+
+          </td>
                 </tr>
                 
                 <tr style="<?=$display_park;?>">
@@ -280,34 +309,6 @@ $val = $_POST[data];
           </td>
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
-        <tr>
-            <td colspan="3">
-              <table style="margin-left: -2px;">
-                <tr>
-                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                  <td style="padding: 0;">
-                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                  </td>
-                  <td style="padding: 0;">&nbsp;</td>
-                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        <tr>
-          <td>
-            <div class="font-17">
-              จำนวน : 
-              <?php if ($val[adult] > 0) {?>
-                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
-              <?php }?>
-              <?php if ($val[child] > 0) {?>
-                เด็ก : <span id="txt_mn_child_<?=$val[id];?>"><?=$val[child];?></span>	
-              <?php }
-              ?>
-            </div>
-          </td>
-        </tr>
         <tr>
           <td colspan="2">
             <span class="font-17" >เลขจอง : <?=$val[invoice];?></span>
