@@ -1,5 +1,5 @@
 <?php
-print_r(json_encode($place_company));
+// print_r(json_encode($place_company));
 $i_d_next = date('w');
 $weekdays = Array();
 $weekdays[0] = "Sun";
@@ -19,8 +19,8 @@ $weekdays2[5] = "วันศุกร์";
 $weekdays2[6] = "วันเสาร์";
 
 foreach ($place_company as $data) {
-  print_r($data->main);
-  print_r($data->sub);
+  // print_r($data->main);
+  // print_r($data->sub);
   $_where = array();
   $_where['id'] = $data->province;
   $_select = array('*');
