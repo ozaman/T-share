@@ -1411,12 +1411,29 @@ function resetFormCancel() {
 }
 
 function openContact(shop_id) {
-  $.ajax({
-    url: "shop/count_phone_place?id=" + id,
-    type: "json",
-    success: function (c) {
-      console.log(c);
-      if (c <= 0) {
+//  $.ajax({
+//    url: "shop/count_phone_place?id=" + id,
+//    type: "json",
+//    success: function (c) {
+//      console.log(c);
+//      if (c <= 0) {
+//        ons.notification.alert({message: 'ไม่มีเบอร์โทรสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
+//        return;
+//      } else {
+//        fn.pushPage({
+//          'id': 'popup2.html',
+//          'title': 'เบอร์โทร'
+//        }, 'fade-md');
+//        var url_load = "page/social?type=phone&shop_id=" + shop_id;
+//        $.post(url_load, function (ele) {
+//          console.log(ele);
+//          $('#body_popup2').html(ele);
+//        });
+//      }
+//    }});
+  $.post("shop/count_phone_place?id=" + shop_id, function (num) {
+    console.log(num);
+    if (num <= 0) {
         ons.notification.alert({message: 'ไม่มีเบอร์โทรสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
         return;
       } else {
@@ -1430,19 +1447,27 @@ function openContact(shop_id) {
           $('#body_popup2').html(ele);
         });
       }
-    }});
-  
+  });
 }
 
 function openZello(shop_id) {
-  fn.pushPage({
-    'id': 'popup2.html',
-    'title': 'Zello'
-  }, 'fade-md');
-  var url_load = "page/social?type=zello&shop_id=" + shop_id;
-  $.post(url_load, function (ele) {
-    $('#body_popup2').html(ele);
+  $.post("shop/count_zello_place?id=" + shop_id, function (num) {
+    console.log(num);
+    if (num <= 0) {
+        ons.notification.alert({message: 'ไม่มี Zello ของสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
+        return;
+      } else {
+        fn.pushPage({
+          'id': 'popup2.html',
+          'title': 'Zello'
+        }, 'fade-md');
+        var url_load = "page/social?type=zello&shop_id=" + shop_id;
+        $.post(url_load, function (ele) {
+          $('#body_popup2').html(ele);
+        });
+      }
   });
+  
 }
 
 function openLine(shop_id) {

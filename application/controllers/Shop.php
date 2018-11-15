@@ -506,6 +506,11 @@ class Shop extends CI_Controller {
     $query = $this->db->query("SELECT id FROM shopping_contact  WHERE product_id ='".$_GET[id]."' and type='phone' and status=1");
     echo json_encode($query->num_rows());
   }
+  
+  public function count_zello_place() {
+    $query = $this->db->query("SELECT id,channel,phone,name FROM shopping_contact  WHERE product_id='".$_GET[id]."' and type='zello' and status = 1");
+    echo json_encode($query->num_rows());
+  }
 
   public function search_shop_all_company() {
    
