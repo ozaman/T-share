@@ -2442,17 +2442,26 @@ if(data.transfer_money==1){
                 $('#btn_manage_topoint_' + data.id).show();
                 $('#btn_manage_' + data.id).hide();
             }
+            
             $('#date_approved_job_' + data.id).show();
             $('#txt_date_approved_job_' + data.id).text(timestampToDate(data.lab_approve_job_date, 'time'));
             $('#txt_wait_' + data.id).hide();
             $('#td_cancel_book_' + data.id).hide();
             $('#status_book_' + data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
-
-
-            /*$('#view_lab_approve_'+value.id).show();
-            var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
-            $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
-
+            
+            
+            $.ajax({
+                url: "main/get_data_user?id=" + data.lab_approve_job_post,
+                    //data: pass,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log(res);
+                        $('#view_lab_approve_'+data.id).show();
+                        var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg";
+                        $('#view_lab_approve_'+data.id).attr('onclick','modalShowImg(\'' + url_photo_lab + '\');');
+                    }
+             });
         } 
         else {
             $('#btn_manage_' + data.id).hide();

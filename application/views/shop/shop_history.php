@@ -64,7 +64,7 @@ foreach ($result as $key => $val) {
         <tr>
           <td colspan="2">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
-                <tbody><tr>
+                <tr>
                     <td width="130">
                       <img src="../data/pic/place/1_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
                     </td>
@@ -82,8 +82,7 @@ foreach ($result as $key => $val) {
                       </div>
                     </td>
                   </tr>
-                  
-                </tbody></table>
+            </table>
           </td>
           
         </tr>
