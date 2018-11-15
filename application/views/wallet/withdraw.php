@@ -18,11 +18,11 @@
 //            $id_often = "";
           }
           ?>
-			<ons-list-item tappable onclick="$('#bank_user').val('<?=$row->id;?>')">
+			<ons-list-item tappable onclick="selectBankWithdraw('radio-<?=$row->id;?>');$('#bank_user').val('<?=$row->id;?>')">
 	        <label class="left">
 	          <ons-radio class="radio-fruit" input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select" <?=$select_b;?>></ons-radio>
 	        </label>
-	        <label for="radio-<?=$row->id;?>" class="center">
+	        
 	        <table>
 	        	<tr>
 	        		<td width="40"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 30px;"></td>
@@ -30,7 +30,6 @@
 	        		<td><?=$row->bank_number;?></td>
 	        	</tr>
 	        </table>
-	        </label>
 	      </ons-list-item>
 	<?php	}
 	?>
@@ -79,3 +78,9 @@
     </div>
   </ons-alert-dialog>
 </template>-->
+<script>
+  function selectBankWithdraw(id){
+    $('.radio-fruit').prop('checked', false);
+    $('#'+id).prop('checked', true);
+  }
+</script>
