@@ -2737,7 +2737,7 @@ function get_shop_all_company(opt) {
   var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&pv="+id_province;
 
   }
-
+      $('#shop_all_company').html(progress_circle);
       $.post(url, function (res) {
         // console.log(res)
         // setTimeout(function () {
