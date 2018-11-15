@@ -972,6 +972,7 @@ function pay() {
 }
 
 function myAccountBank() {
+  
   fn.pushPage({
     'id': 'account_bank.html',
     'title': 'ข้อมูลบัญชีธนาคาร'

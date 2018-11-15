@@ -33,7 +33,7 @@ foreach ($result as $key => $val) {
   $res_cancel = $query_cancel->row();
   
   $_where['id'] = $val->program;
-  $_select = array('topic_th','province','sub','main','amphur');
+  $_select = array('topic_th','province','sub','main','amphur','id');
   $place = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT,$_where,$_select);
   
   $_where = array();
@@ -66,7 +66,7 @@ foreach ($result as $key => $val) {
             <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
                 <tr>
                     <td width="130">
-                      <img src="../data/pic/place/1_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+                      <img src="../data/pic/place/<?=$place->id;?>_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
                     </td>
                     <td valign="top">
                       <strong class="font-17"><?=$data_pv->name_th;?> / <?=$row->name_th;?></strong><br>
@@ -88,7 +88,7 @@ foreach ($result as $key => $val) {
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
         <?php
-        if ($val->status != "CANCEL") {
+//        if ($val->status != "CANCEL") {
           ?>
           <tr>
             <td colspan="2">
@@ -204,7 +204,7 @@ foreach ($result as $key => $val) {
 
             </td>
           </tr>
-  <?php }?>
+  <?php // }?>
         <!----------------------------------------------------------------------------------------------------------------------------->
 
         <tr style="<?=$hide_plate;?>">

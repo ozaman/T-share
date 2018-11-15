@@ -512,12 +512,7 @@ function handleClick_s(tax, name) {
         console.log(chk);
         if (chk.result == true) {
           $('#box_bank').show();
-          var url = "component/box_select_bank_shop";
-          $.post(url, function (ele) {
-//          console.log(ele);
-            $('#load_select_bank').html(ele);
-
-          });
+          getSelectBankShop();
 
         } else {
           $('#load_select_bank div').remove();
@@ -527,6 +522,14 @@ function handleClick_s(tax, name) {
     });
   }
 
+}
+
+function getSelectBankShop() {
+  console.log('get bank shop');
+  var url = "component/box_select_bank_shop";
+  $.post(url, function (ele) {
+    $('#load_select_bank').html(ele);
+  });
 }
 // ons-tab[page="shop_history.html"]
 
@@ -1434,19 +1437,19 @@ function openContact(shop_id) {
   $.post("shop/count_phone_place?id=" + shop_id, function (num) {
     console.log(num);
     if (num <= 0) {
-        ons.notification.alert({message: 'ไม่มีเบอร์โทรสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
-        return;
-      } else {
-        fn.pushPage({
-          'id': 'popup2.html',
-          'title': 'เบอร์โทร'
-        }, 'fade-md');
-        var url_load = "page/social?type=phone&shop_id=" + shop_id;
-        $.post(url_load, function (ele) {
-          console.log(ele);
-          $('#body_popup2').html(ele);
-        });
-      }
+      ons.notification.alert({message: 'ไม่มีเบอร์โทรสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
+      return;
+    } else {
+      fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'เบอร์โทร'
+      }, 'fade-md');
+      var url_load = "page/social?type=phone&shop_id=" + shop_id;
+      $.post(url_load, function (ele) {
+        console.log(ele);
+        $('#body_popup2').html(ele);
+      });
+    }
   });
 }
 
@@ -1454,20 +1457,20 @@ function openZello(shop_id) {
   $.post("shop/count_zello_place?id=" + shop_id, function (num) {
     console.log(num);
     if (num <= 0) {
-        ons.notification.alert({message: 'ไม่มี Zello ของสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
-        return;
-      } else {
-        fn.pushPage({
-          'id': 'popup2.html',
-          'title': 'Zello'
-        }, 'fade-md');
-        var url_load = "page/social?type=zello&shop_id=" + shop_id;
-        $.post(url_load, function (ele) {
-          $('#body_popup2').html(ele);
-        });
-      }
+      ons.notification.alert({message: 'ไม่มี Zello ของสถานที่นี้', title: "ขออภัย", buttonLabel: "ปิด"});
+      return;
+    } else {
+      fn.pushPage({
+        'id': 'popup2.html',
+        'title': 'Zello'
+      }, 'fade-md');
+      var url_load = "page/social?type=zello&shop_id=" + shop_id;
+      $.post(url_load, function (ele) {
+        $('#body_popup2').html(ele);
+      });
+    }
   });
-  
+
 }
 
 function openLine(shop_id) {
@@ -1574,8 +1577,7 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1597,8 +1599,7 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     loadBoxConfirmPay(id);
@@ -2326,30 +2327,30 @@ function historyShop() {
 
 }
 
-function countHistoryTypeAll(){
-    var date_rp = "";
-    if($('#cehck_filter_date').val()==1){
-     var date = $('#date_shop_his').val();
-      var date_rp = date.replace("-", "/");
-      date_rp = date_rp.replace("-", "/");
+function countHistoryTypeAll() {
+  var date_rp = "";
+  if ($('#cehck_filter_date').val() == 1) {
+    var date = $('#date_shop_his').val();
+    var date_rp = date.replace("-", "/");
+    date_rp = date_rp.replace("-", "/");
+  }
+  var param = {
+    class_name: class_user,
+    driver: detect_user,
+    date: date_rp
+  };
+  $.ajax({
+    url: "shop/count_his_all_status",
+    data: param,
+    dataType: 'json',
+    type: 'post',
+    success: function (value) {
+      console.log(value);
+      $('#num_his_com').text("(" + value.success + ")");
+      $('#num_his_cancel').text("(" + value.fail + ")");
+      $('#num_his_all').text("(" + value.all + ")");
     }
-    var param = {
-        class_name : class_user,
-        driver : detect_user,
-        date : date_rp
-    };
-    $.ajax({
-          url: "shop/count_his_all_status",
-          data: param,
-          dataType: 'json',
-          type: 'post',
-          success: function (value) {
-            console.log(value);
-            $('#num_his_com').text("("+value.success+")");
-            $('#num_his_cancel').text("("+value.fail+")");
-            $('#num_his_all').text("("+value.all+")");
-          }
-        });
+  });
 }
 
 function maxLengthCheck(object) {
@@ -2491,7 +2492,7 @@ function confirmGetIncome(id, invoice, driver) {
             sendSocket(id);
           }
         });
-        
+
         test_load_list(id);
 
       }
@@ -2612,9 +2613,9 @@ function confirmGetTransCom(order_id, invoice) {
 //          s_posted: username
 //        };
         var nc = {};
-        apiRecordActivityAndNotification(ac, nc);     
-      }else{
-        
+        apiRecordActivityAndNotification(ac, nc);
+      } else {
+
       }
     }
   });
@@ -2651,34 +2652,34 @@ function load_component_list_manage(value) {
   });
 }
 
-function test_load_list(id){
+function test_load_list(id) {
   var orderid = {
-          id : id
-        };
-        $.ajax({
-          url: "shop/get_data_shop",
-          data: orderid,
-          dataType: 'json',
-          type: 'post',
-          success: function (value) {
-            console.log(value);
-            load_component_list_manage(value);
-          }
-        });
+    id: id
+  };
+  $.ajax({
+    url: "shop/get_data_shop",
+    data: orderid,
+    dataType: 'json',
+    type: 'post',
+    success: function (value) {
+      console.log(value);
+      load_component_list_manage(value);
+    }
+  });
 }
 
-function _confirmSelectBankAfterChangePlan(id){
-  
-   $.ajax({
-          url: "shop/select_bank_after_change_plan?id="+id,
-          data: $('#select_bank_form').serialize(),
-          dataType: 'json',
-          type: 'post',
-          success: function (value) {
-            console.log(value);
-            load_status_trans($('#id_order').val());
-          }
-        });
+function _confirmSelectBankAfterChangePlan(id) {
+
+  $.ajax({
+    url: "shop/select_bank_after_change_plan?id=" + id,
+    data: $('#select_bank_form').serialize(),
+    dataType: 'json',
+    type: 'post',
+    success: function (value) {
+      console.log(value);
+      load_status_trans($('#id_order').val());
+    }
+  });
 }
 function selectprovince(id) {
   // alert(id)
@@ -2688,10 +2689,10 @@ function selectprovince(id) {
 
   // $('#car_type').val(id);
   get_shop_all_company('PROVINCE');
-  
+
   $('#txt_province').text(name);
   callpop();
-  
+
   // focusBoxCar2();
 }
 function selectcategory(id) {
@@ -2699,7 +2700,7 @@ function selectcategory(id) {
   id_category = id;
   var name = $('#item_category_' + id).data('name');
   get_shop_all_company('CATE');
-  
+
   // console.log(name + " " + id);
 
   // $('#car_type').val(id);
@@ -2723,38 +2724,35 @@ function get_shop_all_company(opt) {
   console.log(opt)
   console.log(id_province)
   if (opt == 'ALL') {
-  var url = "shop/get_shop_all_company?opt="+opt+"&pv="+$('#place_province').val();
+    var url = "shop/get_shop_all_company?opt=" + opt + "&pv=" + $('#place_province').val();
+
+  } else if (opt == 'PROVINCE') {
+    var url = "shop/get_shop_all_company?opt=" + opt + "&pv=" + id_province;
+
+  } else if (opt == 'TYPE') {
+    var url = "shop/get_shop_all_company?opt=" + opt + "&main=" + id_category + "&sub=" + id_cate_type + "&pv=" + id_province;
+  } else if (opt == 'CATE') {
+    var url = "shop/get_shop_all_company?opt=" + opt + "&main=" + id_category + "&pv=" + id_province;
 
   }
-    else if (opt == 'PROVINCE') {
-  var url = "shop/get_shop_all_company?opt="+opt+"&pv="+id_province;
+  $('#shop_all_company').html(progress_circle);
+  $.post(url, function (res) {
+    // console.log(res)
+    // setTimeout(function () {
 
-    }
-  else if(opt == 'TYPE'){
-  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&sub="+id_cate_type+"&pv="+id_province;
-  }
-  else if (opt == 'CATE') {
-  var url = "shop/get_shop_all_company?opt="+opt+"&main="+id_category+"&pv="+id_province;
+    $('#shop_all_company').html(res);
+    modal.hide()
+    // get_shop_all_company('ALL')
+    // }, 1000);
 
-  }
-      $('#shop_all_company').html(progress_circle);
-      $.post(url, function (res) {
-        // console.log(res)
-        // setTimeout(function () {
-
-         $('#shop_all_company').html(res);
-         modal.hide()
-         // get_shop_all_company('ALL')
-       // }, 1000);
-        
-      });
+  });
 }
 
-function searchTopiccompany(txt_ip){
-   console.log(txt_ip);
-  var url = "shop/search_shop_all_company?pv="+id_province+"&search="+txt_ip;
-console.log(url)
-   $.ajax({
+function searchTopiccompany(txt_ip) {
+  console.log(txt_ip);
+  var url = "shop/search_shop_all_company?pv=" + id_province + "&search=" + txt_ip;
+  console.log(url)
+  $.ajax({
     url: url,
     // data: pass,
     type: 'post',
@@ -2774,35 +2772,35 @@ console.log(url)
 //         });
 
 
-   // var serch = $(this).attr('data-search');
+  // var serch = $(this).attr('data-search');
 
 //    for (var i = 0; i < str.length; i++) {
 //   alert(str.charAt(i));
 // }
-      // $('.txt_topic_company').each(function() {
-      // var txt_name = $(this).attr('data-search');//$(this).text();
-      // console.log(txt_name)
-      // var row_id = $(this).attr('data-role');
-      // console.log('-------------------')
-      // console.log(row_id)
-            
-       // if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
-       //      $('.shop_company_box_'+row_id).show();
-       //          console.log(txt_name+" || "+txt_ip);
-       //    } else {
-       //      $('.shop_company_box_'+row_id).hide();
-       //    }
-    // });
+  // $('.txt_topic_company').each(function() {
+  // var txt_name = $(this).attr('data-search');//$(this).text();
+  // console.log(txt_name)
+  // var row_id = $(this).attr('data-role');
+  // console.log('-------------------')
+  // console.log(row_id)
+
+  // if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
+  //      $('.shop_company_box_'+row_id).show();
+  //          console.log(txt_name+" || "+txt_ip);
+  //    } else {
+  //      $('.shop_company_box_'+row_id).hide();
+  //    }
+  // });
 }
 
-function shop_filter_pv(){
+function shop_filter_pv() {
   fn.pushPage({'id': 'shopcategory.html', 'title': 'จังหวัด', 'open': 'province'}, 'lift-ios');
 }
 
-function shop_filter_main(){
+function shop_filter_main() {
   fn.pushPage({'id': 'shopcategory.html', 'title': 'หมวดหมู่', 'open': 'shopcategory'}, 'lift-ios');
 }
 
-function shop_filter_sub(){
+function shop_filter_sub() {
   fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open': 'shoptype'}, 'lift-ios')
 }
