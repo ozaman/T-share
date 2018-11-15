@@ -26,34 +26,66 @@ foreach ($result as $key => $val) {
       $txt_lab_ap = '<span class="font-16 lab-none-active-shop" >พนักงานยังไม่รับทราบงานนี้</span>';
     }
   }
-  /* if($_COOKIE[detect_userclass]=="taxi"){
-    $hide_plate = "display:none;";
-    $time_post_ps = "margin-top: -85px;";
-    }else{
-    $time_post_ps = "margin-top: -105px;";
-    } */
   $time_post_ps = "margin-top: -20px;";
 
   $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val->cancel_type."' ";
   $query_cancel = $this->db->query($sql);
   $res_cancel = $query_cancel->row();
+  
+  $_where['id'] = $val->program;
+  $_select = array('topic_th','province','sub','main','amphur');
+  $place = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT,$_where,$_select);
+  
+  $_where = array();
+  $_where['id'] = $place->province;
+  $_select = array('name_th');
+  $data_pv = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where,$_select);
+
+  $_where = array();
+  $_where['id'] = $place->sub;
+  $_select = array('topic_th');
+  $SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
+
+  $_where['id'] = $place->main;
+  $_select = array('topic_th');
+  $MAIN = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN,$_where,$_select);
+
+  $query = $this->db->query("SELECT name_th,id FROM web_area WHERE id = ".$place->amphur);
+  $row = $query->row();
   ?>
   <div style="padding: 5px 0px;margin: 12px 10px;">
     <div class="box-shop" >
       <?=$txt_lab_ap;?>
       <span class="font-18"><?=date("d/m/Y",$val->post_date);?></span>
-      <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">-</span>
-      <table width="100%"  >
+      <span class="time-post-shop-his" style="font-size:14px;<?=$time_post_ps;?>" id="txt_date_diff_<?=$val->id;?>">
+        <?="เวลา ".date('H:i',$val->post_date)." น.";?>
+      </span>
+      <table width="100%" style="margin-top: 7px;">
         <tr>
-          <td width="80%" ><span class="font-17">คิงส์ พาวเวอร์ (ภูเก็ต)</span></td>
-          <td width="20%" align="center" rowspan="2">
-          <!--<div class="font-17" id="status_book_<?=$val->id;?>" style="margin-top: -20px;
-  margin-left: -85px;
-  position: absolute;
-  max-width: 150px;
-  width: 100%;" align="center">
-            <?=$status_txt;?></div>-->
+          <td colspan="2">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
+                <tbody><tr>
+                    <td width="130">
+                      <img src="../data/pic/place/1_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+                    </td>
+                    <td valign="top">
+                      <strong class="font-17"><?=$data_pv->name_th;?> / <?=$row->name_th;?></strong><br>
+                      <strong class="font-17"><?=$MAIN->topic_th;?></strong><br>
+                      <strong class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?></strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="element_to_find" align="center" style="margin-top: 10px;">
+                        <span class="font-17" style="color:#333333"><span class="txt_topic_company " data-role="1"><?=$place->topic_th;?></span></span>
+                        <input type="hidden" value=" " id="1">
+                      </div>
+                    </td>
+                  </tr>
+                  
+                </tbody></table>
           </td>
+          
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
         <?php
@@ -125,20 +157,6 @@ foreach ($result as $key => $val) {
                   <tr>
                     <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
                   </tr>
-                  <tr>
-                    <td colspan="3">
-                      <table>
-                        <tr>
-                          <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                          <td style="padding: 0;">
-                            <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                          </td>
-                          <td style="padding: 0;">&nbsp;</td>
-                          <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
                   <tr style="<?=$display_park;?>">
                     <td width="35%"><span class="font-17">ค่าจอด</span></td>
                     <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
@@ -196,7 +214,20 @@ foreach ($result as $key => $val) {
             </div>
           </td>
         </tr>
-
+        <tr>
+            <td colspan="3">
+              <table style="margin-left: -2px;">
+                <tr>
+                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                  <td style="padding: 0;">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  </td>
+                  <td style="padding: 0;">&nbsp;</td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
         <tr>
           <td><div class="font-17">
               <?php if ($val->adult > 0) {?>
@@ -273,11 +304,9 @@ foreach ($result as $key => $val) {
     </div>
   </div>
   <script>
-    var d1 = "<?=date('Y/m/d H:i:s',$val->post_date);?>";
-  //    console.log(d1)
-    var d2 = js_yyyy_mm_dd_hh_mm_ss();
-  // 	console.log("<?=$val->invoice;?> : "+d1+" = "+d2);
-    $('#txt_date_diff_<?=$val->id;?>').text(CheckTimeV2(d1, d2));
+//    var d1 = "<?=date('Y/m/d H:i:s',$val->post_date);?>";
+//    var d2 = js_yyyy_mm_dd_hh_mm_ss();
+//    $('#txt_date_diff_<?=$val->id;?>').text(CheckTimeV2(d1, d2));
   </script>
 
   <?php
