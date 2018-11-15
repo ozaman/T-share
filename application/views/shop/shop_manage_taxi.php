@@ -155,25 +155,9 @@ foreach ($_POST[data] as $key => $val) {
             </table>
           </td>
         </tr>
-        <tr>
+<!--        <tr>
           <td width="70%" ><span class="font-17"><?=$res_ps->topic_th;?></span></td>
-          <td width="30%" align="center" rowspan="1">
-            <?php
-            if ($val[lab_approve_job] == 1) {
-              $hide_btn_photo = "";
-              $sql_l = "SELECT username,name,nickname FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
-              $query_l = $this->db->query($sql_l);
-              $res_l = $query_l->row();
-            }
-            else {
-              $hide_btn_photo = "display:none;";
-            }
-            $path_img = "../data/pic/driver/small/".$res_l->username.".jpg?v=".time();
-            ?>
-            <i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('<?=$path_img;?>', '<?=$res_l->nickname;?>');" >account_circle</i>
-
-          </td>
-        </tr>
+        </tr>-->
         <!----------------------------------------------------------------------------------------------------------------------------->
         <tr>
           <td colspan="2">
@@ -239,7 +223,23 @@ foreach ($_POST[data] as $key => $val) {
             <div style="padding: 0px 0px;">
               <table width="100%" class="none-pd">
                 <tr>
-                  <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
+                  <td colspan="2"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
+                  <td width="30%" align="right" rowspan="1">
+            <?php
+            if ($val[lab_approve_job] == 1) {
+              $hide_btn_photo = "";
+              $sql_l = "SELECT username,name,nickname FROM web_driver WHERE id='".$val[lab_approve_job_post]."'    ";
+              $query_l = $this->db->query($sql_l);
+              $res_l = $query_l->row();
+            }
+            else {
+              $hide_btn_photo = "display:none;";
+            }
+            $path_img = "../data/pic/driver/small/".$res_l->username.".jpg?v=".time();
+            ?>
+            <i id="view_lab_approve_<?=$val[id];?>" class="material-icons font-28" style="color: rgb(59, 89, 152);  border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152);<?=$hide_btn_photo;?>" onclick="modalShowImg('<?=$path_img;?>', '<?=$res_l->nickname;?>');" >account_circle</i>
+
+          </td>
                 </tr>
                 
                 <tr style="<?=$display_park;?>">
