@@ -18,7 +18,7 @@ foreach ($_POST[data] as $key => $val) {
     else if($val[lab_approve_job] ==1){
     $status_txt = '<strong><font color="#54c23d">ตอบรับแล้ว</font></strong>';
     } */
-  $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+  $sql_ps = "SELECT topic_th,id, province, sub, main, amphur FROM shopping_product  WHERE id='".$val[program]."' ";
   $query_ps = $this->db->query($sql_ps);
   $res_ps = $query_ps->row();
 
@@ -45,31 +45,6 @@ foreach ($_POST[data] as $key => $val) {
     $nickname = "";
   }
 
-  /* $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
-
-    FROM place_car_station as t1 left join place_car_station_type as t2
-
-    on t1.type = t2.id
-
-    left join  place_car_station_other as t5
-
-    on t1.station = t5.id
-
-    left join web_province as t3
-
-    on t5.province = t3.id
-
-    left join web_area as t4 on t5.amphur = t4.id
-
-    where t1.member = '".$val[drivername]."' ");
-    $row_q = $query_q->row();
-
-    $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = ".$val[check_use_car_id]);
-    $row_car = $query_car->row();
-
-    $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
-    $query_cancel = $this->db->query($sql);
-    $res_cancel = $query_cancel->row(); */
   ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -85,14 +60,56 @@ foreach ($_POST[data] as $key => $val) {
       ?>
       <table width="100%">
         <tr>
-          <td width="<?=$width;?>"><span class="font-18"><b>ติดต่อ</b></span></td>
           <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
         </tr>
       </table>
       <table width="100%"  >
         <tr>
           <td colspan="2">
-            <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
+          <?php 
+            $_where = array();
+            $_where['id'] = $res_ps->province;
+            $_select = array('name_th');
+            $data_pv = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where,$_select);
+
+            $_where = array();
+            $_where['id'] = $res_ps->sub;
+            $_select = array('topic_th');
+            $SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
+
+            $_where['id'] = $res_ps->main;
+            $_select = array('topic_th');
+            $MAIN = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN,$_where,$_select);
+
+            $query = $this->db->query("SELECT name_th,id FROM web_area WHERE id = ".$res_ps->amphur);
+            $row = $query->row();
+            ?>
+          
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
+                <tr>
+                    <td width="130">
+                      <img src="../data/pic/place/1_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+                    </td>
+                    <td valign="top">
+                      <strong class="font-17"><?=$data_pv->name_th;?> / <?=$row->name_th;?></strong><br>
+                      <strong class="font-17"><?=$MAIN->topic_th;?></strong><br>
+                      <strong class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?></strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="element_to_find" align="center" style="margin-top: 10px; margin-bottom: 5px;">
+                        <span class="font-17" style="color:#333333"><span class="font-17 " data-role="1"><?=$res_ps->topic_th;?></span></span>
+                        <input type="hidden" value=" " id="1">
+                      </div>
+                    </td>
+                  </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px; margin-bottom: 10px;">
               <tbody>
                 <tr>
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
@@ -224,20 +241,7 @@ foreach ($_POST[data] as $key => $val) {
                 <tr>
                   <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
                 </tr>
-                <tr>
-                  <td colspan="3">
-                    <table>
-                      <tr>
-                        <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                        <td style="padding: 0;">
-                          <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                        </td>
-                        <td style="padding: 0;">&nbsp;</td>
-                        <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+                
                 <tr style="<?=$display_park;?>">
                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
                   <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
@@ -286,6 +290,20 @@ foreach ($_POST[data] as $key => $val) {
           </td>
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+            <td colspan="3">
+              <table style="margin-left: -2px;">
+                <tr>
+                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                  <td style="padding: 0;">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  </td>
+                  <td style="padding: 0;">&nbsp;</td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
         <tr>
           <td>
             <div class="font-17">
