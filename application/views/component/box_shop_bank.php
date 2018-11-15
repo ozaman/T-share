@@ -9,6 +9,24 @@
     <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_add');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
         
       <?php }
+      if($num_bank==1){ 
+        $row = $query_bank->row();
+        ?>
+        <ons-list-item tappable onclick="selectBankForCom('<?=$row->id;?>');">
+	        <label class="left">
+	          <ons-radio class="radio-fruit" checked input-id="radio-<?=$row->id;?>" value="<?=$row->id;?>" name="bank_user_select" <?=$checked;?> ></ons-radio>
+	        </label>
+	        <label for="radio-<?=$row->id;?>" class="center">
+	        <table width="100%">
+	        	<tr>
+	        		<td width="30"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;"></td>
+                    <td width="100"><span class="font-17"><?=$row->bank_list;?></span></td>
+	        		<td><span class="font-17"><?=$row->bank_number;?></span></td>
+	        	</tr>
+	        </table>
+	        </label>
+	      </ons-list-item>
+      <?php }else{
 		foreach ($query_bank->result()  as $row){ 
           if($row->status_often==1){
               $checked = "checked";
@@ -30,11 +48,14 @@
 	        </table>
 	        </label>
 	      </ons-list-item>
-	<?php	}	?>
+	<?php	}	
+      }
+    ?>
   </div>
 
 <script>
   function selectBankForCom(bank_id){
-    
+    $('#radio-fruit').prop('checked', false);
+    $('#radio-'+bank_id).prop('checked', true);
   }
 </script>

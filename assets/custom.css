@@ -180,7 +180,7 @@ img[src=""] {
 .t-share-chat-root .ic_user{background-position:-107px -135px}
 .t-share-chat-root .webchat_close{background-position:-139px -72px}
 .t-share-chat-root .webchat_search{background-position:-139px -105px}
-.t-share-chat-root .webchat_search_black{background-position:0 -135px}}
+.t-share-chat-root .webchat_search_black{background-position:0 -135px}
 .lm-container{overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;top:0;left:0;z-index:24}
 .lf-overlay{top:0;left:0;background-color:#000;opacity:.5;z-index:23}
 .lf-dialog{position:relative;border:0;width:100%;max-width:none;padding:0;margin-left:auto;margin-right:auto;background:0}@keyframes modal-fade{0%{opacity:0}100%{opacity:1}}

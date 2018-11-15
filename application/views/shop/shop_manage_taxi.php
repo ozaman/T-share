@@ -99,7 +99,7 @@ foreach ($_POST[data] as $key => $val) {
                   <tr>
                     <td colspan="2">
                       <div class="element_to_find" align="center" style="margin-top: 10px; margin-bottom: 5px;">
-                        <strong class="font-17 " style="color:#333333;"><?=$res_ps->topic_th;?></strong>
+                        <span class="font-17" style="color:#333333"><span class="font-17 " data-role="1"><?=$res_ps->topic_th;?></span></span>
                         <input type="hidden" value=" " id="1">
                       </div>
                     </td>

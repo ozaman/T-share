@@ -379,11 +379,10 @@ foreach ($_POST[data] as $key => $val) {
               ?>  		
           <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
                       style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
-          <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" style="padding: 15px;
-                      border-radius: 5px;
-                      line-height: 0;<?=$btn_manage;?>
-                      " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>
 
+           <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" 
+                      style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #0076ff;color: #0076ff;argin-top: 5px;<?=$btn_manage;?>" 
+                      modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>           
           </td>
           </tr>
         </table>
