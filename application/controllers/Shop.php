@@ -507,6 +507,37 @@ class Shop extends CI_Controller {
     echo json_encode($query->num_rows());
   }
 
+  public function search_shop_all_company() {
+   
+    $searchquery = $_GET[search];
+$arr_where = array();
+$arr_select = array('*');
+$arr_order = array();
+    // $this->db->select('*');
+     $arr_where['status'] = 1;
+    // $arr_where['province'] = $_GET[pv];
+    // $this->db->where('status', 1);
+    // // $this->db->where('province', $_GET[pv]);
+    // // $this->db->like(array('topic_th' => $searchquery, 'topic_en' => $searchquery, 'topic_ch' => $searchquery));
+    $this->db->like('topic_th'  ,$searchquery);
+    $this->db->or_like('topic_en' ,$searchquery);
+    $this->db->or_like('topic_cn' ,$searchquery);
+    
+
+
+
+
+
+   // $this->db->order_by("id", "asc");
+   // $this->db->from(TBL_SHOPPING_PRODUCT);
+   // $query = $this->db->get(); 
+    // $data['place_company'] = $query->result();
+     // print_r($data);
+     $arr_order['id'] = 'ASC';
+    $data['place_company'] = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT,$arr_where,$arr_select,$arr_order);
+    $this->load->view('shop/shop_all_company',$data);
+  }
+
 }
 
 ?>

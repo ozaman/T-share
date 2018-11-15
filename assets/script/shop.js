@@ -2727,20 +2727,47 @@ function get_shop_all_company(opt) {
 
 function searchTopiccompany(txt_ip){
    console.log(txt_ip);
-      $('.txt_topic_company').each(function() {
-      var txt_name = $(this).text();
-      console.log(txt_name)
-      var row_id = $(this).attr('data-role');
-      console.log('-------------------')
-      console.log(row_id)
+  var url = "shop/search_shop_all_company?pv="+id_province+"&search="+txt_ip;
+console.log(url)
+   $.ajax({
+    url: url,
+    // data: pass,
+    type: 'post',
+    success: function (ele) {
+      $('#shop_all_company').html(ele);
+    }
+  });
+// $.ajax({
+//           url: url,
+//           // data: $('#select_bank_form').serialize(),
+//           // dataType: 'json',
+//           type: 'post',
+//           success: function (value) {
+//             console.log(value);
+//             load_status_trans($('#id_order').val());
+//           }
+//         });
+
+
+   // var serch = $(this).attr('data-search');
+
+//    for (var i = 0; i < str.length; i++) {
+//   alert(str.charAt(i));
+// }
+      // $('.txt_topic_company').each(function() {
+      // var txt_name = $(this).attr('data-search');//$(this).text();
+      // console.log(txt_name)
+      // var row_id = $(this).attr('data-role');
+      // console.log('-------------------')
+      // console.log(row_id)
             
-       if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
-            $('.shop_company_box_'+row_id).show();
-                console.log(txt_name+" || "+txt_ip);
-          } else {
-            $('.shop_company_box_'+row_id).hide();
-          }
-    });
+       // if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
+       //      $('.shop_company_box_'+row_id).show();
+       //          console.log(txt_name+" || "+txt_ip);
+       //    } else {
+       //      $('.shop_company_box_'+row_id).hide();
+       //    }
+    // });
 }
 
 function shop_filter_pv(){
