@@ -2126,12 +2126,12 @@ socket.on('notification', function(data) {
 var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
-    console.log(data)
+    // console.log(data)
 
     array_data = [];
     var done = [];
     var none = [];
-    $.each(data.booking, function(index, value) {
+    $.each(data, function(index, value) {
         var current = formatDate(new Date());
         var db = formatDate(value.transfer_date);
         if (value.driver_complete == 0) {
