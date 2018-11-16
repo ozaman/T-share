@@ -130,9 +130,9 @@ $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
 	</body>
     <script>
 	var array_rooms;
-var res_socket;
-var socket = io.connect('https://www.welovetaxi.com:3443');
-var check_run_shop = 0;
+    var res_socket;
+    var socket = io.connect('https://www.welovetaxi.com:3443');
+    var check_run_shop = 0;
 //on message received we print all the data inside the #container div
 socket.on('notification', function(data) {
     //          console.log("Start Socket");
@@ -146,7 +146,7 @@ socket.on('notification', function(data) {
         }
         $('#number_tbooking').text(data.transfer[0].length);
         if ($('#check_open_worktbooking').val() == 1) {
-            console.log(data.transfer);
+//            console.log(data.transfer);
             $('#tab-trans_job').attr('badge', data.transfer[0].length);
             //        console.log('now open popup');
             readDataBooking();
@@ -156,12 +156,12 @@ socket.on('notification', function(data) {
 var frist_socket = true;
 
 socket.on('getbookinglab', function(data) {
-    //    console.log(data.booking)
+    // console.log(data)
 
     array_data = [];
     var done = [];
     var none = [];
-    $.each(data.booking, function(index, value) {
+    $.each(data, function(index, value) {
         var current = formatDate(new Date());
         var db = formatDate(value.transfer_date);
         if (value.driver_complete == 0) {
@@ -182,7 +182,7 @@ socket.on('getbookinglab', function(data) {
     };
 
 
-    //                console.log(array_data.manage);
+          console.log(array_data.manage);
 
     if (check_run_shop != done.length) {
         shopManage();
@@ -208,16 +208,15 @@ socket.on('getbookinglab', function(data) {
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
 
-        console.log(get_order_id);
-        if (get_order_id != "") {
-            if (status == "his") {
-                openOrderFromAndroidHistory(get_order_id, status, open_ic);
-            } 
-            else {
-// alert(123);
-                $.each(array_data.manage, function(index, value) {
-                    if (value.id == get_order_id) {
-                                            	
+//        console.log(get_order_id);
+if (get_order_id != "") {
+    if (status == "his") {
+        openOrderFromAndroidHistory(get_order_id, status, open_ic);
+    } else {
+
+        $.each(array_data.manage, function(index, value) {
+            if (value.id == get_order_id) {
+                        //                    	 alert(123);
                         console.log(value.id + " : " + index);
                         $('#check_open_num_detail').val(index)
                         $('#check_open_shop_id').val(value.id);
@@ -229,12 +228,10 @@ socket.on('getbookinglab', function(data) {
                         openDetailShop(index, type_m);
                     }
                 });
-            }
-        }
-        else{
-          alert();
-        }        frist_socket = false;
     }
+}
+frist_socket = false;
+}
 });
 var id = detect_user;
 var dataorder = {
@@ -246,15 +243,15 @@ socket.on('connect', function(){
 	  // socket.emit('addroom', prompt("What's your name?"));
 //	  socket.emit('addroom', name);
 //	  socket.emit('sendchat', '');
-	  socket.emit('adduser', dataorder);
+socket.emit('adduser', dataorder);
 });
-	 
+
 function addUser() {
     var id = detect_user;
     var dataorder = {
         order: parseInt(id),
     };
-	
+
 }
 
 socket.on('updaterooms', function(rooms, current_room) {
@@ -264,125 +261,145 @@ socket.on('updaterooms', function(rooms, current_room) {
     console.log(current_room)
 });
 
-socket.on('datalab', function(username, data) {
+socket.on('datalab', function(socket_class, data) {
     console.log('***********************datalab***************************')
-    console.log(username)
+    console.log(class_user.toUpperCase()+" || "+socket_class.toUpperCase())
     console.log(data)
+    if(class_user.toUpperCase()!= socket_class.toUpperCase()){
+      console.log("No lab");
+      return;
+  }
 
-    //console.log(data[0].id);
-    var check_open = $('#check_open_shop_id').val();
-    if (check_open != 0) {
-        $.each(data, function(index, value) {
-            console.log(data)
-            if (value.id == check_open) {
-                console.log(value);
+  var check_open = $('#check_open_shop_id').val();
+  if (check_open != 0) {
+    $.each(data, function(index, value) {
+        console.log(data)
+        if (value.id == check_open) {
+            console.log(value);
 
-                if (value.check_driver_topoint == 1) {
-                    console.log("driver_topoint");
-                    changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
-                }
-                if (value.check_guest_receive == 1) {
-                    console.log("guest_receive");
-                    changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
-
-                }
-                if (value.check_guest_register == 1) {
-                    console.log("guest_register");
-                    changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
+            if (value.check_driver_topoint == 1) {
+                console.log("driver_topoint");
+                changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
+            }
+            if (value.check_guest_receive == 1) {
+                console.log("guest_receive");
+                changeHtml("guest_receive", value.id, timestampToDate(value.guest_receive_date, "time"));
+                $('.page').animate({
+                    scrollTop: $(document).height()+700
+                }, 500);
+            }
+            if (value.check_guest_register == 1) {
+                console.log("guest_register");
+                changeHtml("guest_register", value.id, timestampToDate(value.guest_register_date, "time"));
                     //					alert(value.pax_regis);
                     $('#num_edit_persion2').val(value.pax_regis);
+                    $('.page').animate({
+                        scrollTop: $(document).height()+700
+                    }, 500);
                 }
 
                 if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
                     loadBoxConfirmPay(value.id);
-                    return;
-                }
-                if (value.check_driver_pay == 1) {
-                    loadBoxConfirmPay(value.id);
-                }
-                if (value.check_lab_pay == 1) {
-                    loadBoxConfirmPay(value.id);
-                }
+//                    return;
+}
+if (value.check_driver_pay == 1) {
+    loadBoxConfirmPay(value.id);
+}
+if (value.check_lab_pay == 1) {
+    loadBoxConfirmPay(value.id);
+}
+if(data.transfer_money==1){
+  load_status_trans(data.id);
+  loadNewPlan(data.id)
+}
+}
+});
+}
 
+if ($('#open_shop_manage').val() == 1) {
+    $.each(data, function(index, value) {
+
+        if (value.lab_approve_job == 1) {
+            if (value.check_driver_topoint == 1) {
+                $('#btn_manage_topoint_' + value.id).hide();
+                $('#btn_manage_' + value.id).show();
+
+
+            } 
+            else {
+                $('#btn_manage_topoint_' + value.id).show();
+                $('#btn_manage_' + value.id).hide();
             }
-        });
-    }
-
-    if ($('#open_shop_manage').val() == 1) {
-        $.each(data, function(index, value) {
-
-            if (value.lab_approve_job == 1) {
-                if (value.check_driver_topoint == 1) {
-                    $('#btn_manage_topoint_' + value.id).hide();
-                    $('#btn_manage_' + value.id).show();
+            $('#date_approved_job_' + value.id).show();
+            $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
+            $('#txt_wait_' + value.id).hide();
+            $('#td_cancel_book_' + value.id).hide();
+            $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
 
 
-                } else {
-                    $('#btn_manage_topoint_' + value.id).show();
-                    $('#btn_manage_' + value.id).hide();
-                }
-                $('#date_approved_job_' + value.id).show();
-                $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
-                $('#txt_wait_' + value.id).hide();
-                $('#td_cancel_book_' + value.id).hide();
-                $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+            $('#view_lab_approve_' + value.id).show();
 
 
-                $('#view_lab_approve_' + value.id).show();
-
-
-                $.ajax({
-                    url: "main/get_data_user?id=" + value.lab_approve_job_post,
+            $.ajax({
+                url: "main/get_data_user?id=" + value.lab_approve_job_post,
                     //					           data: pass,
                     type: 'post',
                     dataType: 'json',
                     success: function(res) {
                         console.log(res);
                         var url_photo_lab = "../data/pic/driver/small/" + res.username + ".jpg?v=" + $.now();
-                        $('#view_lab_approve_' + value.id).attr('onclick', 'modalShowImg("' + url_photo_lab + ',' + res.nickname + '");');
+                        $('#view_lab_approve_' + value.id).attr('onclick', 'modalShowImg(\'' + url_photo_lab + '\',\'' + res.nickname + '\');');
                         //					               $('#text_name_approved').text(res.nickname);
                     }
                 });
 
 
+        } 
+        else {
 
-            } else {
 
+            $('#btn_manage_topoint_' + value.id).hide();
+            $('#txt_wait_' + value.id).show();
+            $('#td_cancel_book_' + value.id).show();
+            $('#status_book_' + value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+            $('#view_lab_approve_' + value.id).hide();
+        }
 
-                $('#btn_manage_topoint_' + value.id).hide();
-                $('#txt_wait_' + value.id).show();
-                $('#td_cancel_book_' + value.id).show();
-                $('#status_book_' + value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
-                $('#view_lab_approve_' + value.id).hide();
-            }
+    });
 
-            if (value.status != $('#check_status_' + value.id).val()) {
-                var pass = {
-                    data: value
-                };
-                console.log(pass);
-                var url = "component/list_shop_manage";
-                $.ajax({
-                    url: url,
-                    data: pass,
-                    type: 'post',
-                    success: function(ele) {
-                        $('#list_shop_manage_' + value.id).html(ele);
-                    }
-                });
-            }
-        });
         //        shopManage();
 
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
+        if(data.transfer_money==1){
+            var pass = {
+                data: data
+            };
+            console.log(pass);
+            var url = "component/list_shop_manage?wait_trans=1";
+            $.ajax({
+                url: url,
+                data: pass,
+                type: 'post',
+                success: function(ele) {
+                    $('#list_shop_manage_' + data.id).html(ele);
+                }
+            });
+
+        }
     }
     setCountNotification();
 });
 
-socket.on('updatedriver', function(username, data) {
+socket.on('updatedriver', function(socket_class, data) {
     //	alert(data.pax_regis);
     console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
-    console.log(username)
+    console.log(class_user+" || "+socket_class)
     console.log(data)
+//    if(class_user.toUpperCase() != class_name){
+//      return;
+//    }
     //console.log(array_rooms)
     var check_open = $('#check_open_shop_id').val();
 
@@ -397,7 +414,7 @@ socket.on('updatedriver', function(username, data) {
                 changeHtml("driver_topoint", data.id, timestampToDate(data.driver_topoint_date, "time"));
                 $('.page').animate({
                     scrollTop: $(document).height()+700
-                  }, 500);
+                }, 500);
             }
             if (data.check_guest_receive == 1) {
                 console.log("guest_receive");
@@ -415,6 +432,21 @@ socket.on('updatedriver', function(username, data) {
                 $('#num_edit_persion2').val(data.pax_regis);
                 //            $('#step_driver_pay_report').show();
             }
+            
+            if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
+                loadBoxConfirmPay(data.id);
+//                    return;
+}
+if (data.check_driver_pay == 1) {
+    loadBoxConfirmPay(data.id);
+}
+if (data.check_lab_pay == 1) {
+    loadBoxConfirmPay(data.id);
+}
+if(data.transfer_money==1){
+   load_status_trans(data.id);
+   loadNewPlan(data.id)
+}
             /*if (data.check_driver_pay_report == 1) {
                 console.log("driver_pay_report");
                 changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
@@ -425,7 +457,7 @@ socket.on('updatedriver', function(username, data) {
     }
 
     console.log($('#open_shop_manage').val());
-    //    alert($('#open_shop_manage').val())
+
     if ($('#open_shop_manage').val() == 1) {
         console.log("*************************************");
 
@@ -435,28 +467,58 @@ socket.on('updatedriver', function(username, data) {
                 $('#btn_manage_topoint_' + data.id).hide();
                 $('#btn_manage_' + data.id).show();
 
-            } else {
+            } 
+            else {
                 $('#btn_manage_topoint_' + data.id).show();
                 $('#btn_manage_' + data.id).hide();
             }
+            
             $('#date_approved_job_' + data.id).show();
             $('#txt_date_approved_job_' + data.id).text(timestampToDate(data.lab_approve_job_date, 'time'));
             $('#txt_wait_' + data.id).hide();
             $('#td_cancel_book_' + data.id).hide();
             $('#status_book_' + data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
-
-
-            /*$('#view_lab_approve_'+value.id).show();
-            var url_photo_lab = "../data/pic/driver/small/"+value.lab_approve_job_post+".jpg";
-            $('#view_lab_approve_'+value.id).attr('onclick','modalShowImg("");');*/
-
-        } else {
+            
+            
+            $.ajax({
+                url: "main/get_data_user?id=" + data.lab_approve_job_post,
+                    //data: pass,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(res) {
+                        console.log(res);
+                        $('#view_lab_approve_'+data.id).show();
+                        var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg";
+                        $('#view_lab_approve_'+data.id).attr('onclick','modalShowImg(\'' + url_photo_lab + '\');');
+                    }
+             });
+        } 
+        else {
             $('#btn_manage_' + data.id).hide();
             $('#txt_wait_' + data.id).show();
             $('#td_cancel_book_' + data.id).show();
             $('#status_book_' + data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
         }
 
+    }
+    
+    if($('#open_shop_wait_trans').val() == 1){
+        if(data.transfer_money==1){
+            var pass = {
+                data: data
+            };
+            console.log(pass);
+            var url = "component/list_shop_manage?wait_trans=1";
+            $.ajax({
+                url: url,
+                data: pass,
+                type: 'post',
+                success: function(ele) {
+                    $('#list_shop_manage_' + data.id).html(ele);
+                }
+            });
+
+        }
     }
     setCountNotification();
     if ($('#check_open_noti_menu').val() == 1) {
