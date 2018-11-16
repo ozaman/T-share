@@ -86,6 +86,42 @@ foreach ($result as $key => $val) {
           </td>
           
         </tr>
+        <tr>
+          <?php 
+          $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$val->plan_id."'    ";
+              $query_country = $this->db->query($sql_country);
+              $res_country = $query_country->row();
+          ?>
+            <td colspan="3">
+              <table style="margin-left: -2px;">
+                <tr>
+                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                  <td style="padding: 0;">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  </td>
+                  <td style="padding: 0;">&nbsp;</td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        <tr>
+          <td><div class="font-17">
+              <span>จำนวน : </span>
+              <?php if ($val->adult > 0) {?>
+                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val->id;?>"><?=$val->adult;?></span> 
+              <?php }?>
+              <?php if ($val->child > 0) {?>
+                เด็ก : <span id="txt_mn_child_<?=$val->id;?>"><?=$val->child;?></span></div></td>	
+          <?php }
+          ?>
+
+        </tr>
+        <tr>
+          <td colspan="2" style="padding: 2px 0px;">
+            <span class="font-17">ลงทะเบียน : <?=$val->pax_regis;?> คน</span>
+          </td>
+        </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
         <?php
 //        if ($val->status != "CANCEL") {
@@ -136,9 +172,7 @@ foreach ($result as $key => $val) {
                 }
               }
 //            $all_total = $park_total + $person_total + $com_total;
-              $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
-              $query_country = $this->db->query($sql_country);
-              $res_country = $query_country->row();
+              
 
               $titel = t_work_remuneration;
               $display_none_change_plan = "display:none;";
@@ -213,36 +247,7 @@ foreach ($result as $key => $val) {
             </div>
           </td>
         </tr>
-        <tr>
-            <td colspan="3">
-              <table style="margin-left: -2px;">
-                <tr>
-                  <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                  <td style="padding: 0;">
-                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                  </td>
-                  <td style="padding: 0;">&nbsp;</td>
-                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        <tr>
-          <td><div class="font-17">
-              <?php if ($val->adult > 0) {?>
-                ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val->id;?>"><?=$val->adult;?></span> 
-              <?php }?>
-              <?php if ($val->child > 0) {?>
-                เด็ก : <span id="txt_mn_child_<?=$val->id;?>"><?=$val->child;?></span></div></td>	
-          <?php }
-          ?>
-
-        </tr>
-        <tr>
-          <td colspan="2" style="padding: 2px 0px;">
-            <span class="font-17">ลงทะเบียน : <?=$val->pax_regis;?> คน</span>
-          </td>
-        </tr>
+        
         <tr>
           <td colspan="2">
             <span class="font-17" >เลขจอง : <?=$val->invoice;?>            
