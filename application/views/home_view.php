@@ -2152,7 +2152,7 @@ socket.on('getbookinglab', function(data) {
     };
 
 
-    //                console.log(array_data.manage);
+          console.log(array_data.manage);
 
     if (check_run_shop != done.length) {
         shopManage();

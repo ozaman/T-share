@@ -15,9 +15,14 @@ public function new_shop()
 	}
 
 public function cancel_shop(){
-		$data['res'] = $this->Send_onesignal_model->cancel_shop();
+//        if($_GET[class_user]=="taxi"){
+//          $data['lab'] = $this->Send_onesignal_model->cancel_shop_tolab();
+//        }else{
+          $data['taxi'] = $this->Send_onesignal_model->cancel_shop_totaxi();
+//        }
+		
 //  		header('Content-Type: application/json');
-  		echo json_encode($data['res']);
+  		echo json_encode($data);
 	}
 	
 public function send_checkin(){

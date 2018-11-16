@@ -533,6 +533,7 @@ public function cancel_shop(){
 		$data[status] = "CANCEL";
 		$data[cancel_type] = $_POST[type_cancel];
 		$data[driver_complete] = 0;
+		$data[cancel_by] = $_COOKIE[detect_user];
 		$data[update_date] = time();
 
 		$this->db->where('id', $_POST[order_id]);

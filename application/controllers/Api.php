@@ -167,6 +167,11 @@ class Api extends CI_Controller {
     if ($_POST[class_name] == "taxi") {
       $sql_class = " and drivername = '".$_POST[driver]."' ";
     }
+    else {
+      $query = $this->db->query("select i_company from web_driver where id = ".$_COOKIE[detect_user]);
+      $row = $query->row();
+      $sql_class = "and program = ".$row->i_company;
+    }
     if ($date != "") {
       $sql_date = " and transfer_date = '".$date."' ";
     }
@@ -242,12 +247,12 @@ class Api extends CI_Controller {
         $data[type_pay] = 1;
         $data[type_job] = "transfer";
         $data[driver_id] = $_POST[driver_id];
-        $data[result] = $this->db->insert('history_pay_driver_deposit', $data);
+        $data[result] = $this->db->insert('history_pay_driver_deposit',$data);
         $return[deposit] = $data;
 
         $update[balance] = $deposit_update;
         $update[last_update] = time();
-        $this->db->where('id', $dv_dp->id);
+        $this->db->where('id',$dv_dp->id);
         $update[result] = $this->db->update('deposit');
         $update[id] = $dv_dp->id;
         $return[update_balance] = $update;
@@ -270,12 +275,12 @@ class Api extends CI_Controller {
         $data[type_pay] = 0;
         $data[type_job] = "transfer";
         $data[driver_id] = $_POST[driver_id];
-        $data[result] = $this->db->insert('history_pay_driver_deposit', $data);
+        $data[result] = $this->db->insert('history_pay_driver_deposit',$data);
         $return[deposit] = $data;
 
         $update[balance] = $deposit_update;
         $update[last_update] = time();
-        $this->db->where('id', $dv_dp->id);
+        $this->db->where('id',$dv_dp->id);
         $update[result] = $this->db->update('deposit');
         $update[id] = $dv_dp->id;
         $return[update_balance] = $update;
@@ -286,11 +291,11 @@ class Api extends CI_Controller {
        * 
        */
       $up_order[status] = 1;
-      $this->db->where('invoice', '"'.$_POST[invoice].'"');
+      $this->db->where('invoice','"'.$_POST[invoice].'"');
       $up_order[result] = $this->db->update('ap_order');
       $return[update_ap_order] = $up_order;
     }
-    
+
     $f_date = $step."_date";
     $f_lat = $step."_lat";
     $f_lng = $step."_lng";
