@@ -2223,6 +2223,13 @@ function addUser() {
     };
 
 }
+if (class_user == 'monitor') {
+  socket.on('monitor', function(rooms, data) {
+    console.log('in case monitor')
+ console.log(data)
+ console.log(rooms)
+});  
+}
 
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
@@ -2361,6 +2368,7 @@ if ($('#open_shop_manage').val() == 1) {
     }
     setCountNotification();
 });
+
 
 socket.on('updatedriver', function(socket_class, data) {
     //	alert(data.pax_regis);
