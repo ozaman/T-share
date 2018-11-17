@@ -89,7 +89,7 @@ class Shop_model extends CI_Model {
 		$_order['id'] = 'asc';
 
 		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
-		$data['list_price'] = json_encode($list_price);
+		
 
 		foreach ($list_price as $key => $value) {
 			$_where = array();
@@ -99,7 +99,7 @@ class Shop_model extends CI_Model {
 			$_order['id'] = 'asc';
 			$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
 			// return $price_name;
-			$data[col] =+$price_name->s_col; 
+			$datassss[col] =+$price_name->s_col; 
 			$s_col = $price_name->s_col;
 			if ($value->i_plan_product_price_name == 6) {
 				$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
@@ -201,12 +201,12 @@ class Shop_model extends CI_Model {
 		$data_update[result] = $this->db->update('order_booking', $data_update); 
 
 		$data[update] = $data_update;
-
+		$data[col] = $datassss;
 		if ($data_update[result] == true) {
 			$this->linenoti();
 			# code...
 		}
-
+$data['list_price'] = json_encode($list_price);
 		return $data;
 
 	}

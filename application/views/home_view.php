@@ -2223,10 +2223,14 @@ function addUser() {
     };
 
 }
-socket.on('monitor', function(rooms, data) {
+if (class_user == 'monitor') {
+  socket.on('monitor', function(rooms, data) {
     console.log('in case monitor')
  console.log(data)
-});
+ console.log(rooms)
+});  
+}
+
 socket.on('updaterooms', function(rooms, current_room) {
     $('#rooms').empty();
     console.log(rooms)
