@@ -385,11 +385,13 @@ function confirmGetJobTrans() {
                   }
                 }
               });
-            } else {
-
+              var txt_get_money = "รับเงินสด";
+            } 
+            else {
+              var txt_get_money = "รับทางกระเป๋าเงิน";
             }
-
-            var txt_long_ac = invoice + " : " + "คุณทำการรับงานบริการรถ จำนวนเงิน "+parseInt(cost)+parseInt(s_cost);
+            var total_cost = parseInt(cost) - parseInt(s_cost);
+            var txt_long_ac = invoice + " : " + "คุณทำการรับงานบริการรถ ("+txt_get_money+")";
             var ac = {
               i_type: 2,
               i_sub_type: 1,
