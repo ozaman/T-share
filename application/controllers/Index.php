@@ -20,15 +20,9 @@ public function index()
         }
 	}
 
-public function query()
+public function admin()
 	{
-		$query = $this->db->query("select * from web_carall where drivername = 153");
-		foreach ($query->result() as $row){
-		       echo $row->id." <br/>";
-		}
-		
-//		echo print_r($row);
-		echo "+++";
+		$this->load->view('home_view');
 	}	
 
 
