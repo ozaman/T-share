@@ -79,7 +79,7 @@ public function cpn_car_type()
 	public function list_shop_manage()
 	{
 		$this->load->view('component/list_shop_manage_'.$_COOKIE[detect_userclass]);
-		
+//		echo 555;
 	}
 	
 	public function new_plan()

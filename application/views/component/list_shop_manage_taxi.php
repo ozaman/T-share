@@ -6,7 +6,7 @@ $val = $_POST[data];
     $query_dv = $this->db->query($sql_dv);
     $res_dv = $query_dv->row();
     
-    $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+    $sql_ps = "SELECT topic_th,id,amphur,main,sub,province FROM shopping_product  WHERE id='".$val[program]."' ";
    	$query_ps = $this->db->query($sql_ps);
    	$res_ps = $query_ps->row();
    	
@@ -35,6 +35,7 @@ $val = $_POST[data];
    	$query_cancel = $this->db->query($sql);
    	$res_cancel = $query_cancel->row();
 //   	echo json_encode($res_cancel);
+   
           ?>
 <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
@@ -53,15 +54,18 @@ $val = $_POST[data];
           <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
         </tr>
       </table>
+        
       <table width="100%"  >
         <tr>
           <td colspan="2">
+           
           <?php 
+         
             $_where = array();
             $_where['id'] = $res_ps->province;
             $_select = array('name_th');
             $data_pv = $this->Main_model->rowdata(TBL_WEB_PROVINCE,$_where,$_select);
-
+    
             $_where = array();
             $_where['id'] = $res_ps->sub;
             $_select = array('topic_th');
@@ -73,6 +77,7 @@ $val = $_POST[data];
 
             $query = $this->db->query("SELECT name_th,id FROM web_area WHERE id = ".$res_ps->amphur);
             $row = $query->row();
+            
             ?>
           
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
@@ -263,7 +268,7 @@ $val = $_POST[data];
                 
                 <tr style="<?=$display_park;?>">
                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
+                  <td width="40%" align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
                 </tr>
                 <tr style="<?=$display_person;?>">
@@ -274,7 +279,7 @@ $val = $_POST[data];
                 <?php if ($data->transfer_money == 0) {?>
                   <tr style="<?=$display_com;?>">
                     <td width="35%"><span class="font-17">ค่าคอม</span></td>
-                    <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+                    <td width="40%" align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                     </td>
                     <td align="right" width="20%">
                       <?=$com_progress;?>
@@ -293,8 +298,8 @@ $val = $_POST[data];
                   $data_trans_pay = $query->row();
                   ?>
                   <tr style="<?=$display_com;?>">
-                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
-                    <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
+                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว) <?=number_format($data_trans_pay->price_shopping,0);?></span></td>
+                    <td width="40%" align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
                     </td>
                     <td align="right" width="20%">
     <?=$txt_com_status;?>
@@ -453,6 +458,7 @@ $val = $_POST[data];
       ?>
 
       </table>
+        
     </div>
   </div>
 <script>

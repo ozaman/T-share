@@ -6,7 +6,7 @@ $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web
 $query_dv = $this->db->query($sql_dv);
 $res_dv = $query_dv->row();
 
-$sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+$sql_ps = "SELECT topic_th,id,amphur,main,sub,province FROM shopping_product  WHERE id='".$val[program]."' ";
 $query_ps = $this->db->query($sql_ps);
 $res_ps = $query_ps->row();
 

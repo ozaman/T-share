@@ -273,18 +273,18 @@ foreach ($_POST[data] as $key => $val) {
                 
                 <tr style="<?=$display_park;?>">
                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
+                  <td width="40%" align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
                 </tr>
                 <tr style="<?=$display_person;?>">
                   <td width="35%"><span class="font-17">ค่าหัว</span></td>
-                  <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
+                  <td width="40%" align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
                   <td width="20%" align="right"><?=$txt_get_cash;?></td>
                 </tr>
                 <?php if ($data->transfer_money == 0) {?>
                   <tr style="<?=$display_com;?>">
                     <td width="35%"><span class="font-17">ค่าคอม</span></td>
-                    <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+                    <td width="40%" align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
                     </td>
                     <td align="right" width="20%">
                       <?=$com_progress;?>
@@ -303,8 +303,8 @@ foreach ($_POST[data] as $key => $val) {
                   $data_trans_pay = $query->row();
                   ?>
                   <tr style="<?=$display_com;?>">
-                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
-                    <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
+                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว) <?=number_format($data_trans_pay->price_shopping,0);?></span></td>
+                    <td width="40%" align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
                     </td>
                     <td align="right" width="20%">
     <?=$txt_com_status;?>
