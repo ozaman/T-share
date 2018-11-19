@@ -36,8 +36,8 @@ function eachObjManage() {
 //    var program = value.program.topic_en;
 //    var pickup_place = value.pickup_place.topic;
     var program = value.program.topic_en;
-    var pickup_place = value.address_from;
-    var to_place = value.address_to;
+//    var pickup_place = value.address_from;
+//    var to_place = value.address_to;
     var outdate = value.outdate;
 
     var type = value.program.area;
@@ -64,7 +64,7 @@ function eachObjManage() {
             + '<td width="10">'
             + '<div style="width: 10px; height: 10px;border-radius: 1px; background: #555;"></div>'
             + '</td>'
-            + '<td align="left" style="padding-left: 15px;"><span id="typeFrom" style="text-align: center;">' + pickup_place + '</span></td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeFrom" style="text-align: center;">' + value.address_from + '</span></td>'
             + '</tr>'
             + '<tr>'
             + '<td colspan="2" style="padding: 3px 0px;"></td>'
@@ -73,7 +73,7 @@ function eachObjManage() {
             + '<td width="10">'
             + '<div style="width: 10px;height: 10px;border-radius: 1px; background: #3b5998;"></div>'
             + '</td>'
-            + '<td align="left" style="padding-left: 15px;"><span id="typeTo" style="text-align: center;">' + to_place + '</span></td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeTo" style="text-align: center;">' + value.address_to + '</span></td>'
             + '</tr>'
             + '</tbody>'
             + '</table>'
@@ -197,8 +197,15 @@ function readDataBooking() {
     }
 
     var program = res.program.topic_en;
-    var pickup_place = res.pickup_place.topic;
-    var to_place = res.to_place.topic;
+    var pickup_place = res.address_from;
+    
+    var pickup_place = pickup_place.split(",");
+    
+    var to_place = res.address_to;
+
+//    var str = "How are you doing today?";
+    var to_place = to_place.split(",");
+
     var outdate = res.outdate;
     var type = res.program.area;
     var time = res.airout_time;
@@ -235,10 +242,10 @@ function readDataBooking() {
             + '<td>'
             + '<table width="100%" class="tb-txt-left" >'
             + '<tr style="line-height: 1.5;" >'
-            + '<td width="100%"><span class="font-16" colspan="2">' + pickup_place + '</span></td>'
+            + '<td width="100%"><span class="font-16" colspan="2">' + pickup_place[0] + '</span></td>'
             + '</tr>'
             + '<tr style="line-height: 1.5;">'
-            + '<td width="100%"><span class="font-16" colspan="2">' + to_place + '</span></td>'
+            + '<td width="100%"><span class="font-16" colspan="2">' + to_place[0] + '</span></td>'
             + '</tr>'
             + '<tr>'
             + '<td><strong><span class="font-14 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-14" style="position: absolute;right: 15px;margin-top: 7px;">' + addCommas(cost) + '(-' + s_cost + ')' + '<?=t_THB;?></span></strong></td>'
@@ -566,11 +573,11 @@ function submitCheckIn(type_step) {
                 title: "สมบูรณ์",
                 buttonLabel: "ปิด"
               }).then(function () {
-                        callpop();
-                        $('#balance_txt_trans').text(res.update_balance.balance);
-                        $('#balance_val_trans').val(res.update_balance.balance);
-                        
-                      });
+                callpop();
+                $('#balance_txt_trans').text(res.update_balance.balance);
+                $('#balance_val_trans').val(res.update_balance.balance);
+
+              });
             }
           });
 //          $("#close_dialog_custom").click();

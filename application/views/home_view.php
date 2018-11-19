@@ -2116,7 +2116,7 @@ socket.on('notification', function(data) {
         }
         $('#number_tbooking').text(data.transfer[0].length);
         if ($('#check_open_worktbooking').val() == 1) {
-//            console.log(data.transfer);
+            console.log(data.transfer);
             $('#tab-trans_job').attr('badge', data.transfer[0].length);
             //        console.log('now open popup');
             readDataBooking();
@@ -2152,7 +2152,7 @@ socket.on('getbookinglab', function(data) {
     };
 
 
-          console.log(array_data.manage);
+//          console.log(array_data.manage);
 
     if (check_run_shop != done.length) {
         shopManage();
