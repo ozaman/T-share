@@ -364,6 +364,8 @@ function confirmGetJobTrans() {
           console.log(res);
 //          return;
           if (res.status == "200") {
+
+
             if (s_status_pay == 0) { // Pay Cash
 
               $.ajax({
@@ -379,13 +381,37 @@ function confirmGetJobTrans() {
                     modal.hide();
                     performClick('tab-trans_manage');
                     callpop();
-                    
+
                   }
                 }
               });
             } else {
 
             }
+
+            var txt_long_ac = invoice + " : " + "คุณทำการรับงานบริการรถ จำนวนเงิน "+parseInt(cost)+parseInt(s_cost);
+            var ac = {
+              i_type: 2,
+              i_sub_type: 1,
+              i_event: idorder,
+              i_user: detect_user,
+              s_topic: "บริการรถ",
+              s_message: txt_long_ac,
+              s_posted: username
+            };
+
+//            var txt_long_nc = response.update.invoice + " : " + username + " เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+            var nc = {
+//              i_type: 1,
+//              i_event: response.last_id,
+//              i_user: 0,
+//              s_class_user: "lab",
+//              s_topic: "งานส่งแขก",
+//              s_sub_topic: "เช็คอิน",
+//              s_message: txt_long_nc,
+//              s_posted: username
+            };
+            apiRecordActivityAndNotification(ac, nc);
           } else {
             modal.hide();
             ons.notification.alert({
@@ -397,7 +423,8 @@ function confirmGetJobTrans() {
         }
       });
 
-    } else {
+    } 
+    else {
       modal.hide();
       ons.notification.alert({
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
@@ -407,33 +434,6 @@ function confirmGetJobTrans() {
       hideDetail();
     }
   });
-}
-
-function saveAcAndNotiGetTrans(){
-  var txt_long_ac = response.update.invoice + " : " + "เพิ่มรายการส่งแขก " + $('#place_name_select').val();
-        var ac = {
-          i_type: 1,
-          i_sub_type: 1,
-          i_event: response.last_id,
-          i_user: detect_user,
-          s_topic: "งานส่งแขก",
-          s_message: txt_long_ac,
-          s_posted: username
-        };
-
-        var txt_long_nc = response.update.invoice + " : " + username + " เพิ่มรายการส่งแขก " + $('#place_name_select').val();
-        var nc = {
-          i_type: 1,
-          i_event: response.last_id,
-          i_user: 0,
-          s_class_user: "lab",
-          s_topic: "งานส่งแขก",
-          s_sub_topic: "เช็คอิน",
-          s_message: txt_long_nc,
-          s_posted: username
-        };
-        apiRecordActivityAndNotification(ac, nc);
-
 }
 
 var dataHistoryA;
@@ -557,13 +557,13 @@ function submitCheckIn(type_step) {
             changeHtmlTrans(type_step, idorder, timestampToDate(res, "time"));
             callApiManage();
             if (type_step == "driver_complete") {
-                    ons.notification.alert({
-                      message: 'งานของคุณเสร็จสิ้นแล้ว',
-                      title: "สมบูรณ์",
-                      buttonLabel: "ปิด"
-                    })
+              ons.notification.alert({
+                message: 'งานของคุณเสร็จสิ้นแล้ว',
+                title: "สมบูรณ์",
+                buttonLabel: "ปิด"
+              })
                       .then(function () {
-                          callpop();
+                        callpop();
                       });
             }
           });
