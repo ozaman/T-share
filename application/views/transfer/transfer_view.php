@@ -23,13 +23,17 @@
   <ons-alert-dialog modifier="rowfooter" id="confirm_get_job-dialog">
     <div class="alert-dialog-title">คุณแน่ใจหรือไม่?</div>
     <div class="alert-dialog-content">
+      <div>
+        <span class="font-14" id="txt_content_get_trans"> </span>
+      </div>
       <span class="font-14">
-          ว่าต้องการรับงานนี้
+        ต้องการรับงานนี้?
       </span>
     </div>
+
     <div class="alert-dialog-footer">
       <ons-alert-dialog-button onclick=" document.getElementById('confirm_get_job-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
-      <ons-alert-dialog-button onclick="confirmGetJobTrans();">รับงาน</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="confirmGetJobTrans();"><b>รับงาน</b></ons-alert-dialog-button>
     </div>
   </ons-alert-dialog>
 </template>

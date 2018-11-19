@@ -962,7 +962,10 @@ function readURLcar(input, id, num, type) {
           focusBoxCar2();
           var photo = "../data/pic/car/" + param_id + "_" + num + ".jpg?v=" + $.now();
           $('.' + param_id + '_pic_car_' + num).attr('src', photo);
-          $('.' + param_id + '_pic_car_' + num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")');
+//          $('.' + param_id + '_pic_car_' + num).attr('onclick', 'viewPhotoGlobal(\'' + photo + '\', "")');
+          $('.' + param_id + '_pic_car_' + num).attr('data-high-res-src', '\'' + photo + '\')');
+          $('.' + param_id + '_pic_car_' + num).attr('onclick', ' chat_gallery_items(this)');
+
           iconsHasPic(1, "txt-img-has-" + id, "txt-img-nohas-" + id);
           $('#' + $('#id_carall').val() + '-car-has-view-' + num).attr('src', 'assets/images/yes.png');
         },
@@ -1046,6 +1049,9 @@ function checkPicCar(id, checkcalledit, icons) {
       $('#' + id + '-car-has-view-1').attr('src', 'assets/images/yes.png');
       $('.' + id + '_pic_car_1').attr('src', p1);
       $('.' + id + '_pic_car_1').show();
+
+
+
       $('#' + id + '_check_upload_1').val(1);
 
       iconsHasPic(icons, "txt-img-has-img_car_1", "txt-img-nohas-img_car_1");
@@ -1055,8 +1061,9 @@ function checkPicCar(id, checkcalledit, icons) {
       }
       $('#pv_img_car_1').attr('src', p1);
 
-      $('.' + id + '_pic_car_1').attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")');
-
+//      $('.' + id + '_pic_car_1').attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")');
+      $('.' + id + '_pic_car_1').attr('data-high-res-src', '\'' + p1 + '\')');
+      $('.' + id + '_pic_car_1').attr('onclick', ' chat_gallery_items(this)');
 
     }
   });
@@ -1078,7 +1085,9 @@ function checkPicCar(id, checkcalledit, icons) {
         return;
       }
       $('#pv_img_car_2').attr('src', p2);
-      $('.' + id + '_pic_car_2').attr('onclick', 'viewPhotoGlobal(\'' + p2 + '\', "")');
+//      $('.' + id + '_pic_car_2').attr('onclick', 'viewPhotoGlobal(\'' + p2 + '\', "")');
+      $('.' + id + '_pic_car_2').attr('data-high-res-src', '\'' + p2 + '\')');
+      $('.' + id + '_pic_car_2').attr('onclick', ' chat_gallery_items(this)');
     }
   });
   var src = '../data/pic/car/' + id + '_3.jpg';
@@ -1100,7 +1109,9 @@ function checkPicCar(id, checkcalledit, icons) {
         return;
       }
       $('#pv_img_car_3').attr('src', p3);
-      $('.' + id + '_pic_car_3').attr('onclick', 'viewPhotoGlobal(\'' + p3 + '\', "")');
+//      $('.' + id + '_pic_car_3').attr('onclick', 'viewPhotoGlobal(\'' + p3 + '\', "")');
+      $('.' + id + '_pic_car_3').attr('data-high-res-src', '\'' + p2 + '\')');
+      $('.' + id + '_pic_car_3').attr('onclick', ' chat_gallery_items(this)');
     }
   });
 }
@@ -1120,7 +1131,9 @@ function checkPicAccess(id, checkcalledit) {
     success: function () {
       iconsHasPic(1, "txt-img-has-img_car_act", "txt-img-nohas-img_car_act");
       $('.' + id + '_pic_atc').attr('src', atc + "?v=" + $.now());
-      $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "", \'' + cap + $("#" + id + "_atc_exp").text() + '\')');
+//      $('.' + id + '_pic_atc').attr('onclick', 'viewPhotoGlobal(\'' + atc + '\', "", \'' + cap + $("#" + id + "_atc_exp").text() + '\')');
+      $('.' + id + '_pic_atc').attr('data-high-res-src', '\'' + atc + '\')');
+      $('.' + id + '_pic_atc').attr('onclick', ' chat_gallery_items(this)');
       $('#' + id + '_car_act').val(1);
       if (checkcalledit == 1) {
         $('#pv_img_car_act').attr('src', atc + "?v=" + $.now());
@@ -1138,7 +1151,9 @@ function checkPicAccess(id, checkcalledit) {
     success: function () {
       iconsHasPic(1, "txt-img-has-img_car_tax", "txt-img-nohas-img_car_tax");
       $('.' + id + '_pic_tax').attr('src', tax + "?v=" + $.now());
-      $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "", \'' + cap + $("#" + id + "_tax_exp").text() + '\')');
+//      $('.' + id + '_pic_tax').attr('onclick', 'viewPhotoGlobal(\'' + tax + '\', "", \'' + cap + $("#" + id + "_tax_exp").text() + '\')');
+      $('.' + id + '_pic_tax').attr('data-high-res-src', '\'' + tax + '\')');
+      $('.' + id + '_pic_tax').attr('onclick', ' chat_gallery_items(this)');
       $('#' + id + '_car_tax').val(1);
       if (checkcalledit == 1) {
         $('#pv_img_car_tax').attr('src', tax + "?v=" + $.now());
@@ -1156,7 +1171,9 @@ function checkPicAccess(id, checkcalledit) {
     success: function () {
       iconsHasPic(1, "txt-img-has-img_car_insurance", "txt-img-nohas-img_car_insurance");
       $('.' + id + '_pic_insurance').attr('src', insurance + "?v=" + $.now());
-      $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "", \'' + cap + $("#" + id + "_insurance_exp").text() + '\')');
+//      $('.' + id + '_pic_insurance').attr('onclick', 'viewPhotoGlobal(\'' + insurance + '\', "", \'' + cap + $("#" + id + "_insurance_exp").text() + '\')');
+      $('.' + id + '_pic_insurance').attr('data-high-res-src', '\'' + insurance + '\')');
+      $('.' + id + '_pic_insurance').attr('onclick', ' chat_gallery_items(this)');
       $('#' + id + '_car_insurance').val(1);
       if (checkcalledit == 1) {
         $('#pv_img_car_insurance').attr('src', insurance + "?v=" + $.now());

@@ -46,6 +46,7 @@ function eachObjManage() {
     var s_pay = value.s_status_pay;
     var cost = value.cost - value.s_cost;
     var s_cost = value.s_cost;
+
     if (s_pay == 0) {
       var type_pay = 'จ่ายเงินสด';
     } else {
@@ -378,7 +379,7 @@ function confirmGetJobTrans() {
                     modal.hide();
                     performClick('tab-trans_manage');
                     callpop();
-
+                    
                   }
                 }
               });
@@ -406,6 +407,33 @@ function confirmGetJobTrans() {
       hideDetail();
     }
   });
+}
+
+function saveAcAndNotiGetTrans(){
+  var txt_long_ac = response.update.invoice + " : " + "เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+        var ac = {
+          i_type: 1,
+          i_sub_type: 1,
+          i_event: response.last_id,
+          i_user: detect_user,
+          s_topic: "งานส่งแขก",
+          s_message: txt_long_ac,
+          s_posted: username
+        };
+
+        var txt_long_nc = response.update.invoice + " : " + username + " เพิ่มรายการส่งแขก " + $('#place_name_select').val();
+        var nc = {
+          i_type: 1,
+          i_event: response.last_id,
+          i_user: 0,
+          s_class_user: "lab",
+          s_topic: "งานส่งแขก",
+          s_sub_topic: "เช็คอิน",
+          s_message: txt_long_nc,
+          s_posted: username
+        };
+        apiRecordActivityAndNotification(ac, nc);
+
 }
 
 var dataHistoryA;
@@ -470,9 +498,11 @@ function selectjob(orderid_p, idorder_p, invoice_p, code_p, program_p, p_place_p
 
   if (dialog_confirm) {
     dialog_confirm.show();
+    $('#txt_content_get_trans').text(txt_warning);
   } else {
     ons.createElement('confirm_get_job.html', {append: true})
             .then(function (dialog_confirm) {
+              $('#txt_content_get_trans').text(txt_warning);
               dialog_confirm.show();
             });
   }
@@ -498,8 +528,8 @@ function submitCheckIn(type_step) {
   var idorder = $('#idorder').val();
 //  var url = "mod/tbooking/curl_connect_api.php?type=checkin_approve&step=<?=$_GET[type];?>&oi=" + idorder + "&type_pay=" + type_pay;
   var url = "api/checkin_transfer?step=" + type_step + "&type_pay=" + type_pay;
-  if(type_step=="driver_complete"){
-    var url = "api/checkin_transfer?step="+"driver_checkcar"+"&type_pay=" + type_pay;
+  if (type_step == "driver_complete") {
+    var url = "api/checkin_transfer?step=" + "driver_checkcar" + "&type_pay=" + type_pay;
   }
 //  console.log(url);
   var data = {idorder: idorder,
@@ -526,8 +556,15 @@ function submitCheckIn(type_step) {
           $.post('main/get_timestamp', function (res) {
             changeHtmlTrans(type_step, idorder, timestampToDate(res, "time"));
             callApiManage();
-            if(type_step=="driver_complete"){
-//              if()
+            if (type_step == "driver_complete") {
+                    ons.notification.alert({
+                      message: 'งานของคุณเสร็จสิ้นแล้ว',
+                      title: "สมบูรณ์",
+                      buttonLabel: "ปิด"
+                    })
+                      .then(function () {
+                          callpop();
+                      });
             }
           });
 //          $("#close_dialog_custom").click();

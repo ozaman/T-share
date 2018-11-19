@@ -67,7 +67,9 @@ function checkPicBank(id, img, view) {
       $('#' + img).attr('src', p1);
       iconsHasPic(1, "txt-img-has-img_book_bank", "txt-img-nohas-img_book_bank");
       if (view == 1) {
-        $('#' + img).attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")');
+//        $('#' + img).attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")');
+        $('#' + img).attr('data-high-res-src', '\'' + p1 + '\')');
+        $('#' + img).attr('onclick', ' chat_gallery_items(this)');
       }
 
     }

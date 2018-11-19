@@ -63,12 +63,14 @@ function playAudio(vol) {
     sound.volume = 1.0; //max : 1.0 , min : 0.0
     sound.play(); 
 }
+
         function chat_gallery_items(item) {
             console.log(item)
             var imgSrc = item.src,
             highResolutionImage = $(this).data('high-res-img');
 
-            viewer.show(imgSrc, highResolutionImage);
+//            viewer.show(imgSrc, highResolutionImage);
+            ImageViewer().show(imgSrc, highResolutionImage);
         }
         function image (from, base64Image) {
             console.log(from)
