@@ -252,48 +252,51 @@ class Api extends CI_Controller {
 
         $update[balance] = $deposit_update;
         $update[last_update] = time();
-        $this->db->where('id',$dv_dp->id);
-        $update[result] = $this->db->update('deposit');
+        $this->db->where('driver',$_POST[driver_id]);
+        $update[result] = $this->db->update('deposit',$update);
         $update[id] = $dv_dp->id;
+        $update[driver_id] = $_POST[driver_id];
+        $update[balance_before] = intval($dv_dp->balance);
+        $update[pay_dv] = intval($pay_driver);
         $return[update_balance] = $update;
       }
       else {
 
-        $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
-        $dv_dp = $dv_dp->row();
-
-        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
-        $deposit_update = intval($dv_dp->balance) - intval($dv_dp->s_cost);
-
-        $data[order_id] = $_POST[idorder];
-        $data[s_cost] = $_POST[s_cost];
-        $data[deposit_pay] = $pay_driver;
-        $data[balance_before] = $dv_dp->balance;
-        $data[status] = 1;
-        $data[post_date] = time();
-        $data[last_update] = time();
-        $data[type_pay] = 0;
-        $data[type_job] = "transfer";
-        $data[driver_id] = $_POST[driver_id];
-        $data[result] = $this->db->insert('history_pay_driver_deposit',$data);
-        $return[deposit] = $data;
-
-        $update[balance] = $deposit_update;
-        $update[last_update] = time();
-        $this->db->where('id',$dv_dp->id);
-        $update[result] = $this->db->update('deposit');
-        $update[id] = $dv_dp->id;
-        $return[update_balance] = $update;
+//        $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+//        $dv_dp = $dv_dp->row();
+//
+//        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+//        $deposit_update = intval($dv_dp->balance) - intval($dv_dp->s_cost);
+//
+//        $data[order_id] = $_POST[idorder];
+//        $data[s_cost] = $_POST[s_cost];
+//        $data[deposit_pay] = $pay_driver;
+//        $data[balance_before] = $dv_dp->balance;
+//        $data[status] = 1;
+//        $data[post_date] = time();
+//        $data[last_update] = time();
+//        $data[type_pay] = 0;
+//        $data[type_job] = "transfer";
+//        $data[driver_id] = $_POST[driver_id];
+//        $data[result] = $this->db->insert('history_pay_driver_deposit',$data);
+//        $return[deposit] = $data;
+//
+//        $update[balance] = $deposit_update;
+//        $update[last_update] = time();
+//        $this->db->where('id',$dv_dp->id);
+//        $update[result] = $this->db->update('deposit');
+//        $update[id] = $dv_dp->id;
+//        $return[update_balance] = $update;
       }
       /**
        * 
        * @var update ap_order status
        * 
        */
-      $up_order[status] = 1;
-      $this->db->where('invoice','"'.$_POST[invoice].'"');
-      $up_order[result] = $this->db->update('ap_order');
-      $return[update_ap_order] = $up_order;
+//      $up_order[status] = 1;
+//      $this->db->where('invoice','"'.$_POST[invoice].'"');
+//      $up_order[result] = $this->db->update('ap_order');
+//      $return[update_ap_order] = $up_order;
     }
 
     $f_date = $step."_date";

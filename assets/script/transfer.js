@@ -378,7 +378,7 @@ function confirmGetJobTrans() {
                   if (logdata.deposit.result == true) {
                     $('#balance_txt_trans').text(logdata.deposit.balance);
                     $('#balance_val_trans').val(logdata.deposit.balance);
-                    
+
                     performClick('tab-trans_manage');
                     callpop();
 
@@ -386,14 +386,15 @@ function confirmGetJobTrans() {
                 }
               });
               var txt_get_money = "รับเงินสด";
-            } 
-            else {
+            } else {
               modal.hide();
-              
+              performClick('tab-trans_manage');
+              callpop();
               var txt_get_money = "รับทางกระเป๋าเงิน";
+
             }
             var total_cost = parseInt(cost) - parseInt(s_cost);
-            var txt_long_ac = invoice + " : " + "คุณทำการรับงานบริการรถ ("+txt_get_money+")";
+            var txt_long_ac = invoice + " : " + "คุณทำการรับงานบริการรถ (" + txt_get_money + ")";
             var ac = {
               i_type: 2,
               i_sub_type: 1,
@@ -427,8 +428,7 @@ function confirmGetJobTrans() {
         }
       });
 
-    } 
-    else {
+    } else {
       modal.hide();
       ons.notification.alert({
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
@@ -491,7 +491,7 @@ function selectjob(orderid_p, idorder_p, invoice_p, code_p, program_p, p_place_p
   console.log(finalcost)
   var txt_warning;
   txt_pay_cash = 'งานนี้เป็นงานที่ลูกค้าจ่ายเงินสด จำเป็นต้องหักเงินจากบัญชีในระบบ จำนวน ' + addCommas(s_cost) + ' บาท';
-  txt_pay_trans = 'งานนี้แขกจ่ายเงินเข้าในระบบแล้ว' + "ยอดเงินทั้งหมดจะทำการโอนเงินทั้งหมดเข้าในกระเป๋าเงินของคุณ " + finalcost + " " + "บาท";
+  txt_pay_trans = 'งานนี้เป็นงานโอน ' + "ยอดเงินทั้งหมดจะโอนเข้ากระเป๋าเงินของคุณหลังเสร็จงาน เป็นจำนวน " + finalcost + " " + "บาท";
   if (s_status_pay == 0) {
     txt_warning = txt_pay_cash;
   } else {
@@ -565,9 +565,11 @@ function submitCheckIn(type_step) {
                 message: 'งานของคุณเสร็จสิ้นแล้ว',
                 title: "สมบูรณ์",
                 buttonLabel: "ปิด"
-              })
-                      .then(function () {
+              }).then(function () {
                         callpop();
+                        $('#balance_txt_trans').text(res.update_balance.balance);
+                        $('#balance_val_trans').val(res.update_balance.balance);
+                        
                       });
             }
           });
