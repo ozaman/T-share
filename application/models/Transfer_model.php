@@ -25,7 +25,7 @@ class Transfer_model extends CI_Model {
 	$data[ip] = $_SERVER['REMOTE_ADDR'];
     $this->db->where('driver', $_POST[driver]);
 	$data[result] = $this->db->update('deposit', $data);
-    
+    $data[balance] = number_format($data[balance],2); 
     $return[deposit_his] = $_POST;
     $return[deposit] = $data;
 	return $return;
