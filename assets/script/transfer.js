@@ -367,7 +367,7 @@ function confirmGetJobTrans() {
 
 
             if (s_status_pay == 0) { // Pay Cash
-
+              modal.hide();
               $.ajax({
                 url: "transfer/approve_job",
                 dataType: 'json',
@@ -378,7 +378,7 @@ function confirmGetJobTrans() {
                   if (logdata.deposit.result == true) {
                     $('#balance_txt_trans').text(logdata.deposit.balance);
                     $('#balance_val_trans').val(logdata.deposit.balance);
-                    modal.hide();
+                    
                     performClick('tab-trans_manage');
                     callpop();
 
@@ -388,6 +388,8 @@ function confirmGetJobTrans() {
               var txt_get_money = "รับเงินสด";
             } 
             else {
+              modal.hide();
+              
               var txt_get_money = "รับทางกระเป๋าเงิน";
             }
             var total_cost = parseInt(cost) - parseInt(s_cost);
