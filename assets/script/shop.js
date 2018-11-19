@@ -2011,7 +2011,7 @@ function shopManage() {
   console.log("Load Shop Manage page");
   var obj = array_data;
 
-  var url = "page/shop_manage";
+  var url = "page/shop_manage_mo";
   array_ma = obj.manage;
 //console.log(array_ma);
   var pass = {
