@@ -255,10 +255,10 @@ class Send_onesignal_model extends CI_Model {
     $sql = "SELECT invoice,program,drivername,invoice,car_plate,cancel_by FROM  order_booking  where id = '".$order_id."'  ";
     $query = $this->db->query($sql);
     $res_qr = $query->row();
-    if($res_qr->cancel_by==$_COOKIE[detect_user]){
+    if ($res_qr->cancel_by == $_COOKIE[detect_user]) {
       $return = "this user action cancel";
-      return $return; 
-   }
+      return $return;
+    }
     $invoice = $res_qr->invoice;
 //	$type_txt = $res_qr->car_plate." ทำการยกเลิกรายการนี้แล้ว กรุณาตรวจสอบ";
     if ($_GET[class_user] == "taxi") {
@@ -328,7 +328,7 @@ class Send_onesignal_model extends CI_Model {
     $sql_book = "SELECT invoice,car_plate,drivername,program,airout_m,cancel_by FROM  order_booking  where id = '".$order_id."'  ";
     $query_book = $this->db->query($sql_book);
     $res_book = $query_book->row();
-    
+
 //    $sql = "SELECT invoice,program,drivername,invoice,car_plate FROM  order_booking  where id = '".$order_id."'  ";
 //    $query = $this->db->query($sql);
 //    $res_qr = $query->row();
@@ -361,30 +361,31 @@ class Send_onesignal_model extends CI_Model {
 
       if ($row->i_noti_shop == null or $row->i_noti_shop == 1) {
 //        $tag = array(array("field" => "tag","key" => "class","relation" => "=","value" => "lab"));
-        if($res_book->cancel_by != $row->id){
-        $tag = array(array("field" => "tag","key" => "username","relation" => "=","value" => $row->username));
+        if ($res_book->cancel_by != $row->id) {
+          $tag = array(array("field" => "tag","key" => "username","relation" => "=","value" => $row->username));
 
-        $fields = array(
-            'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
-            'filters' => $tag,
-            'data' => array("order_id" => $_GET[id],"status" => "manage"),
-            //			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1",
-            'contents' => $content,
-            'headings' => $heading,
-            'ios_badgeType' => 'Increase',
-            'ios_badgeCount' => '1',
-            'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
-        );
-        $response[$row->username]["param"] = $fields;
-        $fields = json_encode($fields);
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
+          $fields = array(
+              'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
+              'filters' => $tag,
+              'data' => array("order_id" => $_GET[id],"status" => "manage"),
+              //			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1",
+              'contents' => $content,
+              'headings' => $heading,
+              'ios_badgeType' => 'Increase',
+              'ios_badgeCount' => '1',
+              'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
+          );
+          $response[$row->username]["param"] = $fields;
+          $fields = json_encode($fields);
+          curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
 
 
-        $res = curl_exec($ch);
-        $response[$row->username]["res"] = json_decode($res);
-        }else{
+          $res = curl_exec($ch);
+          $response[$row->username]["res"] = json_decode($res);
+        }
+        else {
           $return[txt] = "this user action cancel";
-          $return[by] = $res_book->cancel_by; 
+          $return[by] = $res_book->cancel_by;
           $response[$row->username]["res"] = $return;
         }
       }
@@ -831,6 +832,47 @@ class Send_onesignal_model extends CI_Model {
         ),
 //			'data' => array("order_id" => $order_id, "status" => "manage" ),
 //			'url' => "https://www.welovetaxi.com/app/T-share/sheet?order_id=".$order_id."&vc=".$invoice."&ios=1",
+        'contents' => $content,
+        'headings' => $heading,
+        'ios_badgeType' => 'Increase',
+        'ios_badgeCount' => '1',
+        'large_icon' => "https://www.welovetaxi.com/app/demo_new/images/app/ic_launcher.png"
+    );
+    $response["param"] = $fields;
+    $fields = json_encode($fields);
+
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL,"https://onesignal.com/api/v1/notifications");
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type: application/json; charset=utf-8',
+        'Authorization: Basic N2ViZjFkZTAtN2Y1My00NDk0LWI3ZjgtOTYxYTVlNjI3OWI4'));
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);
+    curl_setopt($ch,CURLOPT_HEADER,FALSE);
+    curl_setopt($ch,CURLOPT_POST,TRUE);
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
+
+    $res = curl_exec($ch);
+    $response["allresponses"] = json_decode($res);
+
+    curl_close($ch);
+
+    return $response;
+  }
+
+  public function noti_tbooking_job($param) {
+    $msg = $param[message];
+    $title = $param[title];
+//    $username = $_POST[username];
+    $content = array(
+        "en" => $msg
+    );
+    $heading = array(
+        "en" => $title
+    );
+    $fields = array(
+        'app_id' => "d99df0ae-f45c-4550-b71e-c9c793524da1",
+//        'filters' => array(array("field" => "tag","key" => "class","relation" => "=","value" => "taxi")),
+        'filters' => array(array("field" => "tag","key" => "class","relation" => "=","value" => "taxi")),
         'contents' => $content,
         'headings' => $heading,
         'ios_badgeType' => 'Increase',
