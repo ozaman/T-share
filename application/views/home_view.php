@@ -94,6 +94,9 @@ $v = "1";
     var class_user = $.cookie("detect_userclass");
     var username = $.cookie("detect_username");
     console.log(detect_mb+" : "+class_user+" : "+username);
+    if(class_user=="acc"){
+        window.location = "../T-admin";
+      }
     if(username=="" || typeof username == 'undefined'){
         window.location = "../TShare_new/material/login/index.php";
     }else{
