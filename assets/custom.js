@@ -424,7 +424,7 @@ function showPosition(position) {
       /*console.log(data.results.length-2);
        console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length - 2].address_components[0].long_name;
-      $('#province_text').text(province);
+//      $('#province_text_input').text(province);
 
       $('#now_province').val(province);
       if (run_num_place == true) {

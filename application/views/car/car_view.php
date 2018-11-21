@@ -24,7 +24,7 @@
       ?>
 <div style="padding: 0px;">
    <div style="padding: 10px 10px;">
-      <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();">เพิ่มข้อมูลรถ</ons-button>
+      <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addCar();"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มข้อมูลรถ</ons-button>
       	
    </div>
    <div style="margin-top: 10px;">
