@@ -59,8 +59,8 @@ foreach ($place_company as $data) {
           </td>
           <td valign="top">
             <strong class="font-17"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></strong><br/>
-            <strong class="font-17"><?=$MAIN->topic_th;?></strong><br/>
-            <strong class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?> </strong>
+            <strong class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?> </span>)</strong><br>
+            <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
 
             <!--              <a class="font-17" style="display: none;">
                             <strong id="txt_sh_1">ละเอียด</strong>
@@ -75,7 +75,7 @@ foreach ($place_company as $data) {
             <div class="element_to_find" align="center" style="margin-top: 10px;">
               <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
 
-              <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
+              
 
               <input type="hidden" value=" " id="1">
 
