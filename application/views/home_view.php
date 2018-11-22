@@ -685,13 +685,36 @@
       </template>
       <template id="shopping.html">
          <ons-page>
-            <ons-toolbar>
+            <ons-toolbar id="default_toolbar">
                <div class="left">
-                  <ons-back-button>หน้าหลัก</ons-back-button>
+                  <ons-back-button>กลับ</ons-back-button>
                </div>
                <div class="center"></div>
                <div class="right">
                   <ons-toolbar-button onclick="reloadApp();">
+                     <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                     <!--<i class="fa fa-home" style="font-size:26px;" aria-hidden="true"></i>-->
+                  </ons-toolbar-button>
+               </div>
+            </ons-toolbar>
+            <ons-toolbar id="default_toolbar2" style="display: none">
+               <div class="left" onclick="selesecompany()">
+                  <div ><span class="back-button__icon pull-left" style="    margin-left: 6px;"><!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ios-back-button-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="toolbar-back-button" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="ios" transform="translate(-34.000000, -30.000000)">
+            <polygon id="ios-back-button-icon" points="34 40.5 44.5 30 46.5 32 38 40.5 46.5 49 44.5 51"></polygon>
+        </g>
+    </g>
+</svg>
+</span><span style="color: #0076ff;">กลับ</span></div>
+               </div>
+               <div class="center"></div>
+               <div class="right">
+                  <ons-toolbar-button  onclick="reloadApp();">
                      <ons-icon icon="ion-home, material:md-home"></ons-icon>
                      <!--<i class="fa fa-home" style="font-size:26px;" aria-hidden="true"></i>-->
                   </ons-toolbar-button>
@@ -2598,4 +2621,11 @@
    performClick('head_list_q');
    }
    });
+//   var ready = (function(){
+//     document.querySelector('ons-back-button').onClick = function(event) {
+//   // Reset the whole stack instead of popping 1 page
+//   document.querySelector('ons-navigator').resetToPage('home.html');
+// };
+//  return ready;
+// })();
 </script>
