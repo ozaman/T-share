@@ -712,7 +712,7 @@
 </svg>
 </span><span style="color: #0076ff;">กลับ</span></div>
                </div>
-               <div class="center"></div>
+               <div class="center"><div class="center toolbar__center toolbar__title" style="">ส่งแขก</div></div>
                <div class="right">
                   <ons-toolbar-button  onclick="reloadApp();">
                      <ons-icon icon="ion-home, material:md-home"></ons-icon>
