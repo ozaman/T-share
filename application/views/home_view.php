@@ -687,7 +687,7 @@
          <ons-page>
             <ons-toolbar>
                <div class="left">
-                  <ons-back-button>กลับ</ons-back-button>
+                  <ons-back-button>หน้าหลัก</ons-back-button>
                </div>
                <div class="center"></div>
                <div class="right">

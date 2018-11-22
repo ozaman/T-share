@@ -82,7 +82,7 @@ foreach ($place_company as $data) {
             </div>
           </td>
         </tr>
-        <tr>
+       <!--  <tr>
           <td colspan="2" align="center" style="    padding-top: 0px">
 
             <span class="font-17" style="color: #2b2828;">วันนี้  
@@ -93,14 +93,10 @@ foreach ($place_company as $data) {
 
 
           </td>
-         <!--  <td colspan="2">
-            <span class="font-17" style="color:red">วันนี้เปิด <span id="time_open"></span> </span>
-
-
-          </td> -->
-        </tr>
+       
+        </tr> -->
       </tbody></table>
-    <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
+  <!--   <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
       <tbody>
 
         <tr>
@@ -142,12 +138,10 @@ foreach ($place_company as $data) {
               </table>
 
             </div>
-  <!--              <input type="hidden" value="7.872888" id="lat_product_place">
-            <input type="hidden" value="98.360599" id="lng_product_place">-->
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <table width="100%">
       <tr>
         <td width="50%" valign="top" >
