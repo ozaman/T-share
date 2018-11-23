@@ -1,4 +1,4 @@
-var id_category, id_province;
+var id_category, id_province,check_back;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	console.log(newURL);
@@ -330,12 +330,12 @@ function logOut() {
   deleteTagIOS(class_user, username);
 
   setTimeout(function () {
-    window.location = "../TShare_new/material/login/index.php";
+    window.location = base_url +"login";
   }, 2000);
 }
 
 function openNotifyline() {
-  location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
+  location.href = "https://www.welovetaxi.com/app/T-share_new/index.php?regis=linenoti&scope=notify&state=one"
 }
 
 var userLang = navigator.language || navigator.userLanguage;
@@ -585,6 +585,12 @@ function hideRes(id) {
 }
 /*************************** Menu function *********************************/
 function selesecompany() {
+  if (check_back == true) {
+    check_back = false;
+  }
+  else{
+    callpop();
+  }
   $('#shop_add').hide();
   $('#shop_filter').show();
   return;
@@ -617,6 +623,9 @@ function checkPricePlan(id) {
         sendShops(id);
         $('#shop_add').show();
         $('#shop_filter').hide();
+        $('#default_toolbar').hide();
+        $('#default_toolbar2').show();
+        check_back = true;
       }
     }
   });

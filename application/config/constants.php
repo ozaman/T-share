@@ -82,6 +82,7 @@ define('TBL_PRODUCT_PRICE_LIST_ALL', 'product_price_list_all');
 define('TBL_ORDER_BOOKING', 'order_booking');
 define('TBL_WEB_CARALL', 'web_carall');
 define('TBL_WEB_DRIVER', 'web_driver');
+define('TBL_WEB_DRIVER_LOGS', 'web_driver_logs');
 define('TBL_SHOPPING_OPEN_TIME', 'shopping_open_time');
 define('TBL_SHOPPING_CONTACT', 'shopping_contact');
 define('TBL_SHOPPING_CONTACT_TYPE', 'shopping_contact_type');

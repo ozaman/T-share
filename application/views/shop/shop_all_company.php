@@ -59,8 +59,8 @@ foreach ($place_company as $data) {
           </td>
           <td valign="top">
             <strong class="font-17"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></strong><br/>
-            <strong class="font-17"><?=$MAIN->topic_th;?></strong><br/>
-            <strong class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?> </strong>
+            <strong class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" style="color:#3b5998"><?=$SUB->topic_th;?> </span>)</strong><br>
+            <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
 
             <!--              <a class="font-17" style="display: none;">
                             <strong id="txt_sh_1">ละเอียด</strong>
@@ -75,14 +75,14 @@ foreach ($place_company as $data) {
             <div class="element_to_find" align="center" style="margin-top: 10px;">
               <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
 
-              <span class="font-17"  style="color:#333333"><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></span>
+              
 
               <input type="hidden" value=" " id="1">
 
             </div>
           </td>
         </tr>
-        <tr>
+       <!--  <tr>
           <td colspan="2" align="center" style="    padding-top: 0px">
 
             <span class="font-17" style="color: #2b2828;">วันนี้  
@@ -93,14 +93,10 @@ foreach ($place_company as $data) {
 
 
           </td>
-         <!--  <td colspan="2">
-            <span class="font-17" style="color:red">วันนี้เปิด <span id="time_open"></span> </span>
-
-
-          </td> -->
-        </tr>
+       
+        </tr> -->
       </tbody></table>
-    <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
+  <!--   <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 7px;">
       <tbody>
 
         <tr>
@@ -142,12 +138,10 @@ foreach ($place_company as $data) {
               </table>
 
             </div>
-  <!--              <input type="hidden" value="7.872888" id="lat_product_place">
-            <input type="hidden" value="98.360599" id="lng_product_place">-->
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <table width="100%">
       <tr>
         <td width="50%" valign="top" >

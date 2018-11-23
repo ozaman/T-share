@@ -142,11 +142,11 @@ else {
    // $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
     // if ( $numss != 1) {
       ?>
-<div class="card">
+<!-- <div class="card">
    <ons-row >
                 <ons-col>
                     <ons-button id="btn_toshow_date" onclick="selesecompany();" class="button button--outline" style="width: 100%;
-                    padding: 0; height: 35px; text-align: center;"><span class="back-button__icon pull-left" style="    margin-left: 6px;"><!--?xml version="1.0" encoding="UTF-8"?-->
+                    padding: 0; height: 35px; text-align: center;"><span class="back-button__icon pull-left" style="    margin-left: 6px;">
 <svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>ios-back-button-icon</title>
     <desc>Created with Sketch.</desc>
@@ -160,7 +160,7 @@ else {
 </span>เลือกสถานที่อื่น</ons-button>
                 </ons-col>
                </ons-row>
-</div>
+</div> -->
     
 
 
