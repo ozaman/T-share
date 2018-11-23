@@ -359,8 +359,9 @@
                 <div class="center" onclick="arrowChange('list_q');" id="head_list_q">
                     จัดการ <?=$row->type_name;?>
                   </div>
+                  <div class="expandable-content" style="padding-left: 60px;" onclick="stManagePlace('<?=$row->id;?>');">จัดการสถานที่</div>
                   <div class="expandable-content" style="padding-left: 60px;" onclick="taxiList();">สมาชิก (<?=$num_member;?>)</div>
-                   <div class="expandable-content" style="padding-left: 60px;" onclick="manageServiceSt();">ค่าบริการ (<?=$num_service;?>)</div>
+                   <div class="expandable-content" style="padding-left: 60px;" onclick="manageServiceSt('<?=$row->id;?>');">ค่าบริการ (<?=$num_service;?>)</div>
                   <div class="right arr" id="list_q">
                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
@@ -500,6 +501,51 @@
             </script>
          </ons-page>
       </template>
+     <template id="st_manage_place.html">
+         <ons-page>
+            <ons-toolbar>
+               <div class="left" onclick="$('#check_open_shop_id').val(0);">
+                  <ons-back-button>กลับ</ons-back-button>
+               </div>
+               <div class="center"></div>
+               <div class="right">
+                  <ons-toolbar-button onclick="reloadApp();">
+                     <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+               </div>
+            </ons-toolbar>
+            <div id="body_st_manage_place"  >
+            </div>
+            <script>
+               ons.getScriptPage().onInit = function () {
+                   this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+               }
+            </script>
+         </ons-page>
+      </template>
+     <template id="add_place_owner.html">
+         <ons-page>
+            <ons-toolbar>
+               <div class="left" onclick="checkBeforeHideToast_selectPlace();">
+                  <ons-back-button>กลับ</ons-back-button>
+               </div>
+               <div class="center"></div>
+               <div class="right">
+                  <ons-toolbar-button onclick="reloadApp();">
+                     <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+               </div>
+            </ons-toolbar>
+            <div id="body_add_place_owner">
+            </div>
+            <script>
+               ons.getScriptPage().onInit = function () {
+                   this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+               }
+            </script>
+         </ons-page>
+      </template>
+     
       <template id="information.html">
          <ons-page>
             <div id="body_load_information"></div>
@@ -1173,6 +1219,28 @@
             </script>
          </ons-page>
       </template>
+     <template id="popup3.html">
+         <ons-page>
+            <ons-toolbar>
+               <div class="left">
+                  <ons-back-button>กลับ</ons-back-button>
+               </div>
+               <div class="center"></div>
+               <div class="right">
+                  <ons-toolbar-button onclick="reloadApp();">
+                     <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                  </ons-toolbar-button>
+               </div>
+            </ons-toolbar>
+            <div id="body_popup3">
+            </div>
+            <script>
+               ons.getScriptPage().onInit = function () {
+                   this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+               }
+            </script>
+         </ons-page>
+      </template>
       <template id="qrcode_ref.html">
          <ons-page>
             <ons-toolbar>
@@ -1766,7 +1834,7 @@
                      </div>
                      <div>
                         <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank">
-                           <ons-button style="margin-top: 0px; padding: 2px 10px;" onclick="//openMapPlaceCustom('7.871505', '98.379508')"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button>
+                           <ons-button style="margin-top: 0px; padding: 2px 10px;" ><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i>  ตำแหน่งที่ประชุม</ons-button>
                         </a>
                      </div>
                   </div>
@@ -1774,6 +1842,12 @@
             </ons-card>
          </div>
       </ons-modal>
+        <ons-toast id="toast_confirm_select_place" animation="ascend">
+          <span class="font-16">เลือก <b id="num_select">0</b> สถานที่</span>
+
+<!--          <button onclick="saveSelectPlaceOwner();" class="font-14">บันทึก</button>-->
+          <button class="font-14">บันทึกแล้ว</button>
+        </ons-toast>
    </body>
 </html>
 <script>

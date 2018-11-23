@@ -4,7 +4,7 @@
   <?php
   foreach ($_POST[data][area] as $val) {
     ?>
-    <ons-list-item id="item_aumphur_<?=$val[id];?>" class="list-item" onclick="selectAumphur('<?=$val[id];?>');" data-name="<?=$val[name_th];?>">
+    <ons-list-item id="item_amphur_<?=$val[id];?>" class="list-item" onclick="selectAumphur('<?=$val[id];?>','<?=$_GET[op];?>');" data-name="<?=$val[name_th];?>">
       <div class="left list-item__left">
           <!--<img class="list-item__thumbnail" src="https://placekitten.com/g/54/41">-->
           <!--<span class="brand-small list-item__thumbnail" style="<?=$img_pos;?>" ></span>-->

@@ -1,3 +1,36 @@
+.point-01{
+    width: 13px;height: 13px; background-color: #555;
+    border-radius: 10px;
+  }
+  .point-02{
+    width: 13px;height: 13px; background-color: #3b5998;
+    border-radius: 10px;
+  }
+  .line-ver-area{
+    width: 3px;
+    height: 85px;
+    background-color: #afafaf;
+    position: absolute;
+    left: 30px;
+    top: 100px;
+    border-radius: 10px;
+  }
+  .line-ver-place{
+    width: 3px;
+    height: 110px;
+    background-color: #afafaf;
+    position: absolute;
+    left: 30px;
+    top: 100px;
+    border-radius: 10px;
+  }
+  .btn-close-price{
+    /*font-size: 36px;*/
+    position: absolute;
+    right: 7px;
+    margin-top: -18px;
+    /*background-color: #fff;*/
+  }
 .none-pd td{
   padding: 0px !important;
 }

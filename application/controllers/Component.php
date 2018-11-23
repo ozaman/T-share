@@ -84,8 +84,12 @@ class Component extends CI_Controller {
     $this->load->view('component/place_all');
   }
 
-  public function cpn_aumphur() {
-    $this->load->view('component/aumphur');
+  public function cpn_amphur() {
+    $this->load->view('component/amphur');
+  }
+  
+  public function list_manage_place_station() {
+    $this->load->view('component/list_manage_place_station');
   }
 
 }

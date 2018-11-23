@@ -1,14 +1,15 @@
+<input type="hidden" value="<?=$_GET[amp_to_id];?>" id="amp_select_to" />
 <div style="padding: 10px 10px;">
-  <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addServiceArea();"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มบริการพื้นที่</ons-button>
-
+  <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="addServicePlace(<?=$_GET[amp_to_id];?>);"><i class="fa fa-plus-circle" aria-hidden="true"></i> เพิ่มบริการสถานที่</ons-button>
 </div>
 <ons-list>
-  <ons-list-header style="font-size: 14px;">บริการตามพื้นที่</ons-list-header>
+  <ons-list-header style="font-size: 14px;">บริการตามสถานที่</ons-list-header>
   <?php
   $this->db->select('*');
   $where[i_status] = 1;
-  $where[i_type] = 1; // พื้นที่ 
+  $where[i_type] = 2; // พื้นที่ 
   $where[i_station] = $_GET[station];
+  $where[i_sub_amphur] = $_GET[amp_to_id];
   $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,$where);
 
   foreach ($query->result() as $row) {
@@ -62,9 +63,6 @@
             <span class="font-17"><?=$row->i_price;?> บ.</span>
           </div>
         </ons-list-item>  
-      </div>
-      <div class="right button" style="padding: 14px; background-color: #0076ffc9;border-radius: 0px;margin: 0;" onclick="managePlaceEachAmphur(<?=$row->id;?>, <?=$_GET[station];?>, '<?=$amp_to->name_th;?>');">
-        <span class="font-16">เพิ่ม</span>
       </div>
       <div class="right button" style="padding: 9px; background-color: #ff5722;border-radius: 0px;margin: 0;" onclick="">
         <span class="font-16">แก้ไข</span>
