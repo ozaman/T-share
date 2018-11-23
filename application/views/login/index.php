@@ -260,7 +260,7 @@
 
               <span class="login100-form-title p-b-30 p-t-20">
 
-                <img src="<?=base_url();?>assets/login/images/logo.png" class="img-logo" onclick="location.reload();" />
+                <img src="<?=base_url();?>assets/images/logo2.png" class="img-logo" onclick="location.reload();" />
               </span>
 
               <div class="wrap-input100 validate-input" >
@@ -607,7 +607,7 @@
                 };
                 console.log(param);
 //						return;
-                $.post("../../../sms/mail_recovery_pass.php", param, function (res) {
+                $.post("../../app/sms/mail_recovery_pass.php", param, function (res) {
                   console.log(res);
                   modal.hide();
                   ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยู่ ' + us_email + ' แล้ว', title: "สำเร็จ", buttonLabel: "ปิด"})
