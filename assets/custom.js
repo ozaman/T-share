@@ -330,12 +330,12 @@ function logOut() {
   deleteTagIOS(class_user, username);
 
   setTimeout(function () {
-    window.location = "../TShare_new/material/login/index.php";
+    window.location = base_url +"login";
   }, 2000);
 }
 
 function openNotifyline() {
-  location.href = "https://www.welovetaxi.com/app/TShare_new/index.php?regis=linenoti&scope=notify&state=one"
+  location.href = "https://www.welovetaxi.com/app/T-share_new/index.php?regis=linenoti&scope=notify&state=one"
 }
 
 var userLang = navigator.language || navigator.userLanguage;

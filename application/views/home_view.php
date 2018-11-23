@@ -97,7 +97,7 @@
           window.location = "../T-admin";
         }
       if(username=="" || typeof username == 'undefined'){
-          window.location = "../TShare_new/material/login/index.php";
+          window.location = "<?=base_url();?>login";
       }else{
           username = username.toUpperCase();
       }
