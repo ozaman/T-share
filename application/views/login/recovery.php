@@ -11,7 +11,7 @@
       <ons-list-item class="input-items" style="padding-left: 0;">
 
         <label class="center">
-          <input  id="username_for_rcv" type="text" value="<?=$_COOKIE[app_remember_user];?>" onkeyup="getPhoneByUser($(this).val());" name="real_username" />
+          <input  id="username_for_rcv" type="text" value="<?=$_COOKIE[app_remember_user];?>" onkeyup="getPhoneByUser(this.value);" name="real_username" />
           <i id="corrent-user" class="fa fa-check-circle pass" aria-hidden="true" style="display: none;"></i>
         </label>
       </ons-list-item>  

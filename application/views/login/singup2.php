@@ -44,7 +44,7 @@
             </div>
             <label class="center list-item__center">
                 <ons-input id="phone-input" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;">
-                    <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone" onkeyup="validPhoneNum($(this).val());">
+                    <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone" onkeyup="validPhoneNum(this.value);">
                     <span class="text-input__label">
                         <?=$phone;?></span>
                 </ons-input>

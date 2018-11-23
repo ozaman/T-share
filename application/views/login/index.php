@@ -433,8 +433,8 @@
         }
 
         var createAlertDialog = function () {
-          var imageData = $('.image-editor').cropit('export');
-          $('.hidden-image-data').val(imageData);
+          //  var imageData = $('.image-editor').cropit('export');
+          // $('.hidden-image-data').val(imageData);
           if ($('input[name="name_th"]').val() == "") {
 
             ons.notification.alert({message: 'กรุณากรอกชื่อจริง', title: "ข้อมูลไม่ครบ", buttonLabel: "ปิด"})
@@ -444,30 +444,6 @@
 
             return false;
           }
-          /*if($('#gender').val()==""){
-           
-           ons.notification.alert({message: 'กรุณาเลือกเพศ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('#checkbox-0').focus();
-           });
-           return false;
-           }
-           if($('input[name="nickname"]').val()==""){
-           
-           ons.notification.alert({message: 'กรุณากรอกชื่อเล่น',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="nickname"]').focus();
-           });
-           return false;
-           }
-           if($('input[name="address"]').val()==""){
-           
-           ons.notification.alert({message: 'กรุณากรอกที่อยู่ของคุณ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="address"]').focus();
-           });
-           return false;
-           }*/
           if ($('input[name="phone"]').val() == "") {
 
             ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์', title: "ข้อมูลไม่ครบ", buttonLabel: "ปิด"})
@@ -484,55 +460,6 @@
                     });
             return false;
           }
-          /*if($('#valid_type_plate').val()==1){
-           
-           ons.notification.alert({message: 'ทะเบียนรถนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ข้อมูลซ้ำ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="plate_num"]').focus();
-           });
-           return false;
-           }
-           
-           if($('#phone_em').val()==""){
-           
-           ons.notification.alert({message: 'กรุณากรอกเบอร์โทรศัพท์ฉุกเฉิน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="plate_num"]').focus();
-           });
-           return false;
-           }
-           if($('#em_person').val()==""){
-           
-           ons.notification.alert({message: 'กรุณาเลือกบุคคลที่เกี่ยวข้องกับเบอร์โทรฉุกเฉิน',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="plate_num"]').focus();
-           });
-           return false;
-           }
-           if($('input[name="image-data"]').val()==""){
-           
-           ons.notification.alert({message: 'กรุณาเลือกรูปประจำตัวของคุณ',title:"ข้อมูลไม่ครบ",buttonLabel:"ปิด"})
-           .then(function() {
-           $('input[name="image-data"]').focus();
-           });
-           return false;
-           }*/
-
-          /*if($('input[name="idcard"]').val()==""){
-           ons.notification.alert({message: 'กรุณากรอกเลขบัตรประจำตัวประชาชน',title:"ผิดพลาด"});
-           return false;
-           }else{
-           
-           }	*/
-          /*if($('#valid_type_idc').val()==1){
-           ons.notification.alert({message: 'เลขบัตรประชาชนของคุณไม่ถูกต้อง',title:"ผิดพลาด",buttonLabel:"ปิด"});
-           return false;
-           }
-           else if($('#valid_type_idc').val()==2){
-           
-           ons.notification.alert({message: 'เลขบัตรประชาชนของคุณถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้',title:"ผิดพลาด",buttonLabel:"ปิด"});
-           return false;
-           }*/
           var dialog = document.getElementById('submit-my-alert-dialog');
 
           if (dialog) {
@@ -614,14 +541,15 @@
 
           console.log(check_type_rcv);
           var pos = {key: key};
+          console.log('----------------')
+          console.log(pos)
           $.ajax({
-            url: "../../mod/material/php_center.php?query=user_data", // point to server-side PHP script 
+            url: "login/user_data", // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
             data: pos,
             type: 'post',
             success: function (php_script_response) {
               console.log(php_script_response);
-
               var message = "ชื่อผู้ใช้ : " + php_script_response.username + "\r\n" + "รหัสผ่าน : " + php_script_response.password;
               if (check_type_rcv == 0) {
                 if (php_script_response.i_use_sms == php_script_response.i_limit_sms) {
@@ -656,7 +584,7 @@
                     modal.hide();
                     ons.notification.alert({message: 'ส่ง SMS รหัสผ่านไปยังเบอร์ ' + us_phone + ' แล้ว', title: "สำเร็จ", buttonLabel: "ปิด"})
                             .then(function () {
-                              var push_sms_url = "../../mod/material/php_center.php?action=push_sms&sms=" + php_script_response.i_use_sms + "&dv=" + php_script_response.id;
+                              var push_sms_url = "login/push_sms?sms=" + php_script_response.i_use_sms + "&dv=" + php_script_response.id;
                               $.post(push_sms_url, function (res) {
                                 console.log(res);
                                 $('#enter_pass_box').show();
@@ -679,7 +607,7 @@
                 };
                 console.log(param);
 //						return;
-                $.post("../../mail_recovery_pass.php", param, function (res) {
+                $.post("../../../sms/mail_recovery_pass.php", param, function (res) {
                   console.log(res);
                   modal.hide();
                   ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยู่ ' + us_email + ' แล้ว', title: "สำเร็จ", buttonLabel: "ปิด"})
@@ -714,7 +642,7 @@
             type: 'post',
             success: function (response) {
               console.log(response);
-              return false;
+              // return false;
               if (response != false) {
                 $('#box_not_found').hide();
                 $('#corrent-user').show();
@@ -850,26 +778,26 @@
           });
         } else if (page.open == "car_province") {
           $.ajax({
-            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+            url: "login/data_province", // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
             type: 'post',
             success: function (res) {
               var param = {data: res};
               console.log(param);
-              $.post("province.php?type=car", param, function (el) {
+              $.post("login/province?type=car", param, function (el) {
                 $('#body_option').html(el);
               });
             }
           });
         } else if (page.open == "user_province") {
           $.ajax({
-            url: "../../mod/material/php_center.php?query=data_province", // point to server-side PHP script 
+            url: "login/data_province", // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
             type: 'post',
             success: function (res) {
               var param = {data: res};
               console.log(param);
-              $.post("province.php?type=user", param, function (el) {
+              $.post("login/province?type=user", param, function (el) {
                 $('#body_option').html(el);
               });
             }
@@ -935,7 +863,11 @@
             // setCookie("pass", res.data.id);
             if(res.data.class_user=="acc"){
               window.location.href = "";
-            }else{
+            }
+            else if (res.data.user_class == 'monitor') {
+                 window.location.href = 'http://127.0.0.1/T-admin'
+            }
+            else{
               window.location.replace('<?=base_url();?>');
             }
             
@@ -1045,23 +977,35 @@
         } else {
           var province = data.results[data.results.length - 2].address_components[0].long_name;
           console.log(province);
-          var url = "../../mod/material/php_center.php?query=get_id_province_only";
-          $.post(url, {txt_pv: province}, function (data) {
-
-            if (typeof data == 'undefined') {
+          var url = "login/get_id_province_only";
+           $.ajax({
+        url: url, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        // cache: false,
+        // contentType: false,
+        // processData: false,
+        data: {txt_pv: province},
+        type: 'post',
+        success: function (res) {
+          console.log(res);
+         
+              console.log('****************')
+              console.log(res)
+            if (typeof res == 'undefined') {
               $('#div_position').hide();
               return;
             }
-            console.log(data);
-            var province = data.id;
-            var area = data.area;
-            var code = data.code;
+            console.log(res);
+            var province = res.id;
+            var area = res.area;
+            var code = res.code;
 
-            $('#txt-province').text(data.name_th);
-            $('#txt_user_province').text(data.name_th);
+            $('#txt-province').text(res.name_th);
+            $('#txt_user_province').text(res.name_th);
             $('#txt_user_province').css("color", "#000");
             $('#province').val(province);
             $('#code_privince').val(code);
+          }
           });
         }
       });
@@ -1080,15 +1024,15 @@
        
        });*/
 
-      $.post("../../mod/material/php_center.php?query=em_person", function (data) {
+      // $.post("../../mod/material/php_center.php?query=em_person", function (data) {
 
-        $.each(data, function (index, value) {
+      //   $.each(data, function (index, value) {
 
-          var option = '<option value="' + value.id + '">' + value.name_th + '</option>';
-          $('select[name="em_person"]').append(option);
-        });
+      //     var option = '<option value="' + value.id + '">' + value.name_th + '</option>';
+      //     $('select[name="em_person"]').append(option);
+      //   });
 
-      });
+      // });
 
     }
 
@@ -1141,7 +1085,7 @@
 
       var data = new FormData($('#form_singin')[0]);
 //		 data.append('fileUpload', $('#img_profile')[0].files[0]);
-      var url = "../../mod/material/user/php_user.php?action=register2";
+      var url = "login/register";
 
       $.ajax({
         url: url, // point to server-side PHP script 
@@ -1152,6 +1096,7 @@
         data: data,
         type: 'post',
         success: function (php_script_response) {
+          console.log('in case register')
           console.log(php_script_response);
           if (php_script_response.add.result == true) {
 
@@ -1163,9 +1108,9 @@
                         real_username: php_script_response.update.username,
                         real_password: php_script_response.update.password
                       };
-                      var url_login = "../../mod/material/php_center.php?checking=login";
+                      var url_login = "login/logins";
 
-                      $.post('../../mail.php?key=new_driver&driver=' + php_script_response.last_id, function (data) {
+                      $.post('../../../sms/mail.php',{data:php_script_response.add.data}, function (data) {
                         console.log(data);
 
                         setTimeout(function () {
@@ -1175,18 +1120,18 @@
                             data: data_login,
                             type: 'post',
                             success: function (res) {
-                              console.log(res);
-                              if (res.check == 1) {
+                              console.log('**** mail *******')
+                              // console.log(res);
+                              if (res.status == true) {
                                 modal.show();
-                                var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
+                                // var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
 //										 var url = "https://www.welovetaxi.com/app/T-share?check_new_user="+php_script_response.last_id;
-                                console.log(url);
-                                setCookie("detect_username", res.data.user, 10);
-                                setCookie("detect_user", res.data.id, 10);
-                                setCookie("detect_userclass", res.data.class_user, 10);
-                                setCookie("app_remember_user", res.data.user, 10);
-                                setCookie("app_remember_pass", res.data.pass, 10);
-                                window.location.href = url;
+                                setCookie("detect_username", res.data.username, 10);
+            setCookie("detect_user", res.data.id, 10);
+            setCookie("detect_userclass", res.data.user_class, 10);
+            setCookie("app_remember_user", res.data.username, 10);
+            setCookie("app_remember_pass", res.data.password, 10);
+                                window.location.replace('<?=base_url();?>');
                               }
                             }
                           });
@@ -1196,8 +1141,8 @@
                     });
             modal.hide();
           } else {
-            ons
-                    .notification.alert({message: 'ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง', title: "ผิดพลาด", buttonLabel: "ปิด"});
+            console.log(php_script_response.add.result)
+            ons.notification.alert({message: php_script_response.add.msg, title: "ผิดพลาด", buttonLabel: "ปิด"});
             modal.hide();
           }
         },
@@ -1265,10 +1210,16 @@
     function validPhoneNum(value) {
       console.log(value)
       if (value.length >= 10) {
+ $.ajax({
+                            url: "login/phone_overlap", // point to server-side PHP script 
+                            dataType: 'json', // what to expect back from the PHP script, if anything
+                            data: {txt: value},
+                            type: 'post',
+                            success: function (res) {
 
-        $.post("../../mod/material/php_center.php?checking=phone_overlap", {txt: value}, function (res) {
+        // $.post("login/phone_overlap", , function (res) {
           console.log(res);
-          if (res.check == 1) {
+          if (res.check > 0) {
             $('#incorrent-phone').show();
             $('#corrent-phone').hide();
             $('#incorrent-phone span').text('เบอร์ซ้ำ');
@@ -1279,6 +1230,7 @@
 
           }
           $('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
+        }
         });
 
       } else {
@@ -1326,7 +1278,8 @@
       $('#province').val(id);
       $('#txt_user_province').text(name);
       $('#code_privince').val(code);
-      $('ons-back-button').click();
+      // $('ons-back-button').click();
+      myNavigator.popPage();
     }
 
     function selectCarColor(id, val) {
@@ -1376,6 +1329,11 @@
     $(window).on('load', function () {
       clearCookieAll();
     });
+    window.fn.popPage = function() {
+   var content = document.getElementById('myNavigator');
+   console.log(content)
+   // content.popPage();
+   };
 
     /*document.querySelector('ons-back-button').onClick = function(event) {
      // Reset the whole stack instead of popping 1 page
