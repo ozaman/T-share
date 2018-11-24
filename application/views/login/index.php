@@ -865,7 +865,7 @@
               window.location.href = "";
             }
             else if (res.data.user_class == 'monitor') {
-                 window.location.href = 'http://127.0.0.1/T-admin'
+                 window.location.href = '../T-admin'
             }
             else{
               window.location.replace('<?=base_url();?>');
