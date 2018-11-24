@@ -104,7 +104,7 @@ define('TBL_PLACE_CAR_STATION','place_car_station');
 define('TBL_PLACE_CAR_STATION_OTHRET','place_car_station_other');
 define('TBL_PLACE_CAR_STATION_TYPE','place_car_station_type');
 define('TBL_PLACE_CAR_STATION_SERVICE','place_car_station_service');
-define('TBL_PLACE_CAR_STATION_MANAGE','place_car_station_manage');
+define('TBL_PLACE_CAR_STATION_OWNER','place_car_station_owner');
 define('TBL_SHOP_STATION','shop_station');
 define('TBL_SHOP_STATION_FIELD','shop_station_field');
 define('TBL_SHOP_DOCCUMENT_FILE_IMG','shop_document_file_img');

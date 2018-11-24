@@ -5,9 +5,21 @@ $where[id] = $_GET[amp_to_id]; // พื้นที่
 $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,$where);
 $res_ser = $query->row();
 
-$this->db->select('id, topic_th');
-$query = $this->db->get_where(TBL_PLACE_CAR_STATION_OTHRET,array('id' => $res_ser->i_place_from));
-$place_from_res = $query->row();
+if ($res_ser->i_type_from == 3) {
+  $this->db->select('id, topic_th');
+  $query = $this->db->get_where(TBL_PLACE_CAR_STATION_OTHRET,array('id' => $res_ser->i_place_from));
+  $place_from_res = $query->row();
+  $text_from = $place_from_res->topic_th." ".$amp_from->name_th;
+}
+else if ($res_ser->i_type_from == 2) {
+
+  $this->db->select('*');
+  $query = $this->db->get_where(TBL_WEB_TRANSFERPLACE_NEW,array('id' => $res_ser->i_place_from));
+  $place_from_res = $query->row();
+  $text_from = $place_from_res->topic;
+}
+//echo $res_ser->i_place_from;
+//exit();
 
 $this->db->select('id, name_th');
 $query = $this->db->get_where(TBL_WEB_AMPHUR,array('id' => $res_ser->i_amphur_from));
@@ -21,11 +33,13 @@ $this->db->select('id, name_th');
 $query = $this->db->get_where(TBL_WEB_AMPHUR,array('id' => $res_ser->i_amphur_to));
 $amp_to = $query->row();
 ?>
+<input type="hidden" value="<?=$_GET[area_name];?>" id="area_name" />
 <form id="place_form">
   <ons-list-header class="list-header"><b>ข้อมูลให้บริการ</b></ons-list-header>
   <div class="line-ver-place"></div>
   <div style="padding-left: 25px;">
-
+    <input type="hidden" name="station" id="station" value="<?=$res_ser->i_station;?>">
+    <input type="hidden" name="main" id="main" value="<?=$_GET[amp_to_id];?>">
     <ons-list-item>
       <div class="left">
         <div class="point-01"></div>
@@ -40,13 +54,12 @@ $amp_to = $query->row();
 
           </ons-list-item>
           <ons-list-item class="input-items list-item p-l-0">
-            <div class="center list-item__center">
-              <ons-input id="from-input" float=""  placeholder="สถานที่รับ"  name="from" style="width:100%;" value="<?=$place_from_res->topic_th." ".$amp_from->name_th;?>">
-                <input type="text" class="text-input font-17" placeholder="สถานที่รับ"  name="from" id="from">
-                <span class="text-input__label">สถานที่รับ</span>
-              </ons-input>
-              <input type="hidden" name="station" id="station" value="<?=$place_from_res->id;?>">
-            </div>
+            <label class="center list-item__center">
+              <span class="font-17" id="txt_from" style=" padding: 6px 0px 5px 0;color: #000;margin-left: 0px;" ><?=$text_from;?></span>
+              <input type="hidden" name="from" id="from" value="<?=$place_from_res->id;?>" />
+              <input type="hidden" name="type_from" id="type_from" value="<?=$res_ser->i_type_from;?>" />
+              <input type="hidden" name="ip_txt_from" id="ip_txt_from" value="<?=$text_from;?>" />
+            </label>
           </ons-list-item>
         </ons-card>
       </div>
@@ -70,6 +83,7 @@ $amp_to = $query->row();
               <span class="font-17" id="txt_place_to" style=" padding: 6px 0px 5px 0;color: #b2b2b2;margin-left: 0px;" >เลือกสถานที่ส่ง</span>
               <input type="hidden" name="place_to" id="place_to" value="" />
               <input type="hidden" name="ip_txt_place_to" id="ip_txt_place_to" value="" />
+              <input type="hidden" name="type_to" id="type_to" value="2" />
             </label>
           </ons-list-item>
         </ons-card>

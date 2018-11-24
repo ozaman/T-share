@@ -23,7 +23,6 @@ $query = $this->db->get_where(TBL_WEB_TRANSFERPLACE_NEW,$where);
     <ons-list-item>
       <div class="left" style="margin-left: 10px;"><?=$num++;?></div>
       <div class="center"><?=$row->topic;?></div>
-      <div class="right">ลบ</div>
     </ons-list-item>
   <?php
 }

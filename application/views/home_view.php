@@ -348,9 +348,9 @@
                  $query = $this->db->get_where(TBL_PLACE_CAR_STATION,array('station' => $row->id,'status'=>1, 'member !='=>$_COOKIE[detect_user]));
                  $num_member = $query->num_rows();
                  
-                 $this->db->select('id');
-                 $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,array('i_station' => $row->id,'i_status'=>1));
-                 $num_service = $query->num_rows();
+//                 $this->db->select('id');
+//                 $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,array('i_station' => $row->id,'i_status'=>1));
+//                 $num_service = $query->num_rows();
                ?>
               <ons-list-item expandable>
                   <div class="left">
@@ -361,7 +361,7 @@
                   </div>
                   <div class="expandable-content" style="padding-left: 60px;" onclick="stManagePlace('<?=$row->id;?>');">จัดการสถานที่</div>
                   <div class="expandable-content" style="padding-left: 60px;" onclick="taxiList();">สมาชิก (<?=$num_member;?>)</div>
-                   <div class="expandable-content" style="padding-left: 60px;" onclick="manageServiceSt('<?=$row->id;?>');">ค่าบริการ (<?=$num_service;?>)</div>
+                   <div class="expandable-content" style="padding-left: 60px;" onclick="manageServiceSt('<?=$row->id;?>');">ค่าบริการ</div>
                   <div class="right arr" id="list_q">
                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>

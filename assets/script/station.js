@@ -1,8 +1,70 @@
+
+function showSheetAreaService(id, station, amp_name) {
+  ons.openActionSheet({
+//    title: 'My Action Sheet',
+    cancelable: true,
+    buttons: ['เพิ่มราคาของสถานที่', 'แก้ไขราคาพื้นที่นี้',{
+        label: 'ลบราคานี้',
+        modifier: 'destructive'
+      }, 'ปิด']
+  }).then(function (index) {
+    if (index == 0) {
+      managePlaceEachAmphur(id, station, amp_name);
+    } else if (index == 1) {
+      editServiceArea(id);
+    }
+  });
+}
+
+function showSheetPlaceService(id, station, amp_name) {
+  ons.openActionSheet({
+//    title: 'My Action Sheet',
+    cancelable: true,
+    buttons: ['แก้ไขราคาพื้นที่นี้',{
+        label: 'ลบราคานี้',
+        modifier: 'destructive'
+      }, 'ปิด']
+  }).then(function (index) {
+    if (index == 0) {
+//      managePlaceEachAmphur(id, station, amp_name);
+    } else if (index == 1) {
+
+    }
+  });
+}
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function selectFromSer() {
+  $('#body_option').html(progress_circle);
+  fn.pushPage({'id': 'option.html', 'title': 'สถานที่'}, 'lift-ios');
+  var ps = {
+    station: $('#station').val()
+  };
+  $.post("station/select_place_from", ps, function (el) {
+    $('#body_option').html(el);
+  });
+}
+
+function selectPlaceFrom(id, type) {
+  $('#type_from').val(type);
+  $('#from').val(id);
+  if (type == 2) {
+    var txt = $('#item_list_place_f_' + id).data('name');
+  } else if (type == 3) {
+    var txt = $('#item_list_place_s_' + id).data('name');
+  }
+//  alert(txt);
+  $('#txt_from').text(txt);
+  $('#ip_txt_from').val(txt);
+  console.log(txt);
+  $('#txt_price_area_from').text(txt);
+  callpop();
+  chk_show_box();
+}
+
 function manageServiceSt(station) {
   fn.pushPage({
     'id': 'st_manage_service.html',
@@ -21,6 +83,18 @@ function addServiceArea() {
     'title': 'เพิ่มบริการพื้นที่'
   }, 'lift-ios');
   $.post("station/add_service_area", function (ele) {
+//    console.log(ele);
+    $('#body_popup1').html(ele);
+  });
+}
+
+function editServiceArea(id) {
+  fn.pushPage({
+    'id': 'popup1.html',
+    'title': 'เพิ่มบริการพื้นที่'
+  }, 'lift-ios');
+  console.log("station/add_service_area?id="+id);
+  $.post("station/add_service_area?id="+id, function (ele) {
 //    console.log(ele);
     $('#body_popup1').html(ele);
   });
@@ -86,7 +160,7 @@ function selectAumphur(id, op) {
   }
 
   $('#to').val(txt);
-  $('#txt_price_area_from').text($('#from').val());
+  $('#txt_price_area_from').text($('#txt_from').text());
   $('#txt_price_area_to').text(txt);
   chk_show_box();
 
@@ -123,10 +197,10 @@ function colseAreaPrice() {
   chk_show_box();
 }
 
-function saveServiceArea() {
+function saveServiceArea(type_action, id) {
 
   $.ajax({
-    url: "station/add_data_service_area", // point to server-side PHP script 
+    url: "station/add_data_service_area?type="+type_action+"&id="+id, // point to server-side PHP script 
     data: $('#area_form').serialize(),
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
@@ -157,7 +231,7 @@ function saveServiceArea() {
 function managePlaceEachAmphur(amp_to_id, st, area) {
   fn.pushPage({'id': 'popup1.html', 'title': area}, 'lift-ios');
   $('#body_popup1').html(progress_circle);
-  $.post("station/service_place_view?amp_to_id=" + amp_to_id + "&station=" + st, function (ele) {
+  $.post("station/service_place_view?amp_to_id=" + amp_to_id + "&station=" + st+"&area_name="+area, function (ele) {
     $('#body_popup1').html(ele);
   });
 }
@@ -203,7 +277,7 @@ function selectPlaceAll(id) {
   $('#txt_place_to').text(txt);
   $('#txt_place_to').css('color', '#000');
   callpop();
-  $('#txt_price_place_from').text($('#from').val());
+  $('#txt_price_place_from').text($('#ip_txt_from').val());
   $('#txt_price_place_to').text(txt + "(" + $('#txt_aumphur').text() + ")");
   $('#ip_txt_place_to').val(txt);
   chk_show_box_place();
@@ -240,23 +314,24 @@ function saveServicePlace() {
     type: 'post',
     success: function (res) {
       console.log(res);
-//      if (res.result == true) {
-//        $.post("station/service_manage_view?station=" + $('#station').val(), function (ele) {
-//          $('#body_st_manage_service').html(ele);
-//          callpop();
-//        });
-//      } else {
-//        ons.notification.alert({
-//          message: 'ไม่สามารถเพิ่มได้ กรุณาลองใหม่ภายหลัง',
-//          title: "ผิดพลาด",
-//          buttonLabel: "ปิด"
-//        })
-//                .then(function () {
-//                  $.post("station/service_manage_view?station=" + $('#station').val(), function (ele) {
-//                    $('#body_st_manage_service').html(ele);
-//                  });
-//                });
-//      }
+      if (res.result == true) {
+        $.post("station/service_manage_view?station=" + $('#station').val(), function (ele) {
+          $('#body_st_manage_service').html(ele);
+          callpop();
+          managePlaceEachAmphur($('#main').val(), $('#station').val(), $('#area_name').val());
+        });
+      } else {
+        ons.notification.alert({
+          message: 'ไม่สามารถเพิ่มได้ กรุณาลองใหม่ภายหลัง',
+          title: "ผิดพลาด",
+          buttonLabel: "ปิด"
+        })
+                .then(function () {
+                  $.post("station/service_manage_view?station=" + $('#station').val(), function (ele) {
+                    $('#body_st_manage_service').html(ele);
+                  });
+                });
+      }
     }
   });
 
@@ -277,11 +352,14 @@ function stManagePlace(station) {
     'id': 'st_manage_place.html',
     'title': 'จัดการสถานที่'
   }, 'slide-ios');
-
-  $.post("station/manage_place?station=" + station, function (ele) {
+  setTimeout(function () {
+    $('#body_st_manage_place').html(progress_circle);
+    $.post("station/manage_place?station=" + station, function (ele) {
 //    console.log(ele);
-    $('#body_st_manage_place').html(ele);
-  });
+      $('#body_st_manage_place').html(ele);
+    });
+  }, 200);
+
 }
 
 function addPlaceOwner(station) {
@@ -292,22 +370,19 @@ function addPlaceOwner(station) {
   }, 'lift-ios');
   setTimeout(function () {
     $('#body_add_place_owner').html(progress_circle);
+    $.post("station/add_place_owner?station=" + station, function (ele) {
+      $('#body_add_place_owner').html(ele);
+//      load_list_place();
+    });
   }, 200);
 
-  $.post("station/add_place_owner?station=" + station, function (ele) {
-//    console.log(ele);
-    $('#body_add_place_owner').html(ele);
-//    if ($('#chk_toast_run').val() > 0) {
-//      toast_confirm_select_place.show();
-//      $('#num_select').text($('#chk_toast_run').val());
-//    }
-  });
+
 }
 
 function load_list_place() {
   var pv = $('#province').val();
   var amp = $('#amphur').val();
-  var url = "component/list_manage_place_station";
+  var url = "component/list_manage_place_station?station=" + $('#station').val();
   var data = {
     pv: pv,
     amp: amp
@@ -341,7 +416,6 @@ function selectPlacetoOwner(id, prop, pl_id) {
       $('#' + id).prop('checked', false);
     }
     updateSelectPlaceOwner(pl_id, 0, prop);
-    console.log(status);
 //    num = num - 1;
   } else {
 
@@ -349,7 +423,6 @@ function selectPlacetoOwner(id, prop, pl_id) {
       $('#' + id).prop('checked', true);
     }
     updateSelectPlaceOwner(pl_id, 1, prop);
-    console.log(status);
 //    num = num + 1;
   }
 //  $('#num_select').text(num);
@@ -377,35 +450,21 @@ function checkBeforeHideToast_selectPlace() {
   }
 }
 
-function saveSelectPlaceOwner() {
-  $.ajax({
-    url: "station/save_place_owner", // point to server-side PHP script 
-    data: $('#form_select_place').serialize(),
-    dataType: 'json', // what to expect back from the PHP script, if anything
-    type: 'post',
-    success: function (res) {
-      console.log(res);
-//      $('#body_option').html(progress_circle);
-//      var param = {data: res};
-//      console.log(param);
-//      $.post("component/cpn_place_all", param, function (el) {
-//        $('#body_option').html(el);
-//      });
-    }
-  });
-//  toast_confirm_select_place.hide();
-}
+
 
 function updateSelectPlaceOwner(id, type) {
-  var station;
-  if (type == 0) { //close
-    station = 0;
-  } else { //open
-    station = $('#station').val();
-  }
+  var station = $('#station').val();
+//  if (type == 0) { //close
+//    station = 0;
+//  } else { //open
+//    station = $('#station').val();
+//  }
+//  var topic_place = $('#item_list_place_'+id).find('.txt_place').text();
+//  console.log(topic_place);
   var data = {
     station: station,
-    place_id: id
+    place_id: id,
+    type: type
   };
   $.ajax({
     url: "station/save_each_trans_pl_station", // point to server-side PHP script 
@@ -415,10 +474,28 @@ function updateSelectPlaceOwner(id, type) {
     success: function (res) {
       console.log(res);
       if (res.result == true) {
-        ons.notification.toast('บันทึกแล้ว!', {timeout: 2000, animation: 'default'})
-        $.post("station/manage_place?station=" + $('#station').val(), function (ele) {
-          $('#body_st_manage_place').html(ele);
-        });
+        if (type == 0) { //close
+          var txt_toast = "ยกเลิกสถานที่นี้แล้ว !";
+        } else { //open
+          var txt_toast = "เพิ่มสถานที่นี้แล้ว !";
+        }
+        var url = "station/manage_place?station=" + $('#station').val();
+        console.log(url);
+        ons.notification.toast(txt_toast, {timeout: 2000, animation: 'default'})
+        $.post(url
+                , function (ele) {
+                  $('#body_st_manage_place').html(ele);
+                  $.ajax({
+                    url: "station/save_place_owner?place_id=" + id, // point to server-side PHP script 
+                    data: $('#form_select_place').serialize(),
+                    dataType: 'json', // what to expect back from the PHP script, if anything
+                    type: 'post',
+                    success: function (res) {
+                      console.log(res);
+                    }
+                  });
+
+                });
 
       } else {
         ons.notification.toast('สถานที่นี้มีคิวแล้ว!', {timeout: 2000, animation: 'default'})
@@ -428,4 +505,17 @@ function updateSelectPlaceOwner(id, type) {
     }
   });
 //  toast_confirm_select_place.hide();
+}
+
+function viewOwnerPlace(place_id) {
+  fn.pushPage({
+    'id': 'popup1.html',
+    'title': ''
+  }, 'lift-ios');
+  setTimeout(function () {
+    $('#body_popup1').html(progress_circle);
+    $.post("station/view_owner_place?id=" + place_id, function (ele) {
+      $('#body_popup1').html(ele);
+    });
+  }, 200);
 }

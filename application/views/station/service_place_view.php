@@ -7,65 +7,75 @@
   <?php
   $this->db->select('*');
   $where[i_status] = 1;
-  $where[i_type] = 2; // พื้นที่ 
+//  $where[i_type] = 2; // พื้นที่ 
   $where[i_station] = $_GET[station];
-  $where[i_sub_amphur] = $_GET[amp_to_id];
+  $where[i_main] = $_GET[amp_to_id];
   $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,$where);
 
   foreach ($query->result() as $row) {
+    if ($row->i_type_from == 3) {
+      $this->db->select('topic_th as topic');
+      $this->db->from(TBL_PLACE_CAR_STATION_OTHRET);
+      $this->db->where('id',$row->i_place_from);
+      $query_st = $this->db->get();
+      $from = $query_st->row()->topic;
+    }
+    else if ($row->i_type_from == 2) {
+      $this->db->select('topic');
+      $this->db->from(TBL_WEB_TRANSFERPLACE_NEW);
+      $this->db->where('id',$row->i_place_from);
+      $query_st = $this->db->get();
+      $from = $query_st->row();
+      $from = $query_st->row()->topic;
+    }
 
-    $this->db->select('topic_th');
-    $this->db->from(TBL_PLACE_CAR_STATION_OTHRET);
-    $this->db->where('id',$_GET[station]);
-    $query_st = $this->db->get();
-    $station = $query_st->row();
-
-    $this->db->select('name_th');
+    $this->db->select('topic');
+    $this->db->from(TBL_WEB_TRANSFERPLACE_NEW);
     $this->db->where('id',$row->i_place_to);
-    $query = $this->db->get(TBL_WEB_AMPHUR);
-    $amp_to = $query->row();
+    $query_pl = $this->db->get();
+    $place_to = $query_pl->row();
 
-    $this->db->select('id');
-    $this->db->where('i_sub_amphur',$row->id);
-    $this->db->where('i_type',2); // สถานที่
-    $query = $this->db->get(TBL_PLACE_CAR_STATION_SERVICE);
-    $num_place_each = $query->num_rows();
     ?>
 
     <ons-list-item style="border-bottom: 1px solid #ddd;">
-      <div class="left" style="padding-left: 5px;padding-right: 0px;width: 40px;">
-        <span class="font-16">(<?=$num_place_each;?>)</span>
+      <div class="left" style="padding-left: 5px;padding-right: 0px;width: 3%;">
+       
       </div>
-      <div class="center" style=" padding: 10px 6px 10px 3px;width: 230px;">
+      <div class="center" style=" padding: 10px 6px 10px 3px;width: 87%;background-image: none;">
+        <table width="100%">
+          <tr>
+            <td width="15px;">
+              <div style=" padding-right: 5px;">
+                <div style="width: 8px;
+                     height: 8px;
+                     border-radius: 5px;
+                     background: #555;"></div>
+                <div style="width: 1px;
+                     height: 22px;
+                     background: #afafaf;margin-left: 4px;"></div>
+                <div style="width: 8px;
+                     height: 8px;
+                     border-radius: 5px;
+                     background: #3b5998;"></div>
+              </div>
+            </td>
+            <td>
+              <div style="padding-left: 0px;">
+                <div style="padding: 3px 0px;"><span class="list-item__title font-16"><?=$from;?></span></div>
 
-        <ons-list-item>
-          <div class="center" style="background-image: none;padding: 0px;">
-            <div style="position: absolute;">
-              <div style="width: 8px;
-                   height: 8px;
-                   border-radius: 5px;
-                   background: #555;"></div>
-              <div style="width: 1px;
-                   height: 22px;
-                   background: #afafaf;margin-left: 4px;"></div>
-              <div style="width: 8px;
-                   height: 8px;
-                   border-radius: 5px;
-                   background: #3b5998;"></div>
-            </div>
-            <div style="padding-left: 15px;">
-              <div style="padding: 3px 0px;"><span class="list-item__title font-17"><?=$station->topic_th;?></span></div>
-
-              <div style="padding: 3px 0px;"><span class="list-item__title font-17"><?=$amp_to->name_th;?></span></div>
-            </div>
-          </div>
-          <div class="right " style="background-image: none;padding: 0px;">
-            <span class="font-17"><?=$row->i_price;?> บ.</span>
-          </div>
-        </ons-list-item>  
+                <div style="padding: 3px 0px;"><span class="list-item__title font-16"><?=$place_to->topic;?></span></div>
+              </div>
+            </td>
+            <td align="right" width="70px">
+              <div>
+                <span class="font-16"><?=$row->i_price;?> บ.</span>
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div class="right button" style="padding: 9px; background-color: #ff5722;border-radius: 0px;margin: 0;" onclick="">
-        <span class="font-16">แก้ไข</span>
+      <div class="right" style="width: 10%;background-image: none;">
+        <i class="fa fa-ellipsis-h font-22" aria-hidden="true" onclick="showSheetPlaceService(<?=$row->id;?>, <?=$_GET[station];?>, '<?=$amp_to->name_th;?>')"></i>
       </div>
     </ons-list-item>
 

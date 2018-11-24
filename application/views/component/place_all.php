@@ -8,7 +8,7 @@
   <?php
   foreach ($_POST[data][place] as $val) {
     ?>
-  <ons-list-item id="item_list_place_<?=$val[id];?>" class="list-item" onclick="selectPlaceAll(<?=$val[id];?>);" data-name="<?=$val[name_th];?>">
+    <ons-list-item id="item_list_place_<?=$val[id];?>" class="list-item" onclick="selectPlaceAll(<?=$val[id];?>);" data-name="<?=$val[name_th];?>">
       <div class="left list-item__left">
       </div>
       <div class="center list-item__center"><span class="txt_place" role="<?=$val[id];?>"><?=$val[name_th];?></span></div>
