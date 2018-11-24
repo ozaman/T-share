@@ -37,7 +37,7 @@ $TYPE = $this->Main_model->rowdata(TBL_PLACE_CAR_STATION_TYPE,$_where);
     border-color: #2d862d;
     border-radius: 5px;    margin-top: 0px;"> 
             <i class="fa fa-pencil-square-o "></i>
-            <span>แก้ไข้</span>
+            <span>แก้ไข</span>
           </button>
           <button type="button" class="btn btn-md btn-success btn-equal pull-right" onclick="add_new_station('<?=$TYPE->id;?>','ADD')" style="margin: 5px;
     padding: 5px 12px;
