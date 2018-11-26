@@ -1044,15 +1044,19 @@ function wallet() {
 }
 
 function contrac_us() {
-  fn.pushPage({
-    'id': 'contract_us.html',
-    'title': 'ติดต่อเรา'
-  }, 'lift-ios');
-  var url = "page/contrac_us";
-  $.post(url, function (html) {
-    console.log(html)
-    $('#body_contract').html(html);
-  });
+   loadcontactChat();
+                       $('#side_pf').hide();
+                       $('#side_more').hide();
+                       roomOpen = true;
+  // fn.pushPage({
+  //   'id': 'contract_us.html',
+  //   'title': 'ติดต่อเรา'
+  // }, 'lift-ios');
+  // var url = "page/contrac_us";
+  // $.post(url, function (html) {
+  //   console.log(html)
+  //   $('#body_contract').html(html);
+  // });
 }
 
 function reference() {

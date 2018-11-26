@@ -423,7 +423,8 @@
                </ons-list-item>
                <ons-list-item onclick="contrac_us();" style="<?=$menu_contect;?>">
                   <div class="left" style="<?=$border_menu_color;?>">
-                     <i class="material-icons list-item__icon <?=$menu_ion_class;?>">contact_phone</i>
+                    <ons-icon class="ons-icon fa-comments-o fa <?=$menu_ion_class;?>" icon="fa-comments-o"></ons-icon>
+                     <!-- <i class="material-icons list-item__icon ">contact_phone</i> -->
                   </div>
                   <div class="center">
                      ติดต่อเรา
