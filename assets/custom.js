@@ -1044,6 +1044,11 @@ function wallet() {
 }
 
 function contrac_us() {
+  fn.pushPage({
+                'id': 'chatroom.html',
+                'title': ''
+            }, 'lift-ios');
+     // $('#body_popup1').html(progress_circle);
    loadcontactChat();
                        $('#side_pf').hide();
                        $('#side_more').hide();
