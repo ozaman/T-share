@@ -75,7 +75,7 @@
         </table>
       </div>
       <div class="right" style="width: 10%;background-image: none;">
-        <i class="fa fa-ellipsis-h font-22" aria-hidden="true" onclick="showSheetPlaceService(<?=$row->id;?>, <?=$_GET[station];?>, '<?=$amp_to->name_th;?>')"></i>
+        <i class="fa fa-ellipsis-h font-22" aria-hidden="true" onclick="showSheetPlaceService(<?=$row->id;?>, <?=$_GET[station];?>, '<?=$amp_to->name_th;?>', '<?=$row->i_main;?>')"></i>
       </div>
     </ons-list-item>
 

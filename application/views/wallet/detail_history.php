@@ -81,7 +81,7 @@
 	    	<tr>
 	    		<td colspan="2"><span class="font-14" style="color: #908e8e;">สลิป</span></td>
 	    	</tr>
-	    	<tr><td align="center"><img src="assets/images/nopic.png" style="width: 210px;" id="img_slip_preview" /></td>
+	    	<tr><td align="center"><img src="assets/images/nopic.png" style="width: 210px;" id="img_slip_preview" onclick="chat_gallery_items(this)" /></td>
 	    	</tr>
 	    </table>
 	</ons-list-item>
