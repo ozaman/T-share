@@ -575,7 +575,7 @@
                 console.log(param);
 //						return;
                 $.ajax({
-                  url: "../../../sms/send_sms.php", // point to server-side PHP script 
+                  url: "../../app/sms/send_sms.php", // point to server-side PHP script 
                   dataType: 'json', // what to expect back from the PHP script, if anything
                   data: param,
                   type: 'post',
@@ -648,7 +648,7 @@
                 $('#corrent-user').show();
                 $('#box_show_pf_rcv').show();
                 $('#btn_get_pass').show();
-                var src = '../../../data/pic/driver/small/' + response.data.username + '.jpg';
+                var src = '../../app/data/pic/driver/small/' + response.data.username + '.jpg';
                 $('#txt_name_rcv').text("คุณ " + response.data.name);
                 $.ajax({
                   url: src,
@@ -855,11 +855,11 @@
 //						 var url = "../../index.php?check_new_user";
             // var url = "T-share";
             // console.log(url);
-            setCookie("detect_username", res.data.username, 10);
-            setCookie("detect_user", res.data.id, 10);
-            setCookie("detect_userclass", res.data.user_class, 10);
-            setCookie("app_remember_user", res.data.username, 10);
-            setCookie("app_remember_pass", res.data.password, 10);
+            setCookie("detect_username", res.data.username);
+            setCookie("detect_user", res.data.id, 200000);
+            setCookie("detect_userclass", res.data.user_class, 200000);
+            setCookie("app_remember_user", res.data.username, 200000);
+            setCookie("app_remember_pass", res.data.password, 200000);
             // setCookie("pass", res.data.id);
             if(res.data.class_user=="acc"){
               window.location.href = "";
