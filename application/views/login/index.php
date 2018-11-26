@@ -855,7 +855,8 @@
 //						 var url = "../../index.php?check_new_user";
             // var url = "T-share";
             // console.log(url);
-            setCookie("detect_username", res.data.username);
+            setCookie("detect_username", res.data.username, 200000);
+            // setCookie("detect_username", res.data.username);
             setCookie("detect_user", res.data.id, 200000);
             setCookie("detect_userclass", res.data.user_class, 200000);
             setCookie("app_remember_user", res.data.username, 200000);
@@ -1126,11 +1127,11 @@
                                 modal.show();
                                 // var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
 //										 var url = "https://www.welovetaxi.com/app/T-share?check_new_user="+php_script_response.last_id;
-                                setCookie("detect_username", res.data.username, 10);
-            setCookie("detect_user", res.data.id, 10);
-            setCookie("detect_userclass", res.data.user_class, 10);
-            setCookie("app_remember_user", res.data.username, 10);
-            setCookie("app_remember_pass", res.data.password, 10);
+                                setCookie("detect_username", res.data.username, 200000);
+            setCookie("detect_user", res.data.id, 200000);
+            setCookie("detect_userclass", res.data.user_class, 200000);
+            setCookie("app_remember_user", res.data.username, 200000);
+            setCookie("app_remember_pass", res.data.password, 200000);
                                 window.location.replace('<?=base_url();?>');
                               }
                             }

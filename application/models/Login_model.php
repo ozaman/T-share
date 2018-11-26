@@ -35,7 +35,7 @@ class Login_model extends CI_Model {
         }
         if ($cheloop == false) {
          $return[msg] = 'รหัสไม่ถูกต้อง';
-         $return[status] = 1;
+         $return[status] = false;
          $return[data] = null;
          $return[count] = count($DRIVER);
 
