@@ -421,9 +421,10 @@
                      แจ้งเตือนผ่านไลน์
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="contrac_us();" style="<?=$menu_contect;?>">
+               <ons-list-item onclick="$('#tab_contact').click();$('ons-splitter-mask').click();//contrac_us();" style="<?=$menu_contect;?>">
                   <div class="left" style="<?=$border_menu_color;?>">
-                     <i class="material-icons list-item__icon <?=$menu_ion_class;?>">contact_phone</i>
+                    <ons-icon fixed-width class="list-item__icon " icon="fa-comments-o" style="margin-left: 2px"></ons-icon>
+                     <!-- <i class="material-icons list-item__icon ">contact_phone</i> -->
                   </div>
                   <div class="center">
                      ติดต่อเรา
