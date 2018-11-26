@@ -19,7 +19,7 @@
       <div id="box_show_pf_rcv" style="display: none;" align="center">
         <span id="txt_name_rcv"></span>
         <div style="margin: 10px 0px;">
-          <img src="../../images/no-image-slide.png" style="height: 150px;border: 1px solid #eee;box-shadow: 1px 1px 5px #9E9E9E;" />
+          <img src="<?=base_url();?>assets/images/noimage_2.gif" style="height: 150px;border: 1px solid #eee;box-shadow: 1px 1px 5px #9E9E9E;" />
         </div>
       </div>      
       <div id="box-channel" style="display: none;">

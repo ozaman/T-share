@@ -643,7 +643,7 @@
             success: function (response) {
               console.log(response);
               // return false;
-              if (response != false) {
+              if (response != false && response != null) {
                 $('#box_not_found').hide();
                 $('#corrent-user').show();
                 $('#box_show_pf_rcv').show();
@@ -656,7 +656,7 @@
                   error: function ()
                   {
                     console.log('Error file');
-                    $('#box_show_pf_rcv img').attr('src', '../../images/no-image-slide.png');
+                    $('#box_show_pf_rcv img').attr('src', base_url+'assets/images/noimage_2.gif');
                   },
                   success: function ()
                   {
