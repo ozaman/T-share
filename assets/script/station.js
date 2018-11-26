@@ -1,34 +1,123 @@
 
-function showSheetAreaService(id, station, amp_name) {
-  ons.openActionSheet({
-//    title: 'My Action Sheet',
-    cancelable: true,
-    buttons: ['เพิ่มราคาของสถานที่', 'แก้ไขราคาพื้นที่นี้',{
-        label: 'ลบราคานี้',
-        modifier: 'destructive'
-      }, 'ปิด']
-  }).then(function (index) {
-    if (index == 0) {
-      managePlaceEachAmphur(id, station, amp_name);
-    } else if (index == 1) {
-      editServiceArea(id);
+function showSheetAreaService(id, station, amp_name, status) {
+  if (status == 1) {
+    var txt_st = "ปิดราคานี้";
+    var status_action = 0;
+    ons.openActionSheet({
+      cancelable: true,
+      buttons: ['จัดการราคาสถานที่', 'แก้ไขราคาพื้นที่นี้', {
+          label: txt_st,
+          modifier: 'destructive'
+        }, 'ปิด']
+    })
+            .then(function (index) {
+              if (index == 0) {
+                managePlaceEachAmphur(id, station, amp_name);
+              } else if (index == 1) {
+                editServiceArea(id);
+              } else if (index == 2) {
+                changeStatusPlaceEachSer(id, status_action, station);
+              }
+            });
+  } else {
+    var txt_st = "เปิดราคานี้";
+    var status_action = 1;
+    ons.openActionSheet({
+      cancelable: true,
+      buttons: [{
+          label: txt_st,
+          modifier: 'destructive'
+        }, 'ปิด']
+    }).then(function (index) {
+      if (index == 0) {
+        changeStatusPlaceEachSer(id, status_action, station);
+      }
+    });
+  }
+//  ons.openActionSheet({
+//    cancelable: true,
+//    buttons: ['เพิ่มราคาของสถานที่', 'แก้ไขราคาพื้นที่นี้', {
+//        label: txt_st,
+//        modifier: 'destructive'
+//      }, 'ปิด']
+//  }).then(function (index) {
+//    if (index == 0) {
+//      managePlaceEachAmphur(id, station, amp_name);
+//    } else if (index == 1) {
+//      editServiceArea(id);
+//    } else if (index == 2) {
+//      changeStatusPlaceEachSer(id, status_action, station);
+//    }
+//  });
+}
+
+function changeStatusPlaceEachSer(id, status, station) {
+  var ps = {
+    id: id,
+    status: status
+  }
+  $.ajax({
+    url: "station/change_status_ser", // point to server-side PHP script 
+    data: ps,
+    dataType: 'json', // what to expect back from the PHP script, if anything
+    type: 'post',
+    success: function (res) {
+      console.log(res);
+      $('#body_option').html(progress_circle);
+      $.post("station/service_manage_view?station=" + station, function (ele) {
+//    console.log(ele);
+        $('#body_st_manage_service').html(ele);
+      });
     }
   });
 }
 
-function showSheetPlaceService(id, station, amp_name) {
+function delPlaceEachSer(id) {
+  $('#id_del_ser').val(id);
+  var dialog = document.getElementById('confirm_del_place-dialog');
+
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.createElement('confirm_del_place.html', {append: true})
+            .then(function (dialog) {
+              dialog.show();
+            });
+  }
+}
+
+function confirmDelSer() {
+  var ps = {
+    id: $('#id_del_area').val()
+  }
+  $.ajax({
+    url: "station/delete_service", // point to server-side PHP script 
+    data: ps,
+    dataType: 'json', // what to expect back from the PHP script, if anything
+    type: 'post',
+    success: function (res) {
+      $('#body_option').html(progress_circle);
+//      var param = {data: res};
+//      console.log(param);
+//      $.post("component/cpn_amphur", param, function (el) {
+//        $('#body_option').html(el);
+//      });
+    }
+  });
+}
+
+function confirmDelPlace(id) {
+
+}
+
+function showSheetPlaceService(id, station, amp_name, id_main) {
   ons.openActionSheet({
 //    title: 'My Action Sheet',
     cancelable: true,
-    buttons: ['แก้ไขราคาพื้นที่นี้',{
-        label: 'ลบราคานี้',
-        modifier: 'destructive'
-      }, 'ปิด']
+    buttons: ['แก้ไขราคาพื้นที่นี้', 'ปิด']
   }).then(function (index) {
     if (index == 0) {
-//      managePlaceEachAmphur(id, station, amp_name);
-    } else if (index == 1) {
-
+      editServicePlace(id_main, id);
     }
   });
 }
@@ -91,10 +180,10 @@ function addServiceArea() {
 function editServiceArea(id) {
   fn.pushPage({
     'id': 'popup1.html',
-    'title': 'เพิ่มบริการพื้นที่'
+    'title': 'แก้ไขบริการพื้นที่'
   }, 'lift-ios');
-  console.log("station/add_service_area?id="+id);
-  $.post("station/add_service_area?id="+id, function (ele) {
+  console.log("station/add_service_area?id=" + id);
+  $.post("station/add_service_area?id=" + id, function (ele) {
 //    console.log(ele);
     $('#body_popup1').html(ele);
   });
@@ -200,7 +289,7 @@ function colseAreaPrice() {
 function saveServiceArea(type_action, id) {
 
   $.ajax({
-    url: "station/add_data_service_area?type="+type_action+"&id="+id, // point to server-side PHP script 
+    url: "station/add_data_service_area?type=" + type_action + "&id=" + id, // point to server-side PHP script 
     data: $('#area_form').serialize(),
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
@@ -231,7 +320,7 @@ function saveServiceArea(type_action, id) {
 function managePlaceEachAmphur(amp_to_id, st, area) {
   fn.pushPage({'id': 'popup1.html', 'title': area}, 'lift-ios');
   $('#body_popup1').html(progress_circle);
-  $.post("station/service_place_view?amp_to_id=" + amp_to_id + "&station=" + st+"&area_name="+area, function (ele) {
+  $.post("station/service_place_view?amp_to_id=" + amp_to_id + "&station=" + st + "&area_name=" + area, function (ele) {
     $('#body_popup1').html(ele);
   });
 }
@@ -242,6 +331,19 @@ function addServicePlace(amp_to_id) {
     'title': 'เพิ่มบริการสถานที่'
   }, 'lift-ios');
   $.post("station/add_service_place?amp_to_id=" + amp_to_id, function (ele) {
+    $('#body_popup2').html(ele);
+  });
+}
+
+function editServicePlace(amp_to_id, id) {
+  console.log(amp_to_id);
+  fn.pushPage({
+    'id': 'popup2.html',
+    'title': 'แก้ไขบริการสถานที่'
+  }, 'lift-ios');
+  var url = "station/add_service_place?amp_to_id=" + amp_to_id + "&id=" + id;
+  console.log(url);
+  $.post(url, function (ele) {
     $('#body_popup2').html(ele);
   });
 }
@@ -305,10 +407,10 @@ function chk_show_save_place() {
   }
 }
 
-function saveServicePlace() {
+function saveServicePlace(type_action, id) {
 
   $.ajax({
-    url: "station/add_data_service_place", // point to server-side PHP script 
+    url: "station/add_data_service_place?type_action=" + type_action + "&id=" + id, // point to server-side PHP script 
     data: $('#place_form').serialize(),
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',

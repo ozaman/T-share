@@ -64,7 +64,34 @@ $amp_to = $query->row();
         </ons-card>
       </div>
     </ons-list-item>
+    <?php
+    if ($_GET[id] != "") {
+      $this->db->select('*');
+      $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,array('id' => $_GET[id]));
+      $edit_form = $query->row();
 
+//      $this->db->select('topic');
+//      $query = $this->db->get_where(TBL_WEB_TRANSFERPLACE_NEW,array('id' => $edit_form->i_place_to));
+//      $place_to_form = $query->row();
+
+      $this->db->select('id, topic');
+      $query = $this->db->get_where(TBL_WEB_TRANSFERPLACE_NEW,array('id' => $edit_form->i_place_to));
+      $place_to_form = $query->row();
+
+      $txt_select_to = $place_to_form->topic;
+      $color_select_to = "color: #000;";
+      $box_input_price = "display: block;";
+      $txt_save_btn = "แก้ไขบริการสถานที่";
+      $type_action = "update";
+    }
+    else {
+      $txt_select_to = "เลือกพื้นที่ส่ง";
+      $color_select_to = "color: #b2b2b2;";
+      $box_input_price = "display: none;";
+      $txt_save_btn = "เพิ่มบริการสถานที่";
+      $type_action = "add";
+    }
+    ?>
     <ons-list-item>
       <div class="left">
         <div class="point-02"></div>
@@ -80,9 +107,9 @@ $amp_to = $query->row();
 
           <ons-list-item class="input-items list-item p-l-0">
             <label class="center list-item__center" onclick="selectTransferPlaceSer('<?=$amp_to->name_th;?>');">
-              <span class="font-17" id="txt_place_to" style=" padding: 6px 0px 5px 0;color: #b2b2b2;margin-left: 0px;" >เลือกสถานที่ส่ง</span>
-              <input type="hidden" name="place_to" id="place_to" value="" />
-              <input type="hidden" name="ip_txt_place_to" id="ip_txt_place_to" value="" />
+              <span class="font-17" id="txt_place_to" style=" padding: 6px 0px 5px 0;<?=$color_select_to;?>margin-left: 0px;" ><?=$txt_select_to;?></span>
+              <input type="hidden" name="place_to" id="place_to" value="<?=$place_to_form->id;?>" />
+              <input type="hidden" name="ip_txt_place_to" id="ip_txt_place_to" value="<?=$txt_select_to;?>" />
               <input type="hidden" name="type_to" id="type_to" value="2" />
             </label>
           </ons-list-item>
@@ -92,18 +119,18 @@ $amp_to = $query->row();
 
   </div>
 
-  <div>
-    <ons-card id="box_price_place" style="display: none;">
+  <div style="">
+    <ons-card id="box_price_place" style="<?=$box_input_price;?>">
       <div class="btn-close-price font-32" onclick="colsePlacePrice();"><i class="fa fa-times-circle" aria-hidden="true"></i></div>
       <div style="padding: 5px;">
         <table width="100%">
           <tr>
             <td>ต้นทาง</td>
-            <td><span id="txt_price_place_from"></span></td>
+            <td><span id="txt_price_place_from"><?=$text_from;?></span></td>
           </tr>
           <tr>
             <td>ปลายทาง</td>
-            <td><span id="txt_price_place_to"></span></td>
+            <td><span id="txt_price_place_to"><?=$txt_select_to;?></span></td>
           </tr>
         </table>
       </div>
@@ -112,9 +139,9 @@ $amp_to = $query->row();
           <span class="font-17">ราคา</span>
         </div>
         <div class="center list-item__center">
-          <ons-input id="price-input" pattern="\d*" name="price_place" style="width:100%;" value="" onkeyup="chk_show_save_place();">
-            <input type="number" pattern="\d*" class="text-input font-17" id="price_place" name="price_place" value="" style="padding-left: 10px;">
-            <span class="text-input__label text-input--material__label--active">สถานที่รับ</span>
+          <ons-input id="price-input" pattern="\d*" name="price_place" style="width:100%;" value="<?=$edit_form->i_price;?>" onkeyup="chk_show_save_place();">
+            <input type="number" pattern="\d*" class="text-input font-17" id="price_place" name="price_place" value="<?=$edit_form->i_price;?>" style="padding-left: 10px;">
+            <span class="text-input__label text-input--material__label--active">ราคา</span>
           </ons-input>
         </div>
       </ons-list-item>
@@ -122,6 +149,6 @@ $amp_to = $query->row();
 
   </div>
 </form>
-<div style="margin: 0px 10px;margin-bottom: 25px;display: none;" id="box_btn_save_ser">
-  <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveServicePlace();" style="background-color: #fff;">บันทึกบริการ</ons-button>
+<div style="margin: 0px 10px;margin-bottom: 25px;<?=$box_input_price;?>" id="box_btn_save_ser">
+  <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="saveServicePlace('<?=$type_action;?>', <?=$edit_form->id;?>);" style="background-color: #fff;"><?=$txt_save_btn;?></ons-button>
 </div>

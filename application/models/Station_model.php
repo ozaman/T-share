@@ -78,9 +78,10 @@ class Station_model extends CI_Model {
     $data[i_amphur_to] = $amp_to->id;
 
 
-    if($_GET[type]=='add'){
+    if ($_GET[type] == 'add') {
       $data[result] = $this->db->insert(TBL_PLACE_CAR_STATION_SERVICE,$data);
-    }else if($_GET[type]=='update'){
+    }
+    else if ($_GET[type] == 'update') {
       $where[id] = $_GET[id];
       $data[result] = $this->db->update(TBL_PLACE_CAR_STATION_SERVICE,$data,$where);
     }
@@ -93,7 +94,7 @@ class Station_model extends CI_Model {
     $data[i_type] = 2; // สถานที่
     $data[i_place_from] = $_POST[station];
     $data[i_place_to] = $_POST[place_to];
-    
+
     $data[i_price] = $_POST[price_place];
     $data[d_post_date] = time();
     $data[d_last_update] = time();
@@ -140,7 +141,14 @@ class Station_model extends CI_Model {
     $data[i_province_to] = $pv_to->id;
     $data[i_amphur_to] = $amp_to->id;
 
-    $data[result] = $this->db->insert(TBL_PLACE_CAR_STATION_SERVICE,$data);
+    if ($_GET[type] == 'add') {
+      $data[result] = $this->db->insert(TBL_PLACE_CAR_STATION_SERVICE,$data);
+    }
+    else if ($_GET[type] == 'update') {
+      $where[id] = $_GET[id];
+      $data[result] = $this->db->update(TBL_PLACE_CAR_STATION_SERVICE,$data,$where);
+    }
+    $data[type_action] = $_GET[type];
     $data[post] = $_POST;
     return $data;
   }
@@ -179,6 +187,25 @@ class Station_model extends CI_Model {
     $this->db->where('id',$_POST[place_id]);
     $data[result] = $this->db->update(TBL_WEB_TRANSFERPLACE_NEW,$data);
     return $data;
+  }
+
+  public function delete_service() {
+
+    $id = $this->input->post('id');
+  }
+
+  public function change_status_ser() {
+    $main[i_status] = $_POST[status];
+    $this->db->where('id',$_POST[id]);
+    $main[result] = $this->db->update(TBL_PLACE_CAR_STATION_SERVICE,$main);
+
+    $sub[i_status] = $_POST[status];
+    $this->db->where('i_main',$_POST[id]);
+    $sub[result] = $this->db->update(TBL_PLACE_CAR_STATION_SERVICE,$sub);
+
+    $return[main] = $main;
+    $return[sub] = $sub;
+    return $return;
   }
 
   /**

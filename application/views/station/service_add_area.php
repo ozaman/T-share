@@ -131,7 +131,7 @@ else {
         <div class="center list-item__center">
           <ons-input id="price-input" pattern="\d*" name="price_area" style="width:100%;" value="<?=$edit_form->i_price;?>" onkeyup="chk_show_save();">
             <input type="number" pattern="\d*" class="text-input font-17" id="price_area" name="price_area" value="<?=$edit_form->i_price;?>" style="padding-left: 10px;">
-            <span class="text-input__label text-input--material__label--active">สถานที่รับ</span>
+            <span class="text-input__label text-input--material__label--active">ราคา</span>
           </ons-input>
         </div>
       </ons-list-item>

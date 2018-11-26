@@ -73,22 +73,23 @@ class Station extends CI_Controller {
   }
 
   public function save_place_owner() {
-    
+
     $where = array();
     $this->db->select('id');
     $where[i_status] = 1;
     $where[i_station] = $_POST[station];
     $where[i_place] = $_GET[place_id];
     $query = $this->db->get_where(TBL_PLACE_CAR_STATION_OWNER,$where);
-    
-    if($query->num_rows()<1){
+
+    if ($query->num_rows() < 1) {
       $echo[data] = $this->Station_model->add_place_owner();
       $echo[type] = "add";
-    }else{
+    }
+    else {
       $data = $this->Station_model->del_place_owner($query->row()->id);
       $echo[type] = "del";
     }
-    
+
     echo json_encode($echo);
   }
 
@@ -112,6 +113,16 @@ class Station extends CI_Controller {
     }
 
     $data[post] = $_POST;
+    echo json_encode($data);
+  }
+
+  public function delete_service() {
+    $data = $this->Station_model->delete_service();
+    echo json_encode($data);
+  }
+
+  public function change_status_ser() {
+    $data = $this->Station_model->change_status_ser();
     echo json_encode($data);
   }
 
