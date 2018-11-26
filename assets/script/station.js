@@ -410,7 +410,7 @@ function chk_show_save_place() {
 function saveServicePlace(type_action, id) {
 
   $.ajax({
-    url: "station/add_data_service_place?type_action=" + type_action + "&id=" + id, // point to server-side PHP script 
+    url: "station/add_data_service_place?type=" + type_action + "&id=" + id, // point to server-side PHP script 
     data: $('#place_form').serialize(),
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
