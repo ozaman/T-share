@@ -53,7 +53,7 @@ foreach ($place_company as $data) {
            $images_url =  $url;
          }
          ?>
-         <img src="<?=$images_url;?>" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+         <img class="chat_gallery_items" src="<?=$images_url;?>"  onclick="chat_gallery_items(this)" data-high-res-src="<?=$images_url;?>" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
        </td>
        <td valign="top">
         <span class="font-17"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></span><br/>
@@ -74,14 +74,13 @@ foreach ($place_company as $data) {
   <table width="100%">
     <tr>
       <td width="50%" valign="top" >
-        <ons-button onclick="fun_imageslider('<?=$data->id;?>');" style="padding: 15px;border: 1px solid #0076ff;
-        border-radius: 5px;
+        <ons-button onclick="fun_imageslider('<?=$data->id;?>');" style="padding: 15px;border: 1px solid #0076ff; border-radius: 5px;
         line-height: 0; " modifier="outline" class="button-margin button button--outline button--large">
-        <span class="font-17 text-cap">  ข้อมูล</span> 
+        <span class="font-17 text-cap"> ข้อมูล</span> 
       </ons-button>
     </td>
     <td width="50%">
-      <ons-button modifier="outline"  onclick="checkPricePlan('<?=$data->id;?>');" class="button-margin button button--outline button--large" style="padding: 15px;border: 1px solid #0076ff;
+      <ons-button modifier="outline" onclick="checkPricePlan('<?=$data->id;?>');" class="button-margin button button--outline button--large" style="padding: 15px;border: 1px solid #0076ff;
       border-radius: 5px;
       line-height: 0; ">
       <span class="font-17 text-cap">ส่งแขก</span> </ons-button>
