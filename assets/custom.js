@@ -1,4 +1,4 @@
-var id_category, id_province,check_back;
+var id_category, id_province, check_back;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	console.log(newURL);
@@ -330,7 +330,7 @@ function logOut() {
   deleteTagIOS(class_user, username);
 
   setTimeout(function () {
-    window.location = base_url +"login";
+    window.location = base_url + "login";
   }, 2000);
 }
 
@@ -587,8 +587,7 @@ function hideRes(id) {
 function selesecompany() {
   if (check_back == true) {
     check_back = false;
-  }
-  else{
+  } else {
     callpop();
   }
   $('#shop_add').hide();
@@ -841,8 +840,7 @@ function sendShop2() {
 
 
 
-    } 
-    else {
+    } else {
       // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
@@ -981,7 +979,7 @@ function pay() {
 }
 
 function myAccountBank() {
-  
+
   fn.pushPage({
     'id': 'account_bank.html',
     'title': 'ข้อมูลบัญชีธนาคาร'
@@ -1046,14 +1044,14 @@ function wallet() {
 
 function contrac_us() {
   fn.pushPage({
-                'id': 'chatroom.html',
-                'title': ''
-            }, 'lift-ios');
-     // $('#body_popup1').html(progress_circle);
-   loadcontactChat();
-                       $('#side_pf').hide();
-                       $('#side_more').hide();
-                       roomOpen = true;
+    'id': 'chatroom.html',
+    'title': ''
+  }, 'lift-ios');
+  // $('#body_popup1').html(progress_circle);
+  loadcontactChat();
+  $('#side_pf').hide();
+  $('#side_more').hide();
+  roomOpen = true;
   // fn.pushPage({
   //   'id': 'contract_us.html',
   //   'title': 'ติดต่อเรา'
@@ -1102,6 +1100,21 @@ function addCommas(nStr) {
     x1 = x1.replace(rgx, '$1' + ',' + '$2');
   }
   return x1 + x2;
+}
+
+function CurrencyFormatted(amount) {
+	var i = parseFloat(amount);
+	if(isNaN(i)) { i = 0.00; }
+	var minus = '';
+	if(i < 0) { minus = '-'; }
+	i = Math.abs(i);
+	i = parseInt((i + .005) * 100);
+	i = i / 100;
+	s = new String(i);
+	if(s.indexOf('.') < 0) { s += '.00'; }
+	if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+	s = minus + s;
+	return s;
 }
 
 function viewPhotoGlobal(path, time, caption) {
@@ -1873,30 +1886,30 @@ function fun_imageslider(id) {
 //      }
 //    }
 //  });
-$.post("shop/count_place_document_file?id=" + id, function (num) {
-         console.log(num);
-         if (num <= 0) {
-        ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
-        return;
-      } else {
-        modal.show();
-        fn.pushPage({
-          'id': 'imageslider.html',
-          'title': 'โบรชัวร์'
-        }, 'lift-ios');
-        //  $('#body_popup1').html(progress_circle);
+  $.post("shop/count_place_document_file?id=" + id, function (num) {
+    console.log(num);
+    if (num <= 0) {
+      ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
+      return;
+    } else {
+      modal.show();
+      fn.pushPage({
+        'id': 'imageslider.html',
+        'title': 'โบรชัวร์'
+      }, 'lift-ios');
+      //  $('#body_popup1').html(progress_circle);
 
-        $.post("shop/imageslider?shop_id=" + id, function (ele) {
-          modal.hide();
-          $('#boby_imageslider').html(ele);
+      $.post("shop/imageslider?shop_id=" + id, function (ele) {
+        modal.hide();
+        $('#boby_imageslider').html(ele);
 
 
-          //        console.log(array_rooms);
-        });
-      }
-});
-    
-  
+        //        console.log(array_rooms);
+      });
+    }
+  });
+
+
 }
 
 var prev = function () {
