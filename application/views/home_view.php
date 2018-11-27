@@ -2243,7 +2243,7 @@
       };
    
    
-   //          console.log(array_data.manage);
+             console.log(check_run_shop+" |||| " +done.length);
    
       if (check_run_shop != done.length) {
           shopManage();

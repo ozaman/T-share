@@ -2008,7 +2008,7 @@ function btn_driver_pay_report(id) {
 
 function shopManage() {
 //    $('#shop_manage').html(progress_circle);
-  console.log("Load Shop Manage page");
+//  console.log("Load Shop Manage page");
   var obj = array_data;
 
   var url = "page/shop_manage";
@@ -2017,7 +2017,7 @@ function shopManage() {
   var pass = {
     data: array_ma
   };
-  console.log(pass);
+//  console.log(pass);
   $.ajax({
     url: url,
     data: pass,
