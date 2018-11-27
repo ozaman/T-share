@@ -1486,7 +1486,7 @@
       <template id="wallet.html">
          <ons-page>
             <ons-toolbar>
-               <div class="left">
+              <div class="left" onclick="$('#check_open_wallet').val(0);">
                   <ons-back-button>กลับ</ons-back-button>
                </div>
                <div class="center"></div>
@@ -1812,6 +1812,7 @@
       <input type="hidden" id="set_lng_cookies" value="th" />
       <input type="hidden" id="check_open_worktbooking" value="0" />
       <input type="hidden" id="check_open_shop_id" value="0" />
+      <input type="hidden" id="check_open_wallet" value="0" />
       <input type="hidden" id="lat" value="0" />
       <input type="hidden" id="lng" value="0" />
       <input type="hidden"  id="place_lat" value=""/>
@@ -2458,8 +2459,7 @@
       }
       setCountNotification();
    });
-   
-   
+  
    socket.on('updatedriver', function(socket_class, data) {
       //	alert(data.pax_regis);
       console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -2594,6 +2594,14 @@
       }
    
    });
+   
+   socket.on('checkDeposit', function (data) {
+   console.log(data);
+   if($('#check_open_wallet').val()>0){
+     $('#balance_txt').text(data.balance);
+     $('#balance_val').val(data.balance);
+   }
+  });
 </script>
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
@@ -2653,6 +2661,8 @@
       // array_rooms = rooms;
       // console.log(current_room)
    });
+   
+   
 </script>
 <script src="<?=base_url();?>assets/script/chat.js?v=<?=time();?>"></script>
 <!-- ======================================= END =========================================================== -->
