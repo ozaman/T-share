@@ -2,29 +2,29 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Notification_model extends CI_Model {
 
-  public function add_notification_taxi($data){
-  		if($_POST[i_type]==1){
+  public function add_notification_taxi($param){
+  		if($param[i_type]==1){
 			$setting_col = "i_noti_shop";
-		}else if($_POST[i_type]==2){
+		}else if($param[i_type]==2){
 			$setting_col = "i_noti_transfer";
-		}else if($_POST[i_type]==5 or $_POST[i_type]==6){
+		}else if($param[i_type]==5 or $param[i_type]==6){
 			$setting_col = "i_noti_wallet";
 		}
-  		$query = $this->db->query("select ".$setting_col." as noti_set from app_user_setting where i_user = ".$_POST[i_user]);
+  		$query = $this->db->query("select ".$setting_col." as noti_set from app_user_setting where i_user = ".$param[i_user]);
   		$row = $query->row();
-        
+//        return $data[i_user];
   		if($row->noti_set>0){
-	  		$_POST = $data;
+//	  		$_POST = $data;
 	  		$to_table = "notification_event_taxi";
-	  		$data[i_type] = $_POST[i_type];
-	  		$data[i_event] = $_POST[i_event];
-	  		$data[i_user] = $_POST[i_user];
-	  		$data[s_class_user] = $_POST[s_class_user];
-	  		$data[s_topic] = $_POST[s_topic];
-	  		$data[s_message] = $_POST[s_message];
+	  		$data[i_type] = $param[i_type];
+	  		$data[i_event] = $param[i_event];
+	  		$data[i_user] = $param[i_user];
+	  		$data[s_class_user] = $param[s_class_user];
+	  		$data[s_topic] = $param[s_topic];
+	  		$data[s_message] = $param[s_message];
 	  		$data[i_active] = 0;
 	  		$data[i_status] = 1;
-	  		$data[s_posted] = $_POST[s_posted];
+	  		$data[s_posted] = $param[s_posted];
 	  		$data[s_post_date] = time();
 	  		$data[s_last_update] = time();  		
 	  		
@@ -39,14 +39,14 @@ class Notification_model extends CI_Model {
   		
   }
   
-  public function add_notification_lab($data){
-  		$_POST = $data;
+  public function add_notification_lab($param){
+//  		$_POST = $data;
   		$to_table = "notification_event_lab";
-  		if($_POST[i_type]==1){
+  		if($param[i_type]==1){
 			$setting_col = "i_noti_shop";
-		}else if($_POST[i_type]==2){
+		}else if($param[i_type]==2){
 			$setting_col = "i_noti_transfer";
-		}else if($_POST[i_type]==5 or $_POST[i_type]==6){
+		}else if($param[i_type]==5 or $param[i_type]==6){
 			$setting_col = "i_noti_wallet";
 		}
   		$query = $this->db->query("select t1.id, t2.".$setting_col." as noti_set from web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user where t1.username LIKE '%lab%'  ");
@@ -57,15 +57,15 @@ class Notification_model extends CI_Model {
 				
 				if($_POST[i_user]!=$row->id){
 					
-			        $data[i_type] = $_POST[i_type];
-			  		$data[i_event] = $_POST[i_event];
+			        $data[i_type] = $param[i_type];
+			  		$data[i_event] = $param[i_event];
 			  		$data[i_user] = $row->id;
-			  		$data[s_class_user] = $_POST[s_class_user];
-			  		$data[s_topic] = $_POST[s_topic];
-			  		$data[s_message] = $_POST[s_message];
+			  		$data[s_class_user] = $param[s_class_user];
+			  		$data[s_topic] = $param[s_topic];
+			  		$data[s_message] = $param[s_message];
 			  		$data[i_active] = 0;
 			  		$data[i_status] = 1;
-			  		$data[s_posted] = $_POST[s_posted];
+			  		$data[s_posted] = $param[s_posted];
 			  		$data[s_post_date] = time();
 			  		$data[s_last_update] = time();  		
 			  		
