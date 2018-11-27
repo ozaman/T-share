@@ -61,6 +61,11 @@ class Send_onesignal extends CI_Controller {
     
   }
   
+  public function deposit_withdraw() {
+    $data['res'] = $this->Send_onesignal_model->deposit_withdraw();
+    echo json_encode($data['res']);
+  }
+  
 
 }
 

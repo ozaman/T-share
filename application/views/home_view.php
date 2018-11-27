@@ -2597,11 +2597,14 @@
    
    socket.on('checkDeposit', function (data) {
    console.log(data);
+   console.log(CurrencyFormatted(data[0].balance));
    if($('#check_open_wallet').val()>0){
-     $('#balance_txt').text(data.balance);
-     $('#balance_val').val(data.balance);
+     history_wallet();
+     $('#balance_txt').text(CurrencyFormatted(data[0].balance));
+     $('#balance_val').val(data[0].balance);
    }
   });
+ 
 </script>
 <!-- Pricing Tables -->
 <div class="hiddendiv common"></div>
