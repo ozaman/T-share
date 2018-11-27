@@ -2599,7 +2599,7 @@
    console.log(data);
    console.log(CurrencyFormatted(data[0].balance));
    if($('#check_open_wallet').val()>0){
-     
+     history_wallet();
      $('#balance_txt').text(CurrencyFormatted(data[0].balance));
      $('#balance_val').val(data[0].balance);
    }
