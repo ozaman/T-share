@@ -198,6 +198,8 @@ function sendWithdraw(){
             console.log(res);
             modal.hide();
             if(res.result==true){
+                $('#balance_txt').text(numberWithCommas(res.action.balance));
+                $('#balance_val').val(res.action.balance);
 				ons.notification.alert({
                     message: 'ทำการแจ้งถอนสำเร็จ รอการยืนยัน',
                     title: "สำเร็จ",

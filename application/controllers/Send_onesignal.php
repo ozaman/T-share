@@ -60,6 +60,7 @@ class Send_onesignal extends CI_Controller {
     echo json_encode($data);
     
   }
+  
 
 }
 
