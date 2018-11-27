@@ -1040,6 +1040,7 @@ function wallet() {
     'id': 'wallet.html',
     'title': 'กระเป๋าเงิน'
   }, 'slide-ios');
+  $('#check_open_wallet').val(1);
   auto_money();
 }
 
