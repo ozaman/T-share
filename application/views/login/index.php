@@ -634,14 +634,14 @@
             return;
           }
           var pos = {key: val};
-          console.log(pos);
+          // console.log(pos);
           $.ajax({
             url: "login/recovery", // point to server-side PHP script 
             dataType: 'json', // what to expect back from the PHP script, if anything
             data: pos,
             type: 'post',
             success: function (response) {
-              console.log(response);
+              // console.log(response);
               // return false;
               if (response != false && response != null) {
                 $('#box_not_found').hide();

@@ -253,9 +253,9 @@ else {
                     </table>
                   </label>
                 </td>
-                <td width="45">
+              <!--   <td width="45">
                   <button onclick="editCar('<?=$val->id;?>', 'transfer_select');" type="button" class="button--cta" style="padding: 0px 7px;"><span class="font-16">แก้ไข</span></button>
-                </td>
+                </td> -->
                 </tr>
                 </tbody>
               </table>
