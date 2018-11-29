@@ -97,6 +97,7 @@ function eachObjHistory() {
 function callApiManage() {
 
   var date = $('#date_report').val();
+//  alert(date)
   var url_action = "api/transfer_booking";
   var data_param = {driver: driver, date: date, driver_checkcar: 0};
   $.post(url_action, data_param, function (data, textStatus, jQxhr) {
@@ -646,7 +647,7 @@ function submitCheckIn(type_step) {
     type: 'post',
     success: function (res) {
       console.log(res);
-      return;
+//      return;
       if (res.api.status == "ok") {
         if (res.api.data.status == "200") {
           $.post('main/get_timestamp', function (res) {

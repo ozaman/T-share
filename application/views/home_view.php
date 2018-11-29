@@ -997,6 +997,7 @@
                </ons-list-item>
                <input type="hidden" value="0" id="cehck_filter_date_trans" />
                <input type="hidden" id="check_filter_his_trans" value="COMPLETED" />
+               <input type="hidden" id="date_report" value="<?=date('Y-m-d');?>" />
             </ons-card>
             <div id="body_transfer">
                <ons-page style="margin-top: 30px;" id="ons-page_body_trans">
