@@ -42,6 +42,10 @@
   background-color: #0076ff !important;
   color: #fff !important;
 }
+.his-trans-active{
+  background-color: #0076ff !important;
+  color: #fff !important;
+}
 img[src=""] {
   display: none;
 }

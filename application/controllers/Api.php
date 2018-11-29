@@ -224,9 +224,13 @@ class Api extends CI_Controller {
   }
 
   public function checkin_transfer() {
-    
+
     $typ_pay = $_GET[type_pay];
     $step = $_GET[step];
+    $f_date = $step."_date";
+    $f_lat = $step."_lat";
+    $f_lng = $step."_lng";
+    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
     if ($step == "driver_checkcar") {
 //	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
       if ($typ_pay == 1) {
@@ -294,19 +298,15 @@ class Api extends CI_Controller {
       $up_order[status_pay] = 1;
       $up_order[i_status_complete] = 1;
       $this->db->where('invoice',$_POST[invoice]);
-      $up_order[result] = $this->db->update(TBL_AP_ORDER, $up_order);
+      $up_order[result] = $this->db->update(TBL_AP_ORDER,$up_order);
       $up_order[invoice] = $_POST[invoice];
       $return[update_ap_order] = $up_order;
       
-      echo json_encode($return);
-      exit();
+      $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'","s_status": "COMPLETE"}';
+//      echo json_encode($return);
+//      exit();
     }
-    
-    
-    $f_date = $step."_date";
-    $f_lat = $step."_lat";
-    $f_lng = $step."_lng";
-    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+
     $url = "http://www.welovetaxi.com:3000/updateJobstatus";
 
     $ch = curl_init($url);
