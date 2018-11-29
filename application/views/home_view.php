@@ -2217,7 +2217,7 @@
    var frist_socket = true;
    
    socket.on('getbookinglab', function(data) {
-      // console.log(data)
+      console.log(data)
    
       array_data = [];
       var done = [];
