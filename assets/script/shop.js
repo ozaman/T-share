@@ -2008,16 +2008,16 @@ function btn_driver_pay_report(id) {
 
 function shopManage() {
 //    $('#shop_manage').html(progress_circle);
-  console.log("Load Shop Manage page");
+//  console.log("Load Shop Manage page");
   var obj = array_data;
 
-  var url = "page/shop_manage_mo";
+  var url = "page/shop_manage";
   array_ma = obj.manage;
 //console.log(array_ma);
   var pass = {
     data: array_ma
   };
-  console.log(pass);
+//  console.log(pass);
   $.ajax({
     url: url,
     data: pass,
@@ -2208,6 +2208,33 @@ function calTime(val) {
 }
 
 function approveBook(id, invoice, driver_id) {
+
+//  var txt_long_ac = invoice + " : " + "คุณได้ยืนยันรายการส่งแขกแล้ว";
+//  var ac = {
+//    i_type: 1,
+//    i_sub_type: 4,
+//    i_event: id,
+//    i_user: detect_user,
+//    s_topic: "งานส่งแขก",
+//    s_message: txt_long_ac,
+//    s_posted: username
+//  };
+//
+//  var txt_long_nc = invoice + " : " + "พนักงานยืนยันงานส่งแขกของคุณแล้ว";
+//  var nc = {
+//    i_type: 1,
+//    i_event: id,
+//    i_user: driver_id,
+//    s_class_user: "taxi",
+//    s_topic: "งานส่งแขก",
+//    s_sub_topic: "ยืนยันงาน",
+//    s_message: txt_long_nc,
+//    s_posted: username
+//  };
+//
+//  apiRecordActivityAndNotification(ac, nc);
+//  return false;
+
   $('#apporve_book_' + id).prop('disabled', true);
 //return;
   var pass = {
