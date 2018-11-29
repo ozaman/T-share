@@ -16,7 +16,7 @@ class Transfer_model extends CI_Model {
     $_POST[deposit_time] = date('Y-m-d');
     $_POST[post_date] = date('Y-m-d');
     $_POST[post_date_f] = date('Y-m-d');
-    $_POST[result] = $this->db->insert('deposit_history', $_POST);
+    $_POST[result] = $this->db->insert(TBL_DEPOSIT_HISTORY, $_POST);
     $query = $this->db->query("SELECT balance FROM deposit WHERE driver ='" . $_POST[driver] . "'");
     $row = $query->row();
 	$data[balance] = intval($row->balance) - intval($_POST[deposit]); 

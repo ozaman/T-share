@@ -562,6 +562,7 @@ function submitCheckIn(type_step) {
     type: 'post',
     success: function (res) {
       console.log(res);
+      return;
       if (res.api.status == "ok") {
         if (res.api.data.status == "200") {
           $.post('main/get_timestamp', function (res) {
