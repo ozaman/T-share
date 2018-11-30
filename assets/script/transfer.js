@@ -280,8 +280,11 @@ function readDataBooking() {
     } else {
       var time_post = CheckTime(d_cr, d_db);
     }
-
+    var pickup_place_name,to_place_name;
     var program = res.program.topic_en;
+    if (res.i_server == 0 ) {
+
+    /***     test ***********/
     var pickup_place = res.address_from;
 
     var pickup_place = pickup_place.split(",");
@@ -290,6 +293,20 @@ function readDataBooking() {
 
 //    var str = "How are you doing today?";
     var to_place = to_place.split(",");
+    pickup_place_name = pickup_place[0];
+    to_place_name = to_place[0];
+
+    /***** end *************/
+}
+else{
+   var pickup_place = res.pickup_place.topic;
+    pickup_place_name = pickup_place;
+
+
+    var to_place = res.to_place.topic;
+    to_place_name = to_place;
+}
+   
 
     var outdate = res.outdate;
     var type = res.program.area;
@@ -327,10 +344,10 @@ function readDataBooking() {
             + '<td>'
             + '<table width="100%" class="tb-txt-left" >'
             + '<tr style="line-height: 1.5;" >'
-            + '<td width="100%"><span class="font-16" colspan="2">' + pickup_place[0] + '</span></td>'
+            + '<td width="100%"><span class="font-16" colspan="2">' + pickup_place_name + '</span></td>'
             + '</tr>'
             + '<tr style="line-height: 1.5;">'
-            + '<td width="100%"><span class="font-16" colspan="2">' + to_place[0] + '</span></td>'
+            + '<td width="100%"><span class="font-16" colspan="2">' + to_place_name + '</span></td>'
             + '</tr>'
             + '<tr>'
             + '<td><strong><span class="font-14 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-14" style="position: absolute;right: 15px;margin-top: 7px;">' + addCommas(cost) + '(-' + s_cost + ')' + '<?=t_THB;?></span></strong></td>'
