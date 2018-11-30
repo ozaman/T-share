@@ -969,19 +969,19 @@
             <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
                <ons-row style="width: 100%;">
                   <ons-col>
-                     <ons-button class="trans-his-btn font-16 his-trans-active " id="btn_trans_his_com" onclick="" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
+                     <ons-button class="trans-his-btn font-16 his-trans-active " id="btn_trans_his_com" onclick="filterHistoryStatusTrans('COMPLETED','btn_trans_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
                   </ons-col>
                   <ons-col>
-                     <ons-button class="trans-his-btn font-16" id="btn_trans_his_cancel" onclick="" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
+                     <ons-button class="trans-his-btn font-16" id="btn_trans_his_cancel" onclick="filterHistoryStatusTrans('CANCEL','btn_trans_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
                   </ons-col>
                   <ons-col>
-                     <ons-button onclick="" id="btn_trans_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" class="trans-his-btn font-16" >ทั้งหมด <span id="num_his_all"></span>
+                     <ons-button  class="trans-his-btn font-16" onclick="filterHistoryStatusTrans('ALL','btn_trans_his_all');" id="btn_trans_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" >ทั้งหมด <span id="num_his_all"></span>
                      </ons-button>
                   </ons-col>
                </ons-row>
                <ons-row>
                   <ons-col>
-                     <ons-button id="btn_toshow_date" onclick="showFilterdate();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
+                     <ons-button id="btn_toshow_date_trans" onclick="showFilterdateTrans();" class="button button--outline" style="width:100%;text-align: center;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> ดูตามวันที่</ons-button>
                   </ons-col>
                </ons-row>
                <ons-list-item class="input-items list-item p-l-0" id="box-trans_date" style="display:none;">
@@ -989,14 +989,15 @@
                      <img src="assets/images/ex_card/crd.png?v=1537169817" width="25px;">
                   </div>
                   <div class="center list-item__center" style="background-image: none;padding: 0px 6px 0px 0;">
-                     <input class="ap-date" type="date" id="date_trans_his" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="historyShop();$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
-                     <input class="ap-date" type="date" id="date_trans_wait" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;display: none;" onchange="waitTransShop();" max="<?=date('Y-m-d',time());?>" />
+                     <input class="ap-date" type="date" id="date_trans_his" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="callApiHistory();$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
                   </div>
                   <div class="right list-item__right" style="padding: 5px;" >
-                     <ons-button onclick="hideFilterdate();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
+                     <ons-button onclick="hideFilterdateTrans();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
                   </div>
                </ons-list-item>
-               <input type="hidden" value="0" id="cehck_filter_date" />
+               <input type="hidden" value="0" id="cehck_filter_date_trans" />
+               <input type="hidden" id="check_filter_his_trans" value="COMPLETED" />
+               <input type="hidden" id="date_report" value="<?=date('Y-m-d');?>" />
             </ons-card>
             <div id="body_transfer">
                <ons-page style="margin-top: 30px;" id="ons-page_body_trans">
@@ -1023,19 +1024,15 @@
                </template>
                <template id="transfer_his.html">
                   <ons-page>
-                     <div id="transfer_income" style="margin-top:100px;"></div>
+                     <div id="load_his_data" style="margin-top:115px;"></div>
                   </ons-page>
                </template>
                <script>
+                 
                   document.addEventListener('prechange', function(event) {
                       var page_trans = event.tabItem.getAttribute('page');
                       console.log(page_trans);
                       if(page_trans=="transfer_manage.html"){
-                  //                  var url = "page/transfer_manage";
-                  //                  $.post(url,function(html){
-                  //                      $('#transfer_manage').html(html);
-                  //                      callApiManage();
-                  //                  });
                           callApiManage();
                           $('#box-trans_filter').hide();
                             
@@ -1044,13 +1041,14 @@
                           
                           $('#show_balance_trans').hide();
                           $('#ons-page_body_trans').css('margin-top',0);
-                          
+                           callApiHistory();
                       }else if(page_trans=="transfer_job.html"){
+                          
                           $('#box-trans_filter').hide();
                           
                           $('#show_balance_trans').show();
                           $('#ons-page_body_trans').css('margin-top','30px');
-                          
+                         
                       }
                        /* document.querySelector('ons-toolbar .center')
                        .innerHTML = event.tabItem.getAttribute('label');*/
@@ -2243,7 +2241,7 @@
       };
    
    
-             console.log(check_run_shop+" |||| " +done.length);
+//             console.log(check_run_shop+" |||| " +done.length);
    
       if (check_run_shop != done.length) {
           shopManage();

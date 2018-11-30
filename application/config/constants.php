@@ -115,6 +115,11 @@ define('TBL_DEPOSIT','deposit');
 define('TBL_DEPOSIT_HISTORY','deposit_history');
 define('TBL_DEPOSIT_HISTORY_LOG','deposit_history_logs');
 
+define('TBL_HISTORY_PAY_DRIVER_DEPOSIT','history_pay_driver_deposit');
+
+/*================================ ap order ========================*/
+define('TBL_AP_ORDER','ap_order');
+
 
 
 

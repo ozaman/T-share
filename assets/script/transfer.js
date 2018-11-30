@@ -1,20 +1,21 @@
 var dataHistoryA;
 var manageObj = [];
+var hisObj = [];
 var driver = detect_user;
 var orderid, idorder, invoice, code, program, p_place, to_place, agent, airout_time, airin_time, cost, s_cost, outdate, ondate, s_status_pay, idbookcar, a, b, c, d;
-//	$('#btn_manage').click();
-//	callApiManage();
-function callApiManage() {
 
-  var date = $('#date_report').val();
+function callApiHistory() {
+  var date = $('#date_trans_his').val();
   var url_action = "api/transfer_booking";
-  var data_param = {driver: driver, date: date, driver_checkcar: 0};
+  var type = $('#check_filter_his').val();
+  var data_param = {driver: driver, date: date, driver_checkcar: 1};
+  console.log(data_param);
   $.post(url_action, data_param, function (data, textStatus, jQxhr) {
-    console.log(data)
+    console.log(data.data.result)
     var m = [];
     if (data.status == "200") {
-      manageObj = data.data.result;
-      eachObjManage();
+      hisObj = data.data.result;
+      eachObjHistory();
     }
   }, 'json')
           .fail(function (jqXhr, textStatus, errorThrown) {
@@ -22,24 +23,17 @@ function callApiManage() {
           });
 }
 
-function eachObjManage() {
-  $('#load_manage_data ons-card').remove();
-//  $('#load_manage_data').html(progress_circle);
-//  $('#load_manage_data')
-  if (manageObj.length <= 0) {
-    $('#load_manage_data').append('<div class="font-26" style="color: #ff0000;" id="no_work_div"><strong><?=t_no_job;?></strong></div>');
+function eachObjHistory() {
+  $('#load_his_data ons-card').remove();
+  if (hisObj.length <= 0) {
+    $('#load_his_data').html('<div class="font-22" style="color: #ff0000;text-align: center;" id="no_work_div"><strong>ไม่มีงาน</strong></div>');
     return;
   }
-  console.log(manageObj.length)
-  $.each(manageObj, function (index, value) {
-    console.log(value);
-//    var program = value.program.topic_en;
-//    var pickup_place = value.pickup_place.topic;
+//  console.log(hisObj)
+  $.each(hisObj, function (index, value) {
+//    console.log(value);
     var program = value.program.topic_en;
-//    var pickup_place = value.address_from;
-//    var to_place = value.address_to;
     var outdate = value.outdate;
-
     var type = value.program.area;
     var time = value.airout_time;
     var id = "btn_" + index;
@@ -93,15 +87,106 @@ function eachObjManage() {
             + '<ons-col>วันเวลา</ons-col>'
             + '<ons-col>' + outdate + '&nbsp;&nbsp;' + time + ' น.</ons-col>'
             + '</ons-row>'
-//                      +'<ons-row>'
-//                        +'<ons-col>ประเภทรถ</ons-col>'
-//                        +'<ons-col>'++'</ons-col>'
-//                      +'</ons-row>'
+            + '</div>'
+            + '</div>'
+            + '</ons-card>';
+    $('#load_his_data').append(component2);
+  });
+}
+
+function callApiManage() {
+
+  var date = $('#date_report').val();
+//  alert(date)
+  var url_action = "api/transfer_booking";
+  var data_param = {driver: driver, date: date, driver_checkcar: 0};
+  $.post(url_action, data_param, function (data, textStatus, jQxhr) {
+    console.log(data)
+    var m = [];
+    if (data.status == "200") {
+      manageObj = data.data.result;
+      eachObjManage();
+    }
+  }, 'json')
+          .fail(function (jqXhr, textStatus, errorThrown) {
+            console.log(errorThrown);
+          });
+}
+
+function eachObjManage() {
+  $('#load_manage_data ons-card').remove();
+//  $('#load_manage_data').html(progress_circle);
+//  $('#load_manage_data')
+  if (manageObj.length <= 0) {
+    $('#load_manage_data').html('<div class="font-22" style="color: #ff0000;" id="no_work_div"><strong>ไม่มีงาน</strong></div>');
+    return;
+  }
+  console.log(manageObj.length)
+  $.each(manageObj, function (index, value) {
+    console.log(value);
+//    var program = value.program.topic_en;
+//    var pickup_place = value.pickup_place.topic;
+    var program = value.program.topic_en;
+//    var pickup_place = value.address_from;
+//    var to_place = value.address_to;
+    var outdate = value.outdate;
+    var type = value.program.area;
+    var time = value.airout_time;
+    var id = "btn_" + index;
+    var s_pay = value.s_status_pay;
+    var cost = value.cost - value.s_cost;
+    var s_cost = value.s_cost;
+
+    if (s_pay == 0) {
+      var type_pay = 'จ่ายเงินสด';
+    } else {
+      var type_pay = 'โอนเข้ากระเป๋า';
+    }
+    var component2 =
+            '<ons-card class="box_his card" style="margin-top: 30px;margin-bottom: 30px;"><span class="font-15 time-post">รับเมื่อ ' + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + ' น.</span>'
+            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ');" style="padding: 5px;margin-top: 5px;">'
+            + '<table width="100%">'
+            + '<tr>'
+            + '<td>'
+            + '<table width="100%">'
+            + '<tbody>'
+            + '<tr>'
+            + '<td width="10">'
+            + '<div style="width: 10px; height: 10px;border-radius: 1px; background: #555;"></div>'
+            + '</td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeFrom" style="text-align: center;">' + value.address_from + '</span></td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td colspan="2" style="padding: 3px 0px;"></td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td width="10">'
+            + '<div style="width: 10px;height: 10px;border-radius: 1px; background: #3b5998;"></div>'
+            + '</td>'
+            + '<td align="left" style="padding-left: 15px;"><span id="typeTo" style="text-align: center;">' + value.address_to + '</span></td>'
+            + '</tr>'
+            + '</tbody>'
+            + '</table>'
+            + '</td>'
+            + '</tr>'
+            + '</table>'
+            + '<div style="margin: 0px;">'
+            + '<ons-row>'
+            + '<ons-col><span class="font-17">ช่องทางรับเงิน</span></ons-col>'
+            + '<ons-col><span class="font-17">' + type_pay + '</span></ons-col>'
+            + '</ons-row>'
+            + '<ons-row>'
+            + '<ons-col><span class="font-17">จำนวน</span></ons-col>'
+            + '<ons-col><span class="font-17" style="color: #16B3B1;font-weight: 600;">' + addCommas(cost) + ' ฿</span></ons-col>'
+            + '</ons-row>'
+            + '<ons-row>'
+            + '<ons-col>วันเวลา</ons-col>'
+            + '<ons-col>' + outdate + '&nbsp;&nbsp;' + time + ' น.</ons-col>'
+            + '</ons-row>'
             + '</div>'
             + '</div>'
             + '</ons-card>';
     $('#load_manage_data').append(component2);
-//    return false;
   });
 }
 
@@ -198,9 +283,9 @@ function readDataBooking() {
 
     var program = res.program.topic_en;
     var pickup_place = res.address_from;
-    
+
     var pickup_place = pickup_place.split(",");
-    
+
     var to_place = res.address_to;
 
 //    var str = "How are you doing today?";
@@ -562,6 +647,7 @@ function submitCheckIn(type_step) {
     type: 'post',
     success: function (res) {
       console.log(res);
+//      return;
       if (res.api.status == "ok") {
         if (res.api.data.status == "200") {
           $.post('main/get_timestamp', function (res) {
@@ -632,4 +718,27 @@ function actionProgress(obj) {
 //    console.log("driver_complete");
 //    changeHtmlTrans("driver_complete", obj.id, timestampToDate(obj.driver_complete_date, "time"));
 //  }
+}
+
+/*==============================================================================*/
+
+function filterHistoryStatusTrans(type,id) {
+  console.log(type);
+  $('#check_filter_his').val(type);
+  $('.trans-his-btn').removeClass('his-trans-active');
+  $('#' + id).addClass('his-trans-active');
+  callApiHistory();
+}
+function showFilterdateTrans() {
+  $('#btn_toshow_date_trans').hide();
+  $('#box-trans_date').fadeIn(500);
+  $('#cehck_filter_date_trans').val(1);
+  callApiHistory();
+}
+
+function hideFilterdateTrans() {
+  $('#box-trans_date').hide();
+  $('#btn_toshow_date_trans').show();
+  $('#cehck_filter_date_trans').val(0);
+  callApiHistory();
 }

@@ -224,15 +224,17 @@ class Api extends CI_Controller {
   }
 
   public function checkin_transfer() {
-//    
-//    echo json_encode($_GET);
-//    exit();
+
     $typ_pay = $_GET[type_pay];
     $step = $_GET[step];
+    $f_date = $step."_date";
+    $f_lat = $step."_lat";
+    $f_lng = $step."_lng";
+    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
     if ($step == "driver_checkcar") {
 //	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
       if ($typ_pay == 1) {
-        $dv_dp = $this->db->query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
+        $dv_dp = $this->db->query("SELECT balance,id from ".TBL_DEPOSIT." where driver = '".$_POST[driver_id]."' ");
         $dv_dp = $dv_dp->row();
 
         $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
@@ -247,13 +249,13 @@ class Api extends CI_Controller {
         $data[type_pay] = 1;
         $data[type_job] = "transfer";
         $data[driver_id] = $_POST[driver_id];
-        $data[result] = $this->db->insert('history_pay_driver_deposit',$data);
+//        $data[result] = $this->db->insert(TBL_HISTORY_PAY_DRIVER_DEPOSIT,$data);
         $return[deposit] = $data;
 
         $update[balance] = $deposit_update;
         $update[last_update] = time();
         $this->db->where('driver',$_POST[driver_id]);
-        $update[result] = $this->db->update('deposit',$update);
+//        $update[result] = $this->db->update(TBL_DEPOSIT,$update);
         $update[id] = $dv_dp->id;
         $update[driver_id] = $_POST[driver_id];
         $update[balance_before] = intval($dv_dp->balance);
@@ -293,16 +295,18 @@ class Api extends CI_Controller {
        * @var update ap_order status
        * 
        */
-//      $up_order[status] = 1;
-//      $this->db->where('invoice','"'.$_POST[invoice].'"');
-//      $up_order[result] = $this->db->update('ap_order');
-//      $return[update_ap_order] = $up_order;
+      $up_order[status_pay] = 1;
+      $up_order[i_status_complete] = 1;
+      $this->db->where('invoice',$_POST[invoice]);
+      $up_order[result] = $this->db->update(TBL_AP_ORDER,$up_order);
+      $up_order[invoice] = $_POST[invoice];
+      $return[update_ap_order] = $up_order;
+      
+      $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'","s_status": "COMPLETE"}';
+//      echo json_encode($return);
+//      exit();
     }
 
-    $f_date = $step."_date";
-    $f_lat = $step."_lat";
-    $f_lng = $step."_lng";
-    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
     $url = "http://www.welovetaxi.com:3000/updateJobstatus";
 
     $ch = curl_init($url);
