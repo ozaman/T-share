@@ -2,7 +2,7 @@ filterDateShop($('#date_shop_ic').val());
 
 function filterDateShop(val) {
     console.log(val);
-
+    $('#shop_ic').html(progress_circle);
     $.post("page/call_page?date=" + val, {
         path: "statement/shop_ic"
     }, function(ele) {
@@ -60,15 +60,11 @@ function openDetailTrans(id, idorder) {
 }
 
 function renderTransferJob(){
+  $('#trans_ic').html(progress_circle);
 	var date = $('#date_trans_ic').val();
-//	var param = {
-//    driver: $.cookie("detect_user"),
-//    date: $('#date_trans_ic').val()+"-01",
-//    driver_checkcar: 1
-//};
 	var param = {
     driver: $.cookie("detect_user"),
-    month: $('#date_trans_ic').val(),
+    date: date+"-29",
     driver_checkcar: 1
 };
 console.log(param);
@@ -80,7 +76,7 @@ $.ajax({
     success: function(res) {
        console.log(res);
        if(res.status==200){
-	   		 $.post("page/icome_trans_list", {data : res.data.result} , function(ele) {
+	   		 $.post("page/icome_trans_list?date="+date, {data : res.data.result} , function(ele) {
 		        $('#trans_ic').html(ele);
 		    });
 	   }

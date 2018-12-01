@@ -71,7 +71,7 @@ class Api extends CI_Controller {
 //	driver_checkcar : 0 = manage , 1 = history
 
     $url = "http://www.welovetaxi.com:3000/getDriverlogsbyid_month";
-    $curl_post_data = '{"driver": '.$_POST[driver].',"month": "'.$_POST[month].'","driver_checkcar" : '.$_POST[driver_checkcar].' }';
+    $curl_post_data = '{"driver": '.$_POST[driver].',"date": "'.$_POST[date].'","driver_checkcar" : '.$_POST[driver_checkcar].' }';
 //	$curl_post_data = '{"driver": 153,"date": "2018-09-20","driver_checkcar" : 1 }';                            
     $ch = curl_init($url);
     curl_setopt($ch,CURLOPT_POSTFIELDS,$curl_post_data);

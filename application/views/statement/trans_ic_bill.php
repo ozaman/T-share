@@ -1,5 +1,7 @@
 <?php 
 	$data = $_POST[data];
+    
+    $income = intval($data[cost]) -intval($data[s_cost]);
 ?>
 <style>
 	.list-pd-r{
@@ -52,12 +54,21 @@
 </div>
 
 <div style="margin: 15px 0px; background-color:#fff; ">
-	<ons-list-item>
+	
+  <ons-list-item>
 	    <div class="center list-pd-r">
 	    	<span class="font-16 txt-center">ราคา</span>
 	    </div>
 	    <div class="right">
-	    	<span class="font-16"><?=number_format($data[cost],2)." บาท";?></span>
+	    	<span class="font-16"><?=number_format($data[cost],0)."(".$data[s_cost].")"." บาท";?></span>
+	    </div>
+	</ons-list-item>
+  <ons-list-item>
+	    <div class="center list-pd-r">
+	    	<span class="font-16 txt-center">รายได้</span>
+	    </div>
+	    <div class="right">
+	    	<span class="font-16"><?=number_format($income,0)." บาท";?></span>
 	    </div>
 	</ons-list-item>
 </div>	
