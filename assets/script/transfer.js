@@ -350,7 +350,7 @@ else{
             + '<td width="100%"><span class="font-16" colspan="2">' + to_place_name + '</span></td>'
             + '</tr>'
             + '<tr>'
-            + '<td><strong><span class="font-14 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-14" style="position: absolute;right: 15px;margin-top: 7px;">' + addCommas(cost) + '(-' + s_cost + ')' + '<?=t_THB;?></span></strong></td>'
+            + '<td><strong><span class="font-14 ">' + type_pay + '</span>&nbsp;&nbsp;<span class="font-14" style="position: absolute;right: 15px;margin-top: 7px;">' + addCommas(cost) + '(-' + s_cost + '%)' + '<?=t_THB;?></span></strong></td>'
             + '</tr>'
             + '<tr>'
             + '<td><span class="font-14 ">' + outdate + '&nbsp;&nbsp;' + time + '</span></td>'
