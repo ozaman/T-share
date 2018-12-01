@@ -254,8 +254,8 @@ class Api extends CI_Controller {
       if ($typ_pay == 1) {
         $dv_dp = $this->db->query("SELECT balance,id from ".TBL_DEPOSIT." where driver = '".$_POST[driver_id]."' ");
         $dv_dp = $dv_dp->row();
-        $s_cost = ($_POST[s_cost]*15)/100;
-        $pay_driver = intval($_POST[cost]) - intval($s_cost);
+
+        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
         $deposit_update = intval($dv_dp->balance) + intval($pay_driver);
 
         $data[order_id] = $_POST[idorder];

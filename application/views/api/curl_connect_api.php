@@ -132,7 +132,7 @@ if($step=="driver_checkcar"){
         $deposit_update = intval($arr[dv_dp][balance]) - intval($s_cost);
         
 		$data[order_id] = $_POST[idorder];
-		$data[s_cost] = $_POST[s_cost];
+		$data[s_cost] = $s_cost;
 		$data[deposit_pay] = $pay_driver;
 		$data[balance_before] = $arr[dv_dp][balance];
 		$data[status] = 1;

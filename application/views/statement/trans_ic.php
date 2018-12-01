@@ -7,9 +7,7 @@
 	<?php	
 		$befordate = '';
 		foreach ($_POST[data] as $row){ 
-         $s_cost = ($row[s_cost]*15)/100;
-
-			$total = intval($row[cost])-intval($s_cost);
+			$total = intval($row[cost])-intval($row[s_cost]);
 			if($row[s_status_pay]==0){
 				$type_pay_txt = "เงินสด";
 			}else{
