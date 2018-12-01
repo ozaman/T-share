@@ -821,7 +821,7 @@
       }
     };
 
-    function submitLogin() {
+    function submitLogin(form) {
       modal.show();
       if ($('#real-username').val() == "") {
         modal.hide();
@@ -837,7 +837,7 @@
       }
 
       console.log("login action");
-      var data = $('#form_login').serialize();
+      var data = $('#'+form).serialize();
       console.log(data);
       var url = "login/logins?checking=login";
       $.ajax({

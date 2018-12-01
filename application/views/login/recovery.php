@@ -57,11 +57,11 @@
       <div id="enter_pass_box" style="display: none;">
         <ons-list-item class="input-items" style="padding-left: 0;border: 1px solid #ff0000;" >
           <label class="center">
-            <input  id="pass_recovery_check" type="text" value="" placeholder="กรอกรหัสผ่าน" name="real_password" />
+            <input  id="pass_recovery_check" type="text" value="" placeholder="กรอกรหัสผ่าน" name="real_password" style="width: 100%;font-size: 24px;padding: 0px 10px;" />
           </label>
         </ons-list-item>  
-        <div align="center">
-          <button type="button" class="btn" style="border: 1px solid #0076ff;color: #0076ff;" onclick="submitLogin('form_recovery');">เข้าสู่ระบบ</button>
+        <div align="center" style="margin-top: 10px;">
+          <button type="button" class="button" style="border: 1px solid #0076ff;color: #0076ff; background-color: #fff;" onclick="submitLogin('form_recovery');">เข้าสู่ระบบ</button>
         </div>
       </div>
     </ons-card>
