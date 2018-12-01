@@ -27,7 +27,7 @@
           $menu_ion_class = "icon-menu-ios";
           $border_menu_color = "#ccc";
       }
-      $border_menu_color = "border-bottom: 1px solid ".$border_menu_color;
+      $border_menu_color = "border-bottom: 0px solid ".$border_menu_color;
       $v = "1";
       ?>
    <head>
@@ -301,7 +301,7 @@
                }
                ?>
             <ons-list>
-               <ons-list-item expandable style="<?=$menu_profile;?>"  >
+               <ons-list-item expandable style="<?=$menu_profile;?>background-image: none;    border-bottom: 1px solid rgb(204, 204, 204);"  >
                   <div class="left">
                      <i class="fa fa-user-circle-o list-item__icon" style="    margin-left: 4px;"></i>
                   </div>
@@ -368,26 +368,26 @@
                </ons-list-item>
                <?php } ?>
               
-               <ons-list-item onclick="myCar();" style="<?=$menu_car;?>">
+               <ons-list-item onclick="myCar();" style="<?=$menu_car;?>border-bottom: 1px solid rgb(204, 204, 204);"     >
                   <?php 
                      $this->db->select('id');
                      $this->db->where('drivername = '.$_COOKIE['detect_user']);
                      $query = $this->db->get('web_carall');
                      $num = $query->num_rows();
                      ?>
-                  <div class="left" style="border-bottom: 1px solid #ccc;">
+                  <div class="left" style="border-bottom: 0px solid #ccc;">
                      <i class="icon-new-uniF10A-9 list-item__icon"></i>
                   </div>
-                  <div class="center">
+                 <div class="center" style="background-image: none;">
                      ข้อมูลรถ (<span id="num_car_home">
                      <?=$num;?></span>&nbsp;คัน)
                   </div>
                </ons-list-item>
-               <ons-list-item expandable style="<?=$menu_income;?>">
+               <ons-list-item expandable style="<?=$menu_income;?>background-image: none;    border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left">
                      <i class="icon-new-uniF121-10 list-item__icon "></i>
                   </div>
-                  <div class="center" onclick="arrowChange('list_acc');" id="head_list_acc">
+                  <div class="center" onclick="arrowChange('list_acc');" id="head_list_acc" >
                      การเงิน
                   </div>
                   <div class="expandable-content" style="padding-left: 60px;" onclick="income();">รายรับ</div>
@@ -396,45 +396,45 @@
                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="wallet('slide-ios');" style="<?=$menu_wallet;?>">
+               <ons-list-item onclick="wallet('slide-ios');" style="<?=$menu_wallet;?>border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
                   </div>
-                  <div class="center">
+                 <div class="center" style="background-image: none;">
                      กระเป๋าเงิน
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="reference();" style="<?=$menu_ref;?>">
+               <ons-list-item onclick="reference();" style="<?=$menu_ref;?>border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="fa fa-qrcode" style="margin-top: 1px !important;margin-left: 2px;"></i></span>
                   </div>
-                  <div class="center">
+                 <div class="center" style="background-image: none;">
                      แนะนำเพื่อน
                   </div>
                </ons-list-item>
                <ons-list-item onclick="
-                 fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')" style="<?=$menu_noti_line;?>">
+                 fn.pushPage({'id': 'line_noti.html', 'title': 'แจ้งเตือนผ่านไลน์'}, 'lift-ios')" style="<?=$menu_noti_line;?>border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <ons-icon fixed-width class="list-item__icon " icon="fa-link" style="margin-left: 2px;"></ons-icon>
                   </div>
-                  <div class="center">
+                  <div class="center" style="background-image: none;">
                      แจ้งเตือนผ่านไลน์
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="$('#tab_contact').click();$('ons-splitter-mask').click();//contrac_us();" style="<?=$menu_contect;?>">
+               <ons-list-item onclick="$('#tab_contact').click();$('ons-splitter-mask').click();//contrac_us();" style="<?=$menu_contect;?>border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                     <ons-icon fixed-width class="list-item__icon " icon="fa-comments-o" style="margin-left: 2px"></ons-icon>
                      <!-- <i class="material-icons list-item__icon ">contact_phone</i> -->
                   </div>
-                  <div class="center">
+                  <div class="center" style="background-image: none;">
                      ติดต่อเรา
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="createSignOut();">
+               <ons-list-item onclick="createSignOut();" style="border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <i class="icon-new-uniF186 icon_menu list-item__icon"></i>
                   </div>
-                  <div class="center">
+                  <div class="center" style="background-image: none;">
                      ออกจากระบบ
                   </div>
                </ons-list-item>

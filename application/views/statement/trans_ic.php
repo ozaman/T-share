@@ -24,9 +24,9 @@ if (count($_POST[data]) < 1) {
 $mount = explode("-",$_GET[date]);
 $mount = $mount[1];
 ?>
-<div>
+<!--<div>
   <span class="font-17"><?=$thai_month_arr[$mount];?> <?=count($_POST[data]);?> งาน </span>
-</div>      
+</div>      -->
 <ons-list id="body_list_ic_shop" >	
 
   <?php

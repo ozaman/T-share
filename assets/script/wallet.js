@@ -268,7 +268,7 @@ function alertWithdraw() {
             });
     return;
   }
-  if ($('#balance_val').val() < $('input[name="amount_wd"]').val()) {
+  if (parseInt($('#balance_val').val()) < parseInt($('input[name="amount_wd"]').val())) {
     ons.notification.alert({
       message: 'ไม่สามารถทำการถอนเงินได้ เนื่องจากยอดในระบบไม่เพียงพอ',
       title: "ขออภัย",

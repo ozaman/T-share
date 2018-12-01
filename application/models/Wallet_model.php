@@ -80,6 +80,7 @@ class Wallet_model extends CI_Model {
     }
     
     $deposit[action] = $data;
+    $deposit[dp_his] = $withdraw;
 
     return $deposit;
   }
