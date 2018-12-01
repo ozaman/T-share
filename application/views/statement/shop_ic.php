@@ -25,8 +25,9 @@ if ($num < 1) {
   foreach ($query->result() as $row) {
     $tras_d_time = date_create($row->transfer_date);
 
-    $total_price_all = $row->price_park_unit + (intval($row->price_person_unit) * intval($row->pax_regis));
-
+    $total_price_all = $row->price_park_unit + (intval($row->price_person_unit) * intval($row->pax_regis)) + intval($row->total_commission);
+//    echo $row->total_commission;
+//    exit();
     if ($befordate != $row->transfer_date) {
       $befordate = $row->transfer_date;
       ?>

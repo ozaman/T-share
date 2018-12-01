@@ -10,9 +10,11 @@ $display_park = "display:none";
 $park_total = 0;
 $person_total = 0;
 $com_total = 0;
-echo json_encode($query_price->result()->s_topic_th);
-exit();
+//print_r($query_price->result());
+//exit();
+$push = "";
 foreach ($query_price->result() as $row_price) {
+//  echo $row_price->s_topic_th;
   if ($num >= 1) {
     $push = " + ";
   }
@@ -40,8 +42,11 @@ foreach ($query_price->result() as $row_price) {
     $display_com = "";
     $com_persent = $data->commission_persent;
     $com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
+    $com_total = $data->total_commission;
+    
   }
 }
+//echo $com_total;
 $all_total = $park_total + $person_total + $com_total;
 
 
@@ -129,31 +134,57 @@ $res_ps = $query_ps->row();
       <span class="font-16 txt-center">ค่าตอบแทน</span>
     </div>
     <div class="right">
-      <span class="font-16"><?=$push;?></span>
+      <span class="font-16"><?=$plan;?></span>
     </div>
   </ons-list-item>
-  <ons-list-item>
+  <ons-list-item style="<?=$display_park;?>">
     <div class="center list-pd-r">
       <span class="font-16 txt-center">ค่าจอด</span>
     </div>
     <div class="right">
-      <span class="font-16"><?=number_format(1100,2);?> บาท</span>
+      <span class="font-16"><?=number_format($park_total,0);?> บาท</span>
     </div>
   </ons-list-item>
-  <ons-list-item>
+  <ons-list-item style="<?=$display_person;?>">
     <div class="center list-pd-r">
       <span class="font-16 txt-center">ค่าหัว</span>
     </div>
     <div class="right">
-      <span class="font-16"><?=number_format(1000,2);?> บาท</span>
+      <span class="font-16"><?=$cal_person;?> = <?=number_format($person_total,0);?> บาท</span>
     </div>
   </ons-list-item>
-  <ons-list-item>
+  <?php if ($data->transfer_money == 0) {?>
+    <ons-list-item  style="<?=$display_com;?>">>
+      <div class="center list-pd-r">
+        <span class="font-16 txt-center">ค่าคอม</span>
+      </div>
+      <div class="right">
+        <span class="font-16"><?=$com_progress;?>&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+      </div>
+    </ons-list-item>
+  <?php
+  }
+  else {
+    $query = $this->db->query('SELECT price_pay_driver_com, price_shopping FROM pay_history_driver_shopping where order_id = '.$data->id);
+    $data_trans_pay = $query->row();
+    ?>
+   
+    <ons-list-item  style="<?=$display_com;?>">
+      <div class="center list-pd-r">
+        <span class="font-16 txt-center">ค่าคอม</span>&nbsp;&nbsp; <span class="font-16">ยอด <?=$data_trans_pay->price_shopping;?></span>
+      </div>
+      <div class="right">
+        <span class="font-16"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บาท</span>
+      </div>
+    </ons-list-item>
+  <?php }
+  ?>
+  <ons-list-item >
     <div class="center list-pd-r">
       <span class="font-16 txt-center">รวม</span>
     </div>
     <div class="right">
-      <span class="font-16"><?=number_format($data->price_all_total,2);?> บาท</span>
+      <span class="font-16"><?=number_format($all_total,0);?> บาท</span>
     </div>
   </ons-list-item>
 </div>
