@@ -323,7 +323,7 @@
                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
                </ons-list-item>
-               <ons-list-item expandable style="<?=$menu_lab;?>">
+               <ons-list-item expandable style="<?=$menu_lab;?>background-image: none;border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left">
                      <i class="icon-new-uniF133-2 list-item__icon"></i>
                   </div>
@@ -352,7 +352,7 @@
 //                 $query = $this->db->get_where(TBL_PLACE_CAR_STATION_SERVICE,array('i_station' => $row->id,'i_status'=>1));
 //                 $num_service = $query->num_rows();
                ?>
-              <ons-list-item expandable>
+              <ons-list-item expandable style="background-image: none;border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left">
                      <i class="icon-new-uniF133-2 list-item__icon"></i>
                   </div>
