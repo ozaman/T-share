@@ -198,7 +198,7 @@ function openSheetHandleTransfer(index) {
     'id': 'popup1.html',
     'title': 'จัดการงาน'
   }, 'slide-ios');
-  var post = manageObj[index];
+  var post = hisObj[index];
   console.log(post);
   var url = "transfer/sheet_handle";
   $.post(url, post, function (data) {
@@ -733,10 +733,10 @@ function actionProgress(obj) {
     console.log("driver_pickup");
     changeHtmlTrans("driver_pickup", obj.id, timestampToDate(obj.driver_pickup_date, "time"));
   }
-//  if (obj.driver_complete == 1) {
-//    console.log("driver_complete");
-//    changeHtmlTrans("driver_complete", obj.id, timestampToDate(obj.driver_complete_date, "time"));
-//  }
+  if (obj.driver_checkcar == 1) {
+    console.log("driver_complete");
+    changeHtmlTrans("driver_complete", obj.id, timestampToDate(obj.driver_checkcar_date, "time"));
+  }
 }
 
 /*==============================================================================*/

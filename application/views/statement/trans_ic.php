@@ -1,6 +1,6 @@
 <?php 
 	if(count($_POST[data])<1){ ?>
-		<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>
+		<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>
 	<?php }
 ?>
 <ons-list id="body_list_ic_shop" >	 
@@ -27,7 +27,7 @@
        					<span class="font-16"><?=$row[pickup_place][topic];?></span><br/>
        					<span class="font-16"><?=$row[to_place][topic];?></span>
        				</td>
-       				<td align="right" width="80"><b><?="+ ".number_format($total,2);?></b><br/><span class="font-16"><?=$type_pay_txt;?></span></td>
+       				<td align="right" width="120"><b><?=number_format($total,2);?></b><br/><span class="font-16"><?=$type_pay_txt;?></span></td>
        			</tr>
        			<!--<tr>
        				<td></td>

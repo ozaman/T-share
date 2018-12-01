@@ -396,7 +396,7 @@
                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
                   </div>
                </ons-list-item>
-               <ons-list-item onclick="wallet();" style="<?=$menu_wallet;?>">
+               <ons-list-item onclick="wallet('slide-ios');" style="<?=$menu_wallet;?>">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
                   </div>
@@ -964,7 +964,7 @@
                <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt_trans">
                <?=number_format($data_deposit->balance,2);?></span>
                <input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val_trans" name="balance_val" />
-               <ons-button onclick="wallet();" class="font-16" style=" padding: 0px 15px; position: absolute;  left: 0px;  top: 0px; border-radius: 0;">เติมเงิน</ons-button>
+               <ons-button onclick="wallet('lift-ios');" class="font-16" style=" padding: 0px 15px; position: absolute;  left: 0px;  top: 0px; border-radius: 0;">เติมเงิน</ons-button>
             </div>
             <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
                <ons-row style="width: 100%;">

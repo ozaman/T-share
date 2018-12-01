@@ -16,7 +16,7 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
 		$i = 0;
 		$num = $query->num_rows();
 		if($num<1){ ?>
-			<div class="font-26" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>
+			<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: -10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>
 	 <?php } ?>
 <ons-list id="body_list_ic_shop" >	 
 	<?php	foreach ($query->result() as $row){ 
