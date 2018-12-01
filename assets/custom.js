@@ -922,7 +922,7 @@ function profileInfo(animate) {
 function sendTransfer() {
 
   console.log(detect_user)
-  if (detect_user == 153 || detect_user == 164 || detect_user == 129 || detect_user == 492) {
+  if (detect_user == 153 || detect_user == 164 || detect_user == 129 || detect_user == 492 || 472) {
 
     fn.pushPage({
       'id': 'transfer.html',

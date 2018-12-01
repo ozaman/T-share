@@ -28,6 +28,7 @@ $mount = $mount[1];
     <span class="font-17"><?=$thai_month_arr[$mount];?> <?=count($_POST[data]);?> งาน </span>
   </div>      
 <ons-list id="body_list_ic_shop" >	 
+
   <?php
   $befordate = '';
   foreach ($_POST[data] as $row) {
@@ -38,7 +39,7 @@ $mount = $mount[1];
     else {
       $type_pay_txt = "เข้ากระเป๋า";
     }
-//			$tras_d_time = date_create($row->transfer_date);
+
     if ($befordate != $row[ondate]) {
       $befordate = $row[ondate];
       ?>

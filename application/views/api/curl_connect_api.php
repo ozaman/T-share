@@ -27,7 +27,7 @@ $url = "http://www.welovetaxi.com:3000/updateDriverlogs";
 $ch = curl_init($url);
 
 //setup request to send json via POST
-$curl_post_data2 = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].',"agent":'.$_POST[agent].',"airout_time":"'.$_POST[airin_time].'","airin_time":"'.$_POST[airin_time].'","s_cost":"'.$_POST[s_cost].'","outdate":"'.$_POST[outdate].'","ondate":"'.$_POST[ondate].'"}';
+$curl_post_data2 = '{"idorder": '.$_POST[idorder].',"orderid":'.$_POST[orderid].',"invoice":'.$_POST[invoice].',"code":'.$_POST[code].',"program":'.$_POST[program].',"driver":'.$_POST[driver].',"carid":'.$_POST[carid].',"pickup_place":'.$_POST[pickup_place].',"to_place":'.$_POST[to_place].',"agent":'.$_POST[agent].',"airout_time":"'.$_POST[airin_time].'","airin_time":"'.$_POST[airin_time].'","s_cost":"'.$s_cost.'","outdate":"'.$_POST[outdate].'","ondate":"'.$_POST[ondate].'"}';
 
 //attach encoded JSON string to the POST fields
 curl_setopt($ch, CURLOPT_POSTFIELDS, $curl_post_data2);
@@ -100,8 +100,8 @@ if($step=="driver_checkcar"){
 		$db->connectdb(DB_NAME_APP,DB_USERNAME,DB_PASSWORD);
         $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
         $arr[dv_dp] = $db->fetch($res[dv_dp]);
-        
-        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
+         $s_cost = ($_POST[s_cost]*15)/100;
+        $pay_driver = intval($_POST[cost]) - intval($s_cost);
         $deposit_update = intval($arr[dv_dp][balance]) + intval($pay_driver);
         
 		$data[order_id] = $_POST[idorder];
@@ -128,8 +128,8 @@ if($step=="driver_checkcar"){
         $res[dv_dp] = $db->select_query("SELECT balance,id from deposit where driver = '".$_POST[driver_id]."' ");
         $arr[dv_dp] = $db->fetch($res[dv_dp]);
         
-        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
-        $deposit_update = intval($arr[dv_dp][balance]) - intval($_POST[s_cost]);
+        $pay_driver = intval($_POST[cost]) - intval($s_cost);
+        $deposit_update = intval($arr[dv_dp][balance]) - intval($s_cost);
         
 		$data[order_id] = $_POST[idorder];
 		$data[s_cost] = $_POST[s_cost];
