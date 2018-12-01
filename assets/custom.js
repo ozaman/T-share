@@ -1033,11 +1033,11 @@ function addCarForSendShop() {
   });
 }
 
-function wallet() {
+function wallet(style) {
   fn.pushPage({
     'id': 'wallet.html',
     'title': 'กระเป๋าเงิน'
-  }, 'slide-ios');
+  }, style);
   $('#check_open_wallet').val(1);
   auto_money();
 }
