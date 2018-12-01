@@ -67,7 +67,7 @@
 
   <ons-col style="margin: 10px;">
    <center>
-	  	<div onclick="pay()" class="circle-menu-home" style="    background-color: #e91e63;">
+	  	<div onclick="expenditure()" class="circle-menu-home" style="    background-color: #e91e63;">
 	      <div class="content">
 	     	<i class="fa fa-usd" style="font-size: 28px;position: relative; top: 7px; left: 0px;"></i>
 	      </div>
