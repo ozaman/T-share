@@ -985,7 +985,9 @@ function myAccountBank() {
     'title': 'ข้อมูลบัญชีธนาคาร'
   }, 'slide-ios');
   var url = "page/call_page";
-  $.post(url, {
+  setTimeout(function () {
+    $('#body_account_bank').html(progress_circle);
+    $.post(url, {
     path: "bank/bank_view"
   }, function (ele) {
     $('#body_account_bank').html(ele);
@@ -996,6 +998,8 @@ function myAccountBank() {
       }
     }, 500);
   });
+  }, 200);
+  
 }
 
 function myCar() {
@@ -1003,19 +1007,22 @@ function myCar() {
     'id': 'car_manage.html',
     'title': 'ข้อมูลรถ'
   }, 'slide-ios');
+  setTimeout(function () {
+    $('#body_car_manage').html(progress_circle);
+    $.post("car/check_num_car", {
+      driver_id: $.cookie("detect_user")
+    }, function (res) {
+      console.log(res);
+      var url = "page/call_page";
+      $.post(url, {
+        path: "car/car_view"
+      }, function (ele) {
+        $('#body_car_manage').html(ele);
 
-  $.post("car/check_num_car", {
-    driver_id: $.cookie("detect_user")
-  }, function (res) {
-    console.log(res);
-    var url = "page/call_page";
-    $.post(url, {
-      path: "car/car_view"
-    }, function (ele) {
-      $('#body_car_manage').html(ele);
-
+      });
     });
-  });
+  }, 200);
+
 
   //    _body_car_station('body_car_station')
 }
@@ -1103,18 +1110,26 @@ function addCommas(nStr) {
 }
 
 function CurrencyFormatted(amount) {
-	var i = parseFloat(amount);
-	if(isNaN(i)) { i = 0.00; }
-	var minus = '';
-	if(i < 0) { minus = '-'; }
-	i = Math.abs(i);
-	i = parseInt((i + .005) * 100);
-	i = i / 100;
-	s = new String(i);
-	if(s.indexOf('.') < 0) { s += '.00'; }
-	if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
-	s = minus + s;
-	return s;
+  var i = parseFloat(amount);
+  if (isNaN(i)) {
+    i = 0.00;
+  }
+  var minus = '';
+  if (i < 0) {
+    minus = '-';
+  }
+  i = Math.abs(i);
+  i = parseInt((i + .005) * 100);
+  i = i / 100;
+  s = new String(i);
+  if (s.indexOf('.') < 0) {
+    s += '.00';
+  }
+  if (s.indexOf('.') == (s.length - 2)) {
+    s += '0';
+  }
+  s = minus + s;
+  return s;
 }
 
 function viewPhotoGlobal(path, time, caption) {

@@ -28,7 +28,7 @@ $select = "SELECT t1.*,t2.topic_th as product_name FROM order_booking as t1 left
 				$befordate = $row->transfer_date;
 				
 				?>
-		<ons-list-header style="font-size: 12px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
+		<ons-list-header style="font-size: 14px;font-weight: 500;"><?="วันที่ ".date_format($tras_d_time,"Y-m-d");?></ons-list-header>
 <?php			}	?>
        <div style="border-bottom: 0px solid #ccc; padding: 15px 5px;" onclick="openDetailOrder('<?=$row->id;?>', '<?=$row->invoice;?>');">
        		<table width="100%">
