@@ -25,6 +25,7 @@ function callApiHistory() {
 
 function eachObjHistory() {
   $('#load_his_data ons-card').remove();
+  $('#load_his_data div').remove();
   if (hisObj.length <= 0) {
     $('#load_his_data').html('<div class="font-22" style="color: #ff0000;text-align: center;" id="no_work_div"><strong>ไม่มีงาน</strong></div>');
     return;
@@ -115,6 +116,7 @@ function callApiManage() {
 
 function eachObjManage() {
   $('#load_manage_data ons-card').remove();
+  $('#load_his_data div').remove();
 //  $('#load_manage_data').html(progress_circle);
 //  $('#load_manage_data')
   if (manageObj.length <= 0) {
