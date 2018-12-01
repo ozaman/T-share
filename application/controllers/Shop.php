@@ -496,7 +496,7 @@ class Shop extends CI_Controller {
     }
 
     public function count_place_document_file() {
-      $query = $this->db->query("select id from place_document_file where product_id = ".$_GET[id]);
+      $query = $this->db->query("select id from shop_document_file_img where product_id = ".$_GET[id]);
 //    $row = $query->row();
 //    $re[num] = $query->num_rows();
       echo $query->num_rows();

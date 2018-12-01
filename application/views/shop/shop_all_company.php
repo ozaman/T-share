@@ -45,8 +45,8 @@ foreach ($place_company as $data) {
       <tr>
         <td width="130">
           <?php
-          $url = "../data/pic/place/".$data->id."_logo.jpg";
-          if ( file_exists($url) != 1 ){
+          $url = "../data/pic/place/".$data->pic_logo;
+          if ( file_exists($url) != 1 || $data->pic_logo == ''){
            $images_url =  base_url().'assets/images/noimage_2.gif';
          }
          else{
@@ -56,9 +56,11 @@ foreach ($place_company as $data) {
          <img class="chat_gallery_items" src="<?=$images_url;?>"  onclick="chat_gallery_items(this)" data-high-res-src="<?=$images_url;?>" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
        </td>
        <td valign="top">
-        <span class="font-17"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></span><br/>
-        <span class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" ><?=$SUB->topic_th;?> </span>)</span><br>
-        <strong class="font-17"  style="color:#3b5998" ><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></strong>
+        <strong class="font-17"  style="color:#3b5998" ><span class="txt_topic_company " data-search="<?=$data->topic_th. " ".$data->topic_cn." ".$data->topic_en;?>  " data-role="<?=$data->id;?>"> <?=$data->topic_th;?> </span></strong><br>
+        <span class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" ><?=$SUB->topic_th;?> </span>)</span><br/>
+        <span class="font-17" style="color: #00000087;"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></span>
+
+        
         <input type="hidden" id="check_click_1" value="0">
       </td>
     </tr>
