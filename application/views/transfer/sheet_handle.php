@@ -157,7 +157,7 @@ else {
               <td valign="top"><i class="icon-new-uniF121-10" style="color:#666666; font-size:18px"></i></td>
               <td valign="top" class="td-text text-cap"><b><?=t_work_remuneration;?></b></td>
               <td valign="top" class="td-text">
-                <span class="span-detail1"> <font class="font-17" ><?=$_POST[cost];?>(-<?=$_POST[s_cost];?>) <?=t_THB;?></font></span>
+                <span class="span-detail1"> <font class="font-17" ><?=$_POST[cost];?>(-<?=$_POST[s_cost].'%';?>) <?=t_THB;?></font></span>
               </td>
             </tr>
             <tr style="display: nones;">
