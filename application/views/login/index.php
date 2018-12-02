@@ -566,7 +566,7 @@
                   msisdn: us_phone,
                   message: message,
                   title: "TShare",
-                  sender: "THAIBULKSMS",
+                  sender: "TShare",
 //							sender : "THAIBULKSMS",
                   ScheduledDelivery: "",
                   force: "standard"
