@@ -236,7 +236,8 @@ function checkImgProfile(username, pf) {
       }
       $('.shotcut-profile').attr('src', url);
       $('.profile-pic-big').attr('src', url);
-      $('.profile-pic-big').attr('onclick', 'viewPhotoGlobal(\'' + url + '\', "", "");');
+//      $('.profile-pic-big').attr('onclick', 'viewPhotoGlobal(\'' + url + '\', "", "");');
+      $('.profile-pic-big').attr('data-high-res-src', url);
     }
   });
 }

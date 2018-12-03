@@ -265,7 +265,7 @@
                <form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
                   <input type="file" class="cropit-image-input" id="img_profile_home" accept="image/*" style="opacity: 0;position: absolute;left: 0px;width: 0px;display: none;" onchange="readURLprofileHome(this,'profile');">
                </form>
-               <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="">
+               <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="chat_gallery_items(this)"  >
                <span style="background-color: #f4f4f4;
                   padding: 0px 10px;
                   position: absolute;
