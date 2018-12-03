@@ -887,7 +887,7 @@
 
       $("#form_login").submit(function (event) {
 //		alert(123);
-        submitLogin();
+        submitLogin('form_login');
         event.preventDefault();
       });
 
