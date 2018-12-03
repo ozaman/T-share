@@ -47,9 +47,10 @@ function eachObjHistory() {
     } else {
       var type_pay = 'โอนเข้ากระเป๋า';
     }
+    var his = "his";
     var component2 =
             '<ons-card class="box_his card" style="margin-top: 30px;margin-bottom: 30px;"><span class="font-15 time-post">รับเมื่อ ' + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + ' น.</span>'
-            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ');" style="padding: 5px;margin-top: 5px;">'
+            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ',\'' + his + '\' );" style="padding: 5px;margin-top: 5px;">'
             + '<table width="100%">'
             + '<tr>'
             + '<td>'
@@ -116,7 +117,7 @@ function callApiManage() {
 
 function eachObjManage() {
   $('#load_manage_data ons-card').remove();
-  $('#load_his_data div').remove();
+  $('#load_manage_data div').remove();
 //  $('#load_manage_data').html(progress_circle);
 //  $('#load_manage_data')
   if (manageObj.length <= 0) {
@@ -144,9 +145,10 @@ function eachObjManage() {
     } else {
       var type_pay = 'โอนเข้ากระเป๋า';
     }
+    var manage = "manage";
     var component2 =
             '<ons-card class="box_his card" style="margin-top: 30px;margin-bottom: 30px;"><span class="font-15 time-post">รับเมื่อ ' + formatDate(value.post_date) + ' ' + formatTime(value.post_date) + ' น.</span>'
-            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ');" style="padding: 5px;margin-top: 5px;">'
+            + '<div class="" id="btn_' + index + '" onclick="openSheetHandleTransfer(' + index + ',\'' + manage + '\' );" style="padding: 5px;margin-top: 5px;">'
             + '<table width="100%">'
             + '<tr>'
             + '<td>'
@@ -192,13 +194,18 @@ function eachObjManage() {
   });
 }
 
-function openSheetHandleTransfer(index) {
+function openSheetHandleTransfer(index,type) {
   $('#body_popup1').html(progress_circle);
   fn.pushPage({
     'id': 'popup1.html',
     'title': 'จัดการงาน'
   }, 'slide-ios');
-  var post = hisObj[index];
+  if(type=="manage"){
+    var post = manageObj[index];
+  }else{
+    var post = hisObj[index];
+  }
+  
   console.log(post);
   var url = "transfer/sheet_handle";
   $.post(url, post, function (data) {
@@ -274,7 +281,7 @@ function readDataBooking() {
   }
   $.each(res_socket, function (index, res) {
 
-    var d_db = timestampToDate(res.post_date, "date");
+    var d_db = timestampToDate(res.post_date, "");
     var d_cr = js_yyyy_mm_dd_hh_mm_ss();
 
     if (d_cr > d_db) {
@@ -285,7 +292,7 @@ function readDataBooking() {
     var pickup_place_name,to_place_name;
     var program = res.program.topic_en;
     if (res.i_server == 0 ) {
-
+    console.log(d_cr);
     /***     test ***********/
     var pickup_place = res.address_from;
 
@@ -725,6 +732,7 @@ function changeHtmlTrans(type, id, st) {
 }
 
 function actionProgress(obj) {
+//  alert(obj.driver_topoint)
   if (obj.driver_topoint == 1) {
     console.log("driver_topoint");
     changeHtmlTrans("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
