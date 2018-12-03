@@ -62,7 +62,7 @@
       </ons-list-item>     
 </ons-card>
 </form>
-<div style="padding: 10px 10px;display: nones;" id="box_submit">
+<div style="padding: 10px 10px;display: nones;margin-bottom: 20px;" id="box_submit">
     <ons-button style="background-color: #fff;" modifier="outline" class="button-margin button button--outline button--large" onclick="alertWithdraw();">ถอนเงิน</ons-button>
 </div>
 
