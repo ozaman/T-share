@@ -16,7 +16,7 @@
         </label>
       </ons-list-item>  
       <div align="center" id="box_not_found" style="display: none;"><b style="color:#dc3545;">ไม่พบผู้ใช้</b></div>
-      <div id="box_show_pf_rcv" style="display: none;" align="center">
+      <div id="box_show_pf_rcv" style="display: none; margin: 10px;" align="center">
         <span id="txt_name_rcv"></span>
         <div style="margin: 10px 0px;">
           <img src="<?=base_url();?>assets/images/noimage_2.gif" style="height: 150px;border: 1px solid #eee;box-shadow: 1px 1px 5px #9E9E9E;" />
@@ -29,7 +29,7 @@
             <ons-checkbox class="checkbox-color rcp" input-id="checkbox-0" value="Red" onclick="selectTypeRcp(0);"></ons-checkbox>
           </label>
           <label class="center" for="checkbox-0">
-            SMS (ส่งข้อความ)
+            <img src="assets/images/social_icon/sms.png" style="width: 30px;margin-right: 9px;  margin-left: 1px;"> SMS (ส่งข้อความ)
           </label>
 
         </ons-list-item>
@@ -43,7 +43,7 @@
             <ons-checkbox class="checkbox-color rcp" input-id="checkbox-1" value="Green"  onclick="selectTypeRcp(1);" ></ons-checkbox>
           </label>
           <label class="center" for="checkbox-1">
-            อีเมล
+            <i class="material-icons" style="font-size: 30px;color: #424242;padding-right: 10px;">email</i> อีเมล
           </label>
         </ons-list-item>
         <div style="padding: 10px;display: none;" id="box_us_mail">
@@ -51,6 +51,21 @@
           <span id="txt_email_show"></span>
           <ons-input id="us_email" float maxlength="20" value="" type="hidden"></ons-input>
         </div>
+<!--
+        <ons-list-item tappable id="box-line" >
+          <label class="left">
+            <ons-checkbox class="checkbox-color rcp" input-id="checkbox-2" value="Green"  onclick="selectTypeRcp(2);" ></ons-checkbox>
+          </label>
+          <label class="center" for="checkbox-2">
+            <img src="assets/images/social_icon/line.png" style="width: 34px;margin-right: 10px;  margin-left: -2px;"> Line 
+          </label>
+        </ons-list-item>
+        <div style="padding: 10px;display: none;" id="box_us_line">
+          <span>Line</span>&nbsp;&nbsp;
+          <span id="txt_line_show"></span>
+          <ons-input id="us_line" float maxlength="20" value="" type="hidden"></ons-input>
+        </div>-->
+        
         <input type="hidden" value="-1" id="check_type_rcp" />
       </div>
 
@@ -63,6 +78,7 @@
         <div align="center" style="margin-top: 10px;">
           <button type="button" class="button" style="border: 1px solid #0076ff;color: #0076ff; background-color: #fff;" onclick="submitLogin('form_recovery');">เข้าสู่ระบบ</button>
         </div>
+
       </div>
     </ons-card>
   </form>
@@ -82,8 +98,9 @@
     if (id == 0) {
       $('#box_us_phone').show();
       $('#box_us_mail').hide();
+      $('#box_us_line').hide();
       $('#txt_btn_rcv').text("รับรหัสผ่านทาง SMS");
-    } else {
+    } else if(id ==1 ) {
       $('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
       if ($('#us_email').val() == "") {
         $('.rcp').prop('checked', false);
@@ -95,7 +112,23 @@
         return;
       }
       $('#box_us_phone').hide();
+      $('#box_us_line').hide();
       $('#box_us_mail').show();
+    }
+    else if(id ==2 ) {
+      $('#txt_btn_rcv').text("รับรหัสผ่านทาง Line");
+      if ($('#us_line').val() == "") {
+        $('.rcp').prop('checked', false);
+        /*ons.notification.alert({message: 'ชื่อผู้ใช้นี้ ไม่ได้ใส่ข้อมูลอีเมล ไม่สามารถเลือกได้',title:"สำเร็จ",buttonLabel:"ปิด"})
+         .then(function() {
+         
+         });*/
+        $('#box-line').hide();
+        return;
+      }
+      $('#box_us_phone').hide();
+      $('#box_us_mail').hide();
+      $('#box_us_line').show();
     }
     $('.rcp').prop('checked', false);
     $('#checkbox-' + id).prop('checked', true);

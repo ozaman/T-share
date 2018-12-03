@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->	
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/login/css/main.css?v=<?=$v;?>" />
-      <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=$v;?>" />
-      <!-- <link href="<?=base_url();?>assets/imageViewer/easy-autocomplete.min.css" rel="stylesheet" type="text/css"> -->
-      <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/ultimate/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/airport/flaticon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/payment/css/fontello.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/icomoon/demo-files/demo.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app/css/app-icon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/bootstrap/font_custom/app-new/css/app-icon.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/extra.main.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/custom.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/login/css/main.css?v=<?=$v;?>" />
+    <link rel="stylesheet" href="<?=base_url();?>assets/imageViewer/imageviewer.css?v=<?=$v;?>" />
+    <!-- <link href="<?=base_url();?>assets/imageViewer/easy-autocomplete.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
 
    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-   <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css?v=<?=time()?>">
-   <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css?v=<?=time()?>">
-   <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-   <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
-   <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
-   <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
-   <link rel="stylesheet" href="<?=base_url();?>assets/plugin/jquery-ui.css?v=<?=time()?>"/>
-   <script src="<?=base_url();?>assets/plugin/jquery-ui.js?v=<?=time()?>"></script>
-   <script src="<?=base_url();?>assets/imageViewer/imageviewer.js?v=<?=time()?>"></script>
-   <script type="text/javascript">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsenui.css?v=<?=time()?>">
+    <link rel="stylesheet" href="<?=base_url();?>assets/onsenui/css/onsen-css-components.css?v=<?=time()?>">
+    <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
+    <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+    <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
+    <link rel="stylesheet" href="<?=base_url();?>assets/plugin/jquery-ui.css?v=<?=time()?>"/>
+    <script src="<?=base_url();?>assets/plugin/jquery-ui.js?v=<?=time()?>"></script>
+    <script src="<?=base_url();?>assets/imageViewer/imageviewer.js?v=<?=time()?>"></script>
+    <script type="text/javascript">
       var base_url = '<?=base_url();?>';
-   </script>
+    </script>
     <!--===============================================================================================-->
 
 
@@ -339,7 +339,8 @@
       <div class="alert-dialog-title" id="submit-dialog-title-rcv">คุณแน่ใจหรือไม่</div>
       <div class="alert-dialog-content" >
         <span id="txt_dialog_rcv_sms">ต้องการรับรหัสผ่านทาง SMS</span>
-        <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่าน Email</span>
+        <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่านทาง Email</span>
+        <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่านทาง Line</span>
       </div>
       <div class="alert-dialog-footer">
         <ons-alert-dialog-button onclick="$('#submit-recovery-dialog').hide();">ยกเลิก</ons-alert-dialog-button>
@@ -504,9 +505,15 @@
             if ($('#check_type_rcp').val() == 0) {
               $('#txt_dialog_rcv_sms').show();
               $('#txt_dialog_rcv_email').hide();
+              $('#txt_dialog_rcv_line').hide();
             } else if ($('#check_type_rcp').val() == 1) {
               $('#txt_dialog_rcv_sms').hide();
+              $('#txt_dialog_rcv_line').hide();
               $('#txt_dialog_rcv_email').show();
+            } else if ($('#check_type_rcp').val() == 2) {
+              $('#txt_dialog_rcv_sms').hide();
+              $('#txt_dialog_rcv_email').hide();
+              $('#txt_dialog_rcv_line').show();
             }
           } else {
             ons.createElement('recovery-dialog.html', {append: true})
@@ -518,6 +525,10 @@
                       } else if ($('#check_type_rcp').val() == 1) {
                         $('#txt_dialog_rcv_sms').hide();
                         $('#txt_dialog_rcv_email').show();
+                      } else if ($('#check_type_rcp').val() == 2) {
+                        $('#txt_dialog_rcv_sms').hide();
+                        $('#txt_dialog_rcv_email').hide();
+                        $('#txt_dialog_rcv_line').show();
                       }
                     });
           }
@@ -575,7 +586,7 @@
                 console.log(param);
 //						return;
                 $.ajax({
-                  url: "../../app/sms/send_sms.php", // point to server-side PHP script 
+                  url: "../sms/send_sms.php", // point to server-side PHP script 
                   dataType: 'json', // what to expect back from the PHP script, if anything
                   data: param,
                   type: 'post',
@@ -607,7 +618,7 @@
                 };
                 console.log(param);
 //						return;
-                $.post("../../app/sms/mail_recovery_pass.php", param, function (res) {
+                $.post("../sms/mail_recovery_pass.php", param, function (res) {
                   console.log(res);
                   modal.hide();
                   ons.notification.alert({message: 'ส่งรหัสผ่านไปยังที่อยู่ ' + us_email + ' แล้ว', title: "สำเร็จ", buttonLabel: "ปิด"})
@@ -628,7 +639,7 @@
           });
 //			console.log(username);
         }
-        
+
         function getPhoneByUser(val) {
           if (val == "") {
             return;
@@ -648,7 +659,7 @@
                 $('#corrent-user').show();
                 $('#box_show_pf_rcv').show();
                 $('#btn_get_pass').show();
-                var src = '../../app/data/pic/driver/small/' + response.data.username + '.jpg';
+                var src = '../data/pic/driver/small/' + response.data.username + '.jpg';
                 $('#txt_name_rcv').text("คุณ " + response.data.name);
                 $.ajax({
                   url: src,
@@ -656,7 +667,7 @@
                   error: function ()
                   {
                     console.log('Error file');
-                    $('#box_show_pf_rcv img').attr('src', base_url+'assets/images/noimage_2.gif');
+                    $('#box_show_pf_rcv img').attr('src', base_url + 'assets/images/noimage_2.gif');
                   },
                   success: function ()
                   {
@@ -674,6 +685,14 @@
                 }
                 $('#us_email').val(response.data.email);
                 $('#txt_email_show').text(response.data.email);
+                
+                if (response.data.line_id == "") {
+                  $('#box-line').hide();
+                } else {
+                  $('#box-line').show();
+                }
+                $('#us_line').val(response.data.line_id);
+                $('#txt_line_show').text(response.data.line_id);
                 if (response.type == 1) {
                   $('#box-channel').show();
                 } else if (response.type == 2) {
@@ -686,8 +705,7 @@
                   $('#txt_btn_rcv').text("รับรหัสผ่านทาง Email");
                 }
 
-              } 
-              else {
+              } else {
                 $('#corrent-user').hide();
                 $('#box_show_pf_rcv').hide();
                 $('#box-channel').hide();
@@ -698,7 +716,7 @@
             }
           });
         }
-        
+
   </script>
 
   <script>
@@ -837,7 +855,7 @@
       }
 
       console.log("login action");
-      var data = $('#'+form).serialize();
+      var data = $('#' + form).serialize();
       console.log(data);
       var url = "login/logins?checking=login";
       $.ajax({
@@ -850,7 +868,7 @@
         type: 'post',
         success: function (res) {
           console.log(res);
-         // return;
+          // return;
           if (res.status == true) {
 //						 var url = "../../index.php?check_new_user";
             // var url = "T-share";
@@ -862,18 +880,15 @@
             setCookie("app_remember_user", res.data.username, 200000);
             setCookie("app_remember_pass", res.data.password, 200000);
             // setCookie("pass", res.data.id);
-            if(res.data.class_user=="acc"){
+            if (res.data.class_user == "acc") {
               window.location.href = "";
-            }
-            else if (res.data.user_class == 'monitor') {
-                 window.location.href = '../T-admin'
-            }
-            else{
+            } else if (res.data.user_class == 'monitor') {
+              window.location.href = '../T-admin'
+            } else {
               window.location.replace('<?=base_url();?>');
             }
-            
-          } 
-          else {
+
+          } else {
             modal.hide();
             ons
                     .notification.alert({message: res.msg, title: "ไม่สามารถเข้าสู่ระบบได้", buttonLabel: "ปิด"});
@@ -945,7 +960,7 @@
       }
     }
 
-    function checkID(id){
+    function checkID(id) {
       if (id.length != 13)
         return false;
       for (i = 0, sum = 0; i < 12; i++)
@@ -979,34 +994,34 @@
           var province = data.results[data.results.length - 2].address_components[0].long_name;
           console.log(province);
           var url = "login/get_id_province_only";
-           $.ajax({
-        url: url, // point to server-side PHP script 
-        dataType: 'json', // what to expect back from the PHP script, if anything
-        // cache: false,
-        // contentType: false,
-        // processData: false,
-        data: {txt_pv: province},
-        type: 'post',
-        success: function (res) {
-          console.log(res);
-         
+          $.ajax({
+            url: url, // point to server-side PHP script 
+            dataType: 'json', // what to expect back from the PHP script, if anything
+            // cache: false,
+            // contentType: false,
+            // processData: false,
+            data: {txt_pv: province},
+            type: 'post',
+            success: function (res) {
+              console.log(res);
+
               console.log('****************')
               console.log(res)
-            if (typeof res == 'undefined') {
-              $('#div_position').hide();
-              return;
-            }
-            console.log(res);
-            var province = res.id;
-            var area = res.area;
-            var code = res.code;
+              if (typeof res == 'undefined') {
+                $('#div_position').hide();
+                return;
+              }
+              console.log(res);
+              var province = res.id;
+              var area = res.area;
+              var code = res.code;
 
-            $('#txt-province').text(res.name_th);
-            $('#txt_user_province').text(res.name_th);
-            $('#txt_user_province').css("color", "#000");
-            $('#province').val(province);
-            $('#code_privince').val(code);
-          }
+              $('#txt-province').text(res.name_th);
+              $('#txt_user_province').text(res.name_th);
+              $('#txt_user_province').css("color", "#000");
+              $('#province').val(province);
+              $('#code_privince').val(code);
+            }
           });
         }
       });
@@ -1111,7 +1126,7 @@
                       };
                       var url_login = "login/logins";
 
-                      $.post('../../../sms/mail.php',{data:php_script_response.add.data}, function (data) {
+                      $.post('../../../sms/mail.php', {data: php_script_response.add.data}, function (data) {
                         console.log(data);
 
                         setTimeout(function () {
@@ -1128,10 +1143,10 @@
                                 // var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
 //										 var url = "https://www.welovetaxi.com/app/T-share?check_new_user="+php_script_response.last_id;
                                 setCookie("detect_username", res.data.username, 200000);
-            setCookie("detect_user", res.data.id, 200000);
-            setCookie("detect_userclass", res.data.user_class, 200000);
-            setCookie("app_remember_user", res.data.username, 200000);
-            setCookie("app_remember_pass", res.data.password, 200000);
+                                setCookie("detect_user", res.data.id, 200000);
+                                setCookie("detect_userclass", res.data.user_class, 200000);
+                                setCookie("app_remember_user", res.data.username, 200000);
+                                setCookie("app_remember_pass", res.data.password, 200000);
                                 window.location.replace('<?=base_url();?>');
                               }
                             }
@@ -1211,27 +1226,27 @@
     function validPhoneNum(value) {
       console.log(value)
       if (value.length >= 10) {
- $.ajax({
-                            url: "login/phone_overlap", // point to server-side PHP script 
-                            dataType: 'json', // what to expect back from the PHP script, if anything
-                            data: {txt: value},
-                            type: 'post',
-                            success: function (res) {
+        $.ajax({
+          url: "login/phone_overlap", // point to server-side PHP script 
+          dataType: 'json', // what to expect back from the PHP script, if anything
+          data: {txt: value},
+          type: 'post',
+          success: function (res) {
 
-        // $.post("login/phone_overlap", , function (res) {
-          console.log(res);
-          if (res.check > 0) {
-            $('#incorrent-phone').show();
-            $('#corrent-phone').hide();
-            $('#incorrent-phone span').text('เบอร์ซ้ำ');
-          } else {
+            // $.post("login/phone_overlap", , function (res) {
+            console.log(res);
+            if (res.check > 0) {
+              $('#incorrent-phone').show();
+              $('#corrent-phone').hide();
+              $('#incorrent-phone span').text('เบอร์ซ้ำ');
+            } else {
 
-            $('#corrent-phone').show();
-            $('#incorrent-phone').hide();
+              $('#corrent-phone').show();
+              $('#incorrent-phone').hide();
 
+            }
+            $('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
           }
-          $('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
-        }
         });
 
       } else {
@@ -1330,11 +1345,11 @@
     $(window).on('load', function () {
       clearCookieAll();
     });
-    window.fn.popPage = function() {
-   var content = document.getElementById('myNavigator');
-   console.log(content)
-   // content.popPage();
-   };
+    window.fn.popPage = function () {
+      var content = document.getElementById('myNavigator');
+      console.log(content)
+      // content.popPage();
+    };
 
     /*document.querySelector('ons-back-button').onClick = function(event) {
      // Reset the whole stack instead of popping 1 page
