@@ -1527,11 +1527,11 @@
                         <div align="center" style="padding: 15px;">
                            <div class="segment" style="width: 280px; margin: 0 auto;">
                               <div class="segment__item">
-                                 <input type="radio" class="segment__input" name="segment-a" checked onclick="auto_money();">
+                                <input type="radio" class="segment__input" id="auto_trans" name="segment-a" checked onclick="auto_money();">
                                  <div class="segment__button">ผ่านบัญชีธนาคาร</div>
                               </div>
                               <div class="segment__item">
-                                 <input type="radio" class="segment__input" name="segment-a" onclick="inform_money();">
+                                 <input type="radio" class="segment__input" id="auto_manual" name="segment-a" onclick="inform_money();">
                                  <div class="segment__button">แจ้งโอน</div>
                               </div>
                            </div>
@@ -1583,7 +1583,7 @@
                       console.log(page);
                       if(page=='add.html'){
                           console.log('add');
-                          auto_money();
+                          performClick('auto_trans')
                       }else if(page=='history.html'){
                           history_wallet();
                       }else if(page=='withdraw.html'){
