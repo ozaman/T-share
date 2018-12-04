@@ -1583,6 +1583,7 @@
                       console.log(page);
                       if(page=='add.html'){
                           console.log('add');
+                          auto_money();
                       }else if(page=='history.html'){
                           history_wallet();
                       }else if(page=='withdraw.html'){
