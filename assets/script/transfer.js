@@ -557,7 +557,9 @@ function confirmGetJobTrans() {
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',
         title: "ไม่สามารถรับงานได้",
         buttonLabel: "ปิด"
-      }).then(function () { });
+      }).then(function () {
+      callpop();
+    });
       hideDetail();
     }
   });
@@ -736,6 +738,9 @@ function submitCheckIn(type_step) {
 
 function changeHtmlTrans(type, id, st) {
 //	new Date(unixtimestamp*1000);
+  if(type=="noshow"){
+    type = "driver_pickup";
+  }
   $('#status_' + type).html('<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span>  เวลา ' + st + '</span></div>');
   $('#iconchk_' + type).attr("src", "assets/images/yes.png");
   $("#number_" + type).removeClass('step-booking');
