@@ -5,8 +5,13 @@ var driver = detect_user;
 var orderid, idorder, invoice, code, program, p_place, to_place, agent, airout_time, airin_time, cost, s_cost, outdate, ondate, s_status_pay, idbookcar, a, b, c, d;
 
 function callApiHistory() {
-  var date = $('#date_trans_his').val();
+
   var url_action = "api/transfer_booking";
+  if ($('#cehck_filter_date_trans').val() == 0) {
+    var date = "";
+  } else {
+    var date = $('#date_trans_his').val();
+  }
   var type = $('#check_filter_his').val();
   var data_param = {driver: driver, date: date, driver_checkcar: 1};
   console.log(data_param);
@@ -102,6 +107,7 @@ function callApiManage() {
 //  alert(date)
   var url_action = "api/transfer_booking";
   var data_param = {driver: driver, date: date, driver_checkcar: 0};
+  console.log(data_param);
   $.post(url_action, data_param, function (data, textStatus, jQxhr) {
     console.log(data)
     var m = [];
@@ -194,18 +200,18 @@ function eachObjManage() {
   });
 }
 
-function openSheetHandleTransfer(index,type) {
+function openSheetHandleTransfer(index, type) {
   $('#body_popup1').html(progress_circle);
   fn.pushPage({
     'id': 'popup1.html',
     'title': 'จัดการงาน'
   }, 'slide-ios');
-  if(type=="manage"){
+  if (type == "manage") {
     var post = manageObj[index];
-  }else{
+  } else {
     var post = hisObj[index];
   }
-  
+
   console.log(post);
   var url = "transfer/sheet_handle";
   $.post(url, post, function (data) {
@@ -289,33 +295,32 @@ function readDataBooking() {
     } else {
       var time_post = CheckTime(d_cr, d_db);
     }
-    var pickup_place_name,to_place_name;
+    var pickup_place_name, to_place_name;
     var program = res.program.topic_en;
-    if (res.i_server == 0 ) {
-    console.log(d_cr);
-    /***     test ***********/
-    var pickup_place = res.address_from;
+    if (res.i_server == 0) {
+      console.log(d_cr);
+      /***     test ***********/
+      var pickup_place = res.address_from;
 
-    var pickup_place = pickup_place.split(",");
+      var pickup_place = pickup_place.split(",");
 
-    var to_place = res.address_to;
+      var to_place = res.address_to;
 
 //    var str = "How are you doing today?";
-    var to_place = to_place.split(",");
-    pickup_place_name = pickup_place[0];
-    to_place_name = to_place[0];
+      var to_place = to_place.split(",");
+      pickup_place_name = pickup_place[0];
+      to_place_name = to_place[0];
 
-    /***** end *************/
-}
-else{
-   var pickup_place = res.pickup_place.topic;
-    pickup_place_name = pickup_place;
+      /***** end *************/
+    } else {
+      var pickup_place = res.pickup_place.topic;
+      pickup_place_name = pickup_place;
 
 
-    var to_place = res.to_place.topic;
-    to_place_name = to_place;
-}
-   
+      var to_place = res.to_place.topic;
+      to_place_name = to_place;
+    }
+
 
     var outdate = res.outdate;
     var type = res.program.area;
@@ -639,6 +644,22 @@ function trans_driver_pickup(id) {
   submitCheckIn('driver_pickup');
 }
 
+function trans_driver_pickup_noshow(id) {
+//  submitCheckIn('driver_pickup');s
+  fn.pushPage({
+    'id': 'popup2.html',
+    'title': 'ไม่เจอแขก'
+  }, 'lift-ios');
+
+  var url = "page/call_page?type=noshow&id=" + id;
+  $.post(url, {
+    path: "transfer/checkin_action"
+  }, function (ele) {
+    $('#body_popup2').html(ele);
+
+  });
+}
+
 function trans_driver_complete(id) {
   submitCheckIn('driver_complete');
 }
@@ -679,6 +700,12 @@ function submitCheckIn(type_step) {
           $.post('main/get_timestamp', function (res) {
             changeHtmlTrans(type_step, idorder, timestampToDate(res, "time"));
             callApiManage();
+            if (type_step == "noshow") {
+              callpop();
+              $('#btn_driver_pickup_noshow').show();
+              $('#btn_driver_pickup').hide();
+              checkPhotoCheckInTransfer('noshow',idorder);
+            }
             if (type_step == "driver_complete") {
               ons.notification.alert({
                 message: 'งานของคุณเสร็จสิ้นแล้ว',
@@ -737,9 +764,18 @@ function actionProgress(obj) {
     console.log("driver_topoint");
     changeHtmlTrans("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
   }
-  if (obj.driver_pickup == 1) {
+//  obj.driver_pickup = 2;
+  if (obj.driver_pickup > 1) {
     console.log("driver_pickup");
     changeHtmlTrans("driver_pickup", obj.id, timestampToDate(obj.driver_pickup_date, "time"));
+    if (obj.driver_pickup == 2) {
+      $('#btn_driver_pickup_noshow').show();
+      $('#btn_driver_pickup').hide();
+      checkPhotoCheckInTransfer('noshow',obj.id);
+    } else {
+      $('#btn_driver_pickup_noshow').hide();
+      $('#btn_driver_pickup').show();
+    }
   }
   if (obj.driver_checkcar == 1) {
     console.log("driver_complete");
@@ -747,15 +783,44 @@ function actionProgress(obj) {
   }
 }
 
+function checkPhotoCheckInTransfer(type, id) {
+  if ($('#' + type + '_check_click').val() == 1) {
+    $('#' + type + '_locat_off').hide();
+    $('#' + type + '_locat_on').show();
+
+  } else {
+    $('#' + type + '_locat_off').show();
+    $('#' + type + '_locat_on').hide();
+  }
+  var path_pic = '../data/fileupload/transfer/' + type + '_' + id + '.jpg';
+  $.ajax({
+    url: path_pic,
+    type: 'HEAD',
+    error: function () {
+      console.log('Error file');
+      $('#photo_' + type + '_no').show();
+      $('#photo_' + type + '_yes').hide();
+    },
+    success: function () {
+      console.log('Success file');
+      $('#photo_' + type + '_no').hide();
+      $('#photo_' + type + '_yes').show();
+      
+      $('#photo_' + type + '_yes').attr('data-high-res-src',path_pic);
+    }
+  });
+}
+
 /*==============================================================================*/
 
-function filterHistoryStatusTrans(type,id) {
+function filterHistoryStatusTrans(type, id) {
   console.log(type);
   $('#check_filter_his').val(type);
   $('.trans-his-btn').removeClass('his-trans-active');
   $('#' + id).addClass('his-trans-active');
   callApiHistory();
 }
+
 function showFilterdateTrans() {
   $('#btn_toshow_date_trans').hide();
   $('#box-trans_date').fadeIn(500);
@@ -768,4 +833,41 @@ function hideFilterdateTrans() {
   $('#btn_toshow_date_trans').show();
   $('#cehck_filter_date_trans').val(0);
   callApiHistory();
+}
+
+function readURLcheckInTransfer(input, type, subtype, id) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+
+      $('#pv_checkin').attr('src', e.target.result);
+      $('#pv_checkin').fadeIn(500);
+      var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
+      console.log(url);
+//                    return;
+      var data = new FormData($('#form_checkin')[0]);
+      data.append('fileUpload', $('#img_checkin')[0].files[0]);
+      $.ajax({
+        url: url, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: 'post',
+        success: function (php_script_response) {
+          console.log(php_script_response);
+          if (php_script_response.result == true) {
+            $('#txt-img-nohas-checkin').hide();
+            $('#txt-img-has-checkin').show();
+
+          }
+        }
+      });
+    }
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
 }

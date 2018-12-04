@@ -989,18 +989,18 @@ function myAccountBank() {
   setTimeout(function () {
     $('#body_account_bank').html(progress_circle);
     $.post(url, {
-    path: "bank/bank_view"
-  }, function (ele) {
-    $('#body_account_bank').html(ele);
-    setTimeout(function () {
-      setnumbank();
-      if ($('#detect_num_bank').val() == 0) {
-        addBank();
-      }
-    }, 500);
-  });
+      path: "bank/bank_view"
+    }, function (ele) {
+      $('#body_account_bank').html(ele);
+      setTimeout(function () {
+        setnumbank();
+        if ($('#detect_num_bank').val() == 0) {
+          addBank();
+        }
+      }, 500);
+    });
   }, 200);
-  
+
 }
 
 function myCar() {
@@ -2042,4 +2042,14 @@ function _province_s(itm) {
 
   });
   pro++;
+}
+
+function photo_to_viewer(item) {
+  console.log(item)
+//  var imgSrc = item.src,
+  var imgSrc = item.getAttribute('data-high-res-src'),
+  highResolutionImage = $(this).data('high-res-img');
+
+//            viewer.show(imgSrc, highResolutionImage);
+  ImageViewer().show(imgSrc, highResolutionImage);
 }

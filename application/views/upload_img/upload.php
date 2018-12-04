@@ -116,5 +116,23 @@ if($_GET[type]=="slipt_inform"){
 	echo json_encode($return);
 }
 
+if($_GET[type]=="trans_checkin"){
+	include("class.resizepic.php");
+	$original_image = $_FILES['fileUpload']['tmp_name'] ;
+	$desired_width = 600;
+	$desired_height = _INEWS_H ;
+	$image = new hft_image($original_image);
+	$image->resize($desired_width, $desired_height, '0');
+	header('Content-Type: application/json');
+	
+	$path = "../data/fileupload/transfer/".$_GET['action']."_".$_GET['id'].".jpg";
+	$result = $image->output_resized($path,"JPG");
+	$return[result] = $result;
+	$return[path] = $path;
+	$return[tmp] = $original_image;
+//	header('Content-Type: application/json');
+	echo json_encode($return);
+//	echo $_FILES['fileUpload']['tmp_name'];
+}  
 
 ?>

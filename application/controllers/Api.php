@@ -242,13 +242,22 @@ class Api extends CI_Controller {
   }
 
   public function checkin_transfer() {
-
+    
     $typ_pay = $_GET[type_pay];
     $step = $_GET[step];
+    if($step=="noshow"){
+      $step = "driver_pickup";
+      $value = 2;
+    }else{
+      $value = 1;
+    }
     $f_date = $step."_date";
     $f_lat = $step."_lat";
     $f_lng = $step."_lng";
-    $curl_post_data2 = '{"'.$step.'": 1,"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+    
+    $curl_post_data2 = '{"'.$step.'": '.$value.',"idorder": '.$_POST[idorder].',"'.$f_date.'":'.time().',"'.$f_lat.'":"'.$_POST[lat].'","'.$f_lng.'":"'.$_POST[lng].'"}';
+//    echo $curl_post_data2;
+//    return;
     if ($step == "driver_checkcar") {
 //	$curl_post_data2 = '{"driver_checkcar": 1,"idorder": '.$_POST[idorder].'}';		
       if ($typ_pay == 1) {
