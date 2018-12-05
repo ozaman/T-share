@@ -340,7 +340,7 @@
       <div class="alert-dialog-content" >
         <span id="txt_dialog_rcv_sms">ต้องการรับรหัสผ่านทาง SMS</span>
         <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่านทาง Email</span>
-        <span id="txt_dialog_rcv_email">ต้องการรับรหัสผ่านทาง Line</span>
+        <span id="txt_dialog_rcv_line">ต้องการรับรหัสผ่านทาง Line</span>
       </div>
       <div class="alert-dialog-footer">
         <ons-alert-dialog-button onclick="$('#submit-recovery-dialog').hide();">ยกเลิก</ons-alert-dialog-button>

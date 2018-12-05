@@ -15,7 +15,7 @@
           <i id="corrent-user" class="fa fa-check-circle pass" aria-hidden="true" style="display: none;"></i>
         </label>
       </ons-list-item>  
-      <div align="center" id="box_not_found" style="display: none;"><b style="color:#dc3545;">ไม่พบผู้ใช้</b></div>
+      <div align="center" id="box_not_found" style="display: none;margin: 10px;"><b style="color:#dc3545;">ไม่พบผู้ใช้</b></div>
       <div id="box_show_pf_rcv" style="display: none; margin: 10px;" align="center">
         <span id="txt_name_rcv"></span>
         <div style="margin: 10px 0px;">
