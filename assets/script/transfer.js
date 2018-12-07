@@ -820,7 +820,7 @@ function checkPhotoCheckInTransfer(type, id) {
 
 function filterHistoryStatusTrans(type, id) {
   console.log(type);
-  $('#check_filter_his').val(type);
+  $('#check_filter_his_trans').val(type);
   $('.trans-his-btn').removeClass('his-trans-active');
   $('#' + id).addClass('his-trans-active');
   callApiHistory();

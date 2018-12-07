@@ -968,16 +968,16 @@
             </div>
             <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
                <ons-row style="width: 100%;">
-                  <ons-col>
+<!--                  <ons-col>
                      <ons-button class="trans-his-btn font-16 his-trans-active " id="btn_trans_his_com" onclick="filterHistoryStatusTrans('COMPLETED','btn_trans_his_com');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color: #000;">สำเร็จ <span id="num_his_com"></span></ons-button>
                   </ons-col>
                   <ons-col>
                      <ons-button class="trans-his-btn font-16" id="btn_trans_his_cancel" onclick="filterHistoryStatusTrans('CANCEL','btn_trans_his_cancel');" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;">ยกเลิก <span id="num_his_cancel"></span></ons-button>
-                  </ons-col>
-                  <ons-col>
-                     <ons-button  class="trans-his-btn font-16" onclick="filterHistoryStatusTrans('ALL','btn_trans_his_all');" id="btn_trans_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" >ทั้งหมด <span id="num_his_all"></span>
+                  </ons-col>-->
+<!--                  <ons-col>
+                     <ons-button  class="trans-his-btn font-16 his-trans-active" onclick="filterHistoryStatusTrans('ALL','btn_trans_his_all');" id="btn_trans_his_all" style="border-radius: 0; width: 100%;text-align: center; background-color: #e6e6e6;padding: 2px 10px;color:#000;" >ทั้งหมด <span id="num_his_all"></span>
                      </ons-button>
-                  </ons-col>
+                  </ons-col>-->
                </ons-row>
                <ons-row>
                   <ons-col>
@@ -992,7 +992,7 @@
                      <input class="ap-date" type="date" id="date_trans_his" name="date_trans_his" value="<?=date('Y-m-d',time());?>" style="font-size: 17px;width: 100%;padding: 4px 15px; border: 1px solid #ccc;border-radius: 20px;" onchange="callApiHistory();$('#first_run_his').val(0);" max="<?=date('Y-m-d',time());?>" />
                   </div>
                   <div class="right list-item__right" style="padding: 5px;" >
-                     <ons-button onclick="hideFilterdateTrans();" style="padding: 0px 5px;">ปิดวันที่</ons-button>
+                     <ons-button onclick="hideFilterdateTrans();" style="padding: 0px 5px;">ทั้งหมด</ons-button>
                   </div>
                </ons-list-item>
                <input type="hidden" value="0" id="cehck_filter_date_trans" />
@@ -1024,7 +1024,7 @@
                </template>
                <template id="transfer_his.html">
                   <ons-page>
-                     <div id="load_his_data" style="margin-top:115px;"></div>
+                     <div id="load_his_data" style="margin-top:70px;"></div>
                   </ons-page>
                </template>
                <script>

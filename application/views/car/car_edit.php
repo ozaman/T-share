@@ -73,7 +73,7 @@
             </div>
             <label class="center list-item__center">
                 <ons-input id="name-input" float="" maxlength="30" placeholder="" name="plate_num" style="width:100%;" value="<?=$data_car->plate_num;?>">
-                    <input type="text" class="text-input" maxlength="30" placeholder="" name="plate_num" onkeyup="validPlate($(this).val());">
+                    <input type="text" class="text-input" maxlength="30" placeholder="" name="plate_num" >
                     <span class="text-input__label">
                         ป้ายทะเบียน</span>
                 </ons-input>
