@@ -276,17 +276,20 @@ function openPointMapsTransfer(type, lat, lng) {
 
 function readDataBooking() {
 //  console.log("Read Booking+++++++++++++++");
+//  alert("Read Booking+++++++++++++++")
 //  console.log(res_socket);
   var num = 0;
   //	 	$('#load_booking_data .box_book').remove();
   $('#load_booking_data div').remove();
   $('#number_book').text(res_socket.length);
+  
   if (res_socket.length <= 0) {
     $('#load_booking_data').append('<div class="font-22" style="color: #ff0000;" id="no_work_div"><strong>ไม่มีงาน</strong></div>');
     return;
   }
+  
   $.each(res_socket, function (index, res) {
-
+    
     var d_db = timestampToDate(res.post_date, "");
     var d_cr = js_yyyy_mm_dd_hh_mm_ss2();
     console.log(d_cr +" || "+d_db);
@@ -295,7 +298,6 @@ function readDataBooking() {
     } else {
       var time_post = CheckTime(d_cr, d_db);
     }
-//    alert(time_post);
     var pickup_place_name, to_place_name;
     var program = res.program.topic_en;
     if (res.i_server == 0) {

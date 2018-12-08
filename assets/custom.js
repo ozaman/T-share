@@ -971,10 +971,10 @@ function sendTransfer() {
     })
     var url = "page/transfer";
     $('#check_open_worktbooking').val(1);
-    $.post(url, function (html) {
-      $('#transfer_job').html(html);
-      getDeposit(detect_user);
-    });
+//    $.post(url, function (html) {
+//      $('#transfer_job').html(html);
+//      getDeposit(detect_user);
+//    });
     
   } else {
     ons.notification.alert({

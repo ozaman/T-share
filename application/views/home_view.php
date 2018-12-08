@@ -1014,6 +1014,7 @@
                <template id="transfer_job.html">
                   <ons-page>
                      <div style="margin-top: 35px;" id="transfer_job">
+                       <?php $this->load->view('transfer/transfer_view'); ?>
                      </div>
                   </ons-page>
                </template>
@@ -2190,7 +2191,7 @@
    //on message received we print all the data inside the #container div
    socket.on('notification', function(data) {
       //          console.log("Start Socket");
-      //    			console.log(data);
+//          			alert(data);
       if (typeof data.transfer !== 'undefined' && data.transfer.length > 0) {
           res_socket = data.transfer[0];
           
@@ -2200,12 +2201,15 @@
               $('#number_tbooking').hide();
           }
           $('#number_tbooking').text(data.transfer[0].length);
+//          alert($('#check_open_worktbooking').val());
           if ($('#check_open_worktbooking').val() == 1) {
 //            alert($('#check_open_worktbooking').val());
               console.log(data.transfer);
               $('#tab-trans_job').attr('badge', data.transfer[0].length);
               //        console.log('now open popup');
-              readDataBooking();
+//              setTimeout(function(){
+                readDataBooking();
+//              },500);
           }
       }
    });
