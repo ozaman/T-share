@@ -949,11 +949,7 @@
                   </ons-toolbar-button>
                </div>
             </ons-toolbar>
-            <?php 
-               $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
-               $query = $this->db->query($select);
-               $data_deposit = $query->row();
-               ?>
+
             <div id="show_balance_trans" style="z-index: 1;
                background-color: #ececec;
                position: fixed;
@@ -961,9 +957,8 @@
                width: 100%;
                font-size: 18px;
                text-align: center;">
-               <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt_trans">
-               <?=number_format($data_deposit->balance,2);?></span>
-               <input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val_trans" name="balance_val" />
+               <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt_trans"></span>
+               <input type="hidden" value="" id="balance_val_trans" name="balance_val" />
                <ons-button onclick="wallet('lift-ios');" class="font-16" style=" padding: 0px 15px; position: absolute;  left: 0px;  top: 0px; border-radius: 0;">เติมเงิน</ons-button>
             </div>
             <ons-card id="box-trans_filter" class="card" style="display:none;padding: 0px 8px;position: absolute;width: 100%;z-index: 9;margin-top: 48px;margin-left: 0px;border-radius: 0px;display: none;    padding-left: 0; padding-right: 0px;">
@@ -1496,9 +1491,9 @@
             </ons-toolbar>
             <div id="body_transfer">
                <?php 
-                  $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
-                  $query = $this->db->query($select);
-                  $data_deposit = $query->row();
+//                  $select = "SELECT * FROM deposit where driver = ".$_COOKIE['detect_user'];
+//                  $query = $this->db->query($select);
+//                  $data_deposit = $query->row();
                   ?>
                <div id="show_balance" style="z-index: 1;
                   background-color: #ececec;
@@ -1507,9 +1502,8 @@
                   width: 100%;
                   font-size: 18px;
                   text-align: center;">
-                  <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt">
-                  <?=number_format($data_deposit->balance,2);?></span>
-                  <input type="hidden" value="<?=$data_deposit->balance;?>" id="balance_val" name="balance_val" />
+                  <i class="icon-new-uniF121-10" style="color: #009688;"></i> <span id="balance_txt"></span>
+                  <input type="hidden" value="" id="balance_val" name="balance_val" />
                </div>
                <ons-page style="margin-top: 30px;">
                   <ons-tabbar swipeable position="top" >
@@ -2601,8 +2595,7 @@
    console.log(CurrencyFormatted(data[0].balance));
    if($('#check_open_wallet').val()>0){
      history_wallet();
-     $('#balance_txt').text(CurrencyFormatted(data[0].balance));
-     $('#balance_val').val(data[0].balance);
+     getDeposit(detect_user);
    }
   });
  

@@ -93,6 +93,18 @@ function alertInform() {
             });
     return;
   }
+  if ($('#img_slip').val() == "") {
+    ons.notification.alert({
+      message: 'กรุณาแนบสลิปโอนเงิน',
+      title: "ข้อมูลไม่สมบูรณ์",
+      buttonLabel: "ปิด"
+    })
+            .then(function () {
+              modal.hide();
+            });
+    return;
+  }
+
   /*if($('#time_money').val()==""){
    ons.notification.alert({
    message: 'กรุณาเลือกวันที่โอน',
@@ -151,8 +163,8 @@ function sendInformMoney() {
       modal.hide();
       if (res.data.result == true) {
         var param = {
-          content : "มีรายการแจ้งโอนเข้ามาใหม่ กรุณาตรวจสอบ",
-          header : "แจ้งโอนใหม่"
+          content: "มีรายการแจ้งโอนเข้ามาใหม่ กรุณาตรวจสอบ",
+          header: "แจ้งโอนใหม่"
         };
         onesignal_deposit_withdraw(param);
         ons.notification.alert({
@@ -161,7 +173,8 @@ function sendInformMoney() {
           buttonLabel: "ปิด"
         })
                 .then(function () {
-                  $('#tab-history-wallet').click();
+//                  $('#tab-history-wallet').click();
+                  performClick('tab-history-wallet');
                 });
       }
 
@@ -219,8 +232,8 @@ function sendWithdraw() {
       modal.hide();
       if (res.result == true) {
         var param = {
-          content : "มีรายการถอนเข้ามาใหม่ กรุณาตรวจสอบ",
-          header : "แจ้งถอนใหม่"
+          content: "มีรายการถอนเข้ามาใหม่ กรุณาตรวจสอบ",
+          header: "แจ้งถอนใหม่"
         };
         onesignal_deposit_withdraw(param);
         $('#balance_txt').text(numberWithCommas(res.action.balance));
@@ -338,4 +351,22 @@ function readURLwallet(input, id_ele) {
 
   }
 
+}
+
+function getDeposit(driver) {
+//  console.log(driver);
+  $.ajax({
+    url: "wallet/get_deposit?driver="+driver, // point to server-side PHP script 
+    dataType: 'json', // what to expect back from the PHP script, if anything
+    type: 'post',
+    success: function (res) {
+      $('#balance_txt').text(addCommas(CurrencyFormatted(res.deposit)));
+      $('#balance_val').val(res.deposit);
+      
+      $('#balance_txt_trans').text(addCommas(CurrencyFormatted(res.deposit)));
+      $('#balance_val_trans').val(res.deposit);
+//      return res.deposit;
+//    console.log(res);
+    }
+  });
 }

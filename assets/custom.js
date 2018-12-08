@@ -168,7 +168,16 @@ function CheckTime(d1, d2) {
   if (days <= 0 && hrs_d_bc <= 0 && mnts_bc <= 0) {
     return "ไม่กี่วินาทีที่ผ่านมา";
   }
-  return final_txt;
+  if (days < 1) {
+    return final_txt + "ที่ผ่านมา";
+  } else {
+//    var str = timestampToDate(startDate.getTime(), "time");
+    var res = d1.split(" ");
+    var res = res[1].split(":");
+    return "ทำรายการเมื่อ " + d1 + " น.";
+    //		return  d1;
+  }
+//  return final_txt;
 //  return final_txt + "ที่ผ่านมา";
 }
 
@@ -964,8 +973,9 @@ function sendTransfer() {
     $('#check_open_worktbooking').val(1);
     $.post(url, function (html) {
       $('#transfer_job').html(html);
+      getDeposit(detect_user);
     });
-
+    
   } else {
     ons.notification.alert({
       message: 'ยังไม่เปิดให้บริการ จะเปิดบริการในวันที่ 1 ธันวาคมนี้',
@@ -1077,6 +1087,7 @@ function wallet(style) {
     'title': 'กระเป๋าเงิน'
   }, style);
   $('#check_open_wallet').val(1);
+  getDeposit(detect_user);
   auto_money();
 }
 
