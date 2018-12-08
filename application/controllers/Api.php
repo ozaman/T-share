@@ -264,8 +264,8 @@ class Api extends CI_Controller {
         $dv_dp = $this->db->query("SELECT balance,id from ".TBL_DEPOSIT." where driver = '".$_POST[driver_id]."' ");
         $dv_dp = $dv_dp->row();
 
-        $pay_driver = intval($_POST[cost]) - intval($_POST[s_cost]);
-        $deposit_update = intval($dv_dp->balance) + intval($pay_driver);
+        $pay_driver = $_POST[cost] - $_POST[s_cost];
+        $deposit_update = $dv_dp->balance + $pay_driver;
 
         $data[order_id] = $_POST[idorder];
         $data[deposit_pay] = $pay_driver;
@@ -285,7 +285,7 @@ class Api extends CI_Controller {
 //        $update[result] = $this->db->update(TBL_DEPOSIT,$update);
         $update[id] = $dv_dp->id;
         $update[driver_id] = $_POST[driver_id];
-        $update[balance_before] = intval($dv_dp->balance);
+        $update[balance_before] = $dv_dp->balance;
         $update[pay_dv] = intval($pay_driver);
         $return[update_balance] = $update;
       }
