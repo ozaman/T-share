@@ -360,11 +360,11 @@ function getDeposit(driver) {
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
     success: function (res) {
-      $('#balance_txt').text(addCommas(CurrencyFormatted(res.deposit)));
-      $('#balance_val').val(res.deposit);
+      $('#balance_txt').text(addCommas(CurrencyFormatted(res.balance)));
+      $('#balance_val').val(res.balance);
       
-      $('#balance_txt_trans').text(addCommas(CurrencyFormatted(res.deposit)));
-      $('#balance_val_trans').val(res.deposit);
+      $('#balance_txt_trans').text(addCommas(CurrencyFormatted(res.balance)));
+      $('#balance_val_trans').val(res.balance);
 //      return res.deposit;
 //    console.log(res);
     }
