@@ -288,17 +288,18 @@ function readDataBooking() {
   $.each(res_socket, function (index, res) {
 
     var d_db = timestampToDate(res.post_date, "");
-    var d_cr = js_yyyy_mm_dd_hh_mm_ss();
-
+    var d_cr = js_yyyy_mm_dd_hh_mm_ss2();
+    console.log(d_cr +" || "+d_db);
     if (d_cr > d_db) {
       var time_post = CheckTime(d_db, d_cr);
     } else {
       var time_post = CheckTime(d_cr, d_db);
     }
+//    alert(time_post);
     var pickup_place_name, to_place_name;
     var program = res.program.topic_en;
     if (res.i_server == 0) {
-      console.log(d_cr);
+      
       /***     test ***********/
       var pickup_place = res.address_from;
 

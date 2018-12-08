@@ -93,13 +93,42 @@ function js_yyyy_mm_dd_hh_mm_ss() {
   return year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 }
 
+function js_yyyy_mm_dd_hh_mm_ss2() {
+  now = new Date();
+  year = "" + now.getFullYear();
+  month = "" + (now.getMonth() + 1);
+  if (month.length == 1) {
+    month = "0" + month;
+  }
+  day = "" + now.getDate();
+  if (day.length == 1) {
+    day = "0" + day;
+  }
+  hour = "" + now.getHours();
+  if (hour.length == 1) {
+    hour = "0" + hour;
+  }
+  minute = "" + now.getMinutes();
+  if (minute.length == 1) {
+    minute = "0" + minute;
+  }
+  second = "" + now.getSeconds();
+  if (second.length == 1) {
+    second = "0" + second;
+  }
+  return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+}
+
 function CheckTime(d1, d2) {
   //      console.log(d1+" = "+d2);
   datetime1 = d1;
   datetime2 = d2;
   //Set date time format
-  var startDate = new Date(datetime1);
-  var endDate = new Date(datetime2);
+//  var startDate = new Date(datetime1);
+  var startDate = new Date(datetime1.replace(' ', 'T'));
+  var endDate = new Date(datetime2.replace(' ', 'T'));
+  
+//  var endDate = new Date(datetime2);
   var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
   //Calculate time
   var days = Math.floor(seconds / (3600 * 24));
@@ -139,7 +168,8 @@ function CheckTime(d1, d2) {
   if (days <= 0 && hrs_d_bc <= 0 && mnts_bc <= 0) {
     return "ไม่กี่วินาทีที่ผ่านมา";
   }
-  return final_txt + "ที่ผ่านมา";
+  return final_txt;
+//  return final_txt + "ที่ผ่านมา";
 }
 
 function CheckTimeV2(d1, d2) {

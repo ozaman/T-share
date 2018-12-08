@@ -2199,6 +2199,7 @@
       //    			console.log(data);
       if (typeof data.transfer !== 'undefined' && data.transfer.length > 0) {
           res_socket = data.transfer[0];
+          
           if (data.transfer[0].length > 0) {
               $('#number_tbooking').show();
           } else {
@@ -2206,6 +2207,7 @@
           }
           $('#number_tbooking').text(data.transfer[0].length);
           if ($('#check_open_worktbooking').val() == 1) {
+//            alert($('#check_open_worktbooking').val());
               console.log(data.transfer);
               $('#tab-trans_job').attr('badge', data.transfer[0].length);
               //        console.log('now open popup');
