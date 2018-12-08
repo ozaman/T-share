@@ -55,8 +55,8 @@ class Wallet_model extends CI_Model {
     if ($query->num_rows() > 0) {
       $dp = $query->row();
       $before = $dp->balance;
-      $total = intval($before) - intval($_POST[amount_wd]);
-      $withdraw_all = intval($dp->withdraw) + intval($_POST[amount_wd]);
+      $total = $before - $_POST[amount_wd];
+      $withdraw_all = $dp->withdraw + $_POST[amount_wd];
 
       $update[balance] = $total;
       $update[withdraw] = $withdraw_all;
@@ -69,8 +69,8 @@ class Wallet_model extends CI_Model {
     }
     else {
       $inset[driver] = $_POST[driver];
-      $inset[balance] = intval($_POST[amount_wd]);
-      $inset[withdraw] = intval($_POST[amount_wd]);
+      $inset[balance] = $_POST[amount_wd];
+      $inset[withdraw] = $_POST[amount_wd];
       $inset[username] = $_POST[username];
       $inset[ip] = $_SERVER["SERVER_ADDR"];
       $inset[last_update] = time();
