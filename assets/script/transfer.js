@@ -554,7 +554,8 @@ function confirmGetJobTrans() {
         }
       });
 
-    } else {
+    } 
+    else {
       modal.hide();
       ons.notification.alert({
         message: 'งานนี้มีคนขับคนอื่นรับงานแล้ว',

@@ -19,7 +19,7 @@ class Transfer_model extends CI_Model {
     $_POST[result] = $this->db->insert(TBL_DEPOSIT_HISTORY, $_POST);
     $query = $this->db->query("SELECT balance FROM deposit WHERE driver ='" . $_POST[driver] . "'");
     $row = $query->row();
-	$data[balance] = intval($row->balance) - intval($_POST[deposit]); 
+	$data[balance] = $row->balance - $_POST[deposit]; 
 	$data[last_update] = time();
 	$data[posted] = $_POST[driver];
 	$data[ip] = $_SERVER['REMOTE_ADDR'];

@@ -973,7 +973,7 @@ function sendTransfer() {
     $('#check_open_worktbooking').val(1);
 //    $.post(url, function (html) {
 //      $('#transfer_job').html(html);
-//      getDeposit(detect_user);
+      getDeposit(detect_user);
 //    });
     
   } else {
