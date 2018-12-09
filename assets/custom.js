@@ -654,7 +654,7 @@ function checkPricePlan(id) {
     type: 'post',
     success: function (value) {
       console.log(value);
-      if (value.price_plan == "") {
+      if (value == null) {
         ons.notification.alert({message: 'สถานที่นี้ยังไม่มีค่าตอบแทน โปรดเลือกสถานที่อื่น', title: "ขออภัย", buttonLabel: "ปิด"});
         modal.hide();
         return false;

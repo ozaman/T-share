@@ -56,7 +56,7 @@ $query_dv = $this->db->query($sql_dv);
 $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
-$sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]." AND price_plan > 0";
+$sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]."";
 $query_place = $this->db->query($sql_place); 
 $data_place = $query_place->row();
 
