@@ -490,7 +490,7 @@ class Shop extends CI_Controller {
     }
 
     public function get_data_product() {
-      $query = $this->db->query("select id,price_plan from shopping_product where id = ".$_GET[id]);
+      $query = $this->db->query("select id from shop_country_taxi where i_shop = ".$_GET[id]);
       $row = $query->row();
       echo json_encode($row);
     }
