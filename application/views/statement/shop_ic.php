@@ -42,9 +42,9 @@ if ($num < 1) {
               <span class="font-16"><?=$row->product_name;?></span><br/>
               <span class="font-14"><?=date('Y-m-d h:i',$row->post_date);?></span>
             </td>
-            <td >
+<!--            <td >
               <span class="font-16">รับเงินสด</span>
-            </td>
+            </td>-->
             <td align="right"><b class="font-16"><?=$total_price_all." บ.";?></b></td>
           </tr>
         </table>
