@@ -172,8 +172,7 @@ function CheckTime(d1, d2) {
     return final_txt + "ที่ผ่านมา";
   } else {
 //    var str = timestampToDate(startDate.getTime(), "time");
-    var res = d1.split(" ");
-    var res = res[1].split(":");
+
     return "ทำรายการเมื่อ " + d1 + " น.";
     //		return  d1;
   }
