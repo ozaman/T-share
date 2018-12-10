@@ -2204,7 +2204,7 @@
 //          alert($('#check_open_worktbooking').val());
           if ($('#check_open_worktbooking').val() == 1) {
 //            alert($('#check_open_worktbooking').val());
-              console.log(data.transfer);
+//              console.log(data.transfer);
               $('#tab-trans_job').attr('badge', data.transfer[0].length);
               //        console.log('now open popup');
 //              setTimeout(function(){

@@ -292,7 +292,7 @@ function readDataBooking() {
     
     var d_db = timestampToDate(res.post_date, "");
     var d_cr = js_yyyy_mm_dd_hh_mm_ss2();
-    console.log(d_cr +" || "+d_db);
+//    console.log(d_cr +" || "+d_db);
     if (d_cr > d_db) {
       var time_post = CheckTime(d_db, d_cr);
     } else {
@@ -774,9 +774,10 @@ function actionProgress(obj) {
     changeHtmlTrans("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
   }
 //  obj.driver_pickup = 2;
-  if (obj.driver_pickup > 1) {
+console.log(obj.driver_pickup);
+  if (obj.driver_pickup > 0) {
     console.log("driver_pickup");
-    changeHtmlTrans("driver_pickup", obj.id, timestampToDate(obj.driver_pickup_date, "time"));
+   
     if (obj.driver_pickup == 2) {
       $('#btn_driver_pickup_noshow').show();
       $('#btn_driver_pickup').hide();
@@ -785,6 +786,7 @@ function actionProgress(obj) {
       $('#btn_driver_pickup_noshow').hide();
       $('#btn_driver_pickup').show();
     }
+     changeHtmlTrans("driver_pickup", obj.id, timestampToDate(obj.driver_pickup_date, "time"));
   }
   if (obj.driver_checkcar == 1) {
     console.log("driver_complete");
