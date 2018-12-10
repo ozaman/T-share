@@ -648,6 +648,7 @@ function trans_driver_topoint(id) {
 
 function trans_driver_pickup(id) {
   submitCheckIn('driver_pickup');
+  $('#btn_driver_pickup_noshow').hide();
 }
 
 function trans_driver_pickup_noshow(id) {

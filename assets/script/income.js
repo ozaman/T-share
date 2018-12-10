@@ -64,7 +64,7 @@ function renderTransferJob(){
 	var date = $('#date_trans_ic').val();
 	var param = {
     driver: $.cookie("detect_user"),
-    date: date+"-29",
+    date: date,
     driver_checkcar: 1
 };
 console.log(param);
