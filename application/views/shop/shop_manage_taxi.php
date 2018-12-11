@@ -103,7 +103,7 @@ foreach ($_POST[data] as $key => $val) {
                   <img class="chat_gallery_items" src="<?=$images_url;?>"  onclick="chat_gallery_items(this)" data-high-res-src="<?=$images_url;?>" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
                 </td>
                 <td valign="top">
-                  <strong class="font-19"  style="color:#3b5998" ><span class="txt_topic_company "> <?=$res_ps->topic_th;?> </span></strong><br>
+                  <strong class="font-20"  style="color:#3b5998" ><span class="txt_topic_company "> <?=$res_ps->topic_th;?> </span></strong><br>
                   <span class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" ><?=$SUB->topic_th;?> </span>)</span><br/>
                   <span class="font-17" style="color: #00000087;"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></span>
 

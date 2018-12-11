@@ -49,7 +49,9 @@ class Notification_model extends CI_Model {
 		}else if($param[i_type]==5 or $param[i_type]==6){
 			$setting_col = "i_noti_wallet";
 		}
-  		$query = $this->db->query("select t1.id, t2.".$setting_col." as noti_set from web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user where t1.username LIKE '%lab%'  ");
+  		$query = $this->db->query("select t1.id, t2.".$setting_col." as noti_set "
+                . "from web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user "
+                . "where t1.username LIKE '%lab%'  ");
   		$key = 0;
 		foreach ($query->result() as $row)
 		{
