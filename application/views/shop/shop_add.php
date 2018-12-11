@@ -399,7 +399,7 @@ else {
           $_order = array();
           $_order['id'] = 'asc';
           $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
-          if (count($arr[region_icon]) == 1) {
+          if (count($data[region]) == 1) {
             ?>
             <script type="text/javascript">
               handleClick_s('nation', '<?=$val->id;?>')
