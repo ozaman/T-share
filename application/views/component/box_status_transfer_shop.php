@@ -190,7 +190,12 @@ $btn_pay_com_color = "background-color:#666666";
                   <tr>
                     <td><span class="font-16">สลิปโอนเงิน</span></td>
                     <td>
-                      <i id="guest_register_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">insert_photo</i>
+                      <!--<i id="slip_trans_shop" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>', '<?=date('Y-m-d H:i',$data_trans_pay->last_update);?>');">insert_photo</i>-->
+                      <i id="slip_trans_shop" class="material-icons" 
+                         style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" 
+                         onclick="photo_to_viewer(this)" 
+                         data-high-res-src="../data/fileupload/doc_pay_driver/slip/slip_<?=$data->id.".jpg?v=".time();?>">
+                        insert_photo</i>
                     </td>
                   </tr>
     <?php if ($data->driver_approve < 1 && $_COOKIE[detect_userclass] == "taxi") {?>
