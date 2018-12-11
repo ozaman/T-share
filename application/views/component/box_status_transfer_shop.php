@@ -197,7 +197,7 @@ $btn_pay_com_color = "background-color:#666666";
                         insert_photo</i>
                     </td>
                   </tr>
-    <?php if ($data->driver_approve < 1 && $_COOKIE[detect_userclass] == "taxi") {?>
+    <?php if ($data->driver_approve == 0 && $_COOKIE[detect_userclass] == "taxi") {?>
                     <tr>
                       <td align="center" colspan="2">
 

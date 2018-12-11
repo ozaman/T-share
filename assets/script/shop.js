@@ -2606,7 +2606,9 @@ function completedJobShop(id) {
 function confirmGetTransCom(order_id, invoice) {
 //  $('#get_trans_com_'+order_id).prop('disabled', false);
   $('#get_trans_com_' + order_id).attr('disabled', 'disabled');
-  var url_complete = "shop/get_trans_com?id=" + order_id;
+  var url_complete = "shop/get_trans_com?id=" + order_id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+  console.log(url_complete);
+//  return;
   $.ajax({
     url: url_complete,
     dataType: 'json',
