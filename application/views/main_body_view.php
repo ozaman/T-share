@@ -1,3 +1,4 @@
+
 <div style="margin-top: 10px;padding: 5px;" >
 <ons-row style="margin: 10px 0px;">
   <ons-col style="margin: 10px;">
@@ -11,7 +12,12 @@
 	    <span class="txt-dark">ส่งแขก</span>
 	    </center>
   </ons-col>
+	<?php 
+	if ($_COOKIE['detect_userclass'] != 'lab') {
+		# code...
+	
 
+	?>
   <ons-col style="margin: 10px;">
    <center>
 	  	<div onclick="sendTransfer();" class="circle-menu-home" style="    background-color: #F7941D;">
@@ -23,6 +29,7 @@
 	    <span class="txt-dark">ให้บริการรถ</span>
    </center>
 </ons-col>
+<?php } ?>
 </ons-row>
 
 <ons-row style="margin: 10px 0px;">
@@ -76,6 +83,12 @@
    </center>
 </ons-col>
 </ons-row>
+<?php 
+	if ($_COOKIE['detect_userclass'] != 'lab') {
+		
+	
+
+	?>
 <ons-row style="margin: 10px 0px;">
 	<ons-col style="margin: 10px;">
    <center>
@@ -88,6 +101,7 @@
    </center>
 </ons-col>
 	</ons-row>
+<?php } ?>
  <!-- <ons-list-item onclick="wallet('slide-ios');" style="<?=$menu_wallet;?>border-bottom: 1px solid rgb(204, 204, 204);">
                   <div class="left" style="<?=$border_menu_color;?>">
                      <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
