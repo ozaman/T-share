@@ -1,6 +1,7 @@
 <input type="hidden" id="open_shop_manage" value="1" />
 <input type="hidden" id="open_shop_wait_trans" value="0" />
 <?php
+
 $data_user_class = $_COOKIE[detect_userclass];
 if (count($_POST[data]) <= 0) {
   echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
@@ -67,6 +68,7 @@ foreach ($_POST[data] as $key => $val) {
         <tr>
           <td colspan="2">
           <?php 
+          
             $_where = array();
             $_where['id'] = $res_ps->province;
             $_select = array('name_th');
@@ -80,15 +82,17 @@ foreach ($_POST[data] as $key => $val) {
             $_where['id'] = $res_ps->main;
             $_select = array('topic_th');
             $MAIN = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN,$_where,$_select);
-
+            
             $query = $this->db->query("SELECT name_th,id FROM web_area WHERE id = ".$res_ps->amphur);
             $row = $query->row();
+            
+            
             ?>
           
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
                 <tr>
                     <td width="130">
-                      <img src="../data/pic/place/1_logo.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+                      <img src="../data/pic/place/logo<?=$res_ps->id;?>.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
                     </td>
                     <td valign="top">
                       <strong class="font-17"><?=$data_pv->name_th;?> / <?=$row->name_th;?></strong><br>

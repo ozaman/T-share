@@ -944,7 +944,8 @@ function readURLcar(input, id, num, type) {
       } else {
         var param_id = $('#id_carall').val();
       }
-      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=car_img&num=" + num;
+//      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=car_img&num=" + num;
+      var url_upload = "upload/index?id=" + param_id + "&type=car_img&num=" + num;
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
@@ -999,7 +1000,8 @@ function readURLother(input, id, type, cat) {
         var param_id = $('#id_carall').val();
 //                $('#' + id + '_check_upload_' + num).val(1);
       }
-      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=access_car&cat=" + cat;
+//      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=access_car&cat=" + cat;
+      var url_upload = "upload/index?id=" + param_id + "&type=access_car&cat=" + cat;
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 

@@ -461,7 +461,8 @@ function readURLbank(input, id, type) {
 //                $('#' + id + '_check_upload_' + num).val(1);
       }
       data.append('fileUpload', $('#' + id)[0].files[0]);
-      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=book_bank_img";
+//      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=book_bank_img";
+      var url_upload = "upload/index?id=" + param_id + "&type=book_bank_img";
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 

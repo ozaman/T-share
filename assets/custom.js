@@ -127,7 +127,7 @@ function CheckTime(d1, d2) {
 //  var startDate = new Date(datetime1);
   var startDate = new Date(datetime1.replace(' ', 'T'));
   var endDate = new Date(datetime2.replace(' ', 'T'));
-  
+
 //  var endDate = new Date(datetime2);
   var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
   //Calculate time
@@ -972,9 +972,9 @@ function sendTransfer() {
     $('#check_open_worktbooking').val(1);
 //    $.post(url, function (html) {
 //      $('#transfer_job').html(html);
-      getDeposit(detect_user);
+    getDeposit(detect_user);
 //    });
-    
+
   } else {
     ons.notification.alert({
       message: 'ยังไม่เปิดให้บริการ จะเปิดบริการในวันที่ 1 ธันวาคมนี้',
@@ -1211,7 +1211,8 @@ function readURLprofileHome(input, type) {
       var data = new FormData($('#upload_pf_home')[0]);
       data.append('imgInp', $('#img_profile_home')[0].files[0]);
       var id = $.cookie("detect_username");
-      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
+//      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
+      var url_upload = "upload/index?id=" + id + "&type=" + type;
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
@@ -1223,7 +1224,12 @@ function readURLprofileHome(input, type) {
         type: 'post',
         success: function (php_script_response) {
           console.log(php_script_response);
-
+          if (php_script_response.result == false) {
+            ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
+                    .then(function () {
+                    });
+            return false;
+          }
           ons.notification.alert({
             message: 'ทำการอัพโหลดรูปสำเร็จแล้ว',
             title: "สำเร็จ",
@@ -1233,6 +1239,9 @@ function readURLprofileHome(input, type) {
         },
         error: function (e) {
           console.log(e)
+          ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
+                  .then(function () {
+                  });
         }
       });
     }
@@ -2088,7 +2097,7 @@ function photo_to_viewer(item) {
   console.log(item)
 //  var imgSrc = item.src,
   var imgSrc = item.getAttribute('data-high-res-src'),
-  highResolutionImage = $(this).data('high-res-img');
+          highResolutionImage = $(this).data('high-res-img');
 
 //            viewer.show(imgSrc, highResolutionImage);
   ImageViewer().show(imgSrc, highResolutionImage);

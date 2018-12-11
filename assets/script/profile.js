@@ -73,8 +73,8 @@ function readURLprofile(input, type) {
         var id = $.cookie("detect_username");
       }
 
-//      			var url_upload = "../../mod/user/upload_img/upload.php?id="+$('#rand').val()+"&type="+type;
-      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
+//      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
+      var url_upload = "upload/index?id=" + id + "&type=" + type;
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
@@ -86,6 +86,12 @@ function readURLprofile(input, type) {
         type: 'post',
         success: function (php_script_response) {
           console.log(php_script_response);
+          if (php_script_response.result == false) {
+            ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
+                    .then(function () {
+                    });
+            return false;
+          }
           $('#box_img_' + type).fadeIn(200);
           $('#txt-img-has-' + type).show();
           $('#txt-img-nohas-' + type).hide();
@@ -103,6 +109,9 @@ function readURLprofile(input, type) {
         },
         error: function (e) {
           console.log(e)
+          ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
+                  .then(function () {
+                  });
         }
       });
     }
@@ -171,23 +180,23 @@ function saveDataPf() {
             .then(function () {
               performClick('password-input');
             });
-      return;
+    return;
   }
-  
+
   if ($('input[name="name_th"]').val() == "") {
     ons.notification.alert({message: 'กรุณากรอกพาสเวิร์ด', title: "ข้อมูลไม่ครบ", buttonLabel: "ปิด"})
             .then(function () {
               performClick('name-input');
             });
-      return;
+    return;
   }
-  
+
   if ($('input[name="phone"]').val() == "") {
     ons.notification.alert({message: 'กรุณากรอกพาสเวิร์ด', title: "ข้อมูลไม่ครบ", buttonLabel: "ปิด"})
             .then(function () {
               performClick('phone');
             });
-      return;
+    return;
   }
   $('#pf_edit-alert-dialog').hide();
   modal.show();

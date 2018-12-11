@@ -1,6 +1,6 @@
 <?php 
 if($_GET[type]=="id_card"){
-	
+	$path =  "../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg";
 	/*include("class.resizepic.php");
 	$original_image = $_FILES['idcard_upload']['tmp_name'] ;
 	$desired_width = 600;
@@ -9,15 +9,15 @@ if($_GET[type]=="id_card"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg","JPG");*/
-	$result = move_uploaded_file($_FILES["idcard_upload"]["tmp_name"], "../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg");
+	$result = move_uploaded_file($_FILES["idcard_upload"]["tmp_name"],$path);
 	$return[result] = $result;
-	$return[path] = "../../../../data/pic/driver/id_card/".$_GET[id]."_idcard.jpg";
+	$return[path] = $path;
 	echo json_encode($return);
 //	echo json_encode($_FILES);
 	exit();
 }
 if($_GET[type]=="id_driving"){
-	
+	$path = "../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg";
 	/*include("class.resizepic.php");
 	$original_image = $_FILES['iddriving_upload']['tmp_name'] ;
 	$desired_width = 600;
@@ -26,14 +26,14 @@ if($_GET[type]=="id_driving"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg","JPG");*/
-	$result = move_uploaded_file($_FILES["iddriving_upload"]["tmp_name"], "../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg");
+	$result = move_uploaded_file($_FILES["iddriving_upload"]["tmp_name"], $path);
 	$return[result] = $result;
-	$return[path] = "../../../../data/pic/driver/id_driving/".$_GET[id]."_iddriving.jpg";
+	$return[path] = $path;
 	echo json_encode($return);
 	exit();
 }
 if($_GET[type]=="car_img"){
-	
+	$path = "../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg";
 	include("class.resizepic.php");
 	$original_image = $_FILES['fileUpload']['tmp_name'] ;
 	$desired_width = 600;
@@ -41,15 +41,15 @@ if($_GET[type]=="car_img"){
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-	$result = $image->output_resized("../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg","JPG");
-	$return[path] = "../../../../data/pic/car/".$_GET[id]."_".$_GET[num].".jpg";
+	$result = $image->output_resized($path,"JPG");
+	$return[path] = $path;
 	$return[result] = $result;
 	echo json_encode($return);
 	exit();
 }
 
 if($_GET[type]=="access_car"){
-	$path = "../../../../data/pic/".$_GET[cat]."/".$_GET[id].".jpg";
+	$path = "../data/pic/".$_GET[cat]."/".$_GET[id].".jpg";
 	$result = move_uploaded_file($_FILES["fileUpload"]["tmp_name"], $path);
 	$return[result] = $result;
 	$return[path] = $path;
@@ -58,7 +58,7 @@ if($_GET[type]=="access_car"){
 }
 
 if($_GET[type]=="book_bank_img"){
-	
+	$path = "../data/pic/driver/book_bank/".$_GET[id].".jpg";
 	include("class.resizepic.php");
 	$original_image = $_FILES['fileUpload']['tmp_name'] ;
 	$desired_width = 600;
@@ -66,13 +66,14 @@ if($_GET[type]=="book_bank_img"){
 	$image = new hft_image($original_image);
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
-	$result = $image->output_resized("../../../../data/pic/driver/book_bank/".$_GET[id].".jpg","JPG");
-	$return[path] = "../../../../data/pic/driver/book_bank/".$_GET[id].".jpg";
+	$result = $image->output_resized($path,"JPG");
+	$return[path] = $path;
 	$return[result] = $result;
 	echo json_encode($return);
 	exit();
 }
 if($_GET[type]=="profile"){
+    $path = "../data/pic/driver/small/".$_GET[id].".jpg";
 	/*include("class.resizepic.php");
 	$original_image = $_FILES['imgInp']['tmp_name'] ;
 	$desired_width = 600;
@@ -81,9 +82,9 @@ if($_GET[type]=="profile"){
 	$image->resize($desired_width, $desired_height, '0');
 	header('Content-Type: application/json');
 	$result = $image->output_resized("../../../../data/pic/driver/small/".$_GET[id].".jpg","JPG");*/
-	$result = move_uploaded_file($_FILES["imgInp"]["tmp_name"], "../../../../data/pic/driver/small/".$_GET[id].".jpg");
+	$result = move_uploaded_file($_FILES["imgInp"]["tmp_name"], $path);
 	$return[result] = $result;
-	$return[path] = "../../../../data/pic/driver/small/".$_GET[id].".jpg";
+	$return[path] = $path;
 	$return[tmp] = $_FILES["imgInp"]["tmp_name"];
 	echo json_encode($return);
 }
