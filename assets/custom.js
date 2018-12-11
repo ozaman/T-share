@@ -978,7 +978,7 @@ function sendTransfer() {
   } else {
     ons.notification.alert({
       message: 'ยังไม่เปิดให้บริการ จะเปิดบริการในวันที่ 1 ธันวาคมนี้',
-      title: "ขอภัย",
+      title: "ขออภัย",
       buttonLabel: "ตกลง"
     })
             .then(function () {});
@@ -992,7 +992,7 @@ function sendTransfer() {
 function tour() {
   ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
-    title: "ขอภัย",
+    title: "ขออภัย",
     buttonLabel: "ตกลง"
   })
           .then(function () {});
@@ -1007,7 +1007,7 @@ function tour() {
 function pay() {
   ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
-    title: "ขอภัย",
+    title: "ขออภัย",
     buttonLabel: "ตกลง"
   })
           .then(function () {});

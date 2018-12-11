@@ -76,6 +76,26 @@
    </center>
 </ons-col>
 </ons-row>
+<ons-row style="margin: 10px 0px;">
+	<ons-col style="margin: 10px;">
+   <center>
+	  	<div onclick="wallet('slide-ios')" class="circle-menu-home" style="    background-color: #F44336;">
+	      <div class="content">
+	     	<i class="material-icons" style="font-size: 28px;position: relative; top: 7px; left: 0px;">account_balance_wallet</i>
+	      </div>
+	    </div>
+	    <span class="txt-dark">กระเป๋าเงิน</span>
+   </center>
+</ons-col>
+	</ons-row>
+ <!-- <ons-list-item onclick="wallet('slide-ios');" style="<?=$menu_wallet;?>border-bottom: 1px solid rgb(204, 204, 204);">
+                  <div class="left" style="<?=$border_menu_color;?>">
+                     <span class="list-item__icon <?=$menu_ion_class;?>"> <i class="material-icons" style="    margin-left: -5px;">account_balance_wallet</i></span>
+                  </div>
+                 <div class="center" style="background-image: none;">
+                     กระเป๋าเงิน
+                  </div>
+               </ons-list-item> -->
 
 
 </div>

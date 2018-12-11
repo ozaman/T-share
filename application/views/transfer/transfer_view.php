@@ -5,7 +5,7 @@
 
 <template id="alert-no-deposit-transfer.html">
   <ons-alert-dialog modifier="rowfooter" id="transfer-alert-dialog">
-    <div class="alert-dialog-title">ขอภัย</div>
+    <div class="alert-dialog-title">ขออภัย</div>
     <div class="alert-dialog-content">
       <span class="font-14">
 

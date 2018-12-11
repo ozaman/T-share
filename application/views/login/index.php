@@ -564,7 +564,7 @@
               var message = "ชื่อผู้ใช้ : " + php_script_response.username + "\r\n" + "รหัสผ่าน : " + php_script_response.password;
               if (check_type_rcv == 0) {
                 if (php_script_response.i_use_sms == php_script_response.i_limit_sms) {
-                  ons.notification.alert({message: 'ไม่สามารถรับรหัสผ่านทาง SMS ได้ เนื่องจากคุณกู้รหัสผ่านทาง SMS เกิน 3 ครั้ง กรุณาติดต่อเจ้าหน้าที่ค่ะ', title: "ขอภัย", buttonLabel: "ปิด"})
+                  ons.notification.alert({message: 'ไม่สามารถรับรหัสผ่านทาง SMS ได้ เนื่องจากคุณกู้รหัสผ่านทาง SMS เกิน 3 ครั้ง กรุณาติดต่อเจ้าหน้าที่ค่ะ', title: "ขออภัย", buttonLabel: "ปิด"})
                           .then(function () {
                             modal.hide();
                           });

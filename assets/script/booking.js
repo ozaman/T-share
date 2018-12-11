@@ -31,7 +31,7 @@ function booking() {
   else{
     ons.notification.alert({
     message: 'ยังไม่เปิดให้บริการ',
-    title: "ขอภัย",
+    title: "ขออภัย",
     buttonLabel: "ตกลง"
   })
   .then(function () {});

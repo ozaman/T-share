@@ -193,8 +193,8 @@ else {
             <td>
               <div class="element_to_find">
                 <input type="hidden" name="" id="shop_topic_th" value="<?=$data_place->topic_th;?>">
-                <span class="font-17" style="color:#3b5998">ดิวตี้ฟรี </span ><span class="pull-right" onclick="fun_imageslider('<?=$_GET[shop_id];?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span><br>
-                <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span>
+                 <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span><span class="pull-right" onclick="fun_imageslider('<?=$_GET[shop_id];?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span><br>
+                <span class="font-17" style="color:#3b5998"><?=$data_shopmain->topic_th;?> </span >
 
                 <input type="hidden" value=" " id="1">
 
