@@ -1813,6 +1813,7 @@
       <input type="hidden"  id="place_lng" value=""/>
       <input type="hidden" id="place_area" value=""/>
       <input type="hidden" id="place_province" value=""/>
+      <input type="hidden" id="place_name" value=""/>
       <input type="hidden" name="" id="province_text_input">
       <ons-modal direction="up" id="modal_photo">
          <div style="text-align: center">
