@@ -1720,6 +1720,7 @@
             <p style="text-align: center">เลือกสาเหตุยกเลิก</p>
             <input type="hidden" value="" id="invoice_cancel_select" />
             <input type="hidden" value="" id="driver_id_cancel" />
+            <input type="hidden" value="" id="product_id" />
             <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
                 <input type="hidden" value="" id="order_id_cancel" name="order_id" />
                 <!--<input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="username_order_cancel" name="username" />-->

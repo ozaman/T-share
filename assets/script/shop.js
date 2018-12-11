@@ -1041,9 +1041,10 @@ function saveShop() {
           i_user: 0,
           s_class_user: "lab",
           s_topic: "งานส่งแขก",
-          s_sub_topic: "เช็คอิน",
+          s_sub_topic: "เพิ่มรายการ",
           s_message: txt_long_nc,
-          s_posted: username
+          s_posted: username,
+          i_company : response.program
         };
         apiRecordActivityAndNotification(ac, nc);
 
@@ -1311,12 +1312,13 @@ function checkPhotoCheckIn(type, id) {
   });
 }
 
-function cancelShopSelect(id, invoice, dv) {
+function cancelShopSelect(id, invoice, dv, program) {
   console.log('cancel')
   fn.showDialog('cancel-shop-dialog');
   $('#order_id_cancel').val(id);
   $('#invoice_cancel_select').val(invoice);
   $('#driver_id_cancel').val(dv);
+  $('#product_id').val(program);
 }
 
 function submitCancel() {
@@ -1374,7 +1376,8 @@ function submitCancel() {
       s_topic: "งานส่งแขก",
       s_sub_topic: "ยกเลิก",
       s_message: txt_long_nc_cancel_shop,
-      s_posted: username
+      s_posted: username,
+      i_company: $('#product_id').val()
     };
     apiRecordActivityAndNotification(ac_2, nc_to_lab);
 
@@ -1732,7 +1735,7 @@ function saveShop_action_pay(poppage) {
   });
 }
 
-function sendCheckIn(id, type) {
+function sendCheckIn(id, type, place_id) {
   type_send = type;
   id_send = id;
 //   modal.show();
@@ -1783,7 +1786,7 @@ function sendCheckIn(id, type) {
               }
             });
 
-            shopFuncNotiActi(id_send, type_send);
+            shopFuncNotiActi(id_send, type_send, place_id);
             check_com_plan(id_send);
           }
         }
@@ -1807,7 +1810,7 @@ function sendCheckIn(id, type) {
 function checkinAndOpenDetail(id, key) {
 
   $.post('main/get_timestamp', function (res) {
-    sendCheckIn(id, 'driver_topoint');
+    sendCheckIn(id, 'driver_topoint', array_data.manage[key].program);
     array_data.manage[key].check_driver_topoint = 1;
     array_data.manage[key].driver_topoint = 1;
     array_data.manage[key].driver_topoint_date = res;
@@ -1821,7 +1824,7 @@ function checkinAndOpenDetail(id, key) {
 
 }
 
-function shopFuncNotiActi(id, type) {
+function shopFuncNotiActi(id, type, place_id) {
   if (type == 'driver_topoint') {
     var txt_long_ac = $('#txt_invoice_shop_detail').text() + " : " + "คุณทำการยืนยันถึงสถานที่ส่งแขก";
     var txt_long_nc = $('#txt_invoice_shop_detail').text() + " : " + username + " ถึงสถานที่ส่งแขกแล้ว " + $('#place_name_select').val();
@@ -1860,7 +1863,8 @@ function shopFuncNotiActi(id, type) {
     s_topic: "งานส่งแขก",
     s_sub_topic: "เช็คอิน",
     s_message: txt_long_nc,
-    s_posted: username
+    s_posted: username,
+    i_company: place_id
   };
 
   apiRecordActivityAndNotification(ac, nc);
@@ -1937,7 +1941,7 @@ function btn_guest_receive(id) {
      .then(function() {});*/
     return;
   }
-  sendCheckIn(id, 'guest_receive');
+  sendCheckIn(id, 'guest_receive', $('#place_product_id').val());
   /*fn.pushPage({
    'id': 'popup_shop_checkin.html',
    'title': "พนักงานรับแขก"
