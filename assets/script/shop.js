@@ -450,7 +450,6 @@ function handleClick_s(tax, name) {
 
         window.location.href = "#nation_box";
       });
-      
     }
     if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
       $('#nation_box').addClass('borderBlink')
