@@ -19,7 +19,7 @@ foreach ($_POST[data] as $key => $val) {
     else if($val[lab_approve_job] ==1){
     $status_txt = '<strong><font color="#54c23d">ตอบรับแล้ว</font></strong>';
     } */
-  $sql_ps = "SELECT topic_th,id, province, sub, main, amphur FROM shopping_product  WHERE id='".$val[program]."' ";
+  $sql_ps = "SELECT topic_th,id, province, sub, main, amphur,pic_logo FROM shopping_product  WHERE id='".$val[program]."' ";
   $query_ps = $this->db->query($sql_ps);
   $res_ps = $query_ps->row();
 
@@ -84,12 +84,43 @@ foreach ($_POST[data] as $key => $val) {
             $MAIN = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN,$_where,$_select);
             
             $query = $this->db->query("SELECT name_th,id FROM web_area WHERE id = ".$res_ps->amphur);
-            $row = $query->row();
+            $aumper = $query->row();
             
             
             ?>
-          
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_<?=$data->id;?>">
+              <tr>
+                <td width="130">
+            <?php
+            $url = "../data/pic/place/".$res_ps->pic_logo;
+            if (file_exists($url) != 1 || $res_ps->pic_logo == '') {
+              $images_url = base_url().'assets/images/noimage_2.gif';
+            }
+            else {
+              $images_url = $url;
+            }
+            ?>
+                  <img class="chat_gallery_items" src="<?=$images_url;?>"  onclick="chat_gallery_items(this)" data-high-res-src="<?=$images_url;?>" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
+                </td>
+                <td valign="top">
+                  <strong class="font-19"  style="color:#3b5998" ><span class="txt_topic_company "> <?=$res_ps->topic_th;?> </span></strong><br>
+                  <span class="font-17"><?=$MAIN->topic_th;?>(<span class="font-17" ><?=$SUB->topic_th;?> </span>)</span><br/>
+                  <span class="font-17" style="color: #00000087;"><?=$data_pv->name_th;?> / <?=$aumper->name_th;?></span>
+
+
+                  <input type="hidden" id="check_click_1" value="0">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="element_to_find" align="center" style="margin-top: 10px;">
+                    <input type="hidden" name="" id="shop_topic_th" value="คิงส์ พาวเวอร์ (ภูเก็ต)">
+                    <input type="hidden" value=" " id="1">
+                  </div>
+                </td>
+              </tr>
+            </table>
+<!--        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom : 0px solid #DADADA;" id="row_place_1">
                 <tr>
                     <td width="130">
                       <img src="../data/pic/place/logo<?=$res_ps->id;?>.jpg" alt="" style="box-shadow: 1px 1px 3px #333333;border-radius:  8px; border: 1px solid #ddd;height: 65px;width: 110px; ">
@@ -108,7 +139,7 @@ foreach ($_POST[data] as $key => $val) {
                       </div>
                     </td>
                   </tr>
-            </table>
+            </table>-->
             </td>
         </tr>
         <tr>

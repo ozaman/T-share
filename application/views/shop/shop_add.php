@@ -663,7 +663,7 @@ else {
 
           </select>
           <div id="txt_show_to_time" class="font-17" style="display:none;padding: 5px;">
-            จะถึงใน <span id="show_to_time" style="color: #ff0000;"></span> น.
+            ถึงประมาณ <span id="show_to_time" style="color: #ff0000;"></span> น.
           </div>
           <!-- </div> -->
         </div>
