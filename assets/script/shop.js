@@ -450,6 +450,7 @@ function handleClick_s(tax, name) {
 
         window.location.href = "#nation_box";
       });
+      
     }
     if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
       $('#nation_box').addClass('borderBlink')
@@ -2199,7 +2200,8 @@ function submitChangeTimeToPlace() {
 
 function calTime(val) {
   var m = val;
-  if (m == "") {
+  if (m == "" || m <= 0) {
+    $('#txt_show_to_time').fadeOut(500);
     return;
   }
   var d = new Date();
