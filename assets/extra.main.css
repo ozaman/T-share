@@ -1290,6 +1290,9 @@ a {
 .font-18 {
   font-size: 18px !important;
 }
+.font-19 {
+  font-size: 19px !important;
+}
 .font-20 {
   font-size: 20px !important;
 }
@@ -1332,6 +1335,9 @@ a {
   }
   .font-18 {
     font-size: 16px !important;
+  }
+  .font-19 {
+    font-size: 17px !important;
   }
   .font-20 {
     font-size: 18px !important;

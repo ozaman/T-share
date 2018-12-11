@@ -577,7 +577,7 @@ else {
   }
   // print_r($t_time_m);
   ?>
-          <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value)" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
+          <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value);calTime(this.value);" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
             <option value="0">-- <?=$op_select;?> --</option>
           <?php
           $time = array(
@@ -662,7 +662,9 @@ else {
             ?>
 
           </select>
-
+          <div id="txt_show_to_time" class="font-17" style="display:none;padding: 5px;">
+            ถึงประมาณ <span id="show_to_time" style="color: #ff0000;"></span> น.
+          </div>
           <!-- </div> -->
         </div>
         

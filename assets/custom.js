@@ -1,7 +1,7 @@
 var id_category, id_province, check_back;
 function reloadApp() {
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
-  //	console.log(newURL);
+  //	//console.log(newURL);
   //	location.replace(reloadApp)
   var pathname = new URL(newURL).pathname;
   //return;
@@ -14,7 +14,7 @@ function setCountNotification() {
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
     success: function (num) {
-      //			        	console.log(num);
+      //			        	//console.log(num);
       //			        	num = 0;
       if (num > 0) {
         $('.fa-bell').addClass('bell');
@@ -120,7 +120,7 @@ function js_yyyy_mm_dd_hh_mm_ss2() {
 }
 
 function CheckTime(d1, d2) {
-  //      console.log(d1+" = "+d2);
+  //      //console.log(d1+" = "+d2);
   datetime1 = d1;
   datetime2 = d2;
   //Set date time format
@@ -181,7 +181,7 @@ function CheckTime(d1, d2) {
 }
 
 function CheckTimeV2(d1, d2) {
-  //      console.log(d1+" = "+d2);
+  //      //console.log(d1+" = "+d2);
   datetime1 = d1;
   datetime2 = d2;
   //Set date time format
@@ -242,7 +242,7 @@ function CheckTimeV2(d1, d2) {
 }
 
 function performClick(elemId) {
-  console.log(elemId);
+  //console.log(elemId);
   var elem = document.getElementById(elemId);
   if (elem && document.createEvent) {
     var evt = document.createEvent("MouseEvents");
@@ -257,16 +257,16 @@ function gotoDiv(id) {
 }
 
 function checkImgProfile(username, pf) {
-  //    console.log(username);
+  //    //console.log(username);
   var url = "../data/pic/driver/small/" + username + ".jpg?v=" + $.now();
   $.ajax({
     url: url,
     type: 'HEAD',
     error: function () {
-      console.log('Error Profile');
+      //console.log('Error Profile');
     },
     success: function () {
-      console.log('Success Profile');
+      //console.log('Success Profile');
       if (pf == 1) {
         $('#pv_profile').attr('src', url);
         iconsHasPic(1, "txt-img-has-profile", "txt-img-nohas-profile");
@@ -313,7 +313,7 @@ function sendTagIOS(classname, username) {
   var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (iOS == true) {
     var url_xcode = "send://ios?class=" + classname + "&username=" + username + "&test=0";
-    console.log(url_xcode);
+    //console.log(url_xcode);
     window.location = url_xcode;
   }
 }
@@ -322,7 +322,7 @@ function deleteTagIOS(classname, username) {
   var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   if (iOS == true) {
     var url_xcode = "delete://ios?class=" + classname + "&username=" + username + "&test=0";
-    console.log(url_xcode);
+    //console.log(url_xcode);
     window.location = url_xcode;
   }
 }
@@ -380,7 +380,7 @@ function openNotifyline() {
 var userLang = navigator.language || navigator.userLanguage;
 userLang = userLang.split('-');
 var js_lng = userLang[0];
-console.log('Js Browser lng : ' + js_lng);
+//console.log('Js Browser lng : ' + js_lng);
 var id, target, options;
 var first_get_pos = true;
 var current, crd;
@@ -400,7 +400,7 @@ function success(pos) {
       lat: parseFloat(pos.coords.latitude),
       lng: parseFloat(pos.coords.longitude)
     };
-    //        console.log(current);
+    //        //console.log(current);
     showPosition(pos);
     first_get_pos = false;
   }
@@ -417,11 +417,11 @@ function success(pos) {
   dist = dist * 180 / Math.PI
   dist = dist * 60 * 1.609344;
   var m = dist * 1000;
-  //        console.log(m);
+  //        //console.log(m);
   //		if( JSON.stringify(current) != JSON.stringify(start) ){
   if (m > 50) {
     showPosition(pos)
-    console.log(m);
+    //console.log(m);
     current = crd;
   } else {
     //			return false;
@@ -446,22 +446,22 @@ function showPosition(position) {
   } else {
     lng = "th";
   }
-  //    console.log('Php Browser lng : ' + lng);
+  //    //console.log('Php Browser lng : ' + lng);
   var url = 'https://maps.google.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false&language=' + lng + '&key=AIzaSyCx4SLk_yKsh0FUjd6BgmEo-9B0m6z_xxM';
-  //    console.log(url);
-  //    console.log(position.coords);
+  //    //console.log(url);
+  //    //console.log(position.coords);
   $('#lat').val(position.coords.latitude);
   $('#lng').val(position.coords.longitude);
-  //    console.log($('#lat').val() + " ...");
-  //console.log(position.coords.latitude+" : "+position.coords.longitude);
+  //    //console.log($('#lat').val() + " ...");
+  ////console.log(position.coords.latitude+" : "+position.coords.longitude);
   $.post(url, function (data) {
-    //   console.log(data);
+    //   //console.log(data);
     if (data.status == "OVER_QUERY_LIMIT") {
-      console.log('OVER_QUERY_LIMIT');
+      //console.log('OVER_QUERY_LIMIT');
     } else {
-      //            console.log(data.results);
-      /*console.log(data.results.length-2);
-       console.log(data.results[data.results.length-2].address_components[0].long_name);*/
+      //            //console.log(data.results);
+      /*//console.log(data.results.length-2);
+       //console.log(data.results[data.results.length-2].address_components[0].long_name);*/
       var province = data.results[data.results.length - 2].address_components[0].long_name;
 //      $('#province_text_input').text(province);
 
@@ -475,22 +475,22 @@ function showPosition(position) {
 }
 
 function updatePlaceNum(province) {
-  //    console.log("++++"+province)
+  //    //console.log("++++"+province)
   //    var url = "mod/shop/select_province_new.php?op=get_id_province_only";
   var url = "main/get_id_province";
   $.post(url, {
     txt_pv: province
   }, function (obj) {
     //        var obj = JSON.parse(data);
-    console.log(obj);
+    //console.log(obj);
     if (obj.length <= 0) {
       return;
     }
-    console.log('----------------------------------888-------------')
+    //console.log('----------------------------------888-------------')
     var province = obj[0].id;
     var area = obj[0].area;
     var provincename = obj[0].name_th;
-    console.log(provincename)
+    //console.log(provincename)
     $('#place_province').val(province);
     $('#place_area').val(area);
     $('#province_text_input').val(provincename);
@@ -498,7 +498,7 @@ function updatePlaceNum(province) {
     //        var url2 = "mod/shop/update_num_place.php?op=update_all&province=" + province + '&area=' + area;
     var url2 = "main/update_num_place" + "?province=" + province + '&area=' + area;
     $.post(url2, function (data2) {
-      //         console.log(data2);
+      //         //console.log(data2);
     });
   });
 }
@@ -544,7 +544,7 @@ function openOrderFromAndroid(id, status, open_ic) {
       //            	alert(id);
       if (value.id == id) {
 
-        console.log(value.id + " : " + index);
+        //console.log(value.id + " : " + index);
         $('#check_open_num_detail').val(index)
         /*var url = "empty_style.php?name=booking/shop_history&file=work_shop_detail_js&user_id=" + detect_user;
          $.post(url, value, function(data) {
@@ -552,7 +552,7 @@ function openOrderFromAndroid(id, status, open_ic) {
          $('#main_load_mod_popup_clean').show();
          if (open_ic == '1') {
          openViewPrice();
-         console.log('Open Income')
+         //console.log('Open Income')
          }
          });*/
         openDetailShop(index, 'android');
@@ -571,7 +571,7 @@ function openOrderFromAndroidHistory(id, status, open_ic) {
     dataType: 'json',
     type: 'post',
     success: function (res) {
-      console.log(res);
+      //console.log(res);
       openDetailBookinghistory('', '', res.invoice);
       modal.hide();
     }
@@ -586,13 +586,13 @@ function getTansferJobNumber(driver, date) {
     driver: driver,
     date: date
   };
-  //    console.log("+99-");
-  //    console.log(pram);
+  //    //console.log("+99-");
+  //    //console.log(pram);
   $.post("api/get_my_transfer_job", pram, function (res) {
-    //    	console.log(res)
+    //    	//console.log(res)
     var res = JSON.parse(res);
     var num = res.data.result;
-    //        console.log(num + " +++")
+    //        //console.log(num + " +++")
     if (num > 0) {
       $('#number_tbooking_history').show();
       //			alert(32);
@@ -605,7 +605,7 @@ function getTansferJobNumber(driver, date) {
 }
 
 function sendSocket(id) {
-  console.log('Click ' + id);
+  //console.log('Click ' + id);
   //   var message = "";
   var dataorder = {
     order: parseInt(id),
@@ -615,7 +615,7 @@ function sendSocket(id) {
 
 function hideRes(id) {
   var txt = $('#' + id).val();
-  console.log(txt);
+  //console.log(txt);
   if (txt.length < 1) {
     $('#' + id + '_x').hide();
   } else {
@@ -640,7 +640,7 @@ function selesecompany() {
 
   var url = "shop/place_company";
   $.post(url, function (res) {
-    // console.log(res)
+    // //console.log(res)
     $('#shop_add').html(res);
     modal.hide();
   });
@@ -652,7 +652,7 @@ function checkPricePlan(id) {
     dataType: 'json',
     type: 'post',
     success: function (value) {
-      console.log(value);
+      //console.log(value);
       if (value == null) {
         ons.notification.alert({message: 'สถานที่นี้ยังไม่มีค่าตอบแทน โปรดเลือกสถานที่อื่น', title: "ขออภัย", buttonLabel: "ปิด"});
         modal.hide();
@@ -724,14 +724,14 @@ function sendShops(company) {
         driver: $.cookie("detect_user"),
         type: 'his'
       };
-      // console.log(pass);
+      // //console.log(pass);
       var urlcounthis = "shop/count_his"
       $.ajax({
         url: urlcounthis,
         data: pass,
         type: 'post',
         success: function (res) {
-          // console.log(res);
+          // //console.log(res);
           if (res != 0) {
             $('#num_his').show();
             $('#num_his').html(res);
@@ -749,7 +749,7 @@ function beforeSendShop() {
   var urlcount = "shop/car_count";
   if (class_user == "taxi") {
     $.post(urlcount, function (res) {
-      console.log(res)
+      //console.log(res)
       if (res == 0) {
         ons.notification.alert({
           message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
@@ -787,7 +787,7 @@ function sendShop2() {
 
   var urlo = 'shop/place_companycount';
   $.post(urlo, function (res) {
-    console.log(res)
+    //console.log(res)
     if (res.count == 1) {
       // modal.hide();
       // fn.pushPage({
@@ -805,7 +805,7 @@ function sendShop2() {
       // alert(url)
       $.post(url, function (res) {
         setTimeout(function () {
-          // console.log(res)
+          // //console.log(res)
           $('#shop_add').html(res);
           get_shop_all_company('ALL')
         }, 1000);
@@ -837,7 +837,7 @@ function sendShop2() {
       //         data: pass,
       //         type: 'post',
       //         success: function (res) {
-      //           console.log("car station number : " + res)
+      //           //console.log("car station number : " + res)
       //           if (res == 0) {
       //             stationCar();
       //           } else {
@@ -856,14 +856,14 @@ function sendShop2() {
       //       driver: $.cookie("detect_user"),
       //       type: 'his'
       //     };
-      //     console.log(pass);
+      //     //console.log(pass);
       //     var urlcounthis = "shop/count_his"
       //     $.ajax({
       //       url: urlcounthis,
       //       data: pass,
       //       type: 'post',
       //       success: function (res) {
-      //         // console.log(res);
+      //         // //console.log(res);
       //         if (res != 0) {
       //           $('#num_his').show();
       //           $('#num_his').html(res);
@@ -892,7 +892,7 @@ function sendShop2() {
       })
       var url = "shop/place_company?pv_text=" + $('#province_text_input').val();
       $.post(url, function (res) {
-        // console.log(res)
+        // //console.log(res)
         setTimeout(function () {
 
           $('#shop_filter').html(res);
@@ -918,13 +918,13 @@ function sendShop2() {
 function countWaitTransShop() {
   setTimeout(function () {
     var url = "shop/count_wait_trans_shop_" + class_user + "?driver_id=" + detect_user;
-    console.log(url);
+    //console.log(url);
     $.ajax({
       url: url,
       dataType: 'json',
       type: 'post',
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         if (res > 0) {
           $('#tab_shop_wait').attr('badge', res);
         } else {
@@ -937,7 +937,7 @@ function countWaitTransShop() {
 }
 
 function callpop() {
-  console.log(appNavigator)
+  //console.log(appNavigator)
   appNavigator.popPage()
 }
 
@@ -960,7 +960,7 @@ function profileInfo(animate) {
 
 function sendTransfer() {
 
-  console.log(detect_user)
+  //console.log(detect_user)
   if (detect_user == 153 || detect_user == 164 || detect_user == 129 || detect_user == 492 || 472) {
 
     fn.pushPage({
@@ -1052,7 +1052,7 @@ function myCar() {
     $.post("car/check_num_car", {
       driver_id: $.cookie("detect_user")
     }, function (res) {
-      console.log(res);
+      //console.log(res);
       var url = "page/call_page";
       $.post(url, {
         path: "car/car_view"
@@ -1106,7 +1106,7 @@ function contrac_us() {
   // }, 'lift-ios');
   // var url = "page/contrac_us";
   // $.post(url, function (html) {
-  //   console.log(html)
+  //   //console.log(html)
   //   $('#body_contract').html(html);
   // });
 }
@@ -1133,7 +1133,7 @@ function income() {
 }
 
 function language(lng) {
-  console.log(lng);
+  //console.log(lng);
   setCookie("lng", lng, 1);
   window.location.reload();
 }
@@ -1190,7 +1190,7 @@ function modalShowImg(path, cap) {
   modal_photo.show({
     animation: "fade"
   });
-  console.log(path);
+  //console.log(path);
   $('#photo_to_show_inmodal').attr('src', path);
   $('#text_name_approved').text(cap);
   /* var url_load = "page/view_photo?time=" + time + "&path=" + path + "&caption=" + caption;
@@ -1213,7 +1213,7 @@ function readURLprofileHome(input, type) {
       var id = $.cookie("detect_username");
 //      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
       var url_upload = "upload/index?id=" + id + "&type=" + type;
-      console.log(url_upload);
+      //console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
@@ -1223,7 +1223,7 @@ function readURLprofileHome(input, type) {
         data: data,
         type: 'post',
         success: function (php_script_response) {
-          console.log(php_script_response);
+          //console.log(php_script_response);
           if (php_script_response.result == false) {
             ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
                     .then(function () {
@@ -1238,7 +1238,7 @@ function readURLprofileHome(input, type) {
                   .then(function () {});
         },
         error: function (e) {
-          console.log(e)
+          //console.log(e)
           ons.notification.alert({message: 'ไม่สามารถอัพโหลดรูปภาพนี้ได้', title: "ไม่สำเร็จ", buttonLabel: "ปิด"})
                   .then(function () {
                   });
@@ -1252,14 +1252,14 @@ function readURLprofileHome(input, type) {
 }
 
 function focusEle(ele) {
-  console.log(ele);
+  //console.log(ele);
   $(ele).focus();
 }
 
 function clearCookieAll() {
   var cookies = $.cookie();
   for (var cookie in cookies) {
-    console.log(cookie);
+    //console.log(cookie);
     if (cookie != "app_remember_user" && cookie != "app_remember_pass") {
       $.removeCookie(cookie, {
         path: '/'
@@ -1283,14 +1283,14 @@ function apiRecordActivityAndNotification(param_aan, param_aan2) {
     activity: param_aan,
     notification: param_aan2
   };
-  console.log(param_all);
+  //console.log(param_all);
   $.ajax({
     url: "main/recordActivityAndNoti", // point to server-side PHP script 
     dataType: 'json', // what to expect back from the PHP script, if anything
     type: 'post',
     data: param_all,
     success: function (res) {
-      console.log(res);
+      //console.log(res);
       setTimeout(function () {
         setCountNotification();
       }, 1500);
@@ -1317,13 +1317,13 @@ function deleteTagOs(txt) {
 }
 
 function _region(itm) {
-  console.log('-----')
-  console.log(itm)
+  //console.log('-----')
+  //console.log(itm)
   var htmlOption = '';
   var url = "main/select_type?id_sub=" + itm + '&table=province';
-  console.log(url)
+  //console.log(url)
   $.post(url, function (res) {
-    console.log(res)
+    //console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     $.each(res, function (i, item) {
       htmlOption += "<option value='" + item.id + "'>" + item.name_th + "</option>";
@@ -1358,11 +1358,11 @@ function _province(itm) {
   }
 
 
-  console.log(itm)
+  //console.log(itm)
   var url = "main/select_type?id_sub=" + itm + '&table=amphur';
   var htmlOption = '';
   $.post(url, function (res) {
-    console.log(res)
+    //console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     var select;
     $.each(res, function (i, item) {
@@ -1390,7 +1390,7 @@ function _body_car_station(body) {
   $.post("car/car_station?area=" + area + "&pv=" + pv, {
     id_user: $.cookie("detect_user")
   }, function (res) {
-    //console.log(res);
+    ////console.log(res);
     $('#' + body).html(res);
     if ($('#province').val() != "") {
       //_province(pv);
@@ -1404,7 +1404,7 @@ function _form_car_station(body) {
   $.post("car/car_form_station?area=" + area + "&pv=" + pv, {
     id_user: $.cookie("detect_user")
   }, function (res) {
-    //console.log(res);
+    ////console.log(res);
     $('#' + body).html(res);
     if ($('#province').val() != "") {
       //_province(pv);
@@ -1418,7 +1418,7 @@ function submitadd_station() {
   var form = document.getElementById("form_addstation");
   if (check_get_have != 0) {
     if (id_type_station != 4) {
-      console.log(form.elements["station_other"].value)
+      //console.log(form.elements["station_other"].value)
       var station_other = form.elements["station_other"].value;
     }
 
@@ -1431,10 +1431,10 @@ function submitadd_station() {
   var amphur = $('#amphur').val()
   var station = $('#station').val()
 
-  console.log($('#region').val())
-  console.log($('#province').val())
-  console.log($('#amphur').val())
-  console.log($('#station').val())
+  //console.log($('#region').val())
+  //console.log($('#province').val())
+  //console.log($('#amphur').val())
+  //console.log($('#station').val())
 
   //var pass = { 'region':region, 'province':province,'amphur':amphur,'station':station };
   if (region == '') {
@@ -1491,7 +1491,7 @@ function submitadd_station() {
     type: 'post',
     dataType: 'json',
     success: function (res) {
-      console.log(res);
+      //console.log(res);
       if (res.status == true) {
 
 
@@ -1580,9 +1580,9 @@ function stationCar() {
 /************************* new station **************************/
 /***************************** *** ******************************/
 function func_shop_station_field(station_type, option) {
-  console.log('aaaaa')
+  //console.log('aaaaa')
   $.post("car/shop_station_field?i_station_type=" + station_type + '&opt=' + option, function (res) {
-    //console.log(res);
+    ////console.log(res);
     $('#shop_station_field').html(res);
 
   });
@@ -1697,7 +1697,7 @@ function selectTypeCarPlace_edit(type) {
 
     },
     error: function (err) {
-      console.log(err);
+      //console.log(err);
     }
   });
 }
@@ -1742,10 +1742,10 @@ function selectTypeCarPlace(id) {
     return false;
   }
 
-  console.log(region)
-  console.log(province)
-  console.log(amphur)
-  console.log(member)
+//  console.log(region)
+  //console.log(province)
+  //console.log(amphur)
+  //console.log(member)
   type_name = $('#type_topic_' + id).val();
   $('#header_topic_type').text(type_name);
   $('.tb_form').hide();
@@ -1764,7 +1764,7 @@ function selectTypeCarPlace(id) {
     data: data,
     type: 'post',
     success: function (num) {
-      console.log(num);
+      //console.log(num);
       if (num == 0) {
         if (id == 4) {
           check_get_have = 1;
@@ -1781,7 +1781,7 @@ function selectTypeCarPlace(id) {
 
 
       } else {
-        console.log('in case')
+        //console.log('in case')
         if (id == 4) {
           check_get_have = 0;
 
@@ -1800,13 +1800,13 @@ function selectTypeCarPlace(id) {
           data: data,
           type: 'post',
           success: function (res) {
-            // console.log(res);
+            // //console.log(res);
             $('#box_station_others').html(res);
             // $('#header_topic_other').html(type_name)
 
           },
           error: function (err) {
-            console.log(err);
+            //console.log(err);
             //your code here
           }
         });
@@ -1815,7 +1815,7 @@ function selectTypeCarPlace(id) {
 
     },
     error: function (err) {
-      console.log(err);
+      //console.log(err);
       //your code here
     }
   });
@@ -1837,7 +1837,7 @@ function add_btb__station_new() {
   $.post("car/form_addstation_div", {
     id_user: $.cookie("detect_user")
   }, function (res) {
-    //console.log(res);
+    ////console.log(res);
     $('#body_popup2').html(res);
 
   });
@@ -1851,9 +1851,9 @@ function view_station_his() {
     'id': 'popup2.html',
     'title': 'ข้อมูลประวัติสังกัดรถ'
   }, 'lift-ios');
-  console.log('aaaaa')
+  //console.log('aaaaa')
   $.post("car/station_his", function (res) {
-    //console.log(res);
+    ////console.log(res);
     $('#body_popup2').html(res);
     modal.hide();
 
@@ -1868,7 +1868,7 @@ function move_station(station) {
     type: 'post',
     dataType: 'json',
     success: function (res) {
-      console.log(res);
+      //console.log(res);
       if (res.status == true) {
 
 
@@ -1920,7 +1920,7 @@ function taxiList() {
     modal.hide();
     $('#body_popup1').html(ele);
     eachTaxiList();
-    //        console.log(array_rooms);
+    //        //console.log(array_rooms);
   });
 }
 
@@ -1929,7 +1929,7 @@ function fun_imageslider(id) {
 //    url: "shop/count_place_document_file?id=" + id,
 //    type: "json",
 //    success: function (ccc) {
-//      console.log(ccc);
+//      //console.log(ccc);
 //      if (ccc <= 0) {
 //        ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
 //        return;
@@ -1946,13 +1946,13 @@ function fun_imageslider(id) {
 //          $('#boby_imageslider').html(ele);
 //
 //
-//          //        console.log(array_rooms);
+//          //        //console.log(array_rooms);
 //        });
 //      }
 //    }
 //  });
   $.post("shop/count_place_document_file?id=" + id, function (num) {
-    console.log(num);
+    //console.log(num);
     if (num <= 0) {
       ons.notification.alert({message: 'ไม่มีข้อมูลของสถานที่', title: "ขออภัย", buttonLabel: "ปิด"});
       return;
@@ -1969,7 +1969,7 @@ function fun_imageslider(id) {
         $('#boby_imageslider').html(ele);
 
 
-        //        console.log(array_rooms);
+        //        //console.log(array_rooms);
       });
     }
   });
@@ -1995,7 +1995,7 @@ ons.ready(function () {
 
     $('#arrow_' + event.activeIndex).addClass('arrow_s');
 
-    // console.log('Changed to ' + event.activeIndex)
+    // //console.log('Changed to ' + event.activeIndex)
   });
 });
 
@@ -2010,7 +2010,7 @@ function detectUserInfomation() {
     dataType: 'json',
     type: 'post',
     success: function (data) {
-      console.log(data);
+      //console.log(data);
       if (data.i_information == 0) {
         welcom_modal.show({animation: 'fade'});
       }
@@ -2024,19 +2024,19 @@ function updateUserInfomation() {
     dataType: 'json',
     type: 'post',
     success: function (data) {
-      console.log(data);
+      //console.log(data);
     }
   });
 }
 
 function _region_s(itm) {
-  console.log('-----')
-  console.log(itm)
+  //console.log('-----')
+  //console.log(itm)
   var htmlOption = '';
   var url = "main/select_type?id_sub=" + itm + '&table=province';
-  console.log(url)
+  //console.log(url)
   $.post(url, function (res) {
-    console.log(res)
+    //console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     $.each(res, function (i, item) {
       if ($("#province_s").val() == item.id) {
@@ -2064,11 +2064,11 @@ function _province_s(itm) {
   }
 
 
-  console.log(itm)
+  //console.log(itm)
   var url = "main/select_type?id_sub=" + itm + '&table=amphur';
   var htmlOption = '';
   $.post(url, function (res) {
-    console.log(res)
+    //console.log(res)
     htmlOption = "<option value=''>กรุณาเลือก</option>";
     var select;
     $.each(res, function (i, item) {
@@ -2094,7 +2094,7 @@ function _province_s(itm) {
 }
 
 function photo_to_viewer(item) {
-  console.log(item)
+  //console.log(item)
 //  var imgSrc = item.src,
   var imgSrc = item.getAttribute('data-high-res-src'),
           highResolutionImage = $(this).data('high-res-img');

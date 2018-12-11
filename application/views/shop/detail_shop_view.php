@@ -156,6 +156,7 @@ $stamp = $time->format('H:i');
 
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
+<input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
   <?php
 //  echo $arr[book][plan_id];

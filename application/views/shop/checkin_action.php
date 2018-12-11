@@ -178,7 +178,7 @@
 
 </ons-card>
 <div style="margin: 20px 10px">
-   <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>','<?=$_GET[type];?>');" style="background-color: #fff;">ยืนยัน<?=$type;?></ons-button>
+   <ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>','<?=$_GET[type];?>','<?=$book->program;?>');" style="background-color: #fff;">ยืนยัน<?=$type;?></ons-button>
 </div>
 <script type="text/javascript">
    setTimeout(function(){ $('#num_cus').focus(); 
