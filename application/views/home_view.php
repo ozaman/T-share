@@ -1880,7 +1880,7 @@
    };
    window.fn = {};
    window.fn.toggleMenu = function() {
-     console.log('************************')
+//     console.log('************************')
      document.getElementById('appSplitter').left.toggle();
    };
    window.fn.loadView = function(index) {
@@ -1893,7 +1893,7 @@
    var chkpage = false;
    window.fn.popPage = function() {
    var content = document.getElementById('appNavigator');
-   console.log(content)
+//   console.log(content)
    // content.popPage();
    };
    
@@ -1916,7 +1916,7 @@
                          }
                      });
                      var param = { data2 : d2, data1 : d1};
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_brand",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -1930,7 +1930,7 @@
                  type: 'post',
                  success: function(res) {    
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_type",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -1944,7 +1944,7 @@
                  type: 'post',
                  success: function(res) {    
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_color?plate=0",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -1958,7 +1958,7 @@
                  type: 'post',
                  success: function(res) {    
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_plate",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -1971,9 +1971,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-                     console.log(res);
+//                     console.log(res);
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_user_province?type=car",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -1986,9 +1986,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-                     console.log(res);
+//                     console.log(res);
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_user_province?type=user",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -2001,9 +2001,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-                     console.log(res);
+//                     console.log(res);
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_bank_list",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -2016,9 +2016,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-                     console.log(res);
+//                     console.log(res);
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_ins",param,function(el){
                          $('#body_option').html(el);
                      });
@@ -2032,9 +2032,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-                     console.log(res);
+//                     console.log(res);
                      var param = { data : res };
-                     console.log(param);
+//                     console.log(param);
                      $.post("component/cpn_car_gen",param,function(el){
                          $('#body_option').html(el);
                          $('#car_brand_in_gen').text($('#txt_car_brand').text());
@@ -2053,11 +2053,11 @@
            })
              return false;
          }
-             console.log('-----------------------------------')
-             console.log($('#place_province').val())
+//             console.log('-----------------------------------')
+//             console.log($('#place_province').val())
    
          var param = { data : 'res' };
-         console.log(param);
+//         console.log(param);
          $.post("shop/shopcategory?pv="+$('#place_province').val(),param,function(el){
              $('#body_category').html(el);
                          // $('#car_brand_in_gen').text($('#text_shopcategory').text());
@@ -2074,8 +2074,8 @@
              return false;
          }
          var param = { data : 'res' };
-         console.log(param);
-         console.log(id_category)
+//         console.log(param);
+//         console.log(id_category)
          $.post("shop/shoptype?pv="+$('#place_province').val()+"&main="+id_category,function(el){
              $('#body_category').html(el);
                          // $('#car_brand_in_gen').text($('#txt_shoptype').text());
@@ -2084,8 +2084,8 @@
      else if(page.open=="province"){
          
          var param = { data : 'res' };
-         console.log(param);
-         console.log(id_category)
+//         console.log(param);
+//         console.log(id_category)
          $.post("shop/shopprovince",function(el){
              $('#body_category').html(el);
                          // $('#car_brand_in_gen').text($('#txt_shoptype').text());
@@ -2094,7 +2094,7 @@
    }
    else if (page.id == 'book_trans.html') {
    
-     console.log('aaaa')
+//     console.log('aaaa')
    //   fn.pushPage({
    //   'id': 'book_trans.html',
    //   'title': 'จองรถ',
@@ -2121,7 +2121,7 @@
    
    function arrowChange(id){
      var check = $('#'+id+' i').hasClass('fa-chevron-down');
-     console.log(id+' : '+check);
+//     console.log(id+' : '+check);
      if(check==true){
          $('#'+id+' i').removeClass('fa-chevron-down');
          $('#'+id+' i').addClass('fa-chevron-up');
@@ -2524,7 +2524,7 @@
    
       }
    
-      console.log($('#open_shop_manage').val());
+//      console.log($('#open_shop_manage').val());
    
       if ($('#open_shop_manage').val() == 1) {
           console.log("*************************************");
