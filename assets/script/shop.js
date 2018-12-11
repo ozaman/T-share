@@ -1484,7 +1484,8 @@ function openLine(shop_id) {
   });
 }
 
-function openShopMap(lat, lng, place_area, place_province) {
+function openShopMap(lat, lng, place_area, place_province, name) {
+  $('#place_name').val(name);
   $('#place_lat').val(lat);
   $('#place_lng').val(lng);
   $('#place_area').val(place_area);
@@ -1519,12 +1520,16 @@ function openMapNav() {
   var lng = $('#lng').val();
   var place_area = $('#place_area').val();
   var place_province = $('#place_province').val();
-  var place_lat = $('#place_lat').val();
-  var place_lng = $('#place_lng').val();
-  var zoom = "17z";
+  var place_lat = $('#lat_product_place').val();
+  var place_lng = $('#lng_product_place').val();
+  console.log(place_lat + "," + place_lng);
 
-  var url_map_nav = "https://www.google.co.th/maps/dir/" + lat + "," + lng + "/" + place_area + "+" + place_province + "/@" + place_lat + "," + place_lng + "," + zoom;
+  var zoom = "17z";
+  var name = $('#place_name').val();
+//  var url_map_nav = "https://www.google.co.th/maps/dir/" + lat + "," + lng + "/" + res + "+" + place_province + "/@" + place_lat + "," + place_lng + "," + zoom;
+  var url_map_nav = "https://www.google.co.th/maps/dir/" + lat + "," + lng + "/" + name;
   console.log(url_map_nav);
+//  return;
   window.open(url_map_nav);
 }
 

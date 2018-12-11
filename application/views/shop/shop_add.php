@@ -256,7 +256,7 @@ else {
                 </div>
               </td>
               <td width="33%" align="left"  style="padding: 0px;"  >
-                <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$data_place->lat;?>', '<?=$data_place->lng;?>', '<?=$data_place->address;?>', '<?=$data_pv->name;?>')">
+                <div class="btn" style=" width:100%; text-align:left;  /*padding:2px;*/height:40px;border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="openShopMap('<?=$data_place->lat;?>', '<?=$data_place->lng;?>', '<?=$data_place->address;?>', '<?=$data_pv->name;?>', '<?=$data_place->topic_th;?>')">
                   <table width="100%" border="0" cellspacing="1" cellpadding="1">
                     <tbody>
                       <tr>
