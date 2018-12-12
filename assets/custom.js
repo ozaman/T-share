@@ -1290,11 +1290,13 @@ function apiRecordActivityAndNotification(param_aan, param_aan2) {
     type: 'post',
     data: param_all,
     success: function (res) {
-      //console.log(res);
-      setTimeout(function () {
+      console.log(res);
+//      setTimeout(function () {
         setCountNotification();
-      }, 1500);
+//      }, 1500);
       //							return res;
+    },error: function(err){
+      console.log(err);
     }
   });
 

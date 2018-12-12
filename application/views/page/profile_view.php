@@ -75,7 +75,7 @@ else {
           <ons-input id="username-input" float="" maxlength="30" placeholder="<?=$username;?>" name="username" style="width:100%;" disabled value="<?=$driver->username;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$username;?>" name="username" >
             <span class="text-input__label">
-<?=$username;?></span>
+              <?=$username;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -88,7 +88,7 @@ else {
           <ons-input id="password-input" float="" maxlength="30" placeholder="<?=$password;?>" name="password" style="width:100%;" value="<?=$driver->password;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$password;?>" name="password" >
             <span class="text-input__label">
-<?=$password;?></span>
+              <?=$password;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -101,7 +101,7 @@ else {
           <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$name_th;?>" name="name_th" style="width:100%;" value="<?=$driver->name;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_th;?>" name="name_th">
             <span class="text-input__label">
-<?=$name;?></span>
+              <?=$name;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -114,7 +114,7 @@ else {
           <ons-input id="name_en-input" float="" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en" style="width:100%;" value="<?=$driver->name_en;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en">
             <span class="text-input__label">
-<?=$name_en;?></span>
+              <?=$name_en;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -127,7 +127,7 @@ else {
           <ons-input id="nickname-input" float="" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname" style="width:100%;" value="<?=$driver->nickname;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname">
             <span class="text-input__label">
-<?=$nickname;?></span>
+              <?=$nickname;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -171,7 +171,7 @@ else {
           <ons-input id="address-input" float=""  placeholder="<?=$address;?>" name="address" style="width:100%;" value="<?=$driver->address;?>">
             <input type="text" class="text-input" placeholder="<?=$address;?>" name="address" id="address">
             <span class="text-input__label">
-<?=$address;?></span>
+              <?=$address;?></span>
           </ons-input>
         </label>
       </ons-list-item>
@@ -200,11 +200,13 @@ else {
           <ons-input id="phone-input" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;" value="<?=$driver->phone;?>">
             <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone" onkeyup="validPhoneNum($(this).val());" >
             <span class="text-input__label">
-<?=$phone;?></span>
+              <?=$phone;?></span>
+            <input type="hidden" value="0" id="valid_type_phone">
+            <input type="hidden" value="<?=$driver->phone;?>" id="old_phone_number">
           </ons-input>
           <input type="hidden" value="0" id="valid_type_phone" />
           <i id="corrent-phone" class="fa fa-check-circle pass checking-phone" aria-hidden="true" style="display: none;"></i>
-          <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"></i>
+          <i id="incorrent-phone" class="fa fa-times-circle no-pass checking-phone" aria-hidden="true" style="display: none;"><span style="margin-left: 5px;">เบอร์ซ้ำ</span></i>
         </label>
       </ons-list-item>
 
@@ -216,7 +218,7 @@ else {
           <ons-input id="phone-input" float="" placeholder="<?=$phone2;?>" name="phone2" style="width:100%;" value="<?=$driver->phone2;?>">
             <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone2;?>" name="phone2" id="phone2" >
             <span class="text-input__label">
-<?=$phone2;?></span>
+              <?=$phone2;?></span>
           </ons-input>
 
         </label>
@@ -230,7 +232,7 @@ else {
           <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;"  maxlength="10" value="<?=$driver->phone_emergency;?>" >
             <input type="number" pattern="\d*" class="text-input" placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em"  maxlength="10">
             <span class="text-input__label">
-<?=$phone_em;?></span>
+              <?=$phone_em;?></span>
           </ons-input>
         </div>
 
@@ -250,8 +252,8 @@ else {
               }
               ?>
               <option value="<?=$val->id;?>" <?=$select_em;?> ><?=$val->name_th;?></option>  	
-<?php }
-?>
+            <?php }
+            ?>
           </ons-select>
         </div>
       </ons-list-item>
@@ -264,10 +266,12 @@ else {
           <ons-input id="email-input" float="" placeholder="<?=$email;?>" name="email" style="width:100%;" value="<?=$driver->email;?>">
             <input type="email" class="text-input"  placeholder="<?=$email;?>" name="email" id="email" onkeyup="validEmail($(this).val());">
             <span class="text-input__label">
-<?=$email;?></span>
+              <?=$email;?></span>
           </ons-input>
           <i id="corrent-email" class="fa fa-check-circle pass checking-mail" aria-hidden="true" style="display: none;"></i>
-          <i id="incorrent-email" class="fa fa-times-circle no-pass checking-mail" aria-hidden="true" style="display: none;"></i>
+          <i id="incorrent-email" class="fa fa-times-circle no-pass checking-mail" aria-hidden="true" style="display: none;"><span style="margin-left: 5px;"></span></i>
+          <input type="hidden" value="0" id="valid_type_email">
+          <input type="hidden" value="<?=$driver->email;?>" id="old_email">
         </label>
       </ons-list-item>
 
@@ -283,9 +287,9 @@ else {
           </ons-input>
 
         </label>
-<?php if ($driver->line_id == "") {?>
+        <?php if ($driver->line_id == "") {?>
           <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_line;?>"target="_blank"><span class="font-14">โหลด Line</span></a>
-<?php }?>
+        <?php }?>
       </ons-list-item>
 
       <ons-list-item class="input-items list-item p-l-0">
@@ -299,9 +303,9 @@ else {
               Wechat</span>
           </ons-input>
         </label>
-<?php if ($driver->wechat_id == "") {?>
+        <?php if ($driver->wechat_id == "") {?>
           <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_wechat;?>"target="_blank"><span class="font-14">โหลด Wechat</span></a>
-<?php }?>
+        <?php }?>
       </ons-list-item>
 
       <ons-list-item class="input-items list-item p-l-0">
@@ -315,9 +319,9 @@ else {
               Zello id</span>
           </ons-input>
         </label>
-<?php if ($driver->zello_id == "") {?>
+        <?php if ($driver->zello_id == "") {?>
           <a class="button" style="position: absolute; right: 0; padding: 0px 7px;background-color: #4094f5;" href="<?=$href_zello;?>"target="_blank"><span class="font-14">โหลด Zello</span></a>
-<?php }?>
+        <?php }?>
       </ons-list-item>
     </ons-card>
 
@@ -347,7 +351,7 @@ else {
           <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;" value="<?=$driver->idcard;?>">
             <input type="number" pattern="\d*" class="text-input" placeholder="<?=$idcard;?>" onkeyup="checkIdCard(this.value);" name="idcard" id="idcard">
             <span class="text-input__label">
-<?=$idcard;?></span>
+              <?=$idcard;?></span>
           </ons-input>
           <input type="hidden" value="0" id="valid_type_idc" />
           <!---- 0=pass, 1=incorrect, 2=overlap ----->
@@ -365,7 +369,7 @@ else {
             <!--<ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="" placeholder="<?=$txt_ex_idcard;?>" >
                 <input type="text"  class="text-input"  name="ex_idcard" id="ex_idcard">
                 <span class="text-input__label">
-<?=$txt_ex_idcard;?></span>
+          <?=$txt_ex_idcard;?></span>
             </ons-input>-->
           <ons-input id="idcard-input" float=""  name="ex_idcard" style="width:100%;" value="<?=$driver->idcard_finish;?>" placeholder=""  >
             <input type="date"  class="text-input"  name="ex_idcard" id="ex_idcard">

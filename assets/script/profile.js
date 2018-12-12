@@ -198,6 +198,20 @@ function saveDataPf() {
             });
     return;
   }
+  if ($('#valid_type_phone').val() == 1) {
+
+    ons.notification.alert({message: 'เบอร์โทรนี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้', title: "ข้อมูลซ้ำ", buttonLabel: "ปิด"})
+            .then(function () {
+              $('input[name="plate_num"]').focus();
+            });
+  if ($('#valid_type_email').val() == 1) {
+
+    ons.notification.alert({message: 'Email นี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้', title: "ข้อมูลซ้ำ", buttonLabel: "ปิด"})
+            .then(function () {
+              $('input[name="plate_num"]').focus();
+            });
+    return false;
+  }
   $('#pf_edit-alert-dialog').hide();
   modal.show();
   var data_form = $('#edit_form').serialize();
@@ -248,10 +262,80 @@ function validEmail(email) {
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   console.log(regex.test(email));
   if (regex.test(email) == true) {
+    if (value == $('#old_email').val()) {
+      $('#incorrent-email').hide();
+      $('#corrent-email').hide();
+      console.log('old old_email phone');
+      $('#valid_type_email').val(0);
+      return;
+    }
     $('#incorrent-email').hide();
     $('#corrent-email').show();
+    $.ajax({
+      url: "main/check_email", // point to server-side PHP script 
+      dataType: 'json', // what to expect back from the PHP script, if anything
+      data: {txt: email, user: detect_user},
+      type: 'post',
+      success: function (res) {
+
+        // $.post("login/phone_overlap", , function (res) {
+        console.log(res);
+        if (res.check > 0) {
+          $('#incorrent-email').show();
+          $('#corrent-email').hide();
+          $('#incorrent-email span').text('email ซ้ำ');
+        } else {
+
+          $('#corrent-email').show();
+          $('#incorrent-email').hide();
+
+        }
+        $('#valid_type_email').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
+      }
+    });
   } else {
+//    $('#incorrent-email span').text('email ไม่ถูกต้อง');
     $('#incorrent-email').show();
     $('#corrent-email').hide();
+  }
+}
+
+function validPhoneNum(value) {
+  if (value == $('#old_phone_number').val()) {
+    $('#incorrent-phone').hide();
+    $('#corrent-phone').hide();
+    console.log('old number phone');
+    $('#valid_type_phone').val(0);
+    return;
+  }
+  console.log(value)
+  if (value.length >= 10) {
+    $.ajax({
+      url: "main/check_phone", // point to server-side PHP script 
+      dataType: 'json', // what to expect back from the PHP script, if anything
+      data: {txt: value, user: detect_user},
+      type: 'post',
+      success: function (res) {
+
+        // $.post("login/phone_overlap", , function (res) {
+        console.log(res);
+        if (res.check > 0) {
+          $('#incorrent-phone').show();
+          $('#corrent-phone').hide();
+          $('#incorrent-phone span').text('เบอร์ซ้ำ');
+        } else {
+
+          $('#corrent-phone').show();
+          $('#incorrent-phone').hide();
+
+        }
+        $('#valid_type_phone').val(res.check); // 0=ไม่ซ้ำ , 1=ซ้ำ
+      }
+    });
+
+  } else {
+    $('#corrent-phone').hide();
+    $('#incorrent-phone').hide();
+//			$('#incorrent-phone span').text('ไม่ถูกต้อง');
   }
 }

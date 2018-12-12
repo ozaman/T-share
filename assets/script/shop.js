@@ -414,7 +414,7 @@ function handleClick_s(tax, name) {
   var form = document.getElementById("form_booking");
 //    console.log('#' + tax)
   if (tax == 'nation') {
-    $('#' + tax+'_box').removeClass('borderBlink')
+    $('#' + tax + '_box').removeClass('borderBlink')
     var url = "shop/box_price_plan" + "?i_country=" + name + "&user_sc=1";
 
     $.post(url, function (res) {
@@ -1044,7 +1044,7 @@ function saveShop() {
           s_sub_topic: "เพิ่มรายการ",
           s_message: txt_long_nc,
           s_posted: username,
-          i_company : response.program
+          i_company: response.program
         };
         apiRecordActivityAndNotification(ac, nc);
 
@@ -2610,7 +2610,7 @@ function completedJobShop(id) {
 function confirmGetTransCom(order_id, invoice) {
 //  $('#get_trans_com_'+order_id).prop('disabled', false);
   $('#get_trans_com_' + order_id).attr('disabled', 'disabled');
-  var url_complete = "shop/get_trans_com?id=" + order_id+"&lat="+$('#lat').val()+"&lng="+$('#lng').val();
+  var url_complete = "shop/get_trans_com?id=" + order_id + "&lat=" + $('#lat').val() + "&lng=" + $('#lng').val();
   console.log(url_complete);
 //  return;
   $.ajax({
