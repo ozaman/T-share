@@ -2209,8 +2209,12 @@
       };
 //             console.log(check_run_shop+" |||| " +done.length);
       if (check_run_shop != done.length) {
+        if($('#check_open_shop_id').val()>0){
           shopManage();
+          console.log(check_run_shop+" |||| " +done.length);
           check_run_shop = done.length;
+        }
+          
       }
       if (done.length > 0) {
           $('#number_shop').show();

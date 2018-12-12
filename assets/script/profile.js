@@ -204,6 +204,7 @@ function saveDataPf() {
             .then(function () {
               $('input[name="plate_num"]').focus();
             });
+  }
   if ($('#valid_type_email').val() == 1) {
 
     ons.notification.alert({message: 'Email นี้ถูกใช้แล้ว ไม่สามารถใช้ซ้ำได้', title: "ข้อมูลซ้ำ", buttonLabel: "ปิด"})
