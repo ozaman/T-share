@@ -363,3 +363,8 @@ function switchSetting(type, ip){
         }
     });
 }
+
+function makeRead(){
+  $('#makeRead').show();
+  $('#makeUnRead').hide();
+}
