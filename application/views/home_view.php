@@ -694,13 +694,7 @@
             </ons-toolbar>
             <div id="body_car_manage">
             </div>
-            <template id="action-sheet.html">
-                <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
-                    <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
-                     <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
-                    <!--<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">Cancel</ons-action-sheet-button>-->
-                </ons-action-sheet>
-            </template>
+            
             <script>
                 ons.getScriptPage().onInit = function () {
                    this.querySelector('ons-toolbar div.center').textContent = this.data.title;
@@ -708,6 +702,13 @@
             </script>
         </ons-page>
     </template>
+  <template id="action-sheet.html">
+                <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
+                    <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
+                     <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
+                    <!--<ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">Cancel</ons-action-sheet-button>-->
+                </ons-action-sheet>
+            </template>
     <template id="shopping.html">
         <ons-page>
             <ons-toolbar id="default_toolbar">
