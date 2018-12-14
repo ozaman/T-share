@@ -2201,11 +2201,11 @@
           manage: done,
           history: none
       };
-//             console.log(check_run_shop+" |||| " +done.length);
+             console.log(array_data);
       if (check_run_shop != done.length) {
-        if($('#check_open_shop_id').val()>0){
+        if ($('#open_shop_manage').val() >0) {
           shopManage();
-          console.log(check_run_shop+" |||| " +done.length);
+//          console.log(check_run_shop+" |||| " +done.length);
           check_run_shop = done.length;
         }
           

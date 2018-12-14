@@ -2526,7 +2526,7 @@ function confirmGetIncome(id, invoice, driver) {
           dataType: 'json',
           success: function (res) {
             console.log(res);
-            sendSocket(id);
+//            sendSocket(id);
           }
         });
 
@@ -2591,6 +2591,7 @@ function completedJobShop(id) {
         })
                 .then(function () {
 //                  reloadIncomeShop(id);
+                  callpop();
                 });
       } else {
         ons.notification.alert({
@@ -2600,6 +2601,7 @@ function completedJobShop(id) {
         })
                 .then(function () {
 //                  reloadIncomeShop(id);
+                  callpop();
                 });
       }
     }
