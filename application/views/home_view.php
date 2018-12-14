@@ -548,15 +548,7 @@
             </div>
         </ons-page>
     </template>
-    <template id="action-sheet.html">
-        <ons-action-sheet id="sheet" cancelable>
-            <ons-action-sheet-button icon="md-square-o" onclick="changeStatusNotification(0);">ซ่อน</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-square-o" id="makeUnRead" onclick="makeUnReadNotification();">ทำเครื่องหมายยังไม่ได้อ่าน</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-square-o" style="display: none;" id="makeRead" onclick="">ทำเครื่องหมายอ่านแล้ว</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-square-o" onclick="deleteNotification();" modifier="destructive">ลบ</ons-action-sheet-button>
-            <ons-action-sheet-button icon="md-close" onclick="app.hideFromTemplate()">ยกเลิก</ons-action-sheet-button>
-        </ons-action-sheet>
-    </template>
+  
     <template id="imageslider.html">
         <ons-page id="imageslider">
             <ons-toolbar>

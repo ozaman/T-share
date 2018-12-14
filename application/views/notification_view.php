@@ -87,8 +87,10 @@
 					    	<?=$icons;?><span id="txt_date_diff_nt_<?=$row->id;?>" class="font-15"></span>
 					    </div>
 	    			</td>
-	    			<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">
-                        <i id="icon_read_<?=$row->id;?>" class="fa fa-exclamation font-24 ic-no-read" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>
+	    			<!--<td width="50" align="center" valign="middle" onclick="app.showFromTemplate();$('#id_notification_select').val(<?=$row->id;?>);">-->
+                    <td class="td_action_sheet" role="<?=$row->id;?>" width="50" align="center" valign="middle" onclick="openSheetActionNoti('<?=$row->i_active;?>',<?=$row->id;?>);" id="chage_active_<?=$row->id;?>">
+                        <!--<i id="icon_read_<?=$row->id;?>" class="fa fa-exclamation font-24 ic-no-read" aria-hidden="true" style="color: #f00;<?=$icon_read;?>"></i>-->
+                        <i class="material-icons ic-no-read" id="icon_read_<?=$row->id;?>" style="color: #f00;<?=$icon_read;?>">error</i>
                         <div class="btn-func-other font-26" ><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
 	    			</td>
 	    		</tr>
