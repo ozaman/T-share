@@ -25,7 +25,7 @@ function openSheetActionNoti(active, id) {
   })
           .then(function (index) {
             if (index == 0) {
-              changeStatusNotification(0);
+              changeStatusNotification(0,id);
             } else if (index == 1) {
               if (active == 1) {
                 makeUnReadNotification(id);
@@ -33,7 +33,7 @@ function openSheetActionNoti(active, id) {
                 makeReadNotification(id);
               }
             } else if (index == 2) {
-              deleteNotification();
+              deleteNotification(id);
             }
           });
 }
@@ -225,7 +225,7 @@ function makeUnReadNotification(id) {
         $('#icon_read_' + id).show();
 
         $('#chage_active_' + id).attr('onclick', 'openSheetActionNoti(0,' + id + ');');
-        app.hideFromTemplate();
+//        app.hideFromTemplate();
       }
     }
   });
@@ -249,16 +249,16 @@ function makeReadNotification(id) {
         $('#icon_read_' + id).hide();
 
         $('#chage_active_' + id).attr('onclick', 'openSheetActionNoti(1,' + id + ');');
-        app.hideFromTemplate();
+//        app.hideFromTemplate();
       }
     }
   });
 }
 
-function deleteNotification() {
-  app.hideFromTemplate();
+function deleteNotification(id) {
+//  app.hideFromTemplate();
   modal.show();
-  var id = $('#id_notification_select').val();
+//  var id = $('#id_notification_select').val();
   var data = {
     id: id
   };
@@ -280,8 +280,8 @@ function deleteNotification() {
   });
 }
 
-function changeStatusNotification(status) {
-  var id = $('#id_notification_select').val();
+function changeStatusNotification(status, id) {
+//  var id = $('#id_notification_select').val();
   var data = {
     i_status: status
   };
@@ -296,7 +296,7 @@ function changeStatusNotification(status) {
         //					loadNotificationPage();
         $('#card-ac_' + id).fadeOut(1000);
         setCountNotification();
-        app.hideFromTemplate();
+//        app.hideFromTemplate();
       }
     }
   });
