@@ -1,6 +1,6 @@
 var app = {};
 ons.ready(function () {
-  ons.createElement('action-sheet.html', {append: true})
+  ons.createElement('action-sheet-car.html', {append: true})
           .then(function (sheet) {
             app.showFromTemplate = sheet.show.bind(sheet);
             app.hideFromTemplate = sheet.hide.bind(sheet);

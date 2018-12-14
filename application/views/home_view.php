@@ -702,7 +702,7 @@
             </script>
         </ons-page>
     </template>
-  <template id="action-sheet.html">
+  <template id="action-sheet-car.html">
                 <ons-action-sheet id="sheet" cancelable title="เลือกรถที่จะใช้ประจำแทนคันนี้">
                     <!--<ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()">Label</ons-action-sheet-button>
                      <ons-action-sheet-button icon="md-square-o" onclick="app.hideFromTemplate()" modifier="destructive">Label</ons-action-sheet-button>-->
