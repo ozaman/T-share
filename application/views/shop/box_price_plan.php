@@ -61,6 +61,9 @@
                   $count = '';
 
                 }
+
+                
+
                 // echo $val2->s_topic_en;
                 if ($val2->s_topic_en == 'park') {
                   $price_park_unit = $val2->i_price;
@@ -134,13 +137,33 @@
                         else{
                           $curen = 'บ.';
                         }
+                        // echo $val2->id;
+                        if ($val2->i_plan_product_price_name == 5) {
+                  $_where = array();
+                      $_where['i_plan_product_price_name'] = $val2->i_plan_product_price_name; 
+                      $_where['i_list_price'] = $val2->id;
+                      $_where['i_car_type'] = $_GET[car_type]; 
+                      // $_where['i_country_icon'] = $_GET[i_country]; 
+                      $_where['i_shop'] = $_GET[i_shop]; 
+                      $_select = array('*');
+                      $PRICE_TAXI = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where);
+                      $res = array();
+                      $res[where] = $_where;
+                      $res[PRICE_TAXI] = $PRICE_TAXI;
+                      // print_r(json_encode($res));
+                  $price = $PRICE_TAXI->i_price_park;
+
+                }
+                else{
+                  $price = $val2->i_price;
+                }
                         ?>
                         <tr>
                           <td>
                             <table width="100%">
                               <tr>
                                 <td width="64"><span><?=$val2->s_topic_th;?></span></td>
-                                <td align="left"><span><?=$val2->i_price;?>&nbsp;&nbsp;<?=$curen;?></span></td>
+                                <td align="left"><span><?=$price;?>&nbsp;&nbsp;<?=$curen;?></span></td>
                                 <td width="64"><span><?=$val2->s_payment;?></span></td>
                               </tr>
                             </table>

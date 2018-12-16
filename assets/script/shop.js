@@ -417,7 +417,7 @@ function handleClick_s(tax, name) {
     $('#' + tax + '_box').removeClass('borderBlink')
     var url = "shop/box_price_plan" + "?i_country=" + name + "&user_sc=1";
 
-    $.post(url, function (res) {
+    $.post(url+'&car_type='+$('#car_type').val()+'&i_shop='+$('#program').val(), function (res) {
       $('#box_price_plan').html(res);
       // console.log(data);
       $('#radio-nation' + name).prop('checked', true);

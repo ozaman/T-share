@@ -120,6 +120,8 @@ define('TBL_HISTORY_PAY_DRIVER_DEPOSIT','history_pay_driver_deposit');
 /*================================ ap order ========================*/
 define('TBL_AP_ORDER','ap_order');
 define('TBL_APP_SETTING','app_user_setting');
+define('TBL_SHOP_CAR_PRICE_TAXI', 'shop_car_price_taxi');
+
 
 
 
