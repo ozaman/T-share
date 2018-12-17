@@ -121,6 +121,10 @@ define('TBL_HISTORY_PAY_DRIVER_DEPOSIT','history_pay_driver_deposit');
 define('TBL_AP_ORDER','ap_order');
 define('TBL_APP_SETTING','app_user_setting');
 define('TBL_SHOP_CAR_PRICE_TAXI', 'shop_car_price_taxi');
+define('TBL_SHOPPING_PRODUCT_MAIN_TYPELIST', 'shopping_product_main_typelist');
+define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI', 'shopping_product_typelist_percent_taxi');
+
+
 
 
 

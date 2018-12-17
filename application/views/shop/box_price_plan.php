@@ -50,113 +50,117 @@
               foreach($data['list_price'] as $key3=>$val2){
                 if (count($data['list_price']) == 2) {
                   if ($key3 == 0) {
-                     $count = '+';
-                  }
-                  else{
-                    $count = '';
-                  }
-                 
-                }
-                else{
+                   $count = '+';
+                 }
+                 else{
                   $count = '';
-
                 }
 
-                
+              }
+              else{
+                $count = '';
+
+              }
+
+
 
                 // echo $val2->s_topic_en;
-                if ($val2->s_topic_en == 'park') {
-                  $price_park_unit = $val2->i_price;
-                  $price_person_unit = '';
-                  $commission_persent = '';
-                  ?>
+              if ($val2->s_topic_en == 'park') {
+                $price_park_unit = $val2->i_price;
+                $price_person_unit = '';
+                $commission_persent = '';
+                ?>
                 <input type="hidden" name="price_park_unit" value="<?=$price_park_unit;?>">
 
-<?php
+                <?php
                   # code...
-                }
-                if ($val2->s_topic_en == 'person') {
-                  $price_park_unit = '';
-                  $price_person_unit = $val2->i_price;
-                  $commission_persent = '';
-                  ?>
+              }
+              if ($val2->s_topic_en == 'person') {
+                $price_park_unit = '';
+                $price_person_unit = $val2->i_price;
+                $commission_persent = '';
+                ?>
                 <input type="hidden" name="price_person_unit" value="<?=$price_person_unit;?>">
                 <?php
                   # code...
-                }
-                if ($val2->s_topic_en == 'comision') {
-                  $price_park_unit = '';
-                  $price_person_unit = '';
-                  $commission_persent = $val2->i_price;
-                  ?>
-                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
-<?php
-                  # code...
-                }
+              }
+              if ($val2->s_topic_en == 'comision') {
+                $price_park_unit = '';
+                $price_person_unit = '';
+                $commission_persent = $val2->i_price;
                 ?>
-                <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
-                <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
-                <!-- <span style="display:show">หัว  200&nbsp;</span> -->
-              <?php }?>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td  class="font-17" > 
-                      <?php 
-                      $_where = array();
-                      $_where['i_shop_country'] = $_GET[i_country]; 
-                      $_select = array('*');
-                      $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
+                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
+                <?php
+                  # code...
+              }
+              ?>
+              <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
+              <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
+              <!-- <span style="display:show">หัว  200&nbsp;</span> -->
+            <?php }?>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td  class="font-17" > 
+                    <?php 
+                    $_where = array();
+                    $_where['i_shop_country'] = $_GET[i_country]; 
+                    $_select = array('*');
+                    $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
                       // print_r(TBL_SHOP_COUNTRY_ICON_TAXI);
-                       $_where = array();
-                      $_where['id'] = $arr[region_icon]->i_country; 
-                      $_select = array('name_th');
-                      $arr[country] = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
-                      ?>
+                    $_where = array();
+                    $_where['id'] = $arr[region_icon]->i_country; 
+                    $_select = array('name_th');
+                    $arr[country] = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+                    ?>
 
-                      <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
-                      <span >&nbsp;<?=$arr[country]->name_th;?>  </span>
-                      
-                    </td>
-                    <td></td>
-                  </tr>
-                  <tr>
+                    <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
+                    <span >&nbsp;<?=$arr[country]->name_th;?>  </span>
 
-                    
-                    <td>
-                      <table width="100%">
-                        <?php 
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+
+
+                  <td>
+                    <table width="100%">
+                      <?php 
                       foreach($data['list_price'] as $key=>$val2){
-                        if ($val2->s_payment == 'โอน') {
-                          $curen = '%';
+                        if ($val2->s_topic_en == 'comision') {
+                          $curen = '';
                         }
                         else{
                           $curen = 'บ.';
                         }
                         // echo $val2->id;
                         if ($val2->i_plan_product_price_name == 5) {
-                  $_where = array();
-                      $_where['i_plan_product_price_name'] = $val2->i_plan_product_price_name; 
-                      $_where['i_list_price'] = $val2->id;
-                      $_where['i_car_type'] = $_GET[car_type]; 
+                          $_where = array();
+                          $_where['i_plan_product_price_name'] = $val2->i_plan_product_price_name; 
+                          $_where['i_list_price'] = $val2->id;
+                          $_where['i_car_type'] = $_GET[car_type]; 
                       // $_where['i_country_icon'] = $_GET[i_country]; 
-                      $_where['i_shop'] = $_GET[i_shop]; 
-                      $_select = array('*');
-                      $PRICE_TAXI = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where);
-                      $res = array();
-                      $res[where] = $_where;
-                      $res[PRICE_TAXI] = $PRICE_TAXI;
+                          $_where['i_shop'] = $_GET[i_shop]; 
+                          $_select = array('*');
+                          $PRICE_TAXI = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where);
+                          $res = array();
+                          $res[where] = $_where;
+                          $res[PRICE_TAXI] = $PRICE_TAXI;
                       // print_r(json_encode($res));
-                  $price = $PRICE_TAXI->i_price_park;
+                          $price = $PRICE_TAXI->i_price_park;
 
-                }
-                else{
-                  $price = $val2->i_price;
-                }
+                        }
+                        else if ($val2->i_plan_product_price_name == 7) {
+                          $price = '';
+                          
+                        }
+                        else{
+                          $price = $val2->i_price;
+                        }
                         ?>
                         <tr>
                           <td>
@@ -167,108 +171,140 @@
                                 <td width="64"><span><?=$val2->s_payment;?></span></td>
                               </tr>
                             </table>
-                            
-                          </td>
-                        </tr>
-                        
-                        <!-- <span style="display:show">หัว  200&nbsp;</span> -->
-                      <?php }?>
-                      </table>
-                    </td>
-                    <td>
-                      
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </label>
-  </div>
+                            <div style="margin-left: 15px">
+                            <table width="100%">
+
+                              <?php
+                              if ($val2->i_plan_product_price_name == 7) {
+                              $_where = array();
+                              $_where[product] = $_GET[i_shop];
+                              $_where[i_list_price] = $val2->id;
+                              $_select = array('*');
+                              $_order = array();
+                              $_order['id'] = 'asc';
+                              $PERCENT_TAXI = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI,$_where,$_select,$_order);
+                              // print_r(json_encode($PERCENT_TAXI));
+
+                              foreach ($PERCENT_TAXI as $dataTL) {
+                                $s_sub_typelist = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,array('id' => $dataTL->i_main_typelist));
+
+                                ?>
+                                <tr>
+
+                                 <td width="150">
+
+                                  <label class="btn checkbox-inline btn-checkbox-success-inverse <?=$chk_box_active;?> "><?=$s_sub_typelist->topic_th;?>
+                                </label>
+
+                              </td>
+                              <td  class="td_percent"><?=$dataTL->f_percent;?> %</td>
+                            </tr>
+                          <?php }?>
+                       
+                      <?php  } ?>
+                       </table>
+                     </div>
+                        </td>
+                      </tr>
+
+
+                    <?php }?>
+                  </table>
+                </td>
+                <td>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</label>
+</div>
 <?php } ?>
 
 <?php 
 if($_GET[user_sc]!=""){	?>
-<script>
+  <script>
    setTimeout(function() {
     var form = document.getElementById("form_booking");
-  var chk = '<?=count($data['list_plan']);?>';
-  if ( chk == 1 ) {
-    $('#box_com').removeClass('borderBlink');
-    $('#price_plan_<?=$data['list_plan'][0]->id;?>').prop('checked',true);
-    
-  }
-                if (form.elements["plate_num_1"].value == 0) {
-                    $('#box_car').addClass('borderBlink')
-                    $('html, body').animate({
-                        scrollTop: $('#box_com').offset().top
-                    }, 300, function() {
+    var chk = '<?=count($data['list_plan']);?>';
+    if ( chk == 1 ) {
+      $('#box_com').removeClass('borderBlink');
+      $('#price_plan_<?=$data['list_plan'][0]->id;?>').prop('checked',true);
 
-                        $("#box_com").focus()
+    }
+    if (form.elements["plate_num_1"].value == 0) {
+      $('#box_car').addClass('borderBlink')
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 300, function() {
 
-                        window.location.href = "#box_car";
-                    });
-                }
-                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
-                    $('#nation_box').addClass('borderBlink')
-                    console.log(this.hash)
+        $("#box_com").focus()
 
-                    $('html, body').animate({
-                        scrollTop: $('#box_com').offset().top
-                    }, 300, function() {
+        window.location.href = "#box_car";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value == 0) {
+      $('#nation_box').addClass('borderBlink')
+      console.log(this.hash)
 
-                        $("#box_com").focus()
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 300, function() {
 
-                        window.location.href = "#nation_box";
-                    });
-                }
-                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 2) {
-                    $('#btn_submitadd').removeClass('borderBlink')
-                   
-                    $('.card').removeClass('borderBlink')
-                     $('#box_com').addClass('borderBlink')
-                    console.log(this.hash)
+        $("#box_com").focus()
 
-                    $('html, body').animate({
-                        scrollTop: $('#box_com').offset().top
-                    }, 300, function() {
+        window.location.href = "#nation_box";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 2) {
+      $('#btn_submitadd').removeClass('borderBlink')
 
-                        $("#box_com").focus()
+      $('.card').removeClass('borderBlink')
+      $('#box_com').addClass('borderBlink')
+      console.log(this.hash)
 
-                        window.location.href = "#box_com";
-                    });
-                    return false;
-                }
-                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 1 && $('#child').val() == '' && $('#adult').val() == '') {
-                    $('#num_customer').addClass('borderBlink')
-                    console.log(this.hash)
+      $('html, body').animate({
+        scrollTop: $('#box_com').offset().top
+      }, 300, function() {
 
-                    $('html, body').animate({
-                        scrollTop: $('#num_customer').offset().top
-                    }, 300, function() {
+        $("#box_com").focus()
 
-                        $("#adult").focus()
+        window.location.href = "#box_com";
+      });
+      return false;
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && chk == 1 && $('#child').val() == '' && $('#adult').val() == '') {
+      $('#num_customer').addClass('borderBlink')
+      console.log(this.hash)
 
-                        window.location.href = "#num_customer";
-                    });
-                }
-                if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
-                    $('#num_customer').removeClass('borderBlink')
-                    if (form.elements["time_num"].value == 0) {
-                        $('#box_time').addClass('borderBlink')
-                        $('#time_num').focus()
-                    } else {
-                        $('#box_time').removeClass('borderBlink')
-                        $('#btn_submitadd').addClass('borderBlink')
+      $('html, body').animate({
+        scrollTop: $('#num_customer').offset().top
+      }, 300, function() {
 
-                        $('#child').focusout();
-                    }
+        $("#adult").focus()
+
+        window.location.href = "#num_customer";
+      });
+    }
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+      $('#num_customer').removeClass('borderBlink')
+      if (form.elements["time_num"].value == 0) {
+        $('#box_time').addClass('borderBlink')
+        $('#time_num').focus()
+      } else {
+        $('#box_time').removeClass('borderBlink')
+        $('#btn_submitadd').addClass('borderBlink')
+
+        $('#child').focusout();
+      }
 
 
-                }
-  console.log(chk)
-   }, 700);
+    }
+    console.log(chk)
+  }, 700);
 </script>
 <?php }	?>

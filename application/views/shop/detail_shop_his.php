@@ -116,6 +116,8 @@ foreach ($query_price->result() as $row_price) {
 
   if ($row_price->s_topic_en == "comision") {
     $check_type_com = 1;
+    $i_list_prices = $row_price->id;
+    $i_plan_product_price_name = $row_price->i_plan_product_price_name;
     $display_com = "";
     if ($check_change_plan == 0) {
       $com_persent = $arr[book][commission_persent];
@@ -430,11 +432,56 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
         <td width="15%"><span class="font-17">บ.</span></td>
       </tr>
       <tr style="<?=$display_com;?>">
-        <td width="35%"><span class="font-17">ค่าคอม</span></td>
-        <td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+        <td colspan="3">
+                            <table width="100%">
+                              <tr>
+                                 <td width="35%"><span class="font-17">ค่าคอม</span></td>
+        <td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"></span>
         </td>
         <td width="15%">
         </td>
+                              </tr>
+                            </table>
+                            <div style="margin-left: 15px">
+                            <table width="100%">
+
+                              <?php
+                              // echo $arr[book][program].'***********'.$i_list_prices;
+                              if ($i_plan_product_price_name == 7) {
+                              $_where = array();
+                              $_where[product] = $arr[book][program];
+                              $_where[i_list_price] = $i_list_prices;
+                              $_select = array('*');
+                              $_order = array();
+                              $_order['id'] = 'asc';
+                              $PERCENT_TAXI = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI,$_where,$_select,$_order);
+                              // print_r(json_encode($PERCENT_TAXI));
+
+                              foreach ($PERCENT_TAXI as $dataTL) {
+                                $s_sub_typelist = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,array('id' => $dataTL->i_main_typelist));
+
+                                ?>
+                                <tr>
+
+                                 <td width="150">
+
+                                  <label class="btn checkbox-inline btn-checkbox-success-inverse <?=$chk_box_active;?> "><?=$s_sub_typelist->topic_th;?>
+                                </label>
+
+                              </td>
+                              <td  class="td_percent"><?=$dataTL->f_percent;?> %</td>
+                            </tr>
+                          <?php }?>
+                       
+                      <?php  } ?> 
+                       </table>
+                     </div>
+                        </td>
+       <!--  <td width="35%"><span class="font-17">ค่าคอม</span></td>
+        <td align="right"><?=$com_progress;?>&nbsp;&nbsp;&nbsp;<span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
+        </td>
+        <td width="15%">
+        </td> -->
       </tr>
       <tr>
         <td  width="35%">รวม</td>
