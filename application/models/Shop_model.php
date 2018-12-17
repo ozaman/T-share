@@ -108,6 +108,18 @@ class Shop_model extends CI_Model {
 				$data["price_person_total"] = 1*$price_person_total;
 				
 			}
+			else if ($value->i_plan_product_price_name == 5) {
+				$_where = array();
+			$_where['i_list_price'] = $value->id;
+			$_where['i_car_type'] = $_POST[car_type];
+			$_where['i_shop'] = $_POST[program];
+			$_select = array('*');
+			$_order = array();
+			$_order['id'] = 'asc';
+			$CAR_PRICE = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where,$_select);
+				$data[$s_col] =  $CAR_PRICE->i_price_park;
+				
+			}
 
 
 			else{

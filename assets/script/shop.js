@@ -540,7 +540,7 @@ function getPlanBox(id, plan_id) {
   } else {
     $('#box_cause').show();
   }
-  var url = "shop/box_price_plan" + "?i_country=" + id + "&plan_id=" + plan_id + "&user_sc=";
+  var url = "shop/box_price_plan" + "?i_country=" + id + "&plan_id=" + plan_id + "&user_sc=1"+"&car_type="+$('#car_type').val()+'&i_shop='+$('#program').val();
   console.log(url);
   $.post(url, function (res) {
     $('#box_price_replan').html(res);
@@ -968,7 +968,7 @@ function saveShop() {
   $('#shop_add-alert-dialog').hide();
   $('#txt_car_type').val($("#car_type option:selected").text());
   //          var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
-  var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user");
+  var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user"); 
 
   // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
   // $('ons-tab[page="shop_manage.html"]').click();

@@ -73,6 +73,8 @@ $_order['id'] = 'asc';
 $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
 ?>
 <input type="hidden" value="<?=$res_country->sci_id;?>" id="sci_id" />  
+<input type="hidden" value="<?=$book->i_cartype;?>" id="car_type" />  
+<input type="hidden" value="<?=$book->program;?>" id="program" />  
 
 <form name="form_checkin" id="form_checkin"   enctype="multipart/form-data">
   <input type="hidden" value="<?=$book->plan_id;?>" id="plane_id_replan" name="plane_id_replan" />  
