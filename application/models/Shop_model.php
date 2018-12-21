@@ -127,7 +127,7 @@ class Shop_model extends CI_Model {
 
 			}
 			
-			if($value->s_topic_en=="comision"){
+			if($value->s_payment=="โอน"){
 				$data[check_tran_job] = 1;
 			}
 
@@ -380,7 +380,7 @@ public function change_plan(){
 			}else{
 				$data[$s_col] =  $value->i_price;
 			}
-			if($value->s_topic_en=="comision"){
+			if($value->s_payment=="โอน"){
 				$data[check_tran_job] = 1;
 			}else{
 				$data[check_tran_job] = 0;
