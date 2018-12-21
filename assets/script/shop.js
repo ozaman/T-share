@@ -505,7 +505,7 @@ function handleClick_s(tax, name) {
     }
     // checformadd('box_com')
     $.ajax({
-      url: "shop/check_commission_plan?order_id=" + name,
+      url: "shop/check_commission_plan?plan_id=" + name+"&box=1",
       dataType: 'json',
       type: 'post',
       success: function (chk) {
