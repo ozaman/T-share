@@ -124,6 +124,13 @@ define('TBL_SHOP_CAR_PRICE_TAXI', 'shop_car_price_taxi');
 define('TBL_SHOPPING_PRODUCT_MAIN_TYPELIST', 'shopping_product_main_typelist');
 define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI', 'shopping_product_typelist_percent_taxi');
 
+define('TBL_SHOP_COUNTRY_COMPANY', 'shop_country_company');
+define('TBL_SHOP_COUNTRY_COM_COMPANY', 'shop_country_com_company');
+define('TBL_SHOP_COUNTRY_COM_LIST_COMPANY', 'shop_country_com_list_company');
+define('TBL_SHOP_COUNTRY_COM_LIST_PRICE_COMPANY', 'shop_country_com_list_price_company');
+define('TBL_SHOP_COUNTRY_ICON_COMPANY', 'shop_country_icon_company');
+define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_COMPANY', 'shopping_product_typelist_percent_company');
+
 
 
 

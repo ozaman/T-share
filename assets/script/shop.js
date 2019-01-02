@@ -978,6 +978,7 @@ function saveShop() {
   $.ajax({
     type: 'POST',
     data: $('#form_booking').serialize(),
+    dataType: 'json',
     url: url,
     beforeSend: function () {},
     success: function (response) {
@@ -1057,7 +1058,9 @@ function saveShop() {
           title: "ทำรายการไม่สำเร็จ",
           buttonLabel: "ตกลง"
         })
-                .then(function () {});
+                .then(function () {
+                  modal.hide();
+                });
       }
 
     },

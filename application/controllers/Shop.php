@@ -10,9 +10,19 @@ class Shop extends CI_Controller {
   }
 
   public function add_shop() {
-    $data['res'] = $this->Shop_model->add_shop();
-    header('Content-Type: application/json');
-    echo json_encode($data['res']);
+//    $data['res'] = $this->Shop_model->add_shop();
+//    header('Content-Type: application/json');
+//    echo json_encode($data['res']);
+    $plan_id = $_POST[price_plan];
+    $country = $_POST[plan_setting];
+    $_where = array();
+    $_where['i_shop_country_icon'] = $country;
+    $_select = array('*');
+    $_order = array();
+    $_order['id'] = 'asc';
+    $list_plan = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_COMPANY,$_where,$_select,$_order);
+    
+    echo json_encode($list_plan);
   }
 
   public function cancel_shop() {
@@ -260,7 +270,8 @@ class Shop extends CI_Controller {
       $query = $this->db->query("select plan_id from order_booking where id = ".$_GET[order_id]);
       $row_plan = $query->row();
       $plan_id = $row_plan->plan_id;
-    }else{
+    }
+    else {
       $plan_id = $_GET[plan_id];
     }
 
