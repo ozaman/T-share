@@ -377,15 +377,17 @@ else {
           </div>
   <?php }?> 
 
-        <?php
+
+         <?php
         $_where = array();
         $_where['i_shop'] = $_GET[shop_id];
+        $_where['i_partner_group'] = 2;
 
         $_select = array('*');
 
         $_order = array();
         $_order['id'] = 'asc';
-        $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_where,$_select,$_order);
+        $data['region'] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
         ?>
         <div class="card" id="nation_box">
           <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
@@ -394,15 +396,15 @@ else {
         foreach ($data['region'] as $key => $val) {
 
           $_where = array();
-          $_where['i_shop_country'] = $val->id;
+          $_where['i_plan_pack'] = $val->id;
           $_select = array('*');
           $_order = array();
           $_order['id'] = 'asc';
-          $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
+          $arr[region_icon] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
           if (count($data[region]) == 1) {
             ?>
             <script type="text/javascript">
-              handleClick_s('nation', '<?=$val->id;?>')
+             // handleClick_s('nation', '<?=$val->id;?>')
             </script>
             <?php
           }
@@ -413,10 +415,16 @@ else {
                     <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
                   </label>
               <?php
-              foreach ($arr[region_icon] as $key2 => $val2) {
+              
+
+                    $_where = array();
+                    $_where['id'] = $val->i_country; 
+                    $_select = array('*');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+                    // print_r(json_encode($COUNTRY));
                 ?>
                     <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
+                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span>
                     </div>
 
 
@@ -426,7 +434,7 @@ else {
 
                   </ons-list-item>
                 </label>
-    <?php }
+    <?php 
   }?>
 
           </div>

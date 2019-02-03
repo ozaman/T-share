@@ -1,20 +1,36 @@
  <?php
+ // $_where = array();
+ // $_where['i_shop_country_icon'] = $_GET[i_plan_pack];
+ // $_select = array('*');
+ // $_order = array();
+ // $_order['id'] = 'asc';
+ // $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_TAXI,$_where,$_select,$_order);
+$_where = array();
+                    $_where['id'] = $_GET[i_plan_pack];
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
  $_where = array();
- $_where['i_shop_country_icon'] = $_GET[i_country];
- $_select = array('*');
- $_order = array();
- $_order['id'] = 'asc';
- $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_TAXI,$_where,$_select,$_order);
- // echo '<pre>';
- // print_r($data['list_plan']);
- // echo '</pre>';
-
+          $_where['i_plan_pack'] = $_GET[i_plan_pack];
+          $_select = array('*');
+          $_order = array();
+          $_order['id'] = 'asc';
+          $data['list_plan'] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+           echo '<pre>';
+ print_r($data['list_plan']);
+ echo '</pre>';
 
  ?>
- <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_country];?>" />
+ <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_plan_pack];?>" />
  <?php
 
  foreach($data['list_plan'] as $key=>$val){
+
+  $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+print_r(json_encode($COUNTRY));
+  
   // print_r(TBL_SHOP_COUNTRY_COM_LIST_TAXI);
   $_where = array();
   $_where['i_shop_country_com_list'] = $val->id;
@@ -47,8 +63,29 @@
             </td>
             <td class="font-17">
               <?php
-              foreach($data['list_price'] as $key3=>$val2){
-                if (count($data['list_price']) == 2) {
+              foreach($data['list_plan'] as $key3=>$val2){
+                 $_where = array();
+                $_where[id] = $val2->i_plan_main;
+                $this->db->select('id,s_topic');
+                $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
+                $main = $query_main->row();
+
+                print_r(json_encode($main));
+                echo $main->s_topic;
+
+                $_where = array();
+                $_where[id] = $val2->i_con_plan_main_list;
+                $this->db->select('id,s_topic');
+                $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+                $mainlist = $query_mainlist->row();
+                if($val2->i_con_plan_main_list>0){
+                  $icon_btn_add = '<i class="fa fa-cogs" aria-hidden="true"></i>';
+                  $txt_btn_add = $mainlist->s_topic;
+                }else{
+                  $icon_btn_add = '<i class="fa fa-plus" aria-hidden="true"></i>';
+                  $txt_btn_add = 'เพิ่ม';
+                }
+                if (count($data['list_plan']) == 2) {
                   if ($key3 == 0) {
                    $count = '+';
                  }
@@ -96,6 +133,12 @@
               ?>
               <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
               <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
+
+               <!--  <button class="btn btn-default" style="font-size: 14px;"><?=$main->s_topic;?></button>
+                <button class="btn btn-primary" onclick="editCondition('<?=$val->id;?>', '<?=$val->s_topic;?>', '<?=$main->id;?>', '<?=$val->i_country;?>');">
+                  <?=$icon_btn_add;?>
+                  <span id="txt_mainlist_<?=$val->id;?>"><?=$txt_btn_add;?></span>
+                </button> -->
               <!-- <span style="display:show">หัว  200&nbsp;</span> -->
             <?php }?>
           </td>
@@ -117,9 +160,9 @@
                     $_select = array('name_th');
                     $arr[country] = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
                     ?>
-
-                    <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
-                    <span >&nbsp;<?=$arr[country]->name_th;?>  </span>
+ <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span>
+                   <!--  <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
+                    <span >&nbsp;<?=$arr[country]->name_th;?>  </span> -->
 
                   </td>
                   <td></td>

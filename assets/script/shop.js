@@ -415,7 +415,7 @@ function handleClick_s(tax, name) {
 //    console.log('#' + tax)
   if (tax == 'nation') {
     $('#' + tax + '_box').removeClass('borderBlink')
-    var url = "shop/box_price_plan" + "?i_country=" + name + "&user_sc=1";
+    var url = "shop/box_price_plan" + "?i_plan_pack=" + name + "&user_sc=1";
 
     $.post(url+'&car_type='+$('#car_type').val()+'&i_shop='+$('#program').val(), function (res) {
       $('#box_price_plan').html(res);

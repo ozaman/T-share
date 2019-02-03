@@ -132,7 +132,18 @@ define('TBL_SHOP_COUNTRY_ICON_COMPANY', 'shop_country_icon_company');
 define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_COMPANY', 'shopping_product_typelist_percent_company');
 
 
+define('NEW_TBL_PARTNER', 'tbl_partner');
+define('NEW_TBL_PARTNER_CONTROL', 'tbl_partner_control');
+define('NEW_TBL_PARTNER_GROUP', 'tbl_partner_group');
+define('NEW_TBL_PAY_TYPE', 'tbl_pay_type');
+define('NEW_TBL_PLAN_MAIN', 'tbl_plan_main');
+define('NEW_TBL_PLAN_MAIN_LIST', 'tbl_plan_main_list');
+define('NEW_TBL_PLAN_PACK', 'tbl_plan_pack');
+define('NEW_TBL_PLAN_PACK_LIST', 'tbl_plan_pack_list');
+define('NEW_TBL_PLAN_PRICE_LIST', 'tbl_plan_price_list');
+define('NEW_TBL_UNIT_TYPE', 'tbl_unit_type');
 
+define('NEW_TBL_CON_EACH_PERSON', 'tbl_con_each_person');
 
 
 
