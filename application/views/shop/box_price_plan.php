@@ -15,12 +15,23 @@ $_where = array();
           $_order = array();
           $_order['id'] = 'asc';
           $data['list_plan'] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
-           echo '<pre>';
- print_r($data['list_plan']);
- echo '</pre>';
+ //           echo '<pre>';
+ // print_r($data['list_plan']);
+ // echo '</pre>';
 
  ?>
  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_plan_pack];?>" />
+ <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china"  onclick="<?=$btn_onclick;?>">
+    <label class="center" for="price_plan_<?=$val->id;?>">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
+              <label class="left list-item__left" style="padding-top: 0">
+                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" <?=$check_plan;?> ></ons-radio>
+              </label>
+            </td>
+            <td class="font-17">
  <?php
 
  foreach($data['list_plan'] as $key=>$val){
@@ -29,7 +40,7 @@ $_where = array();
                     $_where['id'] = $PLAN_PACK->i_country; 
                     $_select = array('country_code','id','name_th');
                     $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
-print_r(json_encode($COUNTRY));
+// print_r(json_encode($COUNTRY));
   
   // print_r(TBL_SHOP_COUNTRY_COM_LIST_TAXI);
   $_where = array();
@@ -51,42 +62,28 @@ print_r(json_encode($COUNTRY));
   	$check_plan = "";
   }
   ?>
-  <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china"  onclick="<?=$btn_onclick;?>">
-    <label class="center" for="price_plan_<?=$val->id;?>">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
-              <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" <?=$check_plan;?> ></ons-radio>
-              </label>
-            </td>
-            <td class="font-17">
+  
+            
               <?php
-              foreach($data['list_plan'] as $key3=>$val2){
+              
                  $_where = array();
-                $_where[id] = $val2->i_plan_main;
+                $_where[id] = $val->i_plan_main;
                 $this->db->select('id,s_topic');
                 $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
                 $main = $query_main->row();
 
-                print_r(json_encode($main));
-                echo $main->s_topic;
+                // print_r(json_encode($main));
+                // echo count($data['list_plan']).'---------';
+                // echo $main->s_topic.'************';
 
                 $_where = array();
-                $_where[id] = $val2->i_con_plan_main_list;
+                $_where[id] = $val->i_con_plan_main_list;
                 $this->db->select('id,s_topic');
                 $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
                 $mainlist = $query_mainlist->row();
-                if($val2->i_con_plan_main_list>0){
-                  $icon_btn_add = '<i class="fa fa-cogs" aria-hidden="true"></i>';
-                  $txt_btn_add = $mainlist->s_topic;
-                }else{
-                  $icon_btn_add = '<i class="fa fa-plus" aria-hidden="true"></i>';
-                  $txt_btn_add = 'เพิ่ม';
-                }
+               
                 if (count($data['list_plan']) == 2) {
-                  if ($key3 == 0) {
+                  if ($key == 0) {
                    $count = '+';
                  }
                  else{
@@ -98,51 +95,24 @@ print_r(json_encode($COUNTRY));
                 $count = '';
 
               }
-
-
-
-                // echo $val2->s_topic_en;
-              if ($val2->s_topic_en == 'park') {
-                $price_park_unit = $val2->i_price;
-                $price_person_unit = '';
-                $commission_persent = '';
+              
+              if($val->i_con_plan_main_list>0){
+                 
+                  $txt_btn_add = $mainlist->s_topic;
+                }else{
+                  
+                  $txt_btn_add = 'เพิ่ม';
+                }
                 ?>
-                <input type="hidden" name="price_park_unit" value="<?=$price_park_unit;?>">
+                
+ <span style=""><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) <?=$count;?></span>
 
-                <?php
-                  # code...
-              }
-              if ($val2->s_topic_en == 'person') {
-                $price_park_unit = '';
-                $price_person_unit = $val2->i_price;
-                $commission_persent = '';
-                ?>
-                <input type="hidden" name="price_person_unit" value="<?=$price_person_unit;?>">
-                <?php
-                  # code...
-              }
-              if ($val2->s_topic_en == 'comision') {
-                $price_park_unit = '';
-                $price_person_unit = '';
-                $commission_persent = $val2->i_price;
-                ?>
-                <input type="hidden" name="commission_persent" value="<?=$commission_persent;?>">
-                <?php
-                  # code...
-              }
-              ?>
-              <!-- <input type="hsiddens" name="price_park_total" value="<?=$val2->i_price;?>"> -->
-              <span style=""><?=$val2->s_topic_th;?> <?=$count;?> </span>
 
-               <!--  <button class="btn btn-default" style="font-size: 14px;"><?=$main->s_topic;?></button>
-                <button class="btn btn-primary" onclick="editCondition('<?=$val->id;?>', '<?=$val->s_topic;?>', '<?=$main->id;?>', '<?=$val->i_country;?>');">
-                  <?=$icon_btn_add;?>
-                  <span id="txt_mainlist_<?=$val->id;?>"><?=$txt_btn_add;?></span>
-                </button> -->
-              <!-- <span style="display:show">หัว  200&nbsp;</span> -->
-            <?php }?>
-          </td>
-        </tr>
+         
+       
+<?php } ?>
+ </td>
+ </tr>
         <tr>
           <td>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -266,8 +236,6 @@ print_r(json_encode($COUNTRY));
   </table>
 </label>
 </div>
-<?php } ?>
-
 <?php 
 if($_GET[user_sc]!=""){	?>
   <script>
