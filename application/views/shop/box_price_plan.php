@@ -81,6 +81,17 @@ $_where = array();
                 $this->db->select('id,s_topic');
                 $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
                 $mainlist = $query_mainlist->row();
+
+                $partner_g = 2;
+//echo $partner_g;
+$_where = array();
+$_where[id] = $val->i_con_plan_main_list;;
+$this->db->select('*');
+$query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+ //          echo '<pre>';
+ // print_r($query->result());
+ // echo '</pre>';
+// print_r($query->result());
                
                 if (count($data['list_plan']) == 2) {
                   if ($key == 0) {
@@ -108,130 +119,375 @@ $_where = array();
  <span style=""><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) <?=$count;?></span>
 
 
+
+
+<?php
+$_where = array();
+    $_where[i_plan_pack] = $_GET[i_plan_pack];
+    $_where[id] = $val->i_con_plan_main_list;
+    $this->db->select('i_con_plan_main_list, id');
+    $querys = $this->db->get_where(TBL_PLAN_PACK_LIST,$_where);
+    $con_pack = $querys->row();
+    // echo '-------------'.'<Br>';
+    // print_r($con_pack);//------------------------------
+
+    $_where = array();
+    $_where['t2.i_plan_main'] = $val->i_con_plan_main_list;
+    $_where['t1.i_shop'] = $PLAN_PACK->i_shop;
+    $_where['t1.i_country'] = $PLAN_PACK->i_country;
+    $_where['t1.i_partner'] = 2;
+    $this->db->select('*');
+    $this->db->from(TBL_PLAN_PACK." as t1");
+    $this->db->join(TBL_PLAN_PACK_LIST." as t2",'t1.id = t2.i_plan_pack');
+    $this->db->where($_where);
+    $con_ref = $this->db->get();
+    $con_ref = $con_ref->row();
+
+ $person = 0;
+    foreach ($query->result() as $key => $val2) {
+//      echo $con_pack->i_con_plan_main_list." ++++ ".$_GET[pack_id];
+
+      $tbl = $val2->s_tbl;
+      $_where = array();
+      $_where[i_plan_pack] = $_GET[i_plan_pack];
+      $this->db->select('*');
+      $query_con_tb = $this->db->get_where($tbl,$_where);
+      $con = $query_con_tb->row();
+      // print_r($con);//------------------------------------
+
+      // if ($con_pack->i_con_plan_main_list == $val2->id) {
+      //   $selected = "checked";
+      //   $open_box = "";
+      //   $box_other = "";
+      // }
+      // else {
+      //   $selected = "";
+      //   $open_box = "display:none;";
+      //   $box_other = "display:none;";
+      // }
+      ?>
+      
+      <div style="padding: 5px 0px 15px 0px; ">
+        <?php
+        if ($val2->id == 1) {
+          ?>
+          <div style="<?=$box_other;?>">
+            
+           
+           
+            <table class="table" width="100%" style="margin-bottom: 5px;">
+                <tr>
+                  <td width="70" align="center" ><b style="font-size:16px;">จำนวน</b></td>
+                  <td ></td>
+                  <td align="center"><b style="font-size:16px;">ราคา</b></td>
+                  <td align="center"><b style="font-size:16px;">ภาษี ณ ที่จ่าย</b></td>
+                </tr>
+              <?php
+              $_where = array();
+              $_where[i_plan_pack] = $con_ref->i_plan_pack;
+              $this->db->select('*');
+              $query_data_ep = $this->db->get_where(TBL_CON_EACH_PERSON,$_where);
+              foreach ($query_data_ep->result() as $key => $value) {
+                ?>
+                <tr>
+                  <td align="center">
+                    <span style="font-size:16px;"><?=$value->i_person_up;?></span>
+                  </td>
+                  <td align="center"><span  style="font-size:16px;">ขึ้นไป</span></td>
+                  <td align="right"><span style="font-size:16px;"><?=$value->f_price;?></span></td>
+                  <td align="right"><span style="font-size:16px;"><?=$value->f_wht;?> %</span></td>
+                </tr>
+              <?php }
+              ?>
+            </table>
+           
+          </div>
+          <?php
+        }
+        else if ($val2->id == 2) {
+          $_where = array();
+          $_where[status] = 1;
+          $this->db->select('*');
+          $query = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
+          ?>
+          <div style="<?=$box_other;?>">
+            
+
+            
+              <table width="100%">
+                <tr>
+                  <th style="text-align: left;"><b style="font-size: 16px;">รายการ</b></th>
+                  <th   style="text-align: center;"><b style="font-size: 16px;">ราคา(ร้านค้า)</b></th>
+                  <th style="text-align: center;"><b style="font-size: 16px;">ราคา</b></th>
+                  <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย(ร้านค้า)</b></th>
+                  <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th>
+                </tr>
+                <?php
+                foreach ($query->result() as $key => $val) {
+                  $_where = array();
+                  $_where[i_car_type] = $val->id;
+                  $_where[i_plan_pack] = $_GET[i_plan_pack];
+                  $this->db->select('*');
+                  $query_c = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
+                  $data_car = $query_c->row();
+
+                  if ($data_car->i_status > 0) {
+                    $selected_car = "checked";
+                    $active_box = "active";
+                    $disabled_box_price = "";
+                    $disabled_box_vat = "";
+                    $disabled_box_wht = "";
+                    $val_chk = 1;
+                  }
+                  else {
+                    $selected_car = "";
+                    $active_box = "";
+                    $disabled_box_price = "disabled";
+                    $disabled_box_vat = "disabled";
+                    $disabled_box_wht = "disabled";
+                    $val_chk = 0;
+                  }
+                  $_where = array();
+                  $_where[i_plan_pack] = $con_ref->id;
+                  $_where[i_car_type] = $val->id;
+                  $this->db->select('*');
+                  $q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
+                  $data_car_ref = $q_car_ref->row();
+//                  print_r($data_car_ref->row());
+                  if ($q_car_ref->num_rows() > 0) {
+                    $tr_show_cartype = '';
+                  }
+                  else {
+                    $tr_show_cartype = 'display:none;';
+                  }
+                  ?>
+                  <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$tr_show_cartype;?>">
+                    <td>
+                      <span style="font-size:14px;"><?=$val->name_th;?></span>
+                      
+                    </td>
+                    <td align="right">
+                      <span><?=$data_car_ref->f_price;?></span>
+                    </td>
+                    <td align="center">
+                      <span class="form-control"   style="width:80%;"  ><?=$data_car->f_price;?></span>
+                    </td>
+                    <td align="right">
+                      <span><?=$data_car_ref->f_wht;?></span>
+                    </td>
+                    <td align="center">
+                      <span class="form-control"   style="width:80%;" ><?=$data_car->f_wht;?></span>
+                    </td>
+                  </tr>
+
+                <?php }
+                ?>
+              </table>
+            
+          </div>
+          <?php
+        }
+        else if ($val->id == 3) {
+          ?>
+          <div style="<?=$box_other;?>">          
+           
+              <div class="col-md-12">
+              
+                  <table class="tb-pad" width="100%">
+                    <tr>
+                      <td align="center"><b style="font-size: 16px;">คนละ</b></td>
+                      <td></td>
+                      <td align="center" width="220px"><b style="font-size: 16px;">ถอด vat%</b></td>
+                      <td></td>
+                      <td align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="input-group">
+                          <span class="input-group-addon">จำนวน</span>
+                          <span class="form-control" ><?=$con->f_price;?></span>
+                        </div>
+                      </td>
+                      <td width="30"></td>
+                      <td>
+                        <span class="form-control"  ><?=$con->f_vat;?></span>
+                      </td>
+                      <td width="30"></td>
+                      <td>
+                        <span class="form-control"  ><?=$con->f_wht;?></span>
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                  </table>
+                
+              </div>
+            
+          </div>
+          <?php
+        }
+         else if ($val2->id == 4) {
+          ?>
+          <div>
+                <table class="tb-pad" width="100%">
+                  <tr>
+                    <td align="center"  width="80"><b style="font-size: 16px;">จำนวนคน</b></td>
+                    <td></td>
+                    <td align="center"><b style="font-size: 16px;">ราคา</b></td>
+                    <td></td>
+                    <td align="center" width="220px"><b style="font-size: 16px;">vat%</b></td>
+                    <td></td>
+                    <td align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
+                  </tr>
+                  <?php
+
+                  foreach ($query_con_tb->result() as $key => $val) {
+                    ?>
+
+                    <tr class="tr_regis_only" id="id_tr_regis_<?=$val->id;?>">
+                      <td align="center">
+                        <span style="font-size:16px;"><?=$person = $person + 1;?>  คน</span>
+                      </td>
+                      <td width="30"></td>
+                      <td><span class="form-control"   ><?=$val->f_price;?></span></td>
+                      <td width="30"></td>
+                      <td>
+                        <span class="form-control"  ><?=$val->f_vat;?></span>
+                      </td>
+                      <td width="30"></td>
+                      <td>
+                        <span class="form-control"    ><?=$val->f_wht;?></span>
+                      </td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+
+                    <?php
+                  }
+                  ?>
+                </table>
+          
+            
+          </div>
+          <?php
+        }
+        else if ($val2->id == 5) {
+
+          $_where = array();
+          $_where['id'] = $PLAN_PACK->i_shop; 
+          $_select = array('*');
+          $PRODUCT_SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
+          $_where = array();
+          $_where[main] = $PRODUCT_SUB->main;
+          $_where[sub] = $PRODUCT_SUB->id;
+          $_where[i_status] = 1;
+          $sub_type_list = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where,'',array('id' => 'asc'));
+          ?>
+          <div style="<?=$box_other;?>">
+            <div class="col-md-12">
+              <div class="form-group ">
+                <table width="100%" class="tb-pad">
+                  <tr>
+                    <td style=""><b>รายการ</b></td>
+                    <td style="width: 150px;text-align: center;"><b> Vat %</b></td>
+
+                    <td style="width: 150px;text-align: center;"><b>ค่าคอม %</b></td>
+
+                    <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td>
+                  </tr>
+                  <?php
+//                echo count($sub_type_list);
+                  foreach ($sub_type_list as $key => $value) {
+                    $_where = array();
+                    $_where[status] = 1;
+                    $_where[id] = $value->i_main_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
+                    $data_pd = $query->row();
+
+                    $_where = array();
+//                  $_where[i_status] = 1;
+                    $_where[i_plan_pack] = $_GET[i_plan_pack];
+                    $_where[i_product_sub_typelist] = $value->id;
+                    $this->db->select('*');
+                    $query_pd_typelist = $this->db->get_where(TBL_CON_COM_PRODUCT_TYPE,$_where);
+                    $data_con_pd_typelist = $query_pd_typelist->row();
+                    // echo $data_con_pd_typelist->i_status;
+
+//                  echo $query_pd_typelist->num_rows()." ++";
+                    if ($data_con_pd_typelist->i_status > 0) {
+                      $checked_pd_tl = "checked";
+                      $active_box = "active";
+                      $val_pd = 1;
+                      $disabled_box_price = "";
+                      $disabled_box_vat = "";
+                      $disabled_box_wht = "";
+                    }
+                    else {
+                      $checked_pd_tl = "";
+                      $active_box = "";
+                      $disabled_box_price = "disabled";
+                      $disabled_box_vat = "disabled";
+                      $disabled_box_wht = "disabled";
+                      $val_pd = 0;
+                    }
+                    ?>
+                    <tr id="tr_list_type_product_<?=$value->id;?>">
+                      <td>
+                        <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
+                       
+                      </td>
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td>
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_vat;?></span></td>
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td>
+                    </tr>
+                  <?php }
+                  ?>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <?php
+        }
+        ?>
+      </div>
+    <?php }
+    
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          
        
 <?php } ?>
  </td>
  </tr>
-        <tr>
-          <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tbody>
-                <tr>
-                  <td  class="font-17" > 
-                    <?php 
-                    $_where = array();
-                    $_where['i_shop_country'] = $_GET[i_country]; 
-                    $_select = array('*');
-                    $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
-                      // print_r(TBL_SHOP_COUNTRY_ICON_TAXI);
-                    $_where = array();
-                    $_where['id'] = $arr[region_icon]->i_country; 
-                    $_select = array('name_th');
-                    $arr[country] = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
-                    ?>
- <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span>
-                   <!--  <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
-                    <span >&nbsp;<?=$arr[country]->name_th;?>  </span> -->
-
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-
-
-                  <td>
-                    <table width="100%">
-                      <?php 
-                      foreach($data['list_price'] as $key=>$val2){
-                        if ($val2->s_topic_en == 'comision') {
-                          $curen = '';
-                        }
-                        else{
-                          $curen = 'บ.';
-                        }
-                        // echo $val2->id;
-                        if ($val2->i_plan_product_price_name == 5) {
-                          $_where = array();
-                          $_where['i_plan_product_price_name'] = $val2->i_plan_product_price_name; 
-                          $_where['i_list_price'] = $val2->id;
-                          $_where['i_car_type'] = $_GET[car_type]; 
-                      // $_where['i_country_icon'] = $_GET[i_country]; 
-                          $_where['i_shop'] = $_GET[i_shop]; 
-                          $_select = array('*');
-                          $PRICE_TAXI = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where);
-                          $res = array();
-                          $res[where] = $_where;
-                          $res[PRICE_TAXI] = $PRICE_TAXI;
-                      // print_r(json_encode($res));
-                          $price = $PRICE_TAXI->i_price_park;
-
-                        }
-                        else if ($val2->i_plan_product_price_name == 7) {
-                          $price = '';
-                          
-                        }
-                        else{
-                          $price = $val2->i_price;
-                        }
-                        ?>
-                        <tr>
-                          <td>
-                            <table width="100%">
-                              <tr>
-                                <td width="64"><span><?=$val2->s_topic_th;?></span></td>
-                                <td align="left"><span><?=$price;?>&nbsp;&nbsp;<?=$curen;?></span></td>
-                                <td width="64"><span><?=$val2->s_payment;?></span></td>
-                              </tr>
-                            </table>
-                            <div style="margin-left: 15px">
-                            <table width="100%">
-
-                              <?php
-                              if ($val2->i_plan_product_price_name == 7) {
-                              $_where = array();
-                              $_where[product] = $_GET[i_shop];
-                              $_where[i_list_price] = $val2->id;
-                              $_select = array('*');
-                              $_order = array();
-                              $_order['id'] = 'asc';
-                              $PERCENT_TAXI = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI,$_where,$_select,$_order);
-                              // print_r(json_encode($PERCENT_TAXI));
-
-                              foreach ($PERCENT_TAXI as $dataTL) {
-                                $s_sub_typelist = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,array('id' => $dataTL->i_main_typelist));
-
-                                ?>
-                                <tr>
-
-                                 <td width="150">
-
-                                  <label class="btn checkbox-inline btn-checkbox-success-inverse <?=$chk_box_active;?> "><?=$s_sub_typelist->topic_th;?>
-                                </label>
-
-                              </td>
-                              <td  class="td_percent"><?=$dataTL->f_percent;?> %</td>
-                            </tr>
-                          <?php }?>
-                       
-                      <?php  } ?>
-                       </table>
-                     </div>
-                        </td>
-                      </tr>
-
-
-                    <?php }?>
-                  </table>
-                </td>
-                <td>
-
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+       
     </tbody>
   </table>
 </label>

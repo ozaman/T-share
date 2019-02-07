@@ -124,6 +124,11 @@ define('TBL_SHOP_CAR_PRICE_TAXI', 'shop_car_price_taxi');
 define('TBL_SHOPPING_PRODUCT_MAIN_TYPELIST', 'shopping_product_main_typelist');
 define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI', 'shopping_product_typelist_percent_taxi');
 
+define('TBL_SHOPPING_PRODUCT_MAIN', 'shopping_product_main');
+
+define('TBL_SHOPPING_PRODUCT_SUB_TYPELIST', 'shopping_product_sub_typelist');
+define('TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT', 'shopping_product_typelist_percent');
+
 define('TBL_SHOP_COUNTRY_COMPANY', 'shop_country_company');
 define('TBL_SHOP_COUNTRY_COM_COMPANY', 'shop_country_com_company');
 define('TBL_SHOP_COUNTRY_COM_LIST_COMPANY', 'shop_country_com_list_company');
@@ -146,8 +151,22 @@ define('NEW_TBL_UNIT_TYPE', 'tbl_unit_type');
 define('NEW_TBL_CON_EACH_PERSON', 'tbl_con_each_person');
 
 
-
-
+define('TBL_PARTNER', 'tbl_partner');
+define('TBL_PARTNER_CONTROL', 'tbl_partner_control');
+define('TBL_PARTNER_GROUP', 'tbl_partner_group');
+define('TBL_PAY_TYPE', 'tbl_pay_type');
+define('TBL_PLAN_MAIN', 'tbl_plan_main');
+define('TBL_PLAN_MAIN_LIST', 'tbl_plan_main_list');
+define('TBL_PLAN_PACK', 'tbl_plan_pack');
+define('TBL_PLAN_PACK_LIST', 'tbl_plan_pack_list');
+define('TBL_PLAN_PRICE_LIST_', 'tbl_plan_price_list');
+define('TBL_UNIT_TYPE', 'tbl_unit_type');
+define('TBL_CON_EACH_PERSON', 'tbl_con_each_person');
+define('TBL_CON_EACH_PARK', 'tbl_con_each_park');
+define('TBL_CON_EACH_CAR', 'tbl_con_each_car');
+define('TBL_CON_PS_ONLY_REGIS', 'tbl_con_ps_only_regis');
+define('TBL_CON_EACH_PS_ALL_PAY', 'tbl_con_ps_all_pay');
+define('TBL_CON_COM_PRODUCT_TYPE', 'tbl_con_com_product_type');
 
 
 

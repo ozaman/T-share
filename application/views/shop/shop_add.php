@@ -387,21 +387,21 @@ else {
 
         $_order = array();
         $_order['id'] = 'asc';
-        $data['region'] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
+        $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
         ?>
         <div class="card" id="nation_box">
           <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
           <div class="form-group">
         <?php
-        foreach ($data['region'] as $key => $val) {
+        foreach ($data[PLAN_PACK] as $key => $val) {
 
           $_where = array();
           $_where['i_plan_pack'] = $val->id;
           $_select = array('*');
           $_order = array();
           $_order['id'] = 'asc';
-          $arr[region_icon] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
-          if (count($data[region]) == 1) {
+          $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+          if (count($data[PLAN_PACK]) == 1) {
             ?>
             <script type="text/javascript">
              // handleClick_s('nation', '<?=$val->id;?>')
@@ -424,7 +424,7 @@ else {
                     // print_r(json_encode($COUNTRY));
                 ?>
                     <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span>
+                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?><?=$val->id;?></span>
                     </div>
 
 
