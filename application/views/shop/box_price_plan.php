@@ -18,7 +18,10 @@ $_where = array();
  //           echo '<pre>';
  // print_r($data['list_plan']);
  // echo '</pre>';
-
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
  ?>
  <input name="plan_setting" type="hidden" class="form-control" id="plan_setting" value="<?=$_GET[i_plan_pack];?>" />
  <div style=" border-bottom: dotted #999999 1px;padding: 10px 0px;"  class="nation_china"  onclick="<?=$btn_onclick;?>">
@@ -26,9 +29,30 @@ $_where = array();
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tbody>
           <tr>
+            <!-- <td width="30"></td> -->
+                  <td colspan="2"  class="font-17" width="100%" > 
+                    <?php 
+                    $_where = array();
+                    $_where['i_shop_country'] = $_GET[i_country]; 
+                    $_select = array('*');
+                    $arr[region_icon] = $this->Main_model->rowdata(TBL_SHOP_COUNTRY_ICON_TAXI,$_where);
+                      // print_r(TBL_SHOP_COUNTRY_ICON_TAXI);
+                    $_where = array();
+                    $_where['id'] = $arr[region_icon]->i_country; 
+                    $_select = array('name_th');
+                    $arr[country] = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+                    ?>
+ <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span style="margin-left: 5px">(<?=$PLAN_PACK->s_topic?>)</span>
+                   <!--  <img src="assets/images/flag/icon/<?=$arr[region_icon]->s_country_code;?>.png" align="absmiddle" width="25" height="25" alt="" >
+                    <span >&nbsp;<?=$arr[country]->name_th;?>  </span> -->
+
+                  </td>
+                 
+                </tr>
+          <tr>
             <td  valign="top" width="30" rowspan="2" align="center" style="display: nones;">
               <label class="left list-item__left" style="padding-top: 0">
-                <ons-radio class="radio-fruit radio-nation" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" <?=$check_plan;?> ></ons-radio>
+                <ons-radio class="radio-fruit radio-nation" value="1" input-id="price_plan_<?=$val->id;?>" value="<?=$val->id;?>" name="price_plan" checked ></ons-radio>
               </label>
             </td>
             <td class="font-17">
@@ -36,10 +60,7 @@ $_where = array();
 
  foreach($data['list_plan'] as $key=>$val){
 
-  $_where = array();
-                    $_where['id'] = $PLAN_PACK->i_country; 
-                    $_select = array('country_code','id','name_th');
-                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+ 
 // print_r(json_encode($COUNTRY));
   
   // print_r(TBL_SHOP_COUNTRY_COM_LIST_TAXI);
@@ -178,9 +199,9 @@ $_where = array();
             <table class="table" width="100%" style="margin-bottom: 5px;">
                 <tr>
                   <td width="70" align="center" ><b style="font-size:16px;">จำนวน</b></td>
-                  <td ></td>
+                  <!-- <td ></td> -->
                   <td align="center"><b style="font-size:16px;">ราคา</b></td>
-                  <td align="center"><b style="font-size:16px;">ภาษี ณ ที่จ่าย</b></td>
+                  <!-- <td align="center"><b style="font-size:16px;">ภาษี ณ ที่จ่าย</b></td> -->
                 </tr>
               <?php
               $_where = array();
@@ -193,9 +214,9 @@ $_where = array();
                   <td align="center">
                     <span style="font-size:16px;"><?=$value->i_person_up;?></span>
                   </td>
-                  <td align="center"><span  style="font-size:16px;">ขึ้นไป</span></td>
-                  <td align="right"><span style="font-size:16px;"><?=$value->f_price;?></span></td>
-                  <td align="right"><span style="font-size:16px;"><?=$value->f_wht;?> %</span></td>
+                  <!-- <td align="center"><span  style="font-size:16px;">ขึ้นไป</span></td> -->
+                  <td align="center"><span style="font-size:16px;"><?=$value->f_price;?></span></td>
+                  <!-- <td align="right"><span style="font-size:16px;"><?=$value->f_wht;?> %</span></td> -->
                 </tr>
               <?php }
               ?>
@@ -218,9 +239,9 @@ $_where = array();
                 <tr>
                   <th style="text-align: left;"><b style="font-size: 16px;">รายการ</b></th>
                   <th   style="text-align: center;"><b style="font-size: 16px;">ราคา(ร้านค้า)</b></th>
-                  <th style="text-align: center;"><b style="font-size: 16px;">ราคา</b></th>
+                  <!-- <th style="text-align: center;"><b style="font-size: 16px;">ราคา</b></th>
                   <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย(ร้านค้า)</b></th>
-                  <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th>
+                  <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th> -->
                 </tr>
                 <?php
                 foreach ($query->result() as $key => $val) {
@@ -266,10 +287,10 @@ $_where = array();
                       <span style="font-size:14px;"><?=$val->name_th;?></span>
                       
                     </td>
-                    <td align="right">
+                    <td align="center">
                       <span><?=$data_car_ref->f_price;?></span>
                     </td>
-                    <td align="center">
+                   <!--  <td align="center">
                       <span class="form-control"   style="width:80%;"  ><?=$data_car->f_price;?></span>
                     </td>
                     <td align="right">
@@ -277,7 +298,7 @@ $_where = array();
                     </td>
                     <td align="center">
                       <span class="form-control"   style="width:80%;" ><?=$data_car->f_wht;?></span>
-                    </td>
+                    </td> -->
                   </tr>
 
                 <?php }
@@ -297,9 +318,9 @@ $_where = array();
                     <tr>
                       <td align="center"><b style="font-size: 16px;">คนละ</b></td>
                       <td></td>
-                      <td align="center" width="220px"><b style="font-size: 16px;">ถอด vat%</b></td>
+                      <!-- <td align="center" width="220px"><b style="font-size: 16px;">ถอด vat%</b></td>
                       <td></td>
-                      <td align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
+                      <td  -->align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
                     </tr>
                     <tr>
                       <td>
@@ -309,7 +330,7 @@ $_where = array();
                         </div>
                       </td>
                       <td width="30"></td>
-                      <td>
+                      <!-- <td>
                         <span class="form-control"  ><?=$con->f_vat;?></span>
                       </td>
                       <td width="30"></td>
@@ -318,7 +339,7 @@ $_where = array();
                       </td>
                       <td>
                         
-                      </td>
+                      </td> -->
                     </tr>
                   </table>
                 
@@ -336,9 +357,9 @@ $_where = array();
                     <td></td>
                     <td align="center"><b style="font-size: 16px;">ราคา</b></td>
                     <td></td>
-                    <td align="center" width="220px"><b style="font-size: 16px;">vat%</b></td>
-                    <td></td>
-                    <td align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
+                    <!-- <td align="center" width="220px"><b style="font-size: 16px;">vat%</b></td> -->
+                    <!-- <td></td> -->
+                    <!-- <td align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td> -->
                   </tr>
                   <?php
 
@@ -352,16 +373,16 @@ $_where = array();
                       <td width="30"></td>
                       <td><span class="form-control"   ><?=$val->f_price;?></span></td>
                       <td width="30"></td>
-                      <td>
-                        <span class="form-control"  ><?=$val->f_vat;?></span>
-                      </td>
-                      <td width="30"></td>
-                      <td>
-                        <span class="form-control"    ><?=$val->f_wht;?></span>
-                      </td>
-                      <td>
+                      <!-- <td> -->
+                        <!-- <span class="form-control"  ><?=$val->f_vat;?></span> -->
+                      <!-- </td> -->
+                      <!-- <td width="30"></td> -->
+                      <!-- <td> -->
+                        <!-- <span class="form-control"    ><?=$val->f_wht;?></span> -->
+                     <!-- / </td> -->
+                      <!-- <td> -->
                         
-                      </td>
+                      <!-- </td> -->
                     </tr>
 
                     <?php
@@ -384,6 +405,9 @@ $_where = array();
           $_where[sub] = $PRODUCT_SUB->id;
           $_where[i_status] = 1;
           $sub_type_list = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where,'',array('id' => 'asc'));
+ //           echo '<pre>';
+ // print_r($sub_type_list);
+ // echo '</pre>';
           ?>
           <div style="<?=$box_other;?>">
             <div class="col-md-12">
@@ -391,11 +415,11 @@ $_where = array();
                 <table width="100%" class="tb-pad">
                   <tr>
                     <td style=""><b>รายการ</b></td>
-                    <td style="width: 150px;text-align: center;"><b> Vat %</b></td>
+                    <!-- <td style="width: 150px;text-align: center;"><b> Vat %</b></td> -->
 
                     <td style="width: 150px;text-align: center;"><b>ค่าคอม %</b></td>
 
-                    <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td>
+                    <!-- <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td> -->
                   </tr>
                   <?php
 //                echo count($sub_type_list);
@@ -439,9 +463,9 @@ $_where = array();
                         <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
                        
                       </td>
-                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td>
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                       <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_vat;?></span></td>
-                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td>
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                     </tr>
                   <?php }
                   ?>
@@ -531,7 +555,7 @@ if($_GET[user_sc]!=""){	?>
       $('#btn_submitadd').removeClass('borderBlink')
 
       $('.card').removeClass('borderBlink')
-      $('#box_com').addClass('borderBlink')
+      // $('#box_com').addClass('borderBlink')
       console.log(this.hash)
 
       $('html, body').animate({
@@ -557,7 +581,7 @@ if($_GET[user_sc]!=""){	?>
         window.location.href = "#num_customer";
       });
     }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0  && $('#child').val() != '' && $('#adult').val() != '') {
       $('#num_customer').removeClass('borderBlink')
       if (form.elements["time_num"].value == 0) {
         $('#box_time').addClass('borderBlink')

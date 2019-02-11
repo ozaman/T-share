@@ -388,6 +388,15 @@ else {
         $_order = array();
         $_order['id'] = 'asc';
         $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
+        $_where = array();
+        $_where['i_shop'] = $_GET[shop_id];
+        $_where['i_partner_group'] = 1;
+
+        $_select = array('*');
+
+        $_order = array();
+        $_order['id'] = 'asc';
+        $PLAN_PACK = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
         ?>
         <div class="card" id="nation_box">
           <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
@@ -424,7 +433,7 @@ else {
                     // print_r(json_encode($COUNTRY));
                 ?>
                     <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?><?=$val->id;?></span>
+                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><!-- <span><?=$val->id;?></span> -->
                     </div>
 
 

@@ -26,113 +26,169 @@ class Shop_model extends CI_Model {
 		$data["price_extra_park"] = $price_extra_park;
 		$data["price_extra_person"] = $price_extra_park;
 		$data["income_price_park"] = $income_price_park;*/
-		if (1<0) {
-			# code...
-
-			$_where = array();
-			$_where['i_shop_country_com_list'] = $_POST[price_plan];
-			$_select = array('*');
-			$_order = array();
-			$_order['id'] = 'asc';
-			$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
-			$_where = array();
-			$_where['i_plan_price'] = $list_price[0]->i_plan_price;
-			$_select = array('*');
-			$_order = array();
-			$_order['id'] = 'asc';
-			$ick = 0;
-
-			$list_pricex = $this->Main_model->fetch_data('','',TBL_SHOP_PLAN_COM,$_where,$_select,$_order);
-			foreach ($list_pricex as $key => $value) {
-				$_where = array();
-				$_where['id'] = $value->i_plan_com;
-				$_select = array('s_col');
-				$_order = array();
-				$_order['id'] = 'asc';
-				$list_prices = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
-				$s_col = $list_prices->s_col;
-				
-				if ($value->i_plan_com == 5) {
-					if ($list_price[$ick]->s_topic_en == 'park') {
-
-			// if ($ick == 1) {
-						$price_person_total = (1*$list_price[$ick]->i_price) * (1*$_POST[adult]);
-						$data["aaaaaa".$s_col] = $list_price[$ick]->s_topic_en;
-					// }		
-
-
-					}
-					else{
-						$price_person_total = $list_price[$ick]->i_price * 1;
-						$data["bbbbb".$s_col] = $list_price[$ick]->s_topic_en;
-
-
-					}
-					$data[$s_col] = 1*$list_price[$ick]->i_price;;
-					$data["price_person_total"] = 1*$price_person_total;
-
-				}
-				else{
-					$data[$s_col] =  $list_price[$ick]->i_price;
-
-				}
-				$ick++;
-			}
-		}
+		
 		/**********************************************************************************************/
 		/*************************              ********************************************************/
 		/**********************************************************************************************/
-		$_where = array();
-		$_where['i_shop_country_com_list'] = $_POST[price_plan];
-		$_select = array('*');
-		$_order = array();
-		$_order['id'] = 'asc';
+		// $_where = array();
+		// $_where['i_shop_country_com_list'] = $_POST[price_plan];
+		// $_select = array('*');
+		// $_order = array();
+		// $_order['id'] = 'asc';
 
-		$list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
+$_where = array();
+                    $_where['id'] = $_POST[plan_setting];
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+		$_where = array();
+        $_where['i_plan_pack'] = $_POST[plan_setting];
+        $_select = array('*');
+        $_order = array();
+        $_order['id'] = 'asc';
+        $PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+        foreach($PACK_LIST as $val){
+        	   $_where = array();
+                $_where[id] = $val->i_plan_main;
+                $this->db->select('id,s_topic');
+                $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
+                $main = $query_main->row();
+
+                // print_r(json_encode($main));
+                // echo count($data['list_plan']).'---------';
+                // echo $main->s_topic.'************';
+
+                $_where = array();
+                $_where[id] = $val->i_con_plan_main_list;
+                $this->db->select('id,s_topic');
+                $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+                $mainlist = $query_mainlist->row();
+
+                $partner_g = 2;
+
+$_where = array();
+$_where[id] = $val->i_con_plan_main_list;;
+// $this->db->select('*');
+$_select = array('*');
+        $_order = array();
+$query = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_MAIN_LIST,$_where,$_select,$_order);
+// $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+   
+
+    $_where = array();
+    $_where['t2.i_plan_main'] = $val->i_con_plan_main_list;
+    $_where['t1.i_shop'] = $PLAN_PACK->i_shop;
+    $_where['t1.i_country'] = $PLAN_PACK->i_country;
+    $_where['t1.i_partner'] = 2;
+    $this->db->select('*');
+    $this->db->from(TBL_PLAN_PACK." as t1");
+    $this->db->join(TBL_PLAN_PACK_LIST." as t2",'t1.id = t2.i_plan_pack');
+    $this->db->where($_where);
+    $con_ref = $this->db->get();
+    $con_ref = $con_ref->row();
+
+ 
+    foreach ($query as $key => $val2) {      
+       if ($val2->id == 1) {
+       	$park_total = 0;
+       		 $_where = array();
+              $_where[i_plan_pack] = $con_ref->i_plan_pack;
+              $this->db->select('*');
+              $query_data_ep = $this->db->get_where(TBL_CON_EACH_PERSON,$_where);
+              foreach ($query_data_ep->result() as $key => $value) {
+              			if ($_POST[adult]>= $value->i_person_up) {
+              					$park_total = $value->f_price;
+              					$data["price_park_unit"] = $_POST[adult];
+              					
+              				$data["price_park_total"] = $park_total;
+
+              			}
+              }
+       }
+       if ($val2->id == 2) {
+
+       }
+       if ($val2->id == 3) {
+
+       }
+       if ($val2->id == 4) {
+       		$tbl = $val2->s_tbl;
+      		$_where = array();
+      		$_where[i_plan_pack] = $_POST[plan_setting];
+      		$this->db->select('*');
+      		$query_con_tb = $this->db->get_where($tbl,$_where);
+      		$con = $query_con_tb->row();
+      		$person_total = 0;
+      		 foreach ($query_con_tb->result() as $key => $value4) {
+      		 	if ($_POST[adult]>= $value4->i_num_regis) {
+      		 		$data["price_person_unit"] = $_POST[adult];
+      		 		$person_total = $value4->f_price; 
+      		 		$data["price_person_total"] = $person_total;
+      		 		
+      		 	}
+      		 }
+
+       }
+       if ($val2->id == 5) {
+       	$_where = array();
+          $_where['id'] = $PLAN_PACK->i_shop; 
+          $_select = array('*');
+          $PRODUCT_SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
+          $_where = array();
+          $_where[main] = $PRODUCT_SUB->main;
+          $_where[sub] = $PRODUCT_SUB->id;
+          $_where[i_status] = 1;
+          $sub_type_list = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where,'',array('id' => 'asc'));
+
+       }
+
+  }
+}
+
+		// $list_price = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI,$_where,$_select,$_order);
 		
 
-		foreach ($list_price as $key => $value) {
-			$_where = array();
-			$_where['id'] = $value->i_plan_product_price_name;
-			$_select = array('s_col');
-			$_order = array();
-			$_order['id'] = 'asc';
-			$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
-			// return $price_name;
-			$datassss[col] =+$price_name->s_col; 
-			$s_col = $price_name->s_col;
-			if ($value->i_plan_product_price_name == 6) {
-				$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
-				// $data["aaaaaa".$s_col] = $value->s_topic_en;
-				$data[$s_col] = 1*$value->i_price;;
-				$data["price_person_total"] = 1*$price_person_total;
+		// foreach ($list_price as $key => $value) {
+		// 	$_where = array();
+		// 	$_where['id'] = $value->i_plan_product_price_name;
+		// 	$_select = array('s_col');
+		// 	$_order = array();
+		// 	$_order['id'] = 'asc';
+		// 	$price_name = $this->Main_model->rowdata(TBL_PLAN_PRODUCT_PRICE_NAME,$_where,$_select);
+		// 	// return $price_name;
+		// 	$datassss[col] =+$price_name->s_col; 
+		// 	$s_col = $price_name->s_col;
+		// 	if ($value->i_plan_product_price_name == 6) {
+		// 		$price_person_total = (1*$value->i_price) * (1*$_POST[adult]);
+		// 		// $data["aaaaaa".$s_col] = $value->s_topic_en;
+		// 		$data[$s_col] = 1*$value->i_price;;
+		// 		$data["price_person_total"] = 1*$price_person_total;
 				
-			}
-			else if ($value->i_plan_product_price_name == 5) {
-				$_where = array();
-			$_where['i_list_price'] = $value->id;
-			$_where['i_car_type'] = $_POST[car_type];
-			$_where['i_shop'] = $_POST[program];
-			$_select = array('*');
-			$_order = array();
-			$_order['id'] = 'asc';
-			$CAR_PRICE = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where,$_select);
-				$data[$s_col] =  $CAR_PRICE->i_price_park;
+		// 	}
+		// 	else if ($value->i_plan_product_price_name == 5) {
+		// 		$_where = array();
+		// 	$_where['i_list_price'] = $value->id;
+		// 	$_where['i_car_type'] = $_POST[car_type];
+		// 	$_where['i_shop'] = $_POST[program];
+		// 	$_select = array('*');
+		// 	$_order = array();
+		// 	$_order['id'] = 'asc';
+		// 	$CAR_PRICE = $this->Main_model->rowdata(TBL_SHOP_CAR_PRICE_TAXI,$_where,$_select);
+		// 		$data[$s_col] =  $CAR_PRICE->i_price_park;
 				
-			}
+		// 	}
 
 
-			else{
-				$data[$s_col] =  $value->i_price;
+		// 	else{
+		// 		$data[$s_col] =  $value->i_price;
 
-			}
+		// 	}
 			
-			if($value->s_payment=="โอน"){
-				$data[check_tran_job] = 1;
-			}
+		// 	if($value->s_payment=="โอน"){
+		// 		$data[check_tran_job] = 1;
+		// 	}
 
-			// $ick++;
-		}
+		// 	// $ick++;
+		// }
 
 		// return  $data;
 		// $data["price_all_total"] = $price_park_driver + $all_price_person_driver;
@@ -208,7 +264,7 @@ class Shop_model extends CI_Model {
 			$member_in = "0000$member_db";
 		}
 		$data_update[invoice] = "S$member_in";
-//	$data_update[result] = $db->update_db('order_booking',$data_update,'id = "'.$last_id.'" ');
+	// $data_update[result] = $db->update_db('order_booking',$data_update,'id = "'.$last_id.'" ');
 		$this->db->where('id', $last_id);
 		$data_update[result] = $this->db->update('order_booking', $data_update); 
 
@@ -218,7 +274,9 @@ class Shop_model extends CI_Model {
 			$this->linenoti();
 			# code...
 		}
-$data['list_price'] = json_encode($list_price);
+		$data[post] = $_POST;
+		$data[sss] = $query;
+$data[PACK_LIST] = json_encode($PACK_LIST);
 		return $data;
 
 	}

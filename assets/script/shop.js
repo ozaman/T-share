@@ -235,7 +235,7 @@ function checformadd(tax) {
         }
 
         if (form.elements["plate_num_1"].value == 0) {
-          $('#box_car').addClass('borderBlink')
+          // $('#box_car').addClass('borderBlink')
           $('html, body').animate({
             scrollTop: $('#box_com').offset().top
           }, 300, function () {
@@ -258,8 +258,8 @@ function checformadd(tax) {
             window.location.href = "#nation_box";
           });
         }
-        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-          $('#box_com').addClass('borderBlink')
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
+          // $('#box_com').addClass('borderBlink')
           console.log(this.hash)
 
           $('html, body').animate({
@@ -271,7 +271,7 @@ function checformadd(tax) {
             window.location.href = "#box_com";
           });
         }
-        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
           $('#num_customer').addClass('borderBlink')
           console.log(this.hash)
 
@@ -284,7 +284,7 @@ function checformadd(tax) {
             // window.location.href = "#num_customer";
           });
         }
-        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 &&  $('#child').val() != '' && $('#adult').val() != '') {
           if ($('#adult').val() != '' && $('#child').val() != '') {
             $('#num_customer').removeClass('borderBlink')
 
@@ -346,8 +346,8 @@ function checktime(x) {
       window.location.href = "#nation_box";
     });
   }
-  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
-    $('#box_com').addClass('borderBlink')
+  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
+    // $('#box_com').addClass('borderBlink')
     console.log(this.hash)
 
     $('html, body').animate({
@@ -356,10 +356,10 @@ function checktime(x) {
 
 
 
-      window.location.href = "#box_com";
+      // window.location.href = "#box_com";
     });
   }
-  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0  && $('#child').val() == '' && $('#adult').val() == '') {
     $('#num_customer').addClass('borderBlink')
     console.log(this.hash)
 
@@ -371,7 +371,7 @@ function checktime(x) {
 
       // window.location.href = "#num_customer";
     });
-  } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+  } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0  && $('#child').val() != '' && $('#adult').val() != '') {
     if (form.elements["time_num"].value == 0) {
 
       $('#child').focusout();
@@ -392,9 +392,9 @@ function checktime(x) {
   }
 }
 
-function checkchild(x) {
-  console.log('dsdsdsd')
-}
+// function checkchild(x) {
+//   console.log('dsdsdsd')
+// }
 // var rad = document.form_booking.nation;
 function shandleClicks(tax, country) {
   console.log(tax)
@@ -409,8 +409,8 @@ function shandleClicks(tax, country) {
 }
 
 function handleClick_s(tax, name) {
-//    console.log(tax)
-//    console.log(name)
+   console.log(tax)
+    console.log(name)
   var form = document.getElementById("form_booking");
 //    console.log('#' + tax)
   if (tax == 'nation') {
@@ -421,6 +421,20 @@ function handleClick_s(tax, name) {
       $('#box_price_plan').html(res);
       // console.log(data);
       $('#radio-nation' + name).prop('checked', true);
+      if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+      // $('#box_com').removeClass('borderBlink')
+      $('#num_customer').addClass('borderBlink')
+      console.log(this.hash)
+
+      $('html, body').animate({
+        scrollTop: $('#num_customer').offset().top
+      }, 300, function () {
+
+        // $("#adult").focus()
+
+        window.location.href = "#num_customer";
+      });
+    }
     });
 
 
@@ -464,7 +478,7 @@ function handleClick_s(tax, name) {
         window.location.href = "#nation_box";
       });
     }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value == 0) {
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
       // $('#box_com').addClass('borderBlink')
       $('#num_customer').removeClass('borderBlink')
       console.log(this.hash)
@@ -478,7 +492,7 @@ function handleClick_s(tax, name) {
         window.location.href = "#box_com";
       });
     }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
       $('#box_com').removeClass('borderBlink')
       $('#num_customer').addClass('borderBlink')
       console.log(this.hash)
@@ -492,7 +506,7 @@ function handleClick_s(tax, name) {
         window.location.href = "#num_customer";
       });
     }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && form.elements["price_plan"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
       $('#num_customer').removeClass('borderBlink')
       if (form.elements["time_num"].value == 0) {
         // $('#child').focusout();
