@@ -433,7 +433,7 @@ else {
                     // print_r(json_encode($COUNTRY));
                 ?>
                     <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><!-- <span><?=$val->id;?></span> -->
+                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
                     </div>
 
 

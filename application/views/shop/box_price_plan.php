@@ -171,6 +171,7 @@ $_where = array();
       $tbl = $val2->s_tbl;
       $_where = array();
       $_where[i_plan_pack] = $_GET[i_plan_pack];
+      $_where[i_status] = 1;
       $this->db->select('*');
       $query_con_tb = $this->db->get_where($tbl,$_where);
       $con = $query_con_tb->row();
@@ -188,7 +189,7 @@ $_where = array();
       // }
       ?>
       
-      <div style="padding: 5px 0px 15px 0px; ">
+      <div >
         <?php
         if ($val2->id == 1) {
           ?>
@@ -396,15 +397,19 @@ $_where = array();
         }
         else if ($val2->id == 5) {
 
-          $_where = array();
-          $_where['id'] = $PLAN_PACK->i_shop; 
-          $_select = array('*');
-          $PRODUCT_SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
-          $_where = array();
-          $_where[main] = $PRODUCT_SUB->main;
-          $_where[sub] = $PRODUCT_SUB->id;
-          $_where[i_status] = 1;
-          $sub_type_list = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where,'',array('id' => 'asc'));
+                      $_where = array();
+                      $_where[i_plan_pack] = $con_ref->i_plan_pack;
+                      $this->db->select('*');
+                      $query_data_product_type = $this->db->get_where(TBL_CON_COM_PRODUCT_TYPE,$_where);
+          // $_where = array();
+          // $_where['id'] = $PLAN_PACK->i_shop; 
+          // $_select = array('*');
+          // $PRODUCT_SUB = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_SUB,$_where,$_select);
+          // $_where = array();
+          // $_where[main] = $PRODUCT_SUB->main;
+          // $_where[sub] = $PRODUCT_SUB->id;
+          // $_where[i_status] = 1;
+          // $sub_type_list = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where,'',array('id' => 'asc'));
  //           echo '<pre>';
  // print_r($sub_type_list);
  // echo '</pre>';
@@ -417,16 +422,23 @@ $_where = array();
                     <td style=""><b>รายการ</b></td>
                     <!-- <td style="width: 150px;text-align: center;"><b> Vat %</b></td> -->
 
-                    <td style="width: 150px;text-align: center;"><b>ค่าคอม %</b></td>
+                    <td style="width: 100px;text-align: center;"><b>คอม %</b></td>
 
                     <!-- <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td> -->
                   </tr>
                   <?php
 //                echo count($sub_type_list);
-                  foreach ($sub_type_list as $key => $value) {
+                  foreach ($query_con_tb->result() as $key => $value) {
+                    $_where = array();
+                    $_where[id] = $value->i_product_sub_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where);
+                    $data_pd_sub_typelist = $query->row();
+
+
                     $_where = array();
                     $_where[status] = 1;
-                    $_where[id] = $value->i_main_typelist;
+                    $_where[id] = $data_pd_sub_typelist->i_main_typelist;
                     $this->db->select('*');
                     $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
                     $data_pd = $query->row();
