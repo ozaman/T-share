@@ -145,7 +145,7 @@ $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
 <?php
 $_where = array();
     $_where[i_plan_pack] = $_GET[i_plan_pack];
-    $_where[id] = $val->i_con_plan_main_list;
+    $_where[i_plan_main] = $main->id;
     $this->db->select('i_con_plan_main_list, id');
     $querys = $this->db->get_where(TBL_PLAN_PACK_LIST,$_where);
     $con_pack = $querys->row();
@@ -153,7 +153,7 @@ $_where = array();
     // print_r($con_pack);//------------------------------
 
     $_where = array();
-    $_where['t2.i_plan_main'] = $val->i_con_plan_main_list;
+    $_where['t2.i_plan_main'] = $main->id;
     $_where['t1.i_shop'] = $PLAN_PACK->i_shop;
     $_where['t1.i_country'] = $PLAN_PACK->i_country;
     $_where['t1.i_partner'] = 2;
@@ -230,7 +230,8 @@ $_where = array();
           $_where = array();
           $_where[status] = 1;
           $this->db->select('*');
-          $query = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
+          $query2 = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
+           
           ?>
           <div style="<?=$box_other;?>">
             
@@ -245,62 +246,58 @@ $_where = array();
                   <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th> -->
                 </tr>
                 <?php
-                foreach ($query->result() as $key => $val) {
-                  $_where = array();
-                  $_where[i_car_type] = $val->id;
-                  $_where[i_plan_pack] = $_GET[i_plan_pack];
-                  $this->db->select('*');
-                  $query_c = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
-                  $data_car = $query_c->row();
 
-                  if ($data_car->i_status > 0) {
-                    $selected_car = "checked";
-                    $active_box = "active";
-                    $disabled_box_price = "";
-                    $disabled_box_vat = "";
-                    $disabled_box_wht = "";
-                    $val_chk = 1;
-                  }
-                  else {
-                    $selected_car = "";
-                    $active_box = "";
-                    $disabled_box_price = "disabled";
-                    $disabled_box_vat = "disabled";
-                    $disabled_box_wht = "disabled";
-                    $val_chk = 0;
-                  }
+                foreach ($query2->result() as $key => $val) {
+                 
+                    $_where = array();
+                    $_where[i_car_type] = $val->id;
+                  $_where[i_plan_pack] = $_GET[i_plan_pack];
+                    $_select = array('*');
+                    $query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
+
+
+
+                  // $_where = array();
+                  // $_where[i_car_type] = $val->id;
+                  // $_where[i_plan_pack] = $_GET[i_plan_pack];
+                  // $this->db->select('*');
+                  // $query_c = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
+
+                  // $data_car = $query_c->result();
+                  
+                       /*          echo "<pre>";
+               print_r($query_c);
+               echo "</pre>";*/
+        
+                 
+
+
                   $_where = array();
                   $_where[i_plan_pack] = $con_ref->id;
                   $_where[i_car_type] = $val->id;
                   $this->db->select('*');
                   $q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
                   $data_car_ref = $q_car_ref->row();
-//                  print_r($data_car_ref->row());
-                  if ($q_car_ref->num_rows() > 0) {
+                  // echo count($q_car_ref->result());
+                  if (count($query_c) > 0) {
                     $tr_show_cartype = '';
-                  }
-                  else {
-                    $tr_show_cartype = 'display:none;';
-                  }
-                  ?>
-                  <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$tr_show_cartype;?>">
+                    ?>
+                     <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$tr_show_cartype;?>">
                     <td>
                       <span style="font-size:14px;"><?=$val->name_th;?></span>
                       
                     </td>
                     <td align="center">
-                      <span><?=$data_car_ref->f_price;?></span>
+                      <span><?=$query_c->f_price;?></span>
                     </td>
-                   <!--  <td align="center">
-                      <span class="form-control"   style="width:80%;"  ><?=$data_car->f_price;?></span>
-                    </td>
-                    <td align="right">
-                      <span><?=$data_car_ref->f_wht;?></span>
-                    </td>
-                    <td align="center">
-                      <span class="form-control"   style="width:80%;" ><?=$data_car->f_wht;?></span>
-                    </td> -->
+                  
                   </tr>
+
+                 <?php }
+                  
+
+                  
+                  ?>
 
                 <?php }
                 ?>
@@ -309,7 +306,16 @@ $_where = array();
           </div>
           <?php
         }
-        else if ($val->id == 3) {
+        else if ($val2->id == 3) {
+          // echo $con_ref->i_plan_pack.'***************';
+          $_where = array();
+                    $_where[i_plan_pack] = $con_ref->i_plan_pack;
+                    $this->db->select('*');
+                    $query_payall = $this->db->get_where(TBL_CON_EACH_PS_ALL_PAY,$_where);
+                    $con_payall = $query_payall->row();
+         //                     echo "<pre>";
+         // print_r($query_payall->row());
+         // echo "</pre>";
           ?>
           <div style="<?=$box_other;?>">          
            
@@ -317,31 +323,11 @@ $_where = array();
               
                   <table class="tb-pad" width="100%">
                     <tr>
-                      <td align="center"><b style="font-size: 16px;">คนละ</b></td>
-                      <td></td>
-                      <!-- <td align="center" width="220px"><b style="font-size: 16px;">ถอด vat%</b></td>
-                      <td></td>
-                      <td  -->align="center"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="input-group">
-                          <span class="input-group-addon">จำนวน</span>
-                          <span class="form-control" ><?=$con->f_price;?></span>
-                        </div>
-                      </td>
-                      <td width="30"></td>
-                      <!-- <td>
-                        <span class="form-control"  ><?=$con->f_vat;?></span>
-                      </td>
-                      <td width="30"></td>
-                      <td>
-                        <span class="form-control"  ><?=$con->f_wht;?></span>
-                      </td>
-                      <td>
-                        
-                      </td> -->
-                    </tr>
+                        <td width="80"><b style="font-size:15px;">คนละ</b></td>
+                        <td><span style="font-size:15px;"><?=$con_payall->f_price;?></span></td>
+                      </tr>
+
+                   
                   </table>
                 
               </div>
@@ -354,7 +340,7 @@ $_where = array();
           <div>
                 <table class="tb-pad" width="100%">
                   <tr>
-                    <td align="center"  width="80"><b style="font-size: 16px;">จำนวนคน</b></td>
+                    <td align="center"  width="80"><b style="font-size: 16px;">จำนวน</b></td>
                     <td></td>
                     <td align="center"><b style="font-size: 16px;">ราคา</b></td>
                     <td></td>
@@ -372,7 +358,7 @@ $_where = array();
                         <span style="font-size:16px;"><?=$person = $person + 1;?>  คน</span>
                       </td>
                       <td width="30"></td>
-                      <td><span class="form-control"   ><?=$val->f_price;?></span></td>
+                      <td align="center"><span class="form-control"   ><?=$val->f_price;?></span></td>
                       <td width="30"></td>
                       <!-- <td> -->
                         <!-- <span class="form-control"  ><?=$val->f_vat;?></span> -->
@@ -419,11 +405,12 @@ $_where = array();
               <div class="form-group ">
                 <table width="100%" class="tb-pad">
                   <tr>
-                    <td style=""><b>รายการ</b></td>
+                    <td width="80"><b>รายการ</b></td>
+                    <td width="30"></td>
                     <!-- <td style="width: 150px;text-align: center;"><b> Vat %</b></td> -->
 
                     <td style="width: 100px;text-align: center;"><b>คอม %</b></td>
-
+<td width="30"></td>
                     <!-- <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td> -->
                   </tr>
                   <?php
@@ -475,9 +462,11 @@ $_where = array();
                         <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
                        
                       </td>
+                      <td width="30"></td>
                       <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                       <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_vat;?></span></td>
                       <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
+                      <td width="30"></td>
                     </tr>
                   <?php }
                   ?>

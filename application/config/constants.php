@@ -167,6 +167,8 @@ define('TBL_CON_EACH_CAR', 'tbl_con_each_car');
 define('TBL_CON_PS_ONLY_REGIS', 'tbl_con_ps_only_regis');
 define('TBL_CON_EACH_PS_ALL_PAY', 'tbl_con_ps_all_pay');
 define('TBL_CON_COM_PRODUCT_TYPE', 'tbl_con_com_product_type');
+define('TBL_WEB_CAR_USE_TYPE', 'web_car_use_type');
+define('TBL_COM_ORDER_BOOKING', 'tbl_com_order_booking');
 
 
 
