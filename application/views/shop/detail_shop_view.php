@@ -416,7 +416,24 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
       </tbody>
     </table>
   </div>
+<?php
+$_where = array();
+                    $_where['id'] = $arr[book][plan_setting];
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+ 
+ //           echo '<pre>';
+ // print_r($PLAN_PACK);
+ // echo '</pre>';
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
 
+
+
+$plan = $PLAN_PACK->s_topic; 
+?>
   <div style="padding: 5px 0px;">
     <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
     <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
@@ -433,10 +450,10 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
           <table>
             <tr>
               <td>
-                <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="25" height="25" alt="">
+                <img src="<?=base_url();?>assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">
               </td>
               <td>&nbsp;</td>
-              <td><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+              <td><span class="font-17" id="txt_county_pp"><?=$COUNTRY->name_th;?></span></td>
             </tr>
           </table>
         </td>

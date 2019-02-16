@@ -219,7 +219,7 @@ else {
         $park_total = 0;
         $person_total = 0;
         $com_total = 0;
-        $plan = "";
+        
         foreach ($query_price->result() as $row_price) {
           if ($num >= 1) {
             $push = " + ";
@@ -227,7 +227,7 @@ else {
           else {
             $push = "";
           }
-          $plan .= $push.$row_price->s_topic_th;
+          // $plan .= $push.$row_price->s_topic_th;
           $num++;
 
           if ($row_price->s_topic_en == "park") {
@@ -252,6 +252,26 @@ else {
             $com_progress = '<span style="padding-left: 0px;"><font color="#FF0000">รอโอน</font></span>';
           }
         }
+
+$_where = array();
+                    $_where['id'] = $data->plan_setting;
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+ 
+ //           echo '<pre>';
+ // print_r($PLAN_PACK);
+ // echo '</pre>';
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+
+
+
+$plan = $PLAN_PACK->s_topic;
+
+
+
 //            $all_total = $park_total + $person_total + $com_total;
         $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
         $query_country = $this->db->query($sql_country);
@@ -274,10 +294,10 @@ else {
               <tr>
                 <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
                 <td style="padding: 0;">
-                  <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                  <img src="<?=base_url();?>assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="20" height="20" alt="">
                 </td>
                 <td style="padding: 0;">&nbsp;</td>
-                <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$COUNTRY->name_th;?></span></td>
               </tr>
             </table>
           </td>
@@ -330,7 +350,7 @@ else {
                         </td>
                       </tr>
                     </table>
-                      <!-- <td width="40%" align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span> -->
+                     
 
 
 
