@@ -4,6 +4,9 @@ $_where['id'] = $_GET[id];
 $_select = array('*');
 $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where);
 // print_r( $book);
+
+
+
 if ($book->price_park_unit != 0) {
   $park_total = number_format($book->price_park_unit,2);
   $display_park = "";
@@ -144,42 +147,75 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   <div class="card replan" id="nation_box" style="display: none;">
     <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
     <div class="form-group">
-      <?php
-      foreach ($data['region'] as $key => $val) {
+       <?php
 
+        
         $_where = array();
-        $_where['i_shop_country'] = $val->id;
+        $_where['i_shop'] = $book->program;
+        $_where['i_partner_group'] = 2;
+
         $_select = array('*');
+
         $_order = array();
         $_order['id'] = 'asc';
-        $arr[region_icon] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_ICON_TAXI,$_where,$_select,$_order);
-        if ($res_country->sci_id == $val->id) {
-          $checked_nation = "checked";
-        }
-        else {
-          $checked_nation = "";
-        }
+        $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
+        $_where = array();
+        $_where['i_shop'] = $book->program;
+        $_where['i_partner_group'] = 1;
+
+        $_select = array('*');
+
+        $_order = array();
+        $_order['id'] = 'asc';
+        $PLAN_PACK = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
         ?>
-        <label class="" for="radio-nation-ck<?=$key + 1;?>" onclick="getPlanBox('<?=$val->id;?>', '<?=$book->plan_id;?>');">
-          <ons-list-item tappable id="nation_<?=$key + 1;?>">
-            <label class=" left">
-              <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation-ck<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange="" <?=$checked_nation;?>></ons-radio>
-            </label>
+        
+        <?php
+        foreach ($data[PLAN_PACK] as $key => $val) {
+
+          $_where = array();
+          $_where['i_plan_pack'] = $val->id;
+          $_select = array('*');
+          $_order = array();
+          $_order['id'] = 'asc';
+          $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+          if (count($data[PLAN_PACK]) == 1) {
+            ?>
+            <script type="text/javascript">
+             // handleClick_s('nation', '<?=$val->id;?>')
+            </script>
             <?php
-            foreach ($arr[region_icon] as $key2 => $val2) {
-              ?>
-              <div class="col-md-3">
-                <img src="assets/images/flag/icon/<?=$val2->s_country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$val2->s_topic_th;?></span>
-              </div>
+          }
+          ?>
+              <label class=""  for="radio-nation-ck<?=$key + 1;?>" onclick="getPlanBox('<?=$val->id;?>', '<?=$book->plan_id;?>');">
+                <ons-list-item tappable id="nation_<?=$key + 1;?>">
+                  <label class=" left">
+                    <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation-ck<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange="" ></ons-radio>
+                  </label>
+              <?php
+              
+
+                    $_where = array();
+                    $_where['id'] = $val->i_country; 
+                    $_select = array('*');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+                    // print_r(json_encode($COUNTRY));
+                ?>
+                    <div class="col-md-3">
+                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
+                    </div>
 
 
 
 
-            <?php }?>
 
-          </ons-list-item>
-        </label>
-      <?php }?>
+
+                  </ons-list-item>
+                </label>
+    <?php 
+  }?>
+
+
 
     </div>
   </div>

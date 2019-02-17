@@ -554,12 +554,13 @@ function getPlanBox(id, plan_id) {
   } else {
     $('#box_cause').show();
   }
-  var url = "shop/box_price_plan" + "?i_country=" + id + "&plan_id=" + plan_id + "&user_sc=1"+"&car_type="+$('#car_type').val()+'&i_shop='+$('#program').val();
+
+  var url = "shop/box_price_plan" + "?i_country=" + id + "&i_plan_pack=" + id + "&user_sc=1"+"&car_type="+$('#car_type').val()+'&i_shop='+$('#program').val();
   console.log(url);
   $.post(url, function (res) {
     $('#box_price_replan').html(res);
     // console.log(data);
-    $('#radio-nationck' + id).prop('checked', true);
+    // $('#radio-nationck' + id).prop('checked', true);
     $('#body_shop_checkin').animate({
       scrollTop: $('#box_cause').offset().top
     }, 500);
@@ -2419,7 +2420,9 @@ function area_remark() {
 function changePlan(id) {
 //	if($('#check_change_plan').val()==0){
   $('.replan').fadeIn(500);
-  getPlanBox($('#sci_id').val(), $('#plane_id_replan').val());
+   $('#radio-nation-ck' + id).prop('checked', true);
+   $('#nation_' + id).prop('checked', true);
+  // getPlanBox($('#sci_id').val(), $('#plane_id_replan').val());
   $('#check_change_plan').val(1);
   $('#btn_change_plan').fadeOut(500);
 
