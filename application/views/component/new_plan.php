@@ -85,17 +85,18 @@ else {
       $_order['id'] = 'asc';
       $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS,$_where,$_select,$_order);
       // echo 'fsfsafsfsf';
-// echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);
+ // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);
 
 
 
 
 $_where = array();
  if (count($BOOKING_LOGS)=='') {
-       $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+  $_where['id'] = $data->plan_setting;
+       
       }
       else{
-        $_where['id'] = $data->plan_setting;
+        $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
       }
 // $_where['id'] = $data->plan_setting;
 $_select = array('*');
@@ -136,10 +137,11 @@ $plan = $PLAN_PACK->s_topic;
 
       $_where = array();
       if (count($BOOKING_LOGS)=='') {
-       $_where['i_plan_pack'] = $BOOKING_LOGS[0]->i_plan_pack;
+       $_where['i_plan_pack'] = $data->plan_setting;
       }
       else{
-        $_where['i_plan_pack'] = $data->plan_setting;
+        $_where['i_plan_pack'] = $BOOKING_LOGS[0]->i_plan_pack;
+        
       }
       // echo $_where['i_plan_pack'].'-----------';
       $_select = array('*');
@@ -179,18 +181,68 @@ $plan = $PLAN_PACK->s_topic;
 
       $_select = array('*');
        if (count($BOOKING_LOGS)=='') {
-       $TBL = TBL_COM_ORDER_BOOKING_LOGS;
+       $TBL = TBL_COM_ORDER_BOOKING;
       }
       else{
-       $TBL = TBL_COM_ORDER_BOOKING;
+        $TBL = TBL_COM_ORDER_BOOKING_LOGS;
+       
         
       }
       // echo $TBL.'////////////';
       $COM_ORDER_BOOKING = $this->Main_model->rowdata($TBL,$_where,$_select);
-      $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+      
  //  echo '<pre>';
  // print_r($COM_ORDER_BOOKING);
  // echo '</pre>';
+
+      if ($COM_ORDER_BOOKING->i_main_list == 5) {
+        $curency = '%';
+        $title_head = 'รายการ';
+        $title_head2 = 'คอม';
+ 
+        
+        $_where = array();
+        // echo $COM_ORDER_BOOKING->i_com;
+                    $_where[status] = 1;
+                    $_where[id] = $COM_ORDER_BOOKING->i_com;
+                    $_select = array('*');
+                    $MAIN_TYPELIST = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where,$_select);
+ //                      echo '<pre>';
+ // print_r($MAIN_TYPELIST);
+ // echo '</pre>';
+//          // $pax = $COM_ORDER_BOOKING->i_pax;
+$pax = $MAIN_TYPELIST->topic_th;
+      }
+       else if ($COM_ORDER_BOOKING->i_main_list == 2) {
+        $curency = 'บ.';
+        $title_head = 'รายการ';
+         $title_head2 = 'ราคา';
+         $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+        $_where = array();
+          
+         $_where[status] = 1;
+                    $_where[id] = $COM_ORDER_BOOKING->i_com;
+                    $_select = array('*');
+          $USE_TYPE = $this->Main_model->rowdata(TBL_WEB_CAR_USE_TYPE,$_where,$_select);
+ //                                echo '<pre>';
+ // print_r($USE_TYPE);
+ // echo '</pre>';
+          $pax = $USE_TYPE->name_th;
+      }
+      else if ($COM_ORDER_BOOKING->i_main_list == 3) {
+        $curency = 'บ.';
+        $title_head = 'จำนวน';
+        $title_head2 = 'ราคา(คนละ)';
+         $all_total_iprice += $COM_ORDER_BOOKING->i_price*$COM_ORDER_BOOKING->i_pax;
+         $pax =$COM_ORDER_BOOKING->i_pax;
+      }
+      else{
+        $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+        $curency = 'บ.';
+        $title_head = 'จำนวน';
+        $title_head2 = 'ราคา';
+         $pax = $COM_ORDER_BOOKING->i_pax;
+      }
                 ?>
            <tr >
         <td  colspan="4">
@@ -202,16 +254,16 @@ $plan = $PLAN_PACK->s_topic;
             
             </tr>
             <tr>
-                <td width="90"> จำนวน</td>
+                <td width="90"> <?=$title_head;?></td>
                 <td></td>
-                <td width="150" align="right"> ราคา</td>
+                <td width="150" align="right"> <?=$title_head2;?></td>
                 <td></td> 
             </tr>
             <tr>
-                <td width="90" align="center"> <span style=""><?=$COM_ORDER_BOOKING->i_pax?></span></td>
+                <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
                 <td></td>
                 <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
-                <td align="left"><span class="font-17">บ.</span></td> 
+                <td align="left"><span class="font-17"><?=$curency;?></span></td> 
             </tr>
           </table>          
         </td>

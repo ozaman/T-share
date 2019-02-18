@@ -217,7 +217,7 @@ class Shop_model extends CI_Model {
 
 		       			$i_price = $query_c->f_price;
 		       			$data_com_ordder['i_price'] = $i_price;
-		       			$data_com_ordder['i_com'] = $query_c->id;
+		       			$data_com_ordder['i_com'] = $val->id;
 		       		}
 
 		       	}
@@ -301,7 +301,7 @@ class Shop_model extends CI_Model {
 		       		$data_pd = $query->row();
 
 		       		$data_com_ordder['i_main_list'] = $val2->id;
-		       		$data_com_ordder['i_com'] = $value->id;
+		       		$data_com_ordder['i_com'] = $data_pd->id;
 
 		       		$data_com_ordder['i_price'] = $value->f_vat;
 
@@ -563,7 +563,7 @@ $_where = array();
 
 		       			$i_price = $query_c->f_price;
 		       			$data_com_ordder['i_price'] = $i_price;
-		       			$data_com_ordder['i_com'] = $query_c->id;
+		       			$data_com_ordder['i_com'] = $val->id;
 		       		}
 
 		       	}
@@ -647,9 +647,9 @@ $_where = array();
 		       		$data_pd = $query->row();
 
 		       		$data_com_ordder['i_main_list'] = $val2->id;
-		       		$data_com_ordder['i_com'] = $value->id;
+		       		$data_com_ordder['i_com'] = $data_pd->id;
 
-		       		$data_com_ordder['i_price'] = $value->f_vat;
+		       		$data_com_ordder['i_price'] = $value->f_price;
 
 		       	}
 		       }

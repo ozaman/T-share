@@ -430,13 +430,13 @@ $_where = array();
                     $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
                     $data_pd = $query->row();
 
-                    $_where = array();
-//                  $_where[i_status] = 1;
-                    $_where[i_plan_pack] = $_GET[i_plan_pack];
-                    $_where[i_product_sub_typelist] = $value->id;
-                    $this->db->select('*');
-                    $query_pd_typelist = $this->db->get_where(TBL_CON_COM_PRODUCT_TYPE,$_where);
-                    $data_con_pd_typelist = $query_pd_typelist->row();
+//                     $_where = array();
+// //                  $_where[i_status] = 1;
+//                     $_where[i_plan_pack] = $_GET[i_plan_pack];
+//                     $_where[i_product_sub_typelist] = $value->id;
+//                     $this->db->select('*');
+//                     $query_pd_typelist = $this->db->get_where(TBL_CON_COM_PRODUCT_TYPE,$_where);
+//                     $data_con_pd_typelist = $query_pd_typelist->row();
                     // echo $data_con_pd_typelist->i_status;
 
 //                  echo $query_pd_typelist->num_rows()." ++";
@@ -464,7 +464,7 @@ $_where = array();
                       </td>
                       <td width="30"></td>
                       <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
-                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_vat;?></span></td>
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$value->f_price;?></span></td>
                       <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                       <td width="30"></td>
                     </tr>

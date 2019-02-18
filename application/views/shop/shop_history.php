@@ -123,16 +123,63 @@ foreach ($result as $key => $val) {
           $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$val->plan_id."'    ";
               $query_country = $this->db->query($sql_country);
               $res_country = $query_country->row();
+
+              $_where = array();
+              // echo  $val->id.'-*******************';
+      // $_where['i_order_booking'] = $val->id;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS,array('i_order_booking' => $val->id),$_select,$_order);
+      // echo 'fsfsafsfsf';
+ // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);
+
+
+
+
+$_where = array();
+ if (count($BOOKING_LOGS)=='') {
+  $_where['id'] = $val->plan_setting;
+       
+      }
+      else{
+        $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+      }
+              $_where = array();
+                    
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+ $_where = array();
+ if (count($BOOKING_LOGS)=='') {
+  $_where['i_plan_pack'] = $val->plan_setting;
+       
+      }
+      else{
+        $_where['i_plan_pack'] = $BOOKING_LOGS[0]->i_plan_pack;
+      }
+          $_where['i_plan_pack'] = $_GET[i_plan_pack];
+          $_select = array('*');
+          $_order = array();
+          $_order['id'] = 'asc';
+          $PLAN_PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+           echo '<pre>';
+ print_r($PLAN_PACK_LIST);
+ echo '</pre>';
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+
           ?>
             <td colspan="3">
               <table style="margin-left: -2px;">
                 <tr>
                   <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
                   <td style="padding: 0;">
-                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
+                    <img src="<?=base_url();?>assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="20" height="20" alt="">
                   </td>
                   <td style="padding: 0;">&nbsp;</td>
-                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
+                  <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$COUNTRY->name_th;?></span></td>
                 </tr>
               </table>
             </td>
@@ -151,7 +198,7 @@ foreach ($result as $key => $val) {
         </tr>
         <tr>
           <td colspan="2" style="padding: 2px 0px;">
-            <span class="font-17">ลงทะเบียน : <?=$val->pax_regis;?> คน</span>
+            <span class="font-17">ลงทะเบียน : <?=$BOOKING_LOGS[0]->i_pax;?> คน</span>
           </td>
         </tr>
         <!----------------------------------------------------------------------------------------------------------------------------->
@@ -172,7 +219,7 @@ foreach ($result as $key => $val) {
               $park_total = 0;
               $person_total = 0;
               $com_total = 0;
-              $plan = "";
+              // $plan = "";
               foreach ($query_price->result() as $row_price) {
                 if ($num >= 1) {
                   $push = " + ";
@@ -180,7 +227,7 @@ foreach ($result as $key => $val) {
                 else {
                   $push = "";
                 }
-                $plan .= $push.$row_price->s_topic_th;
+                // $plan .= $push.$row_price->s_topic_th;
                 $num++;
 
                 if ($row_price->s_topic_en == "park") {
@@ -216,7 +263,25 @@ foreach ($result as $key => $val) {
               else {
                 $txt_get_cash = "<span class='font-17' style='color: #6fab1e;;'>รับแล้ว</span>";
               }
-              ?>
+
+              $_where = array();
+ if (count($BOOKING_LOGS)=='') {
+  $_where['id'] = $val->plan_setting;
+       
+      }
+      else{
+        $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+      }
+// $_where['id'] = $data->plan_setting;
+$_select = array('*');
+$PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+$_where = array();
+$_where['id'] = $PLAN_PACK->i_country; 
+$_select = array('country_code','id','name_th');
+$COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+$plan = $PLAN_PACK->s_topic; 
+?>
+            
               <div style="padding: 0px 0px;">
                 <table width="100%" class="none-pd">
                   <tr>

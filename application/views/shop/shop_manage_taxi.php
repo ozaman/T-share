@@ -254,7 +254,31 @@ else {
         }
 
 $_where = array();
-                    $_where['id'] = $data->plan_setting;
+      $_where['i_order_booking'] = $data->id;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS, $_where,$_select,$_order);
+      // echo  $BOOKING_LOGS;
+      // echo 'fsfsafsfsf';
+                // echo '<pre>';
+ // print_r($BOOKING_LOGS);
+ // echo '</pre>';
+  // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
+
+
+
+
+$_where = array();
+ // if (count($BOOKING_LOGS)=='') {
+  $_where['id'] = $data->plan_setting;
+       
+      // }
+      // else{
+        // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+      // }
+// $_where = array();
+                    // $_where['id'] = $data->plan_setting;
                     $_select = array('*');
                     $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
  
@@ -269,6 +293,7 @@ $_where = array();
 
 
 $plan = $PLAN_PACK->s_topic;
+// echo $plan;
 
 
 
