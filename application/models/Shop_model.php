@@ -201,6 +201,7 @@ class Shop_model extends CI_Model {
 		       	$this->db->select('*');
 		       	$query2 = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
 		       	foreach ($query2->result() as $key => $val) {
+		       		if ($val->id == $_POST[car_type]) {
 		       		$_where = array();
 		       		$_where[i_car_type] = $val->id;
 		       		$_where[i_plan_pack] = $_POST[plan_setting];
@@ -222,7 +223,7 @@ class Shop_model extends CI_Model {
 
 		       	}
 		       	$data_com_ordder['i_main_list'] = $val2->id;
-		       	
+		       	}
 
 
 
@@ -546,9 +547,16 @@ $_where = array();
 		       	$_where[status] = 1;
 		       	$this->db->select('*');
 		       	$query2 = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
+		       	$_where = array();
+		       	 $_where['id'] = $_GET[order_id]; 
+     $_select = array('*');
+     $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where,$_select);
 		       	foreach ($query2->result() as $key => $val) {
+		       		if ($val->id == $book->i_cartype) {
+		       			# code...
+		       		
 		       		$_where = array();
-		       		$_where[i_car_type] = $val->id;
+		       		$_where[i_car_type] = $book->i_cartype;//$val->id;
 		       		$_where[i_plan_pack] = $_POST[plan_setting];
 		       		$_select = array('*');
 		       		$query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
@@ -565,6 +573,7 @@ $_where = array();
 		       			$data_com_ordder['i_price'] = $i_price;
 		       			$data_com_ordder['i_com'] = $val->id;
 		       		}
+		       	}
 
 		       	}
 		       	$data_com_ordder['i_main_list'] = $val2->id;

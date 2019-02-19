@@ -5,6 +5,12 @@
  // $_order = array();
  // $_order['id'] = 'asc';
  // $data['list_plan'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_TAXI,$_where,$_select,$_order);
+ $select = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt,t3.id as id_use_type, tb_pro.id as tb_pro_id, tb_pro.name as tb_pro_name, tb_pro.name_th as tb_pro_name_th, tb_pro.name_cn as tb_pro_name_cn FROM web_carall as t1 left join web_province as tb_pro on t1.i_province = tb_pro.id    left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 ORDER BY t1.status_usecar  DESC";
+$query_usecar = $this->db->query($select);
+// echo $_COOKIE['detect_user'];
+//               echo '<pre>';
+//  print_r($query_usecar->result());
+//  echo '</pre>';
 $_where = array();
                     $_where['id'] = $_GET[i_plan_pack];
                     $_select = array('*');
@@ -246,11 +252,11 @@ $_where = array();
                   <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th> -->
                 </tr>
                 <?php
-
-                foreach ($query2->result() as $key => $val) {
+                foreach ($query_usecar->result() as $key => $val) {
+                // foreach ($query2->result() as $key => $val) {
                  
                     $_where = array();
-                    $_where[i_car_type] = $val->id;
+                    $_where[i_car_type] = $val->id_use_type;
                   $_where[i_plan_pack] = $_GET[i_plan_pack];
                     $_select = array('*');
                     $query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
@@ -284,7 +290,7 @@ $_where = array();
                     ?>
                      <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$tr_show_cartype;?>">
                     <td>
-                      <span style="font-size:14px;"><?=$val->name_th;?></span>
+                      <span style="font-size:14px;"><?=$val->car_type_txt;?></span>
                       
                     </td>
                     <td align="center">

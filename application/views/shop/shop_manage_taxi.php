@@ -332,6 +332,7 @@ $plan = $PLAN_PACK->s_topic;
           <td colspan="2">
 
             <div style="padding: 0px 0px;">
+
               <table width="100%" class="none-pd">
                 <tr>
                   <td colspan="2"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
@@ -353,6 +354,47 @@ $plan = $PLAN_PACK->s_topic;
                   </td>
                 </tr>
                 
+
+
+          <?php
+      $_where = array();
+      $_where['i_plan_pack'] = $data->plan_setting;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+ //        echo '<pre>';
+ // print_r($PACK_LIST);
+ // echo '</pre>';
+      ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <tr style="<?=$display_park;?>">
                   <td width="35%"><span class="font-17">ค่าจอด</span></td>
                   <td width="40%" align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
