@@ -157,7 +157,7 @@ foreach ($_POST[data] as $key => $val) {
             $park_total = 0;
             $person_total = 0;
             $com_total = 0;
-            $plan = "";
+            // $plan = "";
             foreach ($query_price->result() as $row_price) {
               if ($num >= 1) {
                 $push = " + ";
@@ -165,7 +165,7 @@ foreach ($_POST[data] as $key => $val) {
               else {
                 $push = "";
               }
-              $plan .= $push.$row_price->s_topic_th;
+              // $plan .= $push.$row_price->s_topic_th;
               $num++;
 
               if ($row_price->s_topic_en == "park") {
@@ -205,122 +205,95 @@ foreach ($_POST[data] as $key => $val) {
             else {
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
-            ?>
-            <div style="padding: 0px 0px;">
-              <table width="100%" class="none-pd">
-                <tr>
-                  <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
-                </tr>
-                <tr>
-                  <td colspan="3">
-                    <table>
-                      <tr>
-                        <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                        <td style="padding: 0;">
-                          <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                        </td>
-                        <td style="padding: 0;">&nbsp;</td>
-                        <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr style="<?=$display_park;?>">
-                  <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <tr style="<?=$display_person;?>">
-                  <td width="35%"><span class="font-17">ค่าหัว</span></td>
-                  <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <?php if ($data->transfer_money == 0) {?>
-                  <tr style="<?=$display_com;?>">
-                    <td colspan="3">
-
-                      <table width="100%">
-                        <tr>
-                         <td align="left" width="50%"><span class="font-17">ค่าคอม</span></td>
-                         <td align="right" width="20%">
-                          <?=$com_progress;?>
-                        </td>
-                      </tr>
-                    </table>
-                      <!-- <td width="40%" align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span> -->
+            $_where = array();
+      $_where['i_order_booking'] = $data->id;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS, $_where,$_select,$_order);
+      // echo  $BOOKING_LOGS;
+      // echo 'fsfsafsfsf';
+                // echo '<pre>';
+ // print_r($BOOKING_LOGS);
+ // echo '</pre>';
+  // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
 
 
 
-<div style="margin-left: 15px">
-                      <table width="100%">
 
-                        <?php
-                        if ($i_plan_product_price_name == 7) {
-                          $_where = array();
-                          $_where[product] = $val[program];
-                          $_where[i_list_price] = $i_list_prices;
-                          $_select = array('*');
-                          $_order = array();
-                          $_order['id'] = 'asc';
-                          $PERCENT_TAXI = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI,$_where,$_select,$_order);
-                              // print_r(json_encode($PERCENT_TAXI));
+$_where = array();
+ // if (count($BOOKING_LOGS)=='') {
+  $_where['id'] = $data->plan_setting;
+       
+      // }
+      // else{
+        // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+      // }
+// $_where = array();
+                    // $_where['id'] = $data->plan_setting;
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+ 
+ //           echo '<pre>';
+ // print_r($PLAN_PACK);
+ // echo '</pre>';
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
 
-                          foreach ($PERCENT_TAXI as $dataTL) {
-                            $s_sub_typelist = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,array('id' => $dataTL->i_main_typelist));
 
-                            ?>
-                            <tr>
 
-                             <td width="150">
+$plan = $PLAN_PACK->s_topic;
+// echo $plan;
 
-                              <label class="btn checkbox-inline btn-checkbox-success-inverse <?=$chk_box_active;?> "><?=$s_sub_typelist->topic_th;?>
-                            </label>
 
-                          </td>
-                          <td  class="td_percent"><?=$dataTL->f_percent;?> %</td>
-                        </tr>
-                      <?php }?>
 
-                    <?php  } ?>
-                  </table>
-                </div>
-                
-              </td>
-                    <!-- <td width="35%"><span class="font-17">ค่าคอม</span></td>
-                    <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
-                    </td>
-                    <td align="right" width="20%">
-                      <?=$com_progress;?>
-                    </td> -->
-                  </tr>
-                  <?php
-                }
-                else {
-                  if ($data->driver_approve == 0) {
-                    $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
-                  }
-                  else {
-                    $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
-                  }
-                  $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
-                  $data_trans_pay = $query->row();
-                  ?>
-                  <tr style="<?=$display_com;?>">
-                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
-                    <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
-                    </td>
-                    <td align="right" width="20%">
-    <?=$txt_com_status;?>
-                    </td>
-                  </tr>
-                <?php }
-                ?>
+//            $all_total = $park_total + $person_total + $com_total;
+        $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
+        $query_country = $this->db->query($sql_country);
+        $res_country = $query_country->row();
 
-              </table>   	
-            </div>
+        $titel = t_work_remuneration;
+        $display_none_change_plan = "display:none;";
+        $color_titel = "";
 
+        if ($data->check_driver_pay == 0) {
+          $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+        }
+        else {
+          $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+        }
+        ?>
+        <tr>
+          <td colspan="3">
+            <table style="margin-left: -2px;">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                <td style="padding: 0;">
+                  <img src="<?=base_url();?>assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="20" height="20" alt="">
+                </td>
+                <td style="padding: 0;">&nbsp;</td>
+                <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$COUNTRY->name_th;?></span></td>
+              </tr>
+            </table>
           </td>
         </tr>
+        <tr>
+           <td colspan="3">
+            <table style="margin-left: -2px;">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">ประเภท</span> : </td>
+                <td style="padding: 0;">
+                 <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?>
+                </td>
+               
+              </tr>
+            </table>
+          </td>
+          
+        </tr>
+
         <!----------------------------------------------------------------------------------------------------------------------------->
 
         <tr>

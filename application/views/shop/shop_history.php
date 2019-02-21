@@ -138,7 +138,7 @@ foreach ($result as $key => $val) {
 
 
 $_where = array();
- if (count($BOOKING_LOGS)=='') {
+ if ($BOOKING_LOGS=='') {
   $_where['id'] = $val->plan_setting;
        
       }
@@ -150,7 +150,7 @@ $_where = array();
                     $_select = array('*');
                     $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
  $_where = array();
- if (count($BOOKING_LOGS)=='') {
+ if ($BOOKING_LOGS=='') {
   $_where['i_plan_pack'] = $val->plan_setting;
        
       }
@@ -265,7 +265,7 @@ $_where = array();
               }
 
               $_where = array();
- if (count($BOOKING_LOGS)=='') {
+ if ($BOOKING_LOGS=='') {
   $_where['id'] = $val->plan_setting;
        
       }

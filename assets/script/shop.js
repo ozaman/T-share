@@ -1754,6 +1754,10 @@ function saveShop_action_pay(poppage) {
 }
 
 function sendCheckIn(id, type, place_id) {
+  console.log(id)
+  console.log(type)
+  console.log(place_id)
+  // console.log(id)
   type_send = type;
   id_send = id;
 //   modal.show();
@@ -1780,6 +1784,7 @@ function sendCheckIn(id, type, place_id) {
         type: 'post',
         dataType: 'json',
         success: function (res) {
+          console.log('------------------------------------------')
           console.log(res);
           if (res.checkin.result == true) {
             $('#num_pax_regis_' + id_send).text($('#num_cus').val());
@@ -1803,7 +1808,6 @@ function sendCheckIn(id, type, place_id) {
                 console.log(data);
               }
             });
-
             shopFuncNotiActi(id_send, type_send, place_id);
             check_com_plan(id_send);
           }

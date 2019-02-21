@@ -85,13 +85,13 @@ else {
       $_order['id'] = 'asc';
       $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS,$_where,$_select,$_order);
       // echo 'fsfsafsfsf';
- // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);
+  
 
 
 
 
 $_where = array();
- if (count($BOOKING_LOGS)=='') {
+ if ($BOOKING_LOGS=='') {
   $_where['id'] = $data->plan_setting;
        
       }
@@ -110,7 +110,7 @@ $plan = $PLAN_PACK->s_topic;
   <div style="padding: 5px 0px;">
     <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
     <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
-     
+     <?php //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>
       <tr>
         <td width="35%"><span class="font-17">ประเภท</span></td>
         <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
@@ -136,7 +136,7 @@ $plan = $PLAN_PACK->s_topic;
        // echo $BOOKING_LOGS[0]->i_plan_pack.'************'.count($BOOKING_LOGS);
 
       $_where = array();
-      if (count($BOOKING_LOGS)=='') {
+      if ($BOOKING_LOGS=='') {
        $_where['i_plan_pack'] = $data->plan_setting;
       }
       else{
@@ -180,7 +180,7 @@ $plan = $PLAN_PACK->s_topic;
       $_where[i_main_list] = $val->i_con_plan_main_list;
 
       $_select = array('*');
-       if (count($BOOKING_LOGS)=='') {
+       if ($BOOKING_LOGS == '') {
        $TBL = TBL_COM_ORDER_BOOKING;
       }
       else{
@@ -246,6 +246,7 @@ $pax = $MAIN_TYPELIST->topic_th;
                 ?>
            <tr >
         <td  colspan="4">
+
           <table width="100%">
             <tr>
               <td colspan="4">
