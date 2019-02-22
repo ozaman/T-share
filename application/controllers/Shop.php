@@ -250,6 +250,7 @@ class Shop extends CI_Controller {
     // if ($_POST[plane_id_replan] != $_POST[price_plan] and $_POST[price_plan] != "") {
       $re = $this->Shop_model->change_plan();
     // }
+
      // echo json_encode($re);
 if ($re['result'] == true) {
   $data['checkin'] = $this->Shop_model->guest_register();
@@ -257,6 +258,7 @@ if ($re['result'] == true) {
     echo json_encode($data);
 }
     
+
   }
 
   public function taxi_approved_cancel() {

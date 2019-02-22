@@ -1603,7 +1603,8 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } else if (type == "guest_receive") {
+  } 
+  else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1625,7 +1626,8 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } else if (type == "guest_register") {
+  } 
+  else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     loadBoxConfirmPay(id);
@@ -1753,12 +1755,14 @@ function saveShop_action_pay(poppage) {
   });
 }
 
+
 function sendCheckIn(id, type, place_id,plan_setting) {
   console.log(id)
   console.log(type)
   console.log(place_id)
    console.log($('#num_cus').val())
    console.log($('#plan_setting').val())
+
   type_send = type;
   id_send = id;
 //   modal.show();
@@ -1774,11 +1778,9 @@ function sendCheckIn(id, type, place_id,plan_setting) {
       })
       modal.hide();
       return false;
-    } else {
-
-
-//	                console.log($('#form_checkin').serialize());
-//	                return;
+    } 
+    else {
+      alert(type);
       $.ajax({
         url: "shop/change_plan?order_id=" + id + "&lat=" + lat + "&lng=" + lng + '&num_cus=' + $('#num_cus').val()+'&plan_setting='+ plan_setting,
         data: $('#form_checkin').serialize(),
@@ -1787,6 +1789,7 @@ function sendCheckIn(id, type, place_id,plan_setting) {
         success: function (res) {
           console.log('------------------------------------------')
           console.log(res);
+          return;
           if (res.checkin.result == true) {
             $('#num_pax_regis_' + id_send).text($('#num_cus').val());
             $('#num_edit_persion2').val($('#num_cus').val());
@@ -1817,10 +1820,12 @@ function sendCheckIn(id, type, place_id,plan_setting) {
 
     }
 
-  } else if (type == 'driver_pay_report') {
+  } 
+  else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } else {
+  } 
+  else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
