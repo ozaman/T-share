@@ -251,12 +251,10 @@ class Shop extends CI_Controller {
       $re = $this->Shop_model->change_plan();
     // }
     // echo json_encode($data);
-if ($re['result'] == true) {
-  $data['checkin'] = $this->Shop_model->guest_register();
-//      header('Content-Type: application/json');
-    echo json_encode($data);
-}
-    
+      if ($re['result'] == true) {
+        $re[checkin] = $this->Shop_model->guest_register();
+      }
+      echo json_encode($re);
   }
 
   public function taxi_approved_cancel() {
