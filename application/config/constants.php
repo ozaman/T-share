@@ -170,6 +170,10 @@ define('TBL_CON_COM_PRODUCT_TYPE', 'tbl_con_com_product_type');
 define('TBL_WEB_CAR_USE_TYPE', 'web_car_use_type');
 define('TBL_COM_ORDER_BOOKING', 'tbl_com_order_booking');
 define('TBL_COM_ORDER_BOOKING_LOGS', 'tbl_com_order_booking_logs');
+define('TBL_COM_ORDER_BOOKING_COM', 'tbl_order_booking_com');
+define('TBL_COM_ORDER_BOOKING_CHANGE_PLAN', 'tbl_order_booking_com_change_plan');
+
+
 
 
 

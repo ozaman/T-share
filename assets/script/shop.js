@@ -1753,11 +1753,12 @@ function saveShop_action_pay(poppage) {
   });
 }
 
-function sendCheckIn(id, type, place_id) {
+function sendCheckIn(id, type, place_id,plan_setting) {
   console.log(id)
   console.log(type)
   console.log(place_id)
-  // console.log(id)
+   console.log($('#num_cus').val())
+   console.log($('#plan_setting').val())
   type_send = type;
   id_send = id;
 //   modal.show();
@@ -1779,7 +1780,7 @@ function sendCheckIn(id, type, place_id) {
 //	                console.log($('#form_checkin').serialize());
 //	                return;
       $.ajax({
-        url: "shop/change_plan?order_id=" + id + "&lat=" + lat + "&lng=" + lng + '&num_cus=' + $('#num_cus').val(),
+        url: "shop/change_plan?order_id=" + id + "&lat=" + lat + "&lng=" + lng + '&num_cus=' + $('#num_cus').val()+'&plan_setting='+ plan_setting,
         data: $('#form_checkin').serialize(),
         type: 'post',
         dataType: 'json',

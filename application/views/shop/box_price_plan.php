@@ -141,9 +141,15 @@ $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
                   
                   $txt_btn_add = 'เพิ่ม';
                 }
+                $_where = array();
+                    $_where['id'] = $val->i_pay_type; 
+                    $_select = array('name_th');
+                    $PAY_TYPE = $this->Main_model->rowdata(NEW_TBL_PAY_TYPE,$_where);
+
+                
                 ?>
                 
- <span style=""><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) <?=$count;?></span>
+ <span style=""><?=$main->s_topic;?>  (<?=$txt_btn_add;?>)<span style="margin-left: 10px;color: #0076ff">(<?=$PAY_TYPE->s_topic;?>)</span></span><!-- <span> <?=$count;?></span> -->
 
 
 
@@ -334,6 +340,12 @@ foreach ($query_usecar->result() as $key => $data_car) {
          //                     echo "<pre>";
          // print_r($query_payall->row());
          // echo "</pre>";
+
+                  $con = $query_con_tb->row();
+//                  echo "<pre>";
+//                  print_r($con);
+//                  echo "</pre>";
+                 
           ?>
           <div style="<?=$box_other;?>">          
            
@@ -342,7 +354,7 @@ foreach ($query_usecar->result() as $key => $data_car) {
                   <table class="tb-pad" width="100%">
                     <tr>
                         <td width="80"><b style="font-size:15px;">คนละ(บ.)</b></td>
-                        <td><span style="font-size:15px;"><?=$con_payall->f_price;?></span></td>
+                        <td><span style="font-size:15px;"><?=$con->f_price;?></span></td>
                       </tr>
 
                    

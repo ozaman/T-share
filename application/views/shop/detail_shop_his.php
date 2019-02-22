@@ -523,6 +523,10 @@ $pax = $MAIN_TYPELIST->topic_th;
         $title_head2 = 'ราคา';
          $pax = $COM_ORDER_BOOKING->i_pax;
       }
+      $_where = array();
+                    $_where['id'] = $val->i_pay_type; 
+                    $_select = array('name_th');
+                    $PAY_TYPE = $this->Main_model->rowdata(NEW_TBL_PAY_TYPE,$_where);
       // echo $COM_ORDER_BOOKING->i_com;
        
                     
@@ -533,6 +537,7 @@ $pax = $MAIN_TYPELIST->topic_th;
             <tr>
               <td colspan="4">
                 <span style="font-weight: 700"><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) </span>
+                <span style="margin-left: 10px;color: #0076ff">(<?=$PAY_TYPE->s_topic;?>)</span>
               </td>
             
             </tr>

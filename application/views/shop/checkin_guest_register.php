@@ -280,7 +280,7 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   </div>
 
   <div style="margin: 20px 10px">
-    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>', '<?=$_GET[type];?>','<?=$book->program;?>');" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
+    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>', '<?=$_GET[type];?>','<?=$book->program;?>','<?=$book->plan_setting;?>');" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
   </div>
 </form>
 

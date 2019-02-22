@@ -220,38 +220,7 @@ else {
         $person_total = 0;
         $com_total = 0;
         
-        foreach ($query_price->result() as $row_price) {
-          if ($num >= 1) {
-            $push = " + ";
-          }
-          else {
-            $push = "";
-          }
-          // $plan .= $push.$row_price->s_topic_th;
-          $num++;
-
-          if ($row_price->s_topic_en == "park") {
-            $check_type_park = 1;
-            $display_park = "";
-            $park_total = $data->price_park_unit;
-          }
-
-          if ($row_price->s_topic_en == "person") {
-            $check_type_person = 1;
-            $display_person = "";
-            $person_total = intval($data->price_person_unit) * intval($data->adult);
-            $cal_person = $data->price_person_unit."x".$data->adult;
-          }
-
-          if ($row_price->s_topic_en == "comision") {
-            $check_type_com = 1;
-            $display_com = "";
-            $com_persent = $data->commission_persent;
-            $i_list_prices = $row_price->id;
-            $i_plan_product_price_name = $row_price->i_plan_product_price_name;
-            $com_progress = '<span style="padding-left: 0px;"><font color="#FF0000">รอโอน</font></span>';
-          }
-        }
+      
 
 $_where = array();
       $_where['i_order_booking'] = $data->id;
@@ -259,26 +228,10 @@ $_where = array();
       $_order = array();
       $_order['id'] = 'asc';
       $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS, $_where,$_select,$_order);
-      // echo  $BOOKING_LOGS;
-      // echo 'fsfsafsfsf';
-                // echo '<pre>';
- // print_r($BOOKING_LOGS);
- // echo '</pre>';
-  // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
-
-
-
-
+    
 $_where = array();
- // if (count($BOOKING_LOGS)=='') {
   $_where['id'] = $data->plan_setting;
-       
-      // }
-      // else{
-        // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
-      // }
-// $_where = array();
-                    // $_where['id'] = $data->plan_setting;
+     
                     $_select = array('*');
                     $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
  
@@ -293,14 +246,6 @@ $_where = array();
 
 
 $plan = $PLAN_PACK->s_topic;
-// echo $plan;
-
-
-
-//            $all_total = $park_total + $person_total + $com_total;
-        $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
-        $query_country = $this->db->query($sql_country);
-        $res_country = $query_country->row();
 
         $titel = t_work_remuneration;
         $display_none_change_plan = "display:none;";
@@ -356,131 +301,115 @@ $plan = $PLAN_PACK->s_topic;
                 
 
 
+  <!-- ******************* -->
           <?php
-      $_where = array();
-      $_where['i_plan_pack'] = $data->plan_setting;
-      $_select = array('*');
-      $_order = array();
-      $_order['id'] = 'asc';
-      $PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
- //        echo '<pre>';
- // print_r($PACK_LIST);
- // echo '</pre>';
-      ?>
+//       $_where = array();
+//       $_where['i_plan_pack'] = $data->plan_setting;
+//       $_select = array('*');
+//       $_order = array();
+//       $_order['id'] = 'asc';
+//       $PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+      
+//       $all_total_iprice = 0;
+//       foreach($PACK_LIST as $key=> $val){
+//        $_where = array();
+//        $_where[id] = $val->i_plan_main;
+//        $this->db->select('id,s_topic');
+//        $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
+//        $main = $query_main->row();
+//        $_where = array();
+//        $_where[id] = $val->i_con_plan_main_list;
+//        $this->db->select('id,s_topic');
+//        $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+//        $mainlist = $query_mainlist->row();
+//        $partner_g = 2;
+//        $_where = array();
+//        $_where[id] = $val->i_con_plan_main_list;
+//        $this->db->select('*');
+//        $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+//        if($val->i_con_plan_main_list>0){
 
+//         $txt_btn_add = $mainlist->s_topic;
+//       }else{
 
+//         $txt_btn_add = 'เพิ่ม';
+//       }
+//       $_where = array();
+//       $_where[i_order_booking] = $data->id;
+//       $_where[i_main_list] = $val->i_con_plan_main_list;
 
+//       $_select = array('*');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <tr style="<?=$display_park;?>">
-                  <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td width="40%" align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <tr style="<?=$display_person;?>">
-                  <td width="35%"><span class="font-17">ค่าหัว</span></td>
-                  <td width="40%" align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <?php if ($data->transfer_money == 0) {?>
-                  <tr style="<?=$display_com;?>">
-                    <td colspan="3">
-
-                      <table width="100%">
-                        <tr>
-                         <td align="left" width="50%"><span class="font-17">ค่าคอม</span></td>
-                         <td align="right" width="20%">
-                          <?=$com_progress;?>
-                        </td>
-                      </tr>
-                    </table>
-                     
-
-
-
-<div style="margin-left: 15px">
-                      <table width="100%">
-
-                        <?php
-                        if ($i_plan_product_price_name == 7) {
-                          $_where = array();
-                          $_where[product] = $val[program];
-                          $_where[i_list_price] = $i_list_prices;
-                          $_select = array('*');
-                          $_order = array();
-                          $_order['id'] = 'asc';
-                          $PERCENT_TAXI = $this->Main_model->fetch_data('','',TBL_SHOPPING_PRODUCT_TYPELIST_PERCENT_TAXI,$_where,$_select,$_order);
-                              // print_r(json_encode($PERCENT_TAXI));
-
-                          foreach ($PERCENT_TAXI as $dataTL) {
-                            $s_sub_typelist = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,array('id' => $dataTL->i_main_typelist));
-
-                            ?>
-                            <tr>
-
-                             <td width="150">
-
-                              <label class="btn checkbox-inline btn-checkbox-success-inverse <?=$chk_box_active;?> "><?=$s_sub_typelist->topic_th;?>
-                            </label>
-
-                          </td>
-                          <td  class="td_percent"><?=$dataTL->f_percent;?> %</td>
-                        </tr>
-                      <?php }?>
-
-                    <?php  } ?>
-                  </table>
-                </div>
-                
+//       $COM_ORDER_BOOKING = $this->Main_model->rowdata(TBL_COM_ORDER_BOOKING,$_where,$_select);
+//       if ($COM_ORDER_BOOKING->i_main_list == 5) {
+//         $curency = '%';
+//         $title_head = 'รายการ';
+//         $title_head2 = 'คอม';        
+//         $_where = array();
+//                     $_where[status] = 1;
+//                     $_where[id] = $COM_ORDER_BOOKING->i_com;
+//                     $_select = array('*');
+//                     $MAIN_TYPELIST = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where,$_select);
+// $pax = $MAIN_TYPELIST->topic_th;
+//       }
+//       else if ($COM_ORDER_BOOKING->i_main_list == 2) {
+//         $curency = 'บ.';
+//         $title_head = 'รายการ';
+//         $title_head2 = 'ราคา';
+//          $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+//         $_where = array();          
+//          $_where[status] = 1;
+//                     $_where[id] = $COM_ORDER_BOOKING->i_com;
+//                     $_select = array('*');
+//           $USE_TYPE = $this->Main_model->rowdata(TBL_WEB_CAR_USE_TYPE,$_where,$_select);
+//           $pax = $USE_TYPE->name_th;
+//       }
+//       else if ($COM_ORDER_BOOKING->i_main_list == 3) {
+//         $curency = 'บ.';
+//         $title_head = 'รายการ';
+//         $title_head2 = 'ราคา(คนละ)';
+//          $all_total_iprice += $COM_ORDER_BOOKING->i_price*$COM_ORDER_BOOKING->i_pax;
+//          $pax =$COM_ORDER_BOOKING->i_pax;
+//       }
+//       else{
+//         $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+//         $curency = 'บ.';
+//         $title_head = 'จำนวน';
+//         $title_head2 = 'ราคา';
+//          $pax = $COM_ORDER_BOOKING->i_pax;
+//       }
+     
+       
+                    
+                ?>
+         <!--   <tr >
+        <td  colspan="4">
+          <table width="100%">
+            <tr>
+              <td colspan="4">
+                <span style="font-weight: 700"><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) </span>
               </td>
-
+            
             </tr>
-            <?php
-          }
-          else {
-            if ($data->driver_approve == 0) {
-              $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
-            }
-            else {
-              $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
-            }
-            $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
-            $data_trans_pay = $query->row();
-            ?>
-            <tr style="<?=$display_com;?>">
-              <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว) <?=number_format($data_trans_pay->price_shopping,0);?></span></td>
-              <td width="40%" align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
-              </td>
-              <td align="right" width="20%">
-                <?=$txt_com_status;?>
-              </td>
+            <tr>
+                <td width="90"> <?=$title_head;?></td>
+                <td></td>
+                <td width="150" align="right"> <?=$title_head2;?></td>
+                <td></td> 
             </tr>
-          <?php }
-          ?>
-
+            <tr>
+                <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
+                <td></td>
+                <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
+                <td align="left"><span class="font-17"><?=$curency;?></span></td> 
+            </tr>
+          </table>          
+        </td>
+      </tr> -->
+    <?php          
+        //}        
+       ?>
+     
         </table>   	
       </div>
 
