@@ -304,7 +304,7 @@ class Shop_model extends CI_Model {
 		       		$data_com_ordder['i_main_list'] = $val2->id;
 		       		$data_com_ordder['i_com'] = $data_pd->id;
 
-		       		$data_com_ordder['i_price'] = $value->f_vat;
+		       		$data_com_ordder['i_price'] = $value->f_price;
 
 		       	}
 		       }
@@ -493,7 +493,22 @@ $_where = array();
 		$_order['id'] = 'asc';
 		$PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
 
-		foreach($PACK_LIST as $val){
+					       	 $_where = array();
+      $_where['i_order_booking'] = $_GET[order_id];;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING,$_where,$_select,$_order);
+
+      // echo 'fsfsafsfsf';
+ // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);
+
+
+
+
+if ($BOOKING_LOGS[0]->i_plan_pack != $_POST[num_cus]) {
+	
+	foreach($PACK_LIST as $val){
 			$_where = array();
 			$_where[id] = $val->i_plan_main;
 			$this->db->select('id,s_topic');
@@ -525,6 +540,8 @@ $_where = array();
 			$this->db->where($_where);
 			$con_ref = $this->db->get();
 			$con_ref = $con_ref->row();
+
+	
 			foreach ($query as $key => $val2) {      
 		       if ($val2->id == 1) { //ตามจำนวนคน
 		       	$park_total = 0;
@@ -658,7 +675,7 @@ $_where = array();
 		       		$data_com_ordder['i_main_list'] = $val2->id;
 		       		$data_com_ordder['i_com'] = $data_pd->id;
 
-		       		$data_com_ordder['i_price'] = $value->f_price;
+		       		$data_com_ordder['i_price'] = $each_pd_loop->f_price;
 
 		       	}
 		       }
@@ -674,6 +691,12 @@ $_where = array();
 
 
 }
+}
+else{
+	$result_com = true;
+}
+
+		
 
 
 
@@ -702,7 +725,7 @@ $_where = array();
 	
 
 	 $return[backup] = $_POST;
-	 $return[update] = $data_com_ordder;
+	 // $return[update] = $data_com_ordder;
 	 $return[result] = $result_com;
 //	 $return[time] = time();
 //	 $return[post] = $_POST;

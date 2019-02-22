@@ -207,7 +207,7 @@ $_where = array();
                 <tr>
                   <td width="70" align="center" ><b style="font-size:16px;">จำนวน</b></td>
                   <!-- <td ></td> -->
-                  <td align="center"><b style="font-size:16px;">ราคา</b></td>
+                  <td align="center"><b style="font-size:16px;">ราคา(บ.)</b></td>
                   <!-- <td align="center"><b style="font-size:16px;">ภาษี ณ ที่จ่าย</b></td> -->
                 </tr>
               <?php
@@ -239,28 +239,36 @@ $_where = array();
           $query2 = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
            
           ?>
-          <div style="<?=$box_other;?>">
-            
-
-            
+          <div style="<?=$box_other;?>"> 
               <table width="100%">
                 <tr>
                   <th style="text-align: left;"><b style="font-size: 16px;">รายการ</b></th>
-                  <th   style="text-align: center;"><b style="font-size: 16px;">ราคา(ร้านค้า)</b></th>
+                  <th   style="text-align: center;"><b style="font-size: 16px;">ราคา(บ.)</b></th>
                   <!-- <th style="text-align: center;"><b style="font-size: 16px;">ราคา</b></th>
                   <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย(ร้านค้า)</b></th>
                   <th style="text-align: center;"><b style="font-size: 16px;">ภาษี ณ ที่จ่าย</b></th> -->
                 </tr>
                 <?php
-                foreach ($query_usecar->result() as $key => $val) {
-                // foreach ($query2->result() as $key => $val) {
+                // foreach ($query_usecar->result() as $key => $val) {
+                foreach ($query2->result() as $key => $val) {
                  
                     $_where = array();
-                    $_where[i_car_type] = $val->id_use_type;
+                    // $_where[i_car_type] = $val->id_use_type;
+                    $_where[i_car_type] = $val->id;
                   $_where[i_plan_pack] = $_GET[i_plan_pack];
                     $_select = array('*');
                     $query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
+foreach ($query_usecar->result() as $key => $data_car) {
+  if ($data_car->id_use_type == $val->id) {
+    // echo 'incase';
+    $color_tr =     'color: #0076ff';
+    # code...
+  }
+  else{
+    $color_tr =     '';
 
+  }
+}
 
 
                   // $_where = array();
@@ -271,9 +279,9 @@ $_where = array();
 
                   // $data_car = $query_c->result();
                   
-                       /*          echo "<pre>";
-               print_r($query_c);
-               echo "</pre>";*/
+               //                   echo "<pre>";
+               // print_r($val);
+               // echo "</pre>";
         
                  
 
@@ -284,13 +292,17 @@ $_where = array();
                   $this->db->select('*');
                   $q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
                   $data_car_ref = $q_car_ref->row();
+
+
+
+
                   // echo count($q_car_ref->result());
                   if (count($query_c) > 0) {
                     $tr_show_cartype = '';
                     ?>
-                     <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$tr_show_cartype;?>">
+                     <tr id="tr_list_type_car_<?=$val->id;?>" style="<?=$color_tr;?>">
                     <td>
-                      <span style="font-size:14px;"><?=$val->car_type_txt;?></span>
+                      <span style="font-size:14px;"><?=$val->name_th;?></span>
                       
                     </td>
                     <td align="center">
@@ -329,7 +341,7 @@ $_where = array();
               
                   <table class="tb-pad" width="100%">
                     <tr>
-                        <td width="80"><b style="font-size:15px;">คนละ</b></td>
+                        <td width="80"><b style="font-size:15px;">คนละ(บ.)</b></td>
                         <td><span style="font-size:15px;"><?=$con_payall->f_price;?></span></td>
                       </tr>
 
@@ -348,7 +360,7 @@ $_where = array();
                   <tr>
                     <td align="center"  width="80"><b style="font-size: 16px;">จำนวน</b></td>
                     <td></td>
-                    <td align="center"><b style="font-size: 16px;">ราคา</b></td>
+                    <td align="center"><b style="font-size: 16px;">ราคา(บ.)</b></td>
                     <td></td>
                     <!-- <td align="center" width="220px"><b style="font-size: 16px;">vat%</b></td> -->
                     <!-- <td></td> -->
@@ -415,7 +427,7 @@ $_where = array();
                     <td width="30"></td>
                     <!-- <td style="width: 150px;text-align: center;"><b> Vat %</b></td> -->
 
-                    <td style="width: 100px;text-align: center;"><b>คอม %</b></td>
+                    <td style="width: 100px;text-align: center;"><b>คอม (%)</b></td>
 <td width="30"></td>
                     <!-- <td style="width: 150px;text-align: center;"><b>ภาษี ณ ที่จ่าย</b></td> -->
                   </tr>
