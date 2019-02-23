@@ -250,7 +250,6 @@ $pax = $MAIN_TYPELIST->topic_th;
                 ?>
            <tr >
         <td  colspan="4">
-
           <table width="100%">
             <tr>
               <td colspan="4">
@@ -262,15 +261,85 @@ $pax = $MAIN_TYPELIST->topic_th;
             <tr>
                 <td width="90"> <?=$title_head;?></td>
                 <td></td>
-                <td width="150" align="right"> <?=$title_head2;?></td>
+                <td width="150" align="center"> <?=$title_head2;?></td>
                 <td></td> 
             </tr>
+            <?php if ($COM_ORDER_BOOKING->i_main_list != 5) {
+            ?>
+            
             <tr>
                 <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
                 <td></td>
                 <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
                 <td align="left"><span class="font-17"><?=$curency;?></span></td> 
             </tr>
+           
+            <?php
+             }
+             else if ($COM_ORDER_BOOKING->i_main_list == 5) {
+               $_where = array();
+      $_where['i_order_booking'] = $data->id;
+      $_where['i_plan_pack'] = $data->plan_setting;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_COM,$_where,$_select,$_order);
+                       $_where = array();
+      $_where['i_order_booking'] = $data->id;
+      // $_where['i_plan_pack'] = $data->plan_setting;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_CHANGE_PLAN = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_CHANGE_PLAN,$_where,$_select,$_order);
+
+                                echo '<pre>';
+ print_r($USE_TYPE);
+ echo '</pre>';
+      if ($BOOKING_CHANGE_PLAN == '') {
+      
+      $BOOKING_COM_ROW = $BOOKING_COM;
+      }
+      else{
+      $BOOKING_COM_ROW = $BOOKING_CHANGE_PLAN;
+
+      }
+
+                             
+      foreach($BOOKING_COM_ROW as $key=> $datacom){
+                    $_where = array();
+                    $_where['id'] = $datacom->i_con_com_product_type; 
+                    $_select = array('id');
+                    $COM_PRODUCT_TYPE = $this->Main_model->rowdata(TBL_CON_COM_PRODUCT_TYPE,$_where);
+
+                    $_where = array();
+                    $_where[id] = $COM_PRODUCT_TYPE->i_product_sub_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where);
+                    $data_pd_sub_typelist = $query->row();
+
+
+                    $_where = array();
+                    $_where[status] = 1;
+                    $_where[id] = $data_pd_sub_typelist->i_main_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
+                    $data_pd = $query->row();
+          ?>
+          <tr id="">
+                      <td colspan="2">
+                        <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
+                       
+                      </td>
+                     
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
+                      <td width="30"></td>
+                    </tr>
+
+     <?php }
+             }
+             ?>
           </table>          
         </td>
       </tr>

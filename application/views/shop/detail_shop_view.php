@@ -61,79 +61,10 @@ if ($arr[book][driver_complete] == 1) {
 
 
 
-$query_plan = $this->db->query("select * from change_plan_logs where order_id = ".$arr[book][id]);
-$check_change_plan = $query_plan->num_rows();
-if ($check_change_plan == 0) {
-  $plan_id = $arr[book][plan_id];
-}
-else {
-  $row_plan = $query_plan->row();
-  $plan_id = $row_plan->plan_id;
-}
 
-$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$plan_id."' ");
-$num = 0;
 
-$display_person = "display:none";
-$display_com = "display:none";
-$display_park = "display:none";
-$park_total = 0;
-$person_total = 0;
-$com_total = 0;
-foreach ($query_price->result() as $row_price) {
-  if ($num >= 1) {
-    $push = " + ";
-  }
-  else {
-    $push = "";
-  }
-  $plan .= $push.$row_price->s_topic_th;
-  $num++;
 
-  if ($row_price->s_topic_en == "park") {
-    $check_type_park = 1;
-    $display_park = "";
-    if ($check_change_plan == 0) {
-      $park_total = $arr[book][price_park_unit];
-    }
-    else {
-      $park_total = $row_plan->price_park_unit;
-    }
-  }
 
-  if ($row_price->s_topic_en == "person") {
-    $check_type_person = 1;
-    $display_person = "";
-    if ($check_change_plan == 0) {
-      $person_total = intval($arr[book][price_person_unit]) * intval($arr[book][adult]);
-      $cal_person = $arr[book][price_person_unit]."x".$arr[book][adult];
-    }
-    else {
-      $person_total = intval($row_plan->price_person_unit) * intval($arr[book][adult]);
-      $cal_person = $row_plan->price_person_unit."x".$arr[book][adult];
-    }
-  }
-
-  if ($row_price->s_topic_en == "comision") {
-    $check_type_com = 1;
-    $i_list_prices = $row_price->id;
-    $i_plan_product_price_name = $row_price->i_plan_product_price_name;
-    $display_com = "";
-    if ($check_change_plan == 0) {
-      $com_persent = $arr[book][commission_persent];
-    }
-    else {
-      $com_persent = $row_plan->commission_persent;
-    }
-    $com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
-  }
-}
-
-$all_total = $park_total + $person_total + $com_total;
-
-$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$plan_id."'    ";
-$query_country = $this->db->query($sql_country);
-$res_country = $query_country->row();
 
 $minutes_to_add = $arr[book][airout_m];
 //        echo $minutes_to_add." ++";
@@ -497,7 +428,7 @@ $plan = $PLAN_PACK->s_topic;
       if ($COM_ORDER_BOOKING->i_main_list == 5) {
         $curency = '%';
         $title_head = 'รายการ';
-        $title_head2 = 'คอม';
+        $title_head2 = 'คอม(%)';
  
         
         $_where = array();
@@ -506,11 +437,12 @@ $plan = $PLAN_PACK->s_topic;
                     $_where[id] = $COM_ORDER_BOOKING->i_com;
                     $_select = array('*');
                     $MAIN_TYPELIST = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where,$_select);
+      
  //                      echo '<pre>';
  // print_r($MAIN_TYPELIST);
  // echo '</pre>';
 //          // $pax = $COM_ORDER_BOOKING->i_pax;
-$pax = $MAIN_TYPELIST->topic_th;
+// $pax = $MAIN_TYPELIST->topic_th;
       }
       else if ($COM_ORDER_BOOKING->i_main_list == 2) {
         $curency = 'บ.';
@@ -535,6 +467,7 @@ $pax = $MAIN_TYPELIST->topic_th;
          $all_total_iprice += $COM_ORDER_BOOKING->i_price*$COM_ORDER_BOOKING->i_pax;
          $pax =$COM_ORDER_BOOKING->i_pax;
       }
+   
       else{
         $all_total_iprice += $COM_ORDER_BOOKING->i_price;
         $curency = 'บ.';
@@ -562,15 +495,64 @@ $pax = $MAIN_TYPELIST->topic_th;
             <tr>
                 <td width="90"> <?=$title_head;?></td>
                 <td></td>
-                <td width="150" align="right"> <?=$title_head2;?></td>
+                <td width="150" align="center"> <?=$title_head2;?></td>
                 <td></td> 
             </tr>
+            <?php if ($COM_ORDER_BOOKING->i_main_list != 5) {
+            ?>
+            
             <tr>
                 <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
                 <td></td>
                 <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
                 <td align="left"><span class="font-17"><?=$curency;?></span></td> 
             </tr>
+           
+            <?php
+             }
+             else if ($COM_ORDER_BOOKING->i_main_list == 5) {
+                             $_where = array();
+      $_where['i_order_booking'] = $arr[book][id];
+      $_where['i_plan_pack'] = $arr[book][plan_setting];
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_COM,$_where,$_select,$_order);
+      foreach($BOOKING_COM as $key=> $datacom){
+                    $_where = array();
+                    $_where['id'] = $datacom->i_con_com_product_type; 
+                    $_select = array('id');
+                    $COM_PRODUCT_TYPE = $this->Main_model->rowdata(TBL_CON_COM_PRODUCT_TYPE,$_where);
+
+                    $_where = array();
+                    $_where[id] = $COM_PRODUCT_TYPE->i_product_sub_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where);
+                    $data_pd_sub_typelist = $query->row();
+
+
+                    $_where = array();
+                    $_where[status] = 1;
+                    $_where[id] = $data_pd_sub_typelist->i_main_typelist;
+                    $this->db->select('*');
+                    $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
+                    $data_pd = $query->row();
+          ?>
+          <tr id="">
+                      <td colspan="2">
+                        <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
+                       
+                      </td>
+                      
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                      <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
+                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
+                      <td width="30"></td>
+                    </tr>
+
+     <?php }
+             }
+             ?>
           </table>          
         </td>
       </tr>
