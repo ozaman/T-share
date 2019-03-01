@@ -1,72 +1,60 @@
 <?php
 $data_user_class = $_COOKIE[detect_userclass];
-$val = $_POST[data];
-
-$sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web_driver WHERE id='".$val[drivername]."'    ";
-$query_dv = $this->db->query($sql_dv);
-$res_dv = $query_dv->row();
-
-$sql_ps = "SELECT topic_th,id,amphur,main,sub,province FROM shopping_product  WHERE id='".$val[program]."' ";
-$query_ps = $this->db->query($sql_ps);
-$res_ps = $query_ps->row();
-
-$minutes_to_add = $val[airout_m];
-//        echo $minutes_to_add." ++";
-$time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
-$time = new DateTime($time_c);
-if (in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','::1'))) { // debug mode on localhost ('127.0.0.1' IP in IPv4 and IPv6 formats)
-}
-else {
-  $time->add(new DateInterval('PT'.$minutes_to_add.'M'));
-}
-$stamp = $time->format('H:i');
-//        echo $stamp." +";
-$current_time = date('H:i');
-$datetime1 = new DateTime($current_time);
-$datetime2 = new DateTime($stamp);
-
-$contract = "taxi";
-if ($res_dv->nickname != "") {
-  $nickname = " (".$res_dv->nickname.")";
-}
-else {
-  $nickname = "";
+if (count($_POST[data]) <= 0) {
+  echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
+  //
 }
 
-$query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area 
+foreach ($_POST[data] as $key => $val) {
+  $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web_driver WHERE id='".$val[drivername]."'    ";
+  $query_dv = $this->db->query($sql_dv);
+  $res_dv = $query_dv->row();
 
-FROM place_car_station as t1 left join place_car_station_type as t2 
+  $sql_ps = "SELECT topic_th,id FROM shopping_product  WHERE id='".$val[program]."' ";
+  $query_ps = $this->db->query($sql_ps);
+  $res_ps = $query_ps->row();
 
-on t1.type = t2.id 
+  $minutes_to_add = $val[airout_m];
+  //        echo $minutes_to_add." ++";
+  $time_c = date('H:i',$val[update_date]); //ดึงเวลา อัพเดทเวลา ล่าสุด
+  $time = new DateTime($time_c);
+  if (in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','::1'))) { // debug mode on localhost ('127.0.0.1' IP in IPv4 and IPv6 formats)
+  }
+  else {
+    $time->add(new DateInterval('PT'.$minutes_to_add.'M'));
+  }
+  $stamp = $time->format('H:i');
+  //        echo $stamp." +";
+  $current_time = date('H:i');
+  $datetime1 = new DateTime($current_time);
+  $datetime2 = new DateTime($stamp);
 
-left join  place_car_station_other as t5 
+  $contract = "taxi";
+  if ($res_dv->nickname != "") {
+    $nickname = " (".$res_dv->nickname.")";
+  }
+  else {
+    $nickname = "";
+  }
 
-on t1.station = t5.id
+  $query_q = $this->db->query("SELECT t5.*, t2.topic_th as topic_type, t3.name_th as province_name,t2.topic_th as topoic_pcs, t3.name_th as province_name, t4.name_th as area FROM place_car_station as t1 left join place_car_station_type as t2 on t1.type = t2.id left join place_car_station_other as t5 on t1.station = t5.id left join web_province as t3 on t5.province = t3.id left join web_area as t4 on t5.amphur = t4.id where t1.member = '".$val[drivername]."' and t1.status = 1");
+  $row_q = $query_q->row();
 
-left join web_province as t3 
+  $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = '".$val[check_use_car_id]."'");
+  $row_car = $query_car->row();
 
-on t5.province = t3.id 
+  $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
+  $query_cancel = $this->db->query($sql);
+  $res_cancel = $query_cancel->row();
 
-left join web_area as t4 on t5.amphur = t4.id
-
-where t1.member = '".$val[drivername]."' and t1.status = 1 ");
-$row_q = $query_q->row();
-
-$query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = ".$val[check_use_car_id]);
-$row_car = $query_car->row();
-
-$sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
-$query_cancel = $this->db->query($sql);
-$res_cancel = $query_cancel->row();
-
-if ($res_dv->name != "") {
-  $name_dv = $res_dv->name;
-}
-if ($res_dv->nickname != "") {
-  $name_dv = $res_dv->nickname;
-}
-?>
-<div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
+  if ($res_dv->name != "") {
+    $name_dv = $res_dv->name;
+  }
+  if ($res_dv->nickname != "") {
+    $name_dv = $res_dv->nickname;
+  }
+  ?>
+  <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
     <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
     <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
@@ -167,7 +155,7 @@ if ($res_dv->nickname != "") {
             $park_total = 0;
             $person_total = 0;
             $com_total = 0;
-            $plan = "";
+            // $plan = "";
             foreach ($query_price->result() as $row_price) {
               if ($num >= 1) {
                 $push = " + ";
@@ -175,7 +163,7 @@ if ($res_dv->nickname != "") {
               else {
                 $push = "";
               }
-              $plan .= $push.$row_price->s_topic_th;
+              // $plan .= $push.$row_price->s_topic_th;
               $num++;
 
               if ($row_price->s_topic_en == "park") {
@@ -194,6 +182,8 @@ if ($res_dv->nickname != "") {
               if ($row_price->s_topic_en == "comision") {
                 $check_type_com = 1;
                 $display_com = "";
+                $i_list_prices = $row_price->id;
+            $i_plan_product_price_name = $row_price->i_plan_product_price_name;
                 $com_persent = $data->commission_persent;
                 $com_progress = '<span style="padding-left: 0px;"><font color="#FF0000">รอโอน</font></span>';
               }
@@ -213,73 +203,95 @@ if ($res_dv->nickname != "") {
             else {
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
-            ?>
-            <div style="padding: 0px 0px;">
-              <table width="100%" class="none-pd">
-                <tr>
-                  <td colspan="3"><span class="font-17">ประเภท : </span><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>        
-                </tr>
-                <tr>
-                  <td colspan="3">
-                    <table>
-                      <tr>
-                        <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
-                        <td style="padding: 0;">
-                          <img src="<?=base_url();?>assets/images/flag/icon/<?=$res_country->s_country_code;?>.png" width="20" height="20" alt="">
-                        </td>
-                        <td style="padding: 0;">&nbsp;</td>
-                        <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$res_country->s_topic_th;?></span></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr style="<?=$display_park;?>">
-                  <td width="35%"><span class="font-17">ค่าจอด</span></td>
-                  <td align="right"><span class="font-17" id="txt_park_total"><?=number_format($park_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <tr style="<?=$display_person;?>">
-                  <td width="35%"><span class="font-17">ค่าหัว</span></td>
-                  <td align="right"><span class="font-17" id="txt_person_total"><?=$cal_person;?> = <?=number_format($person_total,0);?> บ.</span></td>
-                  <td width="20%" align="right"><?=$txt_get_cash;?></td>
-                </tr>
-                <?php if ($data->transfer_money == 0) {?>
-                  <tr style="<?=$display_com;?>">
-                    <td width="35%"><span class="font-17">ค่าคอม</span></td>
-                    <td align="right"><span class="font-17" id="txt_com_persent"><?=$com_persent;?> %</span>
-                    </td>
-                    <td align="right" width="20%">
-                      <?=$com_progress;?>
-                    </td>
-                  </tr>
-                  <?php
-                }
-                else {
-                  if ($data->driver_approve == 0) {
-                    $txt_com_status = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
-                  }
-                  else {
-                    $txt_com_status = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
-                  }
-                  $query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
-                  $data_trans_pay = $query->row();
-                  ?>
-                  <tr style="<?=$display_com;?>">
-                    <td width="45%"><span class="font-17">ค่าคอม</span>&nbsp;<span style="color: #6fab1e;">(โอนแล้ว)</span></td>
-                    <td align="right"><span class="font-17"><?=$com_persent;?> % : <?=$data_trans_pay->price_pay_driver_com;?> บ.</span>
-                    </td>
-                    <td align="right" width="20%">
-    <?=$txt_com_status;?>
-                    </td>
-                  </tr>
-                <?php }
-                ?>
+            $_where = array();
+      $_where['i_order_booking'] = $data->id;
+      $_select = array('*');
+      $_order = array();
+      $_order['id'] = 'asc';
+      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS, $_where,$_select,$_order);
+      // echo  $BOOKING_LOGS;
+      // echo 'fsfsafsfsf';
+                // echo '<pre>';
+ // print_r($BOOKING_LOGS);
+ // echo '</pre>';
+  // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
 
-              </table>   	
-            </div>
 
+
+
+$_where = array();
+ // if (count($BOOKING_LOGS)=='') {
+  $_where['id'] = $data->plan_setting;
+       
+      // }
+      // else{
+        // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+      // }
+// $_where = array();
+                    // $_where['id'] = $data->plan_setting;
+                    $_select = array('*');
+                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+ 
+ //           echo '<pre>';
+ // print_r($PLAN_PACK);
+ // echo '</pre>';
+ $_where = array();
+                    $_where['id'] = $PLAN_PACK->i_country; 
+                    $_select = array('country_code','id','name_th');
+                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+
+
+
+$plan = $PLAN_PACK->s_topic;
+// echo $plan;
+
+
+
+//            $all_total = $park_total + $person_total + $com_total;
+        $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
+        $query_country = $this->db->query($sql_country);
+        $res_country = $query_country->row();
+
+        $titel = t_work_remuneration;
+        $display_none_change_plan = "display:none;";
+        $color_titel = "";
+
+        if ($data->check_driver_pay == 0) {
+          $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+        }
+        else {
+          $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+        }
+        ?>
+        <tr>
+          <td colspan="3">
+            <table style="margin-left: -2px;">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">สัญชาติ</span> : </td>
+                <td style="padding: 0;">
+                  <img src="<?=base_url();?>assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="20" height="20" alt="">
+                </td>
+                <td style="padding: 0;">&nbsp;</td>
+                <td style="padding: 0;"><span class="font-17" id="txt_county_pp"><?=$COUNTRY->name_th;?></span></td>
+              </tr>
+            </table>
           </td>
         </tr>
+        <tr>
+           <td colspan="3">
+            <table style="margin-left: -2px;">
+              <tr>
+                <td style="padding: 0;"><span class="font-17">ประเภท</span> : </td>
+                <td style="padding: 0;">
+                 <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?>
+                </td>
+               
+              </tr>
+            </table>
+          </td>
+          
+        </tr>
+
         <!----------------------------------------------------------------------------------------------------------------------------->
 
         <tr>
@@ -448,9 +460,16 @@ if ($res_dv->nickname != "") {
     </div>
 
   </div>
-<script>
-  var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
-  var d2 = js_yyyy_mm_dd_hh_mm_ss();
-  $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1, d2));
-  $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
-</script>
+  <script>
+    var check_wait = "<?=$_GET[wait_trans];?>";
+    if (check_wait == "") {
+      var d1 = "<?=date('Y/m/d H:i:s',$val[post_date]);?>";
+      var d2 = js_yyyy_mm_dd_hh_mm_ss();
+      var check_wait = "<?=$_GET[wait_trans];?>";
+
+      $('#txt_date_diff_<?=$val[id];?>').text(CheckTimeV2(d1, d2));
+      $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
+    }
+  </script>
+  <?php }
+?>

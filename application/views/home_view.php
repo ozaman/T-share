@@ -1795,7 +1795,7 @@
                 <div>
                     <img src="../data/pic/driver/small/default-avatar.jpg" style="width: 65%;" id="photo_to_show_inmodal" />
                     <div style="color: #fff;">
-                        <b style="font-size: 34px;" id="text_name_approved">เบิร์ด</b>
+                        <b style="font-size: 34px;" id="text_name_approved"></b>
                     </div>
                 </div>
             </div>
@@ -2356,7 +2356,7 @@
                           console.log(res);
                           var url_photo_lab = "../data/pic/driver/small/" + res.username + ".jpg?v=" + $.now();
                           $('#view_lab_approve_' + value.id).attr('onclick', 'modalShowImg(\'' + url_photo_lab + '\',\'' + res.nickname + '\');');
-                          //					               $('#text_name_approved').text(res.nickname);
+                          $('#text_name_approved').text(res.nickname);
                       }
                   });
           } 
@@ -2471,6 +2471,7 @@
                           $('#view_lab_approve_'+data.id).show();
                           var url_photo_lab = "../data/pic/driver/small/"+res.username+".jpg";
                           $('#view_lab_approve_'+data.id).attr('onclick','modalShowImg(\'' + url_photo_lab + '\');');
+                          $('#text_name_approved').text(res.nickname);
                       }
                });
           } 

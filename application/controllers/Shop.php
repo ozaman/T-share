@@ -10,10 +10,10 @@ class Shop extends CI_Controller {
   }
 
   public function add_shop() {
-   $data['res'] = $this->Shop_model->add_shop();
-   header('Content-Type: application/json');
-   echo json_encode($data['res']);
-    
+    $data['res'] = $this->Shop_model->add_shop();
+    header('Content-Type: application/json');
+    echo json_encode($data['res']);
+
 
 
     // $plan_id = $_POST[price_plan];
@@ -24,7 +24,6 @@ class Shop extends CI_Controller {
     // $_order = array();
     // $_order['id'] = 'asc';
     // $list_plan = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_COM_LIST_COMPANY,$_where,$_select,$_order);
-    
     // echo json_encode($list_plan);
   }
 
@@ -248,17 +247,14 @@ class Shop extends CI_Controller {
 
   public function change_plan() {
     // if ($_POST[plane_id_replan] != $_POST[price_plan] and $_POST[price_plan] != "") {
-      $re = $this->Shop_model->change_plan();
+    $re = $this->Shop_model->change_plan();
     // }
-
-     // echo json_encode($re);
-if ($re['result'] == true) {
-  $data['checkin'] = $this->Shop_model->guest_register();
+    // echo json_encode($re);
+    if ($re['result'] == true) {
+      $data['checkin'] = $this->Shop_model->guest_register();
 //      header('Content-Type: application/json');
-    echo json_encode($data);
-}
-    
-
+      echo json_encode($data);
+    }
   }
 
   public function taxi_approved_cancel() {
@@ -273,39 +269,68 @@ if ($re['result'] == true) {
   }
 
   public function check_commission_plan() {
+//    $return[result] = false;
+//    if ($_GET[box] == "") {
+//      $query = $this->db->query("select plan_id from order_booking where id = ".$_GET[order_id]);
+//      $row_plan = $query->row();
+//      $plan_id = $row_plan->plan_id;
+//    }
+//    else {
+//      $plan_id = $_GET[plan_id];
+//    }
+//
+//    $query = $this->db->query("select s_topic_en,s_payment from ".TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI." where i_shop_country_com_list = ".$plan_id);
+//    foreach ($query->result() as $row) {
+//      if ($row->s_payment == "โอน") {
+//        $return[result] = true;
+//      }
+//      $data[] = $row;
+//    }
+//
+//    $return[plan_id] = $row_plan->plan_id;
+//    $return[row] = $query->num_rows();
+//    $return[order] = $_GET[order_id];
+//    echo json_encode($return);
+
     $return[result] = false;
     if ($_GET[box] == "") {
-      $query = $this->db->query("select plan_id from order_booking where id = ".$_GET[order_id]);
+      $query = $this->db->query("select plan_setting as plan_id from order_booking where id = ".$_GET[order_id]);
       $row_plan = $query->row();
       $plan_id = $row_plan->plan_id;
     }
     else {
       $plan_id = $_GET[plan_id];
     }
-
-    $query = $this->db->query("select s_topic_en,s_payment from ".TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI." where i_shop_country_com_list = ".$plan_id);
-    foreach ($query->result() as $row) {
-      if ($row->s_payment == "โอน") {
+    
+    
+//    $query = $this->db->query("select s_topic_en,s_payment from ".TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI." where i_shop_country_com_list = ".$plan_id);
+    $_where = array();
+    $_where[i_plan_pack] = $plan_id;
+    $this->db->select('*');
+    $query_plan = $this->db->get_where(TBL_PLAN_PACK_LIST,$_where);
+//    $res_plan = $query_plan->row();
+//    echo json_encode($query_plan->result());
+//    exit();
+    foreach ($query_plan->result() as $row) {
+     
+      if ($row->i_pay_type == 2) {
         $return[result] = true;
       }
       $data[] = $row;
     }
 
     $return[plan_id] = $row_plan->plan_id;
-    $return[row] = $query->num_rows();
+    $return[row] = $query_plan->num_rows();
     $return[order] = $_GET[order_id];
     echo json_encode($return);
   }
 
   public function complete_job() {
     $check = false;
-    $query = $this->db->query("select plan_id from order_booking where id = ".$_GET[id]);
+    $query = $this->db->query("select plan_setting,check_tran_job from order_booking where id = ".$_GET[id]);
     $row = $query->row();
-    $query = $this->db->query("select s_topic_en from shop_country_com_list_price_taxi where i_shop_country_com_list = ".$row->plan_id);
-    foreach ($query->result() as $row) {
-      if ($row->s_topic_en == "comision") {
-        $check = true;
-      }
+    if ($row->check_tran_job > 0) {
+      $check = true;
     }
     if ($check == false) {
       $data['checkin'] = $this->Shop_model->driver_complete();

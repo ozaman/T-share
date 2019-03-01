@@ -258,7 +258,7 @@ function checformadd(tax) {
             window.location.href = "#nation_box";
           });
         }
-        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0) {
           // $('#box_com').addClass('borderBlink')
           console.log(this.hash)
 
@@ -284,7 +284,7 @@ function checformadd(tax) {
             // window.location.href = "#num_customer";
           });
         }
-        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 &&  $('#child').val() != '' && $('#adult').val() != '') {
+        if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
           if ($('#adult').val() != '' && $('#child').val() != '') {
             $('#num_customer').removeClass('borderBlink')
 
@@ -346,7 +346,7 @@ function checktime(x) {
       window.location.href = "#nation_box";
     });
   }
-  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
+  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0) {
     // $('#box_com').addClass('borderBlink')
     console.log(this.hash)
 
@@ -359,7 +359,7 @@ function checktime(x) {
       // window.location.href = "#box_com";
     });
   }
-  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0  && $('#child').val() == '' && $('#adult').val() == '') {
+  if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
     $('#num_customer').addClass('borderBlink')
     console.log(this.hash)
 
@@ -371,7 +371,7 @@ function checktime(x) {
 
       // window.location.href = "#num_customer";
     });
-  } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0  && $('#child').val() != '' && $('#adult').val() != '') {
+  } else if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() != '' && $('#adult').val() != '') {
     if (form.elements["time_num"].value == 0) {
 
       $('#child').focusout();
@@ -392,9 +392,9 @@ function checktime(x) {
   }
 }
 
-// function checkchild(x) {
+ function checkchild(x) {
 //   console.log('dsdsdsd')
-// }
+ }
 // var rad = document.form_booking.nation;
 function shandleClicks(tax, country) {
   console.log(tax)
@@ -409,32 +409,34 @@ function shandleClicks(tax, country) {
 }
 
 function handleClick_s(tax, name) {
-   console.log(tax)
-    console.log(name)
+  modal.show();
+  console.log(tax)
+  console.log(name)
   var form = document.getElementById("form_booking");
 //    console.log('#' + tax)
   if (tax == 'nation') {
     $('#' + tax + '_box').removeClass('borderBlink')
     var url = "shop/box_price_plan" + "?i_plan_pack=" + name + "&user_sc=1";
 
-    $.post(url+'&car_type='+$('#car_type').val()+'&i_shop='+$('#program').val(), function (res) {
+    $.post(url + '&car_type=' + $('#car_type').val() + '&i_shop=' + $('#program').val(), function (res) {
       $('#box_price_plan').html(res);
+      modal.hide();
       // console.log(data);
       $('#radio-nation' + name).prop('checked', true);
       if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 && $('#child').val() == '' && $('#adult').val() == '') {
-      // $('#box_com').removeClass('borderBlink')
-      $('#num_customer').addClass('borderBlink')
-      console.log(this.hash)
+        // $('#box_com').removeClass('borderBlink')
+        $('#num_customer').addClass('borderBlink')
+        console.log(this.hash)
 
-      $('html, body').animate({
-        scrollTop: $('#num_customer').offset().top
-      }, 300, function () {
+        $('html, body').animate({
+          scrollTop: $('#num_customer').offset().top
+        }, 300, function () {
 
-        // $("#adult").focus()
+          // $("#adult").focus()
 
-        window.location.href = "#num_customer";
-      });
-    }
+          window.location.href = "#num_customer";
+        });
+      }
     });
 
 
@@ -442,6 +444,7 @@ function handleClick_s(tax, name) {
   if (tax == 'car') {
     $('.box_car').removeClass('cus_focus')
     $('#div_car_' + name).addClass('cus_focus')
+    modal.hide();
   }
   if (tax == 'box_com') {
 //    console.log('55555555555555555555555555')
@@ -478,7 +481,7 @@ function handleClick_s(tax, name) {
         window.location.href = "#nation_box";
       });
     }
-    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0 ) {
+    if (form.elements["plate_num_1"].value != 0 && form.elements["nation"].value != 0) {
       // $('#box_com').addClass('borderBlink')
       $('#num_customer').removeClass('borderBlink')
       console.log(this.hash)
@@ -518,23 +521,26 @@ function handleClick_s(tax, name) {
       }
     }
     // checformadd('box_com')
-    $.ajax({
-      url: "shop/check_commission_plan?plan_id=" + name+"&box=1",
-      dataType: 'json',
-      type: 'post',
-      success: function (chk) {
-        console.log(chk);
-        if (chk.result == true) {
-          $('#box_bank').show();
-          getSelectBankShop();
 
-        } else {
-          $('#load_select_bank div').remove();
-          $('#box_bank').hide();
-        }
-      }
-    });
+    modal.hide();
   }
+  $.ajax({
+    url: "shop/check_commission_plan?plan_id=" + name + "&box=1",
+    dataType: 'json',
+    type: 'post',
+    success: function (chk) {
+      console.log(chk);
+      if (chk.result == true) {
+        $('#box_bank').show();
+        getSelectBankShop();
+
+      } else {
+        $('#load_select_bank div').remove();
+        $('#box_bank').hide();
+      }
+    }
+  });
+
 
 }
 
@@ -555,7 +561,7 @@ function getPlanBox(id, plan_id) {
     $('#box_cause').show();
   }
 
-  var url = "shop/box_price_plan" + "?i_country=" + id + "&i_plan_pack=" + id + "&user_sc=1"+"&car_type="+$('#car_type').val()+'&i_shop='+$('#program').val();
+  var url = "shop/box_price_plan" + "?i_country=" + id + "&i_plan_pack=" + id + "&user_sc=1" + "&car_type=" + $('#car_type').val() + '&i_shop=' + $('#program').val();
   console.log(url);
   $.post(url, function (res) {
     $('#box_price_replan').html(res);
@@ -983,7 +989,7 @@ function saveShop() {
   $('#shop_add-alert-dialog').hide();
   $('#txt_car_type').val($("#car_type option:selected").text());
   //          var url = "mod/shop/shop_new/save_data.php?action=add&type=driver&driver=<?=$user_id?>";
-  var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user"); 
+  var url = "shop/add_shop" + "?type=driver&driver=" + $.cookie("detect_user");
 
   // fn.pushPage({'id': 'shop_manage.html', 'title': 'ส่งแขก','key':'contract_us'}, 'lift-ios')
   // $('ons-tab[page="shop_manage.html"]').click();
@@ -1032,7 +1038,7 @@ function saveShop() {
           //                    nickname: "<?=$arr[driver][nickname]?>",
           car_plate: $('#car_plate').val()
         }, function (data) {
-          console.log(data);
+//          console.log(data);
         });
         var url_mail = "../TShare_new/mail.php?key=new_shop&driver=" + $.cookie("detect_user");
         $.post(url_mail, $('#form_booking').serialize(), function (data) {
@@ -1603,8 +1609,7 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1626,8 +1631,7 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     loadBoxConfirmPay(id);
@@ -1756,12 +1760,12 @@ function saveShop_action_pay(poppage) {
 }
 
 
-function sendCheckIn(id, type, place_id,plan_setting) {
+function sendCheckIn(id, type, place_id, plan_setting) {
   console.log(id)
   console.log(type)
   console.log(place_id)
-   console.log($('#num_cus').val())
-   console.log($('#plan_setting').val())
+  console.log($('#num_cus').val())
+  console.log($('#plan_setting').val())
 
   type_send = type;
   id_send = id;
@@ -1778,11 +1782,10 @@ function sendCheckIn(id, type, place_id,plan_setting) {
       })
       modal.hide();
       return false;
-    } 
-    else {
+    } else {
       alert(type);
       $.ajax({
-        url: "shop/change_plan?order_id=" + id + "&lat=" + lat + "&lng=" + lng + '&num_cus=' + $('#num_cus').val()+'&plan_setting='+ plan_setting,
+        url: "shop/change_plan?order_id=" + id + "&lat=" + lat + "&lng=" + lng + '&num_cus=' + $('#num_cus').val() + '&plan_setting=' + plan_setting,
         data: $('#form_checkin').serialize(),
         type: 'post',
         dataType: 'json',
@@ -1820,12 +1823,10 @@ function sendCheckIn(id, type, place_id,plan_setting) {
 
     }
 
-  } 
-  else if (type == 'driver_pay_report') {
+  } else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } 
-  else {
+  } else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
@@ -2430,8 +2431,8 @@ function area_remark() {
 function changePlan(id) {
 //	if($('#check_change_plan').val()==0){
   $('.replan').fadeIn(500);
-   $('#radio-nation-ck' + id).prop('checked', true);
-   $('#nation_' + id).prop('checked', true);
+  $('#radio-nation-ck' + id).prop('checked', true);
+  $('#nation_' + id).prop('checked', true);
   // getPlanBox($('#sci_id').val(), $('#plane_id_replan').val());
   $('#check_change_plan').val(1);
   $('#btn_change_plan').fadeOut(500);
@@ -2613,7 +2614,7 @@ function completedJobShop(id) {
     type: 'post',
     success: function (data) {
       console.log(data)
-      if (data.check == true) {
+      if (data.checkin.result == true) {
         ons.notification.alert({
           message: 'ยืนยันการรับเงินสดแล้ว กรุณารอแจ้งโอนจากค่าคอมมิชชั่น',
           title: "สำเร็จ",
@@ -2625,8 +2626,8 @@ function completedJobShop(id) {
                 });
       } else {
         ons.notification.alert({
-          message: 'ยืนยันการรับเงินแล้ว งานของคุณเสร็จสมบรูณ์',
-          title: "สำเร็จ",
+          message: 'เกิดข้อผิดพลาดในการยืนยัน กรุณาลองใหม่อีกครั้ง',
+          title: "ไม่สำเร็จ",
           buttonLabel: "ปิด"
         })
                 .then(function () {

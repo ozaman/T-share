@@ -390,6 +390,7 @@ else {
 
         $_order = array();
         $_order['id'] = 'asc';
+        $_where['i_status'] = 1;
         $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
         $_where = array();
         $_where['i_shop'] = $_GET[shop_id];
@@ -409,6 +410,7 @@ else {
 
           $_where = array();
           $_where['i_plan_pack'] = $val->id;
+          
           $_select = array('*');
           $_order = array();
           $_order['id'] = 'asc';
