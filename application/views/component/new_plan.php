@@ -291,9 +291,9 @@ $plan = $PLAN_PACK->s_topic;
               $_order['id'] = 'asc';
               $BOOKING_CHANGE_PLAN = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_CHANGE_PLAN,$_where,$_select,$_order);
 
-              echo '<pre>';
-              print_r($USE_TYPE);
-              echo '</pre>';
+//              echo '<pre>';
+//              print_r($USE_TYPE);
+//              echo '</pre>';
               if ($BOOKING_CHANGE_PLAN == '') {
 
                 $BOOKING_COM_ROW = $BOOKING_COM;
