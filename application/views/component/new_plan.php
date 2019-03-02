@@ -189,7 +189,7 @@ $plan = $PLAN_PACK->s_topic;
 //       echo '<pre>';
 //       print_r($COM_ORDER_BOOKING);
 //       echo '</pre>';
-
+//      echo $COM_ORDER_BOOKING->i_main_list."<br/>";
       if ($COM_ORDER_BOOKING->i_main_list == 5) {
         $curency = '%';
         $title_head = 'รายการ';
@@ -207,6 +207,7 @@ $plan = $PLAN_PACK->s_topic;
         // echo '</pre>';
 //          // $pax = $COM_ORDER_BOOKING->i_pax;
         $pax = $MAIN_TYPELIST->topic_th;
+//        echo 555555555555555555;
       }
       else if ($COM_ORDER_BOOKING->i_main_list == 2) {
         $curency = 'บ.';
@@ -260,14 +261,21 @@ $plan = $PLAN_PACK->s_topic;
               <td></td> 
             </tr>
             <?php
-//            echo "<pre>";
+            $_where = array();
+            $_where[i_order_booking] = $data->id;
+            $_where[i_plan_pack] = $data->plan_setting;
+            $this->db->select('*');
+            $query_plan = $this->db->get_where(TBL_COM_ORDER_BOOKING_COM,$_where);
+//            echo 6666666666;
+//            echo '<pre>';
 //            print_r($COM_ORDER_BOOKING);
-//            echo "</pre>";
+//            echo '</pre>';
+//            exit();
             if ($COM_ORDER_BOOKING->i_main_list != 5) {
               ?>
 
               <tr>
-                <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
+                <td width="90" > <span style=""><?=$pax;?></span></td>
                 <td></td>
                 <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
                 <td align="left"><span class="font-17"><?=$curency;?></span></td> 
@@ -291,9 +299,7 @@ $plan = $PLAN_PACK->s_topic;
               $_order['id'] = 'asc';
               $BOOKING_CHANGE_PLAN = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_CHANGE_PLAN,$_where,$_select,$_order);
 
-//              echo '<pre>';
-//              print_r($USE_TYPE);
-//              echo '</pre>';
+
               if ($BOOKING_CHANGE_PLAN == '') {
 
                 $BOOKING_COM_ROW = $BOOKING_COM;
@@ -301,6 +307,7 @@ $plan = $PLAN_PACK->s_topic;
               else {
                 $BOOKING_COM_ROW = $BOOKING_CHANGE_PLAN;
               }
+
 
 
               foreach ($BOOKING_COM_ROW as $key => $datacom) {
@@ -329,8 +336,8 @@ $plan = $PLAN_PACK->s_topic;
 
                   </td>
 
-             <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
-                  <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
+                         <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                  <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?>%</span></td>
                   <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                   <td width="30"></td>
                 </tr>

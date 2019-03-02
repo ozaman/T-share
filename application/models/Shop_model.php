@@ -168,6 +168,7 @@ class Shop_model extends CI_Model {
       $con_ref = $this->db->get();
       $con_ref = $con_ref->row();
       foreach ($query as $key => $val2) {
+        $data_com_ordder = array();
         $tbl = $val2->s_tbl;
         $_where = array();
         $_where[i_plan_pack] = $_POST[plan_setting];
@@ -270,15 +271,17 @@ class Shop_model extends CI_Model {
             $cat = "prototype";
           }
           foreach ($each_pd_loop->result() as $key => $value) {
-
+            $data_com_c = array();
             $data_com_c['i_order_booking'] = $last_id;
             $data_com_c['i_plan_pack'] = $_POST[plan_setting];
-            $data_com_c['i_plan_main'] = $val->i_plan_main;
+            $data_com_c['i_plan_main'] = $val2->i_plan_main;
             $data_com_c['i_con_com_product_type'] = $value->id;
             $data_com_c['i_price'] = $value->f_price;
 
-            $re = $this->db->insert(TBL_COM_ORDER_BOOKING_COM,$data_com_c);
-
+            $data_com_c['result'] = $this->db->insert(TBL_COM_ORDER_BOOKING_COM,$data_com_c);
+            
+            $return_com_c[$key] = $data_com_c;
+            
             $_where = array();
             $_where[id] = $value->i_product_sub_typelist;
             $this->db->select('*');
@@ -297,7 +300,9 @@ class Shop_model extends CI_Model {
             $data_com_ordder['i_com'] = $data_pd->id;
             $data_com_ordder['i_price'] = $value->f_price;
           }
+          $return[list_c] = $return_com_c;
         }
+        
         $data_com_ordder['plan_pack_list'] = $val2->id;
         $data_com_ordder['i_order_booking'] = $last_id;
         $data_com_ordder['i_plan_pack'] = $_POST[plan_setting];
@@ -305,8 +310,10 @@ class Shop_model extends CI_Model {
         $data_com_ordder['i_pax'] = $_POST[adult];
         $data_com_ordder['d_post_date'] = time();
         $data_com_ordder['d_last_date'] = time();
+        
         $result_com = $this->db->insert(TBL_COM_ORDER_BOOKING,$data_com_ordder);
-        $return[$val1->id] = $data_com_ordder;
+        $data_com_ordder['result'] = $result_com;
+        $return[main_c][$val1->id] = $data_com_ordder;
       }
       if ($val->i_pay_type == 2) {
         $data[check_tran_job] = 1;
