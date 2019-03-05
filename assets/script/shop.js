@@ -2079,7 +2079,7 @@ function waitTransShop() {
   }
   console.log(url_his);
   $.post(url_his, function (res) {
-
+//    console.log(res);
     var pass = {
       data: res.data
     };

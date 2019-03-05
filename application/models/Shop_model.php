@@ -315,7 +315,7 @@ class Shop_model extends CI_Model {
         $data_com_ordder['result'] = $result_com;
         $return[main_c][$val1->id] = $data_com_ordder;
       }
-      if ($val->i_pay_type == 2) {
+      if ($val1->i_pay_type == 2) {
         $data[check_tran_job] = 1;
 
 
