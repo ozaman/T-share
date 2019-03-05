@@ -183,13 +183,13 @@ $plan = $PLAN_PACK->s_topic;
       else {
         $TBL = TBL_COM_ORDER_BOOKING_LOGS;
       }
-      // echo $TBL.'////////////';
+       // echo $TBL.'////////////';
       $COM_ORDER_BOOKING = $this->Main_model->rowdata($TBL,$_where,$_select);
 
-//       echo '<pre>';
-//       print_r($COM_ORDER_BOOKING);
-//       echo '</pre>';
-//      echo $COM_ORDER_BOOKING->i_main_list."<br/>";
+      // echo '<pre>';
+      // print_r($COM_ORDER_BOOKING);
+      // echo '</pre>';
+     // echo $COM_ORDER_BOOKING->i_main_list."<br/>";
       if ($COM_ORDER_BOOKING->i_main_list == 5) {
         $curency = '%';
         $title_head = 'รายการ';
@@ -267,11 +267,14 @@ $plan = $PLAN_PACK->s_topic;
             $this->db->select('*');
             $query_plan = $this->db->get_where(TBL_COM_ORDER_BOOKING_COM,$_where);
 //            echo 6666666666;
-//            echo '<pre>';
-//            print_r($COM_ORDER_BOOKING);
-//            echo '</pre>';
+           // echo '<pre>';
+           // print_r($COM_ORDER_BOOKING);
+           // echo '</pre>';
 //            exit();
             if ($COM_ORDER_BOOKING->i_main_list != 5) {
+           //         echo '<pre>';
+           // print_r($COM_ORDER_BOOKING);
+           // echo '</pre>';
               ?>
 
               <tr>
@@ -291,6 +294,7 @@ $plan = $PLAN_PACK->s_topic;
               $_order = array();
               $_order['id'] = 'asc';
               $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_COM,$_where,$_select,$_order);
+
               $_where = array();
               $_where['i_order_booking'] = $data->id;
               // $_where['i_plan_pack'] = $data->plan_setting;
@@ -298,7 +302,9 @@ $plan = $PLAN_PACK->s_topic;
               $_order = array();
               $_order['id'] = 'asc';
               $BOOKING_CHANGE_PLAN = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_CHANGE_PLAN,$_where,$_select,$_order);
-
+           //      echo '<pre>';
+           // print_r($BOOKING_CHANGE_PLAN);
+           // echo '</pre>';    
 
               if ($BOOKING_CHANGE_PLAN == '') {
 

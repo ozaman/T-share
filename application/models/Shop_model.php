@@ -469,7 +469,7 @@ class Shop_model extends CI_Model {
           // else {
           $working = 'working';
           $_where = array();
-          $_where[i_plan_pack] = $con_ref_company->i_plan_pack;
+          $_where[i_plan_pack] = $PACK_LIST_COMPANY->i_plan_pack;
           $_select = array('*');
           $_order = array();
           $each_pd_loop_company = $this->Main_model->fetch_data('','',TBL_CON_COM_PRODUCT_TYPE,$_where,$_select,$_order);
@@ -732,7 +732,14 @@ class Shop_model extends CI_Model {
         $_select = array('*');
         $_order = array();
         $query = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_MAIN_LIST,$_where,$_select,$_order);
+        $get_query = $query;
 
+
+        $_where = array();
+      $_where[id] = $val1->i_con_plan_main_list;
+      $_select = array('*');
+      $_order = array();
+      $query = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_MAIN_LIST,$_where,$_select,$_order);
 
 
         $_where = array();
@@ -788,20 +795,20 @@ class Shop_model extends CI_Model {
             $book = $this->Main_model->rowdata(TBL_ORDER_BOOKING,$_where,$_select);
             foreach ($query2->result() as $key => $val) {
               if ($val->id == $book->i_cartype) {
-                # code...
-
+               
+              	$cartype = $book->i_cartype;
                 $_where = array();
-                $_where[i_car_type] = $book->i_cartype;//$val->id;
-                $_where[i_plan_pack] = $_POST[plan_setting];
+                $_where[i_car_type] = $book->i_cartype*1;
+                $_where[i_plan_pack] = $_POST[plan_setting]*1;
                 $_select = array('*');
-                $query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
-
-                $_where = array();
-                $_where[i_plan_pack] = $con_ref->id;
-                $_where[i_car_type] = $val->id;
-                $this->db->select('*');
-                $q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
-                $data_car_ref = $q_car_ref->row();
+                $query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where,$_select);
+                $wwww = $query_c;
+                // $_where = array();
+                // $_where[i_plan_pack] = $con_ref->id;
+                // $_where[i_car_type] = $val->id;
+                // $this->db->select('*');
+                // $q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
+                // $data_car_ref = $q_car_ref->row();
                 if (count($query_c) > 0) {
 
                   $i_price = $query_c->f_price;
@@ -881,11 +888,11 @@ class Shop_model extends CI_Model {
               $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
               $data_pd = $query->row();
 
-              $data_com_ordder['i_main_list'] = $val2->id;
-              $data_com_ordder['i_com'] = $data_pd->id;
-
-              $data_com_ordder['i_price'] = 0;
+              
             }
+            $data_com_ordder['i_main_list'] = $val2->id;
+            $data_com_ordder['i_com'] = $data_pd->id;
+            $data_com_ordder['i_price'] = 0;
           }
           $data_com_ordder['plan_pack_list'] = $val2->id;
           $data_com_ordder['i_order_booking'] = $_GET[order_id];
@@ -967,7 +974,7 @@ foreach($PACK_COMPANY as $datacompany){
 		       	$this->db->select('*');
 		       	$query_data_ep = $this->db->get_where(TBL_CON_EACH_PERSON,$_where);
 		       	foreach ($query_data_ep->result() as $key => $value) {
-		       		if ($_POST[adult]>= $value->i_person_up) {
+		       		if ($_POST[num_cus]>= $value->i_person_up) {
 		       			$park_total = $value->f_price;
 		       			$data_com_ordder_company['i_price'] = $park_total;
 		       		}
@@ -981,20 +988,20 @@ foreach($PACK_COMPANY as $datacompany){
 		       	$this->db->select('*');
 		       	$query2 = $this->db->get_where(TBL_WEB_CAR_USE_TYPE,$_where);
 		       	foreach ($query2->result() as $key => $val) {
-		       		if ($val->id == $_POST[car_type]) {
+		       		if ($val->id == $book->i_cartype) {
 		       			$_where = array();
 		       			$_where[i_car_type] = $val->id;
 		       			$_where[i_plan_pack] = $datacompany->i_plan_pack;
 		       			$_select = array('*');
-		       			$query_c = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
+		       			$query_company = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
 		       			$_where = array();
 		       			$_where[i_plan_pack] = $con_ref_company->id;
 		       			$_where[i_car_type] = $val->id;
 		       			$this->db->select('*');
 		       			$q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
 		       			$data_car_ref = $q_car_ref->row();
-		       			if (count($query_c) > 0) {
-		       				$i_price = $query_c->f_price;
+		       			if (count($query_company) > 0) {
+		       				$i_price = $query_company->f_price;
 		       				$data_com_ordder_company['i_price'] = $i_price;
 		       				$data_com_ordder_company['i_com'] = $val->id;
 		       			}
@@ -1020,7 +1027,7 @@ foreach($PACK_COMPANY as $datacompany){
 		       	$con = $query_con_tb->row();
 		       	$person_total = 0;
 		       	foreach ($query_con_tb->result() as $key => $value4) {
-		       		if ($_POST[adult]>= $value4->i_num_regis) {
+		       		if ($_POST[num_cus]>= $value4->i_num_regis) {
 		       			$person_total = $value4->f_price; 
 		      		 		// $data["price_person_total"] = $person_total;
 		       			$data_com_ordder_company['i_price'] = $person_total;
@@ -1036,7 +1043,7 @@ foreach($PACK_COMPANY as $datacompany){
 		       	// else {
 		       		$working = 'working';
 		       		$_where = array();
-		       		$_where[i_plan_pack] = $con_ref_company->i_plan_pack;
+		       		$_where[i_plan_pack] = $PACK_LIST_COMPANY->i_plan_pack;
 		       		$_select = array('*');
 		       		$_order = array();
 		       		$each_pd_loop_company = $this->Main_model->fetch_data('','',TBL_CON_COM_PRODUCT_TYPE,$_where,$_select,$_order);
@@ -1117,6 +1124,9 @@ foreach($PACK_COMPANY as $datacompany){
 	 $return[PACK_COMPANY] = $PACK_COMPANY;
 $return[data_com_ordder_company] = $data_com_ordder_company;
 $return[data_com_company] = $data_com_company;
+$return[query_c] = $query_c;
+$return[cartype] =$cartype;
+$return[query] = $get_query;
 
     return $return;
   }
