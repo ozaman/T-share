@@ -303,7 +303,7 @@ class Shop_model extends CI_Model {
           $return[list_c] = $return_com_c;
         }
         
-        $data_com_ordder['plan_pack_list'] = $val2->id;
+        $data_com_ordder['plan_pack_list'] = $val->id;
         $data_com_ordder['i_order_booking'] = $last_id;
         $data_com_ordder['i_plan_pack'] = $_POST[plan_setting];
         $data_com_ordder['i_plan_main'] = $val1->i_plan_main;
@@ -735,11 +735,11 @@ class Shop_model extends CI_Model {
         $get_query = $query;
 
 
-        $_where = array();
-      $_where[id] = $val1->i_con_plan_main_list;
-      $_select = array('*');
-      $_order = array();
-      $query = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_MAIN_LIST,$_where,$_select,$_order);
+      //   $_where = array();
+      // $_where[id] = $val1->i_con_plan_main_list;
+      // $_select = array('*');
+      // $_order = array();
+      // $query = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_MAIN_LIST,$_where,$_select,$_order);
 
 
         $_where = array();
@@ -894,7 +894,7 @@ class Shop_model extends CI_Model {
             $data_com_ordder['i_com'] = $data_pd->id;
             $data_com_ordder['i_price'] = 0;
           }
-          $data_com_ordder['plan_pack_list'] = $val2->id;
+          $data_com_ordder['plan_pack_list'] = $val->id;
           $data_com_ordder['i_order_booking'] = $_GET[order_id];
           $data_com_ordder['i_plan_pack'] = $_POST[plan_setting];
           $data_com_ordder['i_plan_main'] = $val->i_plan_main;
