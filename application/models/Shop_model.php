@@ -831,10 +831,6 @@ $againck = array();
 
             $_select = array('*');
             $query_payall = $this->Main_model->rowdata(TBL_CON_EACH_PS_ALL_PAY,$_where);
-
-
-
-
             $data_com_ordder['i_price'] = $con->f_price;
             $data_com_ordder['i_main_list'] = $val2->id;
             $data_com_ordder['i_com'] = 0;
@@ -1144,6 +1140,7 @@ $return[post] =  $_POST;
 $return[chk] = $chk;
 $return[ck_result] = $ck_result;
 $return[wwww] = $wwww;
+$result[ssss] = $ssss;
 
     return $return;
   }
