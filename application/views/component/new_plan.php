@@ -225,6 +225,13 @@ $plan = $PLAN_PACK->s_topic;
         // echo '</pre>';
         $pax = $USE_TYPE->name_th;
       }
+      else if ($COM_ORDER_BOOKING->i_main_list == 4) {
+          $curency = 'บ.';
+          $title_head = 'รายการ';
+          $title_head2 = 'ราคา(คนละ)';
+          $all_total_iprice += $COM_ORDER_BOOKING->i_price * $COM_ORDER_BOOKING->i_pax;
+          $pax = $COM_ORDER_BOOKING->i_pax;
+        }
       else if ($COM_ORDER_BOOKING->i_main_list == 3) {
         $curency = 'บ.';
         $title_head = 'จำนวน';
