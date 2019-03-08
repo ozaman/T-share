@@ -312,11 +312,13 @@ class Shop_model extends CI_Model {
         $data_com_ordder['i_pax'] = $_POST[adult];
         $data_com_ordder['d_post_date'] = time();
         $data_com_ordder['d_last_date'] = time();
-        $ffff = $data_com_ordder;
-        $result_com = $this->db->insert(TBL_COM_ORDER_BOOKING,$data_com_ordder);
+        
+        $data_com_ordder[result] = $this->db->insert(TBL_COM_ORDER_BOOKING,$data_com_ordder);
+        $sss = $data_com_ordder;
         // $data_com_ordder['result'] = $result_com;
         // $return[main_c][$val1->id] = $data_com_ordder;
       }
+      $ffff[$key] = $sss;
       if ($val1->i_pay_type == 2) {
         $data[check_tran_job] = 1;
 
@@ -570,7 +572,7 @@ class Shop_model extends CI_Model {
       # code...
     }
     $data[post] = $_POST;
-   $data[sss] = $query;
+//   $data[sss] = $query;
     $data[com] = $data_com_ordder;
     $data[result_com] = $result_com;
     $data[data_com_c] = $data_com_c;

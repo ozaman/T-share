@@ -11,7 +11,7 @@ class Shop extends CI_Controller {
 
   public function add_shop() {
     $data['res'] = $this->Shop_model->add_shop();
-    header('Content-Type: application/json');
+//    header('Content-Type: application/json');
     echo json_encode($data['res']);
 
 
