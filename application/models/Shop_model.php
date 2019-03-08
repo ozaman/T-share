@@ -871,6 +871,13 @@ class Shop_model extends CI_Model {
       	$this->db->where('id',$last_id);
       	$data[result] = $this->db->update('order_booking',$data);
       }
+      if ($val->i_pay_type != 2) {
+      	$data[check_tran_job] = 0;
+
+
+      	$this->db->where('id',$last_id);
+      	$data[result] = $this->db->update('order_booking',$data);
+      }
       /*         * ********************** */
       /*         * **** com company ***** */
       /*         * ********************** */
