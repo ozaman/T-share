@@ -712,6 +712,7 @@ class Shop_model extends CI_Model {
 
   	if ($_POST[plan_setting] != '') {
   		$get_query = array();
+  		$chk_i_pay = false;
   		foreach ($PACK_LIST as $val) {
   			$_where = array();
   			$_where[id] = $val->i_con_plan_main_list;
@@ -867,13 +868,19 @@ class Shop_model extends CI_Model {
       }
       $data = array();
       if ($val->i_pay_type == 2) {
+
+      	$chk_i_pay = true;
+      	
+      }
+
+      if ($chk_i_pay == true) {
       	$data[check_tran_job] = 1;
 
 
       	$this->db->where('id',$last_id);
       	$data[result] = $this->db->update('order_booking',$data);
       }
-      if ($val->i_pay_type != 2) {
+      else{
       	$data[check_tran_job] = 0;
 
 
