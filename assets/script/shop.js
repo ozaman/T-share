@@ -2611,10 +2611,10 @@ function confirmPayIncome(id, invoice, driver) {
 
 function completedJobShop(id) {
 
-  var url_complete = "shop/complete_job?id=" + id;
+  var url_complete = "shop/complete_job?order_id=" + id;
   $.ajax({
     url: url_complete,
-    dataType: 'json',
+    dataType: 'text',
     type: 'post',
     success: function (data) {
       console.log(data)

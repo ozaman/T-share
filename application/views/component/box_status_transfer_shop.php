@@ -1,8 +1,8 @@
 <?php
-$query = $this->db->query("select driver_approve,id,bank_taxi_id, driver_complete, invoice from order_booking where id = ".$_GET[order_id]);
+$query = $this->db->query("select driver_approve,id,bank_taxi_id, driver_complete, invoice from ".TBL_ORDER_BOOKING." where id = ".$_GET[order_id]);
 $data = $query->row();
 
-$query_bank = $this->db->query("SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.id = '".$data->bank_taxi_id."' ");
+$query_bank = $this->db->query("SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM ".TBL_WEB_BANK_DRIVER." as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.id = '".$data->bank_taxi_id."' ");
 $data_bank = $query_bank->row();
 $count_bn = strlen($data_bank->bank_number) - 3;
 //echo $count_bn;
@@ -13,7 +13,7 @@ $txt_bank_num = $xxx."".substr($data_bank->bank_number,-3);
 //echo strlen($txt_bank_num)." || ".strlen($data_bank->bank_number);
 //echo $xxx;
 //exit();
-$query = $this->db->query('SELECT * FROM pay_history_driver_shopping where order_id = '.$data->id);
+$query = $this->db->query('SELECT * FROM '.TBL_PAY_HIS_DRIVER_SHOPPING.' where order_id = '.$data->id);
 $check_trans_pay = $query->num_rows();
 if ($check_trans_pay > 0) {
   $data_trans_pay = $query->row();
