@@ -246,7 +246,7 @@ class Shop extends CI_Controller {
   }
 
   public function change_plan() {
-          header('Content-Type: application/json');
+    header('Content-Type: application/json');
     // if ($_POST[plane_id_replan] != $_POST[price_plan] and $_POST[price_plan] != "") {
     $re = $this->Shop_model->change_plan();
     // }
@@ -295,15 +295,31 @@ class Shop extends CI_Controller {
 
     $return[result] = false;
     if ($_GET[box] == "") {
-      $query = $this->db->query("select plan_setting as plan_id from order_booking where id = ".$_GET[order_id]);
-      $row_plan = $query->row();
-      $plan_id = $row_plan->plan_id;
+
+      $_where = array();
+      $_where[i_order_booking] = $_GET[order_id];
+      $this->db->select('id, i_plan_pack');
+      $query_logs = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
+      if ($query_logs->num_rows > 0) {
+        $res_data = $query_logs->row();
+      }
+      else {
+        $_where = array();
+        $_where[i_order_booking] = $_GET[order_id];
+        $this->db->select('id, i_plan_pack');
+        $query_main = $this->db->get_where(TBL_COM_ORDER_BOOKING,$_where);
+        $res_data = $query_main->row();
+      }
+      $plan_id = $res_data->i_plan_pack;
+//      $query = $this->db->query("select plan_setting as plan_id from order_booking where id = ".$_GET[order_id]);
+//      $row_plan = $query->row();
+//      $plan_id = $row_plan->plan_id;
     }
     else {
       $plan_id = $_GET[plan_id];
     }
-    
-    
+
+
 //    $query = $this->db->query("select s_topic_en,s_payment from ".TBL_SHOP_COUNTRY_COM_LIST_PRICE_TAXI." where i_shop_country_com_list = ".$plan_id);
     $_where = array();
     $_where[i_plan_pack] = $plan_id;
@@ -313,7 +329,7 @@ class Shop extends CI_Controller {
 //    echo json_encode($query_plan->result());
 //    exit();
     foreach ($query_plan->result() as $row) {
-     
+
       if ($row->i_pay_type == 2) {
         $return[result] = true;
       }
@@ -323,6 +339,7 @@ class Shop extends CI_Controller {
     $return[plan_id] = $row_plan->plan_id;
     $return[row] = $query_plan->num_rows();
     $return[order] = $_GET[order_id];
+    $return[ss] = $query_plan->result();
     echo json_encode($return);
   }
 

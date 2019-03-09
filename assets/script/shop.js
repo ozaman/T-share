@@ -16,9 +16,9 @@ function check_com_plan(id) {
 function load_status_trans(id) {
   $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
-    $('.page').animate({
-      scrollTop: $(document).height() + 700
-    }, 500);
+//    $('.page').animate({
+//      scrollTop: $(document).height() + 720
+//    }, 500);
   });
 }
 
@@ -1135,7 +1135,7 @@ function openDetailShop(key, type) {
     checkPhotoCheckIn('guest_register', obj.id);
     $('.page').animate({
       scrollTop: $(document).height() + 700
-    }, 500);
+    }, 600);
     if (type == "ios") {
       modal.hide();
     }
@@ -1829,7 +1829,8 @@ function sendCheckIn(id, type, place_id, plan_setting) {
   else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } else {
+  } 
+  else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }

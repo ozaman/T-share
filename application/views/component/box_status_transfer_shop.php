@@ -40,6 +40,8 @@ else {
   }
 }
 $btn_pay_com_color = "background-color:#666666";
+$query = $this->db->query("select id from ".TBL_COM_ORDER_BOOKING_LOGS." where i_order_booking = ".$data->id);
+$check_change_plan = $query->num_rows();
 ?>
 <td class="font-16">
   <div class="div-all-checkin">
@@ -83,10 +85,7 @@ $btn_pay_com_color = "background-color:#666666";
       </td>
       </tr>
       <?php
-      $query = $this->db->query("select id from ".TBL_COM_ORDER_BOOKING_LOGS." where i_order_booking = ".$data->id);
-      $check_change_plan = $query->num_rows();
-
-      if ($_COOKIE[detect_userclass] == "taxi" && $check_change_plan == 1 && $data->bank_taxi_id == 0) {
+      if ($_COOKIE[detect_userclass] == "taxi" && $check_change_plan > 0 && $data->bank_taxi_id == 0) {
         ?>
         <tr>  
           <td colspan="2">
@@ -94,12 +93,12 @@ $btn_pay_com_color = "background-color:#666666";
             <div style="padding: 0px 0px;">
               <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
 
-              <?php
-              $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 and driver_id = '".$_COOKIE[detect_user]."' order by status_often desc, status desc ";
-              $query_bank = $this->db->query($sql);
-              $num_bank = $query_bank->num_rows();
-              if ($num_bank <= 0) {
-                ?>
+  <?php
+  $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 and driver_id = '".$_COOKIE[detect_user]."' order by status_often desc, status desc ";
+  $query_bank = $this->db->query($sql);
+  $num_bank = $query_bank->num_rows();
+  if ($num_bank <= 0) {
+    ?>
                 <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_wait_trans');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
                 <?php
               }
@@ -127,19 +126,19 @@ $btn_pay_com_color = "background-color:#666666";
                         </table>
                       </label>
                     </ons-list-item>
-                    <?php
-                  }
-                  ?>
+      <?php
+    }
+    ?>
                 </form>
                 <ons-button type="button" onclick="_confirmSelectBankAfterChangePlan('<?=$data->id;?>');$(this).attr('disabled', 'disabled');" style="margin: 5px;  background-color: #fff;  color: #f00; border: 1px solid #f00;width: 100%;text-align: center;">ยืนยันบัญชีรับเงิน</ons-button>
-              <?php }?>
+                <?php }?>
             </div>
           </td>
         </tr> 
-        <?php
-      }
-      else {
-        ?>
+  <?php
+}
+else {
+  ?>
 
         <tr>
           <td colspan="2">
@@ -175,7 +174,7 @@ $btn_pay_com_color = "background-color:#666666";
           <td colspan="2">
             <div style="padding: 5px;">
               <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>   
-              <?php if ($check_trans_pay > 0) {?>
+  <?php if ($check_trans_pay > 0) {?>
                 <table width="100%">
                   <tr>
                     <td width="35%"><span class="font-16">สถานะ</span></td>
@@ -199,20 +198,20 @@ $btn_pay_com_color = "background-color:#666666";
                         insert_photo</i>
                     </td>
                   </tr>
-                  <?php if ($data->driver_approve == 0 && $_COOKIE[detect_userclass] == "taxi") {?>
+    <?php if ($data->driver_approve == 0 && $_COOKIE[detect_userclass] == "taxi") {?>
                     <tr>
                       <td align="center" colspan="2">
 
                     <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>', '<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
                     </td>
                     </tr>
-                  <?php }
-                  ?>
+    <?php }
+    ?>
                 </table>
-                <?php
-              }
-              else {
-                ?>
+                  <?php
+                }
+                else {
+                  ?>
                 <table width="100%">
                   <tr>
                     <td width="35%"><span class="font-16">สถานะ</span></td>
@@ -224,13 +223,13 @@ $btn_pay_com_color = "background-color:#666666";
                     </td>
                   </tr>
                 </table>
-              <?php }
-              ?>
+  <?php }
+  ?>
             </div>
           </td>
         </tr>   
-      <?php }
-      ?>
+<?php }
+?>
       </tbody>
     </table>  
 
