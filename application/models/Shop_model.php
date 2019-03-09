@@ -901,6 +901,7 @@ class Shop_model extends CI_Model {
       $PACK_COMPANY = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
       $again = array();
 
+
       foreach($PACK_COMPANY as $datacompany){
       	$com_list = array();
       	$_where = array();
@@ -971,15 +972,15 @@ class Shop_model extends CI_Model {
 		       			$_where[i_car_type] = $val->id;
 		       			$_where[i_plan_pack] = $datacompany->i_plan_pack;
 		       			$_select = array('*');
-		       			$query_company = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
+		       			$CON_EACH_CAR = $this->Main_model->rowdata(TBL_CON_EACH_CAR,$_where);
 		       			$_where = array();
 		       			$_where[i_plan_pack] = $con_ref_company->id;
 		       			$_where[i_car_type] = $val->id;
 		       			$this->db->select('*');
 		       			$q_car_ref = $this->db->get_where(TBL_CON_EACH_CAR,$_where);
 		       			$data_car_ref = $q_car_ref->row();
-		       			if (count($query_company) > 0) {
-		       				$i_price = $query_company->f_price;
+		       			if (count($CON_EACH_CAR) > 0) {
+		       				$i_price = $CON_EACH_CAR->f_price;
 		       				$data_com_ordder_company['i_price'] = $i_price;
 		       				$data_com_ordder_company['i_com'] = $val->id;
 		       			}
@@ -1019,16 +1020,26 @@ class Shop_model extends CI_Model {
 		       	// 	$cat = "own";
 		       	// }
 		       	// else {
-		       	$working = 'working';
-		       	$_where = array();
-		       	$_where[i_plan_pack] = $PACK_LIST_COMPANY->i_plan_pack;
-		       	$_select = array('*');
-		       	$_order = array();
-		       	$each_pd_loop_company = $this->Main_model->fetch_data('','',TBL_CON_COM_PRODUCT_TYPE,$_where,$_select,$_order);
-		       	$ssss = $each_pd_loop_company;
-		       	// }
+		       	// $working = 'working';
+		       	// $_where = array();
+		       	// $_where[i_plan_pack] = $PACK_LIST_COMPANY->i_plan_pack;
+		       	// $_select = array('*');
+		       	// $_order = array();
+		       	// $each_pd_loop_company = $this->Main_model->fetch_data('','',TBL_CON_COM_PRODUCT_TYPE,$_where,$_select,$_order);
+		       	// $ssss = $each_pd_loop_company;
+		       	// // }
 		       	$ch_company_com = array();
 		       	$re_company_com = array();
+
+
+
+		       	    $working = 'working';
+          $_where = array();
+          $_where[i_plan_pack] = $PACK_LIST_COMPANY->i_plan_pack;
+          $_select = array('*');
+          $_order = array();
+          $each_pd_loop_company = $this->Main_model->fetch_data('','',TBL_CON_COM_PRODUCT_TYPE,$_where,$_select,$_order);
+
 		       	foreach ($each_pd_loop_company as $key => $value) {
 		       		$data_com_company = array();
 
@@ -1140,8 +1151,8 @@ $return[get_query] = $get_query;
 $return[post] =  $_POST;
 $return[chk] = $chk;
 $return[ck_result] = $ck_result;
-$return[wwww] = $wwww;
-$return[ssss] = $ssss;
+$return[query_company] = $query_company;
+$return[each_pd_loop_company] = $each_pd_loop_company;
 $return[ch_company_com] = $ch_company_com;
 $return[re_company_com] = $re_company_com;
 
