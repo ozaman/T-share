@@ -877,14 +877,14 @@ class Shop_model extends CI_Model {
       	$data[check_tran_job] = 1;
 
 
-      	$this->db->where('id',$last_id);
+      	$this->db->where('id',$_GET[order_id]);
       	$data[result] = $this->db->update('order_booking',$data);
       }
       else{
       	$data[check_tran_job] = 0;
 
 
-      	$this->db->where('id',$last_id);
+      	$this->db->where('id',$_GET[order_id]);
       	$data[result] = $this->db->update('order_booking',$data);
       }
       /*         * ********************** */
