@@ -865,7 +865,7 @@ class Shop_model extends CI_Model {
           $againck[] = $com_list;
           $result_com = $this->db->insert(TBL_COM_ORDER_BOOKING_LOGS,$data_com_ordder);
       }
-
+      $data = array();
       if ($val->i_pay_type == 2) {
       	$data[check_tran_job] = 1;
 
