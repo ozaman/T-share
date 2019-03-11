@@ -16,9 +16,9 @@ function check_com_plan(id) {
 function load_status_trans(id) {
   $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
-//    $('.page').animate({
-//      scrollTop: $(document).height() + 720
-//    }, 500);
+    $('.page').animate({
+      scrollTop: $(document).height() + 720
+    }, 500);
   });
 }
 
