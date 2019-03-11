@@ -1,4 +1,5 @@
 <?php
+
 $query = $this->db->query("select driver_approve,id,bank_taxi_id, driver_complete, invoice from ".TBL_ORDER_BOOKING." where id = ".$_GET[order_id]);
 $data = $query->row();
 
@@ -42,6 +43,7 @@ else {
 $btn_pay_com_color = "background-color:#666666";
 $query = $this->db->query("select id from ".TBL_COM_ORDER_BOOKING_LOGS." where i_order_booking = ".$data->id);
 $check_change_plan = $query->num_rows();
+
 ?>
 <td class="font-16">
   <div class="div-all-checkin">
