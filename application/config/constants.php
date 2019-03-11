@@ -180,6 +180,9 @@ define('TBL_COM_ORDER_BOOKING_COM_COMPANY', 'tbl_order_booking_com_company');
 define('TBL_COM_ORDER_BOOKING_CHANGE_PLAN', 'tbl_order_booking_com_change_plan');
 define('TBL_COM_ORDER_BOOKING_COMPANY_CHANGE_PLAN', 'tbl_order_booking_com_company_change_plan');
 
+define('TBL_PAY_HIS_DRIVER_SHOPPING', '	pay_history_driver_shopping');
+define('TBL_WEB_BANK_DRIVER', '	web_bank_driver');
+
 
 
 
