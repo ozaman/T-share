@@ -16,9 +16,9 @@ function check_com_plan(id) {
 function load_status_trans(id) {
   $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
-//    $('.page').animate({
-//      scrollTop: $(document).height() + 720
-//    }, 500);
+    $('.page').animate({
+      scrollTop: $(document).height() + 700
+    }, 500);
   });
 }
 
@@ -1135,7 +1135,7 @@ function openDetailShop(key, type) {
     checkPhotoCheckIn('guest_register', obj.id);
     $('.page').animate({
       scrollTop: $(document).height() + 700
-    }, 600);
+    }, 500);
     if (type == "ios") {
       modal.hide();
     }
@@ -1609,8 +1609,7 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1632,8 +1631,7 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     loadBoxConfirmPay(id);
@@ -1829,8 +1827,7 @@ function sendCheckIn(id, type, place_id, plan_setting) {
   else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } 
-  else {
+  } else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
@@ -2611,10 +2608,10 @@ function confirmPayIncome(id, invoice, driver) {
 
 function completedJobShop(id) {
 
-  var url_complete = "shop/complete_job?order_id=" + id;
+  var url_complete = "shop/complete_job?id=" + id;
   $.ajax({
     url: url_complete,
-    dataType: 'text',
+    dataType: 'json',
     type: 'post',
     success: function (data) {
       console.log(data)
@@ -2628,8 +2625,7 @@ function completedJobShop(id) {
 //                  reloadIncomeShop(id);
                   callpop();
                 });
-      } 
-      else {
+      } else {
         ons.notification.alert({
           message: 'เกิดข้อผิดพลาดในการยืนยัน กรุณาลองใหม่อีกครั้ง',
           title: "ไม่สำเร็จ",
