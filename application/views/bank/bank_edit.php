@@ -75,6 +75,26 @@
     border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
 	    </div>
 </ons-card>  
+
+<ons-card  class="card">
+      <ons-list-header class="list-header"><b>ภาพ QR Code (คิวอาร์โค๊ด)</b></ons-list-header>
+      <div align="center" style="margin-top: 10px;">
+			<div >
+			  <input type="file" class="cropit-image-input" accept="image/*" id="img_qrcode_bank" onchange="readURLbank(this,'img_qrcode_bank','edit');"  style="opacity: 0;position: absolute;">
+			</div>
+			<span id="txt-img-has-img_book_bank" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
+			<span id="txt-img-nohas-img_book_bank" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
+	      <div class="box-preview-img" id="box_qrcode_bank" onclick="performClick('img_qrcode_bank');" >
+	      	<img src="" style="" class="img-preview-show" id="pv_img_qrcode_bank"  /> 
+	      </div> 
+	      <span style="background-color: #f4f4f4;
+    padding: 0px 10px;
+    position: absolute;
+    margin-left: -28px;
+    margin-top: -28px;
+    border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+	    </div>
+</ons-card>  
 </form>
 <div style="padding: 10px; margin-bottom: 10px;">
 	<ons-button modifier="outline" class="button-margin button button--outline button--large" onclick="submitEditBank();" style="background-color: #fff;">แก้ไขข้อมูลบัญชี</ons-button>

@@ -48,13 +48,15 @@ function editBank(id) {
     path: "bank/bank_edit"
   }, function (ele) {
     $('#body_popup1').html(ele);
-    checkPicBank(id, 'pv_img_book_bank', 0);
+    checkPicBank(id, 'pv_img_book_bank', 0, 'book_bank');
+    checkPicBank(id, 'pv_img_qrcode_bank', 0, 'qrcode_bank');
   });
 }
 
-function checkPicBank(id, img, view) {
+function checkPicBank(id, img, view, folder) {
   console.log(id + " | " + img + " | " + view);
-  var p1 = '../data/pic/driver/book_bank/' + id + '.jpg?v=' + $.now();
+  var p1 = '../data/pic/driver/'+folder+'/' + id + '.jpg?v=' + $.now();
+  
   $.ajax({
     url: p1,
     type: 'HEAD',
@@ -74,7 +76,6 @@ function checkPicBank(id, img, view) {
 
     }
   });
-
 }
 
 function changeBankOften(id) {
@@ -462,7 +463,8 @@ function readURLbank(input, id, type) {
       }
       data.append('fileUpload', $('#' + id)[0].files[0]);
 //      var url_upload = "application/views/upload_img/upload.php?id=" + param_id + "&type=book_bank_img";
-      var url_upload = "upload/index?id=" + param_id + "&type=book_bank_img";
+      
+      var url_upload = "upload/index?id=" + param_id + "&type="+id;
       console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
@@ -476,6 +478,7 @@ function readURLbank(input, id, type) {
           console.log(php_script_response);
           $('#img_book_bank_check').val(1);
           $('#' + param_id + '_bookbank').attr('src', '../data/pic/driver/book_bank/' + param_id + '.jpg?v=' + $.now());
+          $('#' + param_id + '_qrcodebank').attr('src', '../data/pic/driver/book_bank/' + param_id + '.jpg?v=' + $.now());
 //                    console.log($('#'+param_id+'_bookbank'));
 
           focusBoxBank();

@@ -327,6 +327,9 @@
                $this->db->join(TBL_PLACE_CAR_STATION_TYPE." as t2",'t1.type = t2.id');
                $this->db->where('t1.i_leader', $_COOKIE[detect_user]);
                $q_chk_q = $this->db->get();
+//               echo "<pre>";
+//               print_r($q_chk_q->result());
+//               echo "</pre>";
                if ($q_chk_q->num_rows() > 0) {
                  $row = $q_chk_q->row();
                  $this->db->select('id');

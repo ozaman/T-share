@@ -133,7 +133,6 @@ class Shop extends CI_Controller {
       $data = curl_exec($ch);
       curl_close($ch);
 
-
       $decode['his'] = 	json_decode($data);
       $this->load->view('shop/shop_history',$decode); */
     $this->load->view('shop/shop_history');

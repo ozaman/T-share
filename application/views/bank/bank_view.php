@@ -101,7 +101,7 @@
 							      <tr>
 							         <td width="80" class="font-16 "><strong>ธนาคาร</strong></td>
 							         <td width="" class="font-16 " >
-							            <span><?=$row->bank_list;?> </span>
+                                       <span><?=$row->bank_list;?> </span><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" style="width: 20px;" />
 							         </td>
 							      </tr>
 							      <tr>
@@ -121,7 +121,9 @@
 							   	  		<table width="100%">
 							   	  			<tr>
 							   	  				<td><img id="<?=$row->id;?>_bookbank" src="assets/images/nopic.png" class="bookbank-img" /></td>
-							   	  				<td width="70" align="center"><img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" /></td>
+							   	  				<td width="" align="center">
+                                                  <img id="<?=$row->id;?>_qrcodebank" src="assets/images/nopic.png" class="bookbank-img" />
+<!--                                                  <img src="assets/images/bank/<?=$row->bank_img;?>" class="logo-bank" /></td>-->
 							   	  			</tr>
 							   	  		</table>
 							   	  		
@@ -135,7 +137,8 @@
 				</table>
 			</ons-card>
 			<script>
-				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank',1); }, 500);
+				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_bookbank',1, 'book_bank'); }, 500);
+				setTimeout(function(){ checkPicBank('<?=$row->id;?>','<?=$row->id;?>_qrcodebank',1, 'qrcode_bank'); }, 500);
 			</script>
 <?php		}
 ?>
