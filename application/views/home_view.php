@@ -1946,6 +1946,7 @@
                  type: 'post',
                  success: function(res) {    
                      console.log(res);
+//                     return;
                      var param = { data : res };
                      console.log(param);
                      $.post("component/cpn_user_province?type=car",param,function(el){

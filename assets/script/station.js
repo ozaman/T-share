@@ -495,17 +495,17 @@ function load_list_place() {
   });
 }
 
-function searchPlaceService(txt_ip) {
+function searchPlaceService(txt_ip, id_ele) {
   console.log(txt_ip);
   $('.txt_place').each(function () {
     var txt_name = $(this).text();
     var row_id = $(this).attr('role');
 
     if (txt_name.toUpperCase().indexOf(txt_ip.toUpperCase()) > -1) {
-      $('#item_list_place_' + row_id).show();
+      $('#'+id_ele + row_id).show();
       console.log(txt_name + " || " + txt_ip);
     } else {
-      $('#item_list_place_' + row_id).hide();
+      $('#'+id_ele + row_id).hide();
     }
   });
 }
