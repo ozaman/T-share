@@ -1945,9 +1945,9 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-//                     console.log(res);
+                     console.log(res);
                      var param = { data : res };
-//                     console.log(param);
+                     console.log(param);
                      $.post("component/cpn_user_province?type=car",param,function(el){
                          $('#body_option').html(el);
                      });

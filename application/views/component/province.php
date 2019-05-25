@@ -8,7 +8,10 @@
 <ons-list id="kitten-list" class="list">
   <ons-list-header class="list-header"><b class="font-14">สถานที่</b></ons-list-header>
   <?php
-  foreach ($_POST[data][place] as $val) {
+  // echo 'sasasasas';
+  foreach ($_POST[data] as $val) {
+    // echo '12';
+    // print_r(json_encode($_POST[data]));
     ?>
   <ons-list-item id="item_list_place_<?=$val[id];?>" class="list-item" onclick="selectPlaceAll(<?=$val[id];?>);" data-name="<?=$val[name_th];?>">
       <div class="left list-item__left">
