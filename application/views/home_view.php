@@ -52,7 +52,7 @@
 </head>
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
+<script src="<?=base_url();?>assets/onsenui/js/onsenui.js?v=<?=time()?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
 <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
@@ -459,18 +459,33 @@
             </style>
         </ons-page>
     </template>
-  <template id="home.html">
+    <template id="home.html">
     <ons-page>
       <?php
       //            include("application/views/main_body_view.php"); 
       $this->load->view('main_body_view');
       ?>
 
-<!--      <a class="button" onclick="performClick2('xxxwww100');"><b>aaaaaaaaa</b></a><br/><br/><br/>
+      <a class="button" onclick="performClick2('xxxwww100');"><b>aaaaaaaaa</b></a><br/><br/><br/>
       <input type="file" accept="image/*" id="xxxwww100"  >
+       
         <br/><br/><br/>
-        <a href="https://www.welovetaxi.com/app/test.php">9999999999999999999999999</a>
+        <!--<a href="https://www.welovetaxi.com/app/test.php">9999999999999999999999999</a>-->
+        <ons-button id="myButton" onclick="$('#test_btn_000').trigger( 'click' );">Do this</ons-button>
+        <br/><br/>
+        
+        <button id="test_btn_000" onclick="$('#txt_test_000').text('123123123123');$('#xxxwww100').click();">*****</button>
+        <b id="txt_test_000">....</b>
+        
+        <br/><br/>
+        
         <script>
+//          document.querySelector('#myButton').onclick = function(event) {
+//            //  doSomething();
+////            alert();
+////performClick2('xxxwww100');
+//              document.querySelector('#xxxwww100').click();
+//            };
           function performClick2(elemId) {
 
             //console.log(elemId);
@@ -491,7 +506,7 @@
             console.log(1);
           }
               
-        </script>-->
+        </script>
     </ons-page>
   </template>
     <template id="st_manage_service.html">
@@ -1834,37 +1849,6 @@
     <audio controls="" id="alert_sd" style="display:none;">
         <source src="<?=base_url();?>assets/media/sound/zapsplat.mp3?v=<?=time();?>" type="audio/mpeg">
     </audio>
-    <ons-modal direction="up" id="welcome_modal">
-        <div style="text-align: center">
-            <ons-card style="padding: 5px;color: #000; position: relative;box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);">
-                <a style="position: absolute; margin-top: -20px;
-                  padding: 2px; right: -5px; background-color: #0076ff;  border-radius: 50%; color: #fff;
-                  z-index: 1;" onclick="welcom_modal.hide({ animation: 'fade' });"><i class="material-icons" style="font-size: 35px;">close</i></a>
-                <div id="body_modal_info">
-                    <p class="intro font-24" style="padding-top: 0px;">ยินดีต้อนรับสมาชิกใหม่</p>
-                    <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
-                        <div class="font-18" style="margin-bottom: 10px;">ขอแจ้งข่าวสาร</div>
-                        <div class="font-17">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เนื่องด้วยเรื่อง แอฟ Tshare ที่ผมโพสต์ไว้ตอนนี้ได้ดำเนินการปรับปรุงเป็นที่เรียบร้อยแล้ว ทางกระผมจึงต้องการทำความเข้าใจ และชี้แจ้ง ในการใช้ แอฟ Tshare เราจะให้บริการ
-                            เกี่ยวกับ เรื่องงาน เรื่องรถ และเรื่องผลประโยชน์ต่างๆที่พี่แท็กซี่ทั้งหลายจะได้รับ จึงขอเรียนเชิญ
-                            ผู้นำคิว ผู้นำกลุ่ม หรือ ตัวแทน ที่สามารถมาร่วมทำความเข้าใจ และพร้อมจะร่วมงานกัน เพื่อผลประโยชน์ของพี่ๆแท็กซี่เอง
-                            ในวันที่ 10/11/61 ณ ศูนย์กิฟวิ่งฟอร์เวิร์ด หน้า โรงแรมคาทิน่า
-                            นัดหมายเวลา 10.00 น.เป็นต้นไป
-                            ติดต่อ (061-1813772 ) สมัครได้ด้วยการเข้าโหลด เพลสโตร์ พิมพ์ Tshare แล้วกดโหลด เมื่อโหลดเสร็จ เข้าไปที่ตัวแอฟ แล้วกรอกรายละเอียด ส่วนตัวได้เลยคับ
-                        </div>
-                        <div style="padding: 5px;  text-align: right;">
-                            <span class="font-17"><b>โชค</b> <a href="tel:093-524-8406">093-524-8406</a><br /><a href="tel:061-181-3772">061-181-3772</a></span>
-                        </div>
-                        <div>
-                            <a href="https://maps.google.com/?q=7.871505,98.379508" target="_blank">
-                                <ons-button style="margin-top: 0px; padding: 2px 10px;"><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 20px;color: #ffffff;"></i> ตำแหน่งที่ประชุม</ons-button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </ons-card>
-        </div>
-    </ons-modal>
     <ons-toast id="toast_confirm_select_place" animation="ascend">
         <span class="font-16">เลือก <b id="num_select">0</b> สถานที่</span>
         <!--          <button onclick="saveSelectPlaceOwner();" class="font-14">บันทึก</button>-->
@@ -1874,7 +1858,6 @@
 </html>
 <script>
     window.fn = {};
-   var welcom_modal = document.querySelector('#welcome_modal');
    var hideCustomDialog = function(id) {
        document
        .getElementById(id)
