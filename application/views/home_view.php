@@ -466,7 +466,7 @@
       $this->load->view('main_body_view');
       ?>
 
-      <a class="button" onclick="performClick2('xxxwww100');"><b>aaaaaaaaa</b></a><br/><br/><br/>
+<!--      <a class="button" onclick="performClick2('xxxwww100');"><b>aaaaaaaaa</b></a><br/><br/><br/>
       <input type="file" accept="image/*" id="xxxwww100"  >
         <br/><br/><br/>
         <a href="https://www.welovetaxi.com/app/test.php">9999999999999999999999999</a>
@@ -491,7 +491,7 @@
             console.log(1);
           }
               
-        </script>
+        </script>-->
     </ons-page>
   </template>
     <template id="st_manage_service.html">
