@@ -688,11 +688,12 @@ function sendShops(company) {
 
   $.post(url2, function (ele2) {
     if (class_user == "taxi") {
-
+      
+      setTimeout(function(){ load_box_choose_car(); }, 1000);
       $.post(urlcount, function (res) {
-
+        
         if (res == 0) {
-
+          
           ons.notification.alert({
             message: 'ไม่มีรถใช้งานกรุณาเพิ่มรถ เพื่อส่งแขก',
             title: "ไม่สามารถส่งแขกได้",
@@ -879,7 +880,8 @@ function sendShop2() {
 
 
 
-    } else {
+    } 
+    else {
       // modal.hide();
       // fn.pushPage({
       //   'id': 'place_company.html',
