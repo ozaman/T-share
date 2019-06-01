@@ -13,8 +13,9 @@ class Component extends CI_Controller {
 //		$data['data'] = $this->Main_model->query_province();
     if ($_GET[type] == 'car') {
       $this->load->view('component/car_province');
-    }
-    else {
+    }else if($_GET[type] == 'user'){
+      $this->load->view('component/user_province');
+    }else {
       $this->load->view('component/province');
     }
   }
@@ -95,6 +96,10 @@ class Component extends CI_Controller {
 
   public function list_manage_place_station() {
     $this->load->view('component/list_manage_place_station');
+  }
+  
+  public function load_choose_car($param) {
+    $this->load->view('component/box_shop_car');
   }
 
 }

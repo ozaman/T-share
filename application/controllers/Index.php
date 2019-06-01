@@ -13,6 +13,7 @@ class Index extends CI_Controller {
   public function index() {
 //  echo $_COOKIE[detect_user];
     $this->load->view('home_view');
+//    $this->load->view('home_view2');
     if ($_COOKIE[detect_user]) {
       $query = $this->db->query("select * from ".TBL_APP_SETTING." where i_user = ".$_COOKIE[detect_user]);
       $check_row = $query->num_rows();

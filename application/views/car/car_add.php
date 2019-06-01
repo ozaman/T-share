@@ -16,7 +16,7 @@
 		    return $randomString;
 		}
 ?>
-
+<input type="hidden" value="<?=$_GET[openby];?>" id="car_openby" />
 <form name="form_addcar" id="form_addcar"  enctype="multipart/form-data">
 <input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
 <input type="hidden" value="<?=$rand;?>" id="center_id" name="center_id" />

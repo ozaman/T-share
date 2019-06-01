@@ -48,8 +48,8 @@ $arr[amphur] = $this->Main_model->fetch_data('','',TBL_WEB_AMPHUR,$_where,$_sele
 </style>
 
 <?php
-$select = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt,t3.id as id_use_type, tb_pro.id as tb_pro_id, tb_pro.name as tb_pro_name, tb_pro.name_th as tb_pro_name_th, tb_pro.name_cn as tb_pro_name_cn FROM web_carall as t1 left join web_province as tb_pro on t1.i_province = tb_pro.id    left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 ORDER BY t1.status_usecar  DESC";
-$query = $this->db->query($select);
+//$select = "SELECT t1.*, t2.txt_color,t2.plate_color, t3.name_th as car_type_txt,t3.id as id_use_type, tb_pro.id as tb_pro_id, tb_pro.name as tb_pro_name, tb_pro.name_th as tb_pro_name_th, tb_pro.name_cn as tb_pro_name_cn FROM web_carall as t1 left join web_province as tb_pro on t1.i_province = tb_pro.id    left join web_car_plate as t2 on t1.i_plate_color = t2.id left join web_car_use_type as t3 on t1.car_type = t3.id where t1.drivername  = '".$_COOKIE['detect_user']."' AND t1.status = 1 ORDER BY t1.status_usecar  DESC";
+//$query = $this->db->query($select);
 
 $sql_dv = "SELECT name,phone,phone2 FROM web_driver  WHERE id = ".$_COOKIE['detect_user']." ";
 $query_dv = $this->db->query($sql_dv);
@@ -57,7 +57,7 @@ $data_dv = $query_dv->row();
 $user_id = $_COOKIE['detect_user'];
 
 $sql_place = "SELECT * FROM shopping_product  WHERE id=".$_GET[shop_id]."";
-$query_place = $this->db->query($sql_place); 
+$query_place = $this->db->query($sql_place);
 $data_place = $query_place->row();
 
 $sql_pv = "SELECT name FROM web_province  WHERE id= ".$data_place->province." ";
@@ -67,7 +67,6 @@ $data_pv = $query_pv->row();
 $sql_shopmain = "SELECT * FROM shopping_product_main  WHERE id = $data_place->main";
 $shopmain = $this->db->query($sql_shopmain);
 $data_shopmain = $shopmain->row();
-
 ?>
 
 <div style="height: 100%;">
@@ -123,45 +122,41 @@ $data_shopmain = $shopmain->row();
         </div>
 
 
-<?php
-}
-else {
-  $op_select = 'เลือกเวลา';
-}
+        <?php
+      }
+      else {
+        $op_select = 'เลือกเวลา';
+      }
 
 
 
- // $_where = array();
-    // $_where['product_id'] = $_GET[id];
-    // $_where['status'] = 1;
-    // $_where['time_other_number'] = 2;
-
-
-
-
-   // $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
-    // if ( $numss != 1) {
+      // $_where = array();
+      // $_where['product_id'] = $_GET[id];
+      // $_where['status'] = 1;
+      // $_where['time_other_number'] = 2;
+      // $numss = $this->Main_model->num_row(TBL_SHOPPING_PRODUCT,$_where);
+      // if ( $numss != 1) {
       ?>
-<!-- <div class="card">
-   <ons-row >
-                <ons-col>
-                    <ons-button id="btn_toshow_date" onclick="selesecompany();" class="button button--outline" style="width: 100%;
-                    padding: 0; height: 35px; text-align: center;"><span class="back-button__icon pull-left" style="    margin-left: 6px;">
-<svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>ios-back-button-icon</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="toolbar-back-button" stroke="none" stroke-width="1" fill-rule="evenodd">
-        <g id="ios" transform="translate(-34.000000, -30.000000)">
-            <polygon id="ios-back-button-icon" points="34 40.5 44.5 30 46.5 32 38 40.5 46.5 49 44.5 51"></polygon>
-        </g>
-    </g>
-</svg>
-</span>เลือกสถานที่อื่น</ons-button>
-                </ons-col>
-               </ons-row>
-</div> -->
-    
+      <!-- <div class="card">
+         <ons-row >
+                      <ons-col>
+                          <ons-button id="btn_toshow_date" onclick="selesecompany();" class="button button--outline" style="width: 100%;
+                          padding: 0; height: 35px; text-align: center;"><span class="back-button__icon pull-left" style="    margin-left: 6px;">
+      <svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <title>ios-back-button-icon</title>
+          <desc>Created with Sketch.</desc>
+          <defs></defs>
+          <g id="toolbar-back-button" stroke="none" stroke-width="1" fill-rule="evenodd">
+              <g id="ios" transform="translate(-34.000000, -30.000000)">
+                  <polygon id="ios-back-button-icon" points="34 40.5 44.5 30 46.5 32 38 40.5 46.5 49 44.5 51"></polygon>
+              </g>
+          </g>
+      </svg>
+      </span>เลือกสถานที่อื่น</ons-button>
+                      </ons-col>
+                     </ons-row>
+      </div> -->
+
 
 
 
@@ -193,7 +188,7 @@ else {
             <td>
               <div class="element_to_find">
                 <input type="hidden" name="" id="shop_topic_th" value="<?=$data_place->topic_th;?>">
-                 <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span><span class="pull-right" onclick="fun_imageslider('<?=$_GET[shop_id];?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span><br>
+                <span class="font-17" style="color:#333333"><b> <?=$data_place->topic_th;?> </b></span><span class="pull-right" onclick="fun_imageslider('<?=$_GET[shop_id];?>')" style="font-size: 20px;  margin-right: 5px;  color: #0076ff;"><img src="<?=base_url();?>assets/images/album2.png" style="    width: 33px;"></span><br>
                 <span class="font-17" style="color:#3b5998"><?=$data_shopmain->topic_th;?> </span >
 
                 <input type="hidden" value=" " id="1">
@@ -297,91 +292,25 @@ else {
         </style>
         <div id="body_add_shop_station"></div>
 
-  <?php
-  if ($query->num_rows() >= 1) {
-    ?>
-          <div class="card borderBlink"  id="box_car">
-            <input type="hidden" name="" id="numcar" value="<?=count($query->result());?>">
-            <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
-            <div style="padding: 0px;margin-top: 0px;" >
-    <?php
-    $i = 1;
- //               echo '<pre>';
- // print_r($query->result());
- // echo '</pre>';
-    foreach ($query->result() as $key => $val) {
-
-      $bg_plate_color = "background-color: ".$val->plate_color;
-      ?>
-                <a id="car_<?=$val->id;?>" class="a-select-car" style="text-decoration:none; margin-top:30px;" >
-                  <input type="hidden" id="value_car_<?=$val->id;?>" data-plate_num="<?=$val->plate_num;?>" />
-                <?php
-                if ($val->status_usecar == 1) {
-                  $calss_box = 'cus_focus';
-                }
-                else {
-                  $calss_box = '';
-                }
-                ?>
-                  <table width="100%" border="0" id="div_car_<?=$val->id;?>" class="<?=$calss_box;?> box_car" style="border: 0px solid #ddd;" >
-                    <tbody>
-                      <tr>
-                        <td width="30" onclick="checformadd('box_car');selectCarShops('<?=$val->id;?>', '<?=$val->car_type;?>', '<?=$val->car_type_txt;?>');
-                          handleClick_s('car', '<?=$val->id;?>');">
-      <?php
-      if ($val->status_usecar == 1 && count($query->result()) == 1) {
+        <?php
+//  echo "<pre>";
+//  print_r($query->result());
+//  echo "</pre>";
         ?>
-                            <script>
+        <div class="card borderBlink"  id="box_car">
+          
+          <ons-list-header class="list-header " id="castomer_box"> เลือกรถส่งแขก</ons-list-header>
+          <ons-button style="padding: 0px 10px;margin: 10px 0px 0px 10px;" onclick="addCarByShop();" class="button">
+            <i class="fa fa-plus"></i> เพิ่มรถ</ons-button>
 
-                              $('#box_car').removeClass('borderBlink')
-                              $('#nation_box').addClass('borderBlink')
-
-                              selectCarShops('<?=$val->id;?>', '<?=$val->car_type;?>', '<?=$val->car_type_txt;?>');
-                            </script>
-                      <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id;?>" id="car_use_<?=$val->id;?>" value="<?=$val->id;?>" name="plate_num_1"   checked></ons-radio>
-
-      <?php
-      }
-      else {
-        ?>
-                      <ons-radio class="radio-fruit" input-id="radio-plate_num<?=$val->id;?>" id="car_use_<?=$val->id;?>" value="<?=$val->id;?>" name="plate_num_1"  ></ons-radio>
-
-
-      <?php }
-      ?>
-                    </td>
-                    <td onclick="checformadd('box_car');selectCarShops('<?=$val->id;?>', '<?=$val->car_type;?>', '<?=$val->car_type_txt;?>');
-                          handleClick_s('car', '<?=$val->id;?>');">
-                      <table width="100%" cellpadding="1" cellspacing="2">
-                        <tbody>
-                          <tr>
-                            <td width="100" align="center" style="padding:1px; border-radius:5px;<?=$bg_plate_color;?>">
-                              <div style="border-radius:5px;border: 1px solid <?=$val->txt_color;?>;"><font color="<?=$val->txt_color;?>" class="font-17"><b><?=$val->plate_num;?></font><br>
-                                  <font class="font-14" style="color: <?=$val->txt_color;?>"><?=$val->tb_pro_name_th;?></font></b></font></div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                    </td>
-                    <td width="45">
-                      <button onclick="editCar('<?=$val->id;?>', 'shop_add');" type="button" class="button--cta" style="padding: 0px 7px;"><span class="font-16">แก้ไข</span></button>
-                    </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </a>    
-      <?php
-      $i++;
-    }
-    ?>
-
-            </div>
+          <div style="padding: 0px;margin-top: 0px;" id="load_choose_car" >
+            
           </div>
-  <?php }?> 
+        </div>
 
 
-         <?php
+
+        <?php
         $_where = array();
         $_where['i_shop'] = $_GET[shop_id];
         $_where['i_partner_group'] = 2;
@@ -405,51 +334,49 @@ else {
         <div class="card" id="nation_box">
           <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
           <div class="form-group">
-        <?php
-        foreach ($data[PLAN_PACK] as $key => $val) {
-
-          $_where = array();
-          $_where['i_plan_pack'] = $val->id;
-          
-          $_select = array('*');
-          $_order = array();
-          $_order['id'] = 'asc';
-          $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
-          if (count($data[PLAN_PACK]) == 1) {
-            ?>
-            <script type="text/javascript">
-             // handleClick_s('nation', '<?=$val->id;?>')
-            </script>
             <?php
-          }
-          ?>
+            foreach ($data[PLAN_PACK] as $key => $val) {
+
+              $_where = array();
+              $_where['i_plan_pack'] = $val->id;
+
+              $_select = array('*');
+              $_order = array();
+              $_order['id'] = 'asc';
+              $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+              if (count($data[PLAN_PACK]) == 1) {
+                ?>
+                <script type="text/javascript">
+                  // handleClick_s('nation', '<?=$val->id;?>')
+                </script>
+                <?php
+              }
+              ?>
               <label class="" for="radio-nation<?=$key + 1;?>" onclick="handleClick_s('nation', '<?=$val->id;?>');">
                 <ons-list-item tappable id="nation_<?=$key + 1;?>">
                   <label class=" left">
                     <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange=""></ons-radio>
                   </label>
-              <?php
-              
-
-                    $_where = array();
-                    $_where['id'] = $val->i_country; 
-                    $_select = array('*');
-                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
-                    // print_r(json_encode($COUNTRY));
-                ?>
-                    <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
-                    </div>
+                  <?php
+                  $_where = array();
+                  $_where['id'] = $val->i_country;
+                  $_select = array('*');
+                  $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+                  // print_r(json_encode($COUNTRY));
+                  ?>
+                  <div class="col-md-3">
+                    <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
+                  </div>
 
 
 
 
 
 
-                  </ons-list-item>
-                </label>
-    <?php 
-  }?>
+                </ons-list-item>
+              </label>
+            <?php }
+            ?>
 
           </div>
 
@@ -582,58 +509,58 @@ else {
           <ons-list-header class="list-header ">ใช้เวลาเดินทาง </ons-list-header>
           <!-- <div class="form-group"> -->
 
-                <!-- <span class="list-header" style="background-image: none;"></span> -->
-  <?php
-  # เวลาที่จะถึง
-  for ($i = 5; $i <= 480; $i += 5) {
-    $s_h = $i.' นาที';
-    if ($i >= 60) {
-      $s_h = '';
-      $s_h = floor($i / 60).' ชั่วโมง';
-      $i_m = $i % 60;
-      if ($i_m > 0) {
-        $s_h .= ' '.$i_m.' นาที';
-      }
-    }
-    $t_time_m[$i] = $s_h;
-  }
-  // print_r($t_time_m);
-  ?>
+                    <!-- <span class="list-header" style="background-image: none;"></span> -->
+          <?php
+          # เวลาที่จะถึง
+          for ($i = 5; $i <= 480; $i += 5) {
+            $s_h = $i.' นาที';
+            if ($i >= 60) {
+              $s_h = '';
+              $s_h = floor($i / 60).' ชั่วโมง';
+              $i_m = $i % 60;
+              if ($i_m > 0) {
+                $s_h .= ' '.$i_m.' นาที';
+              }
+            }
+            $t_time_m[$i] = $s_h;
+          }
+          // print_r($t_time_m);
+          ?>
           <select class="select-input font-17" name="time_num" id="time_num" value="" onchange="checktime(this.value);calTime(this.value);" style="border-radius: 0px;padding: 5px;width: 100%; width: 100%;">
             <option value="0">-- <?=$op_select;?> --</option>
-          <?php
-          $time = array(
-              "500" => "ยังไม่เปิดให้บริการ",
-              "5" => "5 นาที",
-              "10" => "10 นาที",
-              "15" => "15 นาที",
-              "20" => "20 นาที",
-              "25" => "25 นาที",
-              "30" => "30 นาที",
-              "35" => "35 นาที",
-              "40" => "40 นาที",
-              "45" => "45 นาที",
-              "50" => "50 นาที",
-              "55" => "55 นาที",
-              "60" => "1 ชั่วโมง.",
-              "90" => "1 ชั่วโมง 30 นาที",
-              "120" => "2 ชั่วโมง",
-              "150" => "2 ชั่วโมง 30 นาที",
-              "180" => "3 ชั่วโมง",
-              "210" => "3 ชั่วโมง 30 นาที",
-              "240" => "4 ชั่วโมง",
-              "270" => "4 ชั่วโมง 30 นาที",
-              "300" => "5 ชั่วโมง",
-              "330" => "5 ชั่วโมง 30 นาที",
-              "360" => "6 ชั่วโมง",
-              "390" => "6 ชั่วโมง 30 นาที",
-              "420" => "7 ชั่วโมง",
-              "450" => "7 ชั่วโมง 30 นาที",
-              "480" => "8 ชั่วโมง",
-              "0" => "มากกว่านี่ปิดให้บริการ"
-          );
-          $mm = 5;
-          ?>
+            <?php
+            $time = array(
+                "500" => "ยังไม่เปิดให้บริการ",
+                "5" => "5 นาที",
+                "10" => "10 นาที",
+                "15" => "15 นาที",
+                "20" => "20 นาที",
+                "25" => "25 นาที",
+                "30" => "30 นาที",
+                "35" => "35 นาที",
+                "40" => "40 นาที",
+                "45" => "45 นาที",
+                "50" => "50 นาที",
+                "55" => "55 นาที",
+                "60" => "1 ชั่วโมง.",
+                "90" => "1 ชั่วโมง 30 นาที",
+                "120" => "2 ชั่วโมง",
+                "150" => "2 ชั่วโมง 30 นาที",
+                "180" => "3 ชั่วโมง",
+                "210" => "3 ชั่วโมง 30 นาที",
+                "240" => "4 ชั่วโมง",
+                "270" => "4 ชั่วโมง 30 นาที",
+                "300" => "5 ชั่วโมง",
+                "330" => "5 ชั่วโมง 30 นาที",
+                "360" => "6 ชั่วโมง",
+                "390" => "6 ชั่วโมง 30 นาที",
+                "420" => "7 ชั่วโมง",
+                "450" => "7 ชั่วโมง 30 นาที",
+                "480" => "8 ชั่วโมง",
+                "0" => "มากกว่านี่ปิดให้บริการ"
+            );
+            $mm = 5;
+            ?>
 
             <?php
             foreach ($t_time_m as $key => $at) {
@@ -689,13 +616,13 @@ else {
           </div>
           <!-- </div> -->
         </div>
-        
+
         <div class="card" style="display:none;" id="box_bank" onclick=""> 
           <div id="load_select_bank">
-            
+
           </div>
         </div>
-        
+
         <div class="card"  onclick="area_remark()">
           <ons-list-header class="list-header "> หมายเหตุ</ons-list-header>
           <!-- <div class="form-group"> -->
@@ -712,23 +639,23 @@ else {
 
 
       </div>
-<!--    <button>check</button>-->
+      <!--    <button>check</button>-->
     </form>
     <div  style="padding: 0px 10px;padding-bottom: 40px;">
-  <?php
-  if (count($val) != 0) {
-    // echo count($val);
-    ?>
+      <?php
+      if (count($val) != 0) {
+        // echo count($val);
+        ?>
         <ons-button style="background-color: #fff;" modifier="outline" class=" button-margin button button--outline button--large font-17" onclick="submitShop();" id="btn_submitadd">ยืนยันข้อมูลส่งแขก</ons-button>
 
-  <?php }?>
+      <?php }?>
     </div>
-  <?php
-}
-else {
-  
-}
-?>
+    <?php
+  }
+  else {
+    
+  }
+  ?>
 </div>
 <!-- <button onclick="_calltest()">dsadsdsd</button> -->
 

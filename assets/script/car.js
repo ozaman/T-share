@@ -279,6 +279,7 @@ function checkCarNum() {
 }
 
 function submitAddCar() {
+
   $('#check_submit_add_car').val(1);
   focusBoxCar2();
   if ($('input[name="plate_num"]').val() == "") {
@@ -521,7 +522,12 @@ function submitAddCar() {
                 })
                 .then(function () {
                   modal.hide();
-
+                  
+                  if($('#car_openby').val()=="shop"){
+                   load_box_choose_car();
+                   callpop();
+                   return;
+                  }
                   var url = "page/call_page";
                   $.post(url, {
                     path: "car/car_view"
@@ -543,7 +549,8 @@ function submitAddCar() {
         var nc = {};
         apiRecordActivityAndNotification(ac, nc);
 
-      } else {
+      } 
+      else {
         ons
                 .notification.alert({
                   message: 'ไม่สามารถเพิ่มรถได้ กรุณาลองใหม่อีกครั้ง',

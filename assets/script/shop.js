@@ -2877,3 +2877,25 @@ function shop_filter_main() {
 function shop_filter_sub() {
   fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open': 'shoptype'}, 'lift-ios')
 }
+
+function load_box_choose_car(){
+  var url = "component/load_choose_car";
+  $.post(url,function(ele){
+    $('#load_choose_car').html(ele);
+  });
+}
+
+function addCarByShop() {
+  fn.pushPage({
+    'id': 'popup1.html',
+    'title': 'เพิ่มข้อมูลรถ'
+  }, 'lift-ios')
+  var url = "page/call_page?openby=shop";
+  $.post(url, {
+    path: "car/car_add"
+  }, function (ele) {
+    $('#body_popup1').html(ele);
+//        focusBox();
+  });
+  // _body_car_station('body_station_add_car')
+}

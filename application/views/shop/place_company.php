@@ -9,7 +9,7 @@
   <div class="card"> -->
   <ons-list-item class="input-items list-item  button button--outline" 
                  style="margin-bottom: 10px;" onclick="shop_filter_pv();">
-    <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+    <div class="left list-item__left" style="width: 80px;" >
       <span>จังหวัด </span>
       <?php // print_r($_GET[pv_text]); ?>
     </div>
@@ -26,7 +26,7 @@
   
   <ons-list-item class="input-items list-item  button button--outline" 
                  style="    margin-bottom: 10px;" onclick="shop_filter_main();">
-    <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+    <div class="left list-item__left" style="width: 80px;" >
       <span>หมวดหมู่ </span>
     </div>
     <div class=""  id="car_brand_box" style="    background-image: none;
@@ -43,7 +43,7 @@
   <div class="card"> -->
   <ons-list-item class="input-items list-item  button button--outline" 
                  onclick="shop_filter_sub();">
-    <div class="left list-item__left" style="width: 80px;" id="car_brand_txt">
+    <div class="left list-item__left" style="width: 80px;">
       <span>ประเภท </span>
     </div>
     <div class=""  id="car_brand_box" style="    background-image: none;
