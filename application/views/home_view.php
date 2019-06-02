@@ -73,6 +73,31 @@
         socket.emit('adduser', dataorder);
     }, 1000);
 </script>
+<style>
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-f {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
 <ons-modal direction="up" id="modal_load">
     <div style="text-align: center;">
         <p sty>
@@ -250,19 +275,26 @@
     <template id="sidemenu.html">
         <ons-page>
             <div class="profile-pic" align="center">
-                <form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
+<!--                <form id="upload_pf_home" name="upload_pf_home" enctype="multipart/form-data">
                     <input type="file" class="cropit-image-input" id="img_profile_home" accept="image/*" style="opacity: 0;position: absolute;left: 0px;width: 0px;display: none;" onchange="readURLprofileHome(this,'profile');">
-                </form>
+                </form>-->
                 <img src="../data/pic/driver/small/default-avatar.jpg" class="profile-pic-big" onclick="chat_gallery_items(this);">
-                <span style="background-color: #f4f4f4;
+<!--                <span style="background-color: #f4f4f4;
                   padding: 0px 10px;
                   position: absolute;
                   margin-left: -49px;
                   margin-top: -20px;
                   border-top-left-radius: 5px;" 
-                  onclick="performClick('img_profile_home');"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+                  onclick=""><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>-->
+                  
                   
             </div>
+          <form id="upload_pf_home" name="upload_pf_home" align="center" enctype="multipart/form-data">
+                  <div class="upload-btn-wrapper" >
+                    <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
+                    <input type="file" name="img_profile_home" id="img_profile_home" accept="image/*" onchange="readURLprofileHome(this,'profile');"/>
+                  </div>
+                  </form>
             <?php 
                if($_COOKIE[detect_userclass]=="lab"){
                    $menu_profile = "";

@@ -1215,7 +1215,7 @@ function readURLprofileHome(input, type) {
       var id = $.cookie("detect_username");
 //      var url_upload = "application/views/upload_img/upload.php?id=" + id + "&type=" + type;
       var url_upload = "upload/index?id=" + id + "&type=" + type;
-      //console.log(url_upload);
+      console.log(url_upload);
       $.ajax({
         url: url_upload, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything

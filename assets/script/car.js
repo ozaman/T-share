@@ -999,7 +999,7 @@ function readURLother(input, id, type, cat) {
 
       $('#pv_' + id).attr('src', e.target.result);
 
-      var data = new FormData($('#form_accescar')[0]);
+      var data = new FormData($('#upload_pf_home')[0]);
       data.append('fileUpload', $('#' + id)[0].files[0]);
       if (type == "add") {
         var param_id = $('#rand').val();
