@@ -259,7 +259,9 @@
                   position: absolute;
                   margin-left: -49px;
                   margin-top: -20px;
-                  border-top-left-radius: 5px;/* pointer-events: none;*/" onclick="performClick('img_profile_home');"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+                  border-top-left-radius: 5px;" 
+                  onclick="performClick('img_profile_home');"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+                  
             </div>
             <?php 
                if($_COOKIE[detect_userclass]=="lab"){
@@ -465,48 +467,6 @@
       //            include("application/views/main_body_view.php"); 
       $this->load->view('main_body_view');
       ?>
-
-      <a class="button" onclick="performClick2('xxxwww100');"><b>aaaaaaaaa</b></a><br/><br/><br/>
-      <input type="file" accept="image/*" id="xxxwww100"  >
-       
-        <br/><br/><br/>
-        <!--<a href="https://www.welovetaxi.com/app/test.php">9999999999999999999999999</a>-->
-        <ons-button id="myButton" onclick="$('#test_btn_000').trigger( 'click' );">Do this</ons-button>
-        <br/><br/>
-        
-        <button id="test_btn_000" onclick="$('#txt_test_000').text('123123123123');$('#xxxwww100').click();">*****</button>
-        <b id="txt_test_000">....</b>
-        
-        <br/><br/>
-        
-        <script>
-//          document.querySelector('#myButton').onclick = function(event) {
-//            //  doSomething();
-////            alert();
-////performClick2('xxxwww100');
-//              document.querySelector('#xxxwww100').click();
-//            };
-          function performClick2(elemId) {
-
-            //console.log(elemId);
-            var elem = document.getElementById(elemId);
-            if (elem && document.createEvent) {
-              var evt = document.createEvent("MouseEvents");
-              evt.initEvent("click", true, false);
-              elem.dispatchEvent(evt);
-//                  alert(elemId);
-            }
-          }
-          function sssssssssssssssss(elemId) {
-          $("#"+elemId).click();
-//            alert(elemId);
-        }
-              
-          function ddd(){
-            console.log(1);
-          }
-              
-        </script>
     </ons-page>
   </template>
     <template id="st_manage_service.html">
