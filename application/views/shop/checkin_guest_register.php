@@ -103,7 +103,7 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
             </div>
             <span id="txt-img-has-checkin" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
             <span id="txt-img-nohas-checkin" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
-            <div class="box-preview-img" id="box_img_checkin" onclick="performClick('img_checkin');">
+            <div class="box-preview-img" id="box_img_checkin">
               <img src="" class="img-preview-show" id="pv_checkin"  style="display: nones;">
             </div>
 <!--            <span style="background-color: #f4f4f4;
@@ -155,6 +155,7 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
       $_where = array();
       $_where['i_shop'] = $book->program;
       $_where['i_partner_group'] = 2;
+      $_where['i_status'] = 1;
 
       $_select = array('*');
 

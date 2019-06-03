@@ -1126,10 +1126,10 @@
                       };
                       var url_login = "login/logins";
 
-                      $.post('../../../sms/mail.php', {data: php_script_response.add.data}, function (data) {
-                        console.log(data);
-
-                        setTimeout(function () {
+//                      $.post('../../../sms/mail.php', {data: php_script_response.add.data}, function (data) {
+//                        console.log(data);
+//                      });
+                      setTimeout(function () {
                           $.ajax({
                             url: url_login, // point to server-side PHP script 
                             dataType: 'json', // what to expect back from the PHP script, if anything
@@ -1152,8 +1152,9 @@
                             }
                           });
                         }, 500);
-
-                      });
+                      
+                      
+                      
                     });
             modal.hide();
           } else {

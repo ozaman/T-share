@@ -1906,7 +1906,7 @@ function readURLcheckIn(input, type, subtype, id) {
     var reader = new FileReader();
     reader.onload = function (e) {
 
-      $('#pv_' + type).attr('src', e.target.result);
+//      $('#pv_' + type).attr('src', e.target.result);
       $('#pv_' + type).fadeIn(500);
       var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
       console.log(url);
@@ -1926,6 +1926,10 @@ function readURLcheckIn(input, type, subtype, id) {
           if (php_script_response.result == true) {
             $('#txt-img-nohas-checkin').hide();
             $('#txt-img-has-checkin').show();
+            $('#pv_' + type).attr('src', php_script_response.path+"?v="+$.now());
+//            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
+            $('#pv_' + type).attr('data-high-res-src', php_script_response.path+"?v="+$.now());
+            $('#pv_' + type).attr('onclick', ' photo_to_viewer(this)');
           }
         }
       });

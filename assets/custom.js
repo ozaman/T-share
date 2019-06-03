@@ -2102,7 +2102,7 @@ function photo_to_viewer(item) {
 //  var imgSrc = item.src,
   var imgSrc = item.getAttribute('data-high-res-src'),
           highResolutionImage = $(this).data('high-res-img');
-
+//console.log(imgSrc);
 //            viewer.show(imgSrc, highResolutionImage);
   ImageViewer().show(imgSrc, highResolutionImage);
 }
