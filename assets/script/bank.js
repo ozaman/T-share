@@ -67,7 +67,7 @@ function checkPicBank(id, img, view, folder) {
     success: function () {
 
       $('#' + img).attr('src', p1);
-      iconsHasPic(1, "txt-img-has-img_book_bank", "txt-img-nohas-img_book_bank");
+      iconsHasPic(1, "txt-img-has-"+"img_"+folder, "txt-img-nohas-"+"img_"+folder);
       if (view == 1) {
 //        $('#' + img).attr('onclick', 'viewPhotoGlobal(\'' + p1 + '\', "")');
         $('#' + img).attr('data-high-res-src', '\'' + p1 + '\')');
@@ -476,12 +476,16 @@ function readURLbank(input, id, type) {
         type: 'post',
         success: function (php_script_response) {
           console.log(php_script_response);
+          if(php_script_response.result == true){
+            $('#txt-img-has-'+id).show();
+            $('#txt-img-nohas-'+id).hide();
+          }
           $('#img_book_bank_check').val(1);
           $('#' + param_id + '_bookbank').attr('src', '../data/pic/driver/book_bank/' + param_id + '.jpg?v=' + $.now());
           $('#' + param_id + '_qrcodebank').attr('src', '../data/pic/driver/book_bank/' + param_id + '.jpg?v=' + $.now());
 //                    console.log($('#'+param_id+'_bookbank'));
 
-          focusBoxBank();
+//          focusBoxBank();
         },
         error: function (e) {
           console.log(e)

@@ -98,21 +98,25 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
         <td>
           <div align="center" style="margin: 10px;">
             <div>
-              <input type="file" class="cropit-image-input" accept="image/*" id="img_checkin" name="img_checkin" style="opacity: 0;position: absolute;" 
-                     onchange="readURLcheckIn(this, 'checkin', '<?=$_GET[type];?>', '<?=$_GET[id];?>');">
+<!--              <input type="file" class="cropit-image-input" accept="image/*" id="img_checkin" name="img_checkin" style="opacity: 0;position: absolute;" 
+                     onchange="readURLcheckIn(this, 'checkin', '<?=$_GET[type];?>', '<?=$_GET[id];?>');">-->
             </div>
             <span id="txt-img-has-checkin" style="display: none;"><i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว</span>
             <span id="txt-img-nohas-checkin" style="display: nones;"><i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ</span>
             <div class="box-preview-img" id="box_img_checkin" onclick="performClick('img_checkin');">
               <img src="" class="img-preview-show" id="pv_checkin"  style="display: nones;">
             </div>
-            <span style="background-color: #f4f4f4;
+<!--            <span style="background-color: #f4f4f4;
                   padding: 0px 10px;
                   position: absolute;
                   margin-left: -27px;
                   /*    bottom: 278px;*/
                   margin-top: -25px;
-                  border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>
+                  border-top-left-radius: 5px; pointer-events: none;"><i class="fa fa-camera" aria-hidden="true"></i>&nbsp; อัพโหลดรูปถ่าย</span>-->
+            <div class="upload-btn-wrapper" >
+              <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
+              <input type="file" id="img_checkin" accept="image/*" onchange="readURLcheckIn(this, 'checkin', '<?=$_GET[type];?>', '<?=$_GET[id];?>');"/>
+            </div>
           </div>
         </td>
       </tr>
@@ -147,73 +151,69 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   <div class="card replan" id="nation_box" style="display: none;">
     <ons-list-header class="list-header "> เลือกสัญชาติ</ons-list-header>
     <div class="form-group">
-       <?php
+      <?php
+      $_where = array();
+      $_where['i_shop'] = $book->program;
+      $_where['i_partner_group'] = 2;
 
-        
+      $_select = array('*');
+
+      $_order = array();
+      $_order['id'] = 'asc';
+      $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
+      $_where = array();
+      $_where['i_shop'] = $book->program;
+      $_where['i_partner_group'] = 1;
+
+      $_select = array('*');
+
+      $_order = array();
+      $_order['id'] = 'asc';
+      $PLAN_PACK = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
+      ?>
+
+      <?php
+      foreach ($data[PLAN_PACK] as $key => $val) {
+
         $_where = array();
-        $_where['i_shop'] = $book->program;
-        $_where['i_partner_group'] = 2;
-
+        $_where['i_plan_pack'] = $val->id;
         $_select = array('*');
-
         $_order = array();
         $_order['id'] = 'asc';
-        $data[PLAN_PACK] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
-        $_where = array();
-        $_where['i_shop'] = $book->program;
-        $_where['i_partner_group'] = 1;
-
-        $_select = array('*');
-
-        $_order = array();
-        $_order['id'] = 'asc';
-        $PLAN_PACK = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK,$_where,$_select,$_order);
-        ?>
-        
-        <?php
-        foreach ($data[PLAN_PACK] as $key => $val) {
-
-          $_where = array();
-          $_where['i_plan_pack'] = $val->id;
-          $_select = array('*');
-          $_order = array();
-          $_order['id'] = 'asc';
-          $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
-          if (count($data[PLAN_PACK]) == 1) {
-            ?>
-            <script type="text/javascript">
-             // handleClick_s('nation', '<?=$val->id;?>')
-            </script>
-            <?php
-          }
+        $arr[PACK_LIST] = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
+        if (count($data[PLAN_PACK]) == 1) {
           ?>
-              <label class=""  for="radio-nation-ck<?=$key + 1;?>" onclick="getPlanBox('<?=$val->id;?>', '<?=$book->plan_id;?>');">
-                <ons-list-item tappable id="nation_<?=$key + 1;?>">
-                  <label class=" left">
-                    <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation-ck<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange="" ></ons-radio>
-                  </label>
-              <?php
-              
+          <script type="text/javascript">
+            // handleClick_s('nation', '<?=$val->id;?>')
+          </script>
+    <?php
+  }
+  ?>
+        <label class=""  for="radio-nation-ck<?=$key + 1;?>" onclick="getPlanBox('<?=$val->id;?>', '<?=$book->plan_id;?>');">
+          <ons-list-item tappable id="nation_<?=$key + 1;?>">
+            <label class=" left">
+              <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation-ck<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange="" ></ons-radio>
+            </label>
+  <?php
+  $_where = array();
+  $_where['id'] = $val->i_country;
+  $_select = array('*');
+  $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+  // print_r(json_encode($COUNTRY));
+  ?>
+            <div class="col-md-3">
+              <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
+            </div>
 
-                    $_where = array();
-                    $_where['id'] = $val->i_country; 
-                    $_select = array('*');
-                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
-                    // print_r(json_encode($COUNTRY));
-                ?>
-                    <div class="col-md-3">
-                      <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
-                    </div>
 
 
 
 
 
-
-                  </ons-list-item>
-                </label>
-    <?php 
-  }?>
+          </ons-list-item>
+        </label>
+  <?php }
+?>
 
 
 
@@ -245,18 +245,18 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   <div class="card replan" style="display: none;" id="box_cause">
     <ons-list-header class="list-header">สาเหตุ</ons-list-header>
     <ons-list>
-      <?php
-      $query = $this->db->query("SELECT * FROM shop_type_change_plan where i_status = 1");
-      foreach ($query->result() as $val) {
-        ?>
+<?php
+$query = $this->db->query("SELECT * FROM shop_type_change_plan where i_status = 1");
+foreach ($query->result() as $val) {
+  ?>
         <ons-list-item tappable>
           <label class="left">
             <ons-radio name="cause_change" input-id="radio-<?=$val->id;?>" value="<?=$val->id;?>"></ons-radio>
           </label>
           <label for="radio-<?=$val->id;?>" class="center"><?=$val->s_topic;?></label>
         </ons-list-item>
-      <?php }
-      ?>
+<?php }
+?>
 
       <!--<ons-list-item tappable>
         <label class="left">
@@ -280,7 +280,7 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   </div>
 
   <div style="margin: 20px 10px">
-    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>', '<?=$_GET[type];?>','<?=$book->program;?>','<?=$book->plan_setting;?>');" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
+    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="sendCheckIn('<?=$_GET[id];?>', '<?=$_GET[type];?>', '<?=$book->program;?>', '<?=$book->plan_setting;?>');" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
   </div>
 </form>
 
