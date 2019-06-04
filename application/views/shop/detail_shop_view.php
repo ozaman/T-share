@@ -96,7 +96,7 @@ $stamp = $time->format('H:i');
 
     if ($_COOKIE[detect_userclass] == "lab") {
       ?>
-      <button class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
+  <button id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
               /* position: absolute; */
               /* right: 10px; */
               border: 1px solid #F44336;

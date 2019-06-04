@@ -1794,6 +1794,7 @@ function sendCheckIn(id, type, place_id, plan_setting) {
           console.log(res);
 //          return;
           if (res.checkin.result == true) {
+            $('#btn_cancel_shop').hide();
             $('#num_pax_regis_' + id_send).text($('#num_cus').val());
             $('#num_edit_persion2').val($('#num_cus').val());
             $('#' + type_send + '_check_click').val(1)
@@ -1827,7 +1828,8 @@ function sendCheckIn(id, type, place_id, plan_setting) {
   else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } else {
+  } 
+  else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
