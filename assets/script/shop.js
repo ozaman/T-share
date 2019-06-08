@@ -1636,9 +1636,10 @@ function changeHtml(type, id, st) {
   else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
-    loadBoxChooseGetMoney(id);
+    chackPackCash(id);
+    
 //    loadBoxConfirmPay(id);
-//    
+       
 //    
 //    $('#step_driver_pay_report').show();
 
@@ -2937,6 +2938,27 @@ function confirmChooseGetMoney(id) {
         success: function (res) {
             console.log(res);
 //            $('#shop_all_company').html(ele);
+        }
+    });
+}
+
+function chackPackCash(order_id, plan_setting){
+    var url = "shop/check_pack_cash";
+//    console.log(url)
+    var data = {
+        order_id : order_id,
+        plan_setting : plan_setting
+    };
+    $.ajax({
+        url: url,
+        data: data,
+        type: 'post',
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+            if(res.cash==true){
+                loadBoxChooseGetMoney(order_id);
+            }
         }
     });
 }

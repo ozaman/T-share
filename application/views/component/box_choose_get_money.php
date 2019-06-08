@@ -36,7 +36,7 @@ if ($data->check_driver_pay == 0) {
 //                print_r($type_pay);
                 ?>
                 <ons-list-header class="list-header"> เลือกช่องทางรับเงิน</ons-list-header>
-                <span class="font-14">*กรณีงานมีรับเงินสด</span>
+                <!--<span class="font-14">*กรณีงานมีรับเงินสด</span>-->
                 <!--<ons-list>-->
                     <?php foreach ($type_pay as $key => $value) { ?>
                         <ons-list-item tappable>
