@@ -598,6 +598,11 @@ class Shop extends CI_Controller {
     }
     $this->load->view('shop/shop_all_company',$data);
   }
+  
+  public function confirm_choose_get_money() {
+      echo json_encode($_POST);
+      
+  }
 
 }
 

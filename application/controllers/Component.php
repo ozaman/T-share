@@ -101,6 +101,10 @@ class Component extends CI_Controller {
   public function load_choose_car($param) {
     $this->load->view('component/box_shop_car');
   }
+  
+  public function box_choose_get_money($param) {
+    $this->load->view('component/box_choose_get_money');
+  }
 
 }
  

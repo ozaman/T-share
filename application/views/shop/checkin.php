@@ -277,6 +277,9 @@ else {
 
   </td>
 </tr>
+<tr id="step_choose_get_money" style="display:nones;">
+
+</tr>
 
 <tr id="step_confirm_pay" style="display:nones;">
 

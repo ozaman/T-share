@@ -1609,7 +1609,8 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } else if (type == "guest_receive") {
+  } 
+  else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1631,10 +1632,14 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } else if (type == "guest_register") {
+  } 
+  else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
-    loadBoxConfirmPay(id);
+    loadBoxChooseGetMoney(id);
+//    loadBoxConfirmPay(id);
+//    
+//    
 //    $('#step_driver_pay_report').show();
 
     if (class_user == "taxi") {
@@ -2537,6 +2542,13 @@ function loadBoxConfirmPay(id) {
   });
 }
 
+function loadBoxChooseGetMoney(id) {
+  var url = "component/box_choose_get_money?id=" + id;
+  $.post(url, function (html) {
+    $('#step_choose_get_money').html(html);
+  });
+}
+
 function confirmGetIncome(id, invoice, driver) {
 
   $.ajax({
@@ -2904,4 +2916,27 @@ function addCarByShop() {
 //        focusBox();
   });
   // _body_car_station('body_station_add_car')
+}
+
+
+
+function confirmChooseGetMoney(id) {
+    var radioValue = $("input[name='choose_get_money_radio']:checked").val();
+    console.log(radioValue);
+    var url = "shop/confirm_choose_get_money";
+//    console.log(url)
+    var data = {
+        type_pay : radioValue,
+        order_id : id
+    };
+    $.ajax({
+        url: url,
+        data: data,
+        type: 'post',
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+//            $('#shop_all_company').html(ele);
+        }
+    });
 }
