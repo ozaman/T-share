@@ -16,6 +16,9 @@
 
 <?php
 $data = $this->Main_model->rowdata(TBL_ORDER_BOOKING,array('id' => $_GET[id]),array('*'));
+//echo "<pre>";
+//print_r($_GET[id]);
+//echo "</pre>";
 if ($data->check_driver_pay == 0) {
   $class_step = "step-booking";
   $img_st = "no.png";
@@ -107,9 +110,9 @@ else {
           <b class="font-16" style="color: #0076ff;">ยืนยันการจ่ายเงิน เวลา <span id="text_lab_pay_time_<?=$data->id;?>"><?=date('H:i',$data->driver_payment_date)." น.";?></span></b>
         </div>
 
-      <!--<div id="status_taxi_get_<?=$data->id;?>" style="<?=$txt_taxi_get;?>">
-          <b class="font-16" style="color: #59AA47;">ยืนยันรับเงิน เวลา <span><?=date('H:i',$data->driver_pay_report_date);?></span> น.</b>
-      </div>-->
+          <!--<div id="status_taxi_get_<?=$data->id;?>" style="<?=$txt_taxi_get;?>">
+              <b class="font-16" style="color: #59AA47;">ยืนยันรับเงิน เวลา <span><?=date('H:i',$data->driver_pay_report_date);?></span> น.</b>
+          </div>-->
 
         <div class="font-16" id="txt_status_getpay_<?=$data->id;?>" style="<?=$status_taxi_wait;?>">
           <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">

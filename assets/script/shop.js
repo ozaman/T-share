@@ -1,9 +1,25 @@
-function check_com_plan(id) {
+function check_com_plan(id) { //// v1.
   $.ajax({
     url: "shop/check_commission_plan?order_id=" + id,
     dataType: 'json',
     type: 'post',
     success: function (chk) {
+      console.log(chk);
+      if (chk.result == true) {
+        $('#step_driver_pay_com').show();
+        load_status_trans(id);
+      }
+    }
+  });
+}
+
+function check_plan_transfer(id) { //// v2.
+  $.ajax({
+    url: "shop/check_plan_transfer?order_id=" + id,
+    dataType: 'json',
+    type: 'post',
+    success: function (chk) {
+      console.log("*************************************************************************");
       console.log(chk);
       if (chk.result == true) {
         $('#step_driver_pay_com').show();
@@ -392,9 +408,9 @@ function checktime(x) {
   }
 }
 
- function checkchild(x) {
+function checkchild(x) {
 //   console.log('dsdsdsd')
- }
+}
 // var rad = document.form_booking.nation;
 function shandleClicks(tax, country) {
   console.log(tax)
@@ -1637,9 +1653,9 @@ function changeHtml(type, id, st) {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
-    
+//    check_plan_transfer(id);
 //    loadBoxConfirmPay(id);
-       
+
 //    
 //    $('#step_driver_pay_report').show();
 
@@ -1648,7 +1664,8 @@ function changeHtml(type, id, st) {
     } else {
       $('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
     }
-    check_com_plan(id);
+//    check_com_plan(id);
+      check_plan_transfer(id);
     if (class_user == "taxi") {
       $.ajax({
         url: "shop/get_user_by_shop?id=" + id + "&type=guest_register_ps",
@@ -1830,12 +1847,10 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } 
-  else if (type == 'driver_pay_report') {
+  } else if (type == 'driver_pay_report') {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } 
-  else {
+  } else {
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
@@ -1934,9 +1949,9 @@ function readURLcheckIn(input, type, subtype, id) {
           if (php_script_response.result == true) {
             $('#txt-img-nohas-checkin').hide();
             $('#txt-img-has-checkin').show();
-            $('#pv_' + type).attr('src', php_script_response.path+"?v="+$.now());
+            $('#pv_' + type).attr('src', php_script_response.path + "?v=" + $.now());
 //            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
-            $('#pv_' + type).attr('data-high-res-src', php_script_response.path+"?v="+$.now());
+            $('#pv_' + type).attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
             $('#pv_' + type).attr('onclick', ' photo_to_viewer(this)');
           }
         }
@@ -2897,9 +2912,9 @@ function shop_filter_sub() {
   fn.pushPage({'id': 'shopcategory.html', 'title': 'ประเภท', 'open': 'shoptype'}, 'lift-ios')
 }
 
-function load_box_choose_car(){
+function load_box_choose_car() {
   var url = "component/load_choose_car";
-  $.post(url,function(ele){
+  $.post(url, function (ele) {
     $('#load_choose_car').html(ele);
   });
 }
@@ -2922,43 +2937,72 @@ function addCarByShop() {
 
 
 function confirmChooseGetMoney(id) {
-    var radioValue = $("input[name='choose_get_money_radio']:checked").val();
-    console.log(radioValue);
-    var url = "shop/confirm_choose_get_money";
+  var radioValue = $("input[name='choose_get_money_radio']:checked").val();
+  console.log(radioValue);
+  var url = "shop/confirm_choose_get_money";
 //    console.log(url)
-    var data = {
-        type_pay : radioValue,
-        order_id : id
-    };
-    $.ajax({
-        url: url,
-        data: data,
-        type: 'post',
-        dataType: 'json',
-        success: function (res) {
-            console.log(res);
-//            $('#shop_all_company').html(ele);
+  var data = {
+    type_pay: radioValue,
+    order_id: id
+  };
+  $.ajax({
+    url: url,
+    data: data,
+    type: 'post',
+    dataType: 'json',
+    success: function (res) {
+      console.log(res);
+      if (radioValue == 1) {
+//                $('#step_choose_get_money').hide();
+//                $('#list-choose-div').hide();
+        loadBoxConfirmPay(id);
+        sendSocket(id);
+
+      } else {
+        if (res.order_book.result == true) {
+//          check_com_plan(id);
+          check_plan_transfer(id);
         }
-    });
+      }
+    }
+  });
 }
 
-function chackPackCash(order_id, plan_setting){
-    var url = "shop/check_pack_cash";
+function chackPackCash(order_id) {
+  var url = "shop/check_pack_cash";
 //    console.log(url)
-    var data = {
-        order_id : order_id,
-        plan_setting : plan_setting
-    };
-    $.ajax({
-        url: url,
-        data: data,
-        type: 'post',
-        dataType: 'json',
-        success: function (res) {
+  var data = {
+    order_id: order_id
+  };
+  
+  $.ajax({
+    url: url,
+    data: data,
+    type: 'post',
+    dataType: 'json',
+    success: function (res) {
+      console.log(res);
+      if (res.cash == true) {
+        loadBoxChooseGetMoney(order_id);
+        var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id="+order_id;
+        
+        $.ajax({
+          url: url_loadboxconfirmpay,
+          type: 'post',
+          dataType: 'json',
+          success: function (res) {
             console.log(res);
-            if(res.cash==true){
-                loadBoxChooseGetMoney(order_id);
+            if(res.res == true){
+              loadBoxConfirmPay(order_id);
             }
-        }
-    });
+          }
+        });
+//                loadBoxConfirmPay(id);
+      } 
+      
+      else {
+
+      }
+    }
+  });
 }
