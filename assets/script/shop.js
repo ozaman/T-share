@@ -30,7 +30,7 @@ function check_plan_transfer(id) { //// v2.
 }
 
 function load_status_trans(id) {
-   $('#step_driver_pay_com').show();
+  $('#step_driver_pay_com').show();
   $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
     $('.page').animate({
@@ -1628,8 +1628,7 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1651,14 +1650,13 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
 //    check_plan_transfer(id);
 //    loadBoxConfirmPay(id);
-    
+
     var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
 
     $.ajax({
@@ -1672,7 +1670,7 @@ function changeHtml(type, id, st) {
         }
       }
     });
-    
+
 //    
 //    $('#step_driver_pay_report').show();
 
@@ -1857,7 +1855,8 @@ function sendCheckIn(id, type, place_id, plan_setting) {
               }
             });
             shopFuncNotiActi(id_send, type_send, place_id);
-            check_com_plan(id_send);
+//            check_com_plan(id_send);
+            finish_job_transfer_money(id);
           }
         }
       });
@@ -2997,7 +2996,7 @@ function confirmChooseGetMoney(id) {
 
 function chackPackCash(order_id) {
 //  var url = "shop/check_pack_cash";
-  var url = "shop/check_plan_transfer?order_id="+order_id;
+  var url = "shop/check_plan_transfer?order_id=" + order_id;
 //    console.log(url)
   var data = {
     order_id: order_id
@@ -3029,6 +3028,20 @@ function chackPackCash(order_id) {
       } else {
         load_status_trans(order_id);
       }
+    }
+  });
+}
+
+function finish_job_transfer_money(id) {
+  var url = "shop/finish_job_transfer_money?order_id=" + id + "&type=2";
+
+  $.ajax({
+    url: url,
+    type: 'post',
+    dataType: 'json',
+    success: function (res) {
+      console.log(res);
+      
     }
   });
 }

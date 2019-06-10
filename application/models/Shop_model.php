@@ -312,8 +312,8 @@ class Shop_model extends CI_Model {
         $data_com_ordder['d_post_date'] = time();
         $data_com_ordder['d_last_date'] = time();
         $data_com_ordder['i_type_pay'] = $val1->i_pay_type;
-        
-        
+
+
 
         $data_com_ordder[result] = $this->db->insert(TBL_COM_ORDER_BOOKING,$data_com_ordder);
         $sss = $data_com_ordder;
@@ -1354,7 +1354,7 @@ class Shop_model extends CI_Model {
     }
     $data2[i_type_pay] = $type_pay;
     $this->db->where('i_order_booking',$_POST[order_id]);
-    $data2[result] = $this->db->update($tbl_com_booking, $data2);
+    $data2[result] = $this->db->update($tbl_com_booking,$data2);
     $data2[table] = $tbl_com_booking;
 
 
@@ -1363,11 +1363,52 @@ class Shop_model extends CI_Model {
     }
     $data[i_select_type_pay] = 1;
     $this->db->where('id',$_POST[order_id]);
-    $data[result] = $this->db->update('order_booking', $data);
+    $data[result] = $this->db->update('order_booking',$data);
     $data[post] = $_POST;
-    
+
     $return[com_order] = $data2;
     $return[order_book] = $data;
+
+    return $return;
+  }
+
+  public function detectOnlyTypePay() { // ตรวจสอบว่า งานมีโอน หรือ เงินสด อย่างเดียวหรือไม่ ถ้ามีโอนอย่างเดียวให้ เสร็จงาน ใช้ param type
+    
+    $type = $_GET[type];
+    $this->db->select('id');
+    $_where = array();
+    $_where[i_order_booking] = $_GET[order_id];
+    $chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
+    $num_log = $chk_log->num_rows();
+    if ($num_log > 0) {
+      $tbl_com_booking = TBL_COM_ORDER_BOOKING_LOGS;
+    }
+    else {
+      $tbl_com_booking = TBL_COM_ORDER_BOOKING;
+    }
+    
+    $this->db->select('id');
+    $_where = array();
+    $_where[i_order_booking] = $_GET[order_id];
+    $query = $this->db->get_where($tbl_com_booking,$_where);
+    $num_row_all = $query->num_rows();
+    
+    $this->db->select('id');
+    $_where = array();
+    $_where[i_order_booking] = $_GET[order_id];
+    $_where[i_type_pay] = $type;
+    $query = $this->db->get_where($tbl_com_booking,$_where);
+    $num_row_type = $query->num_rows();
+    
+    $res = false; // ไม่ใช่ประเภทเดียว
+    if($num_row_type == $num_row_all){
+      $res = true; // ประเทภเดียว
+    }
+    
+    $return[result] = $res;
+    $return[get] = $_GET;
+    $return[all_num] = $num_row_all;
+    $return[type_num] = $num_row_type;
     
     return $return;
   }

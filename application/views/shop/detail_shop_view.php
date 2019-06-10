@@ -183,7 +183,11 @@ $stamp = $time->format('H:i');
           </tr>
           <tr>
             <td   width="35%"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
-            <td colspan="3" class="font-17"><a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a></td>
+            <td colspan="3" class="font-17">
+              <a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a>
+              <a href="tel:0954293062">
+                <i class="material-icons" style="margin-left: 10px; color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71);">phone</i></a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -196,13 +200,13 @@ $stamp = $time->format('H:i');
       <tbody>
         <tr>
           <td width="35%" class="font-17 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-          <td class="font-17"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
+          <td class="font-17" colspan="2"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_date;?></font></td>
-          <td class="font-17"><span id="date_trans"></span></td>
+          <td class="font-17" colspan="2"><span id="date_trans"></span></td>
         </tr>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font>
@@ -218,32 +222,11 @@ $stamp = $time->format('H:i');
               </span>
             <?php }?>
           </td>
-          <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
+          <td class="font-17" colspan="2"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
         </tr>
         <tr>
-          <td class="font-17 text-cap"><font color="#333333"><?=t_number;?></font>
-            <?php
-            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
-              ?>
-              <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                     color: #fff;
-                     padding: 0px 3px;
-                     margin-left: 5px;
-                     /*    font-size: 3px !important;*/
-                     border-radius: 8px;display: inline-block;" id="btn_isedit">
-                <span class="font-14 text-cap">แก้ไข</span>
-              </span>
-              <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                    color: #fff;
-                    padding: 0px 3px;
-                    margin-left: 5px;
-                    /*    font-size: 3px !important;*/
-                    border-radius: 8px;display: none;" id="btn_selectisedit">
-                <span class="font-14 text-cap">บันทึก</span>
-              </span>
-              <?php
-            }
-            ?>
+          <td class="font-17 text-cap" width="50px"><font color="#333333"><?=t_number;?></font>
+            
           </td>
           <td class="font-17" style="padding: 0 !important;" >
             <table width="100%">
@@ -342,6 +325,28 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
 
               </tr>
             </table>
+          </td>
+          <td >
+             <?php
+            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
+              ?>
+              <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+                     color: #fff;
+                     padding: 0px 10px;
+                     margin-left: 5px;
+                     border-radius: 8px;display: inline-block;" id="btn_isedit">
+                <span class="font-14 text-cap">แก้ไข</span>
+              </span>
+              <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+                    color: #fff;
+                    padding: 0px 10px;
+                    margin-left: 5px;
+                    border-radius: 8px;display: none;" id="btn_selectisedit">
+                <span class="font-14 text-cap">บันทึก</span>
+              </span>
+              <?php
+            }
+            ?>
           </td>
         </tr>
       </tbody>
