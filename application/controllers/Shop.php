@@ -666,6 +666,18 @@ class Shop extends CI_Controller {
     $return[id] = $_GET[id];
     echo json_encode($return);
   }
+  
+  public function finish_job_transfer_money() {
+    
+    $data = $this->Shop_model->detectOnlyTypePay();
+    if($data[result] == true){
+      $echo[pay] = $this->Shop_model->driver_approved_pay();
+      $echo[completed] = $this->Shop_model->driver_complete();
+    }else{
+      $echo = false;
+    }
+    echo json_encode($echo);
+  }
 
 }
 
