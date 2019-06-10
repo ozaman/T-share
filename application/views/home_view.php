@@ -2183,7 +2183,15 @@
       }
    });
    var frist_socket = true;
-   socket.on('getbookinglab', function(data) {
+   if (class_user != "taxi") {
+    Uclass = 'getbookinglab'
+
+   }
+   else{
+    Uclass = 'getbookingdiver'
+   }
+
+   socket.on(Uclass, function(data) {
       // console.log(data)
       array_data = [];
       var done = [];
@@ -2207,6 +2215,7 @@
           manage: done,
           history: none
       };
+      console.log('//////////////////////////////')
              console.log(array_data);
       if (check_run_shop != done.length) {
         if ($('#open_shop_manage').val() >0) {
@@ -2549,10 +2558,10 @@
     socket2.on('connect', function() {
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
-        setTimeout(function() {
+        // setTimeout(function() {
             //            console.log(9999999999)
             socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
-        }, 1500);
+        // }, 1500);
     });
     socket2.on('checkmsg', function(count, room) {
         // $('#rooms').empty();
