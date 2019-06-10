@@ -98,7 +98,7 @@ else {
       else if ($_COOKIE[detect_userclass] == "lab") {
         ?>
         <div class="font-16" style="padding: 5px 10px">
-          <ons-list-header class="list-header"> คนขับเลือกช่องทางรับเงิน</ons-list-header>
+          <ons-list-header class="list-header"> แท็กซี่เลือกช่องทางรับเงิน</ons-list-header>
           <?php
           if ($data->i_select_type_pay <= 0) {
             ?>
