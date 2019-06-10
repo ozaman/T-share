@@ -1391,6 +1391,7 @@ function submitCancel() {
 
     var invoice_cancel = $('#invoice_cancel_select').val();
     var order_id_calcel = $('#order_id_cancel').val();
+    // sendSocket(order_id_calcel);
     var dv = $('#driver_id_cancel').val();
     var txt_long_cancel_shop = invoice_cancel + " : " + "คุณทำการยกเลิกรายการส่งแขกนี้";
     var ac_1 = {
