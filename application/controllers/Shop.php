@@ -268,7 +268,7 @@ class Shop extends CI_Controller {
     echo $query->num_rows();
   }
 
-  public function check_plan_transfer($param) { //// เช็คว่ามีโอนหรือไม่
+  public function check_plan_transfer() { //// เช็คว่ามีโอนหรือไม่
     $this->db->select('id');
     $_where = array();
     $_where[i_order_booking] = $_GET[order_id];
@@ -286,16 +286,18 @@ class Shop extends CI_Controller {
     $_where[i_order_booking] = $_GET[order_id];
     $query = $this->db->get_where($tbl_com_booking, $_where);
 //    $data = $query->row();
-    
+    $return[result] = false;
     foreach ($query->result() as $key => $val) {
       
-      $return[result] = false;
+      
       if ($val->i_type_pay == 2) {
         $return[result] = true;
         break;
       }
     }
     $return[data] = $query->result();
+    $return[tb] = $tbl_com_booking;
+    $return[ss] =  $_GET[order_id];
     echo json_encode($return);
   }
 

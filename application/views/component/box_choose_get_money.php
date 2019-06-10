@@ -32,15 +32,16 @@ else {
       <?php if ($_COOKIE[detect_userclass] == "taxi") {?>
         <ons-list-header class="list-header"> เลือกช่องทางรับเงิน</ons-list-header>
         <?php
+//        echo $data->i_select_type_pay ;
         if ($data->i_select_type_pay <= 0) {
           ?>
 
           <div id="list-choose-div">
             <?php
+            $_where = array();
+            $_where[i_status] = 1;
+            $type_pay = $this->Main_model->fetch_data("","",TBL_PAY_TYPE,$_where,array('*'),"");
             foreach ($type_pay as $key => $value) {
-              $_where = array();
-              $_where[i_status] = 1;
-              $type_pay = $this->Main_model->fetch_data("","",TBL_PAY_TYPE,$_where,array('*'),"");
               ?>
               <ons-list-item tappable>
                 <label class="left" style="    padding-left: 5px;">
@@ -57,7 +58,7 @@ else {
               ยืนยัน
             </ons-button>
           </div>
-          ?>
+
 
           <?php
         }

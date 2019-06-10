@@ -30,6 +30,7 @@ function check_plan_transfer(id) { //// v2.
 }
 
 function load_status_trans(id) {
+   $('#step_driver_pay_com').show();
   $.post("component/box_status_trans_shop?order_id=" + id, function (html) {
     $('#step_driver_pay_com').html(html);
     $('.page').animate({
@@ -1033,6 +1034,7 @@ function saveShop() {
           $.post(url2, function (ele2) {
             $('#shop_add').html(ele2);
             performClick('tab_shop_mn');
+            load_box_choose_car();
             modal.hide();
           });
 
@@ -1655,7 +1657,21 @@ function changeHtml(type, id, st) {
     chackPackCash(id);
 //    check_plan_transfer(id);
 //    loadBoxConfirmPay(id);
+    
+    var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
 
+    $.ajax({
+      url: url_loadboxconfirmpay,
+      type: 'post',
+      dataType: 'json',
+      success: function (res) {
+        console.log(res);
+        if (res.res == true) {
+          check_plan_transfer(id);
+        }
+      }
+    });
+    
 //    
 //    $('#step_driver_pay_report').show();
 
@@ -1665,7 +1681,7 @@ function changeHtml(type, id, st) {
       $('#txt_btn_guest_register').text('ยืนยันลงทะเบียน');
     }
 //    check_com_plan(id);
-      check_plan_transfer(id);
+
     if (class_user == "taxi") {
       $.ajax({
         url: "shop/get_user_by_shop?id=" + id + "&type=guest_register_ps",
@@ -2651,7 +2667,7 @@ function completedJobShop(id) {
       console.log(data)
       if (data.checkin.result == true) {
         ons.notification.alert({
-          message: 'ยืนยันการรับเงินสดแล้ว กรุณารอแจ้งโอนจากค่าคอมมิชชั่น',
+          message: 'ยืนยันการรับเงินสดแล้ว ',
           title: "สำเร็จ",
           buttonLabel: "ปิด"
         })
@@ -2956,25 +2972,37 @@ function confirmChooseGetMoney(id) {
 //                $('#step_choose_get_money').hide();
 //                $('#list-choose-div').hide();
         loadBoxConfirmPay(id);
-        sendSocket(id);
+
 
       } else {
         if (res.order_book.result == true) {
 //          check_com_plan(id);
+//          completedJobShop(id);
           check_plan_transfer(id);
+          $.ajax({
+            url: "shop/driver_approved_pay?order_id=" + id,
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+              console.log(res);
+            }
+          });
         }
       }
+      sendSocket(id);
+      loadBoxChooseGetMoney(id);
     }
   });
 }
 
 function chackPackCash(order_id) {
-  var url = "shop/check_pack_cash";
+//  var url = "shop/check_pack_cash";
+  var url = "shop/check_plan_transfer?order_id="+order_id;
 //    console.log(url)
   var data = {
     order_id: order_id
   };
-  
+
   $.ajax({
     url: url,
     data: data,
@@ -2982,26 +3010,24 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      if (res.cash == true) {
+      if (res.result == false) {
         loadBoxChooseGetMoney(order_id);
-        var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id="+order_id;
-        
+        var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
+
         $.ajax({
           url: url_loadboxconfirmpay,
           type: 'post',
           dataType: 'json',
           success: function (res) {
             console.log(res);
-            if(res.res == true){
+            if (res.res == true) {
               loadBoxConfirmPay(order_id);
             }
           }
         });
 //                loadBoxConfirmPay(id);
-      } 
-      
-      else {
-
+      } else {
+        load_status_trans(order_id);
       }
     }
   });
