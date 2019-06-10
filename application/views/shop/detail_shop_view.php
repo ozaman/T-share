@@ -183,7 +183,11 @@ $stamp = $time->format('H:i');
           </tr>
           <tr>
             <td   width="35%"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
-            <td colspan="3" class="font-17"><a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a></td>
+            <td colspan="3" class="font-17">
+              <a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a>
+              <a href="tel:0954293062">
+                <i class="material-icons" style="margin-left: 10px; color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71);">phone</i></a>
+            </td>
           </tr>
         </tbody>
       </table>
