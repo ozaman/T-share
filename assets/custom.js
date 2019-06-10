@@ -429,7 +429,7 @@ function success(pos) {
 }
 
 function error(err) {
-  console.warn('ERROR(' + err.code + '): ' + err.message);
+  //console.warn('ERROR(' + err.code + '): ' + err.message);
 }
 var run_num_place = true;
 id = navigator.geolocation.watchPosition(success, error, options);

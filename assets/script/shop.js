@@ -2089,13 +2089,12 @@ function btn_driver_pay_report(id) {
 /******* <!-------- function run page ------------> *******/
 
 function shopManage() {
-//    $('#shop_manage').html(progress_circle);
-//  console.log("Load Shop Manage page");
+
   var obj = array_data;
 
   var url = "page/shop_manage";
   array_ma = obj.manage;
-//console.log(array_ma);
+
   var pass = {
     data: array_ma
   };
@@ -2105,7 +2104,7 @@ function shopManage() {
     data: pass,
     type: 'post',
     success: function (ele) {
-//    			console.log(ele);
+
       $('#shop_manage').html(ele);
     }
   });
