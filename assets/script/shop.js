@@ -1361,7 +1361,7 @@ function checkPhotoCheckIn(type, id) {
 }
 
 function cancelShopSelect(id, invoice, dv, program) {
-  console.log('cancel')
+  console.log('cancel '+id)
 //  fn.showDialog('cancel-shop-dialog');
 
   fn.pushPage({
@@ -1370,10 +1370,10 @@ function cancelShopSelect(id, invoice, dv, program) {
   }, 'slide-ios');
 
 
-  $('#order_id_cancel').val(id);
+  setTimeout(function(){ $('#order_id_cancel').val(id);
   $('#invoice_cancel_select').val(invoice);
   $('#driver_id_cancel').val(dv);
-  $('#product_id').val(program);
+  $('#product_id').val(program); }, 700);
 }
 
 function submitCancel() {
@@ -1386,19 +1386,18 @@ function submitCancel() {
     })
             .then(function () {});
   }
-//    console.log($('#form_type_cancel').serialize());
-  // var url = "shop/cancel_shop" + "?id=" + order_id + "&username=" + $.cookie("detect_username");
+
   var url = "shop/cancel_shop";
   console.log(url + " ");
-  // ons.navigator.resetToPage('popup1.html')
+  
   $.post(url, $('#form_type_cancel').serialize(), function (data) {
-//        console.log(data)
+
     var obj = data;
     console.log(obj);
 
     var invoice_cancel = $('#invoice_cancel_select').val();
     var order_id_calcel = $('#order_id_cancel').val();
-    // sendSocket(order_id_calcel);
+
     var dv = $('#driver_id_cancel').val();
     var txt_long_cancel_shop = invoice_cancel + " : " + "คุณทำการยกเลิกรายการส่งแขกนี้";
     var ac_1 = {
