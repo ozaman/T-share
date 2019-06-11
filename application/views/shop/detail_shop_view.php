@@ -337,7 +337,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
                      color: #fff;
                      padding: 0px 10px;
                      margin-left: 5px;
-                     border-radius: 8px;display: inline-block;" id="btn_isedit">
+                     border-radius: 8px;display: inline-block;" id="btn_isedit_pax">
                 <span class="font-14 text-cap">แก้ไข</span>
               </span>
               <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;

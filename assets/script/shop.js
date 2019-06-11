@@ -596,7 +596,7 @@ function editBook(x) {
   $('#text_edit_persion').show();
   $('#btn_selectisedit').show();
   $('#num_edit_persion').show();
-  $('#btn_isedit').hide();
+  $('#btn_isedit_pax').hide();
   $('#isedit').hide();
   $('#num_edit_persion').css('display', 'inline-block');
   $('#num_edit_persion').focus();
@@ -615,7 +615,7 @@ function editBook(x) {
 
 function saveeditBook(x) {
   //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-
+  $('#btn_isedit_pax').show();
   $('#num_edit_child').hide();
   $('#num_final_edit_child').show();
   $('#btn_selectisedit_child').hide();
