@@ -681,10 +681,10 @@ class Shop extends CI_Controller {
   }
 
   public function update_bank_user() {
-    $this->db->where('id',$_GET[id]);
+    $this->db->where('id',$_GET[order_id]);
     $add[bank_taxi_id] = $_GET[bank];
-    $result[result] = $this->db->update(TBL_SHOPPING_PRODUCT,$add);
-    $result[get] = $GET;
+    $result[result] = $this->db->update(TBL_ORDER_BOOKING,$add);
+    $result[get] = $_GET;
     echo json_encode($result);
   }
 

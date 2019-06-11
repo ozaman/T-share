@@ -565,7 +565,7 @@ function getSelectBankShop(div) {
   console.log('get bank shop');
   var url = "component/box_select_bank_shop";
   $.post(url, function (ele) {
-    $('#'+div).html(ele);
+    $('#' + div).html(ele);
   });
 }
 // ons-tab[page="shop_history.html"]
@@ -1363,7 +1363,7 @@ function checkPhotoCheckIn(type, id) {
 function cancelShopSelect(id, invoice, dv, program) {
   console.log('cancel')
 //  fn.showDialog('cancel-shop-dialog');
-  
+
   fn.pushPage({
     'id': 'cancel-shop.html',
     'title': 'ยกเลิกส่งแขก'
@@ -1876,14 +1876,12 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } 
-  
-  else if (type == 'driver_pay_report') {
+  } else if (type == 'driver_pay_report') {
     $('#btn_isedit_time').hide();
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
   } else {
-    
+
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
@@ -2128,7 +2126,7 @@ function shopManage() {
 }
 
 function waitTransShop() {
-
+  $('#shop_wait').html(progress_circle);
   var date = $('#date_shop_wait').val();
   countWaitTransShop();
   if (class_user == "taxi") {
@@ -2969,6 +2967,7 @@ function addCarByShop() {
 
 
 function confirmChooseGetMoney(id) {
+
   var radioValue = $("input[name='choose_get_money_radio']:checked").val();
   console.log(radioValue);
   var url = "shop/confirm_choose_get_money";
@@ -2986,12 +2985,11 @@ function confirmChooseGetMoney(id) {
       console.log(res);
       if (radioValue == 1) {
         loadBoxConfirmPay(id);
-      } 
-      else {
+      } else {
         if (res.order_book.result == true) {
           var bank = $("input[name='bank_user_select']:checked").val();
           $.ajax({
-            url: "shop/update_bank_user?order_id=" + id+"&bank="+bank,
+            url: "shop/update_bank_user?order_id=" + id + "&bank=" + bank,
             type: 'post',
             dataType: 'json',
             success: function (res) {
@@ -3007,6 +3005,17 @@ function confirmChooseGetMoney(id) {
               console.log(res);
             }
           });
+
+//          ons.notification.alert({
+//            message: ' ',
+//            title: "สำเร็จ",
+//            buttonLabel: "ปิด"
+//          })
+//                  .then(function () {
+////                  reloadIncomeShop(id);
+//                    callpop();
+//                  });
+
         }
       }
       sendSocket(id);
@@ -3030,8 +3039,9 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
+      loadBoxChooseGetMoney(order_id);
       if (res.result == false) {
-        loadBoxChooseGetMoney(order_id);
+
         var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
@@ -3067,10 +3077,10 @@ function finish_job_transfer_money(id) {
   });
 }
 
-function showhideSelectBankCGM(id){
-  if(id==1){
-    $('#box_load_select_bank').hide()();
-  }else{
+function showhideSelectBankCGM(id) {
+  if (id == 1) {
+    $('#box_load_select_bank').hide();
+  } else {
     $('#box_load_select_bank').show();
     getSelectBankShop('box_load_select_bank');
   }
