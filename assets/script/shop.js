@@ -3000,14 +3000,14 @@ function confirmChooseGetMoney(id) {
             }
           });
           check_plan_transfer(id);
-//          $.ajax({
-//            url: "shop/driver_approved_pay?order_id=" + id,
-//            type: 'post',
-//            dataType: 'json',
-//            success: function (res) {
-//              console.log(res);
-//            }
-//          });
+          $.ajax({
+            url: "shop/driver_approved_pay?order_id=" + id,
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+              console.log(res);
+            }
+          });
 
 //          ons.notification.alert({
 //            message: ' ',
