@@ -2558,10 +2558,10 @@
     socket2.on('connect', function() {
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         // socket.emit('addroom', prompt("What's your name?"));
-        setTimeout(function() {
+        // setTimeout(function() {
             //            console.log(9999999999)
             socket2.emit('addroom', '<?=$_COOKIE[detect_user];?>');
-         }, 1500);
+         // }, 1500);
     });
     socket2.on('checkmsg', function(count, room) {
         // $('#rooms').empty();
