@@ -2178,10 +2178,7 @@
       var res_socket;
       var socket = io.connect('https://www.welovetaxi.com:3443');
       var check_run_shop = 0;
-      var dataorder = {
-            order: '<?=$_COOKIE[detect_user];?>',
-        };
-        socket.emit('adduser', dataorder);
+
    //on message received we print all the data inside the #container div
    socket.on('notification', function(data) {
       //          console.log("Start Socket");
@@ -2206,16 +2203,16 @@
           }
       }
    });
-   // var frist_socket = true;
-   // if (class_user != "taxi") {
-   //  Uclass = 'getbookinglab'
+    var frist_socket = true;
+   if (class_user != "taxi") {
+    Uclass = 'getbookinglab'
 
-   // }
-   // else{
-   //  Uclass = 'getbookingdiver'
-   // }
+   }
+   else{
+    Uclass = 'getbookingdiver'
+   }
 
-   socket.on('getbookinglab', function(data) {
+   socket.on(Uclass, function(data) {
       // console.log(data)
       array_data = [];
       var done = [];
