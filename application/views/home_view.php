@@ -2209,18 +2209,18 @@
 
    }
    else{
-    Uclass = 'getbookingdiver'
+    Uclass = 'bookingdiver'
    }
 
    socket.on(Uclass, function(data) {
-      // console.log(data)
+      console.log(data)
       array_data = [];
       var done = [];
       var none = [];
       $.each(data, function(index, value) {
           var current = formatDate(new Date());
           var db = formatDate(value.transfer_date);
-          if (value.driver_complete == 0) {
+          // if (value.driver_complete == 0) {
               if (class_user == "lab") {
                   if (db == current) {
                       done.push(value);
@@ -2230,7 +2230,7 @@
                       done.push(value);
                   }
               }
-          }
+          // }
       });
       array_data = {
           manage: done,
