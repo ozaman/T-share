@@ -1812,6 +1812,7 @@ function saveShop_action_pay(poppage) {
 
 
 function sendCheckIn(id, type, place_id, plan_setting) {
+  console.log('*********************++++++**************')
   console.log(id)
   console.log(type)
   console.log(place_id)
