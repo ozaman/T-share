@@ -2221,17 +2221,19 @@
           var current = formatDate(new Date());
           var db = formatDate(value.transfer_date);
           // if (value.driver_complete == 0) {
-              if (class_user == "lab") {
-                  if (db == current) {
-                      done.push(value);
-                  }
-              } else {
-                  if (db == current && value.drivername == detect_user) {
-                      done.push(value);
-                  }
-              }
+            done.push(value);
+              // if (class_user == "lab") {
+              //     if (db == current) {
+              //         done.push(value);
+              //     }
+              // } else {
+              //     if (db == current && value.drivername == detect_user) {
+              //         done.push(value);
+              //     }
+              // }
           // }
       });
+      // wait_data() =
       array_data = {
           manage: done,
           history: none
@@ -2285,6 +2287,10 @@
    frist_socket = false;
    }
    });
+
+   function wait_data() {
+     // body...
+   }
    var id = detect_user;
    var dataorder = {
       order: parseInt(id),
