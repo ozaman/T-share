@@ -515,10 +515,12 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
                 ?>
 
                 <tr>
-                  <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
+                  <td width="90" align="center"> <span style="" id="pax_show_income"><?=$pax;?></span></td>
                   <td></td>
-                  <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
-                  <td align="left"><span class="font-17"><?=$curency;?></span></td> 
+                  <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span>
+                    <input value="<?=$COM_ORDER_BOOKING->i_price;?>" id="each_price" type="hidden" />
+                  </td>                
+                  <td align="left"><span class="font-17" ><?=$curency;?></span></td> 
                 </tr>
 
                 <?php

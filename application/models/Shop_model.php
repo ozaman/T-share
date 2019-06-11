@@ -1158,6 +1158,10 @@ class Shop_model extends CI_Model {
     $this->db->where('id',$_GET[id]);
     $data[result] = $this->db->update('order_booking',$data);
 
+    $data2['i_pax'] = $_GET[adult];
+    $this->db->where('i_order_booking',$_GET[id]);
+    $data2[result2] = $this->db->update(TBL_COM_ORDER_BOOKING,$data2);
+    $data[data2] = $data2;
     return $data;
   }
 
@@ -1373,7 +1377,6 @@ class Shop_model extends CI_Model {
   }
 
   public function detectOnlyTypePay() { // ตรวจสอบว่า งานมีโอน หรือ เงินสด อย่างเดียวหรือไม่ ถ้ามีโอนอย่างเดียวให้ เสร็จงาน ใช้ param type
-    
     $type = $_GET[type];
     $this->db->select('id');
     $_where = array();
@@ -1386,30 +1389,30 @@ class Shop_model extends CI_Model {
     else {
       $tbl_com_booking = TBL_COM_ORDER_BOOKING;
     }
-    
+
     $this->db->select('id');
     $_where = array();
     $_where[i_order_booking] = $_GET[order_id];
     $query = $this->db->get_where($tbl_com_booking,$_where);
     $num_row_all = $query->num_rows();
-    
+
     $this->db->select('id');
     $_where = array();
     $_where[i_order_booking] = $_GET[order_id];
     $_where[i_type_pay] = $type;
     $query = $this->db->get_where($tbl_com_booking,$_where);
     $num_row_type = $query->num_rows();
-    
+
     $res = false; // ไม่ใช่ประเภทเดียว
-    if($num_row_type == $num_row_all){
+    if ($num_row_type == $num_row_all) {
       $res = true; // ประเทภเดียว
     }
-    
+
     $return[result] = $res;
     $return[get] = $_GET;
     $return[all_num] = $num_row_all;
     $return[type_num] = $num_row_type;
-    
+
     return $return;
   }
 

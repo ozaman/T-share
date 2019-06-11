@@ -656,10 +656,11 @@ function saveeditBook(x) {
     //	console.log(""+unit_person+"*"+number_persion_new+" = "+numberWithCommas(total_new_price.toFixed(2)));
     $('#txt_person_total').text(full_txt_person_total);
 
-
     var park = $('#val_park_unit').val();
     var full_txt_all_total = parseInt(park) + parseInt(total_new_price);
     $('#txt_all_total').text(numberWithCommas(full_txt_all_total.toFixed(2)));
+
+
   }
 
 
@@ -668,6 +669,11 @@ function saveeditBook(x) {
 
   $('#txt_mn_adult_' + x).text(number_persion_new);
   $('#txt_mn_child_' + x).text(num_child);
+
+
+  $('#pax_show_income').text($('#num_edit_persion').val());
+  var price = parseInt($('#num_edit_persion').val()) * parseInt($('#each_price').val());
+  $('#txt_all_total').text(numberWithCommas(price));
 }
 
 var cancelShop = function () {
@@ -3041,7 +3047,7 @@ function finish_job_transfer_money(id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      
+
     }
   });
 }
