@@ -1,5 +1,4 @@
 <?php
-
 $query = $this->db->query("select driver_approve,id,bank_taxi_id, driver_complete, invoice from ".TBL_ORDER_BOOKING." where id = ".$_GET[order_id]);
 $data = $query->row();
 
@@ -14,6 +13,31 @@ $txt_bank_num = $xxx."".substr($data_bank->bank_number,-3);
 //echo strlen($txt_bank_num)." || ".strlen($data_bank->bank_number);
 //echo $xxx;
 //exit();
+
+
+$this->db->select('id');
+$_where = array();
+$_where[i_order_booking] = $data->id;
+$chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
+$num_log = $chk_log->num_rows();
+if ($num_log > 0) {
+  $tbl_com_booking = TBL_COM_ORDER_BOOKING_LOGS;
+}
+else {
+  $tbl_com_booking = TBL_COM_ORDER_BOOKING;
+}
+$this->db->select('*');
+$query_cod = $this->db->get_where($tbl_com_booking,$_where);
+foreach ($query_cod->result() as $key => $val) {
+  $this->db->select('s_topic');
+  $_where = array();
+  $_where[id] = $val->i_plan_main;
+  $plan_main = $this->db->get_where(TBL_PLAN_MAIN,$_where);
+  $plan_main = $plan_main->row();
+  $txt_topic_head .= $plan_main;
+}
+echo $txt_topic_head;
+
 $query = $this->db->query('SELECT * FROM '.TBL_PAY_HIS_DRIVER_SHOPPING.' where order_id = '.$data->id);
 $check_trans_pay = $query->num_rows();
 if ($check_trans_pay > 0) {
@@ -43,7 +67,6 @@ else {
 $btn_pay_com_color = "background-color:#666666";
 $query = $this->db->query("select id from ".TBL_COM_ORDER_BOOKING_LOGS." where i_order_booking = ".$data->id);
 $check_change_plan = $query->num_rows();
-
 ?>
 <td class="font-16">
   <div class="div-all-checkin">

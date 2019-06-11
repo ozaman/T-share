@@ -247,7 +247,7 @@ $plan = $PLAN_PACK->s_topic;
         $pax = $COM_ORDER_BOOKING->i_pax;
       }
       $_where = array();
-      $_where['id'] = $val->i_pay_type;
+      $_where['id'] = $COM_ORDER_BOOKING->i_type_pay;
       $_select = array('name_th');
       $PAY_TYPE = $this->Main_model->rowdata(NEW_TBL_PAY_TYPE,$_where);
       ?>
