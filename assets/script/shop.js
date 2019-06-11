@@ -1598,26 +1598,15 @@ function openMapNotifyEdit() {
 
 function contactDriver(call, type, shop_id, order_id) {
   if (type == "phone") {
-    if (call == "lab") {
       openContact(shop_id);
-    } else {
-      performClick('phone_driver_' + order_id);
-    }
-  } else if (type == "zello") {
-    if (call == "lab") {
+  } 
+  
+  else if (type == "zello") {
       openZello(shop_id);
-    } else {
-      performClick('zello_driver_' + order_id);
-    }
-  } else if (type == "line") {
-    if (call == "lab") {
-
+  } 
+  
+  else if (type == "line") {
       openLine(shop_id);
-    } else {
-      performClick('line_driver_' + order_id);
-    }
-
-
   }
 }
 /******* <!-------- Change html CheckIn ------------> *******/

@@ -1,5 +1,6 @@
 var id_category, id_province, check_back;
 function reloadApp() {
+  modal.show();
   var newURL = window.location.protocol + "//" + window.location.host + "" + window.location.pathname + window.location.search;
   //	//console.log(newURL);
   //	location.replace(reloadApp)

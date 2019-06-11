@@ -58,9 +58,7 @@ foreach ($_POST[data] as $key => $val) {
   ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
-    <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
-    <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
-    <a href="line://ti/p/<?=$res_dv->line_id;?>" target="_blank" style="display: none;" id="line_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
+   
     <div class="box-shop">
       <?php if ($_GET[wait_trans] == "") {?>
         <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
@@ -80,11 +78,13 @@ foreach ($_POST[data] as $key => $val) {
       <table width="100%"  >
         <tr>
           <td colspan="2">
+            <!--onclick="contactDriver('<?=$contract;?>', 'phone', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
             <table width="100%" border="0" cellspacing="1" cellpadding="1" style=" margin-top: 0px;">
               <tbody>
                 <tr>
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                    <div class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="contactDriver('<?=$contract;?>', 'phone', '<?=$res_ps->id;?>', '<?=$val[id];?>');">
+                    <a href="tel:<?=$val[phone];?>" class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" 
+                         >
                       <table width="100%" border="0" cellspacing="1" cellpadding="1">
                         <tbody>
                           <tr>
@@ -93,10 +93,13 @@ foreach ($_POST[data] as $key => $val) {
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </a>
                   </td>
+                  
+                  <!--onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                    <div class="btn " style=" width:100%; text-align:left;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_zello" onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');">
+                    <a href="zello://<?=$res_dv->zello_id;?>?add_user" class="btn " style=" width:100%; text-align:left;border-radius: 0px;" 
+                       data-toggle="dropdown" id="btn_div_dropdown_zello" >
                       <table width="100%" border="0" cellspacing="1" cellpadding="1">
                         <tbody>
                           <tr>
@@ -107,10 +110,13 @@ foreach ($_POST[data] as $key => $val) {
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </a>
                   </td>
+                  
+                  <!--onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
-                    <div class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map" onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');">
+                    <a href="line://ti/p/<?=$res_dv->line_id;?>" class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map"
+                         >
                       <table width="100%" border="0" cellspacing="1" cellpadding="1">
                         <tbody>
                           <tr>
@@ -119,7 +125,7 @@ foreach ($_POST[data] as $key => $val) {
                           </tr>
                         </tbody>
                       </table>
-                    </div>
+                    </a>
                   </td>
                 </tr>
               </tbody>
