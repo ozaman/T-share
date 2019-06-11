@@ -66,12 +66,9 @@
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
     var roomOpen = false;
-    setTimeout(function() {
-        var dataorder = {
-            order: '<?=$_COOKIE[detect_user];?>',
-        };
-        socket.emit('adduser', dataorder);
-    }, 1000);
+    // setTimeout(function() {
+        
+    // }, 1000);
 </script>
 <style>
 .upload-btn-wrapper {
@@ -2181,6 +2178,10 @@
       var res_socket;
       var socket = io.connect('https://www.welovetaxi.com:3443');
       var check_run_shop = 0;
+      var dataorder = {
+            order: '<?=$_COOKIE[detect_user];?>',
+        };
+        socket.emit('adduser', dataorder);
    //on message received we print all the data inside the #container div
    socket.on('notification', function(data) {
       //          console.log("Start Socket");
@@ -2205,16 +2206,16 @@
           }
       }
    });
-   var frist_socket = true;
-   if (class_user != "taxi") {
-    Uclass = 'getbookinglab'
+   // var frist_socket = true;
+   // if (class_user != "taxi") {
+   //  Uclass = 'getbookinglab'
 
-   }
-   else{
-    Uclass = 'getbookingdiver'
-   }
+   // }
+   // else{
+   //  Uclass = 'getbookingdiver'
+   // }
 
-   socket.on(Uclass, function(data) {
+   socket.on('getbookinglab', function(data) {
       // console.log(data)
       array_data = [];
       var done = [];
