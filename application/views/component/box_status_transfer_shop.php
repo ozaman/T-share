@@ -27,16 +27,18 @@ else {
   $tbl_com_booking = TBL_COM_ORDER_BOOKING;
 }
 $this->db->select('*');
+$_where[i_type_pay] = 2;
 $query_cod = $this->db->get_where($tbl_com_booking,$_where);
 foreach ($query_cod->result() as $key => $val) {
   $this->db->select('s_topic');
   $_where = array();
   $_where[id] = $val->i_plan_main;
-  $plan_main = $this->db->get_where(TBL_PLAN_MAIN,$_where);
-  $plan_main = $plan_main->row();
-  $txt_topic_head .= $plan_main;
+  $query_plan_main = $this->db->get_where(TBL_PLAN_MAIN,$_where);
+  $plan_main = $query_plan_main->row();
+
+  $txt_topic_head .= $plan_main->s_topic;
 }
-echo $txt_topic_head;
+
 
 $query = $this->db->query('SELECT * FROM '.TBL_PAY_HIS_DRIVER_SHOPPING.' where order_id = '.$data->id);
 $check_trans_pay = $query->num_rows();
@@ -45,24 +47,15 @@ if ($check_trans_pay > 0) {
   $icons_p = "yes.png?v=".time();
   $class_status = "step-booking-active";
   $time_status = '<div class="font-16"><i class="fa fa-clock-o fa-spin 6x" style="color:#88B34D"></i><span> เวลา '.date('H:i',$data_trans_pay->last_update).' น.</span></div>';
-
-  if ($_COOKIE[detect_userclass] == "taxi") {
-    $title_pay = "โอนค่าคอมมิชชั่นแล้ว";
-  }
-  else {
-    $title_pay = "โอนค่าคอมมิชชั่นแล้ว";
-  }
+    $title_pay = "โอน".$txt_topic_head."แล้ว";
 }
 else {
   $icons_p = "no.png?v=".time();
   $class_status = "step-booking";
   $time_status = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i><strong><font color="#FF0000"> รอดำเนินการ</font></strong>';
-  if ($_COOKIE[detect_userclass] == "taxi") {
-    $title_pay = "รอโอนค่าคอมมิชชั่น";
-  }
-  else {
-    $title_pay = "รอโอนค่าคอมมิชชั่น";
-  }
+  
+    $title_pay = "รอโอน".$txt_topic_head;
+  
 }
 $btn_pay_com_color = "background-color:#666666";
 $query = $this->db->query("select id from ".TBL_COM_ORDER_BOOKING_LOGS." where i_order_booking = ".$data->id);
@@ -89,7 +82,7 @@ $check_change_plan = $query->num_rows();
       <td style="height:30px;">
         <div id="status_driver_pay_com">
           <div class="font-16">
-            <?=$time_status;?>
+<?=$time_status;?>
           </div>
         </div>
       </td>
@@ -109,21 +102,21 @@ $check_change_plan = $query->num_rows();
         </table>
       </td>
       </tr>
-      <?php
-      if ($_COOKIE[detect_userclass] == "taxi" && $check_change_plan > 0 && $data->bank_taxi_id == 0) {
-        ?>
+<?php
+if ($_COOKIE[detect_userclass] == "taxi" && $check_change_plan > 0 && $data->bank_taxi_id == 0) {
+  ?>
         <tr>  
           <td colspan="2">
             <span class="font-17">มีการเปลี่ยนแปลงค่าตอบแทน</span>
             <div style="padding: 0px 0px;">
               <ons-list-header class="list-header">เลือกบัญชีรับเงิน</ons-list-header>
 
-              <?php
-              $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 and driver_id = '".$_COOKIE[detect_user]."' order by status_often desc, status desc ";
-              $query_bank = $this->db->query($sql);
-              $num_bank = $query_bank->num_rows();
-              if ($num_bank <= 0) {
-                ?>
+  <?php
+  $sql = "SELECT t1.*,t2.name_th as bank_list, t2.img as bank_img FROM web_bank_driver as t1 left join web_bank_list as t2 on t1.bank_id = t2.id where t1.status = 1 and driver_id = '".$_COOKIE[detect_user]."' order by status_often desc, status desc ";
+  $query_bank = $this->db->query($sql);
+  $num_bank = $query_bank->num_rows();
+  if ($num_bank <= 0) {
+    ?>
                 <div style="padding: 10px;"><span class="font-18">คุณไม่มีบัญชี</span> <button type="button" onclick="addBank('shop_wait_trans');" class="button" style="padding: 0px 7px;background-color: #42a774;"><span class="font-17">เพิ่มบัญชี</span></button></div>
                 <?php
               }
@@ -151,19 +144,19 @@ $check_change_plan = $query->num_rows();
                         </table>
                       </label>
                     </ons-list-item>
-                    <?php
-                  }
-                  ?>
+      <?php
+    }
+    ?>
                 </form>
                 <ons-button type="button" onclick="_confirmSelectBankAfterChangePlan('<?=$data->id;?>');$(this).attr('disabled', 'disabled');" style="margin: 5px;  background-color: #fff;  color: #f00; border: 1px solid #f00;width: 100%;text-align: center;">ยืนยันบัญชีรับเงิน</ons-button>
-              <?php }?>
+  <?php }?>
             </div>
           </td>
         </tr> 
-        <?php
-      }
-      else {
-        ?>
+  <?php
+}
+else {
+  ?>
 
         <tr>
           <td colspan="2">
@@ -199,7 +192,7 @@ $check_change_plan = $query->num_rows();
           <td colspan="2">
             <div style="padding: 5px;">
               <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>   
-              <?php if ($check_trans_pay > 0) {?>
+  <?php if ($check_trans_pay > 0) {?>
                 <table width="100%">
                   <tr>
                     <td width="35%"><span class="font-16">สถานะ</span></td>
@@ -223,20 +216,20 @@ $check_change_plan = $query->num_rows();
                         insert_photo</i>
                     </td>
                   </tr>
-                  <?php if ($data->driver_approve == 0 && $_COOKIE[detect_userclass] == "taxi") {?>
+    <?php if ($data->driver_approve == 0 && $_COOKIE[detect_userclass] == "taxi") {?>
                     <tr>
                       <td align="center" colspan="2">
 
                     <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>', '<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
                     </td>
                     </tr>
-                  <?php }
-                  ?>
+    <?php }
+    ?>
                 </table>
-                <?php
-              }
-              else {
-                ?>
+                  <?php
+                }
+                else {
+                  ?>
                 <table width="100%">
                   <tr>
                     <td width="35%"><span class="font-16">สถานะ</span></td>
@@ -248,13 +241,13 @@ $check_change_plan = $query->num_rows();
                     </td>
                   </tr>
                 </table>
-              <?php }
-              ?>
+  <?php }
+  ?>
             </div>
           </td>
         </tr>   
-      <?php }
-      ?>
+<?php }
+?>
       </tbody>
     </table>  
 
