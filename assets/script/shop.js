@@ -1367,7 +1367,7 @@ function cancelShopSelect(id, invoice, dv, program) {
   fn.pushPage({
     'id': 'cancel-shop.html',
     'title': 'ยกเลิกส่งแขก'
-  }, 'slide-ios');
+  }, 'fade-ios');
 
 
   setTimeout(function(){ $('#order_id_cancel').val(id);
@@ -1437,6 +1437,7 @@ function submitCancel() {
     apiRecordActivityAndNotification(ac_2, nc_to_lab);
 
     if (obj.result == true) {
+      callpop();
       /*ons.notification.alert({
        message: 'ยกเลิกสำเร็จ',
        title: "สำเร็จ",
@@ -1449,10 +1450,10 @@ function submitCancel() {
       fn.hideDialog('cancel-shop-dialog');
 
       setTimeout(function () {
-        sendSocket(obj.order_id);
+        sendSocket(order_id);
         resetFormCancel();
         shopManage();
-      }, 2000);
+      }, 700);
       $('#btn_cancel_book_' + order_id).hide();
 
       var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id + "&class_user=" + class_user;
