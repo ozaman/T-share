@@ -2116,7 +2116,7 @@ function shopManage() {
   var pass = {
     data: array_ma
   };
-  console.log(pass);
+  // console.log(pass);
   $.ajax({
     url: url,
     data: pass,
