@@ -92,7 +92,7 @@ else {
           else {
             ?>
             <div id="choose-cash-div" style="padding: 5px;">
-              <span class="font-16">รับเงินโอน</span>
+              <span class="font-16">โอนเงิน</span>
             </div>
             <?php
           }
@@ -136,7 +136,7 @@ else {
             else {
               ?>
               <div id="choose-cash-div" style="padding: 5px;">
-                <span class="font-16">รับเงินโอน</span>
+                <span class="font-16">โอนเงิน</span>
               </div>
               <?php
             }

@@ -1308,7 +1308,7 @@ class Shop_model extends CI_Model {
     $data2[user_approved] = $_COOKIE[detect_user];
     $data2[class_user_approved] = $_COOKIE[detect_userclass];
     $this->db->where('order_id',$_GET[order_id]);
-    $data2[result] = $this->db->update('history_del_order_booking',$data);
+    $data2[result] = $this->db->update('history_del_order_booking',$data2);
 
     $data[ord] = $data;
     $data[his] = $data2;

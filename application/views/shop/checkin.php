@@ -98,6 +98,17 @@ else {
             </table>
           </td>
         </tr>
+        <?php 
+          if($arr[book][check_driver_topoint]<=0){ ?>
+            <tr>
+              <td></td>
+              <td colspan="2">
+                <ons-button style="margin: 10px 0px;" modifier="large" class="font-17 button button--large" onclick="submitCancel();">ยืนยันยกเลิกส่งแขก</ons-button>
+              </td>
+        </tr>
+        <?php  }
+        ?>
+        
       </tbody>
     </table>
     <input type="hidden" value="<?=$arr[book][driver_topoint];?>" id="driver_topoint_check_click">

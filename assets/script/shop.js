@@ -2105,7 +2105,7 @@ function shopManage() {
   var pass = {
     data: array_ma
   };
-  // console.log(pass);
+   console.log(pass);
   $.ajax({
     url: url,
     data: pass,
@@ -2500,6 +2500,7 @@ function changePlan(id) {
 }
 
 function userApproveCancel(id, invoice) {
+  $('#taxi_apporve_cancel_'+id).attr('disabled', true);
   $.ajax({
     url: "shop/taxi_approved_cancel?order_id=" + id,
     type: 'post',
