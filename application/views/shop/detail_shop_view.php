@@ -96,7 +96,7 @@ $stamp = $time->format('H:i');
 
     if ($_COOKIE[detect_userclass] == "lab") {
       ?>
-  <button id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
+      <button id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
               /* position: absolute; */
               /* right: 10px; */
               border: 1px solid #F44336;
@@ -169,7 +169,7 @@ $stamp = $time->format('H:i');
     <div style="padding: 5px 0px;">
       <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
-              <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
+                      <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
       <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
         <tr>
           <td width="35%"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
@@ -192,7 +192,8 @@ $stamp = $time->format('H:i');
         </tbody>
       </table>
     </div>
-  <?php }?>
+  <?php }
+  ?>
   <div style="padding: 5px 0px;">
     <ons-list-header class="list-header"> <?=t_reservation_information;?></ons-list-header>
        <!-- <span class="text-cap font-22"></span> -->
@@ -210,7 +211,7 @@ $stamp = $time->format('H:i');
         </tr>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font>
-            
+
           </td>
           <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
           <td align="right">
@@ -229,7 +230,7 @@ $stamp = $time->format('H:i');
         </tr>
         <tr>
           <td class="font-17 text-cap" width="50px"><font color="#333333"><?=t_number;?></font>
-            
+
           </td>
           <td class="font-17" style="padding: 0 !important;" >
             <table width="100%">
@@ -330,7 +331,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
             </table>
           </td>
           <td  align="right">
-             <?php
+            <?php
             if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
               ?>
               <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
@@ -513,7 +514,6 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
                 <td></td> 
               </tr>
               <?php
-             
               if ($COM_ORDER_BOOKING->i_main_list != 5) {
                 ?>
 
@@ -537,7 +537,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
                 $_order['id'] = 'asc';
                 $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_COM,$_where,$_select,$_order);
 //                $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING,$_where,$_select,$_order);
-                
+
                 foreach ($BOOKING_COM as $key => $datacom) {
                   $_where = array();
                   $_where['id'] = $datacom->i_con_com_product_type;
@@ -564,7 +564,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
 
                     </td>
 
-            <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                                    <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                     <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
                     <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                     <td width="30"></td>
