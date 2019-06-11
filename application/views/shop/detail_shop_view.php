@@ -210,19 +210,22 @@ $stamp = $time->format('H:i');
         </tr>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font>
+            
+          </td>
+          <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
+          <td align="right">
             <?php
             if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_driver_topoint] == 0) {
               ?>
               <span  class="button " align="center" onclick="editTimeToPlace('<?=$arr[book][id];?>');"  style="    background: #3b5998;
                      color: #fff;
-                     padding: 0px 3px;
+                     padding: 0px 10px;
                      /*    font-size: 3px !important;*/
                      border-radius: 8px;display: inline-block;" id="btn_isedit">
                 <span class="font-14 text-cap">แก้ไข</span>
               </span>
             <?php }?>
           </td>
-          <td class="font-17" colspan="2"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
         </tr>
         <tr>
           <td class="font-17 text-cap" width="50px"><font color="#333333"><?=t_number;?></font>
@@ -326,7 +329,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
               </tr>
             </table>
           </td>
-          <td >
+          <td  align="right">
              <?php
             if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
               ?>

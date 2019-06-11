@@ -1362,7 +1362,14 @@ function checkPhotoCheckIn(type, id) {
 
 function cancelShopSelect(id, invoice, dv, program) {
   console.log('cancel')
-  fn.showDialog('cancel-shop-dialog');
+//  fn.showDialog('cancel-shop-dialog');
+  
+  fn.pushPage({
+    'id': 'cancel-shop.html',
+    'title': 'ยกเลิกส่งแขก'
+  }, 'slide-ios');
+
+
   $('#order_id_cancel').val(id);
   $('#invoice_cancel_select').val(invoice);
   $('#driver_id_cancel').val(dv);
