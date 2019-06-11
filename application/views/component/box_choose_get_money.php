@@ -43,16 +43,19 @@ else {
             $type_pay = $this->Main_model->fetch_data("","",TBL_PAY_TYPE,$_where,array('*'),"");
             foreach ($type_pay as $key => $value) {
               ?>
-              <ons-list-item tappable>
+              <ons-list-item tappable onclick="showhideSelectBankCGM(<?=$value->id;?>);">
                 <label class="left" style="    padding-left: 5px;">
-                  <ons-radio input-id="radio-<?=$value->id;?>" name="choose_get_money_radio" value="<?=$value->id;?>"></ons-radio>
+                  <ons-radio input-id="radio-type-<?=$value->id;?>" name="choose_get_money_radio" value="<?=$value->id;?>"></ons-radio>
                 </label>
-                <label for="radio-<?=$value->id;?>" class="center">
+                <label for="radio-type-<?=$value->id;?>" class="center">
                   <?=$value->s_topic;?>
                 </label>
               </ons-list-item> 
             <?php }
             ?>
+            <div id="box_load_select_bank">
+              
+            </div>
             <ons-button modifier="outline" class="button-margin button button--outline button--large" type="button"
                         onclick="confirmChooseGetMoney(<?=$data->id;?>);" style="background-color: #fff;padding: 0px 4px;">
               ยืนยัน

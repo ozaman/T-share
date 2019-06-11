@@ -221,7 +221,7 @@ $stamp = $time->format('H:i');
                      color: #fff;
                      padding: 0px 10px;
                      /*    font-size: 3px !important;*/
-                     border-radius: 8px;display: inline-block;" id="btn_isedit">
+                     border-radius: 8px;display: inline-block;" id="btn_isedit_time">
                 <span class="font-14 text-cap">แก้ไข</span>
               </span>
             <?php }?>
