@@ -284,12 +284,12 @@ class Shop extends CI_Controller {
     $this->db->select('i_type_pay');
     $_where = array();
     $_where[i_order_booking] = $_GET[order_id];
-    $query = $this->db->get_where($tbl_com_booking, $_where);
+    $query = $this->db->get_where($tbl_com_booking,$_where);
 //    $data = $query->row();
     $return[result] = false;
     foreach ($query->result() as $key => $val) {
-      
-      
+
+
       if ($val->i_type_pay == 2) {
         $return[result] = true;
         break;
@@ -297,7 +297,7 @@ class Shop extends CI_Controller {
     }
     $return[data] = $query->result();
     $return[tb] = $tbl_com_booking;
-    $return[ss] =  $_GET[order_id];
+    $return[ss] = $_GET[order_id];
     echo json_encode($return);
   }
 
@@ -666,17 +666,26 @@ class Shop extends CI_Controller {
     $return[id] = $_GET[id];
     echo json_encode($return);
   }
-  
+
   public function finish_job_transfer_money() {
-    
+
     $data = $this->Shop_model->detectOnlyTypePay();
-    if($data[result] == true){
+    if ($data[result] == true) {
       $echo[pay] = $this->Shop_model->driver_approved_pay();
       $echo[completed] = $this->Shop_model->driver_complete();
-    }else{
+    }
+    else {
       $echo = false;
     }
     echo json_encode($echo);
+  }
+
+  public function update_bank_user() {
+    $this->db->where('id',$_GET[id]);
+    $add[bank_taxi_id] = $_GET[bank];
+    $result[result] = $this->db->update(TBL_SHOPPING_PRODUCT,$add);
+    $result[get] = $GET;
+    echo json_encode($result);
   }
 
 }

@@ -144,9 +144,9 @@
       ons-splitter-side[animation=overlay] {
       border-left: 1px solid #bbb;
       }
-      .dialog{
+/*      .dialog{
       min-height: 460px !important;
-      }
+      }*/
       .fa-bell{
       font-size: 20px !important;
       }
@@ -1742,28 +1742,39 @@
             </script>
         </ons-page>
     </template>
-    <ons-dialog id="cancel-shop-dialog" cancelable style="min-height: 430px;">
-        <!-- Optional page. This could contain a Navigator as well. -->
+    
+  <template id="cancel-shop.html">
         <ons-page>
             <ons-toolbar>
-                <div class="center">ยกเลิกส่งแขก</div>
+                <div class="left">
+                    <ons-back-button>กลับ</ons-back-button>
+                </div>
+                <div class="center"></div>
+                <div class="right">
+                    <ons-toolbar-button onclick="reloadApp();">
+                        <ons-icon icon="ion-home, material:md-home"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
             </ons-toolbar>
-            <p style="text-align: center">เลือกสาเหตุยกเลิก</p>
+          <div id="body_cancel_shop">
+            <!--<p style="text-align: center">เลือกสาเหตุยกเลิก</p>-->
             <input type="hidden" value="" id="invoice_cancel_select" />
             <input type="hidden" value="" id="driver_id_cancel" />
             <input type="hidden" value="" id="product_id" />
-            <form enctype="multipart/form-data" style="margin-left: 25px;" id="form_type_cancel">
+            <form enctype="multipart/form-data" id="form_type_cancel">
                 <input type="hidden" value="" id="order_id_cancel" name="order_id" />
                 <!--<input type="hidden" value="<?=$_COOKIE[detect_username];?>" id="username_order_cancel" name="username" />-->
                 <div>
                     <input type="hidden" name="typname_1" value="แขกลงทะเบียนไม่ได้" />
                     <input type="hidden" name="typname_2" value="แขกไม่ไป" />
                     <input type="hidden" name="typname_3" value="เลือกสถานที่ผิด" />
+                    <ons-list>
+                      <ons-list-header>เลือกสาเหตุยกเลิก</ons-list-header>
                     <?php 
                      $query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
                      foreach ($query->result() as $row){ ?>
                     <ons-list-item tappable>
-                        <label class="left">
+                      <label class="left" style="margin-left: 15px;">
                             <ons-radio class="radio-fruit" input-id="cancel_<?=$row->id;?>" value="<?=$row->id;?>" name="type_cancel"></ons-radio>
                         </label>
                         <label for="cancel_<?=$row->id;?>" class="center">
@@ -1772,14 +1783,25 @@
                     <input type="hidden" name="typname_<?=$row->id;?>" value="<?=$row->s_topic;?>" />
                     <?php  }
                      ?>
+                    </ons-list>
                 </div>
             </form>
-            <p style="text-align: center">
-                <ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog');resetFormCancel();">ปิด</ons-button>
-                <ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>
+            <p style="text-align: center;padding: 0px 10px;">
+                <!--<ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog');resetFormCancel();">ปิด</ons-button>-->
+                <!--<ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>-->
+            
+            <ons-button style="background-color: #fe3824;margin: 10px 0px;" modifier="large" class="font-17" onclick="callpop();">ปิด</ons-button>
+            <ons-button style="margin: 10px 0px;" modifier="large" class="font-17" onclick="submitCancel();">ยืนยันยกเลิกส่งแขก</ons-button>
             </p>
+          </div>
+            <script>
+                ons.getScriptPage().onInit = function () {
+                   this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+               }
+            </script>
         </ons-page>
-    </ons-dialog>
+    </template>
+   
     <template id="custom-dialog.html">
         <ons-dialog id="custom-my-dialog">
             <div class="dialog-mask" style="background-color: rgba(0, 0, 0, 0.70);"></div>
@@ -1793,6 +1815,7 @@
             </ons-button>
         </ons-dialog>
     </template>
+  
     <template id="test_swp.html">
         <ons-page>
             <ons-toolbar>

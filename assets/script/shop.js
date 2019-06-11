@@ -549,7 +549,7 @@ function handleClick_s(tax, name) {
       console.log(chk);
       if (chk.result == true) {
         $('#box_bank').show();
-        getSelectBankShop();
+        getSelectBankShop('load_select_bank');
 
       } else {
         $('#load_select_bank div').remove();
@@ -561,11 +561,11 @@ function handleClick_s(tax, name) {
 
 }
 
-function getSelectBankShop() {
+function getSelectBankShop(div) {
   console.log('get bank shop');
   var url = "component/box_select_bank_shop";
   $.post(url, function (ele) {
-    $('#load_select_bank').html(ele);
+    $('#'+div).html(ele);
   });
 }
 // ons-tab[page="shop_history.html"]
@@ -596,7 +596,7 @@ function editBook(x) {
   $('#text_edit_persion').show();
   $('#btn_selectisedit').show();
   $('#num_edit_persion').show();
-  $('#btn_isedit').hide();
+  $('#btn_isedit_pax').hide();
   $('#isedit').hide();
   $('#num_edit_persion').css('display', 'inline-block');
   $('#num_edit_persion').focus();
@@ -615,7 +615,7 @@ function editBook(x) {
 
 function saveeditBook(x) {
   //          var url_load= "go.php?name=booking/shop_history&file=saveeditBook&num="+$('#num_edit_persion').val()+"&id="+x;
-
+  $('#btn_isedit_pax').show();
   $('#num_edit_child').hide();
   $('#num_final_edit_child').show();
   $('#btn_selectisedit_child').hide();
@@ -1362,7 +1362,14 @@ function checkPhotoCheckIn(type, id) {
 
 function cancelShopSelect(id, invoice, dv, program) {
   console.log('cancel')
-  fn.showDialog('cancel-shop-dialog');
+//  fn.showDialog('cancel-shop-dialog');
+  
+  fn.pushPage({
+    'id': 'cancel-shop.html',
+    'title': 'ยกเลิกส่งแขก'
+  }, 'slide-ios');
+
+
   $('#order_id_cancel').val(id);
   $('#invoice_cancel_select').val(invoice);
   $('#driver_id_cancel').val(dv);
@@ -1843,7 +1850,7 @@ function sendCheckIn(id, type, place_id, plan_setting) {
             $('#num_pax_regis_' + id_send).text($('#num_cus').val());
             $('#num_edit_persion2').val($('#num_cus').val());
             $('#' + type_send + '_check_click').val(1)
-            $('#btn_isedit').hide();
+            $('#btn_isedit_pax').hide();
             sendSocket(id_send);
             changeHtml(type_send, id_send, timestampToDate(res.checkin.time, "time"));
             setTimeout(function () {
@@ -1870,10 +1877,14 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } else if (type == 'driver_pay_report') {
+  } 
+  
+  else if (type == 'driver_pay_report') {
+    $('#btn_isedit_time').hide();
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
   } else {
+    
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
   }
@@ -2975,15 +2986,19 @@ function confirmChooseGetMoney(id) {
     success: function (res) {
       console.log(res);
       if (radioValue == 1) {
-//                $('#step_choose_get_money').hide();
-//                $('#list-choose-div').hide();
         loadBoxConfirmPay(id);
-
-
-      } else {
+      } 
+      else {
         if (res.order_book.result == true) {
-//          check_com_plan(id);
-//          completedJobShop(id);
+          var bank = $("input[name='bank_user_select']:checked").val();
+          $.ajax({
+            url: "shop/update_bank_user?order_id=" + id+"&bank="+bank,
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+              console.log(res);
+            }
+          });
           check_plan_transfer(id);
           $.ajax({
             url: "shop/driver_approved_pay?order_id=" + id,
@@ -3051,4 +3066,13 @@ function finish_job_transfer_money(id) {
 
     }
   });
+}
+
+function showhideSelectBankCGM(id){
+  if(id==1){
+    $('#box_load_select_bank').hide()();
+  }else{
+    $('#box_load_select_bank').show();
+    getSelectBankShop('box_load_select_bank');
+  }
 }
