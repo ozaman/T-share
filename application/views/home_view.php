@@ -2376,6 +2376,7 @@
       $.each(data, function(index, value) {
           if (value.lab_approve_job == 1) {
               if (value.check_driver_topoint == 1) {
+                  shopManageWithData(value);
                   $('#btn_manage_topoint_' + value.id).hide();
                   $('#btn_manage_' + value.id).show();
               } 
@@ -2414,19 +2415,20 @@
       }
       if($('#open_shop_wait_trans').val() == 1){
           if(data.transfer_money==1){
-              var pass = {
-                  data: data
-              };
-              console.log(pass);
-              var url = "component/list_shop_manage?wait_trans=1";
-              $.ajax({
-                  url: url,
-                  data: pass,
-                  type: 'post',
-                  success: function(ele) {
-                      $('#list_shop_manage_' + data.id).html(ele);
-                  }
-              });
+          shopManageWithData(data);
+//              var pass = {
+//                  data: data
+//              };
+//              console.log(pass);
+//              var url = "component/list_shop_manage?wait_trans=1";
+//              $.ajax({
+//                  url: url,
+//                  data: pass,
+//                  type: 'post',
+//                  success: function(ele) {
+//                      $('#list_shop_manage_' + data.id).html(ele);
+//                  }
+//              });
           }
       }
       setCountNotification();
@@ -2491,6 +2493,7 @@
           console.log("*************************************");
           if (data.lab_approve_job == 1) {
               if (data.check_driver_topoint == 1) {
+                  shopManageWithData(data);
                   $('#btn_manage_topoint_' + data.id).hide();
                   $('#btn_manage_' + data.id).show();
               } 
@@ -2526,19 +2529,20 @@
       }
       if($('#open_shop_wait_trans').val() == 1){
           if(data.transfer_money==1){
-              var pass = {
-                  data: data
-              };
-              console.log(pass);
-              var url = "component/list_shop_manage?wait_trans=1";
-              $.ajax({
-                  url: url,
-                  data: pass,
-                  type: 'post',
-                  success: function(ele) {
-                      $('#list_shop_manage_' + data.id).html(ele);
-                  }
-              });
+              shopManageWithData(data);
+//              var pass = {
+//                  data: data
+//              };
+//              console.log(pass);
+//              var url = "component/list_shop_manage?wait_trans=1";
+//              $.ajax({
+//                  url: url,
+//                  data: pass,
+//                  type: 'post',
+//                  success: function(ele) {
+//                      $('#list_shop_manage_' + data.id).html(ele);
+//                  }
+//              });
           }
       }
       setCountNotification();

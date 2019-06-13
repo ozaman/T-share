@@ -1,11 +1,17 @@
 <?php
+//echo count($_POST)." +++++";
+//echo "<pre>";
+//print_r($_POST);
+//echo "</pre>";
+//exit();
+$val = $_POST[data];
 $data_user_class = $_COOKIE[detect_userclass];
 if (count($_POST[data]) <= 0) {
   echo '<div class="font-22" style="color: #ff0000;text-align: center;padding: 0px; margin-top: 10px;" id="no_work_div"><strong>ไม่มีงาน</strong></div>';
   //
 }
 
-foreach ($_POST[data] as $key => $val) {
+//foreach ($_POST[data] as $key => $val) {
   $sql_dv = "SELECT name,nickname,phone,name_en,zello_id,line_id,username FROM web_driver WHERE id='".$val[drivername]."'    ";
   $query_dv = $this->db->query($sql_dv);
   $res_dv = $query_dv->row();
@@ -471,5 +477,5 @@ $plan = $PLAN_PACK->s_topic;
       $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
     }
   </script>
-  <?php }
+  <?php // }
 ?>
