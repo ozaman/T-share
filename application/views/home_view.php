@@ -2220,8 +2220,11 @@
       $.each(data, function(index, value) {
           var current = formatDate(new Date());
           var db = formatDate(value.transfer_date);
-          // if (value.driver_complete == 0) {
+          if (db == current && value.drivername == detect_user) {
             done.push(value);
+          }
+          // if (value.driver_complete == 0) {
+            
               // if (class_user == "lab") {
               //     if (db == current) {
               //         done.push(value);
