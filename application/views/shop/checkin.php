@@ -80,7 +80,8 @@ else {
                       <i id="driver_topoint_pf" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: nones;" onclick="modalShowImg('../data/pic/driver/small/<?=$res_dv->username;?>.jpg', '<?=$name_dv;?>');">account_circle</i>
                     </td>
                     <td>
-                      <a href="tel:<?=$arr[book][phone];?>"><i id="driver_topoint_pf" class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
+                      <a href="tel:<?=$arr[book][phone];?>"><i id="driver_topoint_pf" 
+                                                               class="material-icons" style="color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71); display: nones;">phone</i></a>
                     </td>
                   <?php }
                   ?>
@@ -103,7 +104,8 @@ else {
             <tr>
               <td></td>
               <td colspan="2">
-                <ons-button style="margin: 10px 0px;" modifier="large" class="font-17 button button--large" onclick="submitCancel();">ยืนยันยกเลิกส่งแขก</ons-button>
+                <ons-button style="margin: 10px 0px;" modifier="large" class="font-17 button button--large" 
+                            onclick="btn_driver_topoint('<?=$arr[book][id];?>')" id="btn-topoint-lab" >คนขับถึงสถานที่</ons-button>
               </td>
         </tr>
         <?php  }

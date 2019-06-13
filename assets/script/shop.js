@@ -1361,7 +1361,7 @@ function checkPhotoCheckIn(type, id) {
 }
 
 function cancelShopSelect(id, invoice, dv, program) {
-  console.log('cancel '+id)
+  console.log('cancel ' + id)
 //  fn.showDialog('cancel-shop-dialog');
 
   fn.pushPage({
@@ -1370,10 +1370,12 @@ function cancelShopSelect(id, invoice, dv, program) {
   }, 'fade-ios');
 
 
-  setTimeout(function(){ $('#order_id_cancel').val(id);
-  $('#invoice_cancel_select').val(invoice);
-  $('#driver_id_cancel').val(dv);
-  $('#product_id').val(program); }, 700);
+  setTimeout(function () {
+    $('#order_id_cancel').val(id);
+    $('#invoice_cancel_select').val(invoice);
+    $('#driver_id_cancel').val(dv);
+    $('#product_id').val(program);
+  }, 700);
 }
 
 function submitCancel() {
@@ -1389,7 +1391,7 @@ function submitCancel() {
 
   var url = "shop/cancel_shop";
   console.log(url + " ");
-  
+
   $.post(url, $('#form_type_cancel').serialize(), function (data) {
 
     var obj = data;
@@ -1598,15 +1600,11 @@ function openMapNotifyEdit() {
 
 function contactDriver(call, type, shop_id, order_id) {
   if (type == "phone") {
-      openContact(shop_id);
-  } 
-  
-  else if (type == "zello") {
-      openZello(shop_id);
-  } 
-  
-  else if (type == "line") {
-      openLine(shop_id);
+    openContact(shop_id);
+  } else if (type == "zello") {
+    openZello(shop_id);
+  } else if (type == "line") {
+    openLine(shop_id);
   }
 }
 /******* <!-------- Change html CheckIn ------------> *******/
@@ -1630,8 +1628,7 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1653,8 +1650,7 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
@@ -1987,12 +1983,25 @@ function readURLcheckIn(input, type, subtype, id) {
 }
 
 function btn_driver_topoint(id) {
-  if (class_user == 'lab') {
-    return;
-  }
   if ($('#driver_topoint_check_click').val() == 1) {
     return;
   }
+
+  if (class_user == 'lab') {
+
+    ons.notification.confirm({
+      message: 'ต้องการแจ้งคนขับถึงสถานที่ส่งแขก',
+      title: "ยืนยัน",
+      buttonLabels: ["ปิด", "ยืนยัน"],
+      callback: function (answer) {
+        // Do something here.
+        sendCheckIn(id, 'driver_topoint');
+        $('#btn-topoint-lab').hide();
+        return;
+      }
+    });
+  }
+
   sendCheckIn(id, 'driver_topoint');
   /* fn.pushPage({
    'id': 'popup_shop_checkin.html',
@@ -2105,7 +2114,7 @@ function shopManage() {
   var pass = {
     data: array_ma
   };
-   console.log(pass);
+  console.log(pass);
   $.ajax({
     url: url,
     data: pass,
@@ -2113,6 +2122,24 @@ function shopManage() {
     success: function (ele) {
 
       $('#shop_manage').html(ele);
+    }
+  });
+}
+
+function shopManageWithData(obj) {
+
+  var pass = {
+    data: obj
+  };
+  console.log(pass);
+  var url = "component/list_shop_manage?wait_trans=1";
+  $.ajax({
+    url: url,
+    data: pass,
+    type: 'post',
+    success: function (ele) {
+      console.log(obj.id);
+      $('#list_shop_manage_' + obj.id).html(ele);
     }
   });
 }
@@ -2500,7 +2527,7 @@ function changePlan(id) {
 }
 
 function userApproveCancel(id, invoice) {
-  $('#taxi_apporve_cancel_'+id).attr('disabled', true);
+  $('#taxi_apporve_cancel_' + id).attr('disabled', true);
   $.ajax({
     url: "shop/taxi_approved_cancel?order_id=" + id,
     type: 'post',

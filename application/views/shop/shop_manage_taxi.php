@@ -1,6 +1,10 @@
 <input type="hidden" id="open_shop_manage" value="1" />
 <input type="hidden" id="open_shop_wait_trans" value="0" />
 <?php
+//echo "<pre>";
+//print_r($_POST[data]);
+//echo "</pre>";
+//return;
 
 $data_user_class = $_COOKIE[detect_userclass];
 if (count($_POST[data]) <= 0) {
@@ -504,7 +508,8 @@ $plan = $PLAN_PACK->s_topic;
             <ons-button onclick="<?=$onclick;?>" style="padding: 15px;border: 1px solid #0076ff;
             border-radius: 5px;
             line-height: 0;<?=$btn_manage;?><?=$btn_manage_display;?>
-            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>"><span class="font-17 text-cap">
+            " modifier="outline" class="button-margin button button--outline button--large" id="btn_manage_<?=$val[id];?>">
+              <span class="font-17 text-cap">
               <?=$text_mn;?></span> 
             </ons-button>
             <div style="padding-left: 30px;<?=$txt_wait_approve;?>" align="center" id="txt_wait_<?=$val[id];?>"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอการตอบรับ</font></div>
