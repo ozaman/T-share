@@ -1449,6 +1449,9 @@ function submitCancel() {
         resetFormCancel();
         shopManage();
         modal.hide();
+        
+        
+        
         }, 3200);
         
       $('#btn_cancel_book_' + order_id).hide();
@@ -1861,7 +1864,9 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } else if (type == 'driver_pay_report') {
+  } 
+  else if (type == 'driver_pay_report') {
+    
     $('#btn_isedit_time').hide();
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
@@ -2526,6 +2531,8 @@ function userApproveCancel(id, invoice) {
       console.log(res);
       shopManage();
       sendSocket(id);
+      
+      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
 //       var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
 //       var ac = {
 //       i_type : 1,
