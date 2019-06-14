@@ -1748,12 +1748,15 @@
                     <i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ
                   </span>
                   <div class="box-preview-img" id="box_img_checkin">
-                    <img src="" class="img-preview-show" id="pv_checkin" style="display: nones;">
+                    <img src="" class="img-preview-show" id="pv_register_upload" style="display: nones;">
                   </div>
                   <div class="upload-btn-wrapper">
                     <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
                     <input type="file" id="img_checkin" accept="image/*"
                            onchange="readURLuploadImgRegister(this);">
+                  </div>
+                  <div style="margin: 20px 10px">
+                    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
                   </div>
                 </div>
               </td>
