@@ -58,7 +58,7 @@ foreach ($_POST[data] as $key => $val) {
   ?>
   <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
-   
+
     <div class="box-shop">
       <?php if ($_GET[wait_trans] == "") {?>
         <span class="time-post-shop" id="txt_date_diff_<?=$val[id];?>" style="font-size:14px;">-</span>
@@ -66,12 +66,12 @@ foreach ($_POST[data] as $key => $val) {
         $width = "50";
       }
       ?>
-     	<table width="100%">
+      <table width="100%">
         <tr>
           <td width="<?=$width;?>"><span class="font-18"><b>ติดต่อ</b></span></td>
           <td><span class="font-18"><?=date("d/m/Y",$val[post_date]);?></span></td>
         </tr>
-     	</table>
+      </table>
 
 
 
@@ -84,7 +84,7 @@ foreach ($_POST[data] as $key => $val) {
                 <tr>
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                     <a href="tel:<?=$val[phone];?>" class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" 
-                         >
+                       >
                       <table width="100%" border="0" cellspacing="1" cellpadding="1">
                         <tbody>
                           <tr>
@@ -95,8 +95,8 @@ foreach ($_POST[data] as $key => $val) {
                       </table>
                     </a>
                   </td>
-                  
-                  <!--onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
+
+  <!--onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                     <a href="zello://<?=$res_dv->zello_id;?>?add_user" class="btn " style=" width:100%; text-align:left;border-radius: 0px;" 
                        data-toggle="dropdown" id="btn_div_dropdown_zello" >
@@ -112,11 +112,11 @@ foreach ($_POST[data] as $key => $val) {
                       </table>
                     </a>
                   </td>
-                  
-                  <!--onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
+
+  <!--onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                     <a href="line://ti/p/<?=$res_dv->line_id;?>" class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map"
-                         >
+                       >
                       <table width="100%" border="0" cellspacing="1" cellpadding="1">
                         <tbody>
                           <tr>
@@ -191,7 +191,7 @@ foreach ($_POST[data] as $key => $val) {
                 $check_type_com = 1;
                 $display_com = "";
                 $i_list_prices = $row_price->id;
-            $i_plan_product_price_name = $row_price->i_plan_product_price_name;
+                $i_plan_product_price_name = $row_price->i_plan_product_price_name;
                 $com_persent = $data->commission_persent;
                 $com_progress = '<span style="padding-left: 0px;"><font color="#FF0000">รอโอน</font></span>';
               }
@@ -212,65 +212,62 @@ foreach ($_POST[data] as $key => $val) {
               $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
             }
             $_where = array();
-      $_where['i_order_booking'] = $data->id;
-      $_select = array('*');
-      $_order = array();
-      $_order['id'] = 'asc';
-      $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS, $_where,$_select,$_order);
-      // echo  $BOOKING_LOGS;
-      // echo 'fsfsafsfsf';
-                // echo '<pre>';
- // print_r($BOOKING_LOGS);
- // echo '</pre>';
-  // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
+            $_where['i_order_booking'] = $data->id;
+            $_select = array('*');
+            $_order = array();
+            $_order['id'] = 'asc';
+            $BOOKING_LOGS = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_LOGS,$_where,$_select,$_order);
+            // echo  $BOOKING_LOGS;
+            // echo 'fsfsafsfsf';
+            // echo '<pre>';
+            // print_r($BOOKING_LOGS);
+            // echo '</pre>';
+            // echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS).'------------'.$data->id;;
 
 
 
 
-$_where = array();
- // if (count($BOOKING_LOGS)=='') {
-  $_where['id'] = $data->plan_setting;
-       
-      // }
-      // else{
-        // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
-      // }
+            $_where = array();
+            // if (count($BOOKING_LOGS)=='') {
+            $_where['id'] = $data->plan_setting;
+
+            // }
+            // else{
+            // $_where['id'] = $BOOKING_LOGS[0]->i_plan_pack;
+            // }
 // $_where = array();
-                    // $_where['id'] = $data->plan_setting;
-                    $_select = array('*');
-                    $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
- 
- //           echo '<pre>';
- // print_r($PLAN_PACK);
- // echo '</pre>';
- $_where = array();
-                    $_where['id'] = $PLAN_PACK->i_country; 
-                    $_select = array('country_code','id','name_th');
-                    $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+            // $_where['id'] = $data->plan_setting;
+            $_select = array('*');
+            $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+
+            //           echo '<pre>';
+            // print_r($PLAN_PACK);
+            // echo '</pre>';
+            $_where = array();
+            $_where['id'] = $PLAN_PACK->i_country;
+            $_select = array('country_code','id','name_th');
+            $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
 
 
 
-$plan = $PLAN_PACK->s_topic;
+            $plan = $PLAN_PACK->s_topic;
 // echo $plan;
-
-
-
 //            $all_total = $park_total + $person_total + $com_total;
-        $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
-        $query_country = $this->db->query($sql_country);
-        $res_country = $query_country->row();
+            $sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$data->plan_id."'    ";
+            $query_country = $this->db->query($sql_country);
+            $res_country = $query_country->row();
 
-        $titel = t_work_remuneration;
-        $display_none_change_plan = "display:none;";
-        $color_titel = "";
+            $titel = t_work_remuneration;
+            $display_none_change_plan = "display:none;";
+            $color_titel = "";
 
-        if ($data->check_driver_pay == 0) {
-          $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
-        }
-        else {
-          $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
-        }
-        ?>
+            if ($data->check_driver_pay == 0) {
+              $txt_get_cash = "<span class='font-17' style='color: #f00;'>ยังไม่รับ</span>";
+            }
+            else {
+              $txt_get_cash = "<span class='font-17' style='color: #6fab1e;'>รับแล้ว</span>";
+            }
+            ?>
         <tr>
           <td colspan="3">
             <table style="margin-left: -2px;">
@@ -286,18 +283,18 @@ $plan = $PLAN_PACK->s_topic;
           </td>
         </tr>
         <tr>
-           <td colspan="3">
+          <td colspan="3">
             <table style="margin-left: -2px;">
               <tr>
                 <td style="padding: 0;"><span class="font-17">ประเภท</span> : </td>
                 <td style="padding: 0;">
-                 <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?>
+                <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?>
                 </td>
-               
+
               </tr>
             </table>
           </td>
-          
+
         </tr>
 
         <!----------------------------------------------------------------------------------------------------------------------------->
@@ -333,7 +330,7 @@ $plan = $PLAN_PACK->s_topic;
           <td>
             <div class="font-17">
               จำนวน : 
-              <?php if ($val[adult] > 0) {?>
+  <?php if ($val[adult] > 0) {?>
                 ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
               <?php }?>
               <?php if ($val[child] > 0) {?>
@@ -349,14 +346,14 @@ $plan = $PLAN_PACK->s_topic;
             <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
           </td>
         </tr>
-        <?php
-        if ($val[lab_approve_job] == 1) {
-          $hidden_date_app = "";
-        }
-        else {
-          $hidden_date_app = "display:none;";
-        }
-        ?>
+  <?php
+  if ($val[lab_approve_job] == 1) {
+    $hidden_date_app = "";
+  }
+  else {
+    $hidden_date_app = "display:none;";
+  }
+  ?>
         <tr id="date_approved_job_<?=$val[id];?>" style="<?=$hidden_date_app;?>">
           <td colspan="2">
             <span class="font-17" >รับทราบงาน :</span>
@@ -364,17 +361,17 @@ $plan = $PLAN_PACK->s_topic;
           </td>
         </tr>
 
-        <?php
-        if ($val[status] != "CANCEL") {
-          ?>
+  <?php
+  if ($val[status] != "CANCEL") {
+    ?>
           <tr>
             <td colspan="2">
               <table width="100%">
                 <tr>
-                  <?php
-                  $txt_cancel = "ปฏิเสธ";
-                  if ($val[check_guest_register] == 0) {
-                    ?>
+    <?php
+    $txt_cancel = "ปฏิเสธ";
+    if ($val[check_guest_register] == 0) {
+      ?>
                     <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
                   <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
                               border-radius: 5px;
@@ -384,21 +381,21 @@ $plan = $PLAN_PACK->s_topic;
                     <span class="font-17 text-cap"><?=$txt_cancel;?></span>
                   </ons-button>
               </td>	
-            <?php }
-            ?>
+    <?php }
+    ?>
 
             <td width="65%">
-              <?php
-              $text_mn = 'จัดการ';
-              if ($val[lab_approve_job] == 0) {
-                $btn_approve = "";
-                $btn_manage = "display:none;";
-              }
-              else {
-                $btn_approve = "display:none;";
-                $btn_manage = "";
-              }
-              ?>
+            <?php
+            $text_mn = 'จัดการ';
+            if ($val[lab_approve_job] == 0) {
+              $btn_approve = "";
+              $btn_manage = "display:none;";
+            }
+            else {
+              $btn_approve = "display:none;";
+              $btn_manage = "";
+            }
+            ?>
               <?php
               if ($_GET[wait_trans] != "") {
                 $onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
@@ -410,7 +407,7 @@ $plan = $PLAN_PACK->s_topic;
           <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
                       style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
 
-           <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" 
+          <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" 
                       style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #0076ff;color: #0076ff;argin-top: 5px;<?=$btn_manage;?>" 
                       modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>           
           </td>
@@ -418,15 +415,15 @@ $plan = $PLAN_PACK->s_topic;
         </table>
         </td>
         </tr>
-      <?php
-      }
-      else {
-        $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
-        $query_del = $this->db->query($sql_del);
-        $res_del = $query_del->row();
+    <?php
+  }
+  else {
+    $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
+    $query_del = $this->db->query($sql_del);
+    $res_del = $query_del->row();
 
-        if ($res_del->class_user_cancel == "taxi") {
-          ?>
+    if ($res_del->class_user_cancel == "taxi") {
+      ?>
           <tr>
             <td colspan="2">
               <table width="100%" >
@@ -446,8 +443,16 @@ $plan = $PLAN_PACK->s_topic;
           </table>
           </td>
           </tr>
-    <?php }
-    else {?>
+    <?php
+    }
+    else {
+      if ($res_del->i_status <= 0) {
+        $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
+      }
+      else {
+        $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+      }
+      ?>
           <tr>
             <td colspan="2">
               <table width="100%" >
@@ -457,13 +462,13 @@ $plan = $PLAN_PACK->s_topic;
                     <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ปฏิเสธ<br/><?=$res_cancel->s_topic;?></font></b></div>
                   </td>
                   <td align="right">
-                    <span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>
+                    <span class="font-17"><?=$txt_status_cancel;?></span>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
-    <?php
+      <?php
     }
   }
   ?>
@@ -482,5 +487,5 @@ $plan = $PLAN_PACK->s_topic;
       $('#date_book_<?=$val[id];?>').text(formatDate('<?=$val[transfer_date];?>'));
     }
   </script>
-  <?php }
+<?php }
 ?>

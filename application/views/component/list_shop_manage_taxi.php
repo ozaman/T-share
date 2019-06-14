@@ -49,7 +49,7 @@ if (count($_POST[data]) <= 0) {
     $nickname = "";
   }
   ?>
-  <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
+  <!--<div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >-->
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
     <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
     <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
@@ -513,6 +513,11 @@ if (count($_POST[data]) <= 0) {
     $res_del = $query_del->row();
 
     if ($res_del->class_user_cancel == "taxi") {
+        if($res_del->i_status<=0){
+          $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
+        }else{
+          $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+        }
       ?>
           <tr>
             <td colspan="2">
@@ -522,7 +527,8 @@ if (count($_POST[data]) <= 0) {
                     <div style=" margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br/><?=$res_cancel->s_topic;?></font></b></div>
                   </td>
                   <td align="right">
-                    <span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>
+                    <span class="font-17">
+                      <?=$txt_status_cancel;?>
                   </td>
                 </tr>
               </table>
@@ -552,7 +558,7 @@ if (count($_POST[data]) <= 0) {
 
       </table>
     </div>
-  </div>
+  <!--</div>-->
   <script>
     var check_wait = "<?=$_GET[wait_trans];?>";
     if (check_wait == "") {

@@ -60,7 +60,7 @@ if (count($_POST[data]) <= 0) {
     $name_dv = $res_dv->nickname;
   }
   ?>
-  <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >
+<!--  <div style="padding: 5px 0px;margin: 12px 10px;" id="list_shop_manage_<?=$val[id];?>" >-->
     <input type="hidden" id="check_status_<?=$val[id];?>" value="<?=$val[status];?>" />
     <a href="tel://<?=$val[phone];?>" target="_blank" style="display: none;" id="phone_driver_<?=$val[id];?>"><?=$val[phone];?></a>
     <a href="zello://<?=$res_dv->zello_id;?>?add_user" target="_blank" style="display: none;" id="zello_driver_<?=$val[id];?>"><?=$res_dv->zello_id;?></a>
@@ -465,7 +465,7 @@ $plan = $PLAN_PACK->s_topic;
       </table>
     </div>
 
-  </div>
+<!--  </div>-->
   <script>
     var check_wait = "<?=$_GET[wait_trans];?>";
     if (check_wait == "") {
