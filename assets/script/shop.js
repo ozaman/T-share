@@ -1988,18 +1988,9 @@ function btn_driver_topoint(id) {
   }
 
   if (class_user == 'lab') {
-
-    ons.notification.confirm({
-      message: 'ต้องการแจ้งคนขับถึงสถานที่ส่งแขก',
-      title: "ยืนยัน",
-      buttonLabels: ["ปิด", "ยืนยัน"],
-      callback: function (answer) {
-        // Do something here.
-        sendCheckIn(id, 'driver_topoint');
-        $('#btn-topoint-lab').hide();
-        return;
-      }
-    });
+    sendCheckIn(id, 'driver_topoint');
+    $('#btn-topoint-lab').hide();
+    return;
   }
 
   sendCheckIn(id, 'driver_topoint');
