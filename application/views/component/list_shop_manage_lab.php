@@ -371,7 +371,8 @@ if ($res_dv->nickname != "") {
               if ($val[check_guest_register] == 0) {
                 ?>
                 <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
-              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
+                          id="cancel_book_<?=$val[id];?>"   style="padding: 19px;
                           border-radius: 5px;
                           line-height: 0;
                           border: 1px solid #fe3824;
@@ -403,10 +404,10 @@ if ($res_dv->nickname != "") {
           }
           ?>  		
       <ons-button id="apporve_book_<?=$val[id];?>"  onclick="approveBook('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
-                  style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;argin-top: 5px;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
+                  style="padding: 19px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;<?=$btn_approve;?>" modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap">รับทราบ</span> </ons-button>
 
       <ons-button id="opendetail_book_<?=$val[id];?>" onclick="<?=$onclick;?>" 
-                  style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #0076ff;color: #0076ff;argin-top: 5px;<?=$btn_manage;?>" 
+                  style="padding: 19px; border-radius: 5px; line-height: 0;border:1px solid #0076ff;color: #0076ff;<?=$btn_manage;?>" 
                   modifier="outline" class="button-margin button button--outline button--large" >&nbsp; <span class="font-17 text-cap"><?=$text_mn;?></span> </ons-button>           
       </td>
       </tr>
