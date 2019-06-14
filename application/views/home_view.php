@@ -2213,7 +2213,7 @@
    }
 
    socket.on(Uclass, function(data) {
-      console.log(data)
+//      console.log(data)
       array_data = [];
       var done = [];
       var none = [];
@@ -2238,8 +2238,8 @@
           manage: done,
           history: none
       };
-      console.log('//////////////////////////////')
-             console.log(array_data);
+//      console.log('//////////////////////////////')
+//             console.log(array_data);
       if (check_run_shop != done.length) {
         if ($('#open_shop_manage').val() >0) {
           shopManage();
@@ -2372,8 +2372,9 @@
    }
    });
    }
-   if ($('#open_shop_manage').val() == 1) {
+    if ($('#open_shop_manage').val() == 1) {
       $.each(data, function(index, value) {
+          console.log(value);
           if (value.lab_approve_job == 1) {
               if (value.check_driver_topoint == 1) {
                   shopManageWithData(value);
@@ -2410,10 +2411,14 @@
               $('#status_book_' + value.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
               $('#view_lab_approve_' + value.id).hide();
           }
+          if (value.status=="CANCEL"){
+//            alert(123);
+            shopManageWithData(value);
+          }
       });
           //        shopManage();
       }
-      if($('#open_shop_wait_trans').val() == 1){
+    if($('#open_shop_wait_trans').val() == 1){
           if(data.transfer_money==1){
           shopManageWithData(data);
 //              var pass = {
@@ -2525,6 +2530,10 @@
               $('#txt_wait_' + data.id).show();
               $('#td_cancel_book_' + data.id).show();
               $('#status_book_' + data.id).html('<strong><font color="#54c23d">ยืนยันแล้ว</font></strong>');
+          }
+          if (data.status=="CANCEL"){
+//            alert(123);
+            shopManageWithData(data);
           }
       }
       if($('#open_shop_wait_trans').val() == 1){

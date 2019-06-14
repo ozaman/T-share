@@ -1395,50 +1395,52 @@ function submitCancel() {
   $.post(url, $('#form_type_cancel').serialize(), function (data) {
 
     var obj = data;
+    console.log("*********************************************............................");
     console.log(obj);
-
-    var invoice_cancel = $('#invoice_cancel_select').val();
-    var order_id_calcel = $('#order_id_cancel').val();
-
-    var dv = $('#driver_id_cancel').val();
-    var txt_long_cancel_shop = invoice_cancel + " : " + "คุณทำการยกเลิกรายการส่งแขกนี้";
-    var ac_1 = {
-      i_type: 1,
-      i_sub_type: 6,
-      i_event: order_id_calcel,
-      i_user: detect_user,
-      s_topic: "งานส่งแขก",
-      s_message: txt_long_cancel_shop,
-      s_posted: username
-    };
-
-    var txt_long_nc_cancel_shop = invoice_cancel + " : พนักงานทำการยกเลิกรายการส่งแขก";
-    var nc_to_taxi = {
-      i_type: 1,
-      i_event: order_id_calcel,
-      i_user: dv,
-      s_class_user: "taxi",
-      s_topic: "งานส่งแขก",
-      s_sub_topic: "ยกเลิก",
-      s_message: txt_long_nc_cancel_shop,
-      s_posted: username
-    };
-    apiRecordActivityAndNotification(ac_1, nc_to_taxi);
-    var ac_2 = {};
-    var nc_to_lab = {
-      i_type: 1,
-      i_event: order_id_calcel,
-      i_user: detect_user, // กรณียกเว้นของ lab
-      s_class_user: "lab",
-      s_topic: "งานส่งแขก",
-      s_sub_topic: "ยกเลิก",
-      s_message: txt_long_nc_cancel_shop,
-      s_posted: username,
-      i_company: $('#product_id').val()
-    };
-    apiRecordActivityAndNotification(ac_2, nc_to_lab);
-
+//    return;
     if (obj.result == true) {
+      var invoice_cancel = $('#invoice_cancel_select').val();
+      var order_id_calcel = $('#order_id_cancel').val();
+
+      var dv = $('#driver_id_cancel').val();
+      var txt_long_cancel_shop = invoice_cancel + " : " + "คุณทำการยกเลิกรายการส่งแขกนี้";
+      var ac_1 = {
+        i_type: 1,
+        i_sub_type: 6,
+        i_event: order_id_calcel,
+        i_user: detect_user,
+        s_topic: "งานส่งแขก",
+        s_message: txt_long_cancel_shop,
+        s_posted: username
+      };
+
+      var txt_long_nc_cancel_shop = invoice_cancel + " : พนักงานทำการยกเลิกรายการส่งแขก";
+      var nc_to_taxi = {
+        i_type: 1,
+        i_event: order_id_calcel,
+        i_user: dv,
+        s_class_user: "taxi",
+        s_topic: "งานส่งแขก",
+        s_sub_topic: "ยกเลิก",
+        s_message: txt_long_nc_cancel_shop,
+        s_posted: username
+      };
+      apiRecordActivityAndNotification(ac_1, nc_to_taxi);
+      var ac_2 = {};
+      var nc_to_lab = {
+        i_type: 1,
+        i_event: order_id_calcel,
+        i_user: detect_user, // กรณียกเว้นของ lab
+        s_class_user: "lab",
+        s_topic: "งานส่งแขก",
+        s_sub_topic: "ยกเลิก",
+        s_message: txt_long_nc_cancel_shop,
+        s_posted: username,
+        i_company: $('#product_id').val()
+      };
+      apiRecordActivityAndNotification(ac_2, nc_to_lab);
+
+
       callpop();
       /*ons.notification.alert({
        message: 'ยกเลิกสำเร็จ',
@@ -1449,13 +1451,13 @@ function submitCancel() {
        
        
        });*/
-      fn.hideDialog('cancel-shop-dialog');
+//      fn.hideDialog('cancel-shop-dialog');
 
-      setTimeout(function () {
+//      setTimeout(function () {
         sendSocket(order_id);
         resetFormCancel();
         shopManage();
-      }, 700);
+//      }, 700);
       $('#btn_cancel_book_' + order_id).hide();
 
       var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id + "&class_user=" + class_user;
@@ -2519,6 +2521,8 @@ function changePlan(id) {
 
 function userApproveCancel(id, invoice) {
   $('#taxi_apporve_cancel_' + id).attr('disabled', true);
+  console.log(id+" || "+invoice);
+//  return;
   $.ajax({
     url: "shop/taxi_approved_cancel?order_id=" + id,
     type: 'post',
@@ -2527,29 +2531,29 @@ function userApproveCancel(id, invoice) {
       console.log(res);
       shopManage();
       sendSocket(id);
-      /*var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
-       var ac = {
-       i_type : 1,
-       i_sub_type : 4,
-       i_event : id,
-       i_user : detect_user,
-       s_topic : "งานส่งแขก",
-       s_message : txt_long_ac,
-       s_posted : username
-       };
-       
-       var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
-       var nc = {
-       i_type : 1,
-       i_event : id,
-       i_user : driver_id,
-       s_class_user : "lab",
-       s_topic : "งานส่งแขก",
-       s_sub_topic : "ยกเลิกงาน",
-       s_message : txt_long_nc,
-       s_posted :  username
-       };				
-       apiRecordActivityAndNotification(ac, nc);*/
+//       var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
+//       var ac = {
+//       i_type : 1,
+//       i_sub_type : 4,
+//       i_event : id,
+//       i_user : detect_user,
+//       s_topic : "งานส่งแขก",
+//       s_message : txt_long_ac,
+//       s_posted : username
+//       };
+//       
+//       var txt_long_nc = invoice+" : "+"พนักงานยืนยันงานส่งแขกของคุณแล้ว";
+//       var nc = {
+//       i_type : 1,
+//       i_event : id,
+//       i_user : driver_id,
+//       s_class_user : "lab",
+//       s_topic : "งานส่งแขก",
+//       s_sub_topic : "ยกเลิกงาน",
+//       s_message : txt_long_nc,
+//       s_posted :  username
+//       };				
+//       apiRecordActivityAndNotification(ac, nc);
     }
   });
 }
