@@ -225,7 +225,7 @@ $stamp = $time->format('H:i');
                      border-radius: 8px;display: inline-block;" id="btn_isedit_time">
                 <span class="font-14 text-cap">แก้ไข</span>
               </span>
-            <?php }?>
+            <?php } ?>
           </td>
         </tr>
         <tr>

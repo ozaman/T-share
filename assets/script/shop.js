@@ -1951,31 +1951,30 @@ function readURLuploadImgRegister(input){
 
       $('#pv_register_upload').attr('src', e.target.result);
       $('#pv_register_upload').fadeIn(500);
-//      var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
-//      console.log(url);
-//      //              return;
-//      var data = new FormData($('#form_checkin')[0]);
-//      data.append('fileUpload', $('#img_checkin')[0].files[0]);
-//      $.ajax({
-//        url: url, // point to server-side PHP script 
-//        dataType: 'json', // what to expect back from the PHP script, if anything
-//        cache: false,
-//        contentType: false,
-//        processData: false,
-//        data: data,
-//        type: 'post',
-//        success: function (php_script_response) {
-//          console.log(php_script_response);
-//          if (php_script_response.result == true) {
-//            $('#txt-img-nohas-checkin').hide();
-//            $('#txt-img-has-checkin').show();
-//            $('#pv_' + type).attr('src', php_script_response.path + "?v=" + $.now());
-////            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
-//            $('#pv_' + type).attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
-//            $('#pv_' + type).attr('onclick', ' photo_to_viewer(this)');
-//          }
-//        }
-//      });
+      var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
+      
+      var data = new FormData($('#form_checkin')[0]);
+      data.append('fileUpload', $('#img_checkin')[0].files[0]);
+      $.ajax({
+        url: url, // point to server-side PHP script 
+        dataType: 'json', // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: 'post',
+        success: function (php_script_response) {
+          console.log(php_script_response);
+          if (php_script_response.result == true) {
+            $('#txt-img-nohas-checkin').hide();
+            $('#txt-img-has-checkin').show();
+            $('#pv_' + type).attr('src', php_script_response.path + "?v=" + $.now());
+//            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
+            $('#pv_' + type).attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
+            $('#pv_' + type).attr('onclick', ' photo_to_viewer(this)');
+          }
+        }
+      });
     }
     reader.readAsDataURL(input.files[0]);
   }
@@ -2565,8 +2564,8 @@ function userApproveCancel(id, invoice) {
       console.log(res);
       shopManage();
       sendSocket(id);
-
-      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
+      $('#list_shop_manage_'+id).remove();
+//      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
 //       var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
 //       var ac = {
 //       i_type : 1,

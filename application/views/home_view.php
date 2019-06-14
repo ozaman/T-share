@@ -1756,7 +1756,7 @@
                            onchange="readURLuploadImgRegister(this);">
                   </div>
                   <div style="margin: 20px 10px">
-                    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="" style="background-color: #fff;">ยืนยันแขกลงทะเบียน</ons-button>
+                    <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="" style="background-color: #fff;"></ons-button>
                   </div>
                 </div>
               </td>
