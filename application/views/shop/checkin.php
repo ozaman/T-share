@@ -100,7 +100,7 @@ else {
           </td>
         </tr>
         <?php 
-          if($arr[book][check_driver_topoint]<=0){ ?>
+          if($arr[book][check_driver_topoint]<=0 and $_COOKIE[detect_userclass]=="lab"){ ?>
             <tr>
               <td></td>
               <td colspan="2">
