@@ -435,7 +435,7 @@ foreach ($_POST[data] as $key => $val) {
                   <td>
                     <?php if ($res_del->i_status <= 0) {?>
                   <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel(<?=$val[id];?>, '<?=$val[invoice];?>');" 
-                              style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;margin-top: 5px;" 
+                              style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;" 
                               modifier="outline" class="button-margin button button--outline button--large" >
                     <span class="font-17 text-cap" >รับทราบ</span> 
                   </ons-button>
