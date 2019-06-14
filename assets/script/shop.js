@@ -1441,25 +1441,20 @@ function submitCancel() {
       apiRecordActivityAndNotification(ac_2, nc_to_lab);
 
 
-      callpop();
-      /*ons.notification.alert({
-       message: 'ยกเลิกสำเร็จ',
-       title: "สำเร็จ",
-       buttonLabel: "ตกลง"
-       })
-       .then(function() {
-       
-       
-       });*/
-//      fn.hideDialog('cancel-shop-dialog');
-
-//      setTimeout(function () {
+        callpop();
+        modal.show();
+        setTimeout(function(){ 
+        
         sendSocket(order_id);
         resetFormCancel();
         shopManage();
-//      }, 700);
+        modal.hide();
+        }, 3200);
+        
       $('#btn_cancel_book_' + order_id).hide();
-
+//      $('#td_cancel_book_' + order_id).html('<div style="margin-top: 5px;"><b class="font-18"><font color="#ff0000">ยกเลิก<br></font></b></div>');
+//      $('#txt_wait_' + order_id).html('<span class="font-17"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>');
+//      $('#txt_wait_' + order_id).css('text-align','right');
       var url_messages = "send_onesignal/cancel_shop?order_id=" + order_id + "&class_user=" + class_user;
       $.post(url_messages, function (res) {
         console.log(res)

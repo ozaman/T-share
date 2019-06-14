@@ -431,16 +431,22 @@ else {
 
             </td>
             <td>
+            <td>
               <?php if ($res_del->i_status <= 0) {?>
-            <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel('<?=$val[id];?>', '<?=$val[invoice];?>');" 
-                        style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;margin-top: 5px;" modifier="outline" class="button-margin button button--outline button--large" >
-              <span class="font-17 text-cap">รับทราบ</span> </ons-button>
-          <?php }else{ ?>
-            <span class="font-17">
-                      <font color="#4caf50">ยืนยันยกเลิก</font></span>
+            <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel(<?=$val[id];?>, '<?=$val[invoice];?>');" 
+                        style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;margin-top: 5px;" 
+                        modifier="outline" class="button-margin button button--outline button--large" >
+              <span class="font-17 text-cap">รับทราบ</span> 
+            </ons-button>
+            <?php
+          }else{
+            $date = date('H:i',$res_del->update_date)." น.";
+            $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>'; ?>
+            <div align="right"><span class="font-17"><?=$txt_status_cancel;?></span></div>
           <?php }
-          ?>
-
+            ?>
+          
+      </td>
       </td>
     </tr>
     </table>

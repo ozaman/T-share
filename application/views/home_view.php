@@ -2239,7 +2239,7 @@
           history: none
       };
 //      console.log('//////////////////////////////')
-//             console.log(array_data);
+             console.log(array_data);
       if (check_run_shop != done.length) {
         if ($('#open_shop_manage').val() >0) {
           shopManage();

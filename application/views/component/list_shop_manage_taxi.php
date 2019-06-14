@@ -516,7 +516,9 @@ if (count($_POST[data]) <= 0) {
         if($res_del->i_status<=0){
           $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
         }else{
-          $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+//          $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+          $date = date('H:i',$res_del->update_date)." น.";
+            $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>';
         }
       ?>
           <tr>
@@ -529,6 +531,7 @@ if (count($_POST[data]) <= 0) {
                   <td align="right">
                     <span class="font-17">
                       <?=$txt_status_cancel;?>
+                    </span>
                   </td>
                 </tr>
               </table>

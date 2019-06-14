@@ -96,7 +96,7 @@ foreach ($_POST[data] as $key => $val) {
                     </a>
                   </td>
 
-  <!--onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
+                      <!--onclick="contactDriver('<?=$contract;?>', 'zello', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                     <a href="zello://<?=$res_dv->zello_id;?>?add_user" class="btn " style=" width:100%; text-align:left;border-radius: 0px;" 
                        data-toggle="dropdown" id="btn_div_dropdown_zello" >
@@ -113,7 +113,7 @@ foreach ($_POST[data] as $key => $val) {
                     </a>
                   </td>
 
-  <!--onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
+                      <!--onclick="contactDriver('<?=$contract;?>', 'line', '<?=$res_ps->id;?>', '<?=$val[id];?>');"-->
                   <td width="33%" align="left" style="padding: 0px; border: 1px solid #ccc; box-shadow: 1px 1px 3px #9e9e9e;">
                     <a href="line://ti/p/<?=$res_dv->line_id;?>" class="btn" style=" width:100%; text-align:left; border-radius: 0px;" data-toggle="dropdown" id="shop_sub_menu_map"
                        >
@@ -308,7 +308,7 @@ foreach ($_POST[data] as $key => $val) {
 
         <tr>
           <td colspan="2">
-  <?=$row_q->topic_type;?> : <?=$row_q->topic_th;?>
+            <?=$row_q->topic_type;?> : <?=$row_q->topic_th;?>
           </td>
         </tr>
 
@@ -330,7 +330,7 @@ foreach ($_POST[data] as $key => $val) {
           <td>
             <div class="font-17">
               จำนวน : 
-  <?php if ($val[adult] > 0) {?>
+              <?php if ($val[adult] > 0) {?>
                 ผู้ใหญ่ : <span id="txt_mn_adult_<?=$val[id];?>"><?=$val[adult];?></span> 
               <?php }?>
               <?php if ($val[child] > 0) {?>
@@ -346,14 +346,14 @@ foreach ($_POST[data] as $key => $val) {
             <font color="#ff0000;" style="position: absolute;right: 25px;" id="time_toplace_<?=$val[id];?>"><?="ถึงประมาณ ".$stamp." น.";?></font>
           </td>
         </tr>
-  <?php
-  if ($val[lab_approve_job] == 1) {
-    $hidden_date_app = "";
-  }
-  else {
-    $hidden_date_app = "display:none;";
-  }
-  ?>
+        <?php
+        if ($val[lab_approve_job] == 1) {
+          $hidden_date_app = "";
+        }
+        else {
+          $hidden_date_app = "display:none;";
+        }
+        ?>
         <tr id="date_approved_job_<?=$val[id];?>" style="<?=$hidden_date_app;?>">
           <td colspan="2">
             <span class="font-17" >รับทราบงาน :</span>
@@ -361,17 +361,17 @@ foreach ($_POST[data] as $key => $val) {
           </td>
         </tr>
 
-  <?php
-  if ($val[status] != "CANCEL") {
-    ?>
+        <?php
+        if ($val[status] != "CANCEL") {
+          ?>
           <tr>
             <td colspan="2">
               <table width="100%">
                 <tr>
-    <?php
-    $txt_cancel = "ปฏิเสธ";
-    if ($val[check_guest_register] == 0) {
-      ?>
+                  <?php
+                  $txt_cancel = "ปฏิเสธ";
+                  if ($val[check_guest_register] == 0) {
+                    ?>
                     <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
                   <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
                               border-radius: 5px;
@@ -381,21 +381,21 @@ foreach ($_POST[data] as $key => $val) {
                     <span class="font-17 text-cap"><?=$txt_cancel;?></span>
                   </ons-button>
               </td>	
-    <?php }
-    ?>
+            <?php }
+            ?>
 
             <td width="65%">
-            <?php
-            $text_mn = 'จัดการ';
-            if ($val[lab_approve_job] == 0) {
-              $btn_approve = "";
-              $btn_manage = "display:none;";
-            }
-            else {
-              $btn_approve = "display:none;";
-              $btn_manage = "";
-            }
-            ?>
+              <?php
+              $text_mn = 'จัดการ';
+              if ($val[lab_approve_job] == 0) {
+                $btn_approve = "";
+                $btn_manage = "display:none;";
+              }
+              else {
+                $btn_approve = "display:none;";
+                $btn_manage = "";
+              }
+              ?>
               <?php
               if ($_GET[wait_trans] != "") {
                 $onclick = "openDetailShopWaitTrans('".$val[invoice]."');";
@@ -415,15 +415,15 @@ foreach ($_POST[data] as $key => $val) {
         </table>
         </td>
         </tr>
-    <?php
-  }
-  else {
-    $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
-    $query_del = $this->db->query($sql_del);
-    $res_del = $query_del->row();
+        <?php
+      }
+      else {
+        $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
+        $query_del = $this->db->query($sql_del);
+        $res_del = $query_del->row();
 
-    if ($res_del->class_user_cancel == "taxi") {
-      ?>
+        if ($res_del->class_user_cancel == "taxi") {
+          ?>
           <tr>
             <td colspan="2">
               <table width="100%" >
@@ -433,26 +433,37 @@ foreach ($_POST[data] as $key => $val) {
 
                   </td>
                   <td>
-                <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel(<?=$val[id];?>, '<?=$val[invoice];?>');" 
-                            style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;margin-top: 5px;" 
-                            modifier="outline" class="button-margin button button--outline button--large" >
-                  <span class="font-17 text-cap">รับทราบ</span> 
-                </ons-button>
+                    <?php if ($res_del->i_status <= 0) {?>
+                  <ons-button id="taxi_apporve_cancel_<?=$val[id];?>"  onclick="userApproveCancel(<?=$val[id];?>, '<?=$val[invoice];?>');" 
+                              style="padding: 15px; border-radius: 5px; line-height: 0;border:1px solid #4CAF50;color: #4CAF50;margin-top: 5px;" 
+                              modifier="outline" class="button-margin button button--outline button--large" >
+                    <span class="font-17 text-cap" >รับทราบ</span> 
+                  </ons-button>
+                  <?php
+                }
+                else {
+                  $date = date('H:i',$res_del->update_date)." น.";
+                  $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>';
+                  ?>
+                <div align="right"><span class="font-17"><?=$txt_status_cancel;?></span></div>
+                <?php }
+                ?>
+
             </td>
           </tr>
           </table>
           </td>
           </tr>
-    <?php
-    }
-    else {
-      if ($res_del->i_status <= 0) {
-        $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
-      }
-      else {
-        $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
-      }
-      ?>
+          <?php
+        }
+        else {
+          if ($res_del->i_status <= 0) {
+            $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
+          }
+          else {
+            $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+          }
+          ?>
           <tr>
             <td colspan="2">
               <table width="100%" >
@@ -468,10 +479,10 @@ foreach ($_POST[data] as $key => $val) {
               </table>
             </td>
           </tr>
-      <?php
-    }
-  }
-  ?>
+          <?php
+        }
+      }
+      ?>
       </table>
     </div>
 

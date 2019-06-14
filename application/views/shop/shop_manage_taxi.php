@@ -438,15 +438,15 @@ foreach ($_POST[data] as $key => $val) {
                 <tr>
                   <?php
                   $txt_cancel = t_cancel;
-                  if ($val[lab_approve_job] == 0) {
-                    $btn_cancel_taxi = "";
-                  }
-                  else {
-                    $btn_cancel_taxi = "display:none;";
-                  }
+//                  if ($val[lab_approve_job] == 0) {
+//                    $btn_cancel_taxi = "";
+//                  }
+//                  else {
+//                    $btn_cancel_taxi = "display:none;";
+//                  }
                   ?>
-                  <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
-                <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>', '<?=$val[program];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 15px;
+             <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
+                <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>', '<?=$val[program];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 17.5px;
                             border-radius: 5px;
                             line-height: 0;
                             border: 1px solid #fe3824;
@@ -509,7 +509,7 @@ foreach ($_POST[data] as $key => $val) {
         </tr>
         <?php
       }
-      else {
+        else {
         $sql_del = "SELECT * FROM history_del_order_booking WHERE order_id= ".$val[id]."  ";
         $query_del = $this->db->query($sql_del);
         $res_del = $query_del->row();
@@ -519,7 +519,8 @@ foreach ($_POST[data] as $key => $val) {
             $txt_status_cancel = '<i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#ff9800;"></i>&nbsp;<font color="#ff9800">รอรับทราบ</font></span>';
           }
           else {
-            $txt_status_cancel = '<font color="#4caf50">ยืนยันยกเลิก</font></span>';
+            $date = date('H:i',$res_del->update_date)." น.";
+            $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>';
           }
           ?>
           <tr>
@@ -536,7 +537,7 @@ foreach ($_POST[data] as $key => $val) {
               </table>
             </td>
           </tr>
-          <? }else{ ?>
+          <?php }else{ ?>
           <tr>
             <td colspan="2">
               <table width="100%" >

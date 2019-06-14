@@ -1301,6 +1301,7 @@ class Shop_model extends CI_Model {
 
     $data[driver_complete] = 1;
     $data[update_date] = time();
+    $data[check_driver_pay] = 1;
     $this->db->where('id',$_GET[order_id]);
     $data[result] = $this->db->update('order_booking',$data);
 
