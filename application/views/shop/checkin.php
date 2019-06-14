@@ -85,32 +85,31 @@ else {
                     </td>
                   <?php }
                   ?>
-           <!--<td>
-              <i id="driver_topoint_locat_off" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">location_on</i>
-              <i id="driver_topoint_locat_on" onclick="openPointMaps('driver_topoint','<?=$arr[book][id];?>');" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: none;">location_on</i>
-           </td>
-           <td>
-              <i id="photo_driver_topoint_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-              <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date];?>');">photo_camera</i>
-             
-           </td>-->
+   <!--<td>
+      <i id="driver_topoint_locat_off" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">location_on</i>
+      <i id="driver_topoint_locat_on" onclick="openPointMaps('driver_topoint','<?=$arr[book][id];?>');" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: none;">location_on</i>
+   </td>
+   <td>
+      <i id="photo_driver_topoint_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+      <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date];?>');">photo_camera</i>
+     
+   </td>-->
                 </tr>
               </tbody>
             </table>
           </td>
         </tr>
-        <?php 
-          if($arr[book][check_driver_topoint]<=0 and $_COOKIE[detect_userclass]=="lab"){ ?>
-            <tr>
-              <td></td>
-              <td colspan="2">
-                <ons-button style="margin: 10px 0px;" modifier="large" class="font-17 button button--large" 
-                            onclick="btn_driver_topoint('<?=$arr[book][id];?>')" id="btn-topoint-lab" >คนขับถึงสถานที่</ons-button>
-              </td>
+        <?php if ($arr[book][check_driver_topoint] <= 0 and $_COOKIE[detect_userclass] == "lab") {?>
+          <tr>
+            <td></td>
+            <td colspan="2">
+        <ons-button style="margin: 10px 0px;" modifier="large" class="font-17 button button--large" 
+                    onclick="btn_driver_topoint('<?=$arr[book][id];?>')" id="btn-topoint-lab" >คนขับถึงสถานที่</ons-button>
+        </td>
         </tr>
-        <?php  }
-        ?>
-        
+      <?php }
+      ?>
+
       </tbody>
     </table>
     <input type="hidden" value="<?=$arr[book][driver_topoint];?>" id="driver_topoint_check_click">
@@ -161,16 +160,16 @@ else {
                         </td>
                       <?php }
                       ?>
-                <!--<tr>
-                   <td>
-                     <i id="guest_receive_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
-                      <i id="guest_receive_locat_on" onclick="openPointMaps('guest_receive','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
-                   </td>
-                   <td>
-                      <i id="photo_guest_receive_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-                      <i id="photo_guest_receive_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date];?>');">photo_camera</i>
-                   </td>
-                </tr>-->
+        <!--<tr>
+           <td>
+             <i id="guest_receive_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
+              <i id="guest_receive_locat_on" onclick="openPointMaps('guest_receive','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
+           </td>
+           <td>
+              <i id="photo_guest_receive_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+              <i id="photo_guest_receive_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date];?>');">photo_camera</i>
+           </td>
+        </tr>-->
               </tbody>
             </table>
         </td>
@@ -182,7 +181,7 @@ else {
 </td>
 </tr>
 
-<tr id="step_guest_register" style="display:none">
+<tr id="step_guest_register" style="display:none;">
   <td class="font-16">
     <div class="div-all-checkin">
       <table width="100%" border="0" cellspacing="2" cellpadding="0" id="box_guest_register">
@@ -218,7 +217,18 @@ else {
                       </td>
                       <td>&nbsp;</td>
                     <?php }?>
+
+                    <?php if ($_COOKIE[detect_userclass] == "lab") {?>
+                      <td>
+                        <i id="photo_guest_register_upload" onclick="uploadImgRegister(<?=$arr[book][id];?>);"
+                           class="material-icons" 
+                           style="margin-right: 5px;color: #00BCD4; font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid #00BCD4;display: none;">
+                          cloud_upload</i>
+                      </td>
+                    <?php }?>
+
                     <td>
+
                       <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
                      <!-- <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date];?>');">photo_camera</i>-->
                       <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="modalShowImg('../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg?v=<?=time();?>', '');">photo_camera</i>
@@ -290,6 +300,7 @@ else {
 
   </td>
 </tr>
+
 <tr id="step_choose_get_money" style="display:nones;">
 
 </tr>
@@ -299,7 +310,7 @@ else {
 </tr>
 
 <tr id="step_driver_pay_com" style="display:none;">
-  
+
 </tr>
 
 </tbody>

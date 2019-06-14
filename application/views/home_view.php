@@ -1717,6 +1717,58 @@
             </script>
         </ons-page>
     </template>
+    
+  <template id="popup_upload_img.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button class="option-back">กลับ</ons-back-button>
+        </div>
+        <div class="center"></div>
+        <div class="right">
+          <ons-toolbar-button onclick="reloadApp();">
+            <ons-icon icon="ion-home, material:md-home"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+      </ons-toolbar>
+      <ons-card class="card">
+        <table class="onlyThisTable" width="100%" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;">
+          <tbody>
+            <tr style="display: nones;">
+              <td align="center"><span>กรุณาถ่ายภาพใบลงทะเบียน</span></td>
+            </tr>
+            <tr style="display: nones;">
+              <td>
+                <input type="hidden" value="" id="order_id_for_register_upload" />
+                <div align="center" style="margin: 10px;">
+                  <span id="txt-img-has-checkin" style="display: none;">
+                    <i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว
+                  </span>
+                  <span id="txt-img-nohas-checkin" style="display: nones;">
+                    <i class="fa fa-times-circle" aria-hidden="true" style="color: #ff0000;"></i>&nbsp; ไม่มีภาพ
+                  </span>
+                  <div class="box-preview-img" id="box_img_checkin">
+                    <img src="" class="img-preview-show" id="pv_checkin" style="display: nones;">
+                  </div>
+                  <div class="upload-btn-wrapper">
+                    <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
+                    <input type="file" id="img_checkin" accept="image/*"
+                           onchange="readURLuploadImgRegister(this);">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+      </ons-card>
+      <script>
+          ons.getScriptPage().onInit = function () {
+             this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+         }
+      </script>
+    </ons-page>
+  </template>
+  
     <template id="shopcategory.html">
         <ons-page>
             <ons-toolbar>
@@ -1740,7 +1792,7 @@
         </ons-page>
     </template>
     
-  <template id="cancel-shop.html">
+    <template id="cancel-shop.html">
         <ons-page>
             <ons-toolbar>
                 <div class="left">
