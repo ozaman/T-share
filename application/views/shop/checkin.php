@@ -139,13 +139,40 @@ else {
                       <span  class="font-20 text-cap" id="txt_btn_guest_receive"><?=$title_guest_receive;?></span>
                     </button>
                     <input type="hidden" value="<?=$arr[book][check_guest_receive];?>" id="guest_receive_check_click">
+
                   </td>
                 </tr>
                 <tr>
                   <td style="height:30px;">
                     <div id="status_guest_receive">
-                      <div class="font-16"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000"><?=$txt_wait_guest_receive;?></font></strong></div>
+                      <div class="font-16">
+                        <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> 
+                        <strong><font color="#FF0000"><?=$txt_wait_guest_receive;?></font></strong>
+                      </div>
                     </div>
+                     <?php
+//  echo $arr[book][plan_id];
+  if ($arr[book][check_guest_receive] == 1 && $arr[book][status] != "CANCEL") {
+
+    if ($_COOKIE[detect_userclass] == "lab") {
+      ?>
+      <div id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
+              /* position: absolute; */
+              /* right: 10px; */
+              border: 1px solid #F44336;
+              color: #F44336;
+              box-shadow: 1px 1px 3px #efefef;
+              padding: 0px 4px;
+              border-radius: 50px;
+              top: 0px;
+              /*margin-right: -30px;*/
+
+/*margin-top: -24px;*/
+              /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-16 text-cap"><?=t_cancel;?></span></div>
+              <?php
+            }
+          }
+          ?>
                   </td>
                   <td width="30" id="pm_guest_receive" style="display: none;">
                     <table width="100%">

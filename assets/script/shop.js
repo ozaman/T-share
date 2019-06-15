@@ -2045,6 +2045,7 @@ function btn_driver_topoint(id) {
 
 function btn_guest_receive(id) {
   if ($('#guest_receive_check_click').val() == 1) {
+
     return;
   }
   if (class_user == "taxi") {
@@ -2057,6 +2058,7 @@ function btn_guest_receive(id) {
     return;
   }
   sendCheckIn(id, 'guest_receive', $('#place_product_id').val());
+  $('#btn_cancel_shop').show();
   /*fn.pushPage({
    'id': 'popup_shop_checkin.html',
    'title': "พนักงานรับแขก"

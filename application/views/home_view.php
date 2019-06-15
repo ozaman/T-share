@@ -1823,7 +1823,7 @@
                     <ons-list>
                       <ons-list-header>เลือกสาเหตุยกเลิก</ons-list-header>
                     <?php 
-                     $query = $this->db->query("select * from shop_type_cancel where i_status = 1 and class = '".$_COOKIE[detect_userclass]."' ");
+                     $query = $this->db->query("select * from shop_type_cancel where i_status = 1  ");
                      foreach ($query->result() as $row){ ?>
                     <ons-list-item tappable>
                       <label class="left" style="margin-left: 15px;">
@@ -1842,7 +1842,7 @@
                 <!--<ons-button modifier="light" onclick="fn.hideDialog('cancel-shop-dialog');resetFormCancel();">ปิด</ons-button>-->
                 <!--<ons-button class="button--outline" onclick="submitCancel();">ยืนยัน</ons-button>-->
             
-            <ons-button style="background-color: #fe3824;margin: 10px 0px;" modifier="large" class="font-17" onclick="callpop();">ปิด</ons-button>
+            <!-- <ons-button style="background-color: #fe3824;margin: 10px 0px;" modifier="large" class="font-17" onclick="callpop();">ปิด</ons-button> -->
             <ons-button style="margin: 10px 0px;" modifier="large" class="font-17" onclick="submitCancel();">ยืนยันยกเลิกส่งแขก</ons-button>
             </p>
           </div>
