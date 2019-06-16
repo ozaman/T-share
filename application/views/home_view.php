@@ -2393,6 +2393,7 @@
               if (value.check_driver_topoint == 1) {
                   console.log("driver_topoint");
                   changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
+                  $('#btn-topoint-lab').hide();
               }
               if (value.check_guest_receive == 1) {
                   console.log("guest_receive");
