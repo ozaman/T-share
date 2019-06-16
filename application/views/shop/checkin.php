@@ -152,7 +152,7 @@ else {
                     </div>
                      <?php
 //  echo $arr[book][plan_id];
- 
+ ?>
                   </td>
                   <td width="30" id="pm_guest_receive" style="display: none;">
                     <table width="100%">

@@ -1628,7 +1628,8 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } else if (type == "guest_receive") {
+  } 
+  else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1650,29 +1651,26 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } else if (type == "guest_register") {
+  } 
+  else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
-//    check_plan_transfer(id);
-//    loadBoxConfirmPay(id);
 
-    var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
+//    var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
+//
+//    $.ajax({
+//      url: url_loadboxconfirmpay,
+//      type: 'post',
+//      dataType: 'json',
+//      success: function (res) {
+//        console.log(res);
+//        if (res.res == true) {
+//          check_plan_transfer(id);
+//        }
+//      }
+//    });
 
-    $.ajax({
-      url: url_loadboxconfirmpay,
-      type: 'post',
-      dataType: 'json',
-      success: function (res) {
-        console.log(res);
-        if (res.res == true) {
-          check_plan_transfer(id);
-        }
-      }
-    });
-
-//    
-//    $('#step_driver_pay_report').show();
 
     if (class_user == "taxi") {
       $('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
@@ -1951,10 +1949,10 @@ function readURLuploadImgRegister(input){
 
       $('#pv_register_upload').attr('src', e.target.result);
       $('#pv_register_upload').fadeIn(500);
-      var url = "page/upload_img?type=" + type + "&action=" + subtype + "&id=" + id;
+      var url = "page/upload_img?type=checkin&action=guest_register&id="+$('#order_id_for_register_upload').val();
       
-      var data = new FormData($('#form_checkin')[0]);
-      data.append('fileUpload', $('#img_checkin')[0].files[0]);
+      var data = new FormData($('#form_upload_pic_regis')[0]);
+      data.append('fileUpload', $('#img_regis')[0].files[0]);
       $.ajax({
         url: url, // point to server-side PHP script 
         dataType: 'json', // what to expect back from the PHP script, if anything
@@ -1966,12 +1964,16 @@ function readURLuploadImgRegister(input){
         success: function (php_script_response) {
           console.log(php_script_response);
           if (php_script_response.result == true) {
-            $('#txt-img-nohas-checkin').hide();
+            $('#photo_guest_register_no').hide();
+            $('#photo_guest_register_yes').show();
+            
+            $('#photo_guest_register_no').hide();
             $('#txt-img-has-checkin').show();
-            $('#pv_' + type).attr('src', php_script_response.path + "?v=" + $.now());
+            
+            $('#pv_register_upload').attr('src', php_script_response.path + "?v=" + $.now());
 //            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
-            $('#pv_' + type).attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
-            $('#pv_' + type).attr('onclick', ' photo_to_viewer(this)');
+            $('#pv_register_upload').attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
+            $('#pv_register_upload').attr('onclick', ' photo_to_viewer(this)');
           }
         }
       });
@@ -3091,9 +3093,10 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      loadBoxChooseGetMoney(order_id);
+      
       if (res.result == false) {
-
+//        alert();
+        loadBoxChooseGetMoney(order_id);
         var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
@@ -3107,8 +3110,8 @@ function chackPackCash(order_id) {
             }
           }
         });
-//                loadBoxConfirmPay(id);
       } else {
+//        alert(4);
         load_status_trans(order_id);
       }
     }
