@@ -91,7 +91,7 @@ $stamp = $time->format('H:i');
 <input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
  <?php 
- if ($arr[book][check_guest_receive] == 1 && $arr[book][status] != "CANCEL") {
+ if ($arr[book][check_guest_register] != 1 && $arr[book][status] != "CANCEL") {
 
     if ($_COOKIE[detect_userclass] == "lab") {
       ?>
@@ -102,7 +102,7 @@ $stamp = $time->format('H:i');
               color: #F44336;
               box-shadow: 1px 1px 3px #efefef;
               padding: 0px 4px;
-              border-radius: 50px;
+              border-radius: 4px;
               top: 0px;
               /*margin-right: -30px;*/
 
