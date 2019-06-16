@@ -2394,6 +2394,7 @@
               console.log(value);
               if (value.check_driver_topoint == 1) {
                   console.log("driver_topoint");
+                  $('#btn-topoint-lab').hide();
                   changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
               }
               if (value.check_guest_receive == 1) {
@@ -2402,6 +2403,7 @@
                   $('.page').animate({
                       scrollTop: $(document).height()+700
                   }, 500);
+                  
               }
               if (value.check_guest_register == 1) {
                   console.log("guest_register");

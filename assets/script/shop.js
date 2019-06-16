@@ -1628,7 +1628,8 @@ function changeHtml(type, id, st) {
 
     $('#step_guest_receive').show();
 
-  } else if (type == "guest_receive") {
+  } 
+  else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1650,7 +1651,8 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } else if (type == "guest_register") {
+  } 
+  else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
