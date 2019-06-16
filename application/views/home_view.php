@@ -2270,7 +2270,7 @@
    }
 
    socket.on(Uclass, function(data) {
-//      console.log(data)
+      console.log(data)
       array_data = [];
       var done = [];
       var none = [];
