@@ -2502,6 +2502,9 @@
    //      return;
    //    }
       //console.log(array_rooms)
+      if (data.length == 0) {
+        array_data = [];
+      }
       var check_open = $('#check_open_shop_id').val();
       if (check_open != 0) {
           if (data.id == check_open) {
