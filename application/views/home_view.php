@@ -2433,6 +2433,16 @@
    }
     if ($('#open_shop_manage').val() == 1) {
       $.each(data, function(index, value) {
+          if(value.status == "COMPLETED" && value.check_driver_pay == 1){
+              if(array_data.manage.length==1){
+                array_data.manage.splice(index, 1); 
+                shopManage();
+                $('#number_shop').hide();
+                $('#tab_shop_mn').removeAttr("badge");
+                alert("xxx");
+              }
+//            $('#list_shop_manage_'+value.id).remove();
+          }
           console.log(value);
           if (value.lab_approve_job == 1) {
               if (value.check_driver_topoint == 1) {
