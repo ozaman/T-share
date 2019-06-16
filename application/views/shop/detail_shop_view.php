@@ -90,8 +90,28 @@ $stamp = $time->format('H:i');
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
-  
+ <?php 
+ if ($arr[book][check_guest_receive] == 1 && $arr[book][status] != "CANCEL") {
 
+    if ($_COOKIE[detect_userclass] == "lab") {
+      ?>
+      <div id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
+              /* position: absolute; */
+              /* right: 10px; */
+              border: 1px solid #F44336;
+              color: #F44336;
+              box-shadow: 1px 1px 3px #efefef;
+              padding: 0px 4px;
+              border-radius: 50px;
+              top: 0px;
+              /*margin-right: -30px;*/
+
+/*margin-top: -24px;*/
+              /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-16 text-cap"><?=t_cancel;?></span></div>
+              <?php
+            }
+          }
+          ?>
   <div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
   <span class="font-20"><?=$res_ps->$place_shopping;?></span>
 
