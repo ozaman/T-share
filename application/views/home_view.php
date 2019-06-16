@@ -1732,7 +1732,6 @@
         </div>
       </ons-toolbar>
       <ons-card class="card">
-        <form id="form_upload_pic_regis" method="post">
         <table class="onlyThisTable" width="100%" border="0" align="center" cellpadding="3" cellspacing="5" style="margin-top: 0px;">
           <tbody>
             <tr style="display: nones;">
@@ -1740,7 +1739,7 @@
             </tr>
             <tr style="display: nones;">
               <td>
-                <input type="hidden" value="" id="order_id_for_register_upload" enctype="multipart/form-data" />
+                <input type="hidden" value="" id="order_id_for_register_upload" />
                 <div align="center" style="margin: 10px;">
                   <span id="txt-img-has-checkin" style="display: none;">
                     <i class="fa fa-check-circle" aria-hidden="true" style="color: #25da25;"></i>&nbsp; มีภาพถ่ายแล้ว
@@ -1753,18 +1752,17 @@
                   </div>
                   <div class="upload-btn-wrapper">
                     <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
-                    <input type="file" id="img_regis" accept="image/*"
+                    <input type="file" id="img_checkin" accept="image/*"
                            onchange="readURLuploadImgRegister(this);">
                   </div>
-<!--                  <div style="margin: 20px 10px">
+                  <div style="margin: 20px 10px">
                     <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="" style="background-color: #fff;"></ons-button>
-                  </div>-->
+                  </div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table> 
-        </form>
       </ons-card>
       <script>
           ons.getScriptPage().onInit = function () {
@@ -2270,7 +2268,7 @@
    }
 
    socket.on(Uclass, function(data) {
-      console.log(data)
+//      console.log(data)
       array_data = [];
       var done = [];
       var none = [];
@@ -2394,7 +2392,6 @@
               console.log(value);
               if (value.check_driver_topoint == 1) {
                   console.log("driver_topoint");
-                  $('#btn-topoint-lab').hide();
                   changeHtml("driver_topoint", value.id, timestampToDate(value.driver_topoint_date, "time"));
               }
               if (value.check_guest_receive == 1) {
@@ -2403,7 +2400,6 @@
                   $('.page').animate({
                       scrollTop: $(document).height()+700
                   }, 500);
-                  
               }
               if (value.check_guest_register == 1) {
                   console.log("guest_register");
