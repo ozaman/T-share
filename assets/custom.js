@@ -611,7 +611,8 @@ function sendSocket(id) {
   var dataorder = {
     order: parseInt(id),
   };
-  socket.emit('sendchat', dataorder);
+  setTimeout(function(){ socket.emit('sendchat', dataorder); }, 500);
+  
 }
 
 function hideRes(id) {

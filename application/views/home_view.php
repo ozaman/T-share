@@ -2270,6 +2270,8 @@
    socket.on(Uclass, function(data) {
 //      console.log(data)
       array_data = [];
+      var manage = [];
+      var history = [];
       var done = [];
       var none = [];
       $.each(data, function(index, value) {
