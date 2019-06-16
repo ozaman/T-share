@@ -1862,12 +1862,14 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } else if (type == 'driver_pay_report') {
+  } 
+  else if (type == 'driver_pay_report') {
 
     $('#btn_isedit_time').hide();
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } else {
+  } 
+  else {
 
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
@@ -2060,7 +2062,7 @@ function btn_guest_receive(id) {
     return;
   }
   sendCheckIn(id, 'guest_receive', $('#place_product_id').val());
-  $('#btn_cancel_shop').show();
+//  $('#btn_cancel_shop').show();
   /*fn.pushPage({
    'id': 'popup_shop_checkin.html',
    'title': "พนักงานรับแขก"
