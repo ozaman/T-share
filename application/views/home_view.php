@@ -2436,7 +2436,7 @@
                 shopManage();
                 $('#number_shop').hide();
                 $('#tab_shop_mn').removeAttr("badge");
-                alert("xxx");
+                return;
               }
 //            $('#list_shop_manage_'+value.id).remove();
           }
@@ -2561,6 +2561,16 @@
       }
 //      console.log($('#open_shop_manage').val());
       if ($('#open_shop_manage').val() == 1) {
+          if(data.status == "COMPLETED" && data.check_driver_pay == 1){
+              if(array_data.manage.length==1){
+                array_data.manage.splice(0, 1); 
+                shopManage();
+                $('#number_shop').hide();
+                $('#tab_shop_mn').removeAttr("badge");
+                return;
+              }
+//            $('#list_shop_manage_'+value.id).remove();
+          }
           console.log("*************************************");
           if (data.lab_approve_job == 1) {
               if (data.check_driver_topoint == 1) {
