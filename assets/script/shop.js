@@ -1656,25 +1656,21 @@ function changeHtml(type, id, st) {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
-//    check_plan_transfer(id);
-//    loadBoxConfirmPay(id);
 
-    var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
+//    var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + id;
+//
+//    $.ajax({
+//      url: url_loadboxconfirmpay,
+//      type: 'post',
+//      dataType: 'json',
+//      success: function (res) {
+//        console.log(res);
+//        if (res.res == true) {
+//          check_plan_transfer(id);
+//        }
+//      }
+//    });
 
-    $.ajax({
-      url: url_loadboxconfirmpay,
-      type: 'post',
-      dataType: 'json',
-      success: function (res) {
-        console.log(res);
-        if (res.res == true) {
-          check_plan_transfer(id);
-        }
-      }
-    });
-
-//    
-//    $('#step_driver_pay_report').show();
 
     if (class_user == "taxi") {
       $('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
@@ -3097,9 +3093,10 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      loadBoxChooseGetMoney(order_id);
+      
       if (res.result == false) {
-
+//        alert();
+        loadBoxChooseGetMoney(order_id);
         var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
@@ -3113,8 +3110,8 @@ function chackPackCash(order_id) {
             }
           }
         });
-//                loadBoxConfirmPay(id);
       } else {
+//        alert(4);
         load_status_trans(order_id);
       }
     }
