@@ -64,18 +64,36 @@ if ($res_type_change->s_topic == "") {
 }
 
 
-$query = $this->db->query("select * from change_plan_logs where order_id = ".$data->id);
-$check_change_plan = $query->num_rows();
-if ($check_change_plan == 0) {
-  $titel = t_work_remuneration;
-  $display_none_change_plan = "display:none;";
-  $color_titel = "";
-}
-else {
+//$query = $this->db->query("select * from change_plan_logs where order_id = ".$data->id);
+//$check_change_plan = $query->num_rows();
+$this->db->select('id');
+$_where = array();
+$_where[i_order_booking] = $data->id;
+$chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
+$num_log = $chk_log->num_rows();
+if ($num_log > 0) {
+//  $tbl_com_booking = TBL_COM_ORDER_BOOKING_LOGS;
   $titel = "เปลี่ยนแปลง".t_work_remuneration;
   $display_none_change_plan = "";
   $color_titel = "color: #f00 !important;";
 }
+else {
+  $titel = t_work_remuneration;
+  $display_none_change_plan = "display:none;";
+  $color_titel = "";
+//  $tbl_com_booking = TBL_COM_ORDER_BOOKING;
+}
+
+//if ($check_change_plan == 0) {
+//  $titel = t_work_remuneration;
+//  $display_none_change_plan = "display:none;";
+//  $color_titel = "";
+//}
+//else {
+//  $titel = "เปลี่ยนแปลง".t_work_remuneration;
+//  $display_none_change_plan = "";
+//  $color_titel = "color: #f00 !important;";
+//}
 
 
 $_where = array();
@@ -107,7 +125,7 @@ $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
 $plan = $PLAN_PACK->s_topic;
 ?>
 <div style="padding: 5px 0px;">
-  <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
+  <ons-list-header class="list-header" style="<?=$color_titel;?>"> <?=$titel;?></ons-list-header>
   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
     <?php //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>
     <tr>
@@ -183,13 +201,13 @@ $plan = $PLAN_PACK->s_topic;
       else {
         $TBL = TBL_COM_ORDER_BOOKING_LOGS;
       }
-       // echo $TBL.'////////////';
+      // echo $TBL.'////////////';
       $COM_ORDER_BOOKING = $this->Main_model->rowdata($TBL,$_where,$_select);
 
       // echo '<pre>';
       // print_r($COM_ORDER_BOOKING);
       // echo '</pre>';
-     // echo $COM_ORDER_BOOKING->i_main_list."<br/>";
+      // echo $COM_ORDER_BOOKING->i_main_list."<br/>";
       if ($COM_ORDER_BOOKING->i_main_list == 5) {
         $curency = '%';
         $title_head = 'รายการ';
@@ -226,12 +244,12 @@ $plan = $PLAN_PACK->s_topic;
         $pax = $USE_TYPE->name_th;
       }
       else if ($COM_ORDER_BOOKING->i_main_list == 4) {
-          $curency = 'บ.';
-          $title_head = 'รายการ';
-          $title_head2 = 'ราคา(คนละ)';
-          $all_total_iprice += $COM_ORDER_BOOKING->i_price * $COM_ORDER_BOOKING->i_pax;
-          $pax = $COM_ORDER_BOOKING->i_pax;
-        }
+        $curency = 'บ.';
+        $title_head = 'รายการ';
+        $title_head2 = 'ราคา(คนละ)';
+        $all_total_iprice += $COM_ORDER_BOOKING->i_price * $COM_ORDER_BOOKING->i_pax;
+        $pax = $COM_ORDER_BOOKING->i_pax;
+      }
       else if ($COM_ORDER_BOOKING->i_main_list == 3) {
         $curency = 'บ.';
         $title_head = 'จำนวน';
@@ -274,14 +292,14 @@ $plan = $PLAN_PACK->s_topic;
             $this->db->select('*');
             $query_plan = $this->db->get_where(TBL_COM_ORDER_BOOKING_COM,$_where);
 //            echo 6666666666;
-           // echo '<pre>';
-           // print_r($COM_ORDER_BOOKING);
-           // echo '</pre>';
+            // echo '<pre>';
+            // print_r($COM_ORDER_BOOKING);
+            // echo '</pre>';
 //            exit();
             if ($COM_ORDER_BOOKING->i_main_list != 5) {
-           //         echo '<pre>';
-           // print_r($COM_ORDER_BOOKING);
-           // echo '</pre>';
+              //         echo '<pre>';
+              // print_r($COM_ORDER_BOOKING);
+              // echo '</pre>';
               ?>
 
               <tr>
@@ -309,9 +327,9 @@ $plan = $PLAN_PACK->s_topic;
               $_order = array();
               $_order['id'] = 'asc';
               $BOOKING_CHANGE_PLAN = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_CHANGE_PLAN,$_where,$_select,$_order);
-           //      echo '<pre>';
-           // print_r($BOOKING_CHANGE_PLAN);
-           // echo '</pre>';    
+              //      echo '<pre>';
+              // print_r($BOOKING_CHANGE_PLAN);
+              // echo '</pre>';    
 
               if ($BOOKING_CHANGE_PLAN == '') {
 
@@ -349,7 +367,7 @@ $plan = $PLAN_PACK->s_topic;
 
                   </td>
 
-                         <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                               <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                   <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?>%</span></td>
                   <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                   <td width="30"></td>
