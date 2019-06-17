@@ -1752,12 +1752,12 @@
                   </div>
                   <div class="upload-btn-wrapper">
                     <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
-                    <input type="file" id="img_checkin" accept="image/*"
+                    <input type="file" id="img_regis" accept="image/*"
                            onchange="readURLuploadImgRegister(this);">
                   </div>
-                  <div style="margin: 20px 10px">
+<!--                  <div style="margin: 20px 10px">
                     <ons-button type="button" modifier="outline" class="button-margin button button--outline button--large" onclick="" style="background-color: #fff;"></ons-button>
-                  </div>
+                  </div>-->
                 </div>
               </td>
             </tr>

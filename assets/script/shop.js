@@ -1969,8 +1969,9 @@ function readURLuploadImgRegister(input){
             $('#photo_guest_register_no').hide();
             $('#photo_guest_register_yes').show();
             
-            $('#photo_guest_register_no').hide();
+//            $('#photo_guest_register_no').hide();
             $('#txt-img-has-checkin').show();
+            $('#txt-img-nohas-checkin').hide();
             
             $('#pv_register_upload').attr('src', php_script_response.path + "?v=" + $.now());
 //            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
@@ -2594,7 +2595,7 @@ function userApproveCancel(id, invoice) {
 //       s_message : txt_long_nc,
 //       s_posted :  username
 //       };				
-       apiRecordActivityAndNotification(ac, nc);
+//       apiRecordActivityAndNotification(ac, nc);
     }
   });
 }
