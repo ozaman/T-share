@@ -1627,7 +1627,7 @@ function changeHtml(type, id, st) {
     } else {
       $('#txt_btn_driver_topoint').text('คนขับแจ้งถึงสถานที่');
     }
-
+    $('#btn_isedit_time').hide();
     $('#step_guest_receive').show();
 
   } 
@@ -1673,7 +1673,7 @@ function changeHtml(type, id, st) {
 //      }
 //    });
 
-
+    $('#btn_isedit_time').hide();
     if (class_user == "taxi") {
       $('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
     } else {
