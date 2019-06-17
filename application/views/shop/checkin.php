@@ -236,7 +236,7 @@ else {
 
                     <td>
 
-                      <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+                      <i id="photo_guest_register_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgba(59, 89, 152, 0.48);display: none;">photo_camera</i>
                      <!-- <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_register','<?=$arr[book][guest_register_date];?>');">photo_camera</i>-->
                       <i id="photo_guest_register_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="modalShowImg('../data/fileupload/store/guest_register_<?=$arr[book][id];?>.jpg?v=<?=time();?>', '');">photo_camera</i>
                     </td>

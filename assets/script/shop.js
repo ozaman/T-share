@@ -1349,12 +1349,12 @@ function checkPhotoCheckIn(type, id) {
     type: 'HEAD',
     error: function () {
       console.log('Error file');
-      $('#photo_' + type + '_no').show();
+//      $('#photo_' + type + '_no').show();
       $('#photo_' + type + '_yes').hide();
     },
     success: function () {
       console.log('Success file');
-      $('#photo_' + type + '_no').hide();
+//      $('#photo_' + type + '_no').hide();
       $('#photo_' + type + '_yes').show();
     }
   });
@@ -1700,14 +1700,14 @@ function changeHtml(type, id, st) {
         console.log('Error file');
         $('#photo_guest_register_upload').show();
         $('#photo_' + type + '_yes').hide();
-        $('#photo_' + type + '_no').show();
+//        $('#photo_' + type + '_no').show();
       },
       success: function () {
         //file exists
         console.log('success file');
 
         $('#photo_' + type + '_yes').show();
-        $('#photo_' + type + '_no').hide();
+//        $('#photo_' + type + '_no').hide();
 
       }
     });
@@ -1969,7 +1969,7 @@ function readURLuploadImgRegister(input){
             $('#photo_guest_register_no').hide();
             $('#photo_guest_register_yes').show();
             
-//            $('#photo_guest_register_no').hide();
+            $('#photo_guest_register_upload').show();
             $('#txt-img-has-checkin').show();
             $('#txt-img-nohas-checkin').hide();
             
