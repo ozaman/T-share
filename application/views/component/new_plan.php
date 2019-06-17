@@ -54,14 +54,14 @@ $res_country = $query_country->row();
   $query_country = $this->db->query($sql_country);
   $res_country = $query_country->row(); */
 
-$query = $this->db->query("SELECT cause_change FROM change_plan_logs where order_id = '".$data->id."' ");
-$res_log_change = $query->row();
-
-$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = '".$res_log_change->cause_change."' ");
-$res_type_change = $query->row();
-if ($res_type_change->s_topic == "") {
-  $res_type_change->s_topic = "คนขับเปลี่ยนใจ";
-}
+//$query = $this->db->query("SELECT cause_change FROM change_plan_logs where order_id = '".$data->id."' ");
+//$res_log_change = $query->row();
+//
+//$query = $this->db->query("SELECT s_topic FROM shop_type_change_plan where i_status = 1 and id = '".$res_log_change->cause_change."' ");
+//$res_type_change = $query->row();
+//if ($res_type_change->s_topic == "") {
+//  $res_type_change->s_topic = "คนขับเปลี่ยนใจ";
+//}
 
 
 $this->db->select('id');
@@ -120,14 +120,12 @@ $plan = $PLAN_PACK->s_topic;
       <td width="35%"><span class="font-17">สาเหตุ</span></td>
       <td colspan="2">
         <?php
-       
-
-//        $this->db->select('t1.i_cause_change');
-//        $this->db->from(TBL_CHANGE_PLAN_LOGS.' as t1');
-//        $this->db->join(SHOP_TYPE_CHANGE_PLAN.' as t2','t1.i_cause_change = t2.id');
-//        $this->db->where('t1.order_id', $_GET[id]);
-//        $query_because = $this->db->get();
-//        print_r($query_because->row());
+        $this->db->select('t1.i_cause_change');
+        $this->db->from(TBL_CHANGE_PLAN_LOGS.' as t1');
+        $this->db->join(SHOP_TYPE_CHANGE_PLAN.' as t2','t1.i_cause_change = t2.id');
+        $this->db->where('t1.order_id', $_GET[id]);
+        $query_because = $this->db->get();
+        print_r($query_because->row());
         ?>
       </td>
     </tr>
@@ -372,7 +370,7 @@ $plan = $PLAN_PACK->s_topic;
 
                   </td>
 
-                                           <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                                     <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                   <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?>%</span></td>
                   <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                   <td width="30"></td>

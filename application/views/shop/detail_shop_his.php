@@ -61,79 +61,10 @@ if ($arr[book][driver_complete] == 1) {
 
 
 
-$query_plan = $this->db->query("select * from change_plan_logs where order_id = ".$arr[book][id]);
-$check_change_plan = $query_plan->num_rows();
-if ($check_change_plan == 0) {
-  $plan_id = $arr[book][plan_id];
-}
-else {
-  $row_plan = $query_plan->row();
-  $plan_id = $row_plan->plan_id;
-}
 
-$query_price = $this->db->query("select * from shop_country_com_list_price_taxi where i_shop_country_com_list = '".$plan_id."' ");
-$num = 0;
 
-$display_person = "display:none";
-$display_com = "display:none";
-$display_park = "display:none";
-$park_total = 0;
-$person_total = 0;
-$com_total = 0;
-foreach ($query_price->result() as $row_price) {
-  if ($num >= 1) {
-    $push = " + ";
-  }
-  else {
-    $push = "";
-  }
-  $plan .= $push.$row_price->s_topic_th;
-  $num++;
 
-  if ($row_price->s_topic_en == "park") {
-    $check_type_park = 1;
-    $display_park = "";
-    if ($check_change_plan == 0) {
-      $park_total = $arr[book][price_park_unit];
-    }
-    else {
-      $park_total = $row_plan->price_park_unit;
-    }
-  }
 
-  if ($row_price->s_topic_en == "person") {
-    $check_type_person = 1;
-    $display_person = "";
-    if ($check_change_plan == 0) {
-      $person_total = intval($arr[book][price_person_unit]) * intval($arr[book][adult]);
-      $cal_person = $arr[book][price_person_unit]."x".$arr[book][adult];
-    }
-    else {
-      $person_total = intval($row_plan->price_person_unit) * intval($arr[book][adult]);
-      $cal_person = $row_plan->price_person_unit."x".$arr[book][adult];
-    }
-  }
-
-  if ($row_price->s_topic_en == "comision") {
-    $check_type_com = 1;
-    $i_list_prices = $row_price->id;
-    $i_plan_product_price_name = $row_price->i_plan_product_price_name;
-    $display_com = "";
-    if ($check_change_plan == 0) {
-      $com_persent = $arr[book][commission_persent];
-    }
-    else {
-      $com_persent = $row_plan->commission_persent;
-    }
-    $com_progress = '<span style="padding-left: 0px;"><i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i>&nbsp;<font color="#FF0000">รอแจ้งโอน</font></span>';
-  }
-}
-
-$all_total = $park_total + $person_total + $com_total;
-
-$sql_country = "SELECT t2.s_country_code, t2.s_topic_th FROM shop_country_com_list_price_taxi as t1 left join shop_country_icon_taxi as t2 on t1.i_shop_country_icon = t2.id WHERE t1.i_shop_country_com_list='".$plan_id."'    ";
-$query_country = $this->db->query($sql_country);
-$res_country = $query_country->row();
 
 $minutes_to_add = $arr[book][airout_m];
 //        echo $minutes_to_add." ++";
@@ -145,7 +76,6 @@ else {
   $time->add(new DateInterval('PT'.$minutes_to_add.'M'));
 }
 $stamp = $time->format('H:i');
-
 ?>
 <script>
   $('#date_trans').text(formatDate('<?=$arr[book][transfer_date];?>'));
@@ -158,8 +88,30 @@ $stamp = $time->format('H:i');
 
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
+<input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
+ <?php 
+ if ($arr[book][check_guest_register] != 1 && $arr[book][status] != "CANCEL") {
 
+    if ($_COOKIE[detect_userclass] == "lab") {
+      ?>
+      <div id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
+              /* position: absolute; */
+              /* right: 10px; */
+              border: 1px solid #F44336;
+              color: #F44336;
+              box-shadow: 1px 1px 3px #efefef;
+              padding: 0px 4px;
+              border-radius: 4px;
+              top: 0px;
+              /*margin-right: -30px;*/
+
+/*margin-top: -24px;*/
+              /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-16 text-cap"><?=t_cancel;?></span></div>
+              <?php
+            }
+          }
+          ?>
   <div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
   <span class="font-20"><?=$res_ps->$place_shopping;?></span>
 
@@ -211,6 +163,7 @@ $stamp = $time->format('H:i');
     </tbody>
   </table>
   <?php
+  // echo 'dddddddddddd';
   if ($_COOKIE[detect_userclass] != "taxi") {
     ?>
 
@@ -218,12 +171,12 @@ $stamp = $time->format('H:i');
     <div style="padding: 5px 0px;">
       <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
-          <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
+                      <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
       <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
         <tr>
           <td width="35%"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
           <td colspan="3" class="font-17">
-  <?=$full_name_driver;?></td>
+            <?=$full_name_driver;?></td>
         </tr>
         <tbody>
           <tr>
@@ -232,12 +185,17 @@ $stamp = $time->format('H:i');
           </tr>
           <tr>
             <td   width="35%"  class="font-17"><font color="#333333"><?=t_call;?></font></td>
-            <td colspan="3" class="font-17"><a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a></td>
+            <td colspan="3" class="font-17">
+              <a href="tel:<?=$arr[book][phone];?>" ><?=$arr[book][phone];?></a>
+              <a href="tel:0954293062">
+                <i class="material-icons" style="margin-left: 10px; color: rgb(89, 170, 71); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(89, 170, 71);">phone</i></a>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-<?php }?>
+  <?php }
+  ?>
   <div style="padding: 5px 0px;">
     <ons-list-header class="list-header"> <?=t_reservation_information;?></ons-list-header>
        <!-- <span class="text-cap font-22"></span> -->
@@ -245,64 +203,46 @@ $stamp = $time->format('H:i');
       <tbody>
         <tr>
           <td width="35%" class="font-17 text-cap"><font color="#333333"><?=t_booking_no;?></font></td>
-          <td class="font-17"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
+          <td class="font-17" colspan="2"><span id="txt_invoice_shop_detail"><?=$arr[book][invoice];?></span></td>
         </tr>
       </tbody>
       <tbody>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_date;?></font></td>
-          <td class="font-17"><span id="date_trans"></span></td>
+          <td class="font-17" colspan="2"><span id="date_trans"></span></td>
         </tr>
         <tr>
           <td class="font-17 text-cap"><font color="#333333"><?=t_arrival_time;?></font>
+
+          </td>
+          <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
+          <td align="right">
             <?php
             if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_driver_topoint] == 0) {
               ?>
               <span  class="button " align="center" onclick="editTimeToPlace('<?=$arr[book][id];?>');"  style="    background: #3b5998;
                      color: #fff;
-                     padding: 0px 3px;
+                     padding: 0px 10px;
                      /*    font-size: 3px !important;*/
-                     border-radius: 8px;display: inline-block;" id="btn_isedit">
+                     border-radius: 8px;display: inline-block;" id="btn_isedit_time">
                 <span class="font-14 text-cap">แก้ไข</span>
               </span>
-<?php }?>
+            <?php } ?>
           </td>
-          <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
         </tr>
         <tr>
-          <td class="font-17 text-cap"><font color="#333333"><?=t_number;?></font>
-            <?php
-            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
-              ?>
-              <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                     color: #fff;
-                     padding: 0px 3px;
-                     margin-left: 5px;
-                     /*    font-size: 3px !important;*/
-                     border-radius: 8px;display: inline-block;" id="btn_isedit">
-                <span class="font-14 text-cap">แก้ไข</span>
-              </span>
-              <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                    color: #fff;
-                    padding: 0px 3px;
-                    margin-left: 5px;
-                    /*    font-size: 3px !important;*/
-                    border-radius: 8px;display: none;" id="btn_selectisedit">
-                <span class="font-14 text-cap">บันทึก</span>
-              </span>
-              <?php
-            }
-            ?>
+          <td class="font-17 text-cap" width="50px"><font color="#333333"><?=t_number;?></font>
+
           </td>
           <td class="font-17" style="padding: 0 !important;" >
             <table width="100%">
               <tr>
                 <td>	
                   <span id="isedit"><?php if ($arr[book][adult] > 0) {?>
-  <?=t_adult;?> :
+                      <?=t_adult;?> :
 
                       &nbsp;
-<?php }?>
+                    <?php }?>
                     <span id="num_final_edit"><?=$arr[book][adult];?> </span></span>
                   <span id="text_edit_persion" style="display: none;"><?php if ($arr[book][adult] > 0) {?>
                       <?=t_adult;?> :
@@ -387,27 +327,48 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
                       </tr>
                     </table>
                   </td>
-<?php }?>
+                <?php }?>
 
               </tr>
             </table>
+          </td>
+          <td  align="right">
+            <?php
+            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
+              ?>
+              <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+                     color: #fff;
+                     padding: 0px 10px;
+                     margin-left: 5px;
+                     border-radius: 8px;display: inline-block;" id="btn_isedit_pax">
+                <span class="font-14 text-cap">แก้ไข</span>
+              </span>
+              <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
+                    color: #fff;
+                    padding: 0px 10px;
+                    margin-left: 5px;
+                    border-radius: 8px;display: none;" id="btn_selectisedit">
+                <span class="font-14 text-cap">บันทึก</span>
+              </span>
+              <?php
+            }
+            ?>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
   <?php
-$_where = array();
-$_where['id'] = $arr[book][plan_setting];
-$_select = array('*');
-$PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
-$_where = array();
-$_where['id'] = $PLAN_PACK->i_country; 
-$_select = array('country_code','id','name_th');
-$COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
-$plan = $PLAN_PACK->s_topic; 
-?>
+  $_where = array();
+  $_where['id'] = $arr[book][plan_setting];
+  $_select = array('*');
+  $PLAN_PACK = $this->Main_model->rowdata(NEW_TBL_PLAN_PACK,$_where);
+  $_where = array();
+  $_where['id'] = $PLAN_PACK->i_country;
+  $_select = array('country_code','id','name_th');
+  $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
+  $plan = $PLAN_PACK->s_topic;
+  ?>
   <div style="padding: 5px 0px;">
     <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
     <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
@@ -432,7 +393,7 @@ $plan = $PLAN_PACK->s_topic;
           </table>
         </td>
       </tr>
-      
+
       <?php
       $_where = array();
       $_where['i_plan_pack'] = $arr[book][plan_setting];
@@ -441,124 +402,186 @@ $plan = $PLAN_PACK->s_topic;
       $_order['id'] = 'asc';
       $PACK_LIST = $this->Main_model->fetch_data('','',NEW_TBL_PLAN_PACK_LIST,$_where,$_select,$_order);
       $all_total_iprice = 0;
-      foreach($PACK_LIST as $key=> $val){
-       $_where = array();
-       $_where[id] = $val->i_plan_main;
-       $this->db->select('id,s_topic');
-       $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
-       $main = $query_main->row();
-       $_where = array();
-       $_where[id] = $val->i_con_plan_main_list;
-       $this->db->select('id,s_topic');
-       $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
-       $mainlist = $query_mainlist->row();
-       $partner_g = 2;
-       $_where = array();
-       $_where[id] = $val->i_con_plan_main_list;
-       $this->db->select('*');
-       $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
-       if($val->i_con_plan_main_list>0){
-
-        $txt_btn_add = $mainlist->s_topic;
-      }else{
-
-        $txt_btn_add = 'เพิ่ม';
-      }
-      $_where = array();
-      $_where[i_order_booking] = $arr[book][id];
-      $_where[i_main_list] = $val->i_con_plan_main_list;
-
-      $_select = array('*');
-
-      $COM_ORDER_BOOKING = $this->Main_model->rowdata(TBL_COM_ORDER_BOOKING,$_where,$_select);
-      
- //  echo '<pre>';
- // print_r($COM_ORDER_BOOKING);
- // echo '</pre>';
-      if ($COM_ORDER_BOOKING->i_main_list == 5) {
-        $curency = '%';
-        $title_head = 'รายการ';
-        $title_head2 = 'คอม';
- 
-        
+      foreach ($PACK_LIST as $key => $val) {
         $_where = array();
-        // echo $COM_ORDER_BOOKING->i_com;
-                    $_where[status] = 1;
-                    $_where[id] = $COM_ORDER_BOOKING->i_com;
-                    $_select = array('*');
-                    $MAIN_TYPELIST = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where,$_select);
- //                      echo '<pre>';
- // print_r($MAIN_TYPELIST);
- // echo '</pre>';
+        $_where[id] = $val->i_plan_main;
+        $this->db->select('id,s_topic');
+        $query_main = $this->db->get_where(NEW_TBL_PLAN_MAIN,$_where);
+        $main = $query_main->row();
+        $_where = array();
+        $_where[id] = $val->i_con_plan_main_list;
+        $this->db->select('id,s_topic');
+        $query_mainlist = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+        $mainlist = $query_mainlist->row();
+        $partner_g = 2;
+        $_where = array();
+        $_where[id] = $val->i_con_plan_main_list;
+        $this->db->select('*');
+        $query = $this->db->get_where(NEW_TBL_PLAN_MAIN_LIST,$_where);
+        if ($val->i_con_plan_main_list > 0) {
+
+          $txt_btn_add = $mainlist->s_topic;
+        }
+        else {
+
+          $txt_btn_add = 'เพิ่ม';
+        }
+        $_where = array();
+        $_where[i_order_booking] = $arr[book][id];
+        $_where[i_main_list] = $val->i_con_plan_main_list;
+
+        $_select = array('*');
+
+        $COM_ORDER_BOOKING = $this->Main_model->rowdata(TBL_COM_ORDER_BOOKING,$_where,$_select);
+
+        //  echo '<pre>';
+        // print_r($COM_ORDER_BOOKING);
+        // echo '</pre>';
+        if ($COM_ORDER_BOOKING->i_main_list == 5) {
+          $curency = '%';
+          $title_head = 'รายการ';
+          $title_head2 = 'คอม(%)';
+
+
+          $_where = array();
+          // echo $COM_ORDER_BOOKING->i_com;
+          $_where[status] = 1;
+          $_where[id] = $COM_ORDER_BOOKING->i_com;
+          $_select = array('*');
+          $MAIN_TYPELIST = $this->Main_model->rowdata(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where,$_select);
+
+          //                      echo '<pre>';
+          // print_r($MAIN_TYPELIST);
+          // echo '</pre>';
 //          // $pax = $COM_ORDER_BOOKING->i_pax;
-$pax = $MAIN_TYPELIST->topic_th;
-      }
-      else if ($COM_ORDER_BOOKING->i_main_list == 2) {
-        $curency = 'บ.';
-        $title_head = 'รายการ';
-        $title_head2 = 'ราคา';
-         $all_total_iprice += $COM_ORDER_BOOKING->i_price;
-        $_where = array();
-          
-         $_where[status] = 1;
-                    $_where[id] = $COM_ORDER_BOOKING->i_com;
-                    $_select = array('*');
+// $pax = $MAIN_TYPELIST->topic_th;
+        }
+        else if ($COM_ORDER_BOOKING->i_main_list == 2) {
+          $curency = 'บ.';
+          $title_head = 'รายการ';
+          $title_head2 = 'ราคา';
+          $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+          $_where = array();
+
+          $_where[status] = 1;
+          $_where[id] = $COM_ORDER_BOOKING->i_com;
+          $_select = array('*');
           $USE_TYPE = $this->Main_model->rowdata(TBL_WEB_CAR_USE_TYPE,$_where,$_select);
- //                                echo '<pre>';
- // print_r($USE_TYPE);
- // echo '</pre>';
+          //                                echo '<pre>';
+          // print_r($USE_TYPE);
+          // echo '</pre>';
           $pax = $USE_TYPE->name_th;
-      }
-      else if ($COM_ORDER_BOOKING->i_main_list == 3) {
-        $curency = 'บ.';
-        $title_head = 'รายการ';
-        $title_head2 = 'ราคา(คนละ)';
-         $all_total_iprice += $COM_ORDER_BOOKING->i_price*$COM_ORDER_BOOKING->i_pax;
-         $pax =$COM_ORDER_BOOKING->i_pax;
-      }
-      else{
-        $all_total_iprice += $COM_ORDER_BOOKING->i_price;
-        $curency = 'บ.';
-        $title_head = 'จำนวน';
-        $title_head2 = 'ราคา';
-         $pax = $COM_ORDER_BOOKING->i_pax;
-      }
-      $_where = array();
-                    $_where['id'] = $val->i_pay_type; 
-                    $_select = array('name_th');
-                    $PAY_TYPE = $this->Main_model->rowdata(NEW_TBL_PAY_TYPE,$_where);
-      // echo $COM_ORDER_BOOKING->i_com;
-       
-                    
-                ?>
-           <tr >
-        <td  colspan="4">
-          <table width="100%">
-            <tr>
-              <td colspan="4">
-                <span style="font-weight: 700"><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) </span>
-                <span style="margin-left: 10px;color: #0076ff">(<?=$PAY_TYPE->s_topic;?>)</span>
-              </td>
-            
-            </tr>
-            <tr>
+        }
+        else if ($COM_ORDER_BOOKING->i_main_list == 4) {
+          $curency = 'บ.';
+          $title_head = 'รายการ';
+          $title_head2 = 'ราคา(คนละ)';
+          $all_total_iprice += $COM_ORDER_BOOKING->i_price * $COM_ORDER_BOOKING->i_pax;
+          $pax = $COM_ORDER_BOOKING->i_pax;
+        }
+        else if ($COM_ORDER_BOOKING->i_main_list == 3) {
+          $curency = 'บ.';
+          $title_head = 'รายการ';
+          $title_head2 = 'ราคา(คนละ)';
+          $all_total_iprice += $COM_ORDER_BOOKING->i_price * $COM_ORDER_BOOKING->i_pax;
+          $pax = $COM_ORDER_BOOKING->i_pax;
+        }
+        else {
+          $all_total_iprice += $COM_ORDER_BOOKING->i_price;
+          $curency = 'บ.';
+          $title_head = 'จำนวน';
+          $title_head2 = 'ราคา';
+          $pax = $COM_ORDER_BOOKING->i_pax;
+        }
+        // echo $COM_ORDER_BOOKING->i_com;
+        $_where = array();
+        $_where['id'] = $val->i_pay_type;
+        $_select = array('name_th');
+        $PAY_TYPE = $this->Main_model->rowdata(NEW_TBL_PAY_TYPE,$_where);
+        ?>
+        <tr >
+          <td  colspan="4">
+            <table width="100%">
+              <tr>
+                <td colspan="4">
+                  <span style="font-weight: 700"><?=$main->s_topic;?>  (<?=$txt_btn_add;?>) </span>
+                  <span style="margin-left: 10px;color: #0076ff">(<?=$PAY_TYPE->s_topic;?>)</span>
+                </td>
+
+              </tr>
+              <tr>
                 <td width="90"> <?=$title_head;?></td>
                 <td></td>
-                <td width="150" align="right"> <?=$title_head2;?></td>
+                <td width="150" align="center"> <?=$title_head2;?></td>
                 <td></td> 
-            </tr>
-            <tr>
-                <td width="90" align="center"> <span style=""><?=$pax;?></span></td>
-                <td></td>
-                <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span></td>                
-                <td align="left"><span class="font-17"><?=$curency;?></span></td> 
-            </tr>
-          </table>          
-        </td>
-      </tr>
-    <?php          
-        }        
-       ?>
+              </tr>
+              <?php
+              if ($COM_ORDER_BOOKING->i_main_list != 5) {
+                ?>
+
+                <tr>
+                  <td width="90" align="center"> <span style="" id="pax_show_income"><?=$pax;?></span></td>
+                  <td></td>
+                  <td width="" align="right"><span><?=number_format($COM_ORDER_BOOKING->i_price,0);?></span>
+                    <input value="<?=$COM_ORDER_BOOKING->i_price;?>" id="each_price" type="hidden" />
+                  </td>                
+                  <td align="left"><span class="font-17" ><?=$curency;?></span></td> 
+                </tr>
+
+                <?php
+              }
+              else if ($COM_ORDER_BOOKING->i_main_list == 5) {
+                $_where = array();
+                $_where['i_order_booking'] = $arr[book][id];
+                $_where['i_plan_pack'] = $arr[book][plan_setting];
+                $_select = array('*');
+                $_order = array();
+                $_order['id'] = 'asc';
+                $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING_COM,$_where,$_select,$_order);
+//                $BOOKING_COM = $this->Main_model->fetch_data('','',TBL_COM_ORDER_BOOKING,$_where,$_select,$_order);
+
+                foreach ($BOOKING_COM as $key => $datacom) {
+                  $_where = array();
+                  $_where['id'] = $datacom->i_con_com_product_type;
+                  $_select = array('id');
+                  $COM_PRODUCT_TYPE = $this->Main_model->rowdata(TBL_CON_COM_PRODUCT_TYPE,$_where);
+
+                  $_where = array();
+                  $_where[id] = $COM_PRODUCT_TYPE->i_product_sub_typelist;
+                  $this->db->select('*');
+                  $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_SUB_TYPELIST,$_where);
+                  $data_pd_sub_typelist = $query->row();
+
+
+                  $_where = array();
+                  $_where[status] = 1;
+                  $_where[id] = $data_pd_sub_typelist->i_main_typelist;
+                  $this->db->select('*');
+                  $query = $this->db->get_where(TBL_SHOPPING_PRODUCT_MAIN_TYPELIST,$_where);
+                  $data_pd = $query->row();
+                  ?>
+                  <tr id="">
+                    <td colspan="2">
+                      <span style="font-size:16px;"><?=$data_pd->topic_th;?>  </span>
+
+                    </td>
+
+                                    <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                    <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
+                    <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
+                    <td width="30"></td>
+                  </tr>
+
+                  <?php
+                }
+              }
+              ?>
+            </table>          
+          </td>
+        </tr>
+        <?php
+      }
+      ?>
       <tr>
         <td ></td>
         <td width="110" style="font-weight: 700"><span>รวม</span></td>
@@ -570,20 +593,20 @@ $pax = $MAIN_TYPELIST->topic_th;
     </table>
   </div>
 
-<?php
-if ($arr[book][status] != 'CANCEL') {
+  <?php
+  if ($arr[book][status] != 'CANCEL') {
 
-  include("application/views/shop/checkin.php");
+    include("application/views/shop/checkin.php");
 
-  if ($_COOKIE[detect_userclass] == "taxi") {
-    $txt_btn_pay = 'ตรวจสอบรายได้';
-    $txt_head_pay = t_income;
-  }
-  else {
-    $txt_btn_pay = 'แจ้งยอดรายจ่าย';
-    $txt_head_pay = 'รายจ่าย';
-  }
-  ?>	
+    if ($_COOKIE[detect_userclass] == "taxi") {
+      $txt_btn_pay = 'ตรวจสอบรายได้';
+      $txt_head_pay = t_income;
+    }
+    else {
+      $txt_btn_pay = 'แจ้งยอดรายจ่าย';
+      $txt_head_pay = 'รายจ่าย';
+    }
+    ?>	
     <div style="padding: 5px 0px;display: none;">
       <span class="text-cap font-22"><?="โค้ดและเอกสาร";?></span>
       <?php if ($data_user_class == 'lab' and $arr[book][program] == 1) {?>
@@ -605,7 +628,8 @@ if ($arr[book][status] != 'CANCEL') {
             <td><a class="waves-effect waves-light btn" style="background-color: #009688;color: #fff !important;border-radius: 10px;" onclick="uploadCodeFile('<?=$arr[book][program];?>', '<?=$arr[book][id];?>', 'lab');"><i class="material-icons left" style="font-size: 16px;margin-right: 7px;">cloud</i>อัพโหลด</a></td>
           </tr>
         </table>
-      <?php }
+        <?php
+      }
       else if ($data_user_class == 'taxi' and $arr[book][program] == 1) {
         ?>
 
