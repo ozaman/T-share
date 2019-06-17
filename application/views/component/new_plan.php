@@ -64,8 +64,6 @@ if ($res_type_change->s_topic == "") {
 }
 
 
-//$query = $this->db->query("select * from change_plan_logs where order_id = ".$data->id);
-//$check_change_plan = $query->num_rows();
 $this->db->select('id');
 $_where = array();
 $_where[i_order_booking] = $data->id;
@@ -84,16 +82,7 @@ else {
 //  $tbl_com_booking = TBL_COM_ORDER_BOOKING;
 }
 
-//if ($check_change_plan == 0) {
-//  $titel = t_work_remuneration;
-//  $display_none_change_plan = "display:none;";
-//  $color_titel = "";
-//}
-//else {
-//  $titel = "เปลี่ยนแปลง".t_work_remuneration;
-//  $display_none_change_plan = "";
-//  $color_titel = "color: #f00 !important;";
-//}
+
 
 
 $_where = array();
@@ -127,6 +116,21 @@ $plan = $PLAN_PACK->s_topic;
 <div style="padding: 5px 0px;">
   <ons-list-header class="list-header" style="<?=$color_titel;?>"> <?=$titel;?></ons-list-header>
   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
+    <tr>
+      <td width="35%"><span class="font-17">สาเหตุ</span></td>
+      <td colspan="2">
+        <?php
+       
+
+//        $this->db->select('t1.i_cause_change');
+//        $this->db->from(TBL_CHANGE_PLAN_LOGS.' as t1');
+//        $this->db->join(SHOP_TYPE_CHANGE_PLAN.' as t2','t1.i_cause_change = t2.id');
+//        $this->db->where('t1.order_id', $_GET[id]);
+//        $query_because = $this->db->get();
+//        print_r($query_because->row());
+        ?>
+      </td>
+    </tr>
     <?php //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>
     <tr>
       <td width="35%"><span class="font-17">ประเภท</span></td>
@@ -146,6 +150,7 @@ $plan = $PLAN_PACK->s_topic;
         </table>
       </td>
     </tr>
+
 
     <?php
     // echo $BOOKING_LOGS[0]->i_plan_pack.'************'.count($BOOKING_LOGS);
@@ -367,7 +372,7 @@ $plan = $PLAN_PACK->s_topic;
 
                   </td>
 
-                               <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                                           <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                   <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?>%</span></td>
                   <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                   <td width="30"></td>

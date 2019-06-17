@@ -572,6 +572,7 @@ function getSelectBankShop(div) {
 
 function getPlanBox(id, plan_id) {
 //	alert(plan_id);
+  
   if (id == 2) {
     $('#box_cause').hide();
   } else {
@@ -581,6 +582,7 @@ function getPlanBox(id, plan_id) {
   var url = "shop/box_price_plan" + "?i_country=" + id + "&i_plan_pack=" + id + "&user_sc=1" + "&car_type=" + $('#car_type').val() + '&i_shop=' + $('#program').val();
   console.log(url);
   $.post(url, function (res) {
+    $("#radio-nation-ck"+id).prop("checked", true);
     $('#box_price_replan').html(res);
     // console.log(data);
     // $('#radio-nationck' + id).prop('checked', true);

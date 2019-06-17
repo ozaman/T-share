@@ -182,6 +182,8 @@ define('TBL_COM_ORDER_BOOKING_COMPANY_CHANGE_PLAN', 'tbl_order_booking_com_compa
 
 define('TBL_PAY_HIS_DRIVER_SHOPPING', '	pay_history_driver_shopping');
 define('TBL_WEB_BANK_DRIVER', '	web_bank_driver');
+define('TBL_CHANGE_PLAN_LOGS', 'tbl_change_plan_logs');
+define('SHOP_TYPE_CHANGE_PLAN', 'shop_type_change_plan');
 
 
 

@@ -187,21 +187,21 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
           <script type="text/javascript">
             // handleClick_s('nation', '<?=$val->id;?>')
           </script>
-    <?php
-  }
-  ?>
+          <?php
+        }
+        ?>
         <label class=""  for="radio-nation-ck<?=$key + 1;?>" onclick="getPlanBox('<?=$val->id;?>', '<?=$book->plan_id;?>');">
           <ons-list-item tappable id="nation_<?=$key + 1;?>">
             <label class=" left">
               <ons-radio class="radio-fruit " id="nation_<?=$val->id;?>" input-id="radio-nation-ck<?=$val->id;?>" value="<?=$val->id;?>" name="nation" onchange="" ></ons-radio>
             </label>
-  <?php
-  $_where = array();
-  $_where['id'] = $val->i_country;
-  $_select = array('*');
-  $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
-  // print_r(json_encode($COUNTRY));
-  ?>
+            <?php
+            $_where = array();
+            $_where['id'] = $val->i_country;
+            $_select = array('*');
+            $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where);
+            // print_r(json_encode($COUNTRY));
+            ?>
             <div class="col-md-3">
               <img src="assets/images/flag/icon/<?=$COUNTRY->country_code;?>.png" width="25" height="25" alt="">&nbsp; <span class=" font-17"><?=$COUNTRY->name_th;?></span><span>(<?=$val->s_topic;?>)</span>
             </div>
@@ -213,8 +213,8 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
 
           </ons-list-item>
         </label>
-  <?php }
-?>
+      <?php }
+      ?>
 
 
 
@@ -246,18 +246,18 @@ $data['region'] = $this->Main_model->fetch_data('','',TBL_SHOP_COUNTRY_TAXI,$_wh
   <div class="card replan" style="display: none;" id="box_cause">
     <ons-list-header class="list-header">สาเหตุ</ons-list-header>
     <ons-list>
-<?php
-$query = $this->db->query("SELECT * FROM shop_type_change_plan where i_status = 1");
-foreach ($query->result() as $val) {
-  ?>
+      <?php
+      $query = $this->db->query("SELECT * FROM shop_type_change_plan where i_status = 1");
+      foreach ($query->result() as $val) {
+        ?>
         <ons-list-item tappable>
           <label class="left">
             <ons-radio name="cause_change" input-id="radio-<?=$val->id;?>" value="<?=$val->id;?>"></ons-radio>
           </label>
           <label for="radio-<?=$val->id;?>" class="center"><?=$val->s_topic;?></label>
         </ons-list-item>
-<?php }
-?>
+      <?php }
+      ?>
 
       <!--<ons-list-item tappable>
         <label class="left">

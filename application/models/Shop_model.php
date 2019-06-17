@@ -1072,29 +1072,16 @@ class Shop_model extends CI_Model {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    /*     * **************************** */
+    $change_logs[i_cause_change] = $_POST[cause_change];
+    $change_logs[i_status] = 1;
+    $change_logs[order_id] = $_GET[order_id];
+    $change_logs[result] = $this->db->insert(TBL_COM_ORDER_BOOKING_COMPANY_LOGS,$change_logs);
+    
     /*     * **************************** */
 
+    $return[cause_change] = $change_logs;
     $return[i_plan_pack] = $BOOKING_LOGS[0]->i_plan_pack;
     $return[num_cus] = $_POST[num_cus];
     $return[plan_setting] = $_POST[plan_setting];
