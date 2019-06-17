@@ -161,14 +161,22 @@ $check_change_plan = $query->num_rows();
 
           <?php if ($data->bank_taxi_id == 0) {
             ?>
-            <td></td>
-            <td colspan="">
+            <!--<td></td>-->
+            <td colspan="2">
               <div style="padding: 5px;">
                 <ons-list-header class="list-header" style="">สถานะโอนเงิน</ons-list-header>
-                <div class="font-16">
-                  <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i><strong>
-                    <font color="#FF0000"> รอแท็กซี่เลือกบัญชีรับเงิน</font></strong>          
-                </div>
+                <table width="100%">
+                  <tr>
+                    <td width="50px"></td>
+                    <td>
+                      <div class="font-16">
+                        <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i><strong>
+                          <font color="#FF0000"> รอแท็กซี่เลือกบัญชีรับเงิน</font></strong>          
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                
               </div>
             </td>
             <?php

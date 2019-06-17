@@ -120,13 +120,14 @@ $plan = $PLAN_PACK->s_topic;
       <td width="35%"><span class="font-17">สาเหตุ</span></td>
       <td colspan="2">
         <?php
-        $this->db->select('t1.i_cause_change');
+        $this->db->select('t1.i_cause_change, t2.s_topic');
         $this->db->from(TBL_CHANGE_PLAN_LOGS.' as t1');
         $this->db->join(SHOP_TYPE_CHANGE_PLAN.' as t2','t1.i_cause_change = t2.id');
         $this->db->where('t1.order_id', $_GET[id]);
         $query_because = $this->db->get();
-        print_r($query_because->row());
+        $because = $query_because->row();
         ?>
+        <span class="font-17" id="txt_type_plan"><?=$because->s_topic;?></span>
       </td>
     </tr>
     <?php //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>

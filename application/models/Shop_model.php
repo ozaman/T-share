@@ -1077,7 +1077,7 @@ class Shop_model extends CI_Model {
     $change_logs[i_cause_change] = $_POST[cause_change];
     $change_logs[i_status] = 1;
     $change_logs[order_id] = $_GET[order_id];
-    $change_logs[result] = $this->db->insert(TBL_COM_ORDER_BOOKING_COMPANY_LOGS,$change_logs);
+    $change_logs[result] = $this->db->insert(TBL_CHANGE_PLAN_LOGS,$change_logs);
     
     /*     * **************************** */
 
