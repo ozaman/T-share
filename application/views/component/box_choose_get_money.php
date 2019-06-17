@@ -103,6 +103,7 @@ else {
         <div class="font-16" style="padding: 5px 10px">
           <ons-list-header class="list-header"> แท็กซี่เลือกช่องทางรับเงิน</ons-list-header>
           <?php
+          echo $data->i_select_type_pay." +++";
           if ($data->i_select_type_pay <= 0) {
             ?>
             <i class="fa  fa-circle-o-notch fa-spin 6x" style="color:#FF0000"></i> <strong><font color="#FF0000">

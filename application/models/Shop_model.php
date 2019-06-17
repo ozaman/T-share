@@ -861,6 +861,8 @@ class Shop_model extends CI_Model {
           $data_com_ordder['i_pax'] = $_POST[num_cus];
           $data_com_ordder['d_post_date'] = time();
           $data_com_ordder['d_last_date'] = time();
+          $data_com_ordder['d_last_date'] = time();
+          $data_com_ordder['i_type_pay'] = $val->i_pay_type;
           $com_list[data] = $data_com_ordder;
           $againck[] = $com_list;
           $result_com = $this->db->insert(TBL_COM_ORDER_BOOKING_LOGS,$data_com_ordder);
@@ -868,10 +870,10 @@ class Shop_model extends CI_Model {
         $data = array();
         if ($val->i_pay_type == 2) {
 
-          $chk_i_pay = true;
-        }
-
-        if ($chk_i_pay == true) {
+//          $chk_i_pay = true;
+//        }
+//
+//        if ($chk_i_pay == true) {
           $data[check_tran_job] = 1;
 
 

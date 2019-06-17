@@ -2873,6 +2873,7 @@ function _confirmSelectBankAfterChangePlan(id) {
     success: function (value) {
       console.log(value);
       load_status_trans($('#id_order').val());
+      sendSocket(id);
     }
   });
 }
@@ -3108,6 +3109,7 @@ function chackPackCash(order_id) {
       } 
       else {
 //        alert(4);
+        $('#loadBoxChooseGetMoney').hide();
         $('#step_confirm_pay').hide();
         load_status_trans(order_id);
       }
