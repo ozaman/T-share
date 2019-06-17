@@ -3043,7 +3043,8 @@ function confirmChooseGetMoney(id) {
       console.log(res);
       if (radioValue == 1) {
         loadBoxConfirmPay(id);
-      } else {
+      } 
+      else {
         if (res.order_book.result == true) {
           var bank = $("input[name='bank_user_select']:checked").val();
           $.ajax({
@@ -3063,16 +3064,6 @@ function confirmChooseGetMoney(id) {
               console.log(res);
             }
           });
-
-//          ons.notification.alert({
-//            message: ' ',
-//            title: "สำเร็จ",
-//            buttonLabel: "ปิด"
-//          })
-//                  .then(function () {
-////                  reloadIncomeShop(id);
-//                    callpop();
-//                  });
 
         }
       }
@@ -3100,8 +3091,8 @@ function chackPackCash(order_id) {
       
       if (res.result == false) {
 //        alert();
-         loadBoxChooseGetMoney(order_id);
-       var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
+          loadBoxChooseGetMoney(order_id);
+          var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
           url: url_loadboxconfirmpay,
@@ -3114,8 +3105,10 @@ function chackPackCash(order_id) {
             }
           }
         });
-      } else {
+      } 
+      else {
 //        alert(4);
+        $('#step_confirm_pay').hide();
         load_status_trans(order_id);
       }
     }

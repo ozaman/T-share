@@ -2413,22 +2413,23 @@
                           scrollTop: $(document).height()+700
                       }, 500);
                   }
-                  if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
-                      loadBoxConfirmPay(value.id);
-   //                    return;
-   }
-   if (value.check_driver_pay == 1) {
-      loadBoxConfirmPay(value.id);
-   }
-   if (value.check_lab_pay == 1) {
-      loadBoxConfirmPay(value.id);
-   }
-   if(data.transfer_money==1){
-    load_status_trans(data.id);
-    loadNewPlan(data.id)
-   }
-   }
-   });
+//                  if (value.check_driver_pay == 1 && value.check_lab_pay == 1) {
+//                      loadBoxConfirmPay(value.id);
+//   //                    return;
+//                  }
+//                  if (value.check_driver_pay == 1) {
+//                     loadBoxConfirmPay(value.id);
+//                  }
+//                  if (value.check_lab_pay == 1) {
+//                     loadBoxConfirmPay(value.id);
+//                  }
+                  chackPackCash(value.id);
+                  if(data.transfer_money==1){
+//                   load_status_trans(data.id);
+                   loadNewPlan(value.id)
+                  }
+      }
+    });
    }
     if ($('#open_shop_manage').val() == 1) {
       $.each(data, function(index, value) {
@@ -2541,20 +2542,21 @@
                   $('#num_edit_persion2').val(data.pax_regis);
                   //            $('#step_driver_pay_report').show();
               }
-              if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
-                  loadBoxConfirmPay(data.id);
-   //                    return;
-   }
-   if (data.check_driver_pay == 1) {
-      loadBoxConfirmPay(data.id);
-   }
-   if (data.check_lab_pay == 1) {
-      loadBoxConfirmPay(data.id);
-   }
-   if(data.transfer_money==1){
-     load_status_trans(data.id);
-     loadNewPlan(data.id)
-   }
+//              if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
+//                  loadBoxConfirmPay(data.id);
+//   //                    return;
+//              }
+//              if (data.check_driver_pay == 1) {
+//                 loadBoxConfirmPay(data.id);
+//              }
+//              if (data.check_lab_pay == 1) {
+//                 loadBoxConfirmPay(data.id);
+//              }
+              chackPackCash(data.id);
+              if(data.transfer_money==1){
+//                load_status_trans(data.id);
+                loadNewPlan(data.id)
+              }
               /*if (data.check_driver_pay_report == 1) {
                   console.log("driver_pay_report");
                   changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
