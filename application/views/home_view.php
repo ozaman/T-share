@@ -2446,25 +2446,24 @@
                 $('#tab_shop_mn').removeAttr("badge");
                 return;
               }
-//            $('#list_shop_manage_'+value.id).remove();
           }
           console.log(value);
           if (value.lab_approve_job == 1) {
               if (value.check_driver_topoint == 1) {
                   shopManageWithData(value);
-                  $('#btn_manage_topoint_' + value.id).hide();
-                  $('#btn_manage_' + value.id).show();
+//                  $('#btn_manage_topoint_' + value.id).hide();
+//                  $('#btn_manage_' + value.id).show();
               } 
               else {
-                  $('#btn_manage_topoint_' + value.id).show();
-                  $('#btn_manage_' + value.id).hide();
+//                  $('#btn_manage_topoint_' + value.id).show();
+//                  $('#btn_manage_' + value.id).hide();
               }
-              $('#date_approved_job_' + value.id).show();
-              $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
-              $('#txt_wait_' + value.id).hide();
-              $('#td_cancel_book_' + value.id).hide();
-              $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
-              $('#view_lab_approve_' + value.id).show();
+//              $('#date_approved_job_' + value.id).show();
+//              $('#txt_date_approved_job_' + value.id).text(timestampToDate(value.lab_approve_job_date, 'time'));
+//              $('#txt_wait_' + value.id).hide();
+//              $('#td_cancel_book_' + value.id).hide();
+//              $('#status_book_' + value.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+//              $('#view_lab_approve_' + value.id).show();
               $.ajax({
                   url: "main/get_data_user?id=" + value.lab_approve_job_post,
                       //					           data: pass,
@@ -2512,6 +2511,12 @@
       }
       setCountNotification();
    });
+   
+   
+   
+   
+   
+   
    socket.on('updatedriver', function(socket_class, data) {
       //	alert(data.pax_regis);
       console.log("++++++++++++++++++++++datadriver++++++++++++++++++++++++++++++++")
@@ -2599,7 +2604,7 @@
               $('#txt_date_approved_job_' + data.id).text(timestampToDate(data.lab_approve_job_date, 'time'));
               $('#txt_wait_' + data.id).hide();
               $('#td_cancel_book_' + data.id).hide();
-              $('#status_book_' + data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
+//              $('#status_book_' + data.id).html('<strong><font color="#ff0000">รอตอบรับ</font></strong>');
               $.ajax({
                   url: "main/get_data_user?id=" + data.lab_approve_job_post,
                       //data: pass,
