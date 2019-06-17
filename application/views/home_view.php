@@ -2432,7 +2432,7 @@
    }
     if ($('#open_shop_manage').val() == 1) {
       $.each(data, function(index, value) {
-          if(value.status == "COMPLETED" && value.check_driver_pay == 1){
+          if(value.status != "NEW" && value.check_driver_pay == 1){
               if(array_data.manage.length==1){
                 array_data.manage.splice(index, 1); 
                 shopManage();
@@ -2563,7 +2563,7 @@
       }
 //      console.log($('#open_shop_manage').val());
       if ($('#open_shop_manage').val() == 1) {
-          if(data.status == "COMPLETED" && data.check_driver_pay == 1){
+          if(data.status != "NEW" && data.check_driver_pay == 1){
               if(array_data.manage.length==1){
                 array_data.manage.splice(0, 1); 
                 shopManage();
