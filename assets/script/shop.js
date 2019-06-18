@@ -676,6 +676,7 @@ function saveeditBook(x) {
   $('#pax_show_income').text($('#num_edit_persion').val());
   var price = parseInt($('#num_edit_persion').val()) * parseInt($('#each_price').val());
   $('#txt_all_total').text(numberWithCommas(price));
+  sendSocket($('#id_order').val());
 }
 
 var cancelShop = function () {
@@ -3157,4 +3158,12 @@ function uploadImgRegister(id) {
 //  }, function (ele) {
 //    $('#body_shop_checkin').html(ele);
 //  });
+}
+
+function get_box_remuneration(order_id, plan_setting){
+  var url = "component/box_remuneration";
+  console.log(plan_setting);
+  $.post(url,{ id: order_id, plan_setting : plan_setting},function(ele){
+    $('#box_remuneration').html(ele);
+  });
 }

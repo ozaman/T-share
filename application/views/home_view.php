@@ -2578,11 +2578,13 @@
               }*/
               var pax_adult = parseInt($('#num_final_edit').text());
               var pax_child = parseInt($('#num_final_edit_child').text());
-              if(pax_adult != data.pax){
-                $('#num_final_edit').text(data.pax);
+              if(pax_adult != data.adult){
+                $('#num_final_edit').text(data.adult);
+                get_box_remuneration(data.id, data.plan_setting);
               }
-              if(pax_child != data.pax){
+              if(pax_child != data.child){
                 $('#num_final_edit').text(data.child);
+//                get_box_remuneration(data.plan_setting);
               }
           }
       }

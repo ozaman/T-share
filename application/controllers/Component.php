@@ -98,12 +98,16 @@ class Component extends CI_Controller {
     $this->load->view('component/list_manage_place_station');
   }
   
-  public function load_choose_car($param) {
+  public function load_choose_car() {
     $this->load->view('component/box_shop_car');
   }
   
-  public function box_choose_get_money($param) {
+  public function box_choose_get_money() {
     $this->load->view('component/box_choose_get_money');
+  }
+  
+  public function box_remuneration() {
+    $this->load->view('component/box_remuneration');
   }
 
 }
