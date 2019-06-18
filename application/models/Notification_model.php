@@ -185,6 +185,22 @@ class Notification_model extends CI_Model {
 		$update[tb] = 'notification_event_'.$_COOKIE[detect_userclass];
     	return $update;
   }
+  
+  public function deleted_noti_all() {
+    
+    
+    $tbl = 'notification_event_'.$_COOKIE[detect_userclass];
+    $tbl_log = 'notification_event_'.$_COOKIE[detect_userclass].'_logs';
+    
+//     $return[main] = $this->db->delete('notification_event_taxi', array('i_user' => $_GET[id])); 
+    
+    $tables = array($tbl, $tbl_log);
+    $this->db->where('i_user', $_GET[id]);
+    $return[main] = $this->db->delete($tables);
+    
+    $return[id] = $_GET[id];
+    return $return;
+  }
   /**
   * *********** End
   */

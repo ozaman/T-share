@@ -430,3 +430,19 @@ function makeRead() {
   $('#makeRead').show();
   $('#makeUnRead').hide();
 }
+
+function deletedNotiAll(){
+  
+  var url = "notification/deleted_noti_all?id="+$.cookie('detect_user');
+  console.log(url)
+  $.ajax({
+    url: url, // point to server-side PHP script 
+    dataType: 'json', // what to expect back from the PHP script, if anything
+    type: 'post',
+    success: function (res) {
+      console.log(res);
+      loadNotificationPage();
+    }
+  });
+  
+}

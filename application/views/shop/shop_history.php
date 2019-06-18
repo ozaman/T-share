@@ -395,10 +395,11 @@ $plan = $PLAN_PACK->s_topic;
         ?>
         <tr>
           <td colspan="2">
-        <ons-button onclick="openDetailBookinghistory('<?=$key;?>', 'his', '<?=$val->invoice;?>');" style="padding: 15px;    margin-top: 5px;border: 1px solid #0076ff;
+        <ons-button onclick="openDetailBookinghistory('<?=$key;?>', 'his', '<?=$val->invoice;?>');" style="padding: 20px;    margin-top: 5px;border: 1px solid #0076ff;
                     border-radius: 5px;
                     line-height: 0;
-                    " modifier="outline" class="button-margin button button--outline button--large">&nbsp; <span class="font-17 text-cap">ตรวจสอบ</span> </ons-button>
+                    " modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
+          <span class="font-17 text-cap">ตรวจสอบ</span> </ons-button>
         </td>
         </tr>
       </table>

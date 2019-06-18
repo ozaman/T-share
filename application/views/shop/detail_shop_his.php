@@ -36,18 +36,13 @@ if ($res_dv->nickname != "") {
   $name_dv = $res_dv->nickname;
 }
 if ($arr[book][status] == 'CANCEL') {
-  if ($arr[book][cancel_type] == '1') {
-    $status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_no_register.'</font>';
-  }
-  else if ($arr[book][cancel_type] == '2') {
-    $status_txt = '<font color="#ff0000"> ยกเลิก '.t_customer_not_go.'</font>';
-  }
-  else if ($arr[book][cancel_type] == '3') {
-    $status_txt = '<font color="#ff0000"> ยกเลิก '.t_wrong_selected_place.'</font>';
-  }
-  else {
-    $status_txt = '<font color="#ff0000">ยกเลิก ไม่ระบุ</font>';
-  }
+  
+  $sql = "SELECT s_topic FROM shop_type_cancel  WHERE id='".$arr[book][cancel_type]."' ";
+  $query_cancel = $this->db->query($sql);
+  $res_cancel = $query_cancel->row();
+  $status_txt = '<font color="#ff0000">ยกเลิก '.$res_cancel->s_topic.'</font>';
+          
+          
 }
 else if ($arr[book][status] == 'NEW') {
   $status_txt = '<font color="#3b5998">'.t_new.'</font>';
@@ -90,28 +85,28 @@ $stamp = $time->format('H:i');
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
- <?php 
- if ($arr[book][check_guest_register] != 1 && $arr[book][status] != "CANCEL") {
+  <?php
+  if ($arr[book][check_guest_register] != 1 && $arr[book][status] != "CANCEL") {
 
     if ($_COOKIE[detect_userclass] == "lab") {
       ?>
       <div id="btn_cancel_shop" class="button button--outline" onclick="cancelShopSelect('<?=$_POST[id];?>', '<?=$_POST[invoice];?>', '<?=$_POST[drivername];?>');" style="    float: right;
-              /* position: absolute; */
-              /* right: 10px; */
-              border: 1px solid #F44336;
-              color: #F44336;
-              box-shadow: 1px 1px 3px #efefef;
-              padding: 0px 4px;
-              border-radius: 4px;
-              top: 0px;
-              /*margin-right: -30px;*/
+           /* position: absolute; */
+           /* right: 10px; */
+           border: 1px solid #F44336;
+           color: #F44336;
+           box-shadow: 1px 1px 3px #efefef;
+           padding: 0px 4px;
+           border-radius: 4px;
+           top: 0px;
+           /*margin-right: -30px;*/
 
-/*margin-top: -24px;*/
-              /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-16 text-cap"><?=t_cancel;?></span></div>
-              <?php
-            }
-          }
-          ?>
+           /*margin-top: -24px;*/
+           /* margin: 15px; */<?=$cancel_shop;?>"><span class="font-16 text-cap"><?=t_cancel;?></span></div>
+           <?php
+         }
+       }
+       ?>
   <div id="status_booking_detail" class="font-26" style=""><b><?=$status_txt;?></b></div>
   <span class="font-20"><?=$res_ps->$place_shopping;?></span>
 
@@ -120,7 +115,7 @@ $stamp = $time->format('H:i');
 
       <tr>
         <td width="33%" align="left" style="padding: 0px;" >
-          <div class="btn  btn-default" style=" width:100%; text-align:left; /*padding:2px; padding-left:5px;*/ height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('<?=$res_ps->id;?>');">
+          <div class="btn  btn-default" style=" width:100%; text-align:left; height:40px;border-radius: 0px;" data-toggle="dropdown" id="btn_div_dropdown_phone" onclick="openContact('<?=$res_ps->id;?>');">
             <table width="100%" border="0" cellspacing="1" cellpadding="1">
               <tbody>
                 <tr>
@@ -171,7 +166,7 @@ $stamp = $time->format('H:i');
     <div style="padding: 5px 0px;">
       <ons-list-header class="list-header"> <?=t_car_driver_information;?></ons-list-header>
 
-                      <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
+                            <!-- <span class="text-cap font-22"><?=t_car_driver_information;?></span> -->
       <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_hide_driver">
         <tr>
           <td width="35%"  class="font-17"><font color="#333333"></font><?=t_dv_name;?></td>
@@ -217,17 +212,7 @@ $stamp = $time->format('H:i');
           </td>
           <td class="font-17"> <span id="txt_time_change_now"><?=$stamp." น.";?></span></td>
           <td align="right">
-            <?php
-            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_driver_topoint] == 0) {
-              ?>
-              <span  class="button " align="center" onclick="editTimeToPlace('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                     color: #fff;
-                     padding: 0px 10px;
-                     /*    font-size: 3px !important;*/
-                     border-radius: 8px;display: inline-block;" id="btn_isedit_time">
-                <span class="font-14 text-cap">แก้ไข</span>
-              </span>
-            <?php } ?>
+            
           </td>
         </tr>
         <tr>
@@ -333,26 +318,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
             </table>
           </td>
           <td  align="right">
-            <?php
-            if ($_COOKIE[detect_userclass] == "lab" and $arr[book][check_guest_register] == 0) {
-              ?>
-              <span  class="button " align="center" onclick="editBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                     color: #fff;
-                     padding: 0px 10px;
-                     margin-left: 5px;
-                     border-radius: 8px;display: inline-block;" id="btn_isedit_pax">
-                <span class="font-14 text-cap">แก้ไข</span>
-              </span>
-              <span class="button " align="center" onclick="saveeditBook('<?=$arr[book][id];?>');"  style="    background: #3b5998;
-                    color: #fff;
-                    padding: 0px 10px;
-                    margin-left: 5px;
-                    border-radius: 8px;display: none;" id="btn_selectisedit">
-                <span class="font-14 text-cap">บันทึก</span>
-              </span>
-              <?php
-            }
-            ?>
+            
           </td>
         </tr>
       </tbody>
@@ -566,7 +532,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
 
                     </td>
 
-                                    <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
+                                                      <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_price;?></span></td> -->
                     <td align="center"><span   style="width: 90%;" class="form-control" ><?=$datacom->i_price;?></span></td>
                     <!-- <td align="center"><span   style="width: 90%;" class="form-control" ><?=$data_con_pd_typelist->f_wht;?></span></td> -->
                     <td width="30"></td>

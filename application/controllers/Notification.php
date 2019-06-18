@@ -56,5 +56,9 @@ class Notification extends CI_Controller {
   		$data['res'] = $this->Notification_model->show_notification_hide();
   		echo json_encode($data['res']);
   }
+  public function deleted_noti_all(){
+  		$data['res'] = $this->Notification_model->deleted_noti_all();
+  		echo json_encode($data['res']);
+  }
 
 }

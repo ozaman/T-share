@@ -216,6 +216,9 @@
                     <ons-list-item class="more-options" tappable onclick="settingNoti();hidePopover('popover-noti');">
                         <div class="center" style="padding-left: 14px;">ตั้งค่าการแจ้งเตือน</div>
                     </ons-list-item>
+                  <ons-list-item class="more-options" tappable onclick="deletedNotiAll();hidePopover('popover-noti');">
+                        <div class="center" style="padding-left: 14px;">ลบแจ้งเตือนทั้งหมด</div>
+                    </ons-list-item>
                 </ons-list>
             </ons-popover>
             <script>

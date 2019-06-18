@@ -45,7 +45,7 @@ foreach ($_POST[data] as $key => $val) {
   $query_car = $this->db->query("SELECT t1.id, t1.i_car_gen,t2.name_en as name_brand, t3.name_en as name_gen, t4.name_th as color FROM web_carall as t1 left join web_car_brand as t2 on t1.i_car_brand = t2.id left join web_car_gen as t3 on t1.i_car_gen = t3.id left join web_car_color as t4 on t1.i_car_color = t4.id where t1.id = '".$val[check_use_car_id]."'");
   $row_car = $query_car->row();
 
-  $sql = "SELECT * FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
+  $sql = "SELECT s_topic FROM shop_type_cancel  WHERE id='".$val[cancel_type]."' ";
   $query_cancel = $this->db->query($sql);
   $res_cancel = $query_cancel->row();
 

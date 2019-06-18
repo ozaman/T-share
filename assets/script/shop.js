@@ -2575,7 +2575,8 @@ function userApproveCancel(id, invoice) {
       shopManage();
       sendSocket(id);
       $('#list_shop_manage_'+id).remove();
-      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
+//      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
+      
 //       var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
 //       var ac = {
 //       i_type : 1,
@@ -3092,10 +3093,10 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      loadBoxChooseGetMoney(order_id);
+      
       if (res.result == false) {
 //        alert();
-          
+          loadBoxChooseGetMoney(order_id);
           var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
