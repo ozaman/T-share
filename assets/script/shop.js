@@ -676,6 +676,7 @@ function saveeditBook(x) {
   $('#pax_show_income').text($('#num_edit_persion').val());
   var price = parseInt($('#num_edit_persion').val()) * parseInt($('#each_price').val());
   $('#txt_all_total').text(numberWithCommas(price));
+  sendSocket($('#id_order').val());
 }
 
 var cancelShop = function () {
@@ -1627,7 +1628,7 @@ function changeHtml(type, id, st) {
     } else {
       $('#txt_btn_driver_topoint').text('คนขับแจ้งถึงสถานที่');
     }
-
+    $('#btn_isedit_time').hide();
     $('#step_guest_receive').show();
 
   } 
@@ -1673,7 +1674,7 @@ function changeHtml(type, id, st) {
 //      }
 //    });
 
-
+    $('#btn_isedit_time').hide();
     if (class_user == "taxi") {
       $('#txt_btn_guest_register').text('ลงทะเบียนแล้ว');
     } else {
@@ -3157,4 +3158,12 @@ function uploadImgRegister(id) {
 //  }, function (ele) {
 //    $('#body_shop_checkin').html(ele);
 //  });
+}
+
+function get_box_remuneration(order_id, plan_setting){
+  var url = "component/box_remuneration";
+  console.log(plan_setting);
+  $.post(url,{ id: order_id, plan_setting : plan_setting},function(ele){
+    $('#box_remuneration').html(ele);
+  });
 }

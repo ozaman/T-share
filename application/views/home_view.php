@@ -81,16 +81,17 @@
   border: 2px solid gray;
   color: gray;
   background-color: white;
-  padding: 8px 20px;
+  padding: 15px 20px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
 }
 
+
 .upload-btn-wrapper input[type=file] {
   font-size: 100px;
   position: absolute;
-  left: 0;
+  left: -100px;
   top: 0;
   opacity: 0;
 }
@@ -2575,6 +2576,16 @@
                   console.log("driver_pay_report");
                   changeHtml("driver_pay_report", data.id,timestampToDate(data.driver_pay_report_date, "time"));
               }*/
+              var pax_adult = parseInt($('#num_final_edit').text());
+              var pax_child = parseInt($('#num_final_edit_child').text());
+              if(pax_adult != data.adult){
+                $('#num_final_edit').text(data.adult);
+                get_box_remuneration(data.id, data.plan_setting);
+              }
+              if(pax_child != data.child){
+                $('#num_final_edit').text(data.child);
+//                get_box_remuneration(data.plan_setting);
+              }
           }
       }
 //      console.log($('#open_shop_manage').val());

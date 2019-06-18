@@ -369,7 +369,7 @@ border-radius: 8px;display: none;" id="btn_selectisedit_child">
   $COUNTRY = $this->Main_model->rowdata(TBL_WEB_COUNTRY,$_where,$_select);
   $plan = $PLAN_PACK->s_topic;
   ?>
-  <div style="padding: 5px 0px;">
+  <div style="padding: 5px 0px;" id="box_remuneration">
     <ons-list-header class="list-header"> <?=t_work_remuneration;?></ons-list-header>
     <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
       <input type="hidden" value="<?=$arr[book][price_person_unit];?>" id="val_person_unit" />
