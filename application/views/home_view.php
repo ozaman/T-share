@@ -203,7 +203,7 @@
                 <ons-tab id="tab_information" label="ข่าวสาร" icon="fa-inbox" page="information.html" badge=""></ons-tab>
                 <ons-tab id="tab_notification" label="แจ้งเตือน" icon="fa-bell" page="notification.html" badge=""></ons-tab>
                 <ons-tab id="tab_contact" label="ติดต่อเรา" icon="fa-comments-o" page="contact.html" badge=""></ons-tab>
-                <ons-tab id="tab_activity" label="บันทึกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
+                <ons-tab id="tab_activity" label="บันทึกกิจกรรม" icon="fa-list-ul" page="activity.html" badge=""></ons-tab>
             </ons-tabbar>
             <ons-popover id="popover-noti" cancelable direction="down" cover-target animation="fade-ios" mask-color="rgba(0, 0, 0, 0.2)">
                 <ons-list id="popover-list">
