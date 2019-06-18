@@ -570,7 +570,7 @@ class Shop_model extends CI_Model {
     $data[update] = $data_update;
     $data[col] = $datassss;
     if ($data_update[result] == true) {
-      $this->linenoti();
+      $this->linenoti($data_update[invoice]);
       # code...
     }
     $data[post] = $_POST;
@@ -597,7 +597,7 @@ class Shop_model extends CI_Model {
     return $data;
   }
 
-  function linenoti() {
+  function linenoti($data_update) {
     $txt_short = 'ทะเบียน '.$_POST[car_plate];
     $txt_short .= ' ทำรายการส่งแขกเข้ามาใหม่ กรุณาตรวจสอบ';
     $title = "ทำรายการใหม่";
@@ -613,6 +613,7 @@ class Shop_model extends CI_Model {
     $txt_short2 .= 'ทำรายการเวลา '.$time_post.'  น. ';
     $txt_short2 .= 'จะถึงสถานที่ในอีก '.$mm.' นาที ';
     $txt_short2 .= 'จำนวนแขก '.$_POST[adult].' คน';
+    $txt_short2 .= "\n\n".'เลขจอง : '.$data_update;
 
     if ($_POST[remark] != '') {
       $txt_short2 .= "\n\n".'หมายเหตุ '.$_POST[remark];
