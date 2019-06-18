@@ -68,7 +68,7 @@ else {
         else {
           $this->db->select('id');
           $_where = array();
-          $_where[i_order_booking] = $_POST[order_id];
+          $_where[i_order_booking] = $_GET[id];
           $chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
           $num_log = $chk_log->num_rows();
           if ($num_log > 0) {
@@ -82,7 +82,7 @@ else {
           $_where[i_order_booking] = $data->id;
           $query_order = $this->db->get_where($tbl_com_booking,$_where);
           $arr = $query_order->row();
-          echo $arr->i_type_pay." +++";
+//          echo $arr->i_type_pay." +++ ".$tbl_com_booking." == ".$_GET[id];
           if ($arr->i_type_pay == 1) {
             ?>
             <div id="choose-cash-div" style="padding: 5px;">
@@ -114,7 +114,7 @@ else {
           else {
             $this->db->select('id');
             $_where = array();
-            $_where[i_order_booking] = $_POST[order_id];
+            $_where[i_order_booking] = $_GET[id];
             $chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
             $num_log = $chk_log->num_rows();
             if ($num_log > 0) {
