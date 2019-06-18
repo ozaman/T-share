@@ -82,6 +82,7 @@ else {
           $_where[i_order_booking] = $data->id;
           $query_order = $this->db->get_where($tbl_com_booking,$_where);
           $arr = $query_order->row();
+          echo $arr->i_type_pay." +++";
           if ($arr->i_type_pay == 1) {
             ?>
             <div id="choose-cash-div" style="padding: 5px;">

@@ -65,6 +65,7 @@
 <!-- <script src="<?=base_url();?>assets/script/wwwww.js?v=<?=time()?>"></script> -->
 <script src="https://www.welovetaxi.com:3443/socket.io/socket.io.js?v=<?=time()?>"></script>
 <script type="text/javascript">
+     
     var roomOpen = false;
     // setTimeout(function() {
         
@@ -91,9 +92,11 @@
 .upload-btn-wrapper input[type=file] {
   font-size: 100px;
   position: absolute;
-  left: -100px;
+  left: 0px;
   top: 0;
   opacity: 0;
+  height: 100px;
+  z-index: 2;
 }
 </style>
 <ons-modal direction="up" id="modal_load">
@@ -105,7 +108,7 @@
     </div>
 </ons-modal>
 <script>
-    var modal = document.querySelector('#modal_load');
+      var modal = document.querySelector('#modal_load');
       modal.show();
       var today = "<?=date('Y-m-d');?>";
       var detect_mb = "<?=$detectname;?>";
@@ -290,8 +293,10 @@
           <form id="upload_pf_home" name="upload_pf_home" align="center" enctype="multipart/form-data">
                   <div class="upload-btn-wrapper" >
                     <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
-                    <input type="file" name="img_profile_home" id="img_profile_home" accept="image/*" onchange="readURLprofileHome(this,'profile');"/>
+                    <input type="file" name="img_profile_home" id="img_profile_home" accept="image/*" 
+                           onchange="readURLprofileHome(this,'profile');"/>
                   </div>
+            
                   </form>
             <?php 
                if($_COOKIE[detect_userclass]=="lab"){
@@ -497,6 +502,10 @@
       //            include("application/views/main_body_view.php"); 
       $this->load->view('main_body_view');
       ?>
+<!--      <div class="upload-btn-wrapper">
+              <button class="btn-f" type="button"><i class="fa fa-camera" aria-hidden="true"></i> อัพโหลดรูปถ่าย</button>
+              <input type="file" name="img_profile_home" id="" accept="image/*" onchange="">
+      </div>-->
     </ons-page>
   </template>
     <template id="st_manage_service.html">

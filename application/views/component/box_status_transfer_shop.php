@@ -185,7 +185,7 @@ $check_change_plan = $query->num_rows();
             ?>
             <td colspan="2">
               <div style="padding: 5px;">
-                <ons-list-header class="list-header" style="">ธนาคารรับเงิน</ons-list-header>   
+                <ons-list-header class="list-header" style="">ช้อมูลธนาคาร</ons-list-header>   
 
                 <table width="100%">
                   <tr>

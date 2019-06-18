@@ -3092,10 +3092,10 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      
+      loadBoxChooseGetMoney(order_id);
       if (res.result == false) {
 //        alert();
-          loadBoxChooseGetMoney(order_id);
+          
           var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
