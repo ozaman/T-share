@@ -1453,54 +1453,7 @@ function submitCancel() {
         shopManage();
         modal.hide();
 
-        var check_open = $('#check_open_shop_id').val();
-        if (check_open != 0) {
-          var url = "shop/detail_shop_his";
-          var param = {
-            user_id: $.cookie("detect_user"),
-            invoice: $('#order_invoice').val(),
-          };
-//    console.log(param);
-          $.ajax({
-            url: url,
-            dataType: 'json',
-            data: param,
-            type: 'post',
-            success: function (res) {
-//            console.log(res);
-              var url = "page/shop_detail_his";
-              $.post(url, res, function (ele) {
-//                  console.log(ele);
-                $('#body_popup1').html(ele);
-                var obj = res;
-                console.log(obj);
-                if (obj.check_driver_topoint == 1) {
-                  console.log("driver_topoint");
-                  changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
-                }
-                if (obj.check_guest_receive == 1) {
-                  console.log("guest_receive");
-                  changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
-                }
-                if (obj.check_guest_register == 1) {
-                  console.log("guest_register");
-                  changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
-                }
-                if (obj.check_driver_pay_report == 1) {
-                  console.log("driver_pay_report");
-                  changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
-                }
-                /*checkPhotoCheckIn('driver_topoint', obj.id);
-                 checkPhotoCheckIn('guest_receive', obj.id);
-                 checkPhotoCheckIn('guest_register', obj.id);
-                 checkPhotoCheckIn('driver_pay_report', obj.id);*/
-                checkPhotoCheckIn('guest_register', obj.id);
-                $('#check_open_shop_id').val(obj.id);
-              });
-//          $('#body_popup1').html(res);
-            }
-          });
-        }
+        load_detail_his();
 
       }, 3200);
 
@@ -1515,6 +1468,57 @@ function submitCancel() {
     }
 
   });
+}
+
+function load_detail_his() {
+  var check_open = $('#check_open_shop_id').val();
+  if (check_open != 0) {
+    var url = "shop/detail_shop_his";
+    var param = {
+      user_id: $.cookie("detect_user"),
+      invoice: $('#order_invoice').val(),
+    };
+//    console.log(param);
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      data: param,
+      type: 'post',
+      success: function (res) {
+//            console.log(res);
+        var url = "page/shop_detail_his";
+        $.post(url, res, function (ele) {
+//                  console.log(ele);
+          $('#body_popup1').html(ele);
+          var obj = res;
+          console.log(obj);
+          if (obj.check_driver_topoint == 1) {
+            console.log("driver_topoint");
+            changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+          }
+          if (obj.check_guest_receive == 1) {
+            console.log("guest_receive");
+            changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+          }
+          if (obj.check_guest_register == 1) {
+            console.log("guest_register");
+            changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+          }
+          if (obj.check_driver_pay_report == 1) {
+            console.log("driver_pay_report");
+            changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+          }
+          /*checkPhotoCheckIn('driver_topoint', obj.id);
+           checkPhotoCheckIn('guest_receive', obj.id);
+           checkPhotoCheckIn('guest_register', obj.id);
+           checkPhotoCheckIn('driver_pay_report', obj.id);*/
+          checkPhotoCheckIn('guest_register', obj.id);
+          $('#check_open_shop_id').val(obj.id);
+        });
+//          $('#body_popup1').html(res);
+      }
+    });
+  }
 }
 
 function resetFormCancel() {

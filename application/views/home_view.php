@@ -2573,6 +2573,9 @@
               if (data.status == "COMPLETED" && data.check_driver_pay == 1){
                 $('#status_booking_detail').html('<b><font color="#54c23d">สำเร็จ</font></b>');
               }
+              if (data.status == "CANCEL"){
+                load_detail_his();
+              }
 //              if (data.check_driver_pay == 1 && data.check_lab_pay == 1) {
 //                  loadBoxConfirmPay(data.id);
 //   //                    return;
