@@ -883,11 +883,12 @@ function submitEditCar() {
         if ($('#open_by').val() == "shop_add") {
 
           callpop();
-          var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
-          $.post(url2, function (ele2) {
-            $('#shop_add').html(ele2);
+//          var url2 = "shop/shop_pageadd?shop_id=" + $('#program').val();
+//          $.post(url2, function (ele2) {
+//            $('#shop_add').html(ele2);
             modal.hide();
-          });
+//          });
+          load_box_choose_car();
           return;
         }
         ons

@@ -572,7 +572,7 @@ function getSelectBankShop(div) {
 
 function getPlanBox(id, plan_id) {
 //	alert(plan_id);
-  
+
   if (id == 2) {
     $('#box_cause').hide();
   } else {
@@ -582,7 +582,7 @@ function getPlanBox(id, plan_id) {
   var url = "shop/box_price_plan" + "?i_country=" + id + "&i_plan_pack=" + id + "&user_sc=1" + "&car_type=" + $('#car_type').val() + '&i_shop=' + $('#program').val();
   console.log(url);
   $.post(url, function (res) {
-    $("#radio-nation-ck"+id).prop("checked", true);
+    $("#radio-nation-ck" + id).prop("checked", true);
     $('#box_price_replan').html(res);
     // console.log(data);
     // $('#radio-nationck' + id).prop('checked', true);
@@ -1453,7 +1453,54 @@ function submitCancel() {
         shopManage();
         modal.hide();
 
-
+        var check_open = $('#check_open_shop_id').val();
+        if (check_open != 0) {
+          var url = "shop/detail_shop_his";
+          var param = {
+            user_id: $.cookie("detect_user"),
+            invoice: $('#order_invoice').val(),
+          };
+//    console.log(param);
+          $.ajax({
+            url: url,
+            dataType: 'json',
+            data: param,
+            type: 'post',
+            success: function (res) {
+//            console.log(res);
+              var url = "page/shop_detail_his";
+              $.post(url, res, function (ele) {
+//                  console.log(ele);
+                $('#body_popup1').html(ele);
+                var obj = res;
+                console.log(obj);
+                if (obj.check_driver_topoint == 1) {
+                  console.log("driver_topoint");
+                  changeHtml("driver_topoint", obj.id, timestampToDate(obj.driver_topoint_date, "time"));
+                }
+                if (obj.check_guest_receive == 1) {
+                  console.log("guest_receive");
+                  changeHtml("guest_receive", obj.id, timestampToDate(obj.guest_receive_date, "time"));
+                }
+                if (obj.check_guest_register == 1) {
+                  console.log("guest_register");
+                  changeHtml("guest_register", obj.id, timestampToDate(obj.guest_register_date, "time"));
+                }
+                if (obj.check_driver_pay_report == 1) {
+                  console.log("driver_pay_report");
+                  changeHtml("driver_pay_report", obj.id, timestampToDate(obj.driver_pay_report_date, "time"));
+                }
+                /*checkPhotoCheckIn('driver_topoint', obj.id);
+                 checkPhotoCheckIn('guest_receive', obj.id);
+                 checkPhotoCheckIn('guest_register', obj.id);
+                 checkPhotoCheckIn('driver_pay_report', obj.id);*/
+                checkPhotoCheckIn('guest_register', obj.id);
+                $('#check_open_shop_id').val(obj.id);
+              });
+//          $('#body_popup1').html(res);
+            }
+          });
+        }
 
       }, 3200);
 
@@ -1631,8 +1678,7 @@ function changeHtml(type, id, st) {
     $('#btn_isedit_time').hide();
     $('#step_guest_receive').show();
 
-  } 
-  else if (type == "guest_receive") {
+  } else if (type == "guest_receive") {
     $('#step_guest_register').show();
     if (class_user == "taxi") {
       $('#txt_btn_guest_receive').text('พนักงานรับแขกแล้ว');
@@ -1654,8 +1700,7 @@ function changeHtml(type, id, st) {
       });
     }
 
-  } 
-  else if (type == "guest_register") {
+  } else if (type == "guest_register") {
     $('#tr_show_pax_regis_' + id).show();
     loadNewPlan(id);
     chackPackCash(id);
@@ -1865,14 +1910,12 @@ function sendCheckIn(id, type, place_id, plan_setting) {
 
     }
 
-  } 
-  else if (type == 'driver_pay_report') {
+  } else if (type == 'driver_pay_report') {
 
     $('#btn_isedit_time').hide();
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(1);
-  } 
-  else {
+  } else {
 
     url_send = "shop/checkin?type=" + type + "&id=" + id + "&lat=" + lat + "&lng=" + lng;
     saveShop_action_pay(0);
@@ -1946,16 +1989,16 @@ function shopFuncNotiActi(id, type, place_id) {
   apiRecordActivityAndNotification(ac, nc);
 }
 
-function readURLuploadImgRegister(input){
-  
+function readURLuploadImgRegister(input) {
+
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
 
       $('#pv_register_upload').attr('src', e.target.result);
       $('#pv_register_upload').fadeIn(500);
-      var url = "page/upload_img?type=checkin&action=guest_register&id="+$('#order_id_for_register_upload').val();
-      
+      var url = "page/upload_img?type=checkin&action=guest_register&id=" + $('#order_id_for_register_upload').val();
+
       var data = new FormData($('#form_upload_pic_regis')[0]);
       data.append('fileUpload', $('#img_regis')[0].files[0]);
       $.ajax({
@@ -1971,11 +2014,11 @@ function readURLuploadImgRegister(input){
           if (php_script_response.result == true) {
             $('#photo_guest_register_no').hide();
             $('#photo_guest_register_yes').show();
-            
+
             $('#photo_guest_register_upload').show();
             $('#txt-img-has-checkin').show();
             $('#txt-img-nohas-checkin').hide();
-            
+
             $('#pv_register_upload').attr('src', php_script_response.path + "?v=" + $.now());
 //            $('#pv_' + type).attr('high-res-img', php_script_response.path+"?v="+$.now());
             $('#pv_register_upload').attr('data-high-res-src', php_script_response.path + "?v=" + $.now());
@@ -2574,9 +2617,9 @@ function userApproveCancel(id, invoice) {
       console.log(res);
       shopManage();
       sendSocket(id);
-      $('#list_shop_manage_'+id).remove();
+      $('#list_shop_manage_' + id).remove();
 //      ons.notification.alert({message: 'งานนี้ถูกยกเลิกแล้ว', title: "ยกเลิกงาน", buttonLabel: "ปิด"});
-      
+
 //       var txt_long_ac = invoice+" : "+"คุณได้ยืนยันรับทราบรายการนี้ที่ถูกปฏิเสธ";
 //       var ac = {
 //       i_type : 1,
@@ -3048,8 +3091,7 @@ function confirmChooseGetMoney(id) {
       console.log(res);
       if (radioValue == 1) {
         loadBoxConfirmPay(id);
-      } 
-      else {
+      } else {
         if (res.order_book.result == true) {
           var bank = $("input[name='bank_user_select']:checked").val();
           $.ajax({
@@ -3093,11 +3135,11 @@ function chackPackCash(order_id) {
     dataType: 'json',
     success: function (res) {
       console.log(res);
-      
+
       if (res.result == false) {
 //        alert();
-          loadBoxChooseGetMoney(order_id);
-          var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
+        loadBoxChooseGetMoney(order_id);
+        var url_loadboxconfirmpay = "shop/check_taxi_select_type_pay?id=" + order_id;
 
         $.ajax({
           url: url_loadboxconfirmpay,
@@ -3110,8 +3152,7 @@ function chackPackCash(order_id) {
             }
           }
         });
-      } 
-      else {
+      } else {
 //        alert(4);
         $('#loadBoxChooseGetMoney').hide();
         $('#step_confirm_pay').hide();
@@ -3149,9 +3190,11 @@ function uploadImgRegister(id) {
     'id': 'popup_upload_img.html',
     'title': "แขกลงทะเบียน"
   }, 'fade-ios');
-  setTimeout(function(){ $('#order_id_for_register_upload').val(id); }, 700);
-  
-  
+  setTimeout(function () {
+    $('#order_id_for_register_upload').val(id);
+  }, 700);
+
+
 //  var url = "page/call_page?type=guest_register&id=" + id;
 //  console.log(url);
 //  $.post(url, {
@@ -3161,10 +3204,10 @@ function uploadImgRegister(id) {
 //  });
 }
 
-function get_box_remuneration(order_id, plan_setting){
+function get_box_remuneration(order_id, plan_setting) {
   var url = "component/box_remuneration";
   console.log(plan_setting);
-  $.post(url,{ id: order_id, plan_setting : plan_setting},function(ele){
+  $.post(url, {id: order_id, plan_setting: plan_setting}, function (ele) {
     $('#box_remuneration').html(ele);
   });
 }

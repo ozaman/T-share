@@ -89,6 +89,7 @@ $stamp = $time->format('H:i');
 <input type="hidden" value="<?=$_POST[id];?>" id="id_order" />
 <input type="hidden" value="<?=$_POST[drivername];?>" id="id_driver_order" />
 <input type="hidden" value="<?=$_POST[program];?>" id="place_product_id" />
+<input type="hidden" value="<?=$_POST[invoice];?>" id="order_invoice" />
 <ons-card class="assas_<?=$_POST[id];?>" style=" padding:10px 12px;" >
  <?php 
  if ($arr[book][check_guest_register] != 1 && $arr[book][status] != "CANCEL") {
