@@ -92,7 +92,7 @@ class Shop_model extends CI_Model {
     $data["airout_m"] = $mm;
     $data["airout_time"] = "00".":"."$mm";
 //		$data["car_color"] = $_POST[car_color];
-    $data["car_type"] = trim($_POST[txt_car_type]);
+    $data["car_type"] = trim($_POST[txt_car_type_add]);
     $data["i_cartype"] = $_POST[car_type];
     $data["car_plate"] = $_POST[car_plate];
     $data["check_use_car_id"] = $_POST[check_use_car_id];

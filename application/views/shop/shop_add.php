@@ -73,7 +73,7 @@ $data_shopmain = $shopmain->row();
   <input type="hidden" value="<?=$data_place->topic_th;?>" id="place_name_select" />
   <form name="form_booking" id="form_booking">
     <input type="hidden" value="<?=$_GET[shop_id];?>" name="program" id="program" />
-    <input type="hidden" value="" name="txt_car_type" id="txt_car_type" />
+    <input type="hidden" value="" name="txt_car_type_add" id="txt_car_type_add" />
     <input type="hidden" value="" name="car_type" id="car_type" />
     <input type="hidden" value="" name="car_plate" id="car_plate" />
 
@@ -173,7 +173,7 @@ $data_shopmain = $shopmain->row();
             console.log(plate_num);
             $('#car_plate').val(plate_num);
             $('#car_id').val(id);
-            $('#txt_car_type').val(car_type_txt);
+            $('#txt_car_type_add').val(car_type_txt);
           }
 
 
