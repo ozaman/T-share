@@ -261,6 +261,7 @@ function loadMoreActivity(last_date){
 //				$.each(res.data, function( index, value ) {
 //					console.log(value.id);
 					$.post("component/list_activity?last_date="+last_date,{ data : res.data},function(cpn){
+                        console.log(cpn);
 				    	$("#list_acti_data").append(cpn);
 				    });
 //				});

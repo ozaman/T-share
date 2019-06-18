@@ -1,5 +1,8 @@
 <?php 
 $befordate = $_GET[last_date];
+//echo "<pre>";
+//print_r($_POST[data]);
+//echo "</pre>";
 foreach($_POST[data] as $val){
 	$message = explode(" : ",$val[s_message]);
 if($val[s_material_icons]==0){

@@ -85,15 +85,15 @@ else {
                     </td>
                   <?php }
                   ?>
-   <!--<td>
-      <i id="driver_topoint_locat_off" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">location_on</i>
-      <i id="driver_topoint_locat_on" onclick="openPointMaps('driver_topoint','<?=$arr[book][id];?>');" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: none;">location_on</i>
-   </td>
-   <td>
-      <i id="photo_driver_topoint_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-      <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date];?>');">photo_camera</i>
-     
-   </td>-->
+ <!--<td>
+    <i id="driver_topoint_locat_off" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">location_on</i>
+    <i id="driver_topoint_locat_on" onclick="openPointMaps('driver_topoint','<?=$arr[book][id];?>');" class="material-icons" style="color: rgb(59, 89, 152); font-size: 22px; border-radius: 50%; padding: 2px; border: 2px solid rgb(59, 89, 152); display: none;">location_on</i>
+ </td>
+ <td>
+    <i id="photo_driver_topoint_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+    <i id="photo_driver_topoint_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','driver_topoint','<?=$arr[book][driver_topoint_date];?>');">photo_camera</i>
+   
+ </td>-->
                 </tr>
               </tbody>
             </table>
@@ -150,9 +150,9 @@ else {
                         <strong><font color="#FF0000"><?=$txt_wait_guest_receive;?></font></strong>
                       </div>
                     </div>
-                     <?php
+                    <?php
 //  echo $arr[book][plan_id];
- ?>
+                    ?>
                   </td>
                   <td width="30" id="pm_guest_receive" style="display: none;">
                     <table width="100%">
@@ -167,16 +167,16 @@ else {
                         </td>
                       <?php }
                       ?>
-        <!--<tr>
-           <td>
-             <i id="guest_receive_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
-              <i id="guest_receive_locat_on" onclick="openPointMaps('guest_receive','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
-           </td>
-           <td>
-              <i id="photo_guest_receive_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
-              <i id="photo_guest_receive_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date];?>');">photo_camera</i>
-           </td>
-        </tr>-->
+      <!--<tr>
+         <td>
+           <i id="guest_receive_locat_off" class="material-icons" style="color: #3b59987a;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 1px #3b59987a;display: nones;">location_on</i>
+            <i id="guest_receive_locat_on" onclick="openPointMaps('guest_receive','<?=$arr[book][id];?>');" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;">location_on</i>
+         </td>
+         <td>
+            <i id="photo_guest_receive_no" class="material-icons" style="color: rgba(59, 89, 152, 0.48); font-size: 22px; border-radius: 50%; padding: 2px; border: 1px solid rgba(59, 89, 152, 0.48);">photo_camera</i>
+            <i id="photo_guest_receive_yes" class="material-icons" style="color: #3b5998;font-size: 22px; border-radius: 50%; padding: 2px; border: solid 2px #3b5998;display: none;" onclick="viewPhotoShop('<?=$arr[book][id];?>','guest_receive','<?=$arr[book][guest_receive_date];?>');">photo_camera</i>
+         </td>
+      </tr>-->
               </tbody>
             </table>
         </td>
@@ -258,9 +258,15 @@ else {
                       <span class="input-group-text" id="basic-addon1">แขกลงทะเบียน</span>
                     </td>
                     <td width="5">
-                      <input type="number" class="font-17" id="num_edit_persion2" pattern="\d*" class="form-control font-16" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>"  style="border-radius: 5px; width: 60px; border: none; background: #FFF; padding: 5px;     color: #000;   font-weight: 600;" disabled>
+<!--                      <input type="number" id="num_edit_persion2" pattern="\d*"
+                             class="form-control font-17" placeholder="จำนวน" value="<?=$arr[book][pax_regis];?>" 
+                             style="border-radius: 5px; width: 60px; border: none; background: #FFF; padding: 5px;color: #000;   font-weight: 800;" disabled>-->
+                      <span class="font-17" id="num_edit_persion2" 
+                        style="border-radius: 5px; width: 60px; border: none; background: #FFF; padding: 5px;color: #000;   font-weight: 800;">
+                              <?=$arr[book][pax_regis];?>
+                      </span>
                     </td>
-                    <td>
+                    <td align="center">
                       <span class="input-group-text">คน</span>
                     </td>
 

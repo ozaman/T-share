@@ -1762,7 +1762,7 @@ function saveShop_action_pay(poppage) {
 
       if (type_send == 'guest_register') {
         $('#num_pax_regis_' + id_send).text($('#num_cus').val());
-        $('#num_edit_persion2').val($('#num_cus').val());
+        $('#num_edit_persion2').text($('#num_cus').val());
       }
       $('#' + type_send + '_check_click').val(1)
 
@@ -1836,7 +1836,7 @@ function sendCheckIn(id, type, place_id, plan_setting) {
           if (res.checkin.result == true) {
             $('#btn_cancel_shop').hide();
             $('#num_pax_regis_' + id_send).text($('#num_cus').val());
-            $('#num_edit_persion2').val($('#num_cus').val());
+            $('#num_edit_persion2').text($('#num_cus').val());
             $('#' + type_send + '_check_click').val(1)
             $('#btn_isedit_pax').hide();
             sendSocket(id_send);
