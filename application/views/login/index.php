@@ -606,7 +606,8 @@
                             });
                   }
                 });
-              } else if (check_type_rcv == 1) {
+              } 
+              else if (check_type_rcv == 1) {
                 var us_email = $('#us_email').val();
                 var param = {
                   email: us_email,
