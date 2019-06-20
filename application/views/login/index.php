@@ -34,9 +34,7 @@
     <script type="text/javascript">
       var base_url = '<?=base_url();?>';
     </script>
-    <!--===============================================================================================-->
-
-
+    <!--===============================================================================================-->s
     <style>
       .ons-ios-scroll-fix .page:not(.page--wrapper)[shown] > .page__content {
         overflow-y: auto !important;
@@ -366,7 +364,7 @@
         <div class="center"></div>
       </ons-toolbar>
       <div>
-        <? include("recovery.php"); ?>
+        <?php $this->load->view('login/recovery'); ?>
       </div>
       <script>
         ons.getScriptPage().onInit = function () {
