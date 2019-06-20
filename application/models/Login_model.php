@@ -27,7 +27,7 @@ class Login_model extends CI_Model {
       $cheloop = false;
       foreach ($DRIVER as $row) {
         if ($row->password == $pass) {
-
+          
           if ($row->user_class == 'lab') {
 //            return 0;
             $this->db->select('id');
@@ -35,20 +35,24 @@ class Login_model extends CI_Model {
             $_where[i_user_id] = $row->id;
             $query_lab = $this->db->get_where('tbl_ability_user',$_where);
             $check_status_lab = $query_lab->row();
-            
+            if($check_status_lab == false){
+              $return[msg] = 'ผู้ใช้ถูกปิดการใช้งาน กรุณาติดต่อผู้ดูแลของท่าน';
+              $return[status] = false;
+              return $return;
+            }
             $this->db->select('i_online');
             $_where = array();
             $_where[id] = $row->i_user_contact;
             $query_con = $this->db->get_where('shopping_contact',$_where);
             $check_status_con = $query_con->row();
-//            return $check_status_con;
-            if($check_status_con->i_online == 2){
+//            return $check_status_lab;
+            if($check_status_con->i_online > 1){
               $return[msg] = 'ผู้ใช้ถูกปิดการใช้งาน กรุณาติดต่อผู้ดูแลของท่าน';
               $return[status] = false;
               return $return;
             }
           }
-
+          
           $return[status] = true;
           $return[POST] = $_POST;
           $return[count] = count($DRIVER);
