@@ -381,14 +381,25 @@ class Shop extends CI_Controller {
   }
 
   public function count_wait_trans_shop_lab() {
-
-    $query = $this->db->query("select id from order_booking where check_driver_pay = 1 and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' ");
+    $_where = array();
+    $_where[id] = $_COOKIE[detect_user];
+    $this->db->select('i_company');
+    $com = $this->db->get_where(TBL_WEB_DRIVER,$_where);
+    $com = $com->row();
+    $query = $this->db->query("select id from order_booking where check_driver_pay = 1 and check_tran_job = 1 "
+            . "and driver_complete = 0 and status != 'CANCEL' ". "and program = ".$com->i_company);
     echo $query->num_rows();
   }
 
   public function count_wait_trans_shop_taxi() {
-
-    $query = $this->db->query("select id from order_booking where check_driver_pay = 1 and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' and drivername = ".$_GET[driver_id]);
+    $_where = array();
+    $_where[id] = $_GET[driver_id];
+    $this->db->select('i_company');
+    $com = $this->db->get_where(TBL_WEB_DRIVER,$_where);
+    $com = $com->row();
+    $query = $this->db->query("select id from order_booking where check_driver_pay = 1 "
+            . "and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' and drivername = ".$_GET[driver_id]
+            . "and program = ".$com->i_company);
     echo $query->num_rows();
   }
 
