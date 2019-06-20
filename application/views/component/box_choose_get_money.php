@@ -32,7 +32,7 @@ else {
       <?php if ($_COOKIE[detect_userclass] == "taxi") {?>
         <ons-list-header class="list-header"> เลือกช่องทางรับเงิน</ons-list-header>
         <?php
-//        echo $data->i_select_type_pay ;
+        
         if ($data->i_select_type_pay <= 0) {
           ?>
 
@@ -100,6 +100,7 @@ else {
         }
       }
       else if ($_COOKIE[detect_userclass] == "lab") {
+//        echo $data->i_select_type_pay." +++" ;
         ?>
         <div class="font-16" style="padding: 5px 10px">
           <ons-list-header class="list-header"> แท็กซี่เลือกช่องทางรับเงิน</ons-list-header>
