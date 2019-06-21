@@ -398,9 +398,12 @@ class Shop extends CI_Controller {
     $com = $this->db->get_where(TBL_WEB_DRIVER,$_where);
     $com = $com->row();
     $query = $this->db->query("select id from order_booking where check_driver_pay = 1 "
-            . "and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' and drivername = ".$_GET[driver_id]
-            . "and program = ".$com->i_company);
+            . " and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' and drivername = ".$_GET[driver_id]
+            . " and program = ".$com->i_company);
     echo $query->num_rows();
+//    echo "select id from order_booking where check_driver_pay = 1 "
+//            . " and check_tran_job = 1 and driver_complete = 0 and status != 'CANCEL' and drivername = ".$_GET[driver_id]
+//            . " and program = ".$com->i_company;
   }
 
   public function imageslider() {

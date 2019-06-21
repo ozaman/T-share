@@ -611,7 +611,7 @@ function sendSocket(id) {
   var dataorder = {
     order: parseInt(id),
   };
-  setTimeout(function(){ socket.emit('sendchat', dataorder); }, 500);
+  setTimeout(function(){ socket.emit('sendchat', dataorder); }, 700);
   
 }
 
@@ -925,10 +925,10 @@ function countWaitTransShop() {
     //console.log(url);
     $.ajax({
       url: url,
-      dataType: 'json',
+      dataType: 'text',
       type: 'post',
       success: function (res) {
-        //console.log(res);
+        console.log(res);
         if (res > 0) {
           $('#tab_shop_wait').attr('badge', res);
         } else {
