@@ -40,20 +40,34 @@ else {
   <div class="div-all-checkin">
     <div style="padding: 5px 10px">
 
-      <?php if ($_COOKIE[detect_userclass] == "taxi") {
-        ?>
-        <ons-list-header class="list-header"> เลือกช่องทางรับเงิน</ons-list-header>
-        <?php
-        if ($data->i_select_type_pay <= 0) {
-          $this->db->select('i_type_pay');
-          $_where = array();
-          $_where[i_order_booking] = $data->id;
-          $query_order = $this->db->get_where($tbl_com_booking,$_where);
-//          $arr = $query_order->row();
+      <?php
+      if ($_COOKIE[detect_userclass] == "taxi") {
+        $this->db->select('i_type_pay, i_plan_pack, i_plan_main');
+        $_where = array();
+        $_where[i_order_booking] = $data->id;
+        $query_order = $this->db->get_where($tbl_com_booking,$_where);
+          $arr = $query_order->row();
           echo "<pre>";
           print_r($query_order->result());
           echo "</pre>";
-          ?>
+        foreach ($query_order->result() as $key => $val) {
+          if ($val->i_type_pay == 1) {
+
+            $this->db->select('s_topic');
+            $_where = array();
+            $_where[id] = $val->i_plan_main;
+            $query_order = $this->db->get_where(TBL_PLAN_MAIN,$_where);
+            if($key>0){
+              $push = " + ";
+            }
+            $txt_plan_main .= $push.$query_order->row()->s_topic;
+            
+          }
+        }
+//        echo $txt_plan_main." ++";
+        ?>
+        <ons-list-header class="list-header"> เลือกช่องทางรับเงิน <?=$txt_plan_main;?></ons-list-header>
+        <?php if ($data->i_select_type_pay <= 0) {?>
 
           <div id="list-choose-div">
             <?php

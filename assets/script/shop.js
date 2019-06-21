@@ -3156,7 +3156,8 @@ function chackPackCash(order_id) {
             }
           }
         });
-      } else {
+      } 
+      else {
 //        alert(4);
         $('#loadBoxChooseGetMoney').hide();
         $('#step_confirm_pay').hide();
