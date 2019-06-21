@@ -369,18 +369,21 @@ if ($res_dv->nickname != "") {
               <?php
               $txt_cancel = "ปฏิเสธ";
               if ($val[check_guest_register] == 0) {
-                ?>
-                <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
-              <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
-                          id="cancel_book_<?=$val[id];?>"   style="padding: 19px;
-                          border-radius: 5px;
-                          line-height: 0;
-                          border: 1px solid #fe3824;
-                          color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
-                <span class="font-17 text-cap"><?=$txt_cancel;?></span>
-              </ons-button>
-          </td>	
-        <?php }
+                if ($_GET[wait_trans] == "") {
+                  ?>
+                  <td width="35%" valign="top"  id="td_cancel_book_<?=$val[id];?>">
+                <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>');" 
+                            id="cancel_book_<?=$val[id];?>"   style="padding: 19px;
+                            border-radius: 5px;
+                            line-height: 0;
+                            border: 1px solid #fe3824;
+                            color: #fe3824;" modifier="outline" class="button-margin button button--outline button--large">&nbsp; 
+                  <span class="font-17 text-cap"><?=$txt_cancel;?></span>
+                </ons-button>
+            </td>	
+            <?php
+          }
+        }
         ?>
 
         <td width="65%">
@@ -440,13 +443,15 @@ else {
               <span class="font-17 text-cap">รับทราบ</span> 
             </ons-button>
             <?php
-          }else{
+          }
+          else {
             $date = date('H:i',$res_del->update_date)." น.";
-            $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>'; ?>
+            $txt_status_cancel = '<font color="#4caf50">ยกเลิกเมื่อ '.$date.'</font>';
+            ?>
             <div align="right"><span class="font-17"><?=$txt_status_cancel;?></span></div>
           <?php }
-            ?>
-          
+          ?>
+
       </td>
       </td>
     </tr>
