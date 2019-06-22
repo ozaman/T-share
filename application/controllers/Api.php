@@ -163,7 +163,13 @@ class Api extends CI_Controller {
     else {
       $dv = "";
     }
-    $curl_post_data2 = '{"driver_id":"'.$dv.'","date":""}';
+    $_where = array();
+    $_where[id] = $_COOKIE[detect_user];
+    $this->db->select('i_company');
+    $com = $this->db->get_where(TBL_WEB_DRIVER,$_where);
+    $com = $com->row();
+    
+    $curl_post_data2 = '{"driver_id":"'.$dv.'","date":"", "program": '.$com->i_company.'}';
 //attach encoded JSON string to the POST fields
     curl_setopt($ch,CURLOPT_POSTFIELDS,$curl_post_data2);
 //set the content type to application/json

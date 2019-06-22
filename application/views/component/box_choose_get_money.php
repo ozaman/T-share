@@ -24,17 +24,50 @@ else {
   $class_step = "step-booking-active";
   $img_st = "yes.png";
 }
+$this->db->select('id');
+$_where = array();
+$_where[i_order_booking] = $_GET[id];
+$chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
+$num_log = $chk_log->num_rows();
+if ($num_log > 0) {
+  $tbl_com_booking = TBL_COM_ORDER_BOOKING_LOGS;
+}
+else {
+  $tbl_com_booking = TBL_COM_ORDER_BOOKING;
+}
 ?>
 <td class="font-16">
   <div class="div-all-checkin">
     <div style="padding: 5px 10px">
 
-      <?php if ($_COOKIE[detect_userclass] == "taxi") {?>
-        <ons-list-header class="list-header"> เลือกช่องทางรับเงิน</ons-list-header>
-        <?php
-        
-        if ($data->i_select_type_pay <= 0) {
-          ?>
+      <?php
+      if ($_COOKIE[detect_userclass] == "taxi") {
+        $this->db->select('i_type_pay, i_plan_pack, i_plan_main');
+        $_where = array();
+        $_where[i_order_booking] = $data->id;
+        $query_order = $this->db->get_where($tbl_com_booking,$_where);
+          $arr = $query_order->row();
+          echo "<pre>";
+          print_r($query_order->result());
+          echo "</pre>";
+        foreach ($query_order->result() as $key => $val) {
+          if ($val->i_type_pay == 1) {
+
+            $this->db->select('s_topic');
+            $_where = array();
+            $_where[id] = $val->i_plan_main;
+            $query_order = $this->db->get_where(TBL_PLAN_MAIN,$_where);
+            if($key>0){
+              $push = " + ";
+            }
+            $txt_plan_main .= $push.$query_order->row()->s_topic;
+            
+          }
+        }
+//        echo $txt_plan_main." ++";
+        ?>
+        <ons-list-header class="list-header"> เลือกช่องทางรับเงิน <?=$txt_plan_main;?></ons-list-header>
+        <?php if ($data->i_select_type_pay <= 0) {?>
 
           <div id="list-choose-div">
             <?php
@@ -54,7 +87,7 @@ else {
             <?php }
             ?>
             <div id="box_load_select_bank">
-              
+
             </div>
             <ons-button modifier="outline" class="button-margin button button--outline button--large" type="button"
                         onclick="confirmChooseGetMoney(<?=$data->id;?>);" style="background-color: #fff;padding: 0px 4px;">
@@ -66,23 +99,14 @@ else {
           <?php
         }
         else {
-          $this->db->select('id');
-          $_where = array();
-          $_where[i_order_booking] = $_GET[id];
-          $chk_log = $this->db->get_where(TBL_COM_ORDER_BOOKING_LOGS,$_where);
-          $num_log = $chk_log->num_rows();
-          if ($num_log > 0) {
-            $tbl_com_booking = TBL_COM_ORDER_BOOKING_LOGS;
-          }
-          else {
-            $tbl_com_booking = TBL_COM_ORDER_BOOKING;
-          }
+
           $this->db->select('i_type_pay');
           $_where = array();
           $_where[i_order_booking] = $data->id;
           $query_order = $this->db->get_where($tbl_com_booking,$_where);
           $arr = $query_order->row();
 //          echo $arr->i_type_pay." +++ ".$tbl_com_booking." == ".$_GET[id];
+
           if ($arr->i_type_pay == 1) {
             ?>
             <div id="choose-cash-div" style="padding: 5px;">

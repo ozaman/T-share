@@ -444,6 +444,8 @@ foreach ($_POST[data] as $key => $val) {
 //                  else {
 //                    $btn_cancel_taxi = "display:none;";
 //                  }
+                  
+                  if($_GET[wait_trans]==""){
                   ?>
              <td width="35%" valign="top" style="<?=$btn_cancel_taxi;?>" id="td_cancel_book_<?=$val[id];?>">
                 <ons-button onclick="cancelShopSelect('<?=$val[id];?>', '<?=$val[invoice];?>', '<?=$val[drivername];?>', '<?=$val[program];?>');" id="cancel_book_<?=$val[id];?>"  id="btn_edit_time_<?=$val[id];?>" style="padding: 17.5px;
@@ -454,6 +456,7 @@ foreach ($_POST[data] as $key => $val) {
                   <span class="font-17 text-cap"><?=$txt_cancel;?></span>
                 </ons-button>
             </td>
+                  <?php } ?>
             <td width="65%">
               <?php
               if ($val[check_guest_register] == 1) {
