@@ -10,7 +10,7 @@ class Send_onesignal extends CI_Controller {
   }
 
   public function new_shop() {
-    $data['res'] = $this->Send_onesignal_model->new_shop();
+//    $data['res'] = $this->Send_onesignal_model->new_shop();
 //  		header('Content-Type: application/json');
     echo json_encode($data['res']);
   }

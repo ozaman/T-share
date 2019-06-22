@@ -26,10 +26,10 @@ class Notification_model extends CI_Model {
 	  		$data[i_status] = 1;
 	  		$data[s_posted] = $param[s_posted];
 	  		$data[s_post_date] = time();
-	  		$data[s_last_update] = time();  		
+	  		$data[s_last_update] = time();	
 	  		
-//	  		$result = $this->db->insert($to_table, $data);
-	  		$data[result] = true;
+	  		$result = $this->db->insert($to_table, $data);
+	  		$data[result] = $result;
 	  		return $data;
 		}else{
 			$ret[result] = false;
@@ -52,9 +52,10 @@ class Notification_model extends CI_Model {
         if($param[i_company]){
           $sql_i_company = "and t1.i_company = ".$param[i_company];
         }
-  		$query = $this->db->query("select t1.id, t2.".$setting_col." as noti_set "
+        $sql = "select t1.id, t2.".$setting_col." as noti_set "
                 . "from web_driver as t1 left join app_user_setting as t2 on t1.id = t2.i_user "
-                . "where t1.username LIKE '%lab%' ");
+                . "where t1.username LIKE '%lab%' ".$sql_i_company;
+  		$query = $this->db->query($sql);
   		$key = 0;
 		foreach ($query->result() as $row)
 		{
@@ -72,11 +73,12 @@ class Notification_model extends CI_Model {
 			  		$data[i_status] = 1;
 			  		$data[s_posted] = $param[s_posted];
 			  		$data[s_post_date] = time();
-			  		$data[s_last_update] = time();  		
-			  		
+			  		$data[s_last_update] = time();  	
+                    $data[i_company] = $param[i_company];  	
+                    
 			  		$result = $this->db->insert($to_table, $data);
-//			  		$return[$key][result] = $result;
-			  		$return[$key][result] = true;
+			  		$return[$key][result] = $result;
+//			  		$return[$key][result] = true;
 			  		$return[$key][data] = $data;
 			  		$key++;
 			  		
@@ -87,6 +89,7 @@ class Notification_model extends CI_Model {
 				
 			}
 		}
+        $return[sql] = $sql;
   		return $return;
   } 
 
