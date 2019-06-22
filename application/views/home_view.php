@@ -2272,6 +2272,7 @@
       }
    });
     var frist_socket = true;
+    var Uclass;
    if (class_user != "taxi") {
     Uclass = 'getbookinglab'
 

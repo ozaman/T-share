@@ -154,8 +154,15 @@ socket.on('notification', function(data) {
     }
 });
 var frist_socket = true;
+ var Uclass;
+   if (class_user != "taxi") {
+    Uclass = 'getbookinglab'
 
-socket.on('getbookinglab', function(data) {
+   }
+   else{
+    Uclass = 'bookingdiver'
+   }
+socket.on(Uclass, function(data) {
     // console.log(data)
 
     array_data = [];
@@ -164,17 +171,18 @@ socket.on('getbookinglab', function(data) {
     $.each(data, function(index, value) {
         var current = formatDate(new Date());
         var db = formatDate(value.transfer_date);
-        if (value.driver_complete == 0) {
-            if (class_user == "lab") {
-                if (db == current) {
-                    done.push(value);
-                }
-            } else {
-                if (db == current && value.drivername == detect_user) {
-                    done.push(value);
-                }
-            }
-        }
+        done.push(value);
+        // if (value.driver_complete == 0) {
+        //     if (class_user == "lab") {
+        //         if (db == current) {
+        //             done.push(value);
+        //         }
+        //     } else {
+        //         if (db == current && value.drivername == detect_user) {
+        //             done.push(value);
+        //         }
+        //     }
+        // }
     });
     array_data = {
         manage: done,
