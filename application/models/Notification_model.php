@@ -28,8 +28,8 @@ class Notification_model extends CI_Model {
 	  		$data[s_post_date] = time();
 	  		$data[s_last_update] = time();  		
 	  		
-	  		$result = $this->db->insert($to_table, $data);
-	  		$data[result] = $result;
+//	  		$result = $this->db->insert($to_table, $data);
+	  		$data[result] = true;
 	  		return $data;
 		}else{
 			$ret[result] = false;
@@ -75,7 +75,8 @@ class Notification_model extends CI_Model {
 			  		$data[s_last_update] = time();  		
 			  		
 			  		$result = $this->db->insert($to_table, $data);
-			  		$return[$key][result] = $result;
+//			  		$return[$key][result] = $result;
+			  		$return[$key][result] = true;
 			  		$return[$key][data] = $data;
 			  		$key++;
 			  		
