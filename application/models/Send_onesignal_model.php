@@ -96,8 +96,11 @@ class Send_onesignal_model extends CI_Model {
     curl_setopt($ch,CURLOPT_HEADER,FALSE);
     curl_setopt($ch,CURLOPT_POST,TRUE);
     curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
-    $query = $this->db->query("select t1.username,t2.i_noti_shop from web_driver as t1 left join app_user_setting as t2 "
-            ."on t1.id = t2.i_user where t1.user_class = 'lab' and t1.i_company = ".$res_book->program);
+    $query = $this->db->query("select t1.username,t2.i_noti_shop, t4.i_online from web_driver as t1 left join app_user_setting as t2 "
+            ."on t1.id = t2.i_user "
+            ." left join tbl_ability_user as t3 on t1.id = t3.i_user_id"
+            ." left join shopping_contact as t4 on t3.i_user_contact = t4.shopping_contact"
+            . "where t1.user_class = 'lab' and i_online = 1 and t1.i_company = ".$res_book->program);
     $num = 0;
     foreach ($query->result() as $row) {
 

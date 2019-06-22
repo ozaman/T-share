@@ -30,7 +30,7 @@ class Login_model extends CI_Model {
           
           if ($row->user_class == 'lab') {
 //            return 0;
-            $this->db->select('id');
+            $this->db->select('id,i_user_contact');
             $_where = array();
             $_where[i_user_id] = $row->id;
             $query_lab = $this->db->get_where('tbl_ability_user',$_where);
@@ -42,7 +42,7 @@ class Login_model extends CI_Model {
             }
             $this->db->select('i_online');
             $_where = array();
-            $_where[id] = $row->i_user_contact;
+            $_where[id] = $check_status_lab->i_user_contact;
             $query_con = $this->db->get_where('shopping_contact',$_where);
             $check_status_con = $query_con->row();
 //            return $check_status_lab;
@@ -52,7 +52,7 @@ class Login_model extends CI_Model {
               return $return;
             }
           }
-          
+//          return $check_status_con->i_online;
           $return[status] = true;
           $return[POST] = $_POST;
           $return[count] = count($DRIVER);
