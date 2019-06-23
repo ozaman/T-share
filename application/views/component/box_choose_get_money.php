@@ -47,9 +47,9 @@ else {
         $_where[i_order_booking] = $data->id;
         $query_order = $this->db->get_where($tbl_com_booking,$_where);
           $arr = $query_order->row();
-          echo "<pre>";
-          print_r($query_order->result());
-          echo "</pre>";
+//          echo "<pre>";
+//          print_r($query_order->result());
+//          echo "</pre>";
         foreach ($query_order->result() as $key => $val) {
           if ($val->i_type_pay == 1) {
 
