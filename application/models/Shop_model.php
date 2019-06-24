@@ -312,6 +312,7 @@ class Shop_model extends CI_Model {
         $data_com_ordder['d_post_date'] = time();
         $data_com_ordder['d_last_date'] = time();
         $data_com_ordder['i_type_pay'] = $val1->i_pay_type;
+        $data_com_ordder['i_payer'] = $val1->i_payer;
 
 
 
