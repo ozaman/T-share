@@ -231,7 +231,7 @@ $check_change_plan = $query->num_rows();
                   </tr>
                   <tr>
                     <td><span class="font-16">เวลา</span></td>
-                    <td><span class="font-16"><?=date('Y-m-d',$data_trans_pay->last_update)." ".$data_trans_pay->trans_hh.":".$data_trans_pay->trans_mm." น.";?></span></td>
+                    <td><span class="font-16"><?=date('Y-m-d h:i:s',$data_trans_pay->last_update)." น.";?></span></td>
                   </tr>
                   <tr>
                     <td><span class="font-16">สลิปโอนเงิน</span></td>
@@ -247,7 +247,7 @@ $check_change_plan = $query->num_rows();
                     <tr>
                       <td align="center" colspan="2">
 
-                    <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>', '<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับเงินค่าคอมมิชชั่น</span></ons-button>
+                    <ons-button id="get_trans_com_<?=$data->id;?>" type="button" onclick="confirmGetTransCom('<?=$data->id;?>', '<?=$data->invoice;?>');" style="width: 100%;  padding: 2px;"><span class="font-16">ยืนยันรับโอน</span></ons-button>
                     </td>
                     </tr>
                   <?php }
