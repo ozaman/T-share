@@ -55,6 +55,11 @@ if ($pv->name_th != "") {
 else {
   $txt_pv = "เลือกจังหวัด";
 }
+if($driver->s_password==""){
+  $none_txt_pw = "";
+}else{
+  $none_txt_pw = "display:none;";
+}
 ?>
 
 <div style="padding: 1px 0 0 0;">
@@ -85,12 +90,16 @@ else {
           <ons-icon icon="fa-key" class="list-item__icon ons-icon" style="padding-left: 0px;"></ons-icon><span class="txt-important">*</span>
         </div>
           <label class="center list-item__center">
-          <ons-input id="password-input" float="" maxlength="30" placeholder="<?=$password;?>" name="password" style="width:100%;" value="<?=$driver->password;?>">
+          <ons-input id="password-input" float="" maxlength="30" placeholder="<?=$password;?>" name="password" style="width:100%;" 
+                     value="<?=$driver->password;?>" onkeyup="pwHideTxt();">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$password;?>" name="password" >
             <span class="text-input__label">
               <?=$password;?></span>
           </ons-input>
         </label>
+        <div class="right list-item__right" style="<?=none_txt_pw;?>" id="txt-pw-placeholder">
+          <span class="font-16" style="opacity: 0.5;"> รหัสผ่าน </span>
+        </div>
       </ons-list-item>
 
       <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('name-input');">

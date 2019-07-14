@@ -340,3 +340,13 @@ function validPhoneNum(value) {
 //			$('#incorrent-phone span').text('ไม่ถูกต้อง');
   }
 }
+
+function pwHideTxt() {
+  var val = $('input[name="password"]').val();
+  console.log(val);
+  if(val.length<=0){
+    $('#txt-pw-placeholder').hide();
+  }else{
+    $('#txt-pw-placeholder').show();
+  }
+}

@@ -16,7 +16,7 @@ function generateRandomString($length = 10) {
   <input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />
   <ons-card class="card">
     <ons-list-header class="list-header"><b>ข้อมูลบัญชี</b></ons-list-header>
-    <ons-list-item class="input-items list-item p-l-0" >
+    <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('bank_name-input');">
       <div class="left list-item__left">
           <i class="material-icons" id="icon_bank_name">account_circle</i><!--<span class="txt-important">*</span>-->
       </div>
@@ -28,7 +28,7 @@ function generateRandomString($length = 10) {
         </ons-input>
       </label>
     </ons-list-item>
-    <ons-list-item class="input-items list-item p-l-0" >
+    <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('bank_number-input');">
       <div class="left list-item__left">
           <i class="material-icons" id="icon_bank_number">account_balance_wallet</i><!--<span class="txt-important">*</span>-->
       </div>
@@ -49,7 +49,7 @@ function generateRandomString($length = 10) {
         <input type="hidden" name="bank" id="bank" value="" />
       </div>
     </ons-list-item>
-    <ons-list-item class="input-items list-item p-l-0" >
+    <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('branch_bank-input');">
       <div class="left list-item__left">
         <i class="fa fa-font-awesome" id="icon_bank_branch" aria-hidden="true" style=" font-size: 24px;  margin-left: 3px;"></i>
       </div>
