@@ -17,7 +17,7 @@
 
 <div style="padding: 1px 0 0 0;">
 	<p class="intro" >
-      กรุณากรอกข้อมูลที่เป็นความจริง เพื่อง่ายต่อการทำงานและการติดต่อของท่าน
+      กรุณากรอกข้อมูลส่วนตัวของท่าน
     </p>
 	<form name="form_singin" id="form_singin"  enctype="multipart/form-data">
 	<input type="hidden" value="<?=$rand;?>" id="rand" name="rand" />

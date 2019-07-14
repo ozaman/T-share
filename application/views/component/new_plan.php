@@ -116,21 +116,24 @@ $plan = $PLAN_PACK->s_topic;
 <div style="padding: 5px 0px;">
   <ons-list-header class="list-header" style="<?=$color_titel;?>"> <?=$titel;?></ons-list-header>
   <table class="onlyThisTable" width="100%" border="0" cellpadding="1" cellspacing="5" id="table_show_income_driver">
-    <tr>
-      <td width="35%"><span class="font-17">สาเหตุ</span></td>
-      <td colspan="2">
-        <?php
+    <?php
         $this->db->select('t1.i_cause_change, t2.s_topic');
         $this->db->from(TBL_CHANGE_PLAN_LOGS.' as t1');
         $this->db->join(SHOP_TYPE_CHANGE_PLAN.' as t2','t1.i_cause_change = t2.id');
         $this->db->where('t1.order_id', $_GET[id]);
         $query_because = $this->db->get();
         $because = $query_because->row();
+        if($query_because->num_rows()>0){
         ?>
+    <tr>
+      
+      <td width="35%"><span class="font-17">สาเหตุ</span></td>
+      <td colspan="2">
+        
         <span class="font-17" id="txt_type_plan"><?=$because->s_topic;?></span>
       </td>
     </tr>
-    <?php //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>
+        <?php } //echo $BOOKING_LOGS.'-------------------------'.count($BOOKING_LOGS);?>
     <tr>
       <td width="35%"><span class="font-17">ประเภท</span></td>
       <td colspan="2"><span class="font-17" id="txt_type_plan"><?=$plan;?></span></td>
