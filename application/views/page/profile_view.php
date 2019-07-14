@@ -71,7 +71,7 @@ else {
         <div class="left list-item__left">
             <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><!--<span class="txt-important">*</span>-->
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="username-input" float="" maxlength="30" placeholder="<?=$username;?>" name="username" style="width:100%;" disabled value="<?=$driver->username;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$username;?>" name="username" >
             <span class="text-input__label">
@@ -80,11 +80,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('password-input');">
         <div class="left list-item__left">
           <ons-icon icon="fa-key" class="list-item__icon ons-icon" style="padding-left: 0px;"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+          <label class="center list-item__center">
           <ons-input id="password-input" float="" maxlength="30" placeholder="<?=$password;?>" name="password" style="width:100%;" value="<?=$driver->password;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$password;?>" name="password" >
             <span class="text-input__label">
@@ -93,11 +93,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('name-input');">
         <div class="left list-item__left">
           <ons-icon icon="fa-user" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" onclick="focusBoxGlobal('name-input');">
           <ons-input id="name-input" float="" maxlength="30" placeholder="<?=$name_th;?>" name="name_th" style="width:100%;" value="<?=$driver->name;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_th;?>" name="name_th">
             <span class="text-input__label">
@@ -106,11 +106,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('name_en-input');">
         <div class="left list-item__left">
           <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="name_en-input" float="" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en" style="width:100%;" value="<?=$driver->name_en;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$name_en;?>"  name="name_en">
             <span class="text-input__label">
@@ -119,11 +119,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('nickname-input');">
         <div class="left list-item__left">
           <ons-icon icon="md-face" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="nickname-input" float="" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname" style="width:100%;" value="<?=$driver->nickname;?>">
             <input type="text" class="text-input" maxlength="30" placeholder="<?=$nickname;?>"  name="nickname">
             <span class="text-input__label">
@@ -163,11 +163,11 @@ else {
 
     <ons-card class="card">
       <ons-list-header class="list-header"><b>ข้อมูลที่อยู่</b></ons-list-header>
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('address-input');">
         <div class="left list-item__left">
           <ons-icon icon="fa-home" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="address-input" float=""  placeholder="<?=$address;?>" name="address" style="width:100%;" value="<?=$driver->address;?>">
             <input type="text" class="text-input" placeholder="<?=$address;?>" name="address" id="address">
             <span class="text-input__label">
@@ -192,12 +192,12 @@ else {
 
     <ons-card class="card">
       <ons-list-header class="list-header"><b>ข้อมูลติดต่อ</b></ons-list-header>
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('phone');">
         <div class="left list-item__left">
           <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
-          <ons-input id="phone-input" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;" value="<?=$driver->phone;?>">
+        <label class="center list-item__center" >
+          <ons-input id="phone" float="" placeholder="<?=$phone;?>" name="phone" style="width:100%;" value="<?=$driver->phone;?>">
             <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone;?>" name="phone" id="phone" onkeyup="validPhoneNum($(this).val());" >
             <span class="text-input__label">
               <?=$phone;?></span>
@@ -210,12 +210,12 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('phone2');">
         <div class="left list-item__left">
           <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important"></span>
         </div>
-        <label class="center list-item__center">
-          <ons-input id="phone-input" float="" placeholder="<?=$phone2;?>" name="phone2" style="width:100%;" value="<?=$driver->phone2;?>">
+        <label class="center list-item__center" >
+          <ons-input id="phone2" float="" placeholder="<?=$phone2;?>" name="phone2" style="width:100%;" value="<?=$driver->phone2;?>">
             <input type="number" pattern="\d*" class="text-input"  placeholder="<?=$phone2;?>" name="phone2" id="phone2" >
             <span class="text-input__label">
               <?=$phone2;?></span>
@@ -224,11 +224,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('phone_em-input');">
         <div class="left list-item__left">
           <ons-icon icon="fa-phone" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <div class="center list-item__center" style="   /* margin-left: -7px;*/">
+        <div class="center list-item__center" style="   /* margin-left: -7px;*/" >
           <ons-input id="phone_em-input" float="" placeholder="<?=$phone_em;?>" name="phone_em" style="width:100%;"  maxlength="10" value="<?=$driver->phone_emergency;?>" >
             <input type="number" pattern="\d*" class="text-input" placeholder="<?=$phone_em;?>" name="phone_em" id="phone_em"  maxlength="10">
             <span class="text-input__label">
@@ -258,7 +258,7 @@ else {
         </div>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('email-input');">
         <div class="left list-item__left">
           <ons-icon icon="fa-at" class="list-item__icon ons-icon"></ons-icon>
         </div>
@@ -275,11 +275,11 @@ else {
         </label>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('line-input');">
         <div class="left list-item__left">
           <img src="assets/images/social_icon/line.png" style="width: 31px;" />
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="line-input" float="" placeholder="Line" name="line" style="width:100%;" value="<?=$driver->line_id;?>">
             <input type="text" class="text-input"  placeholder="Line" name="line" id="line">
             <span class="text-input__label">
@@ -292,11 +292,11 @@ else {
         <?php }?>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('wechat-input');">
         <div class="left list-item__left">
           <img src="assets/images/social_icon/wechat.png" style="width: 31px;" />
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="wechat-input" float="" placeholder="Wechat" name="wechat" style="width:100%;" value="<?=$driver->wechat_id;?>">
             <input type="text" class="text-input"  placeholder="Wechat" name="wechat" id="wechat">
             <span class="text-input__label">
@@ -308,11 +308,11 @@ else {
         <?php }?>
       </ons-list-item>
 
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('zello_id-input');">
         <div class="left list-item__left">
           <img src="assets/images/social_icon/zello.png" style="width: 31px;" />
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="zello_id-input" float="" placeholder="Zello id" name="zello_id" style="width:100%;" value="<?=$driver->zello_id;?>">
             <input type="text" class="text-input"  placeholder="Zello id" name="zello_id" id="zello_id">
             <span class="text-input__label">
@@ -348,11 +348,11 @@ else {
 
     <ons-card  class="card">
       <ons-list-header class="list-header"><b>เลขประชาชน/วันหมดอายุ</b></ons-list-header>
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('idcard-input');">
         <div class="left list-item__left" style="   /* margin-left: -7px;*/">
           <ons-icon icon="fa-id-badge" class="list-item__icon ons-icon"></ons-icon><span class="txt-important">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="idcard-input" float="" placeholder="<?=$idcard;?>" name="idcard" style="width:100%;" value="<?=$driver->idcard;?>">
             <input type="number" pattern="\d*" class="text-input" placeholder="<?=$idcard;?>" onkeyup="checkIdCard(this.value);" name="idcard" id="idcard">
             <span class="text-input__label">
@@ -412,11 +412,11 @@ else {
 
    	<ons-card  class="card">
       <ons-list-header class="list-header"><b>ใบขับขี่/วันหมดอายุ</b></ons-list-header>  
-      <ons-list-item class="input-items list-item p-l-0">
+      <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('iddriving-input');">
         <div class="left list-item__left" >
           <ons-icon icon="fa-id-card-o" class="list-item__icon ons-icon"></ons-icon><span class="txt-important" style="margin-left: 35px;">*</span>
         </div>
-        <label class="center list-item__center">
+        <label class="center list-item__center" >
           <ons-input id="iddriving-input" float="" placeholder="<?=$card_dv;?>" name="iddriving" style="width:100%;" value="<?=$driver->iddriving;?>">
             <input type="text" class="text-input" placeholder="<?=$card_dv;?>"  name="iddriving" id="iddriving">
             <span class="text-input__label">

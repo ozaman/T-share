@@ -1,3 +1,9 @@
+function focusBoxGlobal(id){
+    console.log(id);
+    $( "#"+id ).focus();
+}
+
+
 var id_category, id_province, check_back;
 function reloadApp() {
   modal.show();
