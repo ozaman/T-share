@@ -111,7 +111,7 @@ else {
       <div class="left list-item__left"  style="width: 110px;" id="car_gen_txt">
         <span>รุ่น</span>
       </div>
-      <div class="center list-item__center custom-sl-pd" id="car_gen_box" onclick="fn.pushPage({'id': 'option.html', 'title': 'รุ่นรถ', 'open': 'car_gen'}, 'lift-ios')">
+      <div class="center list-item__center custom-sl-pd" id="car_gen_box" onclick="selectCarGen();">
         <span id="txt_car_gen" ><?=$txt_car_gen;?></span>
         <input type="hidden" name="i_car_gen" id="i_car_gen" value="<?=$data_gen->id;?>" />
       </div>

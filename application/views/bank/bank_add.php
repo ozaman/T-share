@@ -40,11 +40,11 @@ function generateRandomString($length = 10) {
         </ons-input>
       </label>
     </ons-list-item>  
-    <ons-list-item class="input-items list-item p-l-0" >
+    <ons-list-item class="input-items list-item p-l-0" onclick="fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open': 'bank_list'}, 'lift-ios')">
       <div class="left list-item__left" >
         <i class="material-icons" id="icon_bank_list">account_balance</i>
       </div>
-      <div class="center list-item__center" id="bank_box" onclick="fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open': 'bank_list'}, 'lift-ios')">
+      <div class="center list-item__center" id="bank_box" >
         <span id="txt_bank" style="color: #9E9E9E;" >เลือกธนาคาร</span>
         <input type="hidden" name="bank" id="bank" value="" />
       </div>

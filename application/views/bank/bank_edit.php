@@ -33,11 +33,11 @@ $data_bank = $query->row();
         </ons-input>
       </label>
     </ons-list-item>  
-    <ons-list-item class="input-items list-item p-l-0" >
+    <ons-list-item class="input-items list-item p-l-0"  onclick="fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open': 'bank_list'}, 'lift-ios')">
       <div class="left list-item__left" >
         <i class="material-icons">account_balance</i>
       </div>
-      <div class="center list-item__center" onclick="fn.pushPage({'id': 'option.html', 'title': 'ธนาคาร', 'open': 'bank_list'}, 'lift-ios')">
+      <div class="center list-item__center">
         <span id="txt_bank" style="color: #1f1f21;" ><?=$data_bank->bank_list_name;?></span>
         <input type="hidden" name="bank" id="bank" value="<?=$data_bank->bank_id;?>" />
       </div>

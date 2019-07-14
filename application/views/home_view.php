@@ -2096,7 +2096,8 @@
                  dataType: 'json', // what to expect back from the PHP script, if anything
                  type: 'post',
                  success: function(res) {    
-//                     console.log(res);
+                     console.log(res);
+//                     return;
                      var param = { data : res };
 //                     console.log(param);
                      $.post("component/cpn_car_gen",param,function(el){

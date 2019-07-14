@@ -1616,3 +1616,16 @@ function focusBoxCar2() {
 
 
 }
+
+function selectCarGen(){
+  if($('#car_brand').val()>0){
+    fn.pushPage({'id': 'option.html', 'title': 'รุ่นรถ', 'open': 'car_gen'}, 'lift-ios');
+  }else{
+    ons.notification.alert({
+              message: "กรุณาเลือกยี่ห้อรถก่อน",
+              title: "ข้อความ",
+              buttonLabel: "ปิด"
+            });
+  }
+  
+}
