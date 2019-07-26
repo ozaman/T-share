@@ -1110,9 +1110,10 @@
         processData: false,
         data: data,
         type: 'post',
-        success: function (php_script_response) {
+        success: function (res) {
           console.log('in case register')
-          console.log(php_script_response);
+          console.log(res);
+          var php_script_response = res.data
           if (php_script_response.add.result == true) {
 
             ons

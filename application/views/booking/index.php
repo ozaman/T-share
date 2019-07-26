@@ -874,7 +874,7 @@ else if($_COOKIE['lng'] == 'cn'){
 <div id="box-pax-use" >
 	<div class="box-pax-use-in" >
 		<div  id="pax-box">
-			<div style="background: #3b5998, color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
+			<div style="background: #3b5998; color: #fff; padding: 18px; text-align: center; font-size: 19px; margin-bottom: 10px;">
 				<span class="lng-please-select-type"></span>
 				<i class="material-icons closepop">close</i>
 
@@ -2292,7 +2292,7 @@ font-weight: 800;">clear</i>
 
     .header-img {
     	text-align: center;
-    	background: ;
+    	/*background: ;*/
     	padding: 5px;
     	color: #fff;
     	font-weight: 600;

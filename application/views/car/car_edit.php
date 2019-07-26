@@ -70,7 +70,7 @@ else {
   <input type="hidden" value="<?=$_GET[id];?>" id="center_id" name="center_id" />
   <ons-card  class="card">
     <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
-    <ons-list-item class="input-items list-item p-l-0">
+    <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('name-input');">
       <div class="left list-item__left"  style="width: 110px;">
         <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
         <span>ป้ายทะเบียน</span>

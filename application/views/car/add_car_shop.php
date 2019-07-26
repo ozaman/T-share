@@ -22,7 +22,7 @@
 <input type="hidden" value="<?=$rand;?>" id="center_id" name="center_id" />
 <ons-card  class="card">
       <ons-list-header class="list-header"><b>ข้อมูลรถ</b></ons-list-header>
-        <ons-list-item class="input-items list-item p-l-0" onclick="focusEle('#plate_num_input');">
+        <ons-list-item class="input-items list-item p-l-0" onclick="focusBoxGlobal('name-input');">
             <div class="left list-item__left"  style="width: 110px;"  id="plate_num_txt">
                 <!--<ons-icon icon="fa-car" class="list-item__icon ons-icon"></ons-icon>-->
                 <span>ป้ายทะเบียน</span>
