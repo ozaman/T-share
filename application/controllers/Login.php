@@ -56,27 +56,13 @@ class Login extends CI_Controller {
   }
 
   public function register() {
-    header('Content-Type: application/json');
+//    header('Content-Type: application/json');
     $return[data] = $this->Login_model->register();
-    $return[qrcode] = $this->chkqrcode();
+    $return[qrcode] = $this->Login_model->chkqrcode($return[data][last_id]);
     echo json_encode($return);
   }
 
-  public function chkqrcode() {
-    $file_name = $_COOKIE[detect_user]."_driver.png";
-    $path = "../data/qrcode/register/".$file_name;
-    if (file_exists($path)) {
-      $return[res] = true;
-      echo json_encode($return);
-    }
-    else {
-      $return[res] = false;
-      $qr_code = "https://api.qrserver.com/v1/create-qr-code/?size=430x430&data=https://www.welovetaxi.com/app/T-share/?ref=".$_COOKIE[detect_user];
-      $part_qr_code = $path;
-      $return[file] = copy($qr_code,$path);
-      echo json_encode($return);
-    }
-  }
+  
 
   public function loadqrcode_allmem() {
 

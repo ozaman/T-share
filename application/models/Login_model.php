@@ -173,7 +173,25 @@ class Login_model extends CI_Model {
     $category = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$arr_where,$arr_select,$arr_order);
     return $category;
   }
-
+  
+  public function chkqrcode($id) {
+    $file_name = $id."_driver.png";
+    $path = "../data/qrcode/register/".$file_name;
+    if (file_exists($path)) {
+      $return[res] = true;
+      
+    }
+    else {
+      $return[res] = false;
+      $qr_code = "https://api.qrserver.com/v1/create-qr-code/?size=430x430&data=https://www.welovetaxi.com/app/T-share/?ref=".$_COOKIE[detect_user];
+      $part_qr_code = $path;
+      $return[file] = copy($qr_code,$path);
+      $return[origin] = $qr_code;
+      
+    }
+    $return[file_name] = $file_name;
+    return $return;
+  }
   public function register() {
 
     $return = array();
@@ -313,6 +331,7 @@ class Login_model extends CI_Model {
     return $res;
   }
 
+  
   /**
    * 
    * 
