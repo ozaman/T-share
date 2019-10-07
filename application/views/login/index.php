@@ -26,7 +26,7 @@
     <script src="<?=base_url();?>assets/onsenui/js/onsenui.min.js?v=<?=time()?>"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="<?=base_url();?>assets/plugin/moment.js?v=<?=time()?>"></script>
-    <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>
+    <!--<script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script>-->
     <script src="<?=base_url();?>assets/EasyAutocomplete/jquery.easy-autocomplete.min.js" type="text/javascript" ></script>
     <link rel="stylesheet" href="<?=base_url();?>assets/plugin/jquery-ui.css?v=<?=time()?>"/>
     <script src="<?=base_url();?>assets/plugin/jquery-ui.js?v=<?=time()?>"></script>
@@ -364,7 +364,7 @@
         <div class="center"></div>
       </ons-toolbar>
       <div>
-        <?php $this->load->view('login/recovery'); ?>
+        <?php $this->load->view('login/recovery');?>
       </div>
       <script>
         ons.getScriptPage().onInit = function () {
@@ -606,8 +606,7 @@
                             });
                   }
                 });
-              } 
-              else if (check_type_rcv == 1) {
+              } else if (check_type_rcv == 1) {
                 var us_email = $('#us_email').val();
                 var param = {
                   email: us_email,
@@ -684,7 +683,7 @@
                 }
                 $('#us_email').val(response.data.email);
                 $('#txt_email_show').text(response.data.email);
-                
+
                 if (response.data.line_id == "") {
                   $('#box-line').hide();
                 } else {
@@ -867,27 +866,31 @@
         type: 'post',
         success: function (res) {
           console.log(res);
-          // return;
-          if (res.status == true) {
+          return;
+          if (res.obj.status == true) {
 //						 var url = "../../index.php?check_new_user";
             // var url = "T-share";
             // console.log(url);
-            setCookie("detect_username", res.data.username, 200000);
+            setCookie("detect_username", res.obj.data.username, 200000);
             // setCookie("detect_username", res.data.username);
-            setCookie("detect_user", res.data.id, 200000);
-            setCookie("detect_userclass", res.data.user_class, 200000);
-            setCookie("app_remember_user", res.data.username, 200000);
-            setCookie("app_remember_pass", res.data.password, 200000);
+            setCookie("detect_user", res.obj.data.id, 200000);
+            setCookie("detect_userclass", res.obj.data.user_class, 200000);
+            setCookie("app_remember_user", res.obj.data.username, 200000);
+            setCookie("app_remember_pass", res.obj.data.password, 200000);
             // setCookie("pass", res.data.id);
-            if (res.data.class_user == "acc") {
-              window.location.href = "";
-            } else if (res.data.user_class == 'monitor') {
-              window.location.href = '../T-admin'
+            if (res.app == 'gbt') {
+                window.location.href = "https://goldenbeachgroup.com/app/driver_app/";
             } else {
-              window.location.replace('<?=base_url();?>');
+              if (res.obj.data.class_user == "acc") {
+                window.location.href = "";
+              } else if (res.obj.data.user_class == 'monitor') {
+                window.location.href = '../T-admin'
+              } else {
+                window.location.replace('<?=base_url();?>');
+              }
             }
-
-          } else {
+          } 
+          else {
             modal.hide();
             ons
                     .notification.alert({message: res.msg, title: "ไม่สามารถเข้าสู่ระบบได้", buttonLabel: "ปิด"});
@@ -1130,31 +1133,31 @@
 //                        console.log(data);
 //                      });
                       setTimeout(function () {
-                          $.ajax({
-                            url: url_login, // point to server-side PHP script 
-                            dataType: 'json', // what to expect back from the PHP script, if anything
-                            data: data_login,
-                            type: 'post',
-                            success: function (res) {
-                              console.log('**** mail *******')
-                              // console.log(res);
-                              if (res.status == true) {
-                                modal.show();
-                                // var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
+                        $.ajax({
+                          url: url_login, // point to server-side PHP script 
+                          dataType: 'json', // what to expect back from the PHP script, if anything
+                          data: data_login,
+                          type: 'post',
+                          success: function (res) {
+                            console.log('**** mail *******')
+                            // console.log(res);
+                            if (res.status == true) {
+                              modal.show();
+                              // var url = "../../../T-share/index.php?check_new_user=" + php_script_response.last_id;
 //										 var url = "https://www.welovetaxi.com/app/T-share?check_new_user="+php_script_response.last_id;
-                                setCookie("detect_username", res.data.username, 200000);
-                                setCookie("detect_user", res.data.id, 200000);
-                                setCookie("detect_userclass", res.data.user_class, 200000);
-                                setCookie("app_remember_user", res.data.username, 200000);
-                                setCookie("app_remember_pass", res.data.password, 200000);
-                                window.location.replace('<?=base_url();?>');
-                              }
+                              setCookie("detect_username", res.data.username, 200000);
+                              setCookie("detect_user", res.data.id, 200000);
+                              setCookie("detect_userclass", res.data.user_class, 200000);
+                              setCookie("app_remember_user", res.data.username, 200000);
+                              setCookie("app_remember_pass", res.data.password, 200000);
+                              window.location.replace('<?=base_url();?>');
                             }
-                          });
-                        }, 500);
-                      
-                      
-                      
+                          }
+                        });
+                      }, 500);
+
+
+
                     });
             modal.hide();
           } else {

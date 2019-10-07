@@ -15,8 +15,18 @@ class Login extends CI_Controller {
 
   public function logins() {
     // header('Content-Type: application/json');
-
-    $return = $this->Login_model->login();
+    $user = $_POST[real_username];
+    $pass = $_POST[real_password];
+    $chk = strpos($user,'dv');
+    if ($chk !== false) {
+      $return[obj] = $this->Login_model->login_gbt();
+      $return[app] = 'gbt';
+    }
+    else {
+      $return[obj] = $this->Login_model->login();
+      $return[app] = 'tshare';
+    }
+    
     echo json_encode($return);
   }
 
@@ -62,8 +72,6 @@ class Login extends CI_Controller {
     echo json_encode($return);
   }
 
-  
-
   public function loadqrcode_allmem() {
 
     $this->db->select('id');
@@ -77,7 +85,7 @@ class Login extends CI_Controller {
       if (file_exists($path)) {
 //        $return[res] = true;
 //        echo json_encode($return);
-          echo $value->id." : 1";
+        echo $value->id." : 1";
       }
       else {
 //          echo $value->id." : 0";
@@ -90,7 +98,7 @@ class Login extends CI_Controller {
       echo "<br/>";
     }
   }
-  
+
 }
 
 ?>

@@ -9,6 +9,37 @@ class Login_model extends CI_Model {
     
   }
 
+  public function login_gbt($param) {
+    $return = array();
+    $user = $_POST[real_username];
+    $pass = $_POST[real_password];
+    
+//    $this->db->where('username',$user);
+    
+    $_where = array();
+    $gbt = $this->load->database('gbt', TRUE);
+//    $_where[username] = 'dv000037';
+//    $gbt->select('id');
+//    $query = $gbt->get_where('web_driver',$_where);
+    $query = $gbt->query("SELECT id FROM web_driver where username like '%".$user."%' ");
+    $DRIVER = $query->row();
+    return $DRIVER;
+    if ($DRIVER != false) {
+      if ($DRIVER->password == $pass) {
+          $return[status] = true;
+//          $return[count] = $DRIVER;
+          $return[data] = $DRIVER;
+      }
+    }else{
+      $return[msg] = 'ไม่มียูเซอร์นี้ในระบบ ';
+      $return[status] = 0;
+      $return[data] = null;
+    }
+    $return[POST] = $_POST;
+//    $return[x] = $DRIVER;
+    return $return;
+  }
+
   public function login($checking) {
 
     $return = array();
@@ -27,7 +58,7 @@ class Login_model extends CI_Model {
       $cheloop = false;
       foreach ($DRIVER as $row) {
         if ($row->password == $pass) {
-          
+
           if ($row->user_class == 'lab') {
 //            return 0;
             $this->db->select('id,i_user_contact');
@@ -35,7 +66,7 @@ class Login_model extends CI_Model {
             $_where[i_user_id] = $row->id;
             $query_lab = $this->db->get_where('tbl_ability_user',$_where);
             $check_status_lab = $query_lab->row();
-            if($check_status_lab == false){
+            if ($check_status_lab == false) {
               $return[msg] = 'ผู้ใช้ถูกปิดการใช้งาน กรุณาติดต่อผู้ดูแลของท่าน';
               $return[status] = false;
               return $return;
@@ -46,7 +77,7 @@ class Login_model extends CI_Model {
             $query_con = $this->db->get_where('shopping_contact',$_where);
             $check_status_con = $query_con->row();
 //            return $check_status_lab;
-            if($check_status_con->i_online > 1){
+            if ($check_status_con->i_online > 1) {
               $return[msg] = 'ผู้ใช้ถูกปิดการใช้งาน กรุณาติดต่อผู้ดูแลของท่าน';
               $return[status] = false;
               return $return;
@@ -173,13 +204,12 @@ class Login_model extends CI_Model {
     $category = $this->Main_model->fetch_data('','',TBL_WEB_PROVINCE,$arr_where,$arr_select,$arr_order);
     return $category;
   }
-  
+
   public function chkqrcode($id) {
     $file_name = $id."_driver.png";
     $path = "../data/qrcode/register/".$file_name;
     if (file_exists($path)) {
       $return[res] = true;
-      
     }
     else {
       $return[res] = false;
@@ -187,11 +217,11 @@ class Login_model extends CI_Model {
       $part_qr_code = $path;
       $return[file] = copy($qr_code,$path);
       $return[origin] = $qr_code;
-      
     }
     $return[file_name] = $file_name;
     return $return;
   }
+
   public function register() {
 
     $return = array();
@@ -331,7 +361,6 @@ class Login_model extends CI_Model {
     return $res;
   }
 
-  
   /**
    * 
    * 
